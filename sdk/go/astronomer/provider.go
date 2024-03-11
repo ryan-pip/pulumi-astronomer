@@ -35,6 +35,11 @@ func NewProvider(ctx *pulumi.Context,
 	if args.OrganizationId == nil {
 		return nil, errors.New("invalid value for required argument 'OrganizationId'")
 	}
+	if args.Token == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "ASTRONOMER_API_TOKEN"); d != nil {
+			args.Token = pulumi.StringPtr(d.(string))
+		}
+	}
 	if args.Token != nil {
 		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
 	}

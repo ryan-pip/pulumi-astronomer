@@ -27,5 +27,5 @@ class _ExportableConfig(types.ModuleType):
         """
         Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
         """
-        return __config__.get('token')
+        return __config__.get('token') or _utilities.get_env('ASTRONOMER_API_TOKEN')
 

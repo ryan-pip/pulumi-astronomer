@@ -22,6 +22,8 @@ class ProviderArgs:
         :param pulumi.Input[str] token: Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
         """
         pulumi.set(__self__, "organization_id", organization_id)
+        if token is None:
+            token = _utilities.get_env('ASTRONOMER_API_TOKEN')
         if token is not None:
             pulumi.set(__self__, "token", token)
 
@@ -110,6 +112,8 @@ class Provider(pulumi.ProviderResource):
             if organization_id is None and not opts.urn:
                 raise TypeError("Missing required property 'organization_id'")
             __props__.__dict__["organization_id"] = organization_id
+            if token is None:
+                token = _utilities.get_env('ASTRONOMER_API_TOKEN')
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)

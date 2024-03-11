@@ -18,5 +18,13 @@ func GetOrganizationId(ctx *pulumi.Context) string {
 
 // Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
 func GetToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "astronomer:token")
+	v, err := config.Try(ctx, "astronomer:token")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "ASTRONOMER_API_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

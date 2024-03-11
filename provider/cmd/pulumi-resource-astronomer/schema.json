@@ -69,6 +69,11 @@
             "token": {
                 "type": "string",
                 "description": "Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "ASTRONOMER_API_TOKEN"
+                    ]
+                },
                 "secret": true
             }
         },
@@ -334,6 +339,11 @@
             "token": {
                 "type": "string",
                 "description": "Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "ASTRONOMER_API_TOKEN"
+                    ]
+                },
                 "secret": true
             }
         },

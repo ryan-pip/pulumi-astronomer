@@ -129,7 +129,7 @@ func Provider() tfbridge.ProviderInfo {
 		MetadataInfo:      tfbridge.NewProviderMetadata(bridgeMetadata),
 		TFProviderVersion: "0.3.0",
 		UpstreamRepoPath:  "./upstream",
-		Config:            map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -138,6 +138,11 @@ func Provider() tfbridge.ProviderInfo {
 			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
 			// 	},
 			// },
+			"token": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ASTRONOMER_API_TOKEN"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{

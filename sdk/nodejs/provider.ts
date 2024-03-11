@@ -49,7 +49,7 @@ export class Provider extends pulumi.ProviderResource {
                 throw new Error("Missing required property 'organizationId'");
             }
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("ASTRONOMER_API_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["token"] };

@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "astronomer",
-  "server": "github://api.github.com/ryan-pip/pulumi-astronomer"
-}

@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`astronomer` Terraform Provider](https://github.com/GK-Consulting/terraform-provider-astronomer).",
     "repository": "https://github.com/ryan.pip/pulumi-astronomer",
-    "logoUrl": "https://raw.githubusercontent.com/ryan.pip/pulumi-astronomer/main/docs/astronomer.png",
+    "logoUrl": "https://raw.githubusercontent.com/ryan.pip/pulumi-astronomer/main/docs/astronomer.svg",
     "pluginDownloadURL": "github://api.github.com/ryan.pip/pulumi-astronomer",
     "publisher": "ryan.pip",
     "meta": {

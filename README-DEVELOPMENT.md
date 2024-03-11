@@ -190,7 +190,7 @@ section of the code where we construct a `tfbridge.ProviderInfo` object:
 
 
     ```go
-    GitHubOrg: "ryan.pip",
+    GitHubOrg: "ryan-pip",
     ```
 
 1. **Add provider configuration overrides (not typically needed):** Pulumi's

@@ -29,7 +29,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/ryan.pip/pulumi-astronomer/provider/pkg/version"
+	"github.com/ryan-pip/pulumi-astronomer/provider/pkg/version"
 )
 
 //go:embed cmd/pulumi-resource-astronomer/bridge-metadata.json
@@ -99,17 +99,17 @@ func Provider() tfbridge.ProviderInfo {
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "ryan.pip",
+		Publisher: "ryan-pip",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "https://raw.githubusercontent.com/ryan.pip/pulumi-astronomer/main/docs/astronomer.svg",
+		LogoURL: "https://raw.githubusercontent.com/ryan-pip/pulumi-astronomer/main/docs/astronomer.svg",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "github://api.github.com/ryan.pip/pulumi-astronomer",
+		PluginDownloadURL: "github://api.github.com/ryan-pip/pulumi-astronomer",
 		Description:       "A Pulumi package for creating and managing Astronomer Cloud resources",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -120,8 +120,8 @@ func Provider() tfbridge.ProviderInfo {
 			"category/infrastructure",
 		},
 		License:    "Apache-2.0",
-		Homepage:   "https://github.com/ryan.pip/pulumi-astronomer",
-		Repository: "https://github.com/ryan.pip/pulumi-astronomer",
+		Homepage:   "https://github.com/ryan-pip/pulumi-astronomer",
+		Repository: "https://github.com/ryan-pip/pulumi-astronomer",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		Version:           version.Version,
@@ -180,7 +180,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/ryan.pip/pulumi-%[1]s/sdk/", "astronomer"),
+				fmt.Sprintf("github.com/ryan-pip/pulumi-%[1]s/sdk/", "astronomer"),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				"astronomer",
@@ -195,7 +195,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Java: &tfbridge.JavaInfo{
-			BasePackage: "com.ryan.pip",
+			BasePackage: "com.ryan-pip",
 		},
 	}
 

@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer/internal"
+	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
 // An Astro Deployment is an Airflow environment that is powered by all core Airflow components.

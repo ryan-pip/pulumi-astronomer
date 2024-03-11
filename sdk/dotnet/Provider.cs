@@ -49,7 +49,7 @@ namespace RyanPip.Astronomer
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ryan.pip/pulumi-astronomer",
+                PluginDownloadURL = "github://api.github.com/ryan-pip/pulumi-astronomer",
                 AdditionalSecretOutputs =
                 {
                     "token",

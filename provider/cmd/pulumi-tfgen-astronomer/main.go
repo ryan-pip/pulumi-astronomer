@@ -15,8 +15,8 @@
 package main
 
 import (
-	astronomer "github.com/ryan.pip/pulumi-astronomer/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
+	astronomer "github.com/ryan-pip/pulumi-astronomer/provider"
 )
 
 func main() {

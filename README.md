@@ -1,6 +1,10 @@
 # Astronomer Resource Provider
 
-The Astronomer Resource Provider lets you manage [astronomer](https://www.pulumi.com/registry/packages/astronomer/) resources.
+The Astronomer Resource Provider lets you manage [astronomer](https://www.pulumi.com/registry/packages/astronomer/) resources as
+part of the [Astronomer Cloud](https://www.astronomer.io/).
+
+This provider is a bridged version of the [terraform provider](https://registry.terraform.io/providers/GK-Consulting/astronomer/latest/docs/resources/workspace). The 
+majority of the credit needs to go to the original [authors](https://github.com/GK-Consulting/terraform-provider-astronomer) of the terraform provider.
 
 ## Installing
 
@@ -33,7 +37,7 @@ pip install pulumi-astronomer
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/ryan.pip/pulumi-astronomer/sdk/go/...
+go get github.com/ryan-pip/pulumi-astronomer/sdk/go/...
 ```
 
 ### .NET (ToD0)

@@ -1,6 +1,6 @@
 ROOT_DIR         := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL            := /bin/bash
-PROJECT          := github.com/ryan.pip/pulumi-astronomer
+PROJECT          := github.com/ryan-pip/pulumi-astronomer
 NODE_MODULE_NAME := @ryan-pip/pulumi_astronomer
 TF_NAME          := astronomer
 PROVIDER_PATH    := provider

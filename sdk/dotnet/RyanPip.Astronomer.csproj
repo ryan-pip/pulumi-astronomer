@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>ryan.pip</Authors>
-    <Company>ryan.pip</Company>
+    <Authors>ryan-pip</Authors>
+    <Company>ryan-pip</Company>
     <Description>A Pulumi package for creating and managing Astronomer Cloud resources</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/ryan.pip/pulumi-astronomer</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ryan.pip/pulumi-astronomer</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ryan-pip/pulumi-astronomer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ryan-pip/pulumi-astronomer</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
     <TargetFramework>net6.0</TargetFramework>

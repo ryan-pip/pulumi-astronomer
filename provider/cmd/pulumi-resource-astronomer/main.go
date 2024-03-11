@@ -21,7 +21,7 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
-	astronomer "github.com/ryan.pip/pulumi-astronomer/provider"
+	astronomer "github.com/ryan-pip/pulumi-astronomer/provider"
 )
 
 //go:embed schema-embed.json

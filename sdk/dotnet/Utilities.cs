@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ryan.pip/pulumi-astronomer";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ryan-pip/pulumi-astronomer";
             return dst;
         }
 

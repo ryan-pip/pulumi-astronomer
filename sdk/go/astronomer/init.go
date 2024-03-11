@@ -8,7 +8,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer/internal"
+	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
 type module struct {

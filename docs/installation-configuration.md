@@ -10,7 +10,7 @@ The Pulumi Astronomer provider is available as a package in all Pulumi languages
 
 * JavaScript/TypeScript: [`@ryan-pip/pulumi_astronomer`](https://www.npmjs.com/package/@ryan-pip/pulumi_astronomer)
 * Python: [`pulumi_astronomer`](https://pypi.org/project/pulumi_astronomer/)
-* Go: [`github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer`](https://pkg.go.dev/github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer)
+* Go: [`github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer`](https://pkg.go.dev/github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer)
 * .NET: [`RyanPip.Astronomer`](https://www.nuget.org/packages/RyanPip.Astronomer)
 
 

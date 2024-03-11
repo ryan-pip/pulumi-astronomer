@@ -25,9 +25,9 @@ setup(name='pulumi_astronomer',
       long_description=readme(),
       long_description_content_type='text/markdown',
       keywords='pulumi astronomer category/infrastructure',
-      url='https://github.com/ryan.pip/pulumi-astronomer',
+      url='https://github.com/ryan-pip/pulumi-astronomer',
       project_urls={
-          'Repository': 'https://github.com/ryan.pip/pulumi-astronomer'
+          'Repository': 'https://github.com/ryan-pip/pulumi-astronomer'
       },
       license='Apache-2.0',
       packages=find_packages(),

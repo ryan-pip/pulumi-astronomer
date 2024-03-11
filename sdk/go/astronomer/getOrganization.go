@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer/internal"
+	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
 // Astronomer Organization Resource
@@ -21,7 +21,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer"
+//	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer"
 //
 // )
 //

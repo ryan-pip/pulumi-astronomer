@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer/internal"
+	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
 // A cluster within an organization. An Astro cluster is a Kubernetes cluster that hosts the infrastructure required to run Deployments.
@@ -22,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer"
+//	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer"
 //
 // )
 //

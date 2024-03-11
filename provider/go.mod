@@ -1,4 +1,4 @@
-module github.com/ryan.pip/pulumi-astronomer/provider
+module github.com/ryan-pip/pulumi-astronomer/provider
 
 go 1.21.5
 

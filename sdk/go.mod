@@ -1,4 +1,4 @@
-module github.com/ryan.pip/pulumi-astronomer/sdk
+module github.com/ryan-pip/pulumi-astronomer/sdk
 
 go 1.21
 

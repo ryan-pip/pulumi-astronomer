@@ -88,6 +88,7 @@ namespace RyanPip.Astronomer
 
         public ProviderArgs()
         {
+            Token = Utilities.GetEnv("ASTRONOMER_API_TOKEN");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

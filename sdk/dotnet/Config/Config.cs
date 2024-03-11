@@ -42,7 +42,7 @@ namespace RyanPip.Astronomer
             set => _organizationId.Set(value);
         }
 
-        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
+        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("ASTRONOMER_API_TOKEN"));
         /// <summary>
         /// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
         /// </summary>

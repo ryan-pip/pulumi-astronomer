@@ -18,7 +18,7 @@ def readme():
         return "astronomer Pulumi Package - Development Version"
 
 
-setup(name='pulumi-astronomer',
+setup(name='pulumi_astronomer',
       python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing Astronomer Cloud resources",
@@ -32,7 +32,7 @@ setup(name='pulumi-astronomer',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi-astronomer': [
+          'pulumi_astronomer': [
               'py.typed',
               'pulumi-plugin.json',
           ]

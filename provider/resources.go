@@ -171,7 +171,7 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumi-astronomer",
+			PackageName: "pulumi_astronomer",
 
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{

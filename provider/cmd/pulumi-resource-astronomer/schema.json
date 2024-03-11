@@ -1,0 +1,1281 @@
+{
+    "name": "astronomer",
+    "displayName": "Astronomer",
+    "description": "A Pulumi package for creating and managing Astronomer Cloud resources",
+    "keywords": [
+        "pulumi",
+        "astronomer",
+        "category/infrastructure"
+    ],
+    "homepage": "https://github.com/ryan.pip/pulumi-astronomer",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`astronomer` Terraform Provider](https://github.com/GK-Consulting/terraform-provider-astronomer).",
+    "repository": "https://github.com/ryan.pip/pulumi-astronomer",
+    "logoUrl": "https://raw.githubusercontent.com/ryan.pip/pulumi-astronomer/main/docs/astronomer.png",
+    "pluginDownloadURL": "github://api.github.com/ryan.pip/pulumi-astronomer",
+    "publisher": "ryan.pip",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20",
+            "rootNamespace": "RyanPip"
+        },
+        "go": {
+            "importBasePath": "github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "java": {
+            "basePackage": "com.ryan.pip",
+            "buildFiles": "",
+            "gradleNexusPublishPluginVersion": "",
+            "gradleTest": ""
+        },
+        "nodejs": {
+            "packageName": "@ryan-pip/pulumi_astronomer",
+            "packageDescription": "A Pulumi package for creating and managing Astronomer Cloud resources. Based on terraform-provider-astronomer: version v0.3.0",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/GK-Consulting/terraform-provider-astronomer)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-astronomer` repo](https://github.com/ryan.pip/pulumi-astronomer/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-astronomer` repo](https://github.com/GK-Consulting/terraform-provider-astronomer/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "packageName": "pulumi_astronomer",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/GK-Consulting/terraform-provider-astronomer)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-astronomer` repo](https://github.com/ryan.pip/pulumi-astronomer/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-astronomer` repo](https://github.com/GK-Consulting/terraform-provider-astronomer/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
+    "config": {
+        "variables": {
+            "organizationId": {
+                "type": "string",
+                "description": "Organization id this provider will operate on.\n"
+            },
+            "token": {
+                "type": "string",
+                "description": "Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.\n",
+                "secret": true
+            }
+        },
+        "defaults": [
+            "organizationId"
+        ]
+    },
+    "types": {
+        "astronomer:index/ClusterK8sTag:ClusterK8sTag": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "The tag's key.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The tag's value.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
+        },
+        "astronomer:index/ClusterMetadata:ClusterMetadata": {
+            "properties": {
+                "externalIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "oidcIssuerUrl": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "astronomer:index/ClusterNodePool:ClusterNodePool": {
+            "properties": {
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Whether the node pool is the default node pool of the cluster.\n"
+                },
+                "maxNodeCount": {
+                    "type": "integer",
+                    "description": "The maximum number of nodes that can be created in the node pool.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the node pool.\n"
+                },
+                "nodeInstanceType": {
+                    "type": "string",
+                    "description": "The type of node instance that is used for the node pool.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "maxNodeCount",
+                "name",
+                "nodeInstanceType"
+            ]
+        },
+        "astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable": {
+            "properties": {
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the environment variable is a secret.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The environment variable key, used to call the value in code.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The environment variable value.\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "isSecret",
+                "key"
+            ]
+        },
+        "astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue": {
+            "properties": {
+                "astroMachine": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "maxWorkerCount": {
+                    "type": "integer"
+                },
+                "minWorkerCount": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workerConcurrency": {
+                    "type": "integer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "astroMachine",
+                "isDefault",
+                "maxWorkerCount",
+                "minWorkerCount",
+                "name",
+                "workerConcurrency"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "astroMachine",
+                        "id",
+                        "isDefault",
+                        "maxWorkerCount",
+                        "minWorkerCount",
+                        "name",
+                        "workerConcurrency"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/getClusterK8sTag:getClusterK8sTag": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "The tag's key.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The tag's value.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getClusterMetadata:getClusterMetadata": {
+            "properties": {
+                "externalIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "oidcIssuerUrl": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "astronomer:index/getClusterNodePool:getClusterNodePool": {
+            "properties": {
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Whether the node pool is the default node pool of the cluster.\n"
+                },
+                "maxNodeCount": {
+                    "type": "integer",
+                    "description": "The maximum number of nodes that can be created in the node pool.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the node pool.\n"
+                },
+                "nodeInstanceType": {
+                    "type": "string",
+                    "description": "The type of node instance that is used for the node pool.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "maxNodeCount",
+                "name",
+                "nodeInstanceType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getOrganizationManagedDomain:getOrganizationManagedDomain": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "enforcedLogins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "enforcedLogins",
+                "id",
+                "name",
+                "status",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the astronomer package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "organizationId": {
+                "type": "string",
+                "description": "Organization id this provider will operate on.\n"
+            },
+            "token": {
+                "type": "string",
+                "description": "Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.\n",
+                "secret": true
+            }
+        },
+        "required": [
+            "organizationId"
+        ],
+        "inputProperties": {
+            "organizationId": {
+                "type": "string",
+                "description": "Organization id this provider will operate on.\n"
+            },
+            "token": {
+                "type": "string",
+                "description": "Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.\n",
+                "secret": true
+            }
+        },
+        "requiredInputs": [
+            "organizationId"
+        ]
+    },
+    "resources": {
+        "astronomer:index/cluster:Cluster": {
+            "description": "A cluster within an organization. An Astro cluster is a Kubernetes cluster that hosts the infrastructure required to run Deployments.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst dedicated = new astronomer.Workspace(\"dedicated\", {\n    cicdEnforcedDefault: true,\n    description: \"Workspace that demos a dedicated deployment set up\",\n});\nconst awsDedicated = new astronomer.Cluster(\"awsDedicated\", {\n    cloudProvider: \"AWS\",\n    region: \"us-east-1\",\n    type: \"DEDICATED\",\n    vpcSubnetRange: \"172.20.0.0/20\",\n    k8sTags: [],\n    nodePools: [],\n    workspaceIds: [dedicated.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\ndedicated = astronomer.Workspace(\"dedicated\",\n    cicd_enforced_default=True,\n    description=\"Workspace that demos a dedicated deployment set up\")\naws_dedicated = astronomer.Cluster(\"awsDedicated\",\n    cloud_provider=\"AWS\",\n    region=\"us-east-1\",\n    type=\"DEDICATED\",\n    vpc_subnet_range=\"172.20.0.0/20\",\n    k8s_tags=[],\n    node_pools=[],\n    workspace_ids=[dedicated.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dedicated = new Astronomer.Workspace(\"dedicated\", new()\n    {\n        CicdEnforcedDefault = true,\n        Description = \"Workspace that demos a dedicated deployment set up\",\n    });\n\n    var awsDedicated = new Astronomer.Cluster(\"awsDedicated\", new()\n    {\n        CloudProvider = \"AWS\",\n        Region = \"us-east-1\",\n        Type = \"DEDICATED\",\n        VpcSubnetRange = \"172.20.0.0/20\",\n        K8sTags = new[] {},\n        NodePools = new[] {},\n        WorkspaceIds = new[]\n        {\n            dedicated.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdedicated, err := astronomer.NewWorkspace(ctx, \"dedicated\", \u0026astronomer.WorkspaceArgs{\n\t\t\tCicdEnforcedDefault: pulumi.Bool(true),\n\t\t\tDescription:         pulumi.String(\"Workspace that demos a dedicated deployment set up\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.NewCluster(ctx, \"awsDedicated\", \u0026astronomer.ClusterArgs{\n\t\t\tCloudProvider:  pulumi.String(\"AWS\"),\n\t\t\tRegion:         pulumi.String(\"us-east-1\"),\n\t\t\tType:           pulumi.String(\"DEDICATED\"),\n\t\t\tVpcSubnetRange: pulumi.String(\"172.20.0.0/20\"),\n\t\t\tK8sTags:        astronomer.ClusterK8sTagArray{},\n\t\t\tNodePools:      astronomer.ClusterNodePoolArray{},\n\t\t\tWorkspaceIds: pulumi.StringArray{\n\t\t\t\tdedicated.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.Workspace;\nimport com.pulumi.astronomer.WorkspaceArgs;\nimport com.pulumi.astronomer.Cluster;\nimport com.pulumi.astronomer.ClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dedicated = new Workspace(\"dedicated\", WorkspaceArgs.builder()        \n            .cicdEnforcedDefault(true)\n            .description(\"Workspace that demos a dedicated deployment set up\")\n            .build());\n\n        var awsDedicated = new Cluster(\"awsDedicated\", ClusterArgs.builder()        \n            .cloudProvider(\"AWS\")\n            .region(\"us-east-1\")\n            .type(\"DEDICATED\")\n            .vpcSubnetRange(\"172.20.0.0/20\")\n            .k8sTags()\n            .nodePools()\n            .workspaceIds(dedicated.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dedicated:\n    type: astronomer:Workspace\n    properties:\n      cicdEnforcedDefault: true\n      description: Workspace that demos a dedicated deployment set up\n  awsDedicated:\n    type: astronomer:Cluster\n    properties:\n      cloudProvider: AWS\n      region: us-east-1\n      type: DEDICATED\n      vpcSubnetRange: 172.20.0.0/20\n      k8sTags: []\n      nodePools: []\n      workspaceIds:\n        - ${dedicated.id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The cluster's cloud provider.\n"
+                },
+                "dbInstanceType": {
+                    "type": "string",
+                    "description": "The type of database instance that is used for the cluster. Required for Hybrid clusters.\n"
+                },
+                "isLimited": {
+                    "type": "boolean",
+                    "description": "Whether the cluster is limited.\n"
+                },
+                "k8sTags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/ClusterK8sTag:ClusterK8sTag"
+                    },
+                    "description": "The Kubernetes tags in the cluster.\n"
+                },
+                "metadata": {
+                    "$ref": "#/types/astronomer:index/ClusterMetadata:ClusterMetadata",
+                    "description": "The cluster's metadata.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the node pool.\n"
+                },
+                "nodePools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/ClusterNodePool:ClusterNodePool"
+                    },
+                    "description": "The list of node pools to create in the cluster.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The organization this cluster is associated with.\n"
+                },
+                "podSubnetRange": {
+                    "type": "string",
+                    "description": "The subnet range for Pods. For GCP clusters only.\n"
+                },
+                "providerAccount": {
+                    "type": "string",
+                    "description": "The provider account ID. Required for Hybrid clusters.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The cluster's region.\n"
+                },
+                "servicePeeringRange": {
+                    "type": "string",
+                    "description": "The service peering range. For GCP clusters only.\n"
+                },
+                "serviceSubnetRange": {
+                    "type": "string",
+                    "description": "The service subnet range. For GCP clusters only.\n"
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "The tenant ID. For Azure clusters only.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The cluster's type.\n"
+                },
+                "vpcSubnetRange": {
+                    "type": "string",
+                    "description": "The VPC subnet range.\n"
+                },
+                "workspaceIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of Workspaces that are authorized to the cluster.\n"
+                }
+            },
+            "required": [
+                "cloudProvider",
+                "dbInstanceType",
+                "isLimited",
+                "metadata",
+                "name",
+                "organizationId",
+                "providerAccount",
+                "region",
+                "tenantId",
+                "type",
+                "vpcSubnetRange",
+                "workspaceIds"
+            ],
+            "inputProperties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The cluster's cloud provider.\n"
+                },
+                "dbInstanceType": {
+                    "type": "string",
+                    "description": "The type of database instance that is used for the cluster. Required for Hybrid clusters.\n"
+                },
+                "k8sTags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/ClusterK8sTag:ClusterK8sTag"
+                    },
+                    "description": "The Kubernetes tags in the cluster.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the node pool.\n"
+                },
+                "nodePools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/ClusterNodePool:ClusterNodePool"
+                    },
+                    "description": "The list of node pools to create in the cluster.\n"
+                },
+                "podSubnetRange": {
+                    "type": "string",
+                    "description": "The subnet range for Pods. For GCP clusters only.\n"
+                },
+                "providerAccount": {
+                    "type": "string",
+                    "description": "The provider account ID. Required for Hybrid clusters.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The cluster's region.\n"
+                },
+                "servicePeeringRange": {
+                    "type": "string",
+                    "description": "The service peering range. For GCP clusters only.\n"
+                },
+                "serviceSubnetRange": {
+                    "type": "string",
+                    "description": "The service subnet range. For GCP clusters only.\n"
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "The tenant ID. For Azure clusters only.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The cluster's type.\n"
+                },
+                "vpcSubnetRange": {
+                    "type": "string",
+                    "description": "The VPC subnet range.\n"
+                },
+                "workspaceIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of Workspaces that are authorized to the cluster.\n"
+                }
+            },
+            "requiredInputs": [
+                "cloudProvider",
+                "region",
+                "type",
+                "vpcSubnetRange",
+                "workspaceIds"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Cluster resources.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The cluster's cloud provider.\n"
+                    },
+                    "dbInstanceType": {
+                        "type": "string",
+                        "description": "The type of database instance that is used for the cluster. Required for Hybrid clusters.\n"
+                    },
+                    "isLimited": {
+                        "type": "boolean",
+                        "description": "Whether the cluster is limited.\n"
+                    },
+                    "k8sTags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/ClusterK8sTag:ClusterK8sTag"
+                        },
+                        "description": "The Kubernetes tags in the cluster.\n"
+                    },
+                    "metadata": {
+                        "$ref": "#/types/astronomer:index/ClusterMetadata:ClusterMetadata",
+                        "description": "The cluster's metadata.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the node pool.\n"
+                    },
+                    "nodePools": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/ClusterNodePool:ClusterNodePool"
+                        },
+                        "description": "The list of node pools to create in the cluster.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization this cluster is associated with.\n"
+                    },
+                    "podSubnetRange": {
+                        "type": "string",
+                        "description": "The subnet range for Pods. For GCP clusters only.\n"
+                    },
+                    "providerAccount": {
+                        "type": "string",
+                        "description": "The provider account ID. Required for Hybrid clusters.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The cluster's region.\n"
+                    },
+                    "servicePeeringRange": {
+                        "type": "string",
+                        "description": "The service peering range. For GCP clusters only.\n"
+                    },
+                    "serviceSubnetRange": {
+                        "type": "string",
+                        "description": "The service subnet range. For GCP clusters only.\n"
+                    },
+                    "tenantId": {
+                        "type": "string",
+                        "description": "The tenant ID. For Azure clusters only.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The cluster's type.\n"
+                    },
+                    "vpcSubnetRange": {
+                        "type": "string",
+                        "description": "The VPC subnet range.\n"
+                    },
+                    "workspaceIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of Workspaces that are authorized to the cluster.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "astronomer:index/deployment:Deployment": {
+            "description": "An Astro Deployment is an Airflow environment that is powered by all core Airflow components.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.Deployment;\nimport com.pulumi.astronomer.DeploymentArgs;\nimport com.pulumi.astronomer.inputs.DeploymentWorkerQueueArgs;\nimport com.pulumi.astronomer.inputs.DeploymentEnvironmentVariableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var standardDeployment = new Deployment(\"standardDeployment\", DeploymentArgs.builder()        \n            .astroRuntimeVersion(\"9.1.0\")\n            .cloudProvider(\"AWS\")\n            .defaultTaskPodCpu(\"0.5\")\n            .defaultTaskPodMemory(\"1Gi\")\n            .description(\"A Standard Deployment\")\n            .executor(\"CELERY\")\n            .isDagDeployEnabled(true)\n            .isCicdEnforced(true)\n            .isHighAvailability(true)\n            .region(\"us-east-1\")\n            .resourceQuotaCpu(\"160\")\n            .resourceQuotaMemory(\"320Gi\")\n            .schedulerSize(\"MEDIUM\")\n            .type(\"STANDARD\")\n            .workspaceId(astronomer_workspace.complete_setup().id())\n            .workerQueues(DeploymentWorkerQueueArgs.builder()\n                .astro_machine(\"A5\")\n                .is_default(true)\n                .max_worker_count(1)\n                .min_worker_count(1)\n                .name(\"default\")\n                .worker_concurrency(1)\n                .build())\n            .environmentVariables(            \n                DeploymentEnvironmentVariableArgs.builder()\n                    .is_secret(true)\n                    .key(\"AWS_ACCESS_SECRET_KEY\")\n                    .value(\"SECRET_VALUE\")\n                    .build(),\n                DeploymentEnvironmentVariableArgs.builder()\n                    .is_secret(false)\n                    .key(\"AWS_ACCESS_KEY_ID\")\n                    .value(\"NOT_SECRET\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  standardDeployment:\n    type: astronomer:Deployment\n    properties:\n      astroRuntimeVersion: 9.1.0\n      cloudProvider: AWS\n      defaultTaskPodCpu: '0.5'\n      defaultTaskPodMemory: 1Gi\n      description: A Standard Deployment\n      executor: CELERY\n      isDagDeployEnabled: true\n      isCicdEnforced: true\n      isHighAvailability: true\n      region: us-east-1\n      resourceQuotaCpu: '160'\n      resourceQuotaMemory: 320Gi\n      schedulerSize: MEDIUM\n      type: STANDARD\n      workspaceId: ${astronomer_workspace.complete_setup.id}\n      workerQueues:\n        - astro_machine: A5\n          is_default: true\n          max_worker_count: 1\n          min_worker_count: 1\n          name: default\n          worker_concurrency: 1\n      environmentVariables:\n        - is_secret: true\n          key: AWS_ACCESS_SECRET_KEY\n          value: SECRET_VALUE\n        - is_secret: false\n          key: AWS_ACCESS_KEY_ID\n          value: NOT_SECRET\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "astroRuntimeVersion": {
+                    "type": "string",
+                    "description": "Deployment's Astro Runtime version.\n"
+                },
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the cluster where the Deployment will be created.\n"
+                },
+                "defaultTaskPodCpu": {
+                    "type": "string",
+                    "description": "The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.\n"
+                },
+                "defaultTaskPodMemory": {
+                    "type": "string",
+                    "description": "The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The Deployment's description.\n"
+                },
+                "environmentVariables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable"
+                    },
+                    "description": "List of environment variables to add to the Deployment.\n"
+                },
+                "executor": {
+                    "type": "string",
+                    "description": "The Deployment's executor type.\n"
+                },
+                "isCicdEnforced": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment requires that all deploys are made through CI/CD.\n"
+                },
+                "isDagDeployEnabled": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment has DAG deploys enabled.\n"
+                },
+                "isHighAvailability": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The Deployment's name.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to host the Deployment in. Optional if `ClusterId` is specified.\n"
+                },
+                "resourceQuotaCpu": {
+                    "type": "string",
+                    "description": "The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.\n"
+                },
+                "resourceQuotaMemory": {
+                    "type": "string",
+                    "description": "The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.\n"
+                },
+                "schedulerSize": {
+                    "type": "string",
+                    "description": "The size of the scheduler pod.\n"
+                },
+                "taskPodNodePoolId": {
+                    "type": "string",
+                    "description": "The node pool ID for the task pods. For KUBERNETES executor only.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the Deployment.\n"
+                },
+                "workerQueues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue"
+                    },
+                    "description": "The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.\n"
+                },
+                "workloadIdentity": {
+                    "type": "string",
+                    "description": "The Deployment's workload identity.\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The ID of the workspace to which the Deployment belongs.\n"
+                }
+            },
+            "required": [
+                "cloudProvider",
+                "defaultTaskPodCpu",
+                "defaultTaskPodMemory",
+                "executor",
+                "isCicdEnforced",
+                "isDagDeployEnabled",
+                "isHighAvailability",
+                "name",
+                "resourceQuotaCpu",
+                "resourceQuotaMemory",
+                "schedulerSize",
+                "type",
+                "workloadIdentity",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "astroRuntimeVersion": {
+                    "type": "string",
+                    "description": "Deployment's Astro Runtime version.\n"
+                },
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the cluster where the Deployment will be created.\n"
+                },
+                "defaultTaskPodCpu": {
+                    "type": "string",
+                    "description": "The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.\n"
+                },
+                "defaultTaskPodMemory": {
+                    "type": "string",
+                    "description": "The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The Deployment's description.\n"
+                },
+                "environmentVariables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable"
+                    },
+                    "description": "List of environment variables to add to the Deployment.\n"
+                },
+                "executor": {
+                    "type": "string",
+                    "description": "The Deployment's executor type.\n"
+                },
+                "isCicdEnforced": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment requires that all deploys are made through CI/CD.\n"
+                },
+                "isDagDeployEnabled": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment has DAG deploys enabled.\n"
+                },
+                "isHighAvailability": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The Deployment's name.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to host the Deployment in. Optional if `ClusterId` is specified.\n"
+                },
+                "resourceQuotaCpu": {
+                    "type": "string",
+                    "description": "The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.\n"
+                },
+                "resourceQuotaMemory": {
+                    "type": "string",
+                    "description": "The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.\n"
+                },
+                "schedulerSize": {
+                    "type": "string",
+                    "description": "The size of the scheduler pod.\n"
+                },
+                "taskPodNodePoolId": {
+                    "type": "string",
+                    "description": "The node pool ID for the task pods. For KUBERNETES executor only.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the Deployment.\n"
+                },
+                "workerQueues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue"
+                    },
+                    "description": "The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The ID of the workspace to which the Deployment belongs.\n"
+                }
+            },
+            "requiredInputs": [
+                "defaultTaskPodCpu",
+                "defaultTaskPodMemory",
+                "executor",
+                "isCicdEnforced",
+                "isDagDeployEnabled",
+                "isHighAvailability",
+                "resourceQuotaCpu",
+                "resourceQuotaMemory",
+                "schedulerSize",
+                "type",
+                "workspaceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Deployment resources.\n",
+                "properties": {
+                    "astroRuntimeVersion": {
+                        "type": "string",
+                        "description": "Deployment's Astro Runtime version.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the cluster where the Deployment will be created.\n"
+                    },
+                    "defaultTaskPodCpu": {
+                        "type": "string",
+                        "description": "The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.\n"
+                    },
+                    "defaultTaskPodMemory": {
+                        "type": "string",
+                        "description": "The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The Deployment's description.\n"
+                    },
+                    "environmentVariables": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable"
+                        },
+                        "description": "List of environment variables to add to the Deployment.\n"
+                    },
+                    "executor": {
+                        "type": "string",
+                        "description": "The Deployment's executor type.\n"
+                    },
+                    "isCicdEnforced": {
+                        "type": "boolean",
+                        "description": "Whether the Deployment requires that all deploys are made through CI/CD.\n"
+                    },
+                    "isDagDeployEnabled": {
+                        "type": "boolean",
+                        "description": "Whether the Deployment has DAG deploys enabled.\n"
+                    },
+                    "isHighAvailability": {
+                        "type": "boolean",
+                        "description": "Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The Deployment's name.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to host the Deployment in. Optional if `ClusterId` is specified.\n"
+                    },
+                    "resourceQuotaCpu": {
+                        "type": "string",
+                        "description": "The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.\n"
+                    },
+                    "resourceQuotaMemory": {
+                        "type": "string",
+                        "description": "The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.\n"
+                    },
+                    "schedulerSize": {
+                        "type": "string",
+                        "description": "The size of the scheduler pod.\n"
+                    },
+                    "taskPodNodePoolId": {
+                        "type": "string",
+                        "description": "The node pool ID for the task pods. For KUBERNETES executor only.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the Deployment.\n"
+                    },
+                    "workerQueues": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue"
+                        },
+                        "description": "The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.\n"
+                    },
+                    "workloadIdentity": {
+                        "type": "string",
+                        "description": "The Deployment's workload identity.\n"
+                    },
+                    "workspaceId": {
+                        "type": "string",
+                        "description": "The ID of the workspace to which the Deployment belongs.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "astronomer:index/workspace:Workspace": {
+            "description": "Astronomer Workspace Resource\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst completeSetup = new astronomer.Workspace(\"completeSetup\", {\n    cicdEnforcedDefault: true,\n    description: \"Testing Workspace\",\n});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\ncomplete_setup = astronomer.Workspace(\"completeSetup\",\n    cicd_enforced_default=True,\n    description=\"Testing Workspace\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var completeSetup = new Astronomer.Workspace(\"completeSetup\", new()\n    {\n        CicdEnforcedDefault = true,\n        Description = \"Testing Workspace\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := astronomer.NewWorkspace(ctx, \"completeSetup\", \u0026astronomer.WorkspaceArgs{\n\t\t\tCicdEnforcedDefault: pulumi.Bool(true),\n\t\t\tDescription:         pulumi.String(\"Testing Workspace\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.Workspace;\nimport com.pulumi.astronomer.WorkspaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var completeSetup = new Workspace(\"completeSetup\", WorkspaceArgs.builder()        \n            .cicdEnforcedDefault(true)\n            .description(\"Testing Workspace\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  completeSetup:\n    type: astronomer:Workspace\n    properties:\n      cicdEnforcedDefault: true\n      description: Testing Workspace\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "cicdEnforcedDefault": {
+                    "type": "boolean",
+                    "description": "Whether new Deployments enforce CI/CD deploys by default.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The Workspace's description.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The Workspace's name.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "cicdEnforcedDefault": {
+                    "type": "boolean",
+                    "description": "Whether new Deployments enforce CI/CD deploys by default.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The Workspace's description.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The Workspace's name.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Workspace resources.\n",
+                "properties": {
+                    "cicdEnforcedDefault": {
+                        "type": "boolean",
+                        "description": "Whether new Deployments enforce CI/CD deploys by default.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The Workspace's description.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The Workspace's name.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "astronomer:index/getCluster:getCluster": {
+            "description": "Astronomer Cluster Data Source\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@pulumi/astronomer\";\n\nconst importedCluster = astronomer.getCluster({\n    id: \"clqoclq8201pp01p0cbt77feb\",\n});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nimported_cluster = astronomer.get_cluster(id=\"clqoclq8201pp01p0cbt77feb\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = Pulumi.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var importedCluster = Astronomer.GetCluster.Invoke(new()\n    {\n        Id = \"clqoclq8201pp01p0cbt77feb\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := astronomer.LookupCluster(ctx, \u0026astronomer.LookupClusterArgs{\n\t\t\tId: \"clqoclq8201pp01p0cbt77feb\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var importedCluster = AstronomerFunctions.getCluster(GetClusterArgs.builder()\n            .id(\"clqoclq8201pp01p0cbt77feb\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  importedCluster:\n    fn::invoke:\n      Function: astronomer:getCluster\n      Arguments:\n        id: clqoclq8201pp01p0cbt77feb\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getCluster.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The cluster's identifier.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCluster.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The cluster's cloud provider.\n"
+                    },
+                    "dbInstanceType": {
+                        "type": "string",
+                        "description": "The type of database instance that is used for the cluster. Required for Hybrid clusters.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The cluster's identifier.\n"
+                    },
+                    "isLimited": {
+                        "type": "boolean",
+                        "description": "Whether the cluster is limited.\n"
+                    },
+                    "k8sTags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getClusterK8sTag:getClusterK8sTag"
+                        },
+                        "description": "The Kubernetes tags in the cluster.\n"
+                    },
+                    "metadata": {
+                        "$ref": "#/types/astronomer:index/getClusterMetadata:getClusterMetadata",
+                        "description": "The cluster's metadata.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The cluster's name.\n"
+                    },
+                    "nodePools": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getClusterNodePool:getClusterNodePool"
+                        },
+                        "description": "The list of node pools to create in the cluster.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization this cluster is associated with.\n"
+                    },
+                    "podSubnetRange": {
+                        "type": "string",
+                        "description": "The subnet range for Pods. For GCP clusters only.\n"
+                    },
+                    "providerAccount": {
+                        "type": "string",
+                        "description": "The provider account ID. Required for Hybrid clusters.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The cluster's region.\n"
+                    },
+                    "servicePeeringRange": {
+                        "type": "string",
+                        "description": "The service peering range. For GCP clusters only.\n"
+                    },
+                    "serviceSubnetRange": {
+                        "type": "string",
+                        "description": "The service subnet range. For GCP clusters only.\n"
+                    },
+                    "tenantId": {
+                        "type": "string",
+                        "description": "The tenant ID. For Azure clusters only.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The cluster's type.\n"
+                    },
+                    "vpcSubnetRange": {
+                        "type": "string",
+                        "description": "The VPC subnet range.\n"
+                    },
+                    "workspaceIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of Workspaces that are authorized to the cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cloudProvider",
+                    "dbInstanceType",
+                    "id",
+                    "isLimited",
+                    "k8sTags",
+                    "metadata",
+                    "name",
+                    "nodePools",
+                    "organizationId",
+                    "podSubnetRange",
+                    "providerAccount",
+                    "region",
+                    "servicePeeringRange",
+                    "serviceSubnetRange",
+                    "tenantId",
+                    "type",
+                    "vpcSubnetRange",
+                    "workspaceIds"
+                ]
+            }
+        },
+        "astronomer:index/getDeployment:getDeployment": {
+            "description": "Astronomer Deployment Resource\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDeployment.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The Deployment's Identifier\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDeployment.\n",
+                "properties": {
+                    "airflowVersion": {
+                        "type": "string",
+                        "description": "The Deployment's Astro Runtime version.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the cluster to which the Deployment will be created in. Optional if cloud provider and region is specified.\n"
+                    },
+                    "clusterName": {
+                        "type": "string",
+                        "description": "Cluster Name\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The Deployment's description.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The Deployment's Identifier\n"
+                    },
+                    "isCicdEnforced": {
+                        "type": "boolean",
+                        "description": "Whether the Deployment requires that all deploys are made through CI/CD.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The Deployment's name.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "airflowVersion",
+                    "cloudProvider",
+                    "clusterId",
+                    "clusterName",
+                    "description",
+                    "id",
+                    "isCicdEnforced",
+                    "name"
+                ]
+            }
+        },
+        "astronomer:index/getOrganization:getOrganization": {
+            "description": "Astronomer Organization Resource\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@pulumi/astronomer\";\n\nconst test = astronomer.getOrganization({\n    id: \"abc123\",\n});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\ntest = astronomer.get_organization(id=\"abc123\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = Pulumi.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Astronomer.GetOrganization.Invoke(new()\n    {\n        Id = \"abc123\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := astronomer.GetOrganization(ctx, \u0026astronomer.GetOrganizationArgs{\n\t\t\tId: \"abc123\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetOrganizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = AstronomerFunctions.getOrganization(GetOrganizationArgs.builder()\n            .id(\"abc123\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: astronomer:getOrganization\n      Arguments:\n        id: abc123\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getOrganization.\n",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "paymentMethod": {
+                        "type": "string",
+                        "description": "Payment method (if set)\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOrganization.\n",
+                "properties": {
+                    "billingEmail": {
+                        "type": "string",
+                        "description": "Billing email on file for the organization.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Timestamped string of when this organization was created\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Organization's unique identifier\n"
+                    },
+                    "isScimEnabled": {
+                        "type": "boolean",
+                        "description": "Whether or not scim is enabled\n"
+                    },
+                    "managedDomains": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getOrganizationManagedDomain:getOrganizationManagedDomain"
+                        },
+                        "description": "List of managed domains (nested)\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Organization's name\n"
+                    },
+                    "paymentMethod": {
+                        "type": "string",
+                        "description": "Payment method (if set)\n"
+                    },
+                    "product": {
+                        "type": "string",
+                        "description": "Type of astro product (e.g. hosted or hybrid)\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of the organization\n"
+                    },
+                    "supportPlan": {
+                        "type": "string",
+                        "description": "Type of support plan the organization has\n"
+                    },
+                    "trialExpiresAt": {
+                        "type": "string",
+                        "description": "When the trial expires, if organization is in a trial\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Last time the organization was updated\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "billingEmail",
+                    "createdAt",
+                    "id",
+                    "isScimEnabled",
+                    "managedDomains",
+                    "name",
+                    "product",
+                    "status",
+                    "supportPlan",
+                    "trialExpiresAt",
+                    "updatedAt"
+                ]
+            }
+        },
+        "astronomer:index/getWorkspace:getWorkspace": {
+            "description": "Astronomer Workspace Resource\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@pulumi/astronomer\";\n\nconst importedWorkspace = astronomer.getWorkspace({\n    id: \"cabcabcabcabcabcabcabcabcabc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nimported_workspace = astronomer.get_workspace(id=\"cabcabcabcabcabcabcabcabcabc\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = Pulumi.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var importedWorkspace = Astronomer.GetWorkspace.Invoke(new()\n    {\n        Id = \"cabcabcabcabcabcabcabcabcabc\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan.pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := astronomer.LookupWorkspace(ctx, \u0026astronomer.LookupWorkspaceArgs{\n\t\t\tId: \"cabcabcabcabcabcabcabcabcabc\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetWorkspaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var importedWorkspace = AstronomerFunctions.getWorkspace(GetWorkspaceArgs.builder()\n            .id(\"cabcabcabcabcabcabcabcabcabc\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  importedWorkspace:\n    fn::invoke:\n      Function: astronomer:getWorkspace\n      Arguments:\n        id: cabcabcabcabcabcabcabcabcabc\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getWorkspace.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The Workspace's identifier.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getWorkspace.\n",
+                "properties": {
+                    "cicdEnforcedDefault": {
+                        "type": "boolean",
+                        "description": "Whether new Deployments enforce CI/CD deploys by default.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The Workspace's description\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The Workspace's identifier.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The Workspace's name\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cicdEnforcedDefault",
+                    "description",
+                    "id",
+                    "name"
+                ]
+            }
+        }
+    }
+}

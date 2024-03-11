@@ -25,7 +25,7 @@ yarn add @ryan-pip/pulumi_astronomer
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_astronomer
+pip install pulumi-astronomer
 ```
 
 ### Go
@@ -36,7 +36,7 @@ To use from Go, use `go get` to grab the latest version of the library:
 go get github.com/ryan.pip/pulumi-astronomer/sdk/go/...
 ```
 
-### .NET
+### .NET (ToD0)
 
 To use from .NET, install using `dotnet add package`:
 

@@ -1,1 +1,127 @@
-{}
+{
+    "renames": {
+        "resources": {
+            "astronomer:index/cluster:Cluster": "astronomer_cluster",
+            "astronomer:index/deployment:Deployment": "astronomer_deployment",
+            "astronomer:index/workspace:Workspace": "astronomer_workspace"
+        },
+        "functions": {
+            "astronomer:index/getCluster:getCluster": "astronomer_cluster",
+            "astronomer:index/getDeployment:getDeployment": "astronomer_deployment",
+            "astronomer:index/getOrganization:getOrganization": "astronomer_organization",
+            "astronomer:index/getWorkspace:getWorkspace": "astronomer_workspace"
+        },
+        "renamedProperties": {
+            "astronomer:index/ClusterMetadata:ClusterMetadata": {
+                "externalIps": "external_ips",
+                "oidcIssuerUrl": "oidc_issuer_url"
+            },
+            "astronomer:index/ClusterNodePool:ClusterNodePool": {
+                "isDefault": "is_default",
+                "maxNodeCount": "max_node_count",
+                "nodeInstanceType": "node_instance_type"
+            },
+            "astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable": {
+                "isSecret": "is_secret"
+            },
+            "astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue": {
+                "astroMachine": "astro_machine",
+                "isDefault": "is_default",
+                "maxWorkerCount": "max_worker_count",
+                "minWorkerCount": "min_worker_count",
+                "workerConcurrency": "worker_concurrency"
+            },
+            "astronomer:index/cluster:Cluster": {
+                "cloudProvider": "cloud_provider",
+                "dbInstanceType": "db_instance_type",
+                "isLimited": "is_limited",
+                "k8sTags": "k8s_tags",
+                "nodePools": "node_pools",
+                "organizationId": "organization_id",
+                "podSubnetRange": "pod_subnet_range",
+                "providerAccount": "provider_account",
+                "servicePeeringRange": "service_peering_range",
+                "serviceSubnetRange": "service_subnet_range",
+                "tenantId": "tenant_id",
+                "vpcSubnetRange": "vpc_subnet_range",
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/deployment:Deployment": {
+                "astroRuntimeVersion": "astro_runtime_version",
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "defaultTaskPodCpu": "default_task_pod_cpu",
+                "defaultTaskPodMemory": "default_task_pod_memory",
+                "environmentVariables": "environment_variables",
+                "isCicdEnforced": "is_cicd_enforced",
+                "isDagDeployEnabled": "is_dag_deploy_enabled",
+                "isHighAvailability": "is_high_availability",
+                "resourceQuotaCpu": "resource_quota_cpu",
+                "resourceQuotaMemory": "resource_quota_memory",
+                "schedulerSize": "scheduler_size",
+                "taskPodNodePoolId": "task_pod_node_pool_id",
+                "workerQueues": "worker_queues",
+                "workloadIdentity": "workload_identity",
+                "workspaceId": "workspace_id"
+            },
+            "astronomer:index/getCluster:getCluster": {
+                "cloudProvider": "cloud_provider",
+                "dbInstanceType": "db_instance_type",
+                "isLimited": "is_limited",
+                "k8sTags": "k8s_tags",
+                "nodePools": "node_pools",
+                "organizationId": "organization_id",
+                "podSubnetRange": "pod_subnet_range",
+                "providerAccount": "provider_account",
+                "servicePeeringRange": "service_peering_range",
+                "serviceSubnetRange": "service_subnet_range",
+                "tenantId": "tenant_id",
+                "vpcSubnetRange": "vpc_subnet_range",
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/getClusterMetadata:getClusterMetadata": {
+                "externalIps": "external_ips",
+                "oidcIssuerUrl": "oidc_issuer_url"
+            },
+            "astronomer:index/getClusterNodePool:getClusterNodePool": {
+                "isDefault": "is_default",
+                "maxNodeCount": "max_node_count",
+                "nodeInstanceType": "node_instance_type"
+            },
+            "astronomer:index/getDeployment:getDeployment": {
+                "airflowVersion": "airflow_version",
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "clusterName": "cluster_name",
+                "isCicdEnforced": "is_cicd_enforced"
+            },
+            "astronomer:index/getOrganization:getOrganization": {
+                "billingEmail": "billing_email",
+                "createdAt": "created_at",
+                "isScimEnabled": "is_scim_enabled",
+                "managedDomains": "managed_domains",
+                "paymentMethod": "payment_method",
+                "supportPlan": "support_plan",
+                "trialExpiresAt": "trial_expires_at",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/getOrganizationManagedDomain:getOrganizationManagedDomain": {
+                "createdAt": "created_at",
+                "enforcedLogins": "enforced_logins",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/getWorkspace:getWorkspace": {
+                "cicdEnforcedDefault": "cicd_enforced_default"
+            },
+            "astronomer:index/workspace:Workspace": {
+                "cicdEnforcedDefault": "cicd_enforced_default"
+            },
+            "astronomer:index:Provider": {
+                "organizationId": "organization_id"
+            }
+        },
+        "renamedConfigProperties": {
+            "organizationId": "organization_id"
+        }
+    }
+}

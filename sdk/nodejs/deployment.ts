@@ -78,6 +78,10 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly isDagDeployEnabled!: pulumi.Output<boolean>;
     /**
+     * Whether the Deployment is in development mode.
+     */
+    public readonly isDevelopmentMode!: pulumi.Output<boolean>;
+    /**
      * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
      */
     public readonly isHighAvailability!: pulumi.Output<boolean>;
@@ -145,6 +149,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["executor"] = state ? state.executor : undefined;
             resourceInputs["isCicdEnforced"] = state ? state.isCicdEnforced : undefined;
             resourceInputs["isDagDeployEnabled"] = state ? state.isDagDeployEnabled : undefined;
+            resourceInputs["isDevelopmentMode"] = state ? state.isDevelopmentMode : undefined;
             resourceInputs["isHighAvailability"] = state ? state.isHighAvailability : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -172,6 +177,9 @@ export class Deployment extends pulumi.CustomResource {
             }
             if ((!args || args.isDagDeployEnabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'isDagDeployEnabled'");
+            }
+            if ((!args || args.isDevelopmentMode === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'isDevelopmentMode'");
             }
             if ((!args || args.isHighAvailability === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'isHighAvailability'");
@@ -201,6 +209,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["executor"] = args ? args.executor : undefined;
             resourceInputs["isCicdEnforced"] = args ? args.isCicdEnforced : undefined;
             resourceInputs["isDagDeployEnabled"] = args ? args.isDagDeployEnabled : undefined;
+            resourceInputs["isDevelopmentMode"] = args ? args.isDevelopmentMode : undefined;
             resourceInputs["isHighAvailability"] = args ? args.isHighAvailability : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -262,6 +271,10 @@ export interface DeploymentState {
      * Whether the Deployment has DAG deploys enabled.
      */
     isDagDeployEnabled?: pulumi.Input<boolean>;
+    /**
+     * Whether the Deployment is in development mode.
+     */
+    isDevelopmentMode?: pulumi.Input<boolean>;
     /**
      * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
      */
@@ -352,6 +365,10 @@ export interface DeploymentArgs {
      * Whether the Deployment has DAG deploys enabled.
      */
     isDagDeployEnabled: pulumi.Input<boolean>;
+    /**
+     * Whether the Deployment is in development mode.
+     */
+    isDevelopmentMode: pulumi.Input<boolean>;
     /**
      * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
      */

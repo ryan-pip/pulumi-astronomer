@@ -651,6 +651,10 @@
                     "type": "boolean",
                     "description": "Whether the Deployment has DAG deploys enabled.\n"
                 },
+                "isDevelopmentMode": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment is in development mode.\n"
+                },
                 "isHighAvailability": {
                     "type": "boolean",
                     "description": "Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.\n"
@@ -706,6 +710,7 @@
                 "executor",
                 "isCicdEnforced",
                 "isDagDeployEnabled",
+                "isDevelopmentMode",
                 "isHighAvailability",
                 "name",
                 "resourceQuotaCpu",
@@ -759,6 +764,10 @@
                     "type": "boolean",
                     "description": "Whether the Deployment has DAG deploys enabled.\n"
                 },
+                "isDevelopmentMode": {
+                    "type": "boolean",
+                    "description": "Whether the Deployment is in development mode.\n"
+                },
                 "isHighAvailability": {
                     "type": "boolean",
                     "description": "Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.\n"
@@ -809,6 +818,7 @@
                 "executor",
                 "isCicdEnforced",
                 "isDagDeployEnabled",
+                "isDevelopmentMode",
                 "isHighAvailability",
                 "resourceQuotaCpu",
                 "resourceQuotaMemory",
@@ -861,6 +871,10 @@
                     "isDagDeployEnabled": {
                         "type": "boolean",
                         "description": "Whether the Deployment has DAG deploys enabled.\n"
+                    },
+                    "isDevelopmentMode": {
+                        "type": "boolean",
+                        "description": "Whether the Deployment is in development mode.\n"
                     },
                     "isHighAvailability": {
                         "type": "boolean",

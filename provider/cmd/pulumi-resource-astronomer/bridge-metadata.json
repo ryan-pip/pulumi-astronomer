@@ -55,6 +55,7 @@
                 "environmentVariables": "environment_variables",
                 "isCicdEnforced": "is_cicd_enforced",
                 "isDagDeployEnabled": "is_dag_deploy_enabled",
+                "isDevelopmentMode": "is_development_mode",
                 "isHighAvailability": "is_high_availability",
                 "resourceQuotaCpu": "resource_quota_cpu",
                 "resourceQuotaMemory": "resource_quota_memory",

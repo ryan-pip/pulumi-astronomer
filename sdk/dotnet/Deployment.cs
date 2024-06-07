@@ -77,6 +77,12 @@ namespace RyanPip.Astronomer
         public Output<bool> IsDagDeployEnabled { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the Deployment is in development mode.
+        /// </summary>
+        [Output("isDevelopmentMode")]
+        public Output<bool> IsDevelopmentMode { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         /// </summary>
         [Output("isHighAvailability")]
@@ -256,6 +262,12 @@ namespace RyanPip.Astronomer
         public Input<bool> IsDagDeployEnabled { get; set; } = null!;
 
         /// <summary>
+        /// Whether the Deployment is in development mode.
+        /// </summary>
+        [Input("isDevelopmentMode", required: true)]
+        public Input<bool> IsDevelopmentMode { get; set; } = null!;
+
+        /// <summary>
         /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         /// </summary>
         [Input("isHighAvailability", required: true)]
@@ -394,6 +406,12 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Input("isDagDeployEnabled")]
         public Input<bool>? IsDagDeployEnabled { get; set; }
+
+        /// <summary>
+        /// Whether the Deployment is in development mode.
+        /// </summary>
+        [Input("isDevelopmentMode")]
+        public Input<bool>? IsDevelopmentMode { get; set; }
 
         /// <summary>
         /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.

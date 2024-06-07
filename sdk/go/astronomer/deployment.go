@@ -36,6 +36,8 @@ type Deployment struct {
 	IsCicdEnforced pulumi.BoolOutput `pulumi:"isCicdEnforced"`
 	// Whether the Deployment has DAG deploys enabled.
 	IsDagDeployEnabled pulumi.BoolOutput `pulumi:"isDagDeployEnabled"`
+	// Whether the Deployment is in development mode.
+	IsDevelopmentMode pulumi.BoolOutput `pulumi:"isDevelopmentMode"`
 	// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
 	IsHighAvailability pulumi.BoolOutput `pulumi:"isHighAvailability"`
 	// The Deployment's name.
@@ -81,6 +83,9 @@ func NewDeployment(ctx *pulumi.Context,
 	}
 	if args.IsDagDeployEnabled == nil {
 		return nil, errors.New("invalid value for required argument 'IsDagDeployEnabled'")
+	}
+	if args.IsDevelopmentMode == nil {
+		return nil, errors.New("invalid value for required argument 'IsDevelopmentMode'")
 	}
 	if args.IsHighAvailability == nil {
 		return nil, errors.New("invalid value for required argument 'IsHighAvailability'")
@@ -143,6 +148,8 @@ type deploymentState struct {
 	IsCicdEnforced *bool `pulumi:"isCicdEnforced"`
 	// Whether the Deployment has DAG deploys enabled.
 	IsDagDeployEnabled *bool `pulumi:"isDagDeployEnabled"`
+	// Whether the Deployment is in development mode.
+	IsDevelopmentMode *bool `pulumi:"isDevelopmentMode"`
 	// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
 	IsHighAvailability *bool `pulumi:"isHighAvailability"`
 	// The Deployment's name.
@@ -188,6 +195,8 @@ type DeploymentState struct {
 	IsCicdEnforced pulumi.BoolPtrInput
 	// Whether the Deployment has DAG deploys enabled.
 	IsDagDeployEnabled pulumi.BoolPtrInput
+	// Whether the Deployment is in development mode.
+	IsDevelopmentMode pulumi.BoolPtrInput
 	// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
 	IsHighAvailability pulumi.BoolPtrInput
 	// The Deployment's name.
@@ -237,6 +246,8 @@ type deploymentArgs struct {
 	IsCicdEnforced bool `pulumi:"isCicdEnforced"`
 	// Whether the Deployment has DAG deploys enabled.
 	IsDagDeployEnabled bool `pulumi:"isDagDeployEnabled"`
+	// Whether the Deployment is in development mode.
+	IsDevelopmentMode bool `pulumi:"isDevelopmentMode"`
 	// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
 	IsHighAvailability bool `pulumi:"isHighAvailability"`
 	// The Deployment's name.
@@ -281,6 +292,8 @@ type DeploymentArgs struct {
 	IsCicdEnforced pulumi.BoolInput
 	// Whether the Deployment has DAG deploys enabled.
 	IsDagDeployEnabled pulumi.BoolInput
+	// Whether the Deployment is in development mode.
+	IsDevelopmentMode pulumi.BoolInput
 	// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
 	IsHighAvailability pulumi.BoolInput
 	// The Deployment's name.
@@ -438,6 +451,11 @@ func (o DeploymentOutput) IsCicdEnforced() pulumi.BoolOutput {
 // Whether the Deployment has DAG deploys enabled.
 func (o DeploymentOutput) IsDagDeployEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.BoolOutput { return v.IsDagDeployEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether the Deployment is in development mode.
+func (o DeploymentOutput) IsDevelopmentMode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.BoolOutput { return v.IsDevelopmentMode }).(pulumi.BoolOutput)
 }
 
 // Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.

@@ -9,7 +9,7 @@ replace github.com/GK-Consulting/terraform-provider-astronomer/shim => ./shim
 replace (
 	github.com/GK-Consulting/terraform-provider-astronomer => ../upstream
 	github.com/openglshaders/astronomer-api/v2 => ../upstream/internal/api
-	terraform-provider-astronomer => github.com/GK-Consulting/terraform-provider-astronomer v0.0.0-00010101000000-000000000000
+	terraform-provider-astronomer => github.com/ryan-pip/terraform-provider-astronomer v0.0.0-00010101000000-000000000000
 )
 
 require (

@@ -21,6 +21,7 @@ class DeploymentArgs:
                  executor: pulumi.Input[str],
                  is_cicd_enforced: pulumi.Input[bool],
                  is_dag_deploy_enabled: pulumi.Input[bool],
+                 is_development_mode: pulumi.Input[bool],
                  is_high_availability: pulumi.Input[bool],
                  resource_quota_cpu: pulumi.Input[str],
                  resource_quota_memory: pulumi.Input[str],
@@ -43,6 +44,7 @@ class DeploymentArgs:
         :param pulumi.Input[str] executor: The Deployment's executor type.
         :param pulumi.Input[bool] is_cicd_enforced: Whether the Deployment requires that all deploys are made through CI/CD.
         :param pulumi.Input[bool] is_dag_deploy_enabled: Whether the Deployment has DAG deploys enabled.
+        :param pulumi.Input[bool] is_development_mode: Whether the Deployment is in development mode.
         :param pulumi.Input[bool] is_high_availability: Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         :param pulumi.Input[str] resource_quota_cpu: The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
         :param pulumi.Input[str] resource_quota_memory: The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
@@ -64,6 +66,7 @@ class DeploymentArgs:
         pulumi.set(__self__, "executor", executor)
         pulumi.set(__self__, "is_cicd_enforced", is_cicd_enforced)
         pulumi.set(__self__, "is_dag_deploy_enabled", is_dag_deploy_enabled)
+        pulumi.set(__self__, "is_development_mode", is_development_mode)
         pulumi.set(__self__, "is_high_availability", is_high_availability)
         pulumi.set(__self__, "resource_quota_cpu", resource_quota_cpu)
         pulumi.set(__self__, "resource_quota_memory", resource_quota_memory)
@@ -148,6 +151,18 @@ class DeploymentArgs:
     @is_dag_deploy_enabled.setter
     def is_dag_deploy_enabled(self, value: pulumi.Input[bool]):
         pulumi.set(self, "is_dag_deploy_enabled", value)
+
+    @property
+    @pulumi.getter(name="isDevelopmentMode")
+    def is_development_mode(self) -> pulumi.Input[bool]:
+        """
+        Whether the Deployment is in development mode.
+        """
+        return pulumi.get(self, "is_development_mode")
+
+    @is_development_mode.setter
+    def is_development_mode(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "is_development_mode", value)
 
     @property
     @pulumi.getter(name="isHighAvailability")
@@ -343,6 +358,7 @@ class _DeploymentState:
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
                  is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_development_mode: Optional[pulumi.Input[bool]] = None,
                  is_high_availability: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -366,6 +382,7 @@ class _DeploymentState:
         :param pulumi.Input[str] executor: The Deployment's executor type.
         :param pulumi.Input[bool] is_cicd_enforced: Whether the Deployment requires that all deploys are made through CI/CD.
         :param pulumi.Input[bool] is_dag_deploy_enabled: Whether the Deployment has DAG deploys enabled.
+        :param pulumi.Input[bool] is_development_mode: Whether the Deployment is in development mode.
         :param pulumi.Input[bool] is_high_availability: Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         :param pulumi.Input[str] name: The Deployment's name.
         :param pulumi.Input[str] region: The region to host the Deployment in. Optional if `ClusterId` is specified.
@@ -398,6 +415,8 @@ class _DeploymentState:
             pulumi.set(__self__, "is_cicd_enforced", is_cicd_enforced)
         if is_dag_deploy_enabled is not None:
             pulumi.set(__self__, "is_dag_deploy_enabled", is_dag_deploy_enabled)
+        if is_development_mode is not None:
+            pulumi.set(__self__, "is_development_mode", is_development_mode)
         if is_high_availability is not None:
             pulumi.set(__self__, "is_high_availability", is_high_availability)
         if name is not None:
@@ -540,6 +559,18 @@ class _DeploymentState:
     @is_dag_deploy_enabled.setter
     def is_dag_deploy_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "is_dag_deploy_enabled", value)
+
+    @property
+    @pulumi.getter(name="isDevelopmentMode")
+    def is_development_mode(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the Deployment is in development mode.
+        """
+        return pulumi.get(self, "is_development_mode")
+
+    @is_development_mode.setter
+    def is_development_mode(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_development_mode", value)
 
     @property
     @pulumi.getter(name="isHighAvailability")
@@ -689,6 +720,7 @@ class Deployment(pulumi.CustomResource):
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
                  is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_development_mode: Optional[pulumi.Input[bool]] = None,
                  is_high_availability: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -715,6 +747,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] executor: The Deployment's executor type.
         :param pulumi.Input[bool] is_cicd_enforced: Whether the Deployment requires that all deploys are made through CI/CD.
         :param pulumi.Input[bool] is_dag_deploy_enabled: Whether the Deployment has DAG deploys enabled.
+        :param pulumi.Input[bool] is_development_mode: Whether the Deployment is in development mode.
         :param pulumi.Input[bool] is_high_availability: Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         :param pulumi.Input[str] name: The Deployment's name.
         :param pulumi.Input[str] region: The region to host the Deployment in. Optional if `ClusterId` is specified.
@@ -760,6 +793,7 @@ class Deployment(pulumi.CustomResource):
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
                  is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_development_mode: Optional[pulumi.Input[bool]] = None,
                  is_high_availability: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -799,6 +833,9 @@ class Deployment(pulumi.CustomResource):
             if is_dag_deploy_enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'is_dag_deploy_enabled'")
             __props__.__dict__["is_dag_deploy_enabled"] = is_dag_deploy_enabled
+            if is_development_mode is None and not opts.urn:
+                raise TypeError("Missing required property 'is_development_mode'")
+            __props__.__dict__["is_development_mode"] = is_development_mode
             if is_high_availability is None and not opts.urn:
                 raise TypeError("Missing required property 'is_high_availability'")
             __props__.__dict__["is_high_availability"] = is_high_availability
@@ -842,6 +879,7 @@ class Deployment(pulumi.CustomResource):
             executor: Optional[pulumi.Input[str]] = None,
             is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
             is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
+            is_development_mode: Optional[pulumi.Input[bool]] = None,
             is_high_availability: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -870,6 +908,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] executor: The Deployment's executor type.
         :param pulumi.Input[bool] is_cicd_enforced: Whether the Deployment requires that all deploys are made through CI/CD.
         :param pulumi.Input[bool] is_dag_deploy_enabled: Whether the Deployment has DAG deploys enabled.
+        :param pulumi.Input[bool] is_development_mode: Whether the Deployment is in development mode.
         :param pulumi.Input[bool] is_high_availability: Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
         :param pulumi.Input[str] name: The Deployment's name.
         :param pulumi.Input[str] region: The region to host the Deployment in. Optional if `ClusterId` is specified.
@@ -896,6 +935,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["executor"] = executor
         __props__.__dict__["is_cicd_enforced"] = is_cicd_enforced
         __props__.__dict__["is_dag_deploy_enabled"] = is_dag_deploy_enabled
+        __props__.__dict__["is_development_mode"] = is_development_mode
         __props__.__dict__["is_high_availability"] = is_high_availability
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -988,6 +1028,14 @@ class Deployment(pulumi.CustomResource):
         Whether the Deployment has DAG deploys enabled.
         """
         return pulumi.get(self, "is_dag_deploy_enabled")
+
+    @property
+    @pulumi.getter(name="isDevelopmentMode")
+    def is_development_mode(self) -> pulumi.Output[bool]:
+        """
+        Whether the Deployment is in development mode.
+        """
+        return pulumi.get(self, "is_development_mode")
 
     @property
     @pulumi.getter(name="isHighAvailability")

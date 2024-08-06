@@ -14,19 +14,46 @@ namespace RyanPip.Astronomer.Outputs
     [OutputType]
     public sealed class DeploymentWorkerQueue
     {
-        public readonly string AstroMachine;
-        public readonly string? Id;
+        /// <summary>
+        /// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        public readonly string? AstroMachine;
+        /// <summary>
+        /// Worker queue default
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// Worker queue max worker count
+        /// </summary>
         public readonly int MaxWorkerCount;
+        /// <summary>
+        /// Worker queue min worker count
+        /// </summary>
         public readonly int MinWorkerCount;
+        /// <summary>
+        /// Worker queue name
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Worker queue Node pool identifier - required for 'HYBRID' deployments
+        /// </summary>
+        public readonly string? NodePoolId;
+        /// <summary>
+        /// Worker queue pod CPU
+        /// </summary>
+        public readonly string? PodCpu;
+        /// <summary>
+        /// Worker queue pod memory
+        /// </summary>
+        public readonly string? PodMemory;
+        /// <summary>
+        /// Worker queue worker concurrency
+        /// </summary>
         public readonly int WorkerConcurrency;
 
         [OutputConstructor]
         private DeploymentWorkerQueue(
-            string astroMachine,
-
-            string? id,
+            string? astroMachine,
 
             bool isDefault,
 
@@ -36,14 +63,22 @@ namespace RyanPip.Astronomer.Outputs
 
             string name,
 
+            string? nodePoolId,
+
+            string? podCpu,
+
+            string? podMemory,
+
             int workerConcurrency)
         {
             AstroMachine = astroMachine;
-            Id = id;
             IsDefault = isDefault;
             MaxWorkerCount = maxWorkerCount;
             MinWorkerCount = minWorkerCount;
             Name = name;
+            NodePoolId = nodePoolId;
+            PodCpu = podCpu;
+            PodMemory = podMemory;
             WorkerConcurrency = workerConcurrency;
         }
     }

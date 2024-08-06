@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Astronomer Organization Resource
+ * Organization data source
  *
  * ## Example Usage
  *
@@ -15,29 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const test = astronomer.getOrganization({
- *     id: "abc123",
- * });
+ * const example = astronomer.getOrganization({});
  * ```
  */
-export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
+export function getOrganization(opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getOrganization:getOrganization", {
-        "id": args.id,
-        "paymentMethod": args.paymentMethod,
     }, opts);
-}
-
-/**
- * A collection of arguments for invoking getOrganization.
- */
-export interface GetOrganizationArgs {
-    id: string;
-    /**
-     * Payment method (if set)
-     */
-    paymentMethod?: string;
 }
 
 /**
@@ -45,56 +30,60 @@ export interface GetOrganizationArgs {
  */
 export interface GetOrganizationResult {
     /**
-     * Billing email on file for the organization.
+     * Organization billing email
      */
     readonly billingEmail: string;
     /**
-     * Timestamped string of when this organization was created
+     * Organization creation timestamp
      */
     readonly createdAt: string;
     /**
-     * Organization's unique identifier
+     * Organization creator
+     */
+    readonly createdBy: outputs.GetOrganizationCreatedBy;
+    /**
+     * Organization identifier
      */
     readonly id: string;
     /**
-     * Whether or not scim is enabled
+     * Whether SCIM is enabled for the organization
      */
     readonly isScimEnabled: boolean;
     /**
-     * List of managed domains (nested)
-     */
-    readonly managedDomains: outputs.GetOrganizationManagedDomain[];
-    /**
-     * Organization's name
+     * Organization name
      */
     readonly name: string;
     /**
-     * Payment method (if set)
+     * Organization payment method
      */
-    readonly paymentMethod?: string;
+    readonly paymentMethod: string;
     /**
-     * Type of astro product (e.g. hosted or hybrid)
+     * Organization product type
      */
     readonly product: string;
     /**
-     * Status of the organization
+     * Organization status
      */
     readonly status: string;
     /**
-     * Type of support plan the organization has
+     * Organization support plan
      */
     readonly supportPlan: string;
     /**
-     * When the trial expires, if organization is in a trial
+     * Organization trial expiration timestamp
      */
     readonly trialExpiresAt: string;
     /**
-     * Last time the organization was updated
+     * Organization last updated timestamp
      */
     readonly updatedAt: string;
+    /**
+     * Organization updater
+     */
+    readonly updatedBy: outputs.GetOrganizationUpdatedBy;
 }
 /**
- * Astronomer Organization Resource
+ * Organization data source
  *
  * ## Example Usage
  *
@@ -102,22 +91,9 @@ export interface GetOrganizationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const test = astronomer.getOrganization({
- *     id: "abc123",
- * });
+ * const example = astronomer.getOrganization({});
  * ```
  */
-export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
-    return pulumi.output(args).apply((a: any) => getOrganization(a, opts))
-}
-
-/**
- * A collection of arguments for invoking getOrganization.
- */
-export interface GetOrganizationOutputArgs {
-    id: pulumi.Input<string>;
-    /**
-     * Payment method (if set)
-     */
-    paymentMethod?: pulumi.Input<string>;
+export function getOrganizationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
+    return pulumi.output(getOrganization(opts))
 }

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * A cluster within an organization. An Astro cluster is a Kubernetes cluster that hosts the infrastructure required to run Deployments.
+ * Cluster resource. If creating multiple clusters, add a delay between each cluster creation to avoid cluster creation limiting errors.
  *
  * ## Example Usage
  *
@@ -15,18 +15,44 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@ryan-pip/pulumi_astronomer";
  *
- * const dedicated = new astronomer.Workspace("dedicated", {
- *     cicdEnforcedDefault: true,
- *     description: "Workspace that demos a dedicated deployment set up",
- * });
- * const awsDedicated = new astronomer.Cluster("awsDedicated", {
- *     cloudProvider: "AWS",
- *     region: "us-east-1",
+ * const awsExample = new astronomer.Cluster("awsExample", {
  *     type: "DEDICATED",
+ *     region: "us-east-1",
+ *     cloudProvider: "AWS",
  *     vpcSubnetRange: "172.20.0.0/20",
- *     k8sTags: [],
- *     nodePools: [],
- *     workspaceIds: [dedicated.id],
+ *     workspaceIds: [],
+ *     timeouts: {
+ *         create: "3h",
+ *         update: "2h",
+ *         "delete": "1h",
+ *     },
+ * });
+ * const azureExample = new astronomer.Cluster("azureExample", {
+ *     type: "DEDICATED",
+ *     region: "westus2",
+ *     cloudProvider: "AZURE",
+ *     vpcSubnetRange: "172.20.0.0/19",
+ *     workspaceIds: ["clv4wcf6f003u01m3zp7gsvzg"],
+ * });
+ * const gcpExample = new astronomer.Cluster("gcpExample", {
+ *     type: "DEDICATED",
+ *     region: "us-central1",
+ *     cloudProvider: "GCP",
+ *     podSubnetRange: "172.21.0.0/19",
+ *     servicePeeringRange: "172.23.0.0/20",
+ *     serviceSubnetRange: "172.22.0.0/22",
+ *     vpcSubnetRange: "172.20.0.0/22",
+ *     workspaceIds: [],
+ * });
+ * const importedCluster = new astronomer.Cluster("importedCluster", {
+ *     type: "DEDICATED",
+ *     region: "us-central1",
+ *     cloudProvider: "GCP",
+ *     podSubnetRange: "172.21.0.0/19",
+ *     servicePeeringRange: "172.23.0.0/20",
+ *     serviceSubnetRange: "172.22.0.0/22",
+ *     vpcSubnetRange: "172.20.0.0/22",
+ *     workspaceIds: [],
  * });
  * ```
  */
@@ -59,71 +85,76 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /**
-     * The cluster's cloud provider.
+     * Cluster cloud provider - if changed, the cluster will be recreated.
      */
     public readonly cloudProvider!: pulumi.Output<string>;
     /**
-     * The type of database instance that is used for the cluster. Required for Hybrid clusters.
+     * Cluster creation timestamp
      */
-    public readonly dbInstanceType!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Whether the cluster is limited.
+     * Cluster database instance type
+     */
+    public /*out*/ readonly dbInstanceType!: pulumi.Output<string>;
+    /**
+     * Whether the cluster is limited
      */
     public /*out*/ readonly isLimited!: pulumi.Output<boolean>;
     /**
-     * The Kubernetes tags in the cluster.
-     */
-    public readonly k8sTags!: pulumi.Output<outputs.ClusterK8sTag[] | undefined>;
-    /**
-     * The cluster's metadata.
+     * Cluster metadata
      */
     public /*out*/ readonly metadata!: pulumi.Output<outputs.ClusterMetadata>;
     /**
-     * The name of the node pool.
+     * Cluster name
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The list of node pools to create in the cluster.
+     * Cluster node pools
      */
-    public readonly nodePools!: pulumi.Output<outputs.ClusterNodePool[] | undefined>;
+    public /*out*/ readonly nodePools!: pulumi.Output<outputs.ClusterNodePool[]>;
     /**
-     * The organization this cluster is associated with.
-     */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
-    /**
-     * The subnet range for Pods. For GCP clusters only.
+     * Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     public readonly podSubnetRange!: pulumi.Output<string | undefined>;
     /**
-     * The provider account ID. Required for Hybrid clusters.
+     * Cluster provider account
      */
-    public readonly providerAccount!: pulumi.Output<string>;
+    public /*out*/ readonly providerAccount!: pulumi.Output<string>;
     /**
-     * The cluster's region.
+     * Cluster region - if changed, the cluster will be recreated.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The service peering range. For GCP clusters only.
+     * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     public readonly servicePeeringRange!: pulumi.Output<string | undefined>;
     /**
-     * The service subnet range. For GCP clusters only.
+     * Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     public readonly serviceSubnetRange!: pulumi.Output<string | undefined>;
     /**
-     * The tenant ID. For Azure clusters only.
+     * Cluster status
      */
-    public readonly tenantId!: pulumi.Output<string>;
+    public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The cluster's type.
+     * Cluster tenant ID
+     */
+    public /*out*/ readonly tenantId!: pulumi.Output<string>;
+    public readonly timeouts!: pulumi.Output<outputs.ClusterTimeouts | undefined>;
+    /**
+     * Cluster type
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The VPC subnet range.
+     * Cluster last updated timestamp
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * Cluster VPC subnet range. If changed, the cluster will be recreated.
      */
     public readonly vpcSubnetRange!: pulumi.Output<string>;
     /**
-     * The list of Workspaces that are authorized to the cluster.
+     * Cluster workspace IDs
      */
     public readonly workspaceIds!: pulumi.Output<string[]>;
 
@@ -141,20 +172,22 @@ export class Cluster extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
             resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dbInstanceType"] = state ? state.dbInstanceType : undefined;
             resourceInputs["isLimited"] = state ? state.isLimited : undefined;
-            resourceInputs["k8sTags"] = state ? state.k8sTags : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodePools"] = state ? state.nodePools : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["podSubnetRange"] = state ? state.podSubnetRange : undefined;
             resourceInputs["providerAccount"] = state ? state.providerAccount : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["servicePeeringRange"] = state ? state.servicePeeringRange : undefined;
             resourceInputs["serviceSubnetRange"] = state ? state.serviceSubnetRange : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["timeouts"] = state ? state.timeouts : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vpcSubnetRange"] = state ? state.vpcSubnetRange : undefined;
             resourceInputs["workspaceIds"] = state ? state.workspaceIds : undefined;
         } else {
@@ -175,22 +208,24 @@ export class Cluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'workspaceIds'");
             }
             resourceInputs["cloudProvider"] = args ? args.cloudProvider : undefined;
-            resourceInputs["dbInstanceType"] = args ? args.dbInstanceType : undefined;
-            resourceInputs["k8sTags"] = args ? args.k8sTags : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodePools"] = args ? args.nodePools : undefined;
             resourceInputs["podSubnetRange"] = args ? args.podSubnetRange : undefined;
-            resourceInputs["providerAccount"] = args ? args.providerAccount : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["servicePeeringRange"] = args ? args.servicePeeringRange : undefined;
             resourceInputs["serviceSubnetRange"] = args ? args.serviceSubnetRange : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["timeouts"] = args ? args.timeouts : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcSubnetRange"] = args ? args.vpcSubnetRange : undefined;
             resourceInputs["workspaceIds"] = args ? args.workspaceIds : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["dbInstanceType"] = undefined /*out*/;
             resourceInputs["isLimited"] = undefined /*out*/;
             resourceInputs["metadata"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["nodePools"] = undefined /*out*/;
+            resourceInputs["providerAccount"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["tenantId"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Cluster.__pulumiType, name, resourceInputs, opts);
@@ -202,71 +237,76 @@ export class Cluster extends pulumi.CustomResource {
  */
 export interface ClusterState {
     /**
-     * The cluster's cloud provider.
+     * Cluster cloud provider - if changed, the cluster will be recreated.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
-     * The type of database instance that is used for the cluster. Required for Hybrid clusters.
+     * Cluster creation timestamp
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Cluster database instance type
      */
     dbInstanceType?: pulumi.Input<string>;
     /**
-     * Whether the cluster is limited.
+     * Whether the cluster is limited
      */
     isLimited?: pulumi.Input<boolean>;
     /**
-     * The Kubernetes tags in the cluster.
-     */
-    k8sTags?: pulumi.Input<pulumi.Input<inputs.ClusterK8sTag>[]>;
-    /**
-     * The cluster's metadata.
+     * Cluster metadata
      */
     metadata?: pulumi.Input<inputs.ClusterMetadata>;
     /**
-     * The name of the node pool.
+     * Cluster name
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of node pools to create in the cluster.
+     * Cluster node pools
      */
     nodePools?: pulumi.Input<pulumi.Input<inputs.ClusterNodePool>[]>;
     /**
-     * The organization this cluster is associated with.
-     */
-    organizationId?: pulumi.Input<string>;
-    /**
-     * The subnet range for Pods. For GCP clusters only.
+     * Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     podSubnetRange?: pulumi.Input<string>;
     /**
-     * The provider account ID. Required for Hybrid clusters.
+     * Cluster provider account
      */
     providerAccount?: pulumi.Input<string>;
     /**
-     * The cluster's region.
+     * Cluster region - if changed, the cluster will be recreated.
      */
     region?: pulumi.Input<string>;
     /**
-     * The service peering range. For GCP clusters only.
+     * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     servicePeeringRange?: pulumi.Input<string>;
     /**
-     * The service subnet range. For GCP clusters only.
+     * Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     serviceSubnetRange?: pulumi.Input<string>;
     /**
-     * The tenant ID. For Azure clusters only.
+     * Cluster status
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * Cluster tenant ID
      */
     tenantId?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.ClusterTimeouts>;
     /**
-     * The cluster's type.
+     * Cluster type
      */
     type?: pulumi.Input<string>;
     /**
-     * The VPC subnet range.
+     * Cluster last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * Cluster VPC subnet range. If changed, the cluster will be recreated.
      */
     vpcSubnetRange?: pulumi.Input<string>;
     /**
-     * The list of Workspaces that are authorized to the cluster.
+     * Cluster workspace IDs
      */
     workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -276,59 +316,40 @@ export interface ClusterState {
  */
 export interface ClusterArgs {
     /**
-     * The cluster's cloud provider.
+     * Cluster cloud provider - if changed, the cluster will be recreated.
      */
     cloudProvider: pulumi.Input<string>;
     /**
-     * The type of database instance that is used for the cluster. Required for Hybrid clusters.
-     */
-    dbInstanceType?: pulumi.Input<string>;
-    /**
-     * The Kubernetes tags in the cluster.
-     */
-    k8sTags?: pulumi.Input<pulumi.Input<inputs.ClusterK8sTag>[]>;
-    /**
-     * The name of the node pool.
+     * Cluster name
      */
     name?: pulumi.Input<string>;
     /**
-     * The list of node pools to create in the cluster.
-     */
-    nodePools?: pulumi.Input<pulumi.Input<inputs.ClusterNodePool>[]>;
-    /**
-     * The subnet range for Pods. For GCP clusters only.
+     * Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     podSubnetRange?: pulumi.Input<string>;
     /**
-     * The provider account ID. Required for Hybrid clusters.
-     */
-    providerAccount?: pulumi.Input<string>;
-    /**
-     * The cluster's region.
+     * Cluster region - if changed, the cluster will be recreated.
      */
     region: pulumi.Input<string>;
     /**
-     * The service peering range. For GCP clusters only.
+     * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     servicePeeringRange?: pulumi.Input<string>;
     /**
-     * The service subnet range. For GCP clusters only.
+     * Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     serviceSubnetRange?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.ClusterTimeouts>;
     /**
-     * The tenant ID. For Azure clusters only.
-     */
-    tenantId?: pulumi.Input<string>;
-    /**
-     * The cluster's type.
+     * Cluster type
      */
     type: pulumi.Input<string>;
     /**
-     * The VPC subnet range.
+     * Cluster VPC subnet range. If changed, the cluster will be recreated.
      */
     vpcSubnetRange: pulumi.Input<string>;
     /**
-     * The list of Workspaces that are authorized to the cluster.
+     * Cluster workspace IDs
      */
     workspaceIds: pulumi.Input<pulumi.Input<string>[]>;
 }

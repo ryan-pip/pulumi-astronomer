@@ -15,15 +15,19 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  organization_id: pulumi.Input[str],
+                 host: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[str] organization_id: Organization id this provider will operate on.
-        :param pulumi.Input[str] token: Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        :param pulumi.Input[str] organization_id: Organization ID this provider will operate on.
+        :param pulumi.Input[str] host: API host to use for the provider. Default is `https://api.astronomer.io`
+        :param pulumi.Input[str] token: Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
         pulumi.set(__self__, "organization_id", organization_id)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if token is None:
-            token = _utilities.get_env('ASTRONOMER_API_TOKEN')
+            token = _utilities.get_env('ASTRO_API_TOKEN')
         if token is not None:
             pulumi.set(__self__, "token", token)
 
@@ -31,7 +35,7 @@ class ProviderArgs:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Input[str]:
         """
-        Organization id this provider will operate on.
+        Organization ID this provider will operate on.
         """
         return pulumi.get(self, "organization_id")
 
@@ -41,9 +45,21 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        API host to use for the provider. Default is `https://api.astronomer.io`
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
         """
-        Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
         return pulumi.get(self, "token")
 
@@ -57,19 +73,21 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The provider type for the astronomer package. By default, resources use package-wide configuration
+        The provider type for the astro package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] organization_id: Organization id this provider will operate on.
-        :param pulumi.Input[str] token: Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        :param pulumi.Input[str] host: API host to use for the provider. Default is `https://api.astronomer.io`
+        :param pulumi.Input[str] organization_id: Organization ID this provider will operate on.
+        :param pulumi.Input[str] token: Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
         ...
     @overload
@@ -78,7 +96,7 @@ class Provider(pulumi.ProviderResource):
                  args: ProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The provider type for the astronomer package. By default, resources use package-wide configuration
+        The provider type for the astro package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -98,6 +116,7 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -109,11 +128,12 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["host"] = host
             if organization_id is None and not opts.urn:
                 raise TypeError("Missing required property 'organization_id'")
             __props__.__dict__["organization_id"] = organization_id
             if token is None:
-                token = _utilities.get_env('ASTRONOMER_API_TOKEN')
+                token = _utilities.get_env('ASTRO_API_TOKEN')
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -124,10 +144,18 @@ class Provider(pulumi.ProviderResource):
             opts)
 
     @property
+    @pulumi.getter
+    def host(self) -> pulumi.Output[Optional[str]]:
+        """
+        API host to use for the provider. Default is `https://api.astronomer.io`
+        """
+        return pulumi.get(self, "host")
+
+    @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        Organization id this provider will operate on.
+        Organization ID this provider will operate on.
         """
         return pulumi.get(self, "organization_id")
 
@@ -135,7 +163,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[str]]:
         """
-        Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
         return pulumi.get(self, "token")
 

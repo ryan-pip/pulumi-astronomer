@@ -12,19 +12,19 @@ namespace RyanPip.Astronomer.Outputs
 {
 
     [OutputType]
-    public sealed class GetClusterK8sTagResult
+    public sealed class GetClusterTagResult
     {
         /// <summary>
-        /// The tag's key.
+        /// Cluster tag key
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The tag's value.
+        /// Cluster tag value
         /// </summary>
         public readonly string Value;
 
         [OutputConstructor]
-        private GetClusterK8sTagResult(
+        private GetClusterTagResult(
             string key,
 
             string value)

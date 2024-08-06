@@ -16,16 +16,23 @@ __config__ = pulumi.Config('astronomer')
 
 class _ExportableConfig(types.ModuleType):
     @property
+    def host(self) -> Optional[str]:
+        """
+        API host to use for the provider. Default is `https://api.astronomer.io`
+        """
+        return __config__.get('host')
+
+    @property
     def organization_id(self) -> Optional[str]:
         """
-        Organization id this provider will operate on.
+        Organization ID this provider will operate on.
         """
         return __config__.get('organizationId')
 
     @property
     def token(self) -> Optional[str]:
         """
-        Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
-        return __config__.get('token') or _utilities.get_env('ASTRONOMER_API_TOKEN')
+        return __config__.get('token') or _utilities.get_env('ASTRO_API_TOKEN')
 

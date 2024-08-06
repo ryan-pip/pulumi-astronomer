@@ -2,10 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Astronomer Workspace Resource
+ * Workspace data source
  *
  * ## Example Usage
  *
@@ -13,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const importedWorkspace = astronomer.getWorkspace({
- *     id: "cabcabcabcabcabcabcabcabcabc",
+ * const example = astronomer.getWorkspace({
+ *     id: "clozc036j01to01jrlgvueo8t",
  * });
  * ```
  */
@@ -31,7 +33,7 @@ export function getWorkspace(args: GetWorkspaceArgs, opts?: pulumi.InvokeOptions
  */
 export interface GetWorkspaceArgs {
     /**
-     * The Workspace's identifier.
+     * Workspace identifier
      */
     id: string;
 }
@@ -41,24 +43,40 @@ export interface GetWorkspaceArgs {
  */
 export interface GetWorkspaceResult {
     /**
-     * Whether new Deployments enforce CI/CD deploys by default.
+     * Whether new Deployments enforce CI/CD deploys by default
      */
     readonly cicdEnforcedDefault: boolean;
     /**
-     * The Workspace's description
+     * Workspace creation timestamp
+     */
+    readonly createdAt: string;
+    /**
+     * Workspace creator
+     */
+    readonly createdBy: outputs.GetWorkspaceCreatedBy;
+    /**
+     * Workspace description
      */
     readonly description: string;
     /**
-     * The Workspace's identifier.
+     * Workspace identifier
      */
     readonly id: string;
     /**
-     * The Workspace's name
+     * Workspace name
      */
     readonly name: string;
+    /**
+     * Workspace last updated timestamp
+     */
+    readonly updatedAt: string;
+    /**
+     * Workspace updater
+     */
+    readonly updatedBy: outputs.GetWorkspaceUpdatedBy;
 }
 /**
- * Astronomer Workspace Resource
+ * Workspace data source
  *
  * ## Example Usage
  *
@@ -66,8 +84,8 @@ export interface GetWorkspaceResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const importedWorkspace = astronomer.getWorkspace({
- *     id: "cabcabcabcabcabcabcabcabcabc",
+ * const example = astronomer.getWorkspace({
+ *     id: "clozc036j01to01jrlgvueo8t",
  * });
  * ```
  */
@@ -80,7 +98,7 @@ export function getWorkspaceOutput(args: GetWorkspaceOutputArgs, opts?: pulumi.I
  */
 export interface GetWorkspaceOutputArgs {
     /**
-     * The Workspace's identifier.
+     * Workspace identifier
      */
     id: pulumi.Input<string>;
 }

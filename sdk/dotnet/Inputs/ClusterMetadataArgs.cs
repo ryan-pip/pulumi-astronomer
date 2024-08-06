@@ -15,12 +15,19 @@ namespace RyanPip.Astronomer.Inputs
     {
         [Input("externalIps")]
         private InputList<string>? _externalIps;
+
+        /// <summary>
+        /// Cluster external IPs
+        /// </summary>
         public InputList<string> ExternalIps
         {
             get => _externalIps ?? (_externalIps = new InputList<string>());
             set => _externalIps = value;
         }
 
+        /// <summary>
+        /// Cluster OIDC issuer URL
+        /// </summary>
         [Input("oidcIssuerUrl")]
         public Input<string>? OidcIssuerUrl { get; set; }
 

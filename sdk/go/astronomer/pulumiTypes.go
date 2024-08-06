@@ -13,115 +13,11 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type ClusterK8sTag struct {
-	// The tag's key.
-	Key string `pulumi:"key"`
-	// The tag's value.
-	Value string `pulumi:"value"`
-}
-
-// ClusterK8sTagInput is an input type that accepts ClusterK8sTagArgs and ClusterK8sTagOutput values.
-// You can construct a concrete instance of `ClusterK8sTagInput` via:
-//
-//	ClusterK8sTagArgs{...}
-type ClusterK8sTagInput interface {
-	pulumi.Input
-
-	ToClusterK8sTagOutput() ClusterK8sTagOutput
-	ToClusterK8sTagOutputWithContext(context.Context) ClusterK8sTagOutput
-}
-
-type ClusterK8sTagArgs struct {
-	// The tag's key.
-	Key pulumi.StringInput `pulumi:"key"`
-	// The tag's value.
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (ClusterK8sTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterK8sTag)(nil)).Elem()
-}
-
-func (i ClusterK8sTagArgs) ToClusterK8sTagOutput() ClusterK8sTagOutput {
-	return i.ToClusterK8sTagOutputWithContext(context.Background())
-}
-
-func (i ClusterK8sTagArgs) ToClusterK8sTagOutputWithContext(ctx context.Context) ClusterK8sTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterK8sTagOutput)
-}
-
-// ClusterK8sTagArrayInput is an input type that accepts ClusterK8sTagArray and ClusterK8sTagArrayOutput values.
-// You can construct a concrete instance of `ClusterK8sTagArrayInput` via:
-//
-//	ClusterK8sTagArray{ ClusterK8sTagArgs{...} }
-type ClusterK8sTagArrayInput interface {
-	pulumi.Input
-
-	ToClusterK8sTagArrayOutput() ClusterK8sTagArrayOutput
-	ToClusterK8sTagArrayOutputWithContext(context.Context) ClusterK8sTagArrayOutput
-}
-
-type ClusterK8sTagArray []ClusterK8sTagInput
-
-func (ClusterK8sTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterK8sTag)(nil)).Elem()
-}
-
-func (i ClusterK8sTagArray) ToClusterK8sTagArrayOutput() ClusterK8sTagArrayOutput {
-	return i.ToClusterK8sTagArrayOutputWithContext(context.Background())
-}
-
-func (i ClusterK8sTagArray) ToClusterK8sTagArrayOutputWithContext(ctx context.Context) ClusterK8sTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterK8sTagArrayOutput)
-}
-
-type ClusterK8sTagOutput struct{ *pulumi.OutputState }
-
-func (ClusterK8sTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterK8sTag)(nil)).Elem()
-}
-
-func (o ClusterK8sTagOutput) ToClusterK8sTagOutput() ClusterK8sTagOutput {
-	return o
-}
-
-func (o ClusterK8sTagOutput) ToClusterK8sTagOutputWithContext(ctx context.Context) ClusterK8sTagOutput {
-	return o
-}
-
-// The tag's key.
-func (o ClusterK8sTagOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterK8sTag) string { return v.Key }).(pulumi.StringOutput)
-}
-
-// The tag's value.
-func (o ClusterK8sTagOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterK8sTag) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type ClusterK8sTagArrayOutput struct{ *pulumi.OutputState }
-
-func (ClusterK8sTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterK8sTag)(nil)).Elem()
-}
-
-func (o ClusterK8sTagArrayOutput) ToClusterK8sTagArrayOutput() ClusterK8sTagArrayOutput {
-	return o
-}
-
-func (o ClusterK8sTagArrayOutput) ToClusterK8sTagArrayOutputWithContext(ctx context.Context) ClusterK8sTagArrayOutput {
-	return o
-}
-
-func (o ClusterK8sTagArrayOutput) Index(i pulumi.IntInput) ClusterK8sTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterK8sTag {
-		return vs[0].([]ClusterK8sTag)[vs[1].(int)]
-	}).(ClusterK8sTagOutput)
-}
-
 type ClusterMetadata struct {
-	ExternalIps   []string `pulumi:"externalIps"`
-	OidcIssuerUrl *string  `pulumi:"oidcIssuerUrl"`
+	// Cluster external IPs
+	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl *string `pulumi:"oidcIssuerUrl"`
 }
 
 // ClusterMetadataInput is an input type that accepts ClusterMetadataArgs and ClusterMetadataOutput values.
@@ -136,8 +32,10 @@ type ClusterMetadataInput interface {
 }
 
 type ClusterMetadataArgs struct {
-	ExternalIps   pulumi.StringArrayInput `pulumi:"externalIps"`
-	OidcIssuerUrl pulumi.StringPtrInput   `pulumi:"oidcIssuerUrl"`
+	// Cluster external IPs
+	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl pulumi.StringPtrInput `pulumi:"oidcIssuerUrl"`
 }
 
 func (ClusterMetadataArgs) ElementType() reflect.Type {
@@ -217,10 +115,12 @@ func (o ClusterMetadataOutput) ToClusterMetadataPtrOutputWithContext(ctx context
 	}).(ClusterMetadataPtrOutput)
 }
 
+// Cluster external IPs
 func (o ClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
 }
 
+// Cluster OIDC issuer URL
 func (o ClusterMetadataOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterMetadata) *string { return v.OidcIssuerUrl }).(pulumi.StringPtrOutput)
 }
@@ -249,6 +149,7 @@ func (o ClusterMetadataPtrOutput) Elem() ClusterMetadataOutput {
 	}).(ClusterMetadataOutput)
 }
 
+// Cluster external IPs
 func (o ClusterMetadataPtrOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ClusterMetadata) []string {
 		if v == nil {
@@ -258,6 +159,7 @@ func (o ClusterMetadataPtrOutput) ExternalIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// Cluster OIDC issuer URL
 func (o ClusterMetadataPtrOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterMetadata) *string {
 		if v == nil {
@@ -268,14 +170,26 @@ func (o ClusterMetadataPtrOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
 }
 
 type ClusterNodePool struct {
-	// Whether the node pool is the default node pool of the cluster.
+	// Node pool cloud provider
+	CloudProvider *string `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId *string `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt *string `pulumi:"createdAt"`
+	// Node pool identifier
+	Id *string `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
 	IsDefault *bool `pulumi:"isDefault"`
-	// The maximum number of nodes that can be created in the node pool.
-	MaxNodeCount int `pulumi:"maxNodeCount"`
-	// The name of the node pool.
-	Name string `pulumi:"name"`
-	// The type of node instance that is used for the node pool.
-	NodeInstanceType string `pulumi:"nodeInstanceType"`
+	// Node pool maximum node count
+	MaxNodeCount *int `pulumi:"maxNodeCount"`
+	// Node pool name
+	Name *string `pulumi:"name"`
+	// Node pool node instance type
+	NodeInstanceType *string `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines []string `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 // ClusterNodePoolInput is an input type that accepts ClusterNodePoolArgs and ClusterNodePoolOutput values.
@@ -290,14 +204,26 @@ type ClusterNodePoolInput interface {
 }
 
 type ClusterNodePoolArgs struct {
-	// Whether the node pool is the default node pool of the cluster.
+	// Node pool cloud provider
+	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Node pool identifier
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
 	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
-	// The maximum number of nodes that can be created in the node pool.
-	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
-	// The name of the node pool.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The type of node instance that is used for the node pool.
-	NodeInstanceType pulumi.StringInput `pulumi:"nodeInstanceType"`
+	// Node pool maximum node count
+	MaxNodeCount pulumi.IntPtrInput `pulumi:"maxNodeCount"`
+	// Node pool name
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Node pool node instance type
+	NodeInstanceType pulumi.StringPtrInput `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines pulumi.StringArrayInput `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
 func (ClusterNodePoolArgs) ElementType() reflect.Type {
@@ -351,24 +277,54 @@ func (o ClusterNodePoolOutput) ToClusterNodePoolOutputWithContext(ctx context.Co
 	return o
 }
 
-// Whether the node pool is the default node pool of the cluster.
+// Node pool cloud provider
+func (o ClusterNodePoolOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
+}
+
+// Node pool cluster identifier
+func (o ClusterNodePoolOutput) ClusterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
+}
+
+// Node pool creation timestamp
+func (o ClusterNodePoolOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Node pool identifier
+func (o ClusterNodePoolOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Whether the node pool is the default node pool of the cluster
 func (o ClusterNodePoolOutput) IsDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterNodePool) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of nodes that can be created in the node pool.
-func (o ClusterNodePoolOutput) MaxNodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v ClusterNodePool) int { return v.MaxNodeCount }).(pulumi.IntOutput)
+// Node pool maximum node count
+func (o ClusterNodePoolOutput) MaxNodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *int { return v.MaxNodeCount }).(pulumi.IntPtrOutput)
 }
 
-// The name of the node pool.
-func (o ClusterNodePoolOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterNodePool) string { return v.Name }).(pulumi.StringOutput)
+// Node pool name
+func (o ClusterNodePoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of node instance that is used for the node pool.
-func (o ClusterNodePoolOutput) NodeInstanceType() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterNodePool) string { return v.NodeInstanceType }).(pulumi.StringOutput)
+// Node pool node instance type
+func (o ClusterNodePoolOutput) NodeInstanceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.NodeInstanceType }).(pulumi.StringPtrOutput)
+}
+
+// Node pool supported Astro machines
+func (o ClusterNodePoolOutput) SupportedAstroMachines() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ClusterNodePool) []string { return v.SupportedAstroMachines }).(pulumi.StringArrayOutput)
+}
+
+// Node pool last updated timestamp
+func (o ClusterNodePoolOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterNodePool) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 type ClusterNodePoolArrayOutput struct{ *pulumi.OutputState }
@@ -391,12 +347,397 @@ func (o ClusterNodePoolArrayOutput) Index(i pulumi.IntInput) ClusterNodePoolOutp
 	}).(ClusterNodePoolOutput)
 }
 
+type ClusterTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// ClusterTimeoutsInput is an input type that accepts ClusterTimeoutsArgs and ClusterTimeoutsOutput values.
+// You can construct a concrete instance of `ClusterTimeoutsInput` via:
+//
+//	ClusterTimeoutsArgs{...}
+type ClusterTimeoutsInput interface {
+	pulumi.Input
+
+	ToClusterTimeoutsOutput() ClusterTimeoutsOutput
+	ToClusterTimeoutsOutputWithContext(context.Context) ClusterTimeoutsOutput
+}
+
+type ClusterTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (ClusterTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterTimeouts)(nil)).Elem()
+}
+
+func (i ClusterTimeoutsArgs) ToClusterTimeoutsOutput() ClusterTimeoutsOutput {
+	return i.ToClusterTimeoutsOutputWithContext(context.Background())
+}
+
+func (i ClusterTimeoutsArgs) ToClusterTimeoutsOutputWithContext(ctx context.Context) ClusterTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterTimeoutsOutput)
+}
+
+func (i ClusterTimeoutsArgs) ToClusterTimeoutsPtrOutput() ClusterTimeoutsPtrOutput {
+	return i.ToClusterTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterTimeoutsArgs) ToClusterTimeoutsPtrOutputWithContext(ctx context.Context) ClusterTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterTimeoutsOutput).ToClusterTimeoutsPtrOutputWithContext(ctx)
+}
+
+// ClusterTimeoutsPtrInput is an input type that accepts ClusterTimeoutsArgs, ClusterTimeoutsPtr and ClusterTimeoutsPtrOutput values.
+// You can construct a concrete instance of `ClusterTimeoutsPtrInput` via:
+//
+//	        ClusterTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToClusterTimeoutsPtrOutput() ClusterTimeoutsPtrOutput
+	ToClusterTimeoutsPtrOutputWithContext(context.Context) ClusterTimeoutsPtrOutput
+}
+
+type clusterTimeoutsPtrType ClusterTimeoutsArgs
+
+func ClusterTimeoutsPtr(v *ClusterTimeoutsArgs) ClusterTimeoutsPtrInput {
+	return (*clusterTimeoutsPtrType)(v)
+}
+
+func (*clusterTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterTimeouts)(nil)).Elem()
+}
+
+func (i *clusterTimeoutsPtrType) ToClusterTimeoutsPtrOutput() ClusterTimeoutsPtrOutput {
+	return i.ToClusterTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterTimeoutsPtrType) ToClusterTimeoutsPtrOutputWithContext(ctx context.Context) ClusterTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterTimeoutsPtrOutput)
+}
+
+type ClusterTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (ClusterTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterTimeouts)(nil)).Elem()
+}
+
+func (o ClusterTimeoutsOutput) ToClusterTimeoutsOutput() ClusterTimeoutsOutput {
+	return o
+}
+
+func (o ClusterTimeoutsOutput) ToClusterTimeoutsOutputWithContext(ctx context.Context) ClusterTimeoutsOutput {
+	return o
+}
+
+func (o ClusterTimeoutsOutput) ToClusterTimeoutsPtrOutput() ClusterTimeoutsPtrOutput {
+	return o.ToClusterTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterTimeoutsOutput) ToClusterTimeoutsPtrOutputWithContext(ctx context.Context) ClusterTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterTimeouts) *ClusterTimeouts {
+		return &v
+	}).(ClusterTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o ClusterTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type ClusterTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterTimeouts)(nil)).Elem()
+}
+
+func (o ClusterTimeoutsPtrOutput) ToClusterTimeoutsPtrOutput() ClusterTimeoutsPtrOutput {
+	return o
+}
+
+func (o ClusterTimeoutsPtrOutput) ToClusterTimeoutsPtrOutputWithContext(ctx context.Context) ClusterTimeoutsPtrOutput {
+	return o
+}
+
+func (o ClusterTimeoutsPtrOutput) Elem() ClusterTimeoutsOutput {
+	return o.ApplyT(func(v *ClusterTimeouts) ClusterTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterTimeouts
+		return ret
+	}).(ClusterTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o ClusterTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// DeploymentCreatedByInput is an input type that accepts DeploymentCreatedByArgs and DeploymentCreatedByOutput values.
+// You can construct a concrete instance of `DeploymentCreatedByInput` via:
+//
+//	DeploymentCreatedByArgs{...}
+type DeploymentCreatedByInput interface {
+	pulumi.Input
+
+	ToDeploymentCreatedByOutput() DeploymentCreatedByOutput
+	ToDeploymentCreatedByOutputWithContext(context.Context) DeploymentCreatedByOutput
+}
+
+type DeploymentCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (DeploymentCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentCreatedBy)(nil)).Elem()
+}
+
+func (i DeploymentCreatedByArgs) ToDeploymentCreatedByOutput() DeploymentCreatedByOutput {
+	return i.ToDeploymentCreatedByOutputWithContext(context.Background())
+}
+
+func (i DeploymentCreatedByArgs) ToDeploymentCreatedByOutputWithContext(ctx context.Context) DeploymentCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentCreatedByOutput)
+}
+
+func (i DeploymentCreatedByArgs) ToDeploymentCreatedByPtrOutput() DeploymentCreatedByPtrOutput {
+	return i.ToDeploymentCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentCreatedByArgs) ToDeploymentCreatedByPtrOutputWithContext(ctx context.Context) DeploymentCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentCreatedByOutput).ToDeploymentCreatedByPtrOutputWithContext(ctx)
+}
+
+// DeploymentCreatedByPtrInput is an input type that accepts DeploymentCreatedByArgs, DeploymentCreatedByPtr and DeploymentCreatedByPtrOutput values.
+// You can construct a concrete instance of `DeploymentCreatedByPtrInput` via:
+//
+//	        DeploymentCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentCreatedByPtrOutput() DeploymentCreatedByPtrOutput
+	ToDeploymentCreatedByPtrOutputWithContext(context.Context) DeploymentCreatedByPtrOutput
+}
+
+type deploymentCreatedByPtrType DeploymentCreatedByArgs
+
+func DeploymentCreatedByPtr(v *DeploymentCreatedByArgs) DeploymentCreatedByPtrInput {
+	return (*deploymentCreatedByPtrType)(v)
+}
+
+func (*deploymentCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentCreatedBy)(nil)).Elem()
+}
+
+func (i *deploymentCreatedByPtrType) ToDeploymentCreatedByPtrOutput() DeploymentCreatedByPtrOutput {
+	return i.ToDeploymentCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentCreatedByPtrType) ToDeploymentCreatedByPtrOutputWithContext(ctx context.Context) DeploymentCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentCreatedByPtrOutput)
+}
+
+type DeploymentCreatedByOutput struct{ *pulumi.OutputState }
+
+func (DeploymentCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentCreatedBy)(nil)).Elem()
+}
+
+func (o DeploymentCreatedByOutput) ToDeploymentCreatedByOutput() DeploymentCreatedByOutput {
+	return o
+}
+
+func (o DeploymentCreatedByOutput) ToDeploymentCreatedByOutputWithContext(ctx context.Context) DeploymentCreatedByOutput {
+	return o
+}
+
+func (o DeploymentCreatedByOutput) ToDeploymentCreatedByPtrOutput() DeploymentCreatedByPtrOutput {
+	return o.ToDeploymentCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentCreatedByOutput) ToDeploymentCreatedByPtrOutputWithContext(ctx context.Context) DeploymentCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentCreatedBy) *DeploymentCreatedBy {
+		return &v
+	}).(DeploymentCreatedByPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentCreatedBy)(nil)).Elem()
+}
+
+func (o DeploymentCreatedByPtrOutput) ToDeploymentCreatedByPtrOutput() DeploymentCreatedByPtrOutput {
+	return o
+}
+
+func (o DeploymentCreatedByPtrOutput) ToDeploymentCreatedByPtrOutputWithContext(ctx context.Context) DeploymentCreatedByPtrOutput {
+	return o
+}
+
+func (o DeploymentCreatedByPtrOutput) Elem() DeploymentCreatedByOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) DeploymentCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentCreatedBy
+		return ret
+	}).(DeploymentCreatedByOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentEnvironmentVariable struct {
-	// Whether the environment variable is a secret.
+	// Whether Environment variable is a secret
 	IsSecret bool `pulumi:"isSecret"`
-	// The environment variable key, used to call the value in code.
+	// Environment variable key
 	Key string `pulumi:"key"`
-	// The environment variable value.
+	// Environment variable last updated timestamp
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// Environment variable value
 	Value *string `pulumi:"value"`
 }
 
@@ -412,11 +753,13 @@ type DeploymentEnvironmentVariableInput interface {
 }
 
 type DeploymentEnvironmentVariableArgs struct {
-	// Whether the environment variable is a secret.
+	// Whether Environment variable is a secret
 	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
-	// The environment variable key, used to call the value in code.
+	// Environment variable key
 	Key pulumi.StringInput `pulumi:"key"`
-	// The environment variable value.
+	// Environment variable last updated timestamp
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+	// Environment variable value
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -471,17 +814,22 @@ func (o DeploymentEnvironmentVariableOutput) ToDeploymentEnvironmentVariableOutp
 	return o
 }
 
-// Whether the environment variable is a secret.
+// Whether Environment variable is a secret
 func (o DeploymentEnvironmentVariableOutput) GetIsSecret() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentEnvironmentVariable) bool { return v.IsSecret }).(pulumi.BoolOutput)
 }
 
-// The environment variable key, used to call the value in code.
+// Environment variable key
 func (o DeploymentEnvironmentVariableOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentEnvironmentVariable) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The environment variable value.
+// Environment variable last updated timestamp
+func (o DeploymentEnvironmentVariableOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentEnvironmentVariable) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Environment variable value
 func (o DeploymentEnvironmentVariableOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnvironmentVariable) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -506,14 +854,1116 @@ func (o DeploymentEnvironmentVariableArrayOutput) Index(i pulumi.IntInput) Deplo
 	}).(DeploymentEnvironmentVariableOutput)
 }
 
+type DeploymentScalingSpec struct {
+	// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+	HibernationSpec DeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
+}
+
+// DeploymentScalingSpecInput is an input type that accepts DeploymentScalingSpecArgs and DeploymentScalingSpecOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecInput` via:
+//
+//	DeploymentScalingSpecArgs{...}
+type DeploymentScalingSpecInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecOutput() DeploymentScalingSpecOutput
+	ToDeploymentScalingSpecOutputWithContext(context.Context) DeploymentScalingSpecOutput
+}
+
+type DeploymentScalingSpecArgs struct {
+	// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+	HibernationSpec DeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
+}
+
+func (DeploymentScalingSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpec)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecArgs) ToDeploymentScalingSpecOutput() DeploymentScalingSpecOutput {
+	return i.ToDeploymentScalingSpecOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecArgs) ToDeploymentScalingSpecOutputWithContext(ctx context.Context) DeploymentScalingSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecOutput)
+}
+
+func (i DeploymentScalingSpecArgs) ToDeploymentScalingSpecPtrOutput() DeploymentScalingSpecPtrOutput {
+	return i.ToDeploymentScalingSpecPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecArgs) ToDeploymentScalingSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecOutput).ToDeploymentScalingSpecPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingSpecPtrInput is an input type that accepts DeploymentScalingSpecArgs, DeploymentScalingSpecPtr and DeploymentScalingSpecPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecPtrInput` via:
+//
+//	        DeploymentScalingSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingSpecPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecPtrOutput() DeploymentScalingSpecPtrOutput
+	ToDeploymentScalingSpecPtrOutputWithContext(context.Context) DeploymentScalingSpecPtrOutput
+}
+
+type deploymentScalingSpecPtrType DeploymentScalingSpecArgs
+
+func DeploymentScalingSpecPtr(v *DeploymentScalingSpecArgs) DeploymentScalingSpecPtrInput {
+	return (*deploymentScalingSpecPtrType)(v)
+}
+
+func (*deploymentScalingSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpec)(nil)).Elem()
+}
+
+func (i *deploymentScalingSpecPtrType) ToDeploymentScalingSpecPtrOutput() DeploymentScalingSpecPtrOutput {
+	return i.ToDeploymentScalingSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingSpecPtrType) ToDeploymentScalingSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecPtrOutput)
+}
+
+type DeploymentScalingSpecOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpec)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecOutput) ToDeploymentScalingSpecOutput() DeploymentScalingSpecOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecOutput) ToDeploymentScalingSpecOutputWithContext(ctx context.Context) DeploymentScalingSpecOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecOutput) ToDeploymentScalingSpecPtrOutput() DeploymentScalingSpecPtrOutput {
+	return o.ToDeploymentScalingSpecPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingSpecOutput) ToDeploymentScalingSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingSpec) *DeploymentScalingSpec {
+		return &v
+	}).(DeploymentScalingSpecPtrOutput)
+}
+
+// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+func (o DeploymentScalingSpecOutput) HibernationSpec() DeploymentScalingSpecHibernationSpecOutput {
+	return o.ApplyT(func(v DeploymentScalingSpec) DeploymentScalingSpecHibernationSpec { return v.HibernationSpec }).(DeploymentScalingSpecHibernationSpecOutput)
+}
+
+type DeploymentScalingSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpec)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecPtrOutput) ToDeploymentScalingSpecPtrOutput() DeploymentScalingSpecPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecPtrOutput) ToDeploymentScalingSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecPtrOutput) Elem() DeploymentScalingSpecOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpec) DeploymentScalingSpec {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingSpec
+		return ret
+	}).(DeploymentScalingSpecOutput)
+}
+
+// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+func (o DeploymentScalingSpecPtrOutput) HibernationSpec() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpec) *DeploymentScalingSpecHibernationSpec {
+		if v == nil {
+			return nil
+		}
+		return &v.HibernationSpec
+	}).(DeploymentScalingSpecHibernationSpecPtrOutput)
+}
+
+type DeploymentScalingSpecHibernationSpec struct {
+	// Hibernation override configuration. Set to null to remove the override.
+	Override *DeploymentScalingSpecHibernationSpecOverride `pulumi:"override"`
+	// List of hibernation schedules. Set to null to remove all schedules.
+	Schedules []DeploymentScalingSpecHibernationSpecSchedule `pulumi:"schedules"`
+}
+
+// DeploymentScalingSpecHibernationSpecInput is an input type that accepts DeploymentScalingSpecHibernationSpecArgs and DeploymentScalingSpecHibernationSpecOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecInput` via:
+//
+//	DeploymentScalingSpecHibernationSpecArgs{...}
+type DeploymentScalingSpecHibernationSpecInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecOutput() DeploymentScalingSpecHibernationSpecOutput
+	ToDeploymentScalingSpecHibernationSpecOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecOutput
+}
+
+type DeploymentScalingSpecHibernationSpecArgs struct {
+	// Hibernation override configuration. Set to null to remove the override.
+	Override DeploymentScalingSpecHibernationSpecOverridePtrInput `pulumi:"override"`
+	// List of hibernation schedules. Set to null to remove all schedules.
+	Schedules DeploymentScalingSpecHibernationSpecScheduleArrayInput `pulumi:"schedules"`
+}
+
+func (DeploymentScalingSpecHibernationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecHibernationSpecArgs) ToDeploymentScalingSpecHibernationSpecOutput() DeploymentScalingSpecHibernationSpecOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecArgs) ToDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecOutput)
+}
+
+func (i DeploymentScalingSpecHibernationSpecArgs) ToDeploymentScalingSpecHibernationSpecPtrOutput() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecArgs) ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecOutput).ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingSpecHibernationSpecPtrInput is an input type that accepts DeploymentScalingSpecHibernationSpecArgs, DeploymentScalingSpecHibernationSpecPtr and DeploymentScalingSpecHibernationSpecPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecPtrInput` via:
+//
+//	        DeploymentScalingSpecHibernationSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingSpecHibernationSpecPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecPtrOutput() DeploymentScalingSpecHibernationSpecPtrOutput
+	ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecPtrOutput
+}
+
+type deploymentScalingSpecHibernationSpecPtrType DeploymentScalingSpecHibernationSpecArgs
+
+func DeploymentScalingSpecHibernationSpecPtr(v *DeploymentScalingSpecHibernationSpecArgs) DeploymentScalingSpecHibernationSpecPtrInput {
+	return (*deploymentScalingSpecHibernationSpecPtrType)(v)
+}
+
+func (*deploymentScalingSpecHibernationSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (i *deploymentScalingSpecHibernationSpecPtrType) ToDeploymentScalingSpecHibernationSpecPtrOutput() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingSpecHibernationSpecPtrType) ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecPtrOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecOutput) ToDeploymentScalingSpecHibernationSpecOutput() DeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOutput) ToDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOutput) ToDeploymentScalingSpecHibernationSpecPtrOutput() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o.ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingSpecHibernationSpecOutput) ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingSpecHibernationSpec) *DeploymentScalingSpecHibernationSpec {
+		return &v
+	}).(DeploymentScalingSpecHibernationSpecPtrOutput)
+}
+
+// Hibernation override configuration. Set to null to remove the override.
+func (o DeploymentScalingSpecHibernationSpecOutput) Override() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpec) *DeploymentScalingSpecHibernationSpecOverride {
+		return v.Override
+	}).(DeploymentScalingSpecHibernationSpecOverridePtrOutput)
+}
+
+// List of hibernation schedules. Set to null to remove all schedules.
+func (o DeploymentScalingSpecHibernationSpecOutput) Schedules() DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpec) []DeploymentScalingSpecHibernationSpecSchedule {
+		return v.Schedules
+	}).(DeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecPtrOutput) ToDeploymentScalingSpecHibernationSpecPtrOutput() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecPtrOutput) ToDeploymentScalingSpecHibernationSpecPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecPtrOutput) Elem() DeploymentScalingSpecHibernationSpecOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpec) DeploymentScalingSpecHibernationSpec {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingSpecHibernationSpec
+		return ret
+	}).(DeploymentScalingSpecHibernationSpecOutput)
+}
+
+// Hibernation override configuration. Set to null to remove the override.
+func (o DeploymentScalingSpecHibernationSpecPtrOutput) Override() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpec) *DeploymentScalingSpecHibernationSpecOverride {
+		if v == nil {
+			return nil
+		}
+		return v.Override
+	}).(DeploymentScalingSpecHibernationSpecOverridePtrOutput)
+}
+
+// List of hibernation schedules. Set to null to remove all schedules.
+func (o DeploymentScalingSpecHibernationSpecPtrOutput) Schedules() DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpec) []DeploymentScalingSpecHibernationSpecSchedule {
+		if v == nil {
+			return nil
+		}
+		return v.Schedules
+	}).(DeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecOverride struct {
+	IsActive      *bool   `pulumi:"isActive"`
+	IsHibernating bool    `pulumi:"isHibernating"`
+	OverrideUntil *string `pulumi:"overrideUntil"`
+}
+
+// DeploymentScalingSpecHibernationSpecOverrideInput is an input type that accepts DeploymentScalingSpecHibernationSpecOverrideArgs and DeploymentScalingSpecHibernationSpecOverrideOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecOverrideInput` via:
+//
+//	DeploymentScalingSpecHibernationSpecOverrideArgs{...}
+type DeploymentScalingSpecHibernationSpecOverrideInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecOverrideOutput() DeploymentScalingSpecHibernationSpecOverrideOutput
+	ToDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecOverrideOutput
+}
+
+type DeploymentScalingSpecHibernationSpecOverrideArgs struct {
+	IsActive      pulumi.BoolPtrInput   `pulumi:"isActive"`
+	IsHibernating pulumi.BoolInput      `pulumi:"isHibernating"`
+	OverrideUntil pulumi.StringPtrInput `pulumi:"overrideUntil"`
+}
+
+func (DeploymentScalingSpecHibernationSpecOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecHibernationSpecOverrideArgs) ToDeploymentScalingSpecHibernationSpecOverrideOutput() DeploymentScalingSpecHibernationSpecOverrideOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecOverrideArgs) ToDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+func (i DeploymentScalingSpecHibernationSpecOverrideArgs) ToDeploymentScalingSpecHibernationSpecOverridePtrOutput() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecOverrideArgs) ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecOverrideOutput).ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingSpecHibernationSpecOverridePtrInput is an input type that accepts DeploymentScalingSpecHibernationSpecOverrideArgs, DeploymentScalingSpecHibernationSpecOverridePtr and DeploymentScalingSpecHibernationSpecOverridePtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecOverridePtrInput` via:
+//
+//	        DeploymentScalingSpecHibernationSpecOverrideArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingSpecHibernationSpecOverridePtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecOverridePtrOutput() DeploymentScalingSpecHibernationSpecOverridePtrOutput
+	ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecOverridePtrOutput
+}
+
+type deploymentScalingSpecHibernationSpecOverridePtrType DeploymentScalingSpecHibernationSpecOverrideArgs
+
+func DeploymentScalingSpecHibernationSpecOverridePtr(v *DeploymentScalingSpecHibernationSpecOverrideArgs) DeploymentScalingSpecHibernationSpecOverridePtrInput {
+	return (*deploymentScalingSpecHibernationSpecOverridePtrType)(v)
+}
+
+func (*deploymentScalingSpecHibernationSpecOverridePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (i *deploymentScalingSpecHibernationSpecOverridePtrType) ToDeploymentScalingSpecHibernationSpecOverridePtrOutput() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingSpecHibernationSpecOverridePtrType) ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecOverridePtrOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecOverrideOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) ToDeploymentScalingSpecHibernationSpecOverrideOutput() DeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) ToDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) ToDeploymentScalingSpecHibernationSpecOverridePtrOutput() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o.ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingSpecHibernationSpecOverride) *DeploymentScalingSpecHibernationSpecOverride {
+		return &v
+	}).(DeploymentScalingSpecHibernationSpecOverridePtrOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecOverride) *bool { return v.IsActive }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) IsHibernating() pulumi.BoolOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecOverride) bool { return v.IsHibernating }).(pulumi.BoolOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverrideOutput) OverrideUntil() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecOverride) *string { return v.OverrideUntil }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecOverridePtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecOverridePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) ToDeploymentScalingSpecHibernationSpecOverridePtrOutput() DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) ToDeploymentScalingSpecHibernationSpecOverridePtrOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecOverridePtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) Elem() DeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpecOverride) DeploymentScalingSpecHibernationSpecOverride {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingSpecHibernationSpecOverride
+		return ret
+	}).(DeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpecOverride) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) IsHibernating() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpecOverride) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.IsHibernating
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecOverridePtrOutput) OverrideUntil() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecHibernationSpecOverride) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OverrideUntil
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecSchedule struct {
+	Description     *string `pulumi:"description"`
+	HibernateAtCron string  `pulumi:"hibernateAtCron"`
+	IsEnabled       bool    `pulumi:"isEnabled"`
+	WakeAtCron      string  `pulumi:"wakeAtCron"`
+}
+
+// DeploymentScalingSpecHibernationSpecScheduleInput is an input type that accepts DeploymentScalingSpecHibernationSpecScheduleArgs and DeploymentScalingSpecHibernationSpecScheduleOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecScheduleInput` via:
+//
+//	DeploymentScalingSpecHibernationSpecScheduleArgs{...}
+type DeploymentScalingSpecHibernationSpecScheduleInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecScheduleOutput() DeploymentScalingSpecHibernationSpecScheduleOutput
+	ToDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecScheduleOutput
+}
+
+type DeploymentScalingSpecHibernationSpecScheduleArgs struct {
+	Description     pulumi.StringPtrInput `pulumi:"description"`
+	HibernateAtCron pulumi.StringInput    `pulumi:"hibernateAtCron"`
+	IsEnabled       pulumi.BoolInput      `pulumi:"isEnabled"`
+	WakeAtCron      pulumi.StringInput    `pulumi:"wakeAtCron"`
+}
+
+func (DeploymentScalingSpecHibernationSpecScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecHibernationSpecScheduleArgs) ToDeploymentScalingSpecHibernationSpecScheduleOutput() DeploymentScalingSpecHibernationSpecScheduleOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecScheduleArgs) ToDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+// DeploymentScalingSpecHibernationSpecScheduleArrayInput is an input type that accepts DeploymentScalingSpecHibernationSpecScheduleArray and DeploymentScalingSpecHibernationSpecScheduleArrayOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecHibernationSpecScheduleArrayInput` via:
+//
+//	DeploymentScalingSpecHibernationSpecScheduleArray{ DeploymentScalingSpecHibernationSpecScheduleArgs{...} }
+type DeploymentScalingSpecHibernationSpecScheduleArrayInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecHibernationSpecScheduleArrayOutput() DeploymentScalingSpecHibernationSpecScheduleArrayOutput
+	ToDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Context) DeploymentScalingSpecHibernationSpecScheduleArrayOutput
+}
+
+type DeploymentScalingSpecHibernationSpecScheduleArray []DeploymentScalingSpecHibernationSpecScheduleInput
+
+func (DeploymentScalingSpecHibernationSpecScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecHibernationSpecScheduleArray) ToDeploymentScalingSpecHibernationSpecScheduleArrayOutput() DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return i.ToDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecHibernationSpecScheduleArray) ToDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecScheduleOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) ToDeploymentScalingSpecHibernationSpecScheduleOutput() DeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) ToDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecSchedule) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) HibernateAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecSchedule) string { return v.HibernateAtCron }).(pulumi.StringOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecSchedule) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleOutput) WakeAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecHibernationSpecSchedule) string { return v.WakeAtCron }).(pulumi.StringOutput)
+}
+
+type DeploymentScalingSpecHibernationSpecScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecHibernationSpecScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToDeploymentScalingSpecHibernationSpecScheduleArrayOutput() DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) DeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecHibernationSpecScheduleArrayOutput) Index(i pulumi.IntInput) DeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentScalingSpecHibernationSpecSchedule {
+		return vs[0].([]DeploymentScalingSpecHibernationSpecSchedule)[vs[1].(int)]
+	}).(DeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+type DeploymentScalingStatus struct {
+	HibernationStatus *DeploymentScalingStatusHibernationStatus `pulumi:"hibernationStatus"`
+}
+
+// DeploymentScalingStatusInput is an input type that accepts DeploymentScalingStatusArgs and DeploymentScalingStatusOutput values.
+// You can construct a concrete instance of `DeploymentScalingStatusInput` via:
+//
+//	DeploymentScalingStatusArgs{...}
+type DeploymentScalingStatusInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingStatusOutput() DeploymentScalingStatusOutput
+	ToDeploymentScalingStatusOutputWithContext(context.Context) DeploymentScalingStatusOutput
+}
+
+type DeploymentScalingStatusArgs struct {
+	HibernationStatus DeploymentScalingStatusHibernationStatusPtrInput `pulumi:"hibernationStatus"`
+}
+
+func (DeploymentScalingStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingStatus)(nil)).Elem()
+}
+
+func (i DeploymentScalingStatusArgs) ToDeploymentScalingStatusOutput() DeploymentScalingStatusOutput {
+	return i.ToDeploymentScalingStatusOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingStatusArgs) ToDeploymentScalingStatusOutputWithContext(ctx context.Context) DeploymentScalingStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusOutput)
+}
+
+func (i DeploymentScalingStatusArgs) ToDeploymentScalingStatusPtrOutput() DeploymentScalingStatusPtrOutput {
+	return i.ToDeploymentScalingStatusPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingStatusArgs) ToDeploymentScalingStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusOutput).ToDeploymentScalingStatusPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingStatusPtrInput is an input type that accepts DeploymentScalingStatusArgs, DeploymentScalingStatusPtr and DeploymentScalingStatusPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingStatusPtrInput` via:
+//
+//	        DeploymentScalingStatusArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingStatusPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingStatusPtrOutput() DeploymentScalingStatusPtrOutput
+	ToDeploymentScalingStatusPtrOutputWithContext(context.Context) DeploymentScalingStatusPtrOutput
+}
+
+type deploymentScalingStatusPtrType DeploymentScalingStatusArgs
+
+func DeploymentScalingStatusPtr(v *DeploymentScalingStatusArgs) DeploymentScalingStatusPtrInput {
+	return (*deploymentScalingStatusPtrType)(v)
+}
+
+func (*deploymentScalingStatusPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingStatus)(nil)).Elem()
+}
+
+func (i *deploymentScalingStatusPtrType) ToDeploymentScalingStatusPtrOutput() DeploymentScalingStatusPtrOutput {
+	return i.ToDeploymentScalingStatusPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingStatusPtrType) ToDeploymentScalingStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusPtrOutput)
+}
+
+type DeploymentScalingStatusOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingStatus)(nil)).Elem()
+}
+
+func (o DeploymentScalingStatusOutput) ToDeploymentScalingStatusOutput() DeploymentScalingStatusOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusOutput) ToDeploymentScalingStatusOutputWithContext(ctx context.Context) DeploymentScalingStatusOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusOutput) ToDeploymentScalingStatusPtrOutput() DeploymentScalingStatusPtrOutput {
+	return o.ToDeploymentScalingStatusPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingStatusOutput) ToDeploymentScalingStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingStatus) *DeploymentScalingStatus {
+		return &v
+	}).(DeploymentScalingStatusPtrOutput)
+}
+
+func (o DeploymentScalingStatusOutput) HibernationStatus() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingStatus) *DeploymentScalingStatusHibernationStatus { return v.HibernationStatus }).(DeploymentScalingStatusHibernationStatusPtrOutput)
+}
+
+type DeploymentScalingStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingStatus)(nil)).Elem()
+}
+
+func (o DeploymentScalingStatusPtrOutput) ToDeploymentScalingStatusPtrOutput() DeploymentScalingStatusPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusPtrOutput) ToDeploymentScalingStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusPtrOutput) Elem() DeploymentScalingStatusOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatus) DeploymentScalingStatus {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingStatus
+		return ret
+	}).(DeploymentScalingStatusOutput)
+}
+
+func (o DeploymentScalingStatusPtrOutput) HibernationStatus() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatus) *DeploymentScalingStatusHibernationStatus {
+		if v == nil {
+			return nil
+		}
+		return v.HibernationStatus
+	}).(DeploymentScalingStatusHibernationStatusPtrOutput)
+}
+
+type DeploymentScalingStatusHibernationStatus struct {
+	IsHibernating *bool   `pulumi:"isHibernating"`
+	NextEventAt   *string `pulumi:"nextEventAt"`
+	NextEventType *string `pulumi:"nextEventType"`
+	Reason        *string `pulumi:"reason"`
+}
+
+// DeploymentScalingStatusHibernationStatusInput is an input type that accepts DeploymentScalingStatusHibernationStatusArgs and DeploymentScalingStatusHibernationStatusOutput values.
+// You can construct a concrete instance of `DeploymentScalingStatusHibernationStatusInput` via:
+//
+//	DeploymentScalingStatusHibernationStatusArgs{...}
+type DeploymentScalingStatusHibernationStatusInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingStatusHibernationStatusOutput() DeploymentScalingStatusHibernationStatusOutput
+	ToDeploymentScalingStatusHibernationStatusOutputWithContext(context.Context) DeploymentScalingStatusHibernationStatusOutput
+}
+
+type DeploymentScalingStatusHibernationStatusArgs struct {
+	IsHibernating pulumi.BoolPtrInput   `pulumi:"isHibernating"`
+	NextEventAt   pulumi.StringPtrInput `pulumi:"nextEventAt"`
+	NextEventType pulumi.StringPtrInput `pulumi:"nextEventType"`
+	Reason        pulumi.StringPtrInput `pulumi:"reason"`
+}
+
+func (DeploymentScalingStatusHibernationStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (i DeploymentScalingStatusHibernationStatusArgs) ToDeploymentScalingStatusHibernationStatusOutput() DeploymentScalingStatusHibernationStatusOutput {
+	return i.ToDeploymentScalingStatusHibernationStatusOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingStatusHibernationStatusArgs) ToDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusHibernationStatusOutput)
+}
+
+func (i DeploymentScalingStatusHibernationStatusArgs) ToDeploymentScalingStatusHibernationStatusPtrOutput() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return i.ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingStatusHibernationStatusArgs) ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusHibernationStatusOutput).ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingStatusHibernationStatusPtrInput is an input type that accepts DeploymentScalingStatusHibernationStatusArgs, DeploymentScalingStatusHibernationStatusPtr and DeploymentScalingStatusHibernationStatusPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingStatusHibernationStatusPtrInput` via:
+//
+//	        DeploymentScalingStatusHibernationStatusArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingStatusHibernationStatusPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingStatusHibernationStatusPtrOutput() DeploymentScalingStatusHibernationStatusPtrOutput
+	ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(context.Context) DeploymentScalingStatusHibernationStatusPtrOutput
+}
+
+type deploymentScalingStatusHibernationStatusPtrType DeploymentScalingStatusHibernationStatusArgs
+
+func DeploymentScalingStatusHibernationStatusPtr(v *DeploymentScalingStatusHibernationStatusArgs) DeploymentScalingStatusHibernationStatusPtrInput {
+	return (*deploymentScalingStatusHibernationStatusPtrType)(v)
+}
+
+func (*deploymentScalingStatusHibernationStatusPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (i *deploymentScalingStatusHibernationStatusPtrType) ToDeploymentScalingStatusHibernationStatusPtrOutput() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return i.ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingStatusHibernationStatusPtrType) ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingStatusHibernationStatusPtrOutput)
+}
+
+type DeploymentScalingStatusHibernationStatusOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingStatusHibernationStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) ToDeploymentScalingStatusHibernationStatusOutput() DeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) ToDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) ToDeploymentScalingStatusHibernationStatusPtrOutput() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o.ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingStatusHibernationStatus) *DeploymentScalingStatusHibernationStatus {
+		return &v
+	}).(DeploymentScalingStatusHibernationStatusPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) IsHibernating() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingStatusHibernationStatus) *bool { return v.IsHibernating }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) NextEventAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingStatusHibernationStatus) *string { return v.NextEventAt }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) NextEventType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingStatusHibernationStatus) *string { return v.NextEventType }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusOutput) Reason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingStatusHibernationStatus) *string { return v.Reason }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentScalingStatusHibernationStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingStatusHibernationStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) ToDeploymentScalingStatusHibernationStatusPtrOutput() DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) ToDeploymentScalingStatusHibernationStatusPtrOutputWithContext(ctx context.Context) DeploymentScalingStatusHibernationStatusPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) Elem() DeploymentScalingStatusHibernationStatusOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatusHibernationStatus) DeploymentScalingStatusHibernationStatus {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingStatusHibernationStatus
+		return ret
+	}).(DeploymentScalingStatusHibernationStatusOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) IsHibernating() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatusHibernationStatus) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsHibernating
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) NextEventAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatusHibernationStatus) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NextEventAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) NextEventType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatusHibernationStatus) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NextEventType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentScalingStatusHibernationStatusPtrOutput) Reason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingStatusHibernationStatus) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Reason
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// DeploymentUpdatedByInput is an input type that accepts DeploymentUpdatedByArgs and DeploymentUpdatedByOutput values.
+// You can construct a concrete instance of `DeploymentUpdatedByInput` via:
+//
+//	DeploymentUpdatedByArgs{...}
+type DeploymentUpdatedByInput interface {
+	pulumi.Input
+
+	ToDeploymentUpdatedByOutput() DeploymentUpdatedByOutput
+	ToDeploymentUpdatedByOutputWithContext(context.Context) DeploymentUpdatedByOutput
+}
+
+type DeploymentUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (DeploymentUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (i DeploymentUpdatedByArgs) ToDeploymentUpdatedByOutput() DeploymentUpdatedByOutput {
+	return i.ToDeploymentUpdatedByOutputWithContext(context.Background())
+}
+
+func (i DeploymentUpdatedByArgs) ToDeploymentUpdatedByOutputWithContext(ctx context.Context) DeploymentUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentUpdatedByOutput)
+}
+
+func (i DeploymentUpdatedByArgs) ToDeploymentUpdatedByPtrOutput() DeploymentUpdatedByPtrOutput {
+	return i.ToDeploymentUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentUpdatedByArgs) ToDeploymentUpdatedByPtrOutputWithContext(ctx context.Context) DeploymentUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentUpdatedByOutput).ToDeploymentUpdatedByPtrOutputWithContext(ctx)
+}
+
+// DeploymentUpdatedByPtrInput is an input type that accepts DeploymentUpdatedByArgs, DeploymentUpdatedByPtr and DeploymentUpdatedByPtrOutput values.
+// You can construct a concrete instance of `DeploymentUpdatedByPtrInput` via:
+//
+//	        DeploymentUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentUpdatedByPtrOutput() DeploymentUpdatedByPtrOutput
+	ToDeploymentUpdatedByPtrOutputWithContext(context.Context) DeploymentUpdatedByPtrOutput
+}
+
+type deploymentUpdatedByPtrType DeploymentUpdatedByArgs
+
+func DeploymentUpdatedByPtr(v *DeploymentUpdatedByArgs) DeploymentUpdatedByPtrInput {
+	return (*deploymentUpdatedByPtrType)(v)
+}
+
+func (*deploymentUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (i *deploymentUpdatedByPtrType) ToDeploymentUpdatedByPtrOutput() DeploymentUpdatedByPtrOutput {
+	return i.ToDeploymentUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentUpdatedByPtrType) ToDeploymentUpdatedByPtrOutputWithContext(ctx context.Context) DeploymentUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentUpdatedByPtrOutput)
+}
+
+type DeploymentUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (DeploymentUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (o DeploymentUpdatedByOutput) ToDeploymentUpdatedByOutput() DeploymentUpdatedByOutput {
+	return o
+}
+
+func (o DeploymentUpdatedByOutput) ToDeploymentUpdatedByOutputWithContext(ctx context.Context) DeploymentUpdatedByOutput {
+	return o
+}
+
+func (o DeploymentUpdatedByOutput) ToDeploymentUpdatedByPtrOutput() DeploymentUpdatedByPtrOutput {
+	return o.ToDeploymentUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentUpdatedByOutput) ToDeploymentUpdatedByPtrOutputWithContext(ctx context.Context) DeploymentUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentUpdatedBy) *DeploymentUpdatedBy {
+		return &v
+	}).(DeploymentUpdatedByPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (o DeploymentUpdatedByPtrOutput) ToDeploymentUpdatedByPtrOutput() DeploymentUpdatedByPtrOutput {
+	return o
+}
+
+func (o DeploymentUpdatedByPtrOutput) ToDeploymentUpdatedByPtrOutputWithContext(ctx context.Context) DeploymentUpdatedByPtrOutput {
+	return o
+}
+
+func (o DeploymentUpdatedByPtrOutput) Elem() DeploymentUpdatedByOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) DeploymentUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentUpdatedBy
+		return ret
+	}).(DeploymentUpdatedByOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentWorkerQueue struct {
-	AstroMachine      string  `pulumi:"astroMachine"`
-	Id                *string `pulumi:"id"`
-	IsDefault         bool    `pulumi:"isDefault"`
-	MaxWorkerCount    int     `pulumi:"maxWorkerCount"`
-	MinWorkerCount    int     `pulumi:"minWorkerCount"`
-	Name              string  `pulumi:"name"`
-	WorkerConcurrency int     `pulumi:"workerConcurrency"`
+	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+	AstroMachine *string `pulumi:"astroMachine"`
+	// Worker queue default
+	IsDefault bool `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount int `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount int `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name string `pulumi:"name"`
+	// Worker queue Node pool identifier - required for 'HYBRID' deployments
+	NodePoolId *string `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu *string `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory *string `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency int `pulumi:"workerConcurrency"`
 }
 
 // DeploymentWorkerQueueInput is an input type that accepts DeploymentWorkerQueueArgs and DeploymentWorkerQueueOutput values.
@@ -528,13 +1978,24 @@ type DeploymentWorkerQueueInput interface {
 }
 
 type DeploymentWorkerQueueArgs struct {
-	AstroMachine      pulumi.StringInput    `pulumi:"astroMachine"`
-	Id                pulumi.StringPtrInput `pulumi:"id"`
-	IsDefault         pulumi.BoolInput      `pulumi:"isDefault"`
-	MaxWorkerCount    pulumi.IntInput       `pulumi:"maxWorkerCount"`
-	MinWorkerCount    pulumi.IntInput       `pulumi:"minWorkerCount"`
-	Name              pulumi.StringInput    `pulumi:"name"`
-	WorkerConcurrency pulumi.IntInput       `pulumi:"workerConcurrency"`
+	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+	AstroMachine pulumi.StringPtrInput `pulumi:"astroMachine"`
+	// Worker queue default
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount pulumi.IntInput `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount pulumi.IntInput `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Worker queue Node pool identifier - required for 'HYBRID' deployments
+	NodePoolId pulumi.StringPtrInput `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu pulumi.StringPtrInput `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory pulumi.StringPtrInput `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency pulumi.IntInput `pulumi:"workerConcurrency"`
 }
 
 func (DeploymentWorkerQueueArgs) ElementType() reflect.Type {
@@ -588,30 +2049,47 @@ func (o DeploymentWorkerQueueOutput) ToDeploymentWorkerQueueOutputWithContext(ct
 	return o
 }
 
-func (o DeploymentWorkerQueueOutput) AstroMachine() pulumi.StringOutput {
-	return o.ApplyT(func(v DeploymentWorkerQueue) string { return v.AstroMachine }).(pulumi.StringOutput)
+// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+func (o DeploymentWorkerQueueOutput) AstroMachine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.AstroMachine }).(pulumi.StringPtrOutput)
 }
 
-func (o DeploymentWorkerQueueOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
+// Worker queue default
 func (o DeploymentWorkerQueueOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Worker queue max worker count
 func (o DeploymentWorkerQueueOutput) MaxWorkerCount() pulumi.IntOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) int { return v.MaxWorkerCount }).(pulumi.IntOutput)
 }
 
+// Worker queue min worker count
 func (o DeploymentWorkerQueueOutput) MinWorkerCount() pulumi.IntOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) int { return v.MinWorkerCount }).(pulumi.IntOutput)
 }
 
+// Worker queue name
 func (o DeploymentWorkerQueueOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Worker queue Node pool identifier - required for 'HYBRID' deployments
+func (o DeploymentWorkerQueueOutput) NodePoolId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.NodePoolId }).(pulumi.StringPtrOutput)
+}
+
+// Worker queue pod CPU
+func (o DeploymentWorkerQueueOutput) PodCpu() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.PodCpu }).(pulumi.StringPtrOutput)
+}
+
+// Worker queue pod memory
+func (o DeploymentWorkerQueueOutput) PodMemory() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.PodMemory }).(pulumi.StringPtrOutput)
+}
+
+// Worker queue worker concurrency
 func (o DeploymentWorkerQueueOutput) WorkerConcurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) int { return v.WorkerConcurrency }).(pulumi.IntOutput)
 }
@@ -636,115 +2114,639 @@ func (o DeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) DeploymentWor
 	}).(DeploymentWorkerQueueOutput)
 }
 
-type GetClusterK8sTag struct {
-	// The tag's key.
-	Key string `pulumi:"key"`
-	// The tag's value.
-	Value string `pulumi:"value"`
+type TeamRolesDeploymentRole struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role string `pulumi:"role"`
 }
 
-// GetClusterK8sTagInput is an input type that accepts GetClusterK8sTagArgs and GetClusterK8sTagOutput values.
-// You can construct a concrete instance of `GetClusterK8sTagInput` via:
+// TeamRolesDeploymentRoleInput is an input type that accepts TeamRolesDeploymentRoleArgs and TeamRolesDeploymentRoleOutput values.
+// You can construct a concrete instance of `TeamRolesDeploymentRoleInput` via:
 //
-//	GetClusterK8sTagArgs{...}
-type GetClusterK8sTagInput interface {
+//	TeamRolesDeploymentRoleArgs{...}
+type TeamRolesDeploymentRoleInput interface {
 	pulumi.Input
 
-	ToGetClusterK8sTagOutput() GetClusterK8sTagOutput
-	ToGetClusterK8sTagOutputWithContext(context.Context) GetClusterK8sTagOutput
+	ToTeamRolesDeploymentRoleOutput() TeamRolesDeploymentRoleOutput
+	ToTeamRolesDeploymentRoleOutputWithContext(context.Context) TeamRolesDeploymentRoleOutput
 }
 
-type GetClusterK8sTagArgs struct {
-	// The tag's key.
-	Key pulumi.StringInput `pulumi:"key"`
-	// The tag's value.
-	Value pulumi.StringInput `pulumi:"value"`
+type TeamRolesDeploymentRoleArgs struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
 }
 
-func (GetClusterK8sTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterK8sTag)(nil)).Elem()
+func (TeamRolesDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesDeploymentRole)(nil)).Elem()
 }
 
-func (i GetClusterK8sTagArgs) ToGetClusterK8sTagOutput() GetClusterK8sTagOutput {
-	return i.ToGetClusterK8sTagOutputWithContext(context.Background())
+func (i TeamRolesDeploymentRoleArgs) ToTeamRolesDeploymentRoleOutput() TeamRolesDeploymentRoleOutput {
+	return i.ToTeamRolesDeploymentRoleOutputWithContext(context.Background())
 }
 
-func (i GetClusterK8sTagArgs) ToGetClusterK8sTagOutputWithContext(ctx context.Context) GetClusterK8sTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterK8sTagOutput)
+func (i TeamRolesDeploymentRoleArgs) ToTeamRolesDeploymentRoleOutputWithContext(ctx context.Context) TeamRolesDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesDeploymentRoleOutput)
 }
 
-// GetClusterK8sTagArrayInput is an input type that accepts GetClusterK8sTagArray and GetClusterK8sTagArrayOutput values.
-// You can construct a concrete instance of `GetClusterK8sTagArrayInput` via:
+// TeamRolesDeploymentRoleArrayInput is an input type that accepts TeamRolesDeploymentRoleArray and TeamRolesDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `TeamRolesDeploymentRoleArrayInput` via:
 //
-//	GetClusterK8sTagArray{ GetClusterK8sTagArgs{...} }
-type GetClusterK8sTagArrayInput interface {
+//	TeamRolesDeploymentRoleArray{ TeamRolesDeploymentRoleArgs{...} }
+type TeamRolesDeploymentRoleArrayInput interface {
 	pulumi.Input
 
-	ToGetClusterK8sTagArrayOutput() GetClusterK8sTagArrayOutput
-	ToGetClusterK8sTagArrayOutputWithContext(context.Context) GetClusterK8sTagArrayOutput
+	ToTeamRolesDeploymentRoleArrayOutput() TeamRolesDeploymentRoleArrayOutput
+	ToTeamRolesDeploymentRoleArrayOutputWithContext(context.Context) TeamRolesDeploymentRoleArrayOutput
 }
 
-type GetClusterK8sTagArray []GetClusterK8sTagInput
+type TeamRolesDeploymentRoleArray []TeamRolesDeploymentRoleInput
 
-func (GetClusterK8sTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterK8sTag)(nil)).Elem()
+func (TeamRolesDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesDeploymentRole)(nil)).Elem()
 }
 
-func (i GetClusterK8sTagArray) ToGetClusterK8sTagArrayOutput() GetClusterK8sTagArrayOutput {
-	return i.ToGetClusterK8sTagArrayOutputWithContext(context.Background())
+func (i TeamRolesDeploymentRoleArray) ToTeamRolesDeploymentRoleArrayOutput() TeamRolesDeploymentRoleArrayOutput {
+	return i.ToTeamRolesDeploymentRoleArrayOutputWithContext(context.Background())
 }
 
-func (i GetClusterK8sTagArray) ToGetClusterK8sTagArrayOutputWithContext(ctx context.Context) GetClusterK8sTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterK8sTagArrayOutput)
+func (i TeamRolesDeploymentRoleArray) ToTeamRolesDeploymentRoleArrayOutputWithContext(ctx context.Context) TeamRolesDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesDeploymentRoleArrayOutput)
 }
 
-type GetClusterK8sTagOutput struct{ *pulumi.OutputState }
+type TeamRolesDeploymentRoleOutput struct{ *pulumi.OutputState }
 
-func (GetClusterK8sTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterK8sTag)(nil)).Elem()
+func (TeamRolesDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesDeploymentRole)(nil)).Elem()
 }
 
-func (o GetClusterK8sTagOutput) ToGetClusterK8sTagOutput() GetClusterK8sTagOutput {
+func (o TeamRolesDeploymentRoleOutput) ToTeamRolesDeploymentRoleOutput() TeamRolesDeploymentRoleOutput {
 	return o
 }
 
-func (o GetClusterK8sTagOutput) ToGetClusterK8sTagOutputWithContext(ctx context.Context) GetClusterK8sTagOutput {
+func (o TeamRolesDeploymentRoleOutput) ToTeamRolesDeploymentRoleOutputWithContext(ctx context.Context) TeamRolesDeploymentRoleOutput {
 	return o
 }
 
-// The tag's key.
-func (o GetClusterK8sTagOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterK8sTag) string { return v.Key }).(pulumi.StringOutput)
+// The ID of the deployment to assign the role to
+func (o TeamRolesDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// The tag's value.
-func (o GetClusterK8sTagOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterK8sTag) string { return v.Value }).(pulumi.StringOutput)
+// The role to assign to the deployment
+func (o TeamRolesDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
 }
 
-type GetClusterK8sTagArrayOutput struct{ *pulumi.OutputState }
+type TeamRolesDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
 
-func (GetClusterK8sTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterK8sTag)(nil)).Elem()
+func (TeamRolesDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesDeploymentRole)(nil)).Elem()
 }
 
-func (o GetClusterK8sTagArrayOutput) ToGetClusterK8sTagArrayOutput() GetClusterK8sTagArrayOutput {
+func (o TeamRolesDeploymentRoleArrayOutput) ToTeamRolesDeploymentRoleArrayOutput() TeamRolesDeploymentRoleArrayOutput {
 	return o
 }
 
-func (o GetClusterK8sTagArrayOutput) ToGetClusterK8sTagArrayOutputWithContext(ctx context.Context) GetClusterK8sTagArrayOutput {
+func (o TeamRolesDeploymentRoleArrayOutput) ToTeamRolesDeploymentRoleArrayOutputWithContext(ctx context.Context) TeamRolesDeploymentRoleArrayOutput {
 	return o
 }
 
-func (o GetClusterK8sTagArrayOutput) Index(i pulumi.IntInput) GetClusterK8sTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterK8sTag {
-		return vs[0].([]GetClusterK8sTag)[vs[1].(int)]
-	}).(GetClusterK8sTagOutput)
+func (o TeamRolesDeploymentRoleArrayOutput) Index(i pulumi.IntInput) TeamRolesDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamRolesDeploymentRole {
+		return vs[0].([]TeamRolesDeploymentRole)[vs[1].(int)]
+	}).(TeamRolesDeploymentRoleOutput)
+}
+
+type TeamRolesWorkspaceRole struct {
+	// The role to assign to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// TeamRolesWorkspaceRoleInput is an input type that accepts TeamRolesWorkspaceRoleArgs and TeamRolesWorkspaceRoleOutput values.
+// You can construct a concrete instance of `TeamRolesWorkspaceRoleInput` via:
+//
+//	TeamRolesWorkspaceRoleArgs{...}
+type TeamRolesWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToTeamRolesWorkspaceRoleOutput() TeamRolesWorkspaceRoleOutput
+	ToTeamRolesWorkspaceRoleOutputWithContext(context.Context) TeamRolesWorkspaceRoleOutput
+}
+
+type TeamRolesWorkspaceRoleArgs struct {
+	// The role to assign to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (TeamRolesWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (i TeamRolesWorkspaceRoleArgs) ToTeamRolesWorkspaceRoleOutput() TeamRolesWorkspaceRoleOutput {
+	return i.ToTeamRolesWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i TeamRolesWorkspaceRoleArgs) ToTeamRolesWorkspaceRoleOutputWithContext(ctx context.Context) TeamRolesWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesWorkspaceRoleOutput)
+}
+
+// TeamRolesWorkspaceRoleArrayInput is an input type that accepts TeamRolesWorkspaceRoleArray and TeamRolesWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `TeamRolesWorkspaceRoleArrayInput` via:
+//
+//	TeamRolesWorkspaceRoleArray{ TeamRolesWorkspaceRoleArgs{...} }
+type TeamRolesWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToTeamRolesWorkspaceRoleArrayOutput() TeamRolesWorkspaceRoleArrayOutput
+	ToTeamRolesWorkspaceRoleArrayOutputWithContext(context.Context) TeamRolesWorkspaceRoleArrayOutput
+}
+
+type TeamRolesWorkspaceRoleArray []TeamRolesWorkspaceRoleInput
+
+func (TeamRolesWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (i TeamRolesWorkspaceRoleArray) ToTeamRolesWorkspaceRoleArrayOutput() TeamRolesWorkspaceRoleArrayOutput {
+	return i.ToTeamRolesWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i TeamRolesWorkspaceRoleArray) ToTeamRolesWorkspaceRoleArrayOutputWithContext(ctx context.Context) TeamRolesWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesWorkspaceRoleArrayOutput)
+}
+
+type TeamRolesWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (TeamRolesWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (o TeamRolesWorkspaceRoleOutput) ToTeamRolesWorkspaceRoleOutput() TeamRolesWorkspaceRoleOutput {
+	return o
+}
+
+func (o TeamRolesWorkspaceRoleOutput) ToTeamRolesWorkspaceRoleOutputWithContext(ctx context.Context) TeamRolesWorkspaceRoleOutput {
+	return o
+}
+
+// The role to assign to the workspace
+func (o TeamRolesWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace to assign the role to
+func (o TeamRolesWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type TeamRolesWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamRolesWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (o TeamRolesWorkspaceRoleArrayOutput) ToTeamRolesWorkspaceRoleArrayOutput() TeamRolesWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o TeamRolesWorkspaceRoleArrayOutput) ToTeamRolesWorkspaceRoleArrayOutputWithContext(ctx context.Context) TeamRolesWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o TeamRolesWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) TeamRolesWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamRolesWorkspaceRole {
+		return vs[0].([]TeamRolesWorkspaceRole)[vs[1].(int)]
+	}).(TeamRolesWorkspaceRoleOutput)
+}
+
+type WorkspaceCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// WorkspaceCreatedByInput is an input type that accepts WorkspaceCreatedByArgs and WorkspaceCreatedByOutput values.
+// You can construct a concrete instance of `WorkspaceCreatedByInput` via:
+//
+//	WorkspaceCreatedByArgs{...}
+type WorkspaceCreatedByInput interface {
+	pulumi.Input
+
+	ToWorkspaceCreatedByOutput() WorkspaceCreatedByOutput
+	ToWorkspaceCreatedByOutputWithContext(context.Context) WorkspaceCreatedByOutput
+}
+
+type WorkspaceCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (WorkspaceCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (i WorkspaceCreatedByArgs) ToWorkspaceCreatedByOutput() WorkspaceCreatedByOutput {
+	return i.ToWorkspaceCreatedByOutputWithContext(context.Background())
+}
+
+func (i WorkspaceCreatedByArgs) ToWorkspaceCreatedByOutputWithContext(ctx context.Context) WorkspaceCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceCreatedByOutput)
+}
+
+func (i WorkspaceCreatedByArgs) ToWorkspaceCreatedByPtrOutput() WorkspaceCreatedByPtrOutput {
+	return i.ToWorkspaceCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i WorkspaceCreatedByArgs) ToWorkspaceCreatedByPtrOutputWithContext(ctx context.Context) WorkspaceCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceCreatedByOutput).ToWorkspaceCreatedByPtrOutputWithContext(ctx)
+}
+
+// WorkspaceCreatedByPtrInput is an input type that accepts WorkspaceCreatedByArgs, WorkspaceCreatedByPtr and WorkspaceCreatedByPtrOutput values.
+// You can construct a concrete instance of `WorkspaceCreatedByPtrInput` via:
+//
+//	        WorkspaceCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type WorkspaceCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToWorkspaceCreatedByPtrOutput() WorkspaceCreatedByPtrOutput
+	ToWorkspaceCreatedByPtrOutputWithContext(context.Context) WorkspaceCreatedByPtrOutput
+}
+
+type workspaceCreatedByPtrType WorkspaceCreatedByArgs
+
+func WorkspaceCreatedByPtr(v *WorkspaceCreatedByArgs) WorkspaceCreatedByPtrInput {
+	return (*workspaceCreatedByPtrType)(v)
+}
+
+func (*workspaceCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (i *workspaceCreatedByPtrType) ToWorkspaceCreatedByPtrOutput() WorkspaceCreatedByPtrOutput {
+	return i.ToWorkspaceCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *workspaceCreatedByPtrType) ToWorkspaceCreatedByPtrOutputWithContext(ctx context.Context) WorkspaceCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceCreatedByPtrOutput)
+}
+
+type WorkspaceCreatedByOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (o WorkspaceCreatedByOutput) ToWorkspaceCreatedByOutput() WorkspaceCreatedByOutput {
+	return o
+}
+
+func (o WorkspaceCreatedByOutput) ToWorkspaceCreatedByOutputWithContext(ctx context.Context) WorkspaceCreatedByOutput {
+	return o
+}
+
+func (o WorkspaceCreatedByOutput) ToWorkspaceCreatedByPtrOutput() WorkspaceCreatedByPtrOutput {
+	return o.ToWorkspaceCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o WorkspaceCreatedByOutput) ToWorkspaceCreatedByPtrOutputWithContext(ctx context.Context) WorkspaceCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WorkspaceCreatedBy) *WorkspaceCreatedBy {
+		return &v
+	}).(WorkspaceCreatedByPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type WorkspaceCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (o WorkspaceCreatedByPtrOutput) ToWorkspaceCreatedByPtrOutput() WorkspaceCreatedByPtrOutput {
+	return o
+}
+
+func (o WorkspaceCreatedByPtrOutput) ToWorkspaceCreatedByPtrOutputWithContext(ctx context.Context) WorkspaceCreatedByPtrOutput {
+	return o
+}
+
+func (o WorkspaceCreatedByPtrOutput) Elem() WorkspaceCreatedByOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) WorkspaceCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret WorkspaceCreatedBy
+		return ret
+	}).(WorkspaceCreatedByOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type WorkspaceUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// WorkspaceUpdatedByInput is an input type that accepts WorkspaceUpdatedByArgs and WorkspaceUpdatedByOutput values.
+// You can construct a concrete instance of `WorkspaceUpdatedByInput` via:
+//
+//	WorkspaceUpdatedByArgs{...}
+type WorkspaceUpdatedByInput interface {
+	pulumi.Input
+
+	ToWorkspaceUpdatedByOutput() WorkspaceUpdatedByOutput
+	ToWorkspaceUpdatedByOutputWithContext(context.Context) WorkspaceUpdatedByOutput
+}
+
+type WorkspaceUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (WorkspaceUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (i WorkspaceUpdatedByArgs) ToWorkspaceUpdatedByOutput() WorkspaceUpdatedByOutput {
+	return i.ToWorkspaceUpdatedByOutputWithContext(context.Background())
+}
+
+func (i WorkspaceUpdatedByArgs) ToWorkspaceUpdatedByOutputWithContext(ctx context.Context) WorkspaceUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceUpdatedByOutput)
+}
+
+func (i WorkspaceUpdatedByArgs) ToWorkspaceUpdatedByPtrOutput() WorkspaceUpdatedByPtrOutput {
+	return i.ToWorkspaceUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i WorkspaceUpdatedByArgs) ToWorkspaceUpdatedByPtrOutputWithContext(ctx context.Context) WorkspaceUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceUpdatedByOutput).ToWorkspaceUpdatedByPtrOutputWithContext(ctx)
+}
+
+// WorkspaceUpdatedByPtrInput is an input type that accepts WorkspaceUpdatedByArgs, WorkspaceUpdatedByPtr and WorkspaceUpdatedByPtrOutput values.
+// You can construct a concrete instance of `WorkspaceUpdatedByPtrInput` via:
+//
+//	        WorkspaceUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type WorkspaceUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToWorkspaceUpdatedByPtrOutput() WorkspaceUpdatedByPtrOutput
+	ToWorkspaceUpdatedByPtrOutputWithContext(context.Context) WorkspaceUpdatedByPtrOutput
+}
+
+type workspaceUpdatedByPtrType WorkspaceUpdatedByArgs
+
+func WorkspaceUpdatedByPtr(v *WorkspaceUpdatedByArgs) WorkspaceUpdatedByPtrInput {
+	return (*workspaceUpdatedByPtrType)(v)
+}
+
+func (*workspaceUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (i *workspaceUpdatedByPtrType) ToWorkspaceUpdatedByPtrOutput() WorkspaceUpdatedByPtrOutput {
+	return i.ToWorkspaceUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *workspaceUpdatedByPtrType) ToWorkspaceUpdatedByPtrOutputWithContext(ctx context.Context) WorkspaceUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceUpdatedByPtrOutput)
+}
+
+type WorkspaceUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (o WorkspaceUpdatedByOutput) ToWorkspaceUpdatedByOutput() WorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o WorkspaceUpdatedByOutput) ToWorkspaceUpdatedByOutputWithContext(ctx context.Context) WorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o WorkspaceUpdatedByOutput) ToWorkspaceUpdatedByPtrOutput() WorkspaceUpdatedByPtrOutput {
+	return o.ToWorkspaceUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o WorkspaceUpdatedByOutput) ToWorkspaceUpdatedByPtrOutputWithContext(ctx context.Context) WorkspaceUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WorkspaceUpdatedBy) *WorkspaceUpdatedBy {
+		return &v
+	}).(WorkspaceUpdatedByPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkspaceUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type WorkspaceUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (o WorkspaceUpdatedByPtrOutput) ToWorkspaceUpdatedByPtrOutput() WorkspaceUpdatedByPtrOutput {
+	return o
+}
+
+func (o WorkspaceUpdatedByPtrOutput) ToWorkspaceUpdatedByPtrOutputWithContext(ctx context.Context) WorkspaceUpdatedByPtrOutput {
+	return o
+}
+
+func (o WorkspaceUpdatedByPtrOutput) Elem() WorkspaceUpdatedByOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) WorkspaceUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret WorkspaceUpdatedBy
+		return ret
+	}).(WorkspaceUpdatedByOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WorkspaceUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkspaceUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetClusterMetadata struct {
-	ExternalIps   []string `pulumi:"externalIps"`
-	OidcIssuerUrl *string  `pulumi:"oidcIssuerUrl"`
+	// Cluster external IPs
+	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
 }
 
 // GetClusterMetadataInput is an input type that accepts GetClusterMetadataArgs and GetClusterMetadataOutput values.
@@ -759,8 +2761,10 @@ type GetClusterMetadataInput interface {
 }
 
 type GetClusterMetadataArgs struct {
-	ExternalIps   pulumi.StringArrayInput `pulumi:"externalIps"`
-	OidcIssuerUrl pulumi.StringPtrInput   `pulumi:"oidcIssuerUrl"`
+	// Cluster external IPs
+	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
 }
 
 func (GetClusterMetadataArgs) ElementType() reflect.Type {
@@ -789,23 +2793,37 @@ func (o GetClusterMetadataOutput) ToGetClusterMetadataOutputWithContext(ctx cont
 	return o
 }
 
+// Cluster external IPs
 func (o GetClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
 }
 
-func (o GetClusterMetadataOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetClusterMetadata) *string { return v.OidcIssuerUrl }).(pulumi.StringPtrOutput)
+// Cluster OIDC issuer URL
+func (o GetClusterMetadataOutput) OidcIssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterMetadata) string { return v.OidcIssuerUrl }).(pulumi.StringOutput)
 }
 
 type GetClusterNodePool struct {
-	// Whether the node pool is the default node pool of the cluster.
-	IsDefault *bool `pulumi:"isDefault"`
-	// The maximum number of nodes that can be created in the node pool.
+	// Node pool cloud provider
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId string `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Node pool identifier
+	Id string `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
+	IsDefault bool `pulumi:"isDefault"`
+	// Node pool maximum node count
 	MaxNodeCount int `pulumi:"maxNodeCount"`
-	// The name of the node pool.
+	// Node pool name
 	Name string `pulumi:"name"`
-	// The type of node instance that is used for the node pool.
+	// Node pool node instance type
 	NodeInstanceType string `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines []string `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 // GetClusterNodePoolInput is an input type that accepts GetClusterNodePoolArgs and GetClusterNodePoolOutput values.
@@ -820,14 +2838,26 @@ type GetClusterNodePoolInput interface {
 }
 
 type GetClusterNodePoolArgs struct {
-	// Whether the node pool is the default node pool of the cluster.
-	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
-	// The maximum number of nodes that can be created in the node pool.
+	// Node pool cloud provider
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Node pool identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Node pool maximum node count
 	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
-	// The name of the node pool.
+	// Node pool name
 	Name pulumi.StringInput `pulumi:"name"`
-	// The type of node instance that is used for the node pool.
+	// Node pool node instance type
 	NodeInstanceType pulumi.StringInput `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines pulumi.StringArrayInput `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetClusterNodePoolArgs) ElementType() reflect.Type {
@@ -881,24 +2911,54 @@ func (o GetClusterNodePoolOutput) ToGetClusterNodePoolOutputWithContext(ctx cont
 	return o
 }
 
-// Whether the node pool is the default node pool of the cluster.
-func (o GetClusterNodePoolOutput) IsDefault() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetClusterNodePool) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+// Node pool cloud provider
+func (o GetClusterNodePoolOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNodePool) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// The maximum number of nodes that can be created in the node pool.
+// Node pool cluster identifier
+func (o GetClusterNodePoolOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNodePool) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Node pool creation timestamp
+func (o GetClusterNodePoolOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNodePool) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Node pool identifier
+func (o GetClusterNodePoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNodePool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the node pool is the default node pool of the cluster
+func (o GetClusterNodePoolOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterNodePool) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Node pool maximum node count
 func (o GetClusterNodePoolOutput) MaxNodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterNodePool) int { return v.MaxNodeCount }).(pulumi.IntOutput)
 }
 
-// The name of the node pool.
+// Node pool name
 func (o GetClusterNodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterNodePool) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The type of node instance that is used for the node pool.
+// Node pool node instance type
 func (o GetClusterNodePoolOutput) NodeInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterNodePool) string { return v.NodeInstanceType }).(pulumi.StringOutput)
+}
+
+// Node pool supported Astro machines
+func (o GetClusterNodePoolOutput) SupportedAstroMachines() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterNodePool) []string { return v.SupportedAstroMachines }).(pulumi.StringArrayOutput)
+}
+
+// Node pool last updated timestamp
+func (o GetClusterNodePoolOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNodePool) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type GetClusterNodePoolArrayOutput struct{ *pulumi.OutputState }
@@ -921,163 +2981,7027 @@ func (o GetClusterNodePoolArrayOutput) Index(i pulumi.IntInput) GetClusterNodePo
 	}).(GetClusterNodePoolOutput)
 }
 
-type GetOrganizationManagedDomain struct {
-	CreatedAt      string   `pulumi:"createdAt"`
-	EnforcedLogins []string `pulumi:"enforcedLogins"`
-	Id             bool     `pulumi:"id"`
-	Name           string   `pulumi:"name"`
-	Status         string   `pulumi:"status"`
-	UpdatedAt      string   `pulumi:"updatedAt"`
+type GetClusterOptionsClusterOption struct {
+	// ClusterOption database instances
+	DatabaseInstances []GetClusterOptionsClusterOptionDatabaseInstance `pulumi:"databaseInstances"`
+	// ClusterOption default database instance
+	DefaultDatabaseInstance GetClusterOptionsClusterOptionDefaultDatabaseInstance `pulumi:"defaultDatabaseInstance"`
+	// ClusterOption default node instance
+	DefaultNodeInstance GetClusterOptionsClusterOptionDefaultNodeInstance `pulumi:"defaultNodeInstance"`
+	// ClusterOption default pod subnet range
+	DefaultPodSubnetRange string `pulumi:"defaultPodSubnetRange"`
+	// ClusterOption default region
+	DefaultRegion GetClusterOptionsClusterOptionDefaultRegion `pulumi:"defaultRegion"`
+	// ClusterOption default service peering range
+	DefaultServicePeeringRange string `pulumi:"defaultServicePeeringRange"`
+	// ClusterOption default service subnet range
+	DefaultServiceSubnetRange string `pulumi:"defaultServiceSubnetRange"`
+	// ClusterOption default vps subnet range
+	DefaultVpcSubnetRange string `pulumi:"defaultVpcSubnetRange"`
+	// ClusterOption node count default
+	NodeCountDefault int `pulumi:"nodeCountDefault"`
+	// ClusterOption node count max
+	NodeCountMax int `pulumi:"nodeCountMax"`
+	// ClusterOption node count min
+	NodeCountMin int `pulumi:"nodeCountMin"`
+	// ClusterOption node instances
+	NodeInstances []GetClusterOptionsClusterOptionNodeInstance `pulumi:"nodeInstances"`
+	// ClusterOption provider
+	Provider string `pulumi:"provider"`
+	// ClusterOption regions
+	Regions []GetClusterOptionsClusterOptionRegion `pulumi:"regions"`
 }
 
-// GetOrganizationManagedDomainInput is an input type that accepts GetOrganizationManagedDomainArgs and GetOrganizationManagedDomainOutput values.
-// You can construct a concrete instance of `GetOrganizationManagedDomainInput` via:
+// GetClusterOptionsClusterOptionInput is an input type that accepts GetClusterOptionsClusterOptionArgs and GetClusterOptionsClusterOptionOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionInput` via:
 //
-//	GetOrganizationManagedDomainArgs{...}
-type GetOrganizationManagedDomainInput interface {
+//	GetClusterOptionsClusterOptionArgs{...}
+type GetClusterOptionsClusterOptionInput interface {
 	pulumi.Input
 
-	ToGetOrganizationManagedDomainOutput() GetOrganizationManagedDomainOutput
-	ToGetOrganizationManagedDomainOutputWithContext(context.Context) GetOrganizationManagedDomainOutput
+	ToGetClusterOptionsClusterOptionOutput() GetClusterOptionsClusterOptionOutput
+	ToGetClusterOptionsClusterOptionOutputWithContext(context.Context) GetClusterOptionsClusterOptionOutput
 }
 
-type GetOrganizationManagedDomainArgs struct {
-	CreatedAt      pulumi.StringInput      `pulumi:"createdAt"`
-	EnforcedLogins pulumi.StringArrayInput `pulumi:"enforcedLogins"`
-	Id             pulumi.BoolInput        `pulumi:"id"`
-	Name           pulumi.StringInput      `pulumi:"name"`
-	Status         pulumi.StringInput      `pulumi:"status"`
-	UpdatedAt      pulumi.StringInput      `pulumi:"updatedAt"`
+type GetClusterOptionsClusterOptionArgs struct {
+	// ClusterOption database instances
+	DatabaseInstances GetClusterOptionsClusterOptionDatabaseInstanceArrayInput `pulumi:"databaseInstances"`
+	// ClusterOption default database instance
+	DefaultDatabaseInstance GetClusterOptionsClusterOptionDefaultDatabaseInstanceInput `pulumi:"defaultDatabaseInstance"`
+	// ClusterOption default node instance
+	DefaultNodeInstance GetClusterOptionsClusterOptionDefaultNodeInstanceInput `pulumi:"defaultNodeInstance"`
+	// ClusterOption default pod subnet range
+	DefaultPodSubnetRange pulumi.StringInput `pulumi:"defaultPodSubnetRange"`
+	// ClusterOption default region
+	DefaultRegion GetClusterOptionsClusterOptionDefaultRegionInput `pulumi:"defaultRegion"`
+	// ClusterOption default service peering range
+	DefaultServicePeeringRange pulumi.StringInput `pulumi:"defaultServicePeeringRange"`
+	// ClusterOption default service subnet range
+	DefaultServiceSubnetRange pulumi.StringInput `pulumi:"defaultServiceSubnetRange"`
+	// ClusterOption default vps subnet range
+	DefaultVpcSubnetRange pulumi.StringInput `pulumi:"defaultVpcSubnetRange"`
+	// ClusterOption node count default
+	NodeCountDefault pulumi.IntInput `pulumi:"nodeCountDefault"`
+	// ClusterOption node count max
+	NodeCountMax pulumi.IntInput `pulumi:"nodeCountMax"`
+	// ClusterOption node count min
+	NodeCountMin pulumi.IntInput `pulumi:"nodeCountMin"`
+	// ClusterOption node instances
+	NodeInstances GetClusterOptionsClusterOptionNodeInstanceArrayInput `pulumi:"nodeInstances"`
+	// ClusterOption provider
+	Provider pulumi.StringInput `pulumi:"provider"`
+	// ClusterOption regions
+	Regions GetClusterOptionsClusterOptionRegionArrayInput `pulumi:"regions"`
 }
 
-func (GetOrganizationManagedDomainArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationManagedDomain)(nil)).Elem()
+func (GetClusterOptionsClusterOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOption)(nil)).Elem()
 }
 
-func (i GetOrganizationManagedDomainArgs) ToGetOrganizationManagedDomainOutput() GetOrganizationManagedDomainOutput {
-	return i.ToGetOrganizationManagedDomainOutputWithContext(context.Background())
+func (i GetClusterOptionsClusterOptionArgs) ToGetClusterOptionsClusterOptionOutput() GetClusterOptionsClusterOptionOutput {
+	return i.ToGetClusterOptionsClusterOptionOutputWithContext(context.Background())
 }
 
-func (i GetOrganizationManagedDomainArgs) ToGetOrganizationManagedDomainOutputWithContext(ctx context.Context) GetOrganizationManagedDomainOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationManagedDomainOutput)
+func (i GetClusterOptionsClusterOptionArgs) ToGetClusterOptionsClusterOptionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionOutput)
 }
 
-// GetOrganizationManagedDomainArrayInput is an input type that accepts GetOrganizationManagedDomainArray and GetOrganizationManagedDomainArrayOutput values.
-// You can construct a concrete instance of `GetOrganizationManagedDomainArrayInput` via:
+// GetClusterOptionsClusterOptionArrayInput is an input type that accepts GetClusterOptionsClusterOptionArray and GetClusterOptionsClusterOptionArrayOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionArrayInput` via:
 //
-//	GetOrganizationManagedDomainArray{ GetOrganizationManagedDomainArgs{...} }
-type GetOrganizationManagedDomainArrayInput interface {
+//	GetClusterOptionsClusterOptionArray{ GetClusterOptionsClusterOptionArgs{...} }
+type GetClusterOptionsClusterOptionArrayInput interface {
 	pulumi.Input
 
-	ToGetOrganizationManagedDomainArrayOutput() GetOrganizationManagedDomainArrayOutput
-	ToGetOrganizationManagedDomainArrayOutputWithContext(context.Context) GetOrganizationManagedDomainArrayOutput
+	ToGetClusterOptionsClusterOptionArrayOutput() GetClusterOptionsClusterOptionArrayOutput
+	ToGetClusterOptionsClusterOptionArrayOutputWithContext(context.Context) GetClusterOptionsClusterOptionArrayOutput
 }
 
-type GetOrganizationManagedDomainArray []GetOrganizationManagedDomainInput
+type GetClusterOptionsClusterOptionArray []GetClusterOptionsClusterOptionInput
 
-func (GetOrganizationManagedDomainArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetOrganizationManagedDomain)(nil)).Elem()
+func (GetClusterOptionsClusterOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOption)(nil)).Elem()
 }
 
-func (i GetOrganizationManagedDomainArray) ToGetOrganizationManagedDomainArrayOutput() GetOrganizationManagedDomainArrayOutput {
-	return i.ToGetOrganizationManagedDomainArrayOutputWithContext(context.Background())
+func (i GetClusterOptionsClusterOptionArray) ToGetClusterOptionsClusterOptionArrayOutput() GetClusterOptionsClusterOptionArrayOutput {
+	return i.ToGetClusterOptionsClusterOptionArrayOutputWithContext(context.Background())
 }
 
-func (i GetOrganizationManagedDomainArray) ToGetOrganizationManagedDomainArrayOutputWithContext(ctx context.Context) GetOrganizationManagedDomainArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationManagedDomainArrayOutput)
+func (i GetClusterOptionsClusterOptionArray) ToGetClusterOptionsClusterOptionArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionArrayOutput)
 }
 
-type GetOrganizationManagedDomainOutput struct{ *pulumi.OutputState }
+type GetClusterOptionsClusterOptionOutput struct{ *pulumi.OutputState }
 
-func (GetOrganizationManagedDomainOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationManagedDomain)(nil)).Elem()
+func (GetClusterOptionsClusterOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOption)(nil)).Elem()
 }
 
-func (o GetOrganizationManagedDomainOutput) ToGetOrganizationManagedDomainOutput() GetOrganizationManagedDomainOutput {
+func (o GetClusterOptionsClusterOptionOutput) ToGetClusterOptionsClusterOptionOutput() GetClusterOptionsClusterOptionOutput {
 	return o
 }
 
-func (o GetOrganizationManagedDomainOutput) ToGetOrganizationManagedDomainOutputWithContext(ctx context.Context) GetOrganizationManagedDomainOutput {
+func (o GetClusterOptionsClusterOptionOutput) ToGetClusterOptionsClusterOptionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionOutput {
 	return o
 }
 
-func (o GetOrganizationManagedDomainOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) string { return v.CreatedAt }).(pulumi.StringOutput)
+// ClusterOption database instances
+func (o GetClusterOptionsClusterOptionOutput) DatabaseInstances() GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) []GetClusterOptionsClusterOptionDatabaseInstance {
+		return v.DatabaseInstances
+	}).(GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput)
 }
 
-func (o GetOrganizationManagedDomainOutput) EnforcedLogins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) []string { return v.EnforcedLogins }).(pulumi.StringArrayOutput)
+// ClusterOption default database instance
+func (o GetClusterOptionsClusterOptionOutput) DefaultDatabaseInstance() GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) GetClusterOptionsClusterOptionDefaultDatabaseInstance {
+		return v.DefaultDatabaseInstance
+	}).(GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput)
 }
 
-func (o GetOrganizationManagedDomainOutput) Id() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) bool { return v.Id }).(pulumi.BoolOutput)
+// ClusterOption default node instance
+func (o GetClusterOptionsClusterOptionOutput) DefaultNodeInstance() GetClusterOptionsClusterOptionDefaultNodeInstanceOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) GetClusterOptionsClusterOptionDefaultNodeInstance {
+		return v.DefaultNodeInstance
+	}).(GetClusterOptionsClusterOptionDefaultNodeInstanceOutput)
 }
 
-func (o GetOrganizationManagedDomainOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) string { return v.Name }).(pulumi.StringOutput)
+// ClusterOption default pod subnet range
+func (o GetClusterOptionsClusterOptionOutput) DefaultPodSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) string { return v.DefaultPodSubnetRange }).(pulumi.StringOutput)
 }
 
-func (o GetOrganizationManagedDomainOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) string { return v.Status }).(pulumi.StringOutput)
+// ClusterOption default region
+func (o GetClusterOptionsClusterOptionOutput) DefaultRegion() GetClusterOptionsClusterOptionDefaultRegionOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) GetClusterOptionsClusterOptionDefaultRegion {
+		return v.DefaultRegion
+	}).(GetClusterOptionsClusterOptionDefaultRegionOutput)
 }
 
-func (o GetOrganizationManagedDomainOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationManagedDomain) string { return v.UpdatedAt }).(pulumi.StringOutput)
+// ClusterOption default service peering range
+func (o GetClusterOptionsClusterOptionOutput) DefaultServicePeeringRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) string { return v.DefaultServicePeeringRange }).(pulumi.StringOutput)
 }
 
-type GetOrganizationManagedDomainArrayOutput struct{ *pulumi.OutputState }
-
-func (GetOrganizationManagedDomainArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetOrganizationManagedDomain)(nil)).Elem()
+// ClusterOption default service subnet range
+func (o GetClusterOptionsClusterOptionOutput) DefaultServiceSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) string { return v.DefaultServiceSubnetRange }).(pulumi.StringOutput)
 }
 
-func (o GetOrganizationManagedDomainArrayOutput) ToGetOrganizationManagedDomainArrayOutput() GetOrganizationManagedDomainArrayOutput {
+// ClusterOption default vps subnet range
+func (o GetClusterOptionsClusterOptionOutput) DefaultVpcSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) string { return v.DefaultVpcSubnetRange }).(pulumi.StringOutput)
+}
+
+// ClusterOption node count default
+func (o GetClusterOptionsClusterOptionOutput) NodeCountDefault() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) int { return v.NodeCountDefault }).(pulumi.IntOutput)
+}
+
+// ClusterOption node count max
+func (o GetClusterOptionsClusterOptionOutput) NodeCountMax() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) int { return v.NodeCountMax }).(pulumi.IntOutput)
+}
+
+// ClusterOption node count min
+func (o GetClusterOptionsClusterOptionOutput) NodeCountMin() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) int { return v.NodeCountMin }).(pulumi.IntOutput)
+}
+
+// ClusterOption node instances
+func (o GetClusterOptionsClusterOptionOutput) NodeInstances() GetClusterOptionsClusterOptionNodeInstanceArrayOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) []GetClusterOptionsClusterOptionNodeInstance {
+		return v.NodeInstances
+	}).(GetClusterOptionsClusterOptionNodeInstanceArrayOutput)
+}
+
+// ClusterOption provider
+func (o GetClusterOptionsClusterOptionOutput) Provider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) string { return v.Provider }).(pulumi.StringOutput)
+}
+
+// ClusterOption regions
+func (o GetClusterOptionsClusterOptionOutput) Regions() GetClusterOptionsClusterOptionRegionArrayOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOption) []GetClusterOptionsClusterOptionRegion { return v.Regions }).(GetClusterOptionsClusterOptionRegionArrayOutput)
+}
+
+type GetClusterOptionsClusterOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOption)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionArrayOutput) ToGetClusterOptionsClusterOptionArrayOutput() GetClusterOptionsClusterOptionArrayOutput {
 	return o
 }
 
-func (o GetOrganizationManagedDomainArrayOutput) ToGetOrganizationManagedDomainArrayOutputWithContext(ctx context.Context) GetOrganizationManagedDomainArrayOutput {
+func (o GetClusterOptionsClusterOptionArrayOutput) ToGetClusterOptionsClusterOptionArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionArrayOutput {
 	return o
 }
 
-func (o GetOrganizationManagedDomainArrayOutput) Index(i pulumi.IntInput) GetOrganizationManagedDomainOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrganizationManagedDomain {
-		return vs[0].([]GetOrganizationManagedDomain)[vs[1].(int)]
-	}).(GetOrganizationManagedDomainOutput)
+func (o GetClusterOptionsClusterOptionArrayOutput) Index(i pulumi.IntInput) GetClusterOptionsClusterOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterOptionsClusterOption {
+		return vs[0].([]GetClusterOptionsClusterOption)[vs[1].(int)]
+	}).(GetClusterOptionsClusterOptionOutput)
+}
+
+type GetClusterOptionsClusterOptionDatabaseInstance struct {
+	// Provider instance cpu
+	Cpu int `pulumi:"cpu"`
+	// Provider instance memory
+	Memory string `pulumi:"memory"`
+	// Provider instance name
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionDatabaseInstanceInput is an input type that accepts GetClusterOptionsClusterOptionDatabaseInstanceArgs and GetClusterOptionsClusterOptionDatabaseInstanceOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionDatabaseInstanceInput` via:
+//
+//	GetClusterOptionsClusterOptionDatabaseInstanceArgs{...}
+type GetClusterOptionsClusterOptionDatabaseInstanceInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionDatabaseInstanceOutput() GetClusterOptionsClusterOptionDatabaseInstanceOutput
+	ToGetClusterOptionsClusterOptionDatabaseInstanceOutputWithContext(context.Context) GetClusterOptionsClusterOptionDatabaseInstanceOutput
+}
+
+type GetClusterOptionsClusterOptionDatabaseInstanceArgs struct {
+	// Provider instance cpu
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// Provider instance memory
+	Memory pulumi.StringInput `pulumi:"memory"`
+	// Provider instance name
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionDatabaseInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDatabaseInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionDatabaseInstanceArgs) ToGetClusterOptionsClusterOptionDatabaseInstanceOutput() GetClusterOptionsClusterOptionDatabaseInstanceOutput {
+	return i.ToGetClusterOptionsClusterOptionDatabaseInstanceOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionDatabaseInstanceArgs) ToGetClusterOptionsClusterOptionDatabaseInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDatabaseInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionDatabaseInstanceOutput)
+}
+
+// GetClusterOptionsClusterOptionDatabaseInstanceArrayInput is an input type that accepts GetClusterOptionsClusterOptionDatabaseInstanceArray and GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionDatabaseInstanceArrayInput` via:
+//
+//	GetClusterOptionsClusterOptionDatabaseInstanceArray{ GetClusterOptionsClusterOptionDatabaseInstanceArgs{...} }
+type GetClusterOptionsClusterOptionDatabaseInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutput() GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput
+	ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutputWithContext(context.Context) GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput
+}
+
+type GetClusterOptionsClusterOptionDatabaseInstanceArray []GetClusterOptionsClusterOptionDatabaseInstanceInput
+
+func (GetClusterOptionsClusterOptionDatabaseInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionDatabaseInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionDatabaseInstanceArray) ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutput() GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput {
+	return i.ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionDatabaseInstanceArray) ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput)
+}
+
+type GetClusterOptionsClusterOptionDatabaseInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionDatabaseInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDatabaseInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionDatabaseInstanceOutput) ToGetClusterOptionsClusterOptionDatabaseInstanceOutput() GetClusterOptionsClusterOptionDatabaseInstanceOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDatabaseInstanceOutput) ToGetClusterOptionsClusterOptionDatabaseInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDatabaseInstanceOutput {
+	return o
+}
+
+// Provider instance cpu
+func (o GetClusterOptionsClusterOptionDatabaseInstanceOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDatabaseInstance) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// Provider instance memory
+func (o GetClusterOptionsClusterOptionDatabaseInstanceOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDatabaseInstance) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+// Provider instance name
+func (o GetClusterOptionsClusterOptionDatabaseInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDatabaseInstance) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionDatabaseInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput) ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutput() GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput) ToGetClusterOptionsClusterOptionDatabaseInstanceArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput) Index(i pulumi.IntInput) GetClusterOptionsClusterOptionDatabaseInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterOptionsClusterOptionDatabaseInstance {
+		return vs[0].([]GetClusterOptionsClusterOptionDatabaseInstance)[vs[1].(int)]
+	}).(GetClusterOptionsClusterOptionDatabaseInstanceOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultDatabaseInstance struct {
+	// Provider instance cpu
+	Cpu int `pulumi:"cpu"`
+	// Provider instance memory
+	Memory string `pulumi:"memory"`
+	// Provider instance name
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionDefaultDatabaseInstanceInput is an input type that accepts GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs and GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionDefaultDatabaseInstanceInput` via:
+//
+//	GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs{...}
+type GetClusterOptionsClusterOptionDefaultDatabaseInstanceInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput() GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput
+	ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutputWithContext(context.Context) GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput
+}
+
+type GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs struct {
+	// Provider instance cpu
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// Provider instance memory
+	Memory pulumi.StringInput `pulumi:"memory"`
+	// Provider instance name
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultDatabaseInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs) ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput() GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput {
+	return i.ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs) ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultDatabaseInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput() GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) ToGetClusterOptionsClusterOptionDefaultDatabaseInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput {
+	return o
+}
+
+// Provider instance cpu
+func (o GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultDatabaseInstance) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// Provider instance memory
+func (o GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultDatabaseInstance) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+// Provider instance name
+func (o GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultDatabaseInstance) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultNodeInstance struct {
+	// Provider instance cpu
+	Cpu int `pulumi:"cpu"`
+	// Provider instance memory
+	Memory string `pulumi:"memory"`
+	// Provider instance name
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionDefaultNodeInstanceInput is an input type that accepts GetClusterOptionsClusterOptionDefaultNodeInstanceArgs and GetClusterOptionsClusterOptionDefaultNodeInstanceOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionDefaultNodeInstanceInput` via:
+//
+//	GetClusterOptionsClusterOptionDefaultNodeInstanceArgs{...}
+type GetClusterOptionsClusterOptionDefaultNodeInstanceInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutput() GetClusterOptionsClusterOptionDefaultNodeInstanceOutput
+	ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutputWithContext(context.Context) GetClusterOptionsClusterOptionDefaultNodeInstanceOutput
+}
+
+type GetClusterOptionsClusterOptionDefaultNodeInstanceArgs struct {
+	// Provider instance cpu
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// Provider instance memory
+	Memory pulumi.StringInput `pulumi:"memory"`
+	// Provider instance name
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionDefaultNodeInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultNodeInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionDefaultNodeInstanceArgs) ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutput() GetClusterOptionsClusterOptionDefaultNodeInstanceOutput {
+	return i.ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionDefaultNodeInstanceArgs) ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultNodeInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionDefaultNodeInstanceOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultNodeInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultNodeInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutput() GetClusterOptionsClusterOptionDefaultNodeInstanceOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) ToGetClusterOptionsClusterOptionDefaultNodeInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultNodeInstanceOutput {
+	return o
+}
+
+// Provider instance cpu
+func (o GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultNodeInstance) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// Provider instance memory
+func (o GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultNodeInstance) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+// Provider instance name
+func (o GetClusterOptionsClusterOptionDefaultNodeInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultNodeInstance) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultRegion struct {
+	// Region banned instances
+	BannedInstances []string `pulumi:"bannedInstances"`
+	// Region is limited bool
+	Limited bool `pulumi:"limited"`
+	// Region is limited bool
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionDefaultRegionInput is an input type that accepts GetClusterOptionsClusterOptionDefaultRegionArgs and GetClusterOptionsClusterOptionDefaultRegionOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionDefaultRegionInput` via:
+//
+//	GetClusterOptionsClusterOptionDefaultRegionArgs{...}
+type GetClusterOptionsClusterOptionDefaultRegionInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionDefaultRegionOutput() GetClusterOptionsClusterOptionDefaultRegionOutput
+	ToGetClusterOptionsClusterOptionDefaultRegionOutputWithContext(context.Context) GetClusterOptionsClusterOptionDefaultRegionOutput
+}
+
+type GetClusterOptionsClusterOptionDefaultRegionArgs struct {
+	// Region banned instances
+	BannedInstances pulumi.StringArrayInput `pulumi:"bannedInstances"`
+	// Region is limited bool
+	Limited pulumi.BoolInput `pulumi:"limited"`
+	// Region is limited bool
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionDefaultRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultRegion)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionDefaultRegionArgs) ToGetClusterOptionsClusterOptionDefaultRegionOutput() GetClusterOptionsClusterOptionDefaultRegionOutput {
+	return i.ToGetClusterOptionsClusterOptionDefaultRegionOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionDefaultRegionArgs) ToGetClusterOptionsClusterOptionDefaultRegionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionDefaultRegionOutput)
+}
+
+type GetClusterOptionsClusterOptionDefaultRegionOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionDefaultRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultRegion)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionDefaultRegionOutput) ToGetClusterOptionsClusterOptionDefaultRegionOutput() GetClusterOptionsClusterOptionDefaultRegionOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionDefaultRegionOutput) ToGetClusterOptionsClusterOptionDefaultRegionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionDefaultRegionOutput {
+	return o
+}
+
+// Region banned instances
+func (o GetClusterOptionsClusterOptionDefaultRegionOutput) BannedInstances() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultRegion) []string { return v.BannedInstances }).(pulumi.StringArrayOutput)
+}
+
+// Region is limited bool
+func (o GetClusterOptionsClusterOptionDefaultRegionOutput) Limited() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultRegion) bool { return v.Limited }).(pulumi.BoolOutput)
+}
+
+// Region is limited bool
+func (o GetClusterOptionsClusterOptionDefaultRegionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionDefaultRegion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionNodeInstance struct {
+	// Provider instance cpu
+	Cpu int `pulumi:"cpu"`
+	// Provider instance memory
+	Memory string `pulumi:"memory"`
+	// Provider instance name
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionNodeInstanceInput is an input type that accepts GetClusterOptionsClusterOptionNodeInstanceArgs and GetClusterOptionsClusterOptionNodeInstanceOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionNodeInstanceInput` via:
+//
+//	GetClusterOptionsClusterOptionNodeInstanceArgs{...}
+type GetClusterOptionsClusterOptionNodeInstanceInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionNodeInstanceOutput() GetClusterOptionsClusterOptionNodeInstanceOutput
+	ToGetClusterOptionsClusterOptionNodeInstanceOutputWithContext(context.Context) GetClusterOptionsClusterOptionNodeInstanceOutput
+}
+
+type GetClusterOptionsClusterOptionNodeInstanceArgs struct {
+	// Provider instance cpu
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// Provider instance memory
+	Memory pulumi.StringInput `pulumi:"memory"`
+	// Provider instance name
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionNodeInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionNodeInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionNodeInstanceArgs) ToGetClusterOptionsClusterOptionNodeInstanceOutput() GetClusterOptionsClusterOptionNodeInstanceOutput {
+	return i.ToGetClusterOptionsClusterOptionNodeInstanceOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionNodeInstanceArgs) ToGetClusterOptionsClusterOptionNodeInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionNodeInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionNodeInstanceOutput)
+}
+
+// GetClusterOptionsClusterOptionNodeInstanceArrayInput is an input type that accepts GetClusterOptionsClusterOptionNodeInstanceArray and GetClusterOptionsClusterOptionNodeInstanceArrayOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionNodeInstanceArrayInput` via:
+//
+//	GetClusterOptionsClusterOptionNodeInstanceArray{ GetClusterOptionsClusterOptionNodeInstanceArgs{...} }
+type GetClusterOptionsClusterOptionNodeInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionNodeInstanceArrayOutput() GetClusterOptionsClusterOptionNodeInstanceArrayOutput
+	ToGetClusterOptionsClusterOptionNodeInstanceArrayOutputWithContext(context.Context) GetClusterOptionsClusterOptionNodeInstanceArrayOutput
+}
+
+type GetClusterOptionsClusterOptionNodeInstanceArray []GetClusterOptionsClusterOptionNodeInstanceInput
+
+func (GetClusterOptionsClusterOptionNodeInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionNodeInstance)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionNodeInstanceArray) ToGetClusterOptionsClusterOptionNodeInstanceArrayOutput() GetClusterOptionsClusterOptionNodeInstanceArrayOutput {
+	return i.ToGetClusterOptionsClusterOptionNodeInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionNodeInstanceArray) ToGetClusterOptionsClusterOptionNodeInstanceArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionNodeInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionNodeInstanceArrayOutput)
+}
+
+type GetClusterOptionsClusterOptionNodeInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionNodeInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionNodeInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionNodeInstanceOutput) ToGetClusterOptionsClusterOptionNodeInstanceOutput() GetClusterOptionsClusterOptionNodeInstanceOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionNodeInstanceOutput) ToGetClusterOptionsClusterOptionNodeInstanceOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionNodeInstanceOutput {
+	return o
+}
+
+// Provider instance cpu
+func (o GetClusterOptionsClusterOptionNodeInstanceOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionNodeInstance) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// Provider instance memory
+func (o GetClusterOptionsClusterOptionNodeInstanceOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionNodeInstance) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+// Provider instance name
+func (o GetClusterOptionsClusterOptionNodeInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionNodeInstance) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionNodeInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionNodeInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionNodeInstance)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionNodeInstanceArrayOutput) ToGetClusterOptionsClusterOptionNodeInstanceArrayOutput() GetClusterOptionsClusterOptionNodeInstanceArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionNodeInstanceArrayOutput) ToGetClusterOptionsClusterOptionNodeInstanceArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionNodeInstanceArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionNodeInstanceArrayOutput) Index(i pulumi.IntInput) GetClusterOptionsClusterOptionNodeInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterOptionsClusterOptionNodeInstance {
+		return vs[0].([]GetClusterOptionsClusterOptionNodeInstance)[vs[1].(int)]
+	}).(GetClusterOptionsClusterOptionNodeInstanceOutput)
+}
+
+type GetClusterOptionsClusterOptionRegion struct {
+	// Region banned instances
+	BannedInstances []string `pulumi:"bannedInstances"`
+	// Region is limited bool
+	Limited bool `pulumi:"limited"`
+	// Region is limited bool
+	Name string `pulumi:"name"`
+}
+
+// GetClusterOptionsClusterOptionRegionInput is an input type that accepts GetClusterOptionsClusterOptionRegionArgs and GetClusterOptionsClusterOptionRegionOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionRegionInput` via:
+//
+//	GetClusterOptionsClusterOptionRegionArgs{...}
+type GetClusterOptionsClusterOptionRegionInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionRegionOutput() GetClusterOptionsClusterOptionRegionOutput
+	ToGetClusterOptionsClusterOptionRegionOutputWithContext(context.Context) GetClusterOptionsClusterOptionRegionOutput
+}
+
+type GetClusterOptionsClusterOptionRegionArgs struct {
+	// Region banned instances
+	BannedInstances pulumi.StringArrayInput `pulumi:"bannedInstances"`
+	// Region is limited bool
+	Limited pulumi.BoolInput `pulumi:"limited"`
+	// Region is limited bool
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClusterOptionsClusterOptionRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionRegion)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionRegionArgs) ToGetClusterOptionsClusterOptionRegionOutput() GetClusterOptionsClusterOptionRegionOutput {
+	return i.ToGetClusterOptionsClusterOptionRegionOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionRegionArgs) ToGetClusterOptionsClusterOptionRegionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionRegionOutput)
+}
+
+// GetClusterOptionsClusterOptionRegionArrayInput is an input type that accepts GetClusterOptionsClusterOptionRegionArray and GetClusterOptionsClusterOptionRegionArrayOutput values.
+// You can construct a concrete instance of `GetClusterOptionsClusterOptionRegionArrayInput` via:
+//
+//	GetClusterOptionsClusterOptionRegionArray{ GetClusterOptionsClusterOptionRegionArgs{...} }
+type GetClusterOptionsClusterOptionRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterOptionsClusterOptionRegionArrayOutput() GetClusterOptionsClusterOptionRegionArrayOutput
+	ToGetClusterOptionsClusterOptionRegionArrayOutputWithContext(context.Context) GetClusterOptionsClusterOptionRegionArrayOutput
+}
+
+type GetClusterOptionsClusterOptionRegionArray []GetClusterOptionsClusterOptionRegionInput
+
+func (GetClusterOptionsClusterOptionRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionRegion)(nil)).Elem()
+}
+
+func (i GetClusterOptionsClusterOptionRegionArray) ToGetClusterOptionsClusterOptionRegionArrayOutput() GetClusterOptionsClusterOptionRegionArrayOutput {
+	return i.ToGetClusterOptionsClusterOptionRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterOptionsClusterOptionRegionArray) ToGetClusterOptionsClusterOptionRegionArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterOptionsClusterOptionRegionArrayOutput)
+}
+
+type GetClusterOptionsClusterOptionRegionOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterOptionsClusterOptionRegion)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionRegionOutput) ToGetClusterOptionsClusterOptionRegionOutput() GetClusterOptionsClusterOptionRegionOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionRegionOutput) ToGetClusterOptionsClusterOptionRegionOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionRegionOutput {
+	return o
+}
+
+// Region banned instances
+func (o GetClusterOptionsClusterOptionRegionOutput) BannedInstances() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionRegion) []string { return v.BannedInstances }).(pulumi.StringArrayOutput)
+}
+
+// Region is limited bool
+func (o GetClusterOptionsClusterOptionRegionOutput) Limited() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionRegion) bool { return v.Limited }).(pulumi.BoolOutput)
+}
+
+// Region is limited bool
+func (o GetClusterOptionsClusterOptionRegionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterOptionsClusterOptionRegion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClusterOptionsClusterOptionRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterOptionsClusterOptionRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterOptionsClusterOptionRegion)(nil)).Elem()
+}
+
+func (o GetClusterOptionsClusterOptionRegionArrayOutput) ToGetClusterOptionsClusterOptionRegionArrayOutput() GetClusterOptionsClusterOptionRegionArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionRegionArrayOutput) ToGetClusterOptionsClusterOptionRegionArrayOutputWithContext(ctx context.Context) GetClusterOptionsClusterOptionRegionArrayOutput {
+	return o
+}
+
+func (o GetClusterOptionsClusterOptionRegionArrayOutput) Index(i pulumi.IntInput) GetClusterOptionsClusterOptionRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterOptionsClusterOptionRegion {
+		return vs[0].([]GetClusterOptionsClusterOptionRegion)[vs[1].(int)]
+	}).(GetClusterOptionsClusterOptionRegionOutput)
+}
+
+type GetClusterTag struct {
+	// Cluster tag key
+	Key string `pulumi:"key"`
+	// Cluster tag value
+	Value string `pulumi:"value"`
+}
+
+// GetClusterTagInput is an input type that accepts GetClusterTagArgs and GetClusterTagOutput values.
+// You can construct a concrete instance of `GetClusterTagInput` via:
+//
+//	GetClusterTagArgs{...}
+type GetClusterTagInput interface {
+	pulumi.Input
+
+	ToGetClusterTagOutput() GetClusterTagOutput
+	ToGetClusterTagOutputWithContext(context.Context) GetClusterTagOutput
+}
+
+type GetClusterTagArgs struct {
+	// Cluster tag key
+	Key pulumi.StringInput `pulumi:"key"`
+	// Cluster tag value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterTag)(nil)).Elem()
+}
+
+func (i GetClusterTagArgs) ToGetClusterTagOutput() GetClusterTagOutput {
+	return i.ToGetClusterTagOutputWithContext(context.Background())
+}
+
+func (i GetClusterTagArgs) ToGetClusterTagOutputWithContext(ctx context.Context) GetClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterTagOutput)
+}
+
+// GetClusterTagArrayInput is an input type that accepts GetClusterTagArray and GetClusterTagArrayOutput values.
+// You can construct a concrete instance of `GetClusterTagArrayInput` via:
+//
+//	GetClusterTagArray{ GetClusterTagArgs{...} }
+type GetClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterTagArrayOutput() GetClusterTagArrayOutput
+	ToGetClusterTagArrayOutputWithContext(context.Context) GetClusterTagArrayOutput
+}
+
+type GetClusterTagArray []GetClusterTagInput
+
+func (GetClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterTag)(nil)).Elem()
+}
+
+func (i GetClusterTagArray) ToGetClusterTagArrayOutput() GetClusterTagArrayOutput {
+	return i.ToGetClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterTagArray) ToGetClusterTagArrayOutputWithContext(ctx context.Context) GetClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterTagArrayOutput)
+}
+
+type GetClusterTagOutput struct{ *pulumi.OutputState }
+
+func (GetClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterTag)(nil)).Elem()
+}
+
+func (o GetClusterTagOutput) ToGetClusterTagOutput() GetClusterTagOutput {
+	return o
+}
+
+func (o GetClusterTagOutput) ToGetClusterTagOutputWithContext(ctx context.Context) GetClusterTagOutput {
+	return o
+}
+
+// Cluster tag key
+func (o GetClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Cluster tag value
+func (o GetClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterTag)(nil)).Elem()
+}
+
+func (o GetClusterTagArrayOutput) ToGetClusterTagArrayOutput() GetClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClusterTagArrayOutput) ToGetClusterTagArrayOutputWithContext(ctx context.Context) GetClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClusterTagArrayOutput) Index(i pulumi.IntInput) GetClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterTag {
+		return vs[0].([]GetClusterTag)[vs[1].(int)]
+	}).(GetClusterTagOutput)
+}
+
+type GetClustersCluster struct {
+	// Cluster cloud provider
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Cluster creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Cluster database instance type
+	DbInstanceType string `pulumi:"dbInstanceType"`
+	// Cluster identifier
+	Id string `pulumi:"id"`
+	// Whether the cluster is limited
+	IsLimited bool `pulumi:"isLimited"`
+	// Cluster metadata
+	Metadata GetClustersClusterMetadata `pulumi:"metadata"`
+	// Cluster name
+	Name string `pulumi:"name"`
+	// Cluster node pools
+	NodePools []GetClustersClusterNodePool `pulumi:"nodePools"`
+	// Cluster pod subnet range
+	PodSubnetRange string `pulumi:"podSubnetRange"`
+	// Cluster provider account
+	ProviderAccount string `pulumi:"providerAccount"`
+	// Cluster region
+	Region string `pulumi:"region"`
+	// Cluster service peering range
+	ServicePeeringRange string `pulumi:"servicePeeringRange"`
+	// Cluster service subnet range
+	ServiceSubnetRange string `pulumi:"serviceSubnetRange"`
+	// Cluster status
+	Status string `pulumi:"status"`
+	// Cluster tags
+	Tags []GetClustersClusterTag `pulumi:"tags"`
+	// Cluster tenant ID
+	TenantId string `pulumi:"tenantId"`
+	// Cluster type
+	Type string `pulumi:"type"`
+	// Cluster last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Cluster VPC subnet range
+	VpcSubnetRange string `pulumi:"vpcSubnetRange"`
+	// Cluster workspace IDs
+	WorkspaceIds []string `pulumi:"workspaceIds"`
+}
+
+// GetClustersClusterInput is an input type that accepts GetClustersClusterArgs and GetClustersClusterOutput values.
+// You can construct a concrete instance of `GetClustersClusterInput` via:
+//
+//	GetClustersClusterArgs{...}
+type GetClustersClusterInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterOutput() GetClustersClusterOutput
+	ToGetClustersClusterOutputWithContext(context.Context) GetClustersClusterOutput
+}
+
+type GetClustersClusterArgs struct {
+	// Cluster cloud provider
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Cluster creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Cluster database instance type
+	DbInstanceType pulumi.StringInput `pulumi:"dbInstanceType"`
+	// Cluster identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the cluster is limited
+	IsLimited pulumi.BoolInput `pulumi:"isLimited"`
+	// Cluster metadata
+	Metadata GetClustersClusterMetadataInput `pulumi:"metadata"`
+	// Cluster name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Cluster node pools
+	NodePools GetClustersClusterNodePoolArrayInput `pulumi:"nodePools"`
+	// Cluster pod subnet range
+	PodSubnetRange pulumi.StringInput `pulumi:"podSubnetRange"`
+	// Cluster provider account
+	ProviderAccount pulumi.StringInput `pulumi:"providerAccount"`
+	// Cluster region
+	Region pulumi.StringInput `pulumi:"region"`
+	// Cluster service peering range
+	ServicePeeringRange pulumi.StringInput `pulumi:"servicePeeringRange"`
+	// Cluster service subnet range
+	ServiceSubnetRange pulumi.StringInput `pulumi:"serviceSubnetRange"`
+	// Cluster status
+	Status pulumi.StringInput `pulumi:"status"`
+	// Cluster tags
+	Tags GetClustersClusterTagArrayInput `pulumi:"tags"`
+	// Cluster tenant ID
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+	// Cluster type
+	Type pulumi.StringInput `pulumi:"type"`
+	// Cluster last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Cluster VPC subnet range
+	VpcSubnetRange pulumi.StringInput `pulumi:"vpcSubnetRange"`
+	// Cluster workspace IDs
+	WorkspaceIds pulumi.StringArrayInput `pulumi:"workspaceIds"`
+}
+
+func (GetClustersClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return i.ToGetClustersClusterOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterOutput)
+}
+
+// GetClustersClusterArrayInput is an input type that accepts GetClustersClusterArray and GetClustersClusterArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterArrayInput` via:
+//
+//	GetClustersClusterArray{ GetClustersClusterArgs{...} }
+type GetClustersClusterArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput
+	ToGetClustersClusterArrayOutputWithContext(context.Context) GetClustersClusterArrayOutput
+}
+
+type GetClustersClusterArray []GetClustersClusterInput
+
+func (GetClustersClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return i.ToGetClustersClusterArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterArrayOutput)
+}
+
+type GetClustersClusterOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return o
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return o
+}
+
+// Cluster cloud provider
+func (o GetClustersClusterOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Cluster creation timestamp
+func (o GetClustersClusterOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster database instance type
+func (o GetClustersClusterOutput) DbInstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DbInstanceType }).(pulumi.StringOutput)
+}
+
+// Cluster identifier
+func (o GetClustersClusterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the cluster is limited
+func (o GetClustersClusterOutput) IsLimited() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.IsLimited }).(pulumi.BoolOutput)
+}
+
+// Cluster metadata
+func (o GetClustersClusterOutput) Metadata() GetClustersClusterMetadataOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterMetadata { return v.Metadata }).(GetClustersClusterMetadataOutput)
+}
+
+// Cluster name
+func (o GetClustersClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Cluster node pools
+func (o GetClustersClusterOutput) NodePools() GetClustersClusterNodePoolArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterNodePool { return v.NodePools }).(GetClustersClusterNodePoolArrayOutput)
+}
+
+// Cluster pod subnet range
+func (o GetClustersClusterOutput) PodSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.PodSubnetRange }).(pulumi.StringOutput)
+}
+
+// Cluster provider account
+func (o GetClustersClusterOutput) ProviderAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.ProviderAccount }).(pulumi.StringOutput)
+}
+
+// Cluster region
+func (o GetClustersClusterOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Cluster service peering range
+func (o GetClustersClusterOutput) ServicePeeringRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.ServicePeeringRange }).(pulumi.StringOutput)
+}
+
+// Cluster service subnet range
+func (o GetClustersClusterOutput) ServiceSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.ServiceSubnetRange }).(pulumi.StringOutput)
+}
+
+// Cluster status
+func (o GetClustersClusterOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Cluster tags
+func (o GetClustersClusterOutput) Tags() GetClustersClusterTagArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterTag { return v.Tags }).(GetClustersClusterTagArrayOutput)
+}
+
+// Cluster tenant ID
+func (o GetClustersClusterOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+// Cluster type
+func (o GetClustersClusterOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Cluster last updated timestamp
+func (o GetClustersClusterOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster VPC subnet range
+func (o GetClustersClusterOutput) VpcSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.VpcSubnetRange }).(pulumi.StringOutput)
+}
+
+// Cluster workspace IDs
+func (o GetClustersClusterOutput) WorkspaceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
+}
+
+type GetClustersClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersCluster {
+		return vs[0].([]GetClustersCluster)[vs[1].(int)]
+	}).(GetClustersClusterOutput)
+}
+
+type GetClustersClusterMetadata struct {
+	// Cluster external IPs
+	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
+}
+
+// GetClustersClusterMetadataInput is an input type that accepts GetClustersClusterMetadataArgs and GetClustersClusterMetadataOutput values.
+// You can construct a concrete instance of `GetClustersClusterMetadataInput` via:
+//
+//	GetClustersClusterMetadataArgs{...}
+type GetClustersClusterMetadataInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterMetadataOutput() GetClustersClusterMetadataOutput
+	ToGetClustersClusterMetadataOutputWithContext(context.Context) GetClustersClusterMetadataOutput
+}
+
+type GetClustersClusterMetadataArgs struct {
+	// Cluster external IPs
+	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster OIDC issuer URL
+	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
+}
+
+func (GetClustersClusterMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterMetadata)(nil)).Elem()
+}
+
+func (i GetClustersClusterMetadataArgs) ToGetClustersClusterMetadataOutput() GetClustersClusterMetadataOutput {
+	return i.ToGetClustersClusterMetadataOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterMetadataArgs) ToGetClustersClusterMetadataOutputWithContext(ctx context.Context) GetClustersClusterMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterMetadataOutput)
+}
+
+type GetClustersClusterMetadataOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterMetadata)(nil)).Elem()
+}
+
+func (o GetClustersClusterMetadataOutput) ToGetClustersClusterMetadataOutput() GetClustersClusterMetadataOutput {
+	return o
+}
+
+func (o GetClustersClusterMetadataOutput) ToGetClustersClusterMetadataOutputWithContext(ctx context.Context) GetClustersClusterMetadataOutput {
+	return o
+}
+
+// Cluster external IPs
+func (o GetClustersClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
+}
+
+// Cluster OIDC issuer URL
+func (o GetClustersClusterMetadataOutput) OidcIssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterMetadata) string { return v.OidcIssuerUrl }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterNodePool struct {
+	// Node pool cloud provider
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId string `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Node pool identifier
+	Id string `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
+	IsDefault bool `pulumi:"isDefault"`
+	// Node pool maximum node count
+	MaxNodeCount int `pulumi:"maxNodeCount"`
+	// Node pool name
+	Name string `pulumi:"name"`
+	// Node pool node instance type
+	NodeInstanceType string `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines []string `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetClustersClusterNodePoolInput is an input type that accepts GetClustersClusterNodePoolArgs and GetClustersClusterNodePoolOutput values.
+// You can construct a concrete instance of `GetClustersClusterNodePoolInput` via:
+//
+//	GetClustersClusterNodePoolArgs{...}
+type GetClustersClusterNodePoolInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterNodePoolOutput() GetClustersClusterNodePoolOutput
+	ToGetClustersClusterNodePoolOutputWithContext(context.Context) GetClustersClusterNodePoolOutput
+}
+
+type GetClustersClusterNodePoolArgs struct {
+	// Node pool cloud provider
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Node pool cluster identifier
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// Node pool creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Node pool identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the node pool is the default node pool of the cluster
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Node pool maximum node count
+	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
+	// Node pool name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Node pool node instance type
+	NodeInstanceType pulumi.StringInput `pulumi:"nodeInstanceType"`
+	// Node pool supported Astro machines
+	SupportedAstroMachines pulumi.StringArrayInput `pulumi:"supportedAstroMachines"`
+	// Node pool last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetClustersClusterNodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterNodePool)(nil)).Elem()
+}
+
+func (i GetClustersClusterNodePoolArgs) ToGetClustersClusterNodePoolOutput() GetClustersClusterNodePoolOutput {
+	return i.ToGetClustersClusterNodePoolOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterNodePoolArgs) ToGetClustersClusterNodePoolOutputWithContext(ctx context.Context) GetClustersClusterNodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterNodePoolOutput)
+}
+
+// GetClustersClusterNodePoolArrayInput is an input type that accepts GetClustersClusterNodePoolArray and GetClustersClusterNodePoolArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterNodePoolArrayInput` via:
+//
+//	GetClustersClusterNodePoolArray{ GetClustersClusterNodePoolArgs{...} }
+type GetClustersClusterNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterNodePoolArrayOutput() GetClustersClusterNodePoolArrayOutput
+	ToGetClustersClusterNodePoolArrayOutputWithContext(context.Context) GetClustersClusterNodePoolArrayOutput
+}
+
+type GetClustersClusterNodePoolArray []GetClustersClusterNodePoolInput
+
+func (GetClustersClusterNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterNodePool)(nil)).Elem()
+}
+
+func (i GetClustersClusterNodePoolArray) ToGetClustersClusterNodePoolArrayOutput() GetClustersClusterNodePoolArrayOutput {
+	return i.ToGetClustersClusterNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterNodePoolArray) ToGetClustersClusterNodePoolArrayOutputWithContext(ctx context.Context) GetClustersClusterNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterNodePoolArrayOutput)
+}
+
+type GetClustersClusterNodePoolOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterNodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterNodePool)(nil)).Elem()
+}
+
+func (o GetClustersClusterNodePoolOutput) ToGetClustersClusterNodePoolOutput() GetClustersClusterNodePoolOutput {
+	return o
+}
+
+func (o GetClustersClusterNodePoolOutput) ToGetClustersClusterNodePoolOutputWithContext(ctx context.Context) GetClustersClusterNodePoolOutput {
+	return o
+}
+
+// Node pool cloud provider
+func (o GetClustersClusterNodePoolOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Node pool cluster identifier
+func (o GetClustersClusterNodePoolOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Node pool creation timestamp
+func (o GetClustersClusterNodePoolOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Node pool identifier
+func (o GetClustersClusterNodePoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the node pool is the default node pool of the cluster
+func (o GetClustersClusterNodePoolOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Node pool maximum node count
+func (o GetClustersClusterNodePoolOutput) MaxNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) int { return v.MaxNodeCount }).(pulumi.IntOutput)
+}
+
+// Node pool name
+func (o GetClustersClusterNodePoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Node pool node instance type
+func (o GetClustersClusterNodePoolOutput) NodeInstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.NodeInstanceType }).(pulumi.StringOutput)
+}
+
+// Node pool supported Astro machines
+func (o GetClustersClusterNodePoolOutput) SupportedAstroMachines() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) []string { return v.SupportedAstroMachines }).(pulumi.StringArrayOutput)
+}
+
+// Node pool last updated timestamp
+func (o GetClustersClusterNodePoolOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterNodePool)(nil)).Elem()
+}
+
+func (o GetClustersClusterNodePoolArrayOutput) ToGetClustersClusterNodePoolArrayOutput() GetClustersClusterNodePoolArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterNodePoolArrayOutput) ToGetClustersClusterNodePoolArrayOutputWithContext(ctx context.Context) GetClustersClusterNodePoolArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterNodePoolArrayOutput) Index(i pulumi.IntInput) GetClustersClusterNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterNodePool {
+		return vs[0].([]GetClustersClusterNodePool)[vs[1].(int)]
+	}).(GetClustersClusterNodePoolOutput)
+}
+
+type GetClustersClusterTag struct {
+	// Cluster tag key
+	Key string `pulumi:"key"`
+	// Cluster tag value
+	Value string `pulumi:"value"`
+}
+
+// GetClustersClusterTagInput is an input type that accepts GetClustersClusterTagArgs and GetClustersClusterTagOutput values.
+// You can construct a concrete instance of `GetClustersClusterTagInput` via:
+//
+//	GetClustersClusterTagArgs{...}
+type GetClustersClusterTagInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterTagOutput() GetClustersClusterTagOutput
+	ToGetClustersClusterTagOutputWithContext(context.Context) GetClustersClusterTagOutput
+}
+
+type GetClustersClusterTagArgs struct {
+	// Cluster tag key
+	Key pulumi.StringInput `pulumi:"key"`
+	// Cluster tag value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClustersClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterTag)(nil)).Elem()
+}
+
+func (i GetClustersClusterTagArgs) ToGetClustersClusterTagOutput() GetClustersClusterTagOutput {
+	return i.ToGetClustersClusterTagOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterTagArgs) ToGetClustersClusterTagOutputWithContext(ctx context.Context) GetClustersClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterTagOutput)
+}
+
+// GetClustersClusterTagArrayInput is an input type that accepts GetClustersClusterTagArray and GetClustersClusterTagArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterTagArrayInput` via:
+//
+//	GetClustersClusterTagArray{ GetClustersClusterTagArgs{...} }
+type GetClustersClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput
+	ToGetClustersClusterTagArrayOutputWithContext(context.Context) GetClustersClusterTagArrayOutput
+}
+
+type GetClustersClusterTagArray []GetClustersClusterTagInput
+
+func (GetClustersClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterTag)(nil)).Elem()
+}
+
+func (i GetClustersClusterTagArray) ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput {
+	return i.ToGetClustersClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterTagArray) ToGetClustersClusterTagArrayOutputWithContext(ctx context.Context) GetClustersClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterTagArrayOutput)
+}
+
+type GetClustersClusterTagOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterTag)(nil)).Elem()
+}
+
+func (o GetClustersClusterTagOutput) ToGetClustersClusterTagOutput() GetClustersClusterTagOutput {
+	return o
+}
+
+func (o GetClustersClusterTagOutput) ToGetClustersClusterTagOutputWithContext(ctx context.Context) GetClustersClusterTagOutput {
+	return o
+}
+
+// Cluster tag key
+func (o GetClustersClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Cluster tag value
+func (o GetClustersClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterTag)(nil)).Elem()
+}
+
+func (o GetClustersClusterTagArrayOutput) ToGetClustersClusterTagArrayOutput() GetClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterTagArrayOutput) ToGetClustersClusterTagArrayOutputWithContext(ctx context.Context) GetClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterTagArrayOutput) Index(i pulumi.IntInput) GetClustersClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterTag {
+		return vs[0].([]GetClustersClusterTag)[vs[1].(int)]
+	}).(GetClustersClusterTagOutput)
+}
+
+type GetDeploymentCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetDeploymentCreatedByInput is an input type that accepts GetDeploymentCreatedByArgs and GetDeploymentCreatedByOutput values.
+// You can construct a concrete instance of `GetDeploymentCreatedByInput` via:
+//
+//	GetDeploymentCreatedByArgs{...}
+type GetDeploymentCreatedByInput interface {
+	pulumi.Input
+
+	ToGetDeploymentCreatedByOutput() GetDeploymentCreatedByOutput
+	ToGetDeploymentCreatedByOutputWithContext(context.Context) GetDeploymentCreatedByOutput
+}
+
+type GetDeploymentCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetDeploymentCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentCreatedBy)(nil)).Elem()
+}
+
+func (i GetDeploymentCreatedByArgs) ToGetDeploymentCreatedByOutput() GetDeploymentCreatedByOutput {
+	return i.ToGetDeploymentCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentCreatedByArgs) ToGetDeploymentCreatedByOutputWithContext(ctx context.Context) GetDeploymentCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentCreatedByOutput)
+}
+
+type GetDeploymentCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentCreatedBy)(nil)).Elem()
+}
+
+func (o GetDeploymentCreatedByOutput) ToGetDeploymentCreatedByOutput() GetDeploymentCreatedByOutput {
+	return o
+}
+
+func (o GetDeploymentCreatedByOutput) ToGetDeploymentCreatedByOutputWithContext(ctx context.Context) GetDeploymentCreatedByOutput {
+	return o
+}
+
+func (o GetDeploymentCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetDeploymentEnvironmentVariable struct {
+	// Whether Environment variable is a secret
+	IsSecret bool `pulumi:"isSecret"`
+	// Environment variable key
+	Key string `pulumi:"key"`
+	// Environment variable last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Environment variable value
+	Value string `pulumi:"value"`
+}
+
+// GetDeploymentEnvironmentVariableInput is an input type that accepts GetDeploymentEnvironmentVariableArgs and GetDeploymentEnvironmentVariableOutput values.
+// You can construct a concrete instance of `GetDeploymentEnvironmentVariableInput` via:
+//
+//	GetDeploymentEnvironmentVariableArgs{...}
+type GetDeploymentEnvironmentVariableInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEnvironmentVariableOutput() GetDeploymentEnvironmentVariableOutput
+	ToGetDeploymentEnvironmentVariableOutputWithContext(context.Context) GetDeploymentEnvironmentVariableOutput
+}
+
+type GetDeploymentEnvironmentVariableArgs struct {
+	// Whether Environment variable is a secret
+	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
+	// Environment variable key
+	Key pulumi.StringInput `pulumi:"key"`
+	// Environment variable last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Environment variable value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetDeploymentEnvironmentVariableArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (i GetDeploymentEnvironmentVariableArgs) ToGetDeploymentEnvironmentVariableOutput() GetDeploymentEnvironmentVariableOutput {
+	return i.ToGetDeploymentEnvironmentVariableOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEnvironmentVariableArgs) ToGetDeploymentEnvironmentVariableOutputWithContext(ctx context.Context) GetDeploymentEnvironmentVariableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnvironmentVariableOutput)
+}
+
+// GetDeploymentEnvironmentVariableArrayInput is an input type that accepts GetDeploymentEnvironmentVariableArray and GetDeploymentEnvironmentVariableArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentEnvironmentVariableArrayInput` via:
+//
+//	GetDeploymentEnvironmentVariableArray{ GetDeploymentEnvironmentVariableArgs{...} }
+type GetDeploymentEnvironmentVariableArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEnvironmentVariableArrayOutput() GetDeploymentEnvironmentVariableArrayOutput
+	ToGetDeploymentEnvironmentVariableArrayOutputWithContext(context.Context) GetDeploymentEnvironmentVariableArrayOutput
+}
+
+type GetDeploymentEnvironmentVariableArray []GetDeploymentEnvironmentVariableInput
+
+func (GetDeploymentEnvironmentVariableArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (i GetDeploymentEnvironmentVariableArray) ToGetDeploymentEnvironmentVariableArrayOutput() GetDeploymentEnvironmentVariableArrayOutput {
+	return i.ToGetDeploymentEnvironmentVariableArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEnvironmentVariableArray) ToGetDeploymentEnvironmentVariableArrayOutputWithContext(ctx context.Context) GetDeploymentEnvironmentVariableArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnvironmentVariableArrayOutput)
+}
+
+type GetDeploymentEnvironmentVariableOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEnvironmentVariableOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (o GetDeploymentEnvironmentVariableOutput) ToGetDeploymentEnvironmentVariableOutput() GetDeploymentEnvironmentVariableOutput {
+	return o
+}
+
+func (o GetDeploymentEnvironmentVariableOutput) ToGetDeploymentEnvironmentVariableOutputWithContext(ctx context.Context) GetDeploymentEnvironmentVariableOutput {
+	return o
+}
+
+// Whether Environment variable is a secret
+func (o GetDeploymentEnvironmentVariableOutput) GetIsSecret() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentEnvironmentVariable) bool { return v.IsSecret }).(pulumi.BoolOutput)
+}
+
+// Environment variable key
+func (o GetDeploymentEnvironmentVariableOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEnvironmentVariable) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Environment variable last updated timestamp
+func (o GetDeploymentEnvironmentVariableOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEnvironmentVariable) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Environment variable value
+func (o GetDeploymentEnvironmentVariableOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEnvironmentVariable) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetDeploymentEnvironmentVariableArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEnvironmentVariableArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (o GetDeploymentEnvironmentVariableArrayOutput) ToGetDeploymentEnvironmentVariableArrayOutput() GetDeploymentEnvironmentVariableArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEnvironmentVariableArrayOutput) ToGetDeploymentEnvironmentVariableArrayOutputWithContext(ctx context.Context) GetDeploymentEnvironmentVariableArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEnvironmentVariableArrayOutput) Index(i pulumi.IntInput) GetDeploymentEnvironmentVariableOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentEnvironmentVariable {
+		return vs[0].([]GetDeploymentEnvironmentVariable)[vs[1].(int)]
+	}).(GetDeploymentEnvironmentVariableOutput)
+}
+
+type GetDeploymentOptionsResourceQuotas struct {
+	// Default pod size options
+	DefaultPodSize GetDeploymentOptionsResourceQuotasDefaultPodSize `pulumi:"defaultPodSize"`
+	// Resource quota options
+	ResourceQuota GetDeploymentOptionsResourceQuotasResourceQuota `pulumi:"resourceQuota"`
+}
+
+// GetDeploymentOptionsResourceQuotasInput is an input type that accepts GetDeploymentOptionsResourceQuotasArgs and GetDeploymentOptionsResourceQuotasOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasArgs{...}
+type GetDeploymentOptionsResourceQuotasInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasOutput() GetDeploymentOptionsResourceQuotasOutput
+	ToGetDeploymentOptionsResourceQuotasOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasOutput
+}
+
+type GetDeploymentOptionsResourceQuotasArgs struct {
+	// Default pod size options
+	DefaultPodSize GetDeploymentOptionsResourceQuotasDefaultPodSizeInput `pulumi:"defaultPodSize"`
+	// Resource quota options
+	ResourceQuota GetDeploymentOptionsResourceQuotasResourceQuotaInput `pulumi:"resourceQuota"`
+}
+
+func (GetDeploymentOptionsResourceQuotasArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotas)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasArgs) ToGetDeploymentOptionsResourceQuotasOutput() GetDeploymentOptionsResourceQuotasOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasArgs) ToGetDeploymentOptionsResourceQuotasOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotas)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasOutput) ToGetDeploymentOptionsResourceQuotasOutput() GetDeploymentOptionsResourceQuotasOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasOutput) ToGetDeploymentOptionsResourceQuotasOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasOutput {
+	return o
+}
+
+// Default pod size options
+func (o GetDeploymentOptionsResourceQuotasOutput) DefaultPodSize() GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotas) GetDeploymentOptionsResourceQuotasDefaultPodSize {
+		return v.DefaultPodSize
+	}).(GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput)
+}
+
+// Resource quota options
+func (o GetDeploymentOptionsResourceQuotasOutput) ResourceQuota() GetDeploymentOptionsResourceQuotasResourceQuotaOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotas) GetDeploymentOptionsResourceQuotasResourceQuota {
+		return v.ResourceQuota
+	}).(GetDeploymentOptionsResourceQuotasResourceQuotaOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSize struct {
+	// CPU resource range
+	Cpu GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu `pulumi:"cpu"`
+	// Memory resource range
+	Memory GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory `pulumi:"memory"`
+}
+
+// GetDeploymentOptionsResourceQuotasDefaultPodSizeInput is an input type that accepts GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs and GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasDefaultPodSizeInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs{...}
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs struct {
+	// CPU resource range
+	Cpu GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuInput `pulumi:"cpu"`
+	// Memory resource range
+	Memory GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryInput `pulumi:"memory"`
+}
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSize)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSize)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput {
+	return o
+}
+
+// CPU resource range
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput) Cpu() GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSize) GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu {
+		return v.Cpu
+	}).(GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput)
+}
+
+// Memory resource range
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput) Memory() GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSize) GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory {
+		return v.Memory
+	}).(GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuInput is an input type that accepts GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs and GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs{...}
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryInput is an input type that accepts GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs and GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs{...}
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput
+	ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput() GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) ToGetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuota struct {
+	// CPU resource range
+	Cpu GetDeploymentOptionsResourceQuotasResourceQuotaCpu `pulumi:"cpu"`
+	// Memory resource range
+	Memory GetDeploymentOptionsResourceQuotasResourceQuotaMemory `pulumi:"memory"`
+}
+
+// GetDeploymentOptionsResourceQuotasResourceQuotaInput is an input type that accepts GetDeploymentOptionsResourceQuotasResourceQuotaArgs and GetDeploymentOptionsResourceQuotasResourceQuotaOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasResourceQuotaInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasResourceQuotaArgs{...}
+type GetDeploymentOptionsResourceQuotasResourceQuotaInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaOutput() GetDeploymentOptionsResourceQuotasResourceQuotaOutput
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaOutput
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaArgs struct {
+	// CPU resource range
+	Cpu GetDeploymentOptionsResourceQuotasResourceQuotaCpuInput `pulumi:"cpu"`
+	// Memory resource range
+	Memory GetDeploymentOptionsResourceQuotasResourceQuotaMemoryInput `pulumi:"memory"`
+}
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuota)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaOutput() GetDeploymentOptionsResourceQuotasResourceQuotaOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasResourceQuotaOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasResourceQuotaOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuota)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaOutput() GetDeploymentOptionsResourceQuotasResourceQuotaOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaOutput {
+	return o
+}
+
+// CPU resource range
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaOutput) Cpu() GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuota) GetDeploymentOptionsResourceQuotasResourceQuotaCpu {
+		return v.Cpu
+	}).(GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput)
+}
+
+// Memory resource range
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaOutput) Memory() GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuota) GetDeploymentOptionsResourceQuotasResourceQuotaMemory {
+		return v.Memory
+	}).(GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaCpu struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsResourceQuotasResourceQuotaCpuInput is an input type that accepts GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs and GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasResourceQuotaCpuInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs{...}
+type GetDeploymentOptionsResourceQuotasResourceQuotaCpuInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput() GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaCpu)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput() GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaCpu)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput() GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaCpuOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaCpu) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaCpu) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaCpu) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaMemory struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsResourceQuotasResourceQuotaMemoryInput is an input type that accepts GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs and GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsResourceQuotasResourceQuotaMemoryInput` via:
+//
+//	GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs{...}
+type GetDeploymentOptionsResourceQuotasResourceQuotaMemoryInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput() GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput
+	ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutputWithContext(context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaMemory)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput() GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput {
+	return i.ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs) ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput)
+}
+
+type GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaMemory)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput() GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) ToGetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutputWithContext(ctx context.Context) GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaMemory) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaMemory) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsResourceQuotasResourceQuotaMemory) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsRuntimeRelease struct {
+	AirflowDatabaseMigration bool   `pulumi:"airflowDatabaseMigration"`
+	AirflowVersion           string `pulumi:"airflowVersion"`
+	Channel                  string `pulumi:"channel"`
+	ReleaseDate              string `pulumi:"releaseDate"`
+	StellarDatabaseMigration bool   `pulumi:"stellarDatabaseMigration"`
+	Version                  string `pulumi:"version"`
+}
+
+// GetDeploymentOptionsRuntimeReleaseInput is an input type that accepts GetDeploymentOptionsRuntimeReleaseArgs and GetDeploymentOptionsRuntimeReleaseOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsRuntimeReleaseInput` via:
+//
+//	GetDeploymentOptionsRuntimeReleaseArgs{...}
+type GetDeploymentOptionsRuntimeReleaseInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsRuntimeReleaseOutput() GetDeploymentOptionsRuntimeReleaseOutput
+	ToGetDeploymentOptionsRuntimeReleaseOutputWithContext(context.Context) GetDeploymentOptionsRuntimeReleaseOutput
+}
+
+type GetDeploymentOptionsRuntimeReleaseArgs struct {
+	AirflowDatabaseMigration pulumi.BoolInput   `pulumi:"airflowDatabaseMigration"`
+	AirflowVersion           pulumi.StringInput `pulumi:"airflowVersion"`
+	Channel                  pulumi.StringInput `pulumi:"channel"`
+	ReleaseDate              pulumi.StringInput `pulumi:"releaseDate"`
+	StellarDatabaseMigration pulumi.BoolInput   `pulumi:"stellarDatabaseMigration"`
+	Version                  pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetDeploymentOptionsRuntimeReleaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsRuntimeRelease)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsRuntimeReleaseArgs) ToGetDeploymentOptionsRuntimeReleaseOutput() GetDeploymentOptionsRuntimeReleaseOutput {
+	return i.ToGetDeploymentOptionsRuntimeReleaseOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsRuntimeReleaseArgs) ToGetDeploymentOptionsRuntimeReleaseOutputWithContext(ctx context.Context) GetDeploymentOptionsRuntimeReleaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsRuntimeReleaseOutput)
+}
+
+// GetDeploymentOptionsRuntimeReleaseArrayInput is an input type that accepts GetDeploymentOptionsRuntimeReleaseArray and GetDeploymentOptionsRuntimeReleaseArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsRuntimeReleaseArrayInput` via:
+//
+//	GetDeploymentOptionsRuntimeReleaseArray{ GetDeploymentOptionsRuntimeReleaseArgs{...} }
+type GetDeploymentOptionsRuntimeReleaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsRuntimeReleaseArrayOutput() GetDeploymentOptionsRuntimeReleaseArrayOutput
+	ToGetDeploymentOptionsRuntimeReleaseArrayOutputWithContext(context.Context) GetDeploymentOptionsRuntimeReleaseArrayOutput
+}
+
+type GetDeploymentOptionsRuntimeReleaseArray []GetDeploymentOptionsRuntimeReleaseInput
+
+func (GetDeploymentOptionsRuntimeReleaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsRuntimeRelease)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsRuntimeReleaseArray) ToGetDeploymentOptionsRuntimeReleaseArrayOutput() GetDeploymentOptionsRuntimeReleaseArrayOutput {
+	return i.ToGetDeploymentOptionsRuntimeReleaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsRuntimeReleaseArray) ToGetDeploymentOptionsRuntimeReleaseArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsRuntimeReleaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsRuntimeReleaseArrayOutput)
+}
+
+type GetDeploymentOptionsRuntimeReleaseOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsRuntimeReleaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsRuntimeRelease)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) ToGetDeploymentOptionsRuntimeReleaseOutput() GetDeploymentOptionsRuntimeReleaseOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) ToGetDeploymentOptionsRuntimeReleaseOutputWithContext(ctx context.Context) GetDeploymentOptionsRuntimeReleaseOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) AirflowDatabaseMigration() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) bool { return v.AirflowDatabaseMigration }).(pulumi.BoolOutput)
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) AirflowVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) string { return v.AirflowVersion }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) Channel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) string { return v.Channel }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) ReleaseDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) string { return v.ReleaseDate }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) StellarDatabaseMigration() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) bool { return v.StellarDatabaseMigration }).(pulumi.BoolOutput)
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsRuntimeRelease) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsRuntimeReleaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsRuntimeReleaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsRuntimeRelease)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseArrayOutput) ToGetDeploymentOptionsRuntimeReleaseArrayOutput() GetDeploymentOptionsRuntimeReleaseArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseArrayOutput) ToGetDeploymentOptionsRuntimeReleaseArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsRuntimeReleaseArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsRuntimeReleaseArrayOutput) Index(i pulumi.IntInput) GetDeploymentOptionsRuntimeReleaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentOptionsRuntimeRelease {
+		return vs[0].([]GetDeploymentOptionsRuntimeRelease)[vs[1].(int)]
+	}).(GetDeploymentOptionsRuntimeReleaseOutput)
+}
+
+type GetDeploymentOptionsSchedulerMachine struct {
+	Name string                                   `pulumi:"name"`
+	Spec GetDeploymentOptionsSchedulerMachineSpec `pulumi:"spec"`
+}
+
+// GetDeploymentOptionsSchedulerMachineInput is an input type that accepts GetDeploymentOptionsSchedulerMachineArgs and GetDeploymentOptionsSchedulerMachineOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsSchedulerMachineInput` via:
+//
+//	GetDeploymentOptionsSchedulerMachineArgs{...}
+type GetDeploymentOptionsSchedulerMachineInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsSchedulerMachineOutput() GetDeploymentOptionsSchedulerMachineOutput
+	ToGetDeploymentOptionsSchedulerMachineOutputWithContext(context.Context) GetDeploymentOptionsSchedulerMachineOutput
+}
+
+type GetDeploymentOptionsSchedulerMachineArgs struct {
+	Name pulumi.StringInput                            `pulumi:"name"`
+	Spec GetDeploymentOptionsSchedulerMachineSpecInput `pulumi:"spec"`
+}
+
+func (GetDeploymentOptionsSchedulerMachineArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsSchedulerMachine)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsSchedulerMachineArgs) ToGetDeploymentOptionsSchedulerMachineOutput() GetDeploymentOptionsSchedulerMachineOutput {
+	return i.ToGetDeploymentOptionsSchedulerMachineOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsSchedulerMachineArgs) ToGetDeploymentOptionsSchedulerMachineOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsSchedulerMachineOutput)
+}
+
+// GetDeploymentOptionsSchedulerMachineArrayInput is an input type that accepts GetDeploymentOptionsSchedulerMachineArray and GetDeploymentOptionsSchedulerMachineArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsSchedulerMachineArrayInput` via:
+//
+//	GetDeploymentOptionsSchedulerMachineArray{ GetDeploymentOptionsSchedulerMachineArgs{...} }
+type GetDeploymentOptionsSchedulerMachineArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsSchedulerMachineArrayOutput() GetDeploymentOptionsSchedulerMachineArrayOutput
+	ToGetDeploymentOptionsSchedulerMachineArrayOutputWithContext(context.Context) GetDeploymentOptionsSchedulerMachineArrayOutput
+}
+
+type GetDeploymentOptionsSchedulerMachineArray []GetDeploymentOptionsSchedulerMachineInput
+
+func (GetDeploymentOptionsSchedulerMachineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsSchedulerMachine)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsSchedulerMachineArray) ToGetDeploymentOptionsSchedulerMachineArrayOutput() GetDeploymentOptionsSchedulerMachineArrayOutput {
+	return i.ToGetDeploymentOptionsSchedulerMachineArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsSchedulerMachineArray) ToGetDeploymentOptionsSchedulerMachineArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsSchedulerMachineArrayOutput)
+}
+
+type GetDeploymentOptionsSchedulerMachineOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsSchedulerMachineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsSchedulerMachine)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsSchedulerMachineOutput) ToGetDeploymentOptionsSchedulerMachineOutput() GetDeploymentOptionsSchedulerMachineOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineOutput) ToGetDeploymentOptionsSchedulerMachineOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachine) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsSchedulerMachineOutput) Spec() GetDeploymentOptionsSchedulerMachineSpecOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachine) GetDeploymentOptionsSchedulerMachineSpec { return v.Spec }).(GetDeploymentOptionsSchedulerMachineSpecOutput)
+}
+
+type GetDeploymentOptionsSchedulerMachineArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsSchedulerMachineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsSchedulerMachine)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsSchedulerMachineArrayOutput) ToGetDeploymentOptionsSchedulerMachineArrayOutput() GetDeploymentOptionsSchedulerMachineArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineArrayOutput) ToGetDeploymentOptionsSchedulerMachineArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineArrayOutput) Index(i pulumi.IntInput) GetDeploymentOptionsSchedulerMachineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentOptionsSchedulerMachine {
+		return vs[0].([]GetDeploymentOptionsSchedulerMachine)[vs[1].(int)]
+	}).(GetDeploymentOptionsSchedulerMachineOutput)
+}
+
+type GetDeploymentOptionsSchedulerMachineSpec struct {
+	Concurrency      string `pulumi:"concurrency"`
+	Cpu              string `pulumi:"cpu"`
+	EphemeralStorage string `pulumi:"ephemeralStorage"`
+	Memory           string `pulumi:"memory"`
+}
+
+// GetDeploymentOptionsSchedulerMachineSpecInput is an input type that accepts GetDeploymentOptionsSchedulerMachineSpecArgs and GetDeploymentOptionsSchedulerMachineSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsSchedulerMachineSpecInput` via:
+//
+//	GetDeploymentOptionsSchedulerMachineSpecArgs{...}
+type GetDeploymentOptionsSchedulerMachineSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsSchedulerMachineSpecOutput() GetDeploymentOptionsSchedulerMachineSpecOutput
+	ToGetDeploymentOptionsSchedulerMachineSpecOutputWithContext(context.Context) GetDeploymentOptionsSchedulerMachineSpecOutput
+}
+
+type GetDeploymentOptionsSchedulerMachineSpecArgs struct {
+	Concurrency      pulumi.StringInput `pulumi:"concurrency"`
+	Cpu              pulumi.StringInput `pulumi:"cpu"`
+	EphemeralStorage pulumi.StringInput `pulumi:"ephemeralStorage"`
+	Memory           pulumi.StringInput `pulumi:"memory"`
+}
+
+func (GetDeploymentOptionsSchedulerMachineSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsSchedulerMachineSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsSchedulerMachineSpecArgs) ToGetDeploymentOptionsSchedulerMachineSpecOutput() GetDeploymentOptionsSchedulerMachineSpecOutput {
+	return i.ToGetDeploymentOptionsSchedulerMachineSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsSchedulerMachineSpecArgs) ToGetDeploymentOptionsSchedulerMachineSpecOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsSchedulerMachineSpecOutput)
+}
+
+type GetDeploymentOptionsSchedulerMachineSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsSchedulerMachineSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsSchedulerMachineSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) ToGetDeploymentOptionsSchedulerMachineSpecOutput() GetDeploymentOptionsSchedulerMachineSpecOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) ToGetDeploymentOptionsSchedulerMachineSpecOutputWithContext(ctx context.Context) GetDeploymentOptionsSchedulerMachineSpecOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) Concurrency() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachineSpec) string { return v.Concurrency }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) Cpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachineSpec) string { return v.Cpu }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) EphemeralStorage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachineSpec) string { return v.EphemeralStorage }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsSchedulerMachineSpecOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsSchedulerMachineSpec) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkerMachine struct {
+	Concurrency GetDeploymentOptionsWorkerMachineConcurrency `pulumi:"concurrency"`
+	Name        string                                       `pulumi:"name"`
+	Spec        GetDeploymentOptionsWorkerMachineSpec        `pulumi:"spec"`
+}
+
+// GetDeploymentOptionsWorkerMachineInput is an input type that accepts GetDeploymentOptionsWorkerMachineArgs and GetDeploymentOptionsWorkerMachineOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerMachineInput` via:
+//
+//	GetDeploymentOptionsWorkerMachineArgs{...}
+type GetDeploymentOptionsWorkerMachineInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerMachineOutput() GetDeploymentOptionsWorkerMachineOutput
+	ToGetDeploymentOptionsWorkerMachineOutputWithContext(context.Context) GetDeploymentOptionsWorkerMachineOutput
+}
+
+type GetDeploymentOptionsWorkerMachineArgs struct {
+	Concurrency GetDeploymentOptionsWorkerMachineConcurrencyInput `pulumi:"concurrency"`
+	Name        pulumi.StringInput                                `pulumi:"name"`
+	Spec        GetDeploymentOptionsWorkerMachineSpecInput        `pulumi:"spec"`
+}
+
+func (GetDeploymentOptionsWorkerMachineArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachine)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerMachineArgs) ToGetDeploymentOptionsWorkerMachineOutput() GetDeploymentOptionsWorkerMachineOutput {
+	return i.ToGetDeploymentOptionsWorkerMachineOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerMachineArgs) ToGetDeploymentOptionsWorkerMachineOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerMachineOutput)
+}
+
+// GetDeploymentOptionsWorkerMachineArrayInput is an input type that accepts GetDeploymentOptionsWorkerMachineArray and GetDeploymentOptionsWorkerMachineArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerMachineArrayInput` via:
+//
+//	GetDeploymentOptionsWorkerMachineArray{ GetDeploymentOptionsWorkerMachineArgs{...} }
+type GetDeploymentOptionsWorkerMachineArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerMachineArrayOutput() GetDeploymentOptionsWorkerMachineArrayOutput
+	ToGetDeploymentOptionsWorkerMachineArrayOutputWithContext(context.Context) GetDeploymentOptionsWorkerMachineArrayOutput
+}
+
+type GetDeploymentOptionsWorkerMachineArray []GetDeploymentOptionsWorkerMachineInput
+
+func (GetDeploymentOptionsWorkerMachineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsWorkerMachine)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerMachineArray) ToGetDeploymentOptionsWorkerMachineArrayOutput() GetDeploymentOptionsWorkerMachineArrayOutput {
+	return i.ToGetDeploymentOptionsWorkerMachineArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerMachineArray) ToGetDeploymentOptionsWorkerMachineArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerMachineArrayOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerMachineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachine)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerMachineOutput) ToGetDeploymentOptionsWorkerMachineOutput() GetDeploymentOptionsWorkerMachineOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineOutput) ToGetDeploymentOptionsWorkerMachineOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineOutput) Concurrency() GetDeploymentOptionsWorkerMachineConcurrencyOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachine) GetDeploymentOptionsWorkerMachineConcurrency {
+		return v.Concurrency
+	}).(GetDeploymentOptionsWorkerMachineConcurrencyOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachine) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineOutput) Spec() GetDeploymentOptionsWorkerMachineSpecOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachine) GetDeploymentOptionsWorkerMachineSpec { return v.Spec }).(GetDeploymentOptionsWorkerMachineSpecOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerMachineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsWorkerMachine)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerMachineArrayOutput) ToGetDeploymentOptionsWorkerMachineArrayOutput() GetDeploymentOptionsWorkerMachineArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineArrayOutput) ToGetDeploymentOptionsWorkerMachineArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineArrayOutput) Index(i pulumi.IntInput) GetDeploymentOptionsWorkerMachineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentOptionsWorkerMachine {
+		return vs[0].([]GetDeploymentOptionsWorkerMachine)[vs[1].(int)]
+	}).(GetDeploymentOptionsWorkerMachineOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineConcurrency struct {
+	Ceiling string `pulumi:"ceiling"`
+	Default string `pulumi:"default"`
+	Floor   string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsWorkerMachineConcurrencyInput is an input type that accepts GetDeploymentOptionsWorkerMachineConcurrencyArgs and GetDeploymentOptionsWorkerMachineConcurrencyOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerMachineConcurrencyInput` via:
+//
+//	GetDeploymentOptionsWorkerMachineConcurrencyArgs{...}
+type GetDeploymentOptionsWorkerMachineConcurrencyInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerMachineConcurrencyOutput() GetDeploymentOptionsWorkerMachineConcurrencyOutput
+	ToGetDeploymentOptionsWorkerMachineConcurrencyOutputWithContext(context.Context) GetDeploymentOptionsWorkerMachineConcurrencyOutput
+}
+
+type GetDeploymentOptionsWorkerMachineConcurrencyArgs struct {
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	Default pulumi.StringInput `pulumi:"default"`
+	Floor   pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsWorkerMachineConcurrencyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachineConcurrency)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerMachineConcurrencyArgs) ToGetDeploymentOptionsWorkerMachineConcurrencyOutput() GetDeploymentOptionsWorkerMachineConcurrencyOutput {
+	return i.ToGetDeploymentOptionsWorkerMachineConcurrencyOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerMachineConcurrencyArgs) ToGetDeploymentOptionsWorkerMachineConcurrencyOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineConcurrencyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerMachineConcurrencyOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineConcurrencyOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerMachineConcurrencyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachineConcurrency)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerMachineConcurrencyOutput) ToGetDeploymentOptionsWorkerMachineConcurrencyOutput() GetDeploymentOptionsWorkerMachineConcurrencyOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineConcurrencyOutput) ToGetDeploymentOptionsWorkerMachineConcurrencyOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineConcurrencyOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineConcurrencyOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineConcurrency) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineConcurrencyOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineConcurrency) string { return v.Default }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineConcurrencyOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineConcurrency) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineSpec struct {
+	Concurrency      string `pulumi:"concurrency"`
+	Cpu              string `pulumi:"cpu"`
+	EphemeralStorage string `pulumi:"ephemeralStorage"`
+	Memory           string `pulumi:"memory"`
+}
+
+// GetDeploymentOptionsWorkerMachineSpecInput is an input type that accepts GetDeploymentOptionsWorkerMachineSpecArgs and GetDeploymentOptionsWorkerMachineSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerMachineSpecInput` via:
+//
+//	GetDeploymentOptionsWorkerMachineSpecArgs{...}
+type GetDeploymentOptionsWorkerMachineSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerMachineSpecOutput() GetDeploymentOptionsWorkerMachineSpecOutput
+	ToGetDeploymentOptionsWorkerMachineSpecOutputWithContext(context.Context) GetDeploymentOptionsWorkerMachineSpecOutput
+}
+
+type GetDeploymentOptionsWorkerMachineSpecArgs struct {
+	Concurrency      pulumi.StringInput `pulumi:"concurrency"`
+	Cpu              pulumi.StringInput `pulumi:"cpu"`
+	EphemeralStorage pulumi.StringInput `pulumi:"ephemeralStorage"`
+	Memory           pulumi.StringInput `pulumi:"memory"`
+}
+
+func (GetDeploymentOptionsWorkerMachineSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachineSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerMachineSpecArgs) ToGetDeploymentOptionsWorkerMachineSpecOutput() GetDeploymentOptionsWorkerMachineSpecOutput {
+	return i.ToGetDeploymentOptionsWorkerMachineSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerMachineSpecArgs) ToGetDeploymentOptionsWorkerMachineSpecOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerMachineSpecOutput)
+}
+
+type GetDeploymentOptionsWorkerMachineSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerMachineSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerMachineSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) ToGetDeploymentOptionsWorkerMachineSpecOutput() GetDeploymentOptionsWorkerMachineSpecOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) ToGetDeploymentOptionsWorkerMachineSpecOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerMachineSpecOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) Concurrency() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineSpec) string { return v.Concurrency }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) Cpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineSpec) string { return v.Cpu }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) EphemeralStorage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineSpec) string { return v.EphemeralStorage }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkerMachineSpecOutput) Memory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerMachineSpec) string { return v.Memory }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkerQueues struct {
+	// Worker queue maximum workers
+	MaxWorkers GetDeploymentOptionsWorkerQueuesMaxWorkers `pulumi:"maxWorkers"`
+	// Worker queue minimum workers
+	MinWorkers GetDeploymentOptionsWorkerQueuesMinWorkers `pulumi:"minWorkers"`
+	// Worker queue worker concurrency
+	WorkerConcurrency GetDeploymentOptionsWorkerQueuesWorkerConcurrency `pulumi:"workerConcurrency"`
+}
+
+// GetDeploymentOptionsWorkerQueuesInput is an input type that accepts GetDeploymentOptionsWorkerQueuesArgs and GetDeploymentOptionsWorkerQueuesOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerQueuesInput` via:
+//
+//	GetDeploymentOptionsWorkerQueuesArgs{...}
+type GetDeploymentOptionsWorkerQueuesInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerQueuesOutput() GetDeploymentOptionsWorkerQueuesOutput
+	ToGetDeploymentOptionsWorkerQueuesOutputWithContext(context.Context) GetDeploymentOptionsWorkerQueuesOutput
+}
+
+type GetDeploymentOptionsWorkerQueuesArgs struct {
+	// Worker queue maximum workers
+	MaxWorkers GetDeploymentOptionsWorkerQueuesMaxWorkersInput `pulumi:"maxWorkers"`
+	// Worker queue minimum workers
+	MinWorkers GetDeploymentOptionsWorkerQueuesMinWorkersInput `pulumi:"minWorkers"`
+	// Worker queue worker concurrency
+	WorkerConcurrency GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput `pulumi:"workerConcurrency"`
+}
+
+func (GetDeploymentOptionsWorkerQueuesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueues)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerQueuesArgs) ToGetDeploymentOptionsWorkerQueuesOutput() GetDeploymentOptionsWorkerQueuesOutput {
+	return i.ToGetDeploymentOptionsWorkerQueuesOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerQueuesArgs) ToGetDeploymentOptionsWorkerQueuesOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerQueuesOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerQueuesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueues)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerQueuesOutput) ToGetDeploymentOptionsWorkerQueuesOutput() GetDeploymentOptionsWorkerQueuesOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerQueuesOutput) ToGetDeploymentOptionsWorkerQueuesOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesOutput {
+	return o
+}
+
+// Worker queue maximum workers
+func (o GetDeploymentOptionsWorkerQueuesOutput) MaxWorkers() GetDeploymentOptionsWorkerQueuesMaxWorkersOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueues) GetDeploymentOptionsWorkerQueuesMaxWorkers {
+		return v.MaxWorkers
+	}).(GetDeploymentOptionsWorkerQueuesMaxWorkersOutput)
+}
+
+// Worker queue minimum workers
+func (o GetDeploymentOptionsWorkerQueuesOutput) MinWorkers() GetDeploymentOptionsWorkerQueuesMinWorkersOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueues) GetDeploymentOptionsWorkerQueuesMinWorkers {
+		return v.MinWorkers
+	}).(GetDeploymentOptionsWorkerQueuesMinWorkersOutput)
+}
+
+// Worker queue worker concurrency
+func (o GetDeploymentOptionsWorkerQueuesOutput) WorkerConcurrency() GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueues) GetDeploymentOptionsWorkerQueuesWorkerConcurrency {
+		return v.WorkerConcurrency
+	}).(GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesMaxWorkers struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsWorkerQueuesMaxWorkersInput is an input type that accepts GetDeploymentOptionsWorkerQueuesMaxWorkersArgs and GetDeploymentOptionsWorkerQueuesMaxWorkersOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerQueuesMaxWorkersInput` via:
+//
+//	GetDeploymentOptionsWorkerQueuesMaxWorkersArgs{...}
+type GetDeploymentOptionsWorkerQueuesMaxWorkersInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutput() GetDeploymentOptionsWorkerQueuesMaxWorkersOutput
+	ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutputWithContext(context.Context) GetDeploymentOptionsWorkerQueuesMaxWorkersOutput
+}
+
+type GetDeploymentOptionsWorkerQueuesMaxWorkersArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsWorkerQueuesMaxWorkersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMaxWorkers)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerQueuesMaxWorkersArgs) ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutput() GetDeploymentOptionsWorkerQueuesMaxWorkersOutput {
+	return i.ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerQueuesMaxWorkersArgs) ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesMaxWorkersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerQueuesMaxWorkersOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesMaxWorkersOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMaxWorkers)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutput() GetDeploymentOptionsWorkerQueuesMaxWorkersOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) ToGetDeploymentOptionsWorkerQueuesMaxWorkersOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesMaxWorkersOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMaxWorkers) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMaxWorkers) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsWorkerQueuesMaxWorkersOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMaxWorkers) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesMinWorkers struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsWorkerQueuesMinWorkersInput is an input type that accepts GetDeploymentOptionsWorkerQueuesMinWorkersArgs and GetDeploymentOptionsWorkerQueuesMinWorkersOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerQueuesMinWorkersInput` via:
+//
+//	GetDeploymentOptionsWorkerQueuesMinWorkersArgs{...}
+type GetDeploymentOptionsWorkerQueuesMinWorkersInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerQueuesMinWorkersOutput() GetDeploymentOptionsWorkerQueuesMinWorkersOutput
+	ToGetDeploymentOptionsWorkerQueuesMinWorkersOutputWithContext(context.Context) GetDeploymentOptionsWorkerQueuesMinWorkersOutput
+}
+
+type GetDeploymentOptionsWorkerQueuesMinWorkersArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsWorkerQueuesMinWorkersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMinWorkers)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerQueuesMinWorkersArgs) ToGetDeploymentOptionsWorkerQueuesMinWorkersOutput() GetDeploymentOptionsWorkerQueuesMinWorkersOutput {
+	return i.ToGetDeploymentOptionsWorkerQueuesMinWorkersOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerQueuesMinWorkersArgs) ToGetDeploymentOptionsWorkerQueuesMinWorkersOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesMinWorkersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerQueuesMinWorkersOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesMinWorkersOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerQueuesMinWorkersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMinWorkers)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerQueuesMinWorkersOutput) ToGetDeploymentOptionsWorkerQueuesMinWorkersOutput() GetDeploymentOptionsWorkerQueuesMinWorkersOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerQueuesMinWorkersOutput) ToGetDeploymentOptionsWorkerQueuesMinWorkersOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesMinWorkersOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsWorkerQueuesMinWorkersOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMinWorkers) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsWorkerQueuesMinWorkersOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMinWorkers) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsWorkerQueuesMinWorkersOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesMinWorkers) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesWorkerConcurrency struct {
+	// Resource range ceiling
+	Ceiling string `pulumi:"ceiling"`
+	// Resource range default
+	Default string `pulumi:"default"`
+	// Resource range floor
+	Floor string `pulumi:"floor"`
+}
+
+// GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput is an input type that accepts GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs and GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput` via:
+//
+//	GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs{...}
+type GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput() GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput
+	ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutputWithContext(context.Context) GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput
+}
+
+type GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs struct {
+	// Resource range ceiling
+	Ceiling pulumi.StringInput `pulumi:"ceiling"`
+	// Resource range default
+	Default pulumi.StringInput `pulumi:"default"`
+	// Resource range floor
+	Floor pulumi.StringInput `pulumi:"floor"`
+}
+
+func (GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesWorkerConcurrency)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs) ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput() GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput {
+	return i.ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs) ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput)
+}
+
+type GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesWorkerConcurrency)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput() GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) ToGetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput {
+	return o
+}
+
+// Resource range ceiling
+func (o GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) Ceiling() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesWorkerConcurrency) string { return v.Ceiling }).(pulumi.StringOutput)
+}
+
+// Resource range default
+func (o GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesWorkerConcurrency) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// Resource range floor
+func (o GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput) Floor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkerQueuesWorkerConcurrency) string { return v.Floor }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkloadIdentityOption struct {
+	Label string `pulumi:"label"`
+	Role  string `pulumi:"role"`
+}
+
+// GetDeploymentOptionsWorkloadIdentityOptionInput is an input type that accepts GetDeploymentOptionsWorkloadIdentityOptionArgs and GetDeploymentOptionsWorkloadIdentityOptionOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkloadIdentityOptionInput` via:
+//
+//	GetDeploymentOptionsWorkloadIdentityOptionArgs{...}
+type GetDeploymentOptionsWorkloadIdentityOptionInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkloadIdentityOptionOutput() GetDeploymentOptionsWorkloadIdentityOptionOutput
+	ToGetDeploymentOptionsWorkloadIdentityOptionOutputWithContext(context.Context) GetDeploymentOptionsWorkloadIdentityOptionOutput
+}
+
+type GetDeploymentOptionsWorkloadIdentityOptionArgs struct {
+	Label pulumi.StringInput `pulumi:"label"`
+	Role  pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetDeploymentOptionsWorkloadIdentityOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOption)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkloadIdentityOptionArgs) ToGetDeploymentOptionsWorkloadIdentityOptionOutput() GetDeploymentOptionsWorkloadIdentityOptionOutput {
+	return i.ToGetDeploymentOptionsWorkloadIdentityOptionOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkloadIdentityOptionArgs) ToGetDeploymentOptionsWorkloadIdentityOptionOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkloadIdentityOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkloadIdentityOptionOutput)
+}
+
+// GetDeploymentOptionsWorkloadIdentityOptionArrayInput is an input type that accepts GetDeploymentOptionsWorkloadIdentityOptionArray and GetDeploymentOptionsWorkloadIdentityOptionArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentOptionsWorkloadIdentityOptionArrayInput` via:
+//
+//	GetDeploymentOptionsWorkloadIdentityOptionArray{ GetDeploymentOptionsWorkloadIdentityOptionArgs{...} }
+type GetDeploymentOptionsWorkloadIdentityOptionArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutput() GetDeploymentOptionsWorkloadIdentityOptionArrayOutput
+	ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutputWithContext(context.Context) GetDeploymentOptionsWorkloadIdentityOptionArrayOutput
+}
+
+type GetDeploymentOptionsWorkloadIdentityOptionArray []GetDeploymentOptionsWorkloadIdentityOptionInput
+
+func (GetDeploymentOptionsWorkloadIdentityOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsWorkloadIdentityOption)(nil)).Elem()
+}
+
+func (i GetDeploymentOptionsWorkloadIdentityOptionArray) ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutput() GetDeploymentOptionsWorkloadIdentityOptionArrayOutput {
+	return i.ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentOptionsWorkloadIdentityOptionArray) ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkloadIdentityOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentOptionsWorkloadIdentityOptionArrayOutput)
+}
+
+type GetDeploymentOptionsWorkloadIdentityOptionOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkloadIdentityOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOption)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionOutput) ToGetDeploymentOptionsWorkloadIdentityOptionOutput() GetDeploymentOptionsWorkloadIdentityOptionOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionOutput) ToGetDeploymentOptionsWorkloadIdentityOptionOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkloadIdentityOptionOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkloadIdentityOption) string { return v.Label }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentOptionsWorkloadIdentityOption) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetDeploymentOptionsWorkloadIdentityOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentOptionsWorkloadIdentityOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentOptionsWorkloadIdentityOption)(nil)).Elem()
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionArrayOutput) ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutput() GetDeploymentOptionsWorkloadIdentityOptionArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionArrayOutput) ToGetDeploymentOptionsWorkloadIdentityOptionArrayOutputWithContext(ctx context.Context) GetDeploymentOptionsWorkloadIdentityOptionArrayOutput {
+	return o
+}
+
+func (o GetDeploymentOptionsWorkloadIdentityOptionArrayOutput) Index(i pulumi.IntInput) GetDeploymentOptionsWorkloadIdentityOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentOptionsWorkloadIdentityOption {
+		return vs[0].([]GetDeploymentOptionsWorkloadIdentityOption)[vs[1].(int)]
+	}).(GetDeploymentOptionsWorkloadIdentityOptionOutput)
+}
+
+type GetDeploymentScalingSpec struct {
+	HibernationSpec GetDeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
+}
+
+// GetDeploymentScalingSpecInput is an input type that accepts GetDeploymentScalingSpecArgs and GetDeploymentScalingSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecInput` via:
+//
+//	GetDeploymentScalingSpecArgs{...}
+type GetDeploymentScalingSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecOutput() GetDeploymentScalingSpecOutput
+	ToGetDeploymentScalingSpecOutputWithContext(context.Context) GetDeploymentScalingSpecOutput
+}
+
+type GetDeploymentScalingSpecArgs struct {
+	HibernationSpec GetDeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
+}
+
+func (GetDeploymentScalingSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecArgs) ToGetDeploymentScalingSpecOutput() GetDeploymentScalingSpecOutput {
+	return i.ToGetDeploymentScalingSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecArgs) ToGetDeploymentScalingSpecOutputWithContext(ctx context.Context) GetDeploymentScalingSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecOutput)
+}
+
+type GetDeploymentScalingSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecOutput) ToGetDeploymentScalingSpecOutput() GetDeploymentScalingSpecOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecOutput) ToGetDeploymentScalingSpecOutputWithContext(ctx context.Context) GetDeploymentScalingSpecOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecOutput) HibernationSpec() GetDeploymentScalingSpecHibernationSpecOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpec) GetDeploymentScalingSpecHibernationSpec { return v.HibernationSpec }).(GetDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpec struct {
+	Override  GetDeploymentScalingSpecHibernationSpecOverride   `pulumi:"override"`
+	Schedules []GetDeploymentScalingSpecHibernationSpecSchedule `pulumi:"schedules"`
+}
+
+// GetDeploymentScalingSpecHibernationSpecInput is an input type that accepts GetDeploymentScalingSpecHibernationSpecArgs and GetDeploymentScalingSpecHibernationSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecHibernationSpecInput` via:
+//
+//	GetDeploymentScalingSpecHibernationSpecArgs{...}
+type GetDeploymentScalingSpecHibernationSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecHibernationSpecOutput() GetDeploymentScalingSpecHibernationSpecOutput
+	ToGetDeploymentScalingSpecHibernationSpecOutputWithContext(context.Context) GetDeploymentScalingSpecHibernationSpecOutput
+}
+
+type GetDeploymentScalingSpecHibernationSpecArgs struct {
+	Override  GetDeploymentScalingSpecHibernationSpecOverrideInput      `pulumi:"override"`
+	Schedules GetDeploymentScalingSpecHibernationSpecScheduleArrayInput `pulumi:"schedules"`
+}
+
+func (GetDeploymentScalingSpecHibernationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecArgs) ToGetDeploymentScalingSpecHibernationSpecOutput() GetDeploymentScalingSpecHibernationSpecOutput {
+	return i.ToGetDeploymentScalingSpecHibernationSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecArgs) ToGetDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecHibernationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOutput) ToGetDeploymentScalingSpecHibernationSpecOutput() GetDeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOutput) ToGetDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOutput) Override() GetDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpec) GetDeploymentScalingSpecHibernationSpecOverride {
+		return v.Override
+	}).(GetDeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOutput) Schedules() GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpec) []GetDeploymentScalingSpecHibernationSpecSchedule {
+		return v.Schedules
+	}).(GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecOverride struct {
+	// Whether the override is active
+	IsActive bool `pulumi:"isActive"`
+	// Whether the override is hibernating
+	IsHibernating bool `pulumi:"isHibernating"`
+	// Time until the override is active
+	OverrideUntil string `pulumi:"overrideUntil"`
+}
+
+// GetDeploymentScalingSpecHibernationSpecOverrideInput is an input type that accepts GetDeploymentScalingSpecHibernationSpecOverrideArgs and GetDeploymentScalingSpecHibernationSpecOverrideOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecHibernationSpecOverrideInput` via:
+//
+//	GetDeploymentScalingSpecHibernationSpecOverrideArgs{...}
+type GetDeploymentScalingSpecHibernationSpecOverrideInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentScalingSpecHibernationSpecOverrideOutput
+	ToGetDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Context) GetDeploymentScalingSpecHibernationSpecOverrideOutput
+}
+
+type GetDeploymentScalingSpecHibernationSpecOverrideArgs struct {
+	// Whether the override is active
+	IsActive pulumi.BoolInput `pulumi:"isActive"`
+	// Whether the override is hibernating
+	IsHibernating pulumi.BoolInput `pulumi:"isHibernating"`
+	// Time until the override is active
+	OverrideUntil pulumi.StringInput `pulumi:"overrideUntil"`
+}
+
+func (GetDeploymentScalingSpecHibernationSpecOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecOverrideArgs) ToGetDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return i.ToGetDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecOverrideArgs) ToGetDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecOverrideOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecHibernationSpecOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOverrideOutput) ToGetDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecOverrideOutput) ToGetDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+// Whether the override is active
+func (o GetDeploymentScalingSpecHibernationSpecOverrideOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecOverride) bool { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// Whether the override is hibernating
+func (o GetDeploymentScalingSpecHibernationSpecOverrideOutput) IsHibernating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecOverride) bool { return v.IsHibernating }).(pulumi.BoolOutput)
+}
+
+// Time until the override is active
+func (o GetDeploymentScalingSpecHibernationSpecOverrideOutput) OverrideUntil() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecOverride) string { return v.OverrideUntil }).(pulumi.StringOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecSchedule struct {
+	// Description of the schedule
+	Description string `pulumi:"description"`
+	// Cron expression for hibernation
+	HibernateAtCron string `pulumi:"hibernateAtCron"`
+	// Whether the schedule is enabled
+	IsEnabled bool `pulumi:"isEnabled"`
+	// Cron expression for waking
+	WakeAtCron string `pulumi:"wakeAtCron"`
+}
+
+// GetDeploymentScalingSpecHibernationSpecScheduleInput is an input type that accepts GetDeploymentScalingSpecHibernationSpecScheduleArgs and GetDeploymentScalingSpecHibernationSpecScheduleOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecHibernationSpecScheduleInput` via:
+//
+//	GetDeploymentScalingSpecHibernationSpecScheduleArgs{...}
+type GetDeploymentScalingSpecHibernationSpecScheduleInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentScalingSpecHibernationSpecScheduleOutput
+	ToGetDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Context) GetDeploymentScalingSpecHibernationSpecScheduleOutput
+}
+
+type GetDeploymentScalingSpecHibernationSpecScheduleArgs struct {
+	// Description of the schedule
+	Description pulumi.StringInput `pulumi:"description"`
+	// Cron expression for hibernation
+	HibernateAtCron pulumi.StringInput `pulumi:"hibernateAtCron"`
+	// Whether the schedule is enabled
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// Cron expression for waking
+	WakeAtCron pulumi.StringInput `pulumi:"wakeAtCron"`
+}
+
+func (GetDeploymentScalingSpecHibernationSpecScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecScheduleArgs) ToGetDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return i.ToGetDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecScheduleArgs) ToGetDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+// GetDeploymentScalingSpecHibernationSpecScheduleArrayInput is an input type that accepts GetDeploymentScalingSpecHibernationSpecScheduleArray and GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecHibernationSpecScheduleArrayInput` via:
+//
+//	GetDeploymentScalingSpecHibernationSpecScheduleArray{ GetDeploymentScalingSpecHibernationSpecScheduleArgs{...} }
+type GetDeploymentScalingSpecHibernationSpecScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput
+	ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Context) GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput
+}
+
+type GetDeploymentScalingSpecHibernationSpecScheduleArray []GetDeploymentScalingSpecHibernationSpecScheduleInput
+
+func (GetDeploymentScalingSpecHibernationSpecScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecScheduleArray) ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return i.ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecHibernationSpecScheduleArray) ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecHibernationSpecScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) ToGetDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) ToGetDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+// Description of the schedule
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecSchedule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Cron expression for hibernation
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) HibernateAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecSchedule) string { return v.HibernateAtCron }).(pulumi.StringOutput)
+}
+
+// Whether the schedule is enabled
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecSchedule) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// Cron expression for waking
+func (o GetDeploymentScalingSpecHibernationSpecScheduleOutput) WakeAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecHibernationSpecSchedule) string { return v.WakeAtCron }).(pulumi.StringOutput)
+}
+
+type GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToGetDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput) Index(i pulumi.IntInput) GetDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentScalingSpecHibernationSpecSchedule {
+		return vs[0].([]GetDeploymentScalingSpecHibernationSpecSchedule)[vs[1].(int)]
+	}).(GetDeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+type GetDeploymentScalingStatus struct {
+	HibernationStatus GetDeploymentScalingStatusHibernationStatus `pulumi:"hibernationStatus"`
+}
+
+// GetDeploymentScalingStatusInput is an input type that accepts GetDeploymentScalingStatusArgs and GetDeploymentScalingStatusOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingStatusInput` via:
+//
+//	GetDeploymentScalingStatusArgs{...}
+type GetDeploymentScalingStatusInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingStatusOutput() GetDeploymentScalingStatusOutput
+	ToGetDeploymentScalingStatusOutputWithContext(context.Context) GetDeploymentScalingStatusOutput
+}
+
+type GetDeploymentScalingStatusArgs struct {
+	HibernationStatus GetDeploymentScalingStatusHibernationStatusInput `pulumi:"hibernationStatus"`
+}
+
+func (GetDeploymentScalingStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingStatus)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingStatusArgs) ToGetDeploymentScalingStatusOutput() GetDeploymentScalingStatusOutput {
+	return i.ToGetDeploymentScalingStatusOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingStatusArgs) ToGetDeploymentScalingStatusOutputWithContext(ctx context.Context) GetDeploymentScalingStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingStatusOutput)
+}
+
+type GetDeploymentScalingStatusOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingStatus)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingStatusOutput) ToGetDeploymentScalingStatusOutput() GetDeploymentScalingStatusOutput {
+	return o
+}
+
+func (o GetDeploymentScalingStatusOutput) ToGetDeploymentScalingStatusOutputWithContext(ctx context.Context) GetDeploymentScalingStatusOutput {
+	return o
+}
+
+func (o GetDeploymentScalingStatusOutput) HibernationStatus() GetDeploymentScalingStatusHibernationStatusOutput {
+	return o.ApplyT(func(v GetDeploymentScalingStatus) GetDeploymentScalingStatusHibernationStatus {
+		return v.HibernationStatus
+	}).(GetDeploymentScalingStatusHibernationStatusOutput)
+}
+
+type GetDeploymentScalingStatusHibernationStatus struct {
+	// Whether the deployment is hibernating
+	IsHibernating bool `pulumi:"isHibernating"`
+	// Time of the next event
+	NextEventAt string `pulumi:"nextEventAt"`
+	// Type of the next event
+	NextEventType string `pulumi:"nextEventType"`
+	// Reason for the current state
+	Reason string `pulumi:"reason"`
+}
+
+// GetDeploymentScalingStatusHibernationStatusInput is an input type that accepts GetDeploymentScalingStatusHibernationStatusArgs and GetDeploymentScalingStatusHibernationStatusOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingStatusHibernationStatusInput` via:
+//
+//	GetDeploymentScalingStatusHibernationStatusArgs{...}
+type GetDeploymentScalingStatusHibernationStatusInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingStatusHibernationStatusOutput() GetDeploymentScalingStatusHibernationStatusOutput
+	ToGetDeploymentScalingStatusHibernationStatusOutputWithContext(context.Context) GetDeploymentScalingStatusHibernationStatusOutput
+}
+
+type GetDeploymentScalingStatusHibernationStatusArgs struct {
+	// Whether the deployment is hibernating
+	IsHibernating pulumi.BoolInput `pulumi:"isHibernating"`
+	// Time of the next event
+	NextEventAt pulumi.StringInput `pulumi:"nextEventAt"`
+	// Type of the next event
+	NextEventType pulumi.StringInput `pulumi:"nextEventType"`
+	// Reason for the current state
+	Reason pulumi.StringInput `pulumi:"reason"`
+}
+
+func (GetDeploymentScalingStatusHibernationStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingStatusHibernationStatusArgs) ToGetDeploymentScalingStatusHibernationStatusOutput() GetDeploymentScalingStatusHibernationStatusOutput {
+	return i.ToGetDeploymentScalingStatusHibernationStatusOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingStatusHibernationStatusArgs) ToGetDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) GetDeploymentScalingStatusHibernationStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingStatusHibernationStatusOutput)
+}
+
+type GetDeploymentScalingStatusHibernationStatusOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingStatusHibernationStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingStatusHibernationStatusOutput) ToGetDeploymentScalingStatusHibernationStatusOutput() GetDeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+func (o GetDeploymentScalingStatusHibernationStatusOutput) ToGetDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) GetDeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+// Whether the deployment is hibernating
+func (o GetDeploymentScalingStatusHibernationStatusOutput) IsHibernating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentScalingStatusHibernationStatus) bool { return v.IsHibernating }).(pulumi.BoolOutput)
+}
+
+// Time of the next event
+func (o GetDeploymentScalingStatusHibernationStatusOutput) NextEventAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingStatusHibernationStatus) string { return v.NextEventAt }).(pulumi.StringOutput)
+}
+
+// Type of the next event
+func (o GetDeploymentScalingStatusHibernationStatusOutput) NextEventType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingStatusHibernationStatus) string { return v.NextEventType }).(pulumi.StringOutput)
+}
+
+// Reason for the current state
+func (o GetDeploymentScalingStatusHibernationStatusOutput) Reason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentScalingStatusHibernationStatus) string { return v.Reason }).(pulumi.StringOutput)
+}
+
+type GetDeploymentUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetDeploymentUpdatedByInput is an input type that accepts GetDeploymentUpdatedByArgs and GetDeploymentUpdatedByOutput values.
+// You can construct a concrete instance of `GetDeploymentUpdatedByInput` via:
+//
+//	GetDeploymentUpdatedByArgs{...}
+type GetDeploymentUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetDeploymentUpdatedByOutput() GetDeploymentUpdatedByOutput
+	ToGetDeploymentUpdatedByOutputWithContext(context.Context) GetDeploymentUpdatedByOutput
+}
+
+type GetDeploymentUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetDeploymentUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (i GetDeploymentUpdatedByArgs) ToGetDeploymentUpdatedByOutput() GetDeploymentUpdatedByOutput {
+	return i.ToGetDeploymentUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentUpdatedByArgs) ToGetDeploymentUpdatedByOutputWithContext(ctx context.Context) GetDeploymentUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentUpdatedByOutput)
+}
+
+type GetDeploymentUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (o GetDeploymentUpdatedByOutput) ToGetDeploymentUpdatedByOutput() GetDeploymentUpdatedByOutput {
+	return o
+}
+
+func (o GetDeploymentUpdatedByOutput) ToGetDeploymentUpdatedByOutputWithContext(ctx context.Context) GetDeploymentUpdatedByOutput {
+	return o
+}
+
+func (o GetDeploymentUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetDeploymentWorkerQueue struct {
+	// Worker queue Astro machine value
+	AstroMachine string `pulumi:"astroMachine"`
+	// Worker queue identifier
+	Id string `pulumi:"id"`
+	// Whether Worker queue is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount int `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount int `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name string `pulumi:"name"`
+	// Worker queue node pool identifier
+	NodePoolId string `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu string `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory string `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency int `pulumi:"workerConcurrency"`
+}
+
+// GetDeploymentWorkerQueueInput is an input type that accepts GetDeploymentWorkerQueueArgs and GetDeploymentWorkerQueueOutput values.
+// You can construct a concrete instance of `GetDeploymentWorkerQueueInput` via:
+//
+//	GetDeploymentWorkerQueueArgs{...}
+type GetDeploymentWorkerQueueInput interface {
+	pulumi.Input
+
+	ToGetDeploymentWorkerQueueOutput() GetDeploymentWorkerQueueOutput
+	ToGetDeploymentWorkerQueueOutputWithContext(context.Context) GetDeploymentWorkerQueueOutput
+}
+
+type GetDeploymentWorkerQueueArgs struct {
+	// Worker queue Astro machine value
+	AstroMachine pulumi.StringInput `pulumi:"astroMachine"`
+	// Worker queue identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether Worker queue is default
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount pulumi.IntInput `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount pulumi.IntInput `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Worker queue node pool identifier
+	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu pulumi.StringInput `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory pulumi.StringInput `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency pulumi.IntInput `pulumi:"workerConcurrency"`
+}
+
+func (GetDeploymentWorkerQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (i GetDeploymentWorkerQueueArgs) ToGetDeploymentWorkerQueueOutput() GetDeploymentWorkerQueueOutput {
+	return i.ToGetDeploymentWorkerQueueOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentWorkerQueueArgs) ToGetDeploymentWorkerQueueOutputWithContext(ctx context.Context) GetDeploymentWorkerQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentWorkerQueueOutput)
+}
+
+// GetDeploymentWorkerQueueArrayInput is an input type that accepts GetDeploymentWorkerQueueArray and GetDeploymentWorkerQueueArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentWorkerQueueArrayInput` via:
+//
+//	GetDeploymentWorkerQueueArray{ GetDeploymentWorkerQueueArgs{...} }
+type GetDeploymentWorkerQueueArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentWorkerQueueArrayOutput() GetDeploymentWorkerQueueArrayOutput
+	ToGetDeploymentWorkerQueueArrayOutputWithContext(context.Context) GetDeploymentWorkerQueueArrayOutput
+}
+
+type GetDeploymentWorkerQueueArray []GetDeploymentWorkerQueueInput
+
+func (GetDeploymentWorkerQueueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (i GetDeploymentWorkerQueueArray) ToGetDeploymentWorkerQueueArrayOutput() GetDeploymentWorkerQueueArrayOutput {
+	return i.ToGetDeploymentWorkerQueueArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentWorkerQueueArray) ToGetDeploymentWorkerQueueArrayOutputWithContext(ctx context.Context) GetDeploymentWorkerQueueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentWorkerQueueArrayOutput)
+}
+
+type GetDeploymentWorkerQueueOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentWorkerQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (o GetDeploymentWorkerQueueOutput) ToGetDeploymentWorkerQueueOutput() GetDeploymentWorkerQueueOutput {
+	return o
+}
+
+func (o GetDeploymentWorkerQueueOutput) ToGetDeploymentWorkerQueueOutputWithContext(ctx context.Context) GetDeploymentWorkerQueueOutput {
+	return o
+}
+
+// Worker queue Astro machine value
+func (o GetDeploymentWorkerQueueOutput) AstroMachine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.AstroMachine }).(pulumi.StringOutput)
+}
+
+// Worker queue identifier
+func (o GetDeploymentWorkerQueueOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether Worker queue is default
+func (o GetDeploymentWorkerQueueOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Worker queue max worker count
+func (o GetDeploymentWorkerQueueOutput) MaxWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) int { return v.MaxWorkerCount }).(pulumi.IntOutput)
+}
+
+// Worker queue min worker count
+func (o GetDeploymentWorkerQueueOutput) MinWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) int { return v.MinWorkerCount }).(pulumi.IntOutput)
+}
+
+// Worker queue name
+func (o GetDeploymentWorkerQueueOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Worker queue node pool identifier
+func (o GetDeploymentWorkerQueueOutput) NodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// Worker queue pod CPU
+func (o GetDeploymentWorkerQueueOutput) PodCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.PodCpu }).(pulumi.StringOutput)
+}
+
+// Worker queue pod memory
+func (o GetDeploymentWorkerQueueOutput) PodMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.PodMemory }).(pulumi.StringOutput)
+}
+
+// Worker queue worker concurrency
+func (o GetDeploymentWorkerQueueOutput) WorkerConcurrency() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) int { return v.WorkerConcurrency }).(pulumi.IntOutput)
+}
+
+type GetDeploymentWorkerQueueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentWorkerQueueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (o GetDeploymentWorkerQueueArrayOutput) ToGetDeploymentWorkerQueueArrayOutput() GetDeploymentWorkerQueueArrayOutput {
+	return o
+}
+
+func (o GetDeploymentWorkerQueueArrayOutput) ToGetDeploymentWorkerQueueArrayOutputWithContext(ctx context.Context) GetDeploymentWorkerQueueArrayOutput {
+	return o
+}
+
+func (o GetDeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) GetDeploymentWorkerQueueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentWorkerQueue {
+		return vs[0].([]GetDeploymentWorkerQueue)[vs[1].(int)]
+	}).(GetDeploymentWorkerQueueOutput)
+}
+
+type GetDeploymentsDeployment struct {
+	// Deployment Airflow version
+	AirflowVersion string `pulumi:"airflowVersion"`
+	// Deployment Astro Runtime version
+	AstroRuntimeVersion string `pulumi:"astroRuntimeVersion"`
+	// Deployment cloud provider
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Deployment cluster identifier
+	ClusterId string `pulumi:"clusterId"`
+	// Deployment contact emails
+	ContactEmails []string `pulumi:"contactEmails"`
+	// Deployment creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Deployment creator
+	CreatedBy GetDeploymentsDeploymentCreatedBy `pulumi:"createdBy"`
+	// Deployment DAG tarball version
+	DagTarballVersion string `pulumi:"dagTarballVersion"`
+	// Deployment default task pod CPU
+	DefaultTaskPodCpu string `pulumi:"defaultTaskPodCpu"`
+	// Deployment default task pod memory
+	DefaultTaskPodMemory string `pulumi:"defaultTaskPodMemory"`
+	// Deployment description
+	Description string `pulumi:"description"`
+	// Deployment desired DAG tarball version
+	DesiredDagTarballVersion string `pulumi:"desiredDagTarballVersion"`
+	// Deployment environment variables
+	EnvironmentVariables []GetDeploymentsDeploymentEnvironmentVariable `pulumi:"environmentVariables"`
+	// Deployment executor
+	Executor string `pulumi:"executor"`
+	// Deployment external IPs
+	ExternalIps []string `pulumi:"externalIps"`
+	// Deployment identifier
+	Id string `pulumi:"id"`
+	// Deployment image repository
+	ImageRepository string `pulumi:"imageRepository"`
+	// Deployment image tag
+	ImageTag string `pulumi:"imageTag"`
+	// Deployment image version
+	ImageVersion string `pulumi:"imageVersion"`
+	// Whether the Deployment enforces CI/CD deploys
+	IsCicdEnforced bool `pulumi:"isCicdEnforced"`
+	// Whether DAG deploy is enabled
+	IsDagDeployEnabled bool `pulumi:"isDagDeployEnabled"`
+	// Whether Deployment is in development mode
+	IsDevelopmentMode bool `pulumi:"isDevelopmentMode"`
+	// Whether Deployment has high availability
+	IsHighAvailability bool `pulumi:"isHighAvailability"`
+	// Deployment name
+	Name string `pulumi:"name"`
+	// Deployment namespace
+	Namespace string `pulumi:"namespace"`
+	// Deployment OIDC issuer URL
+	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
+	// Deployment region
+	Region string `pulumi:"region"`
+	// Deployment resource quota CPU
+	ResourceQuotaCpu string `pulumi:"resourceQuotaCpu"`
+	// Deployment resource quota memory
+	ResourceQuotaMemory string `pulumi:"resourceQuotaMemory"`
+	// Deployment scaling spec
+	ScalingSpec GetDeploymentsDeploymentScalingSpec `pulumi:"scalingSpec"`
+	// Deployment scaling status
+	ScalingStatus GetDeploymentsDeploymentScalingStatus `pulumi:"scalingStatus"`
+	// Deployment scheduler AU
+	SchedulerAu int `pulumi:"schedulerAu"`
+	// Deployment scheduler CPU
+	SchedulerCpu string `pulumi:"schedulerCpu"`
+	// Deployment scheduler memory
+	SchedulerMemory string `pulumi:"schedulerMemory"`
+	// Deployment scheduler replicas
+	SchedulerReplicas int `pulumi:"schedulerReplicas"`
+	// Deployment scheduler size
+	SchedulerSize string `pulumi:"schedulerSize"`
+	// Deployment status
+	Status string `pulumi:"status"`
+	// Deployment status reason
+	StatusReason string `pulumi:"statusReason"`
+	// Deployment task pod node pool identifier
+	TaskPodNodePoolId string `pulumi:"taskPodNodePoolId"`
+	// Deployment type
+	Type string `pulumi:"type"`
+	// Deployment last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Deployment updater
+	UpdatedBy GetDeploymentsDeploymentUpdatedBy `pulumi:"updatedBy"`
+	// Deployment webserver Airflow API URL
+	WebserverAirflowApiUrl string `pulumi:"webserverAirflowApiUrl"`
+	// Deployment webserver ingress hostname
+	WebserverIngressHostname string `pulumi:"webserverIngressHostname"`
+	// Deployment webserver URL
+	WebserverUrl string `pulumi:"webserverUrl"`
+	// Deployment worker queues
+	WorkerQueues []GetDeploymentsDeploymentWorkerQueue `pulumi:"workerQueues"`
+	// Deployment workload identity
+	WorkloadIdentity string `pulumi:"workloadIdentity"`
+	// Deployment workspace identifier
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetDeploymentsDeploymentInput is an input type that accepts GetDeploymentsDeploymentArgs and GetDeploymentsDeploymentOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentInput` via:
+//
+//	GetDeploymentsDeploymentArgs{...}
+type GetDeploymentsDeploymentInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentOutput() GetDeploymentsDeploymentOutput
+	ToGetDeploymentsDeploymentOutputWithContext(context.Context) GetDeploymentsDeploymentOutput
+}
+
+type GetDeploymentsDeploymentArgs struct {
+	// Deployment Airflow version
+	AirflowVersion pulumi.StringInput `pulumi:"airflowVersion"`
+	// Deployment Astro Runtime version
+	AstroRuntimeVersion pulumi.StringInput `pulumi:"astroRuntimeVersion"`
+	// Deployment cloud provider
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Deployment cluster identifier
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// Deployment contact emails
+	ContactEmails pulumi.StringArrayInput `pulumi:"contactEmails"`
+	// Deployment creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Deployment creator
+	CreatedBy GetDeploymentsDeploymentCreatedByInput `pulumi:"createdBy"`
+	// Deployment DAG tarball version
+	DagTarballVersion pulumi.StringInput `pulumi:"dagTarballVersion"`
+	// Deployment default task pod CPU
+	DefaultTaskPodCpu pulumi.StringInput `pulumi:"defaultTaskPodCpu"`
+	// Deployment default task pod memory
+	DefaultTaskPodMemory pulumi.StringInput `pulumi:"defaultTaskPodMemory"`
+	// Deployment description
+	Description pulumi.StringInput `pulumi:"description"`
+	// Deployment desired DAG tarball version
+	DesiredDagTarballVersion pulumi.StringInput `pulumi:"desiredDagTarballVersion"`
+	// Deployment environment variables
+	EnvironmentVariables GetDeploymentsDeploymentEnvironmentVariableArrayInput `pulumi:"environmentVariables"`
+	// Deployment executor
+	Executor pulumi.StringInput `pulumi:"executor"`
+	// Deployment external IPs
+	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Deployment identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Deployment image repository
+	ImageRepository pulumi.StringInput `pulumi:"imageRepository"`
+	// Deployment image tag
+	ImageTag pulumi.StringInput `pulumi:"imageTag"`
+	// Deployment image version
+	ImageVersion pulumi.StringInput `pulumi:"imageVersion"`
+	// Whether the Deployment enforces CI/CD deploys
+	IsCicdEnforced pulumi.BoolInput `pulumi:"isCicdEnforced"`
+	// Whether DAG deploy is enabled
+	IsDagDeployEnabled pulumi.BoolInput `pulumi:"isDagDeployEnabled"`
+	// Whether Deployment is in development mode
+	IsDevelopmentMode pulumi.BoolInput `pulumi:"isDevelopmentMode"`
+	// Whether Deployment has high availability
+	IsHighAvailability pulumi.BoolInput `pulumi:"isHighAvailability"`
+	// Deployment name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Deployment namespace
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// Deployment OIDC issuer URL
+	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
+	// Deployment region
+	Region pulumi.StringInput `pulumi:"region"`
+	// Deployment resource quota CPU
+	ResourceQuotaCpu pulumi.StringInput `pulumi:"resourceQuotaCpu"`
+	// Deployment resource quota memory
+	ResourceQuotaMemory pulumi.StringInput `pulumi:"resourceQuotaMemory"`
+	// Deployment scaling spec
+	ScalingSpec GetDeploymentsDeploymentScalingSpecInput `pulumi:"scalingSpec"`
+	// Deployment scaling status
+	ScalingStatus GetDeploymentsDeploymentScalingStatusInput `pulumi:"scalingStatus"`
+	// Deployment scheduler AU
+	SchedulerAu pulumi.IntInput `pulumi:"schedulerAu"`
+	// Deployment scheduler CPU
+	SchedulerCpu pulumi.StringInput `pulumi:"schedulerCpu"`
+	// Deployment scheduler memory
+	SchedulerMemory pulumi.StringInput `pulumi:"schedulerMemory"`
+	// Deployment scheduler replicas
+	SchedulerReplicas pulumi.IntInput `pulumi:"schedulerReplicas"`
+	// Deployment scheduler size
+	SchedulerSize pulumi.StringInput `pulumi:"schedulerSize"`
+	// Deployment status
+	Status pulumi.StringInput `pulumi:"status"`
+	// Deployment status reason
+	StatusReason pulumi.StringInput `pulumi:"statusReason"`
+	// Deployment task pod node pool identifier
+	TaskPodNodePoolId pulumi.StringInput `pulumi:"taskPodNodePoolId"`
+	// Deployment type
+	Type pulumi.StringInput `pulumi:"type"`
+	// Deployment last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Deployment updater
+	UpdatedBy GetDeploymentsDeploymentUpdatedByInput `pulumi:"updatedBy"`
+	// Deployment webserver Airflow API URL
+	WebserverAirflowApiUrl pulumi.StringInput `pulumi:"webserverAirflowApiUrl"`
+	// Deployment webserver ingress hostname
+	WebserverIngressHostname pulumi.StringInput `pulumi:"webserverIngressHostname"`
+	// Deployment webserver URL
+	WebserverUrl pulumi.StringInput `pulumi:"webserverUrl"`
+	// Deployment worker queues
+	WorkerQueues GetDeploymentsDeploymentWorkerQueueArrayInput `pulumi:"workerQueues"`
+	// Deployment workload identity
+	WorkloadIdentity pulumi.StringInput `pulumi:"workloadIdentity"`
+	// Deployment workspace identifier
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetDeploymentsDeploymentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeployment)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentArgs) ToGetDeploymentsDeploymentOutput() GetDeploymentsDeploymentOutput {
+	return i.ToGetDeploymentsDeploymentOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentArgs) ToGetDeploymentsDeploymentOutputWithContext(ctx context.Context) GetDeploymentsDeploymentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentOutput)
+}
+
+// GetDeploymentsDeploymentArrayInput is an input type that accepts GetDeploymentsDeploymentArray and GetDeploymentsDeploymentArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentArrayInput` via:
+//
+//	GetDeploymentsDeploymentArray{ GetDeploymentsDeploymentArgs{...} }
+type GetDeploymentsDeploymentArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentArrayOutput() GetDeploymentsDeploymentArrayOutput
+	ToGetDeploymentsDeploymentArrayOutputWithContext(context.Context) GetDeploymentsDeploymentArrayOutput
+}
+
+type GetDeploymentsDeploymentArray []GetDeploymentsDeploymentInput
+
+func (GetDeploymentsDeploymentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeployment)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentArray) ToGetDeploymentsDeploymentArrayOutput() GetDeploymentsDeploymentArrayOutput {
+	return i.ToGetDeploymentsDeploymentArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentArray) ToGetDeploymentsDeploymentArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentArrayOutput)
+}
+
+type GetDeploymentsDeploymentOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeployment)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentOutput) ToGetDeploymentsDeploymentOutput() GetDeploymentsDeploymentOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentOutput) ToGetDeploymentsDeploymentOutputWithContext(ctx context.Context) GetDeploymentsDeploymentOutput {
+	return o
+}
+
+// Deployment Airflow version
+func (o GetDeploymentsDeploymentOutput) AirflowVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.AirflowVersion }).(pulumi.StringOutput)
+}
+
+// Deployment Astro Runtime version
+func (o GetDeploymentsDeploymentOutput) AstroRuntimeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.AstroRuntimeVersion }).(pulumi.StringOutput)
+}
+
+// Deployment cloud provider
+func (o GetDeploymentsDeploymentOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Deployment cluster identifier
+func (o GetDeploymentsDeploymentOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Deployment contact emails
+func (o GetDeploymentsDeploymentOutput) ContactEmails() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) []string { return v.ContactEmails }).(pulumi.StringArrayOutput)
+}
+
+// Deployment creation timestamp
+func (o GetDeploymentsDeploymentOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Deployment creator
+func (o GetDeploymentsDeploymentOutput) CreatedBy() GetDeploymentsDeploymentCreatedByOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) GetDeploymentsDeploymentCreatedBy { return v.CreatedBy }).(GetDeploymentsDeploymentCreatedByOutput)
+}
+
+// Deployment DAG tarball version
+func (o GetDeploymentsDeploymentOutput) DagTarballVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.DagTarballVersion }).(pulumi.StringOutput)
+}
+
+// Deployment default task pod CPU
+func (o GetDeploymentsDeploymentOutput) DefaultTaskPodCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.DefaultTaskPodCpu }).(pulumi.StringOutput)
+}
+
+// Deployment default task pod memory
+func (o GetDeploymentsDeploymentOutput) DefaultTaskPodMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.DefaultTaskPodMemory }).(pulumi.StringOutput)
+}
+
+// Deployment description
+func (o GetDeploymentsDeploymentOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Deployment desired DAG tarball version
+func (o GetDeploymentsDeploymentOutput) DesiredDagTarballVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.DesiredDagTarballVersion }).(pulumi.StringOutput)
+}
+
+// Deployment environment variables
+func (o GetDeploymentsDeploymentOutput) EnvironmentVariables() GetDeploymentsDeploymentEnvironmentVariableArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) []GetDeploymentsDeploymentEnvironmentVariable {
+		return v.EnvironmentVariables
+	}).(GetDeploymentsDeploymentEnvironmentVariableArrayOutput)
+}
+
+// Deployment executor
+func (o GetDeploymentsDeploymentOutput) Executor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Executor }).(pulumi.StringOutput)
+}
+
+// Deployment external IPs
+func (o GetDeploymentsDeploymentOutput) ExternalIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
+}
+
+// Deployment identifier
+func (o GetDeploymentsDeploymentOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Deployment image repository
+func (o GetDeploymentsDeploymentOutput) ImageRepository() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ImageRepository }).(pulumi.StringOutput)
+}
+
+// Deployment image tag
+func (o GetDeploymentsDeploymentOutput) ImageTag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ImageTag }).(pulumi.StringOutput)
+}
+
+// Deployment image version
+func (o GetDeploymentsDeploymentOutput) ImageVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ImageVersion }).(pulumi.StringOutput)
+}
+
+// Whether the Deployment enforces CI/CD deploys
+func (o GetDeploymentsDeploymentOutput) IsCicdEnforced() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) bool { return v.IsCicdEnforced }).(pulumi.BoolOutput)
+}
+
+// Whether DAG deploy is enabled
+func (o GetDeploymentsDeploymentOutput) IsDagDeployEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) bool { return v.IsDagDeployEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether Deployment is in development mode
+func (o GetDeploymentsDeploymentOutput) IsDevelopmentMode() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) bool { return v.IsDevelopmentMode }).(pulumi.BoolOutput)
+}
+
+// Whether Deployment has high availability
+func (o GetDeploymentsDeploymentOutput) IsHighAvailability() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) bool { return v.IsHighAvailability }).(pulumi.BoolOutput)
+}
+
+// Deployment name
+func (o GetDeploymentsDeploymentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Deployment namespace
+func (o GetDeploymentsDeploymentOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// Deployment OIDC issuer URL
+func (o GetDeploymentsDeploymentOutput) OidcIssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.OidcIssuerUrl }).(pulumi.StringOutput)
+}
+
+// Deployment region
+func (o GetDeploymentsDeploymentOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Deployment resource quota CPU
+func (o GetDeploymentsDeploymentOutput) ResourceQuotaCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ResourceQuotaCpu }).(pulumi.StringOutput)
+}
+
+// Deployment resource quota memory
+func (o GetDeploymentsDeploymentOutput) ResourceQuotaMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ResourceQuotaMemory }).(pulumi.StringOutput)
+}
+
+// Deployment scaling spec
+func (o GetDeploymentsDeploymentOutput) ScalingSpec() GetDeploymentsDeploymentScalingSpecOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) GetDeploymentsDeploymentScalingSpec { return v.ScalingSpec }).(GetDeploymentsDeploymentScalingSpecOutput)
+}
+
+// Deployment scaling status
+func (o GetDeploymentsDeploymentOutput) ScalingStatus() GetDeploymentsDeploymentScalingStatusOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) GetDeploymentsDeploymentScalingStatus { return v.ScalingStatus }).(GetDeploymentsDeploymentScalingStatusOutput)
+}
+
+// Deployment scheduler AU
+func (o GetDeploymentsDeploymentOutput) SchedulerAu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) int { return v.SchedulerAu }).(pulumi.IntOutput)
+}
+
+// Deployment scheduler CPU
+func (o GetDeploymentsDeploymentOutput) SchedulerCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.SchedulerCpu }).(pulumi.StringOutput)
+}
+
+// Deployment scheduler memory
+func (o GetDeploymentsDeploymentOutput) SchedulerMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.SchedulerMemory }).(pulumi.StringOutput)
+}
+
+// Deployment scheduler replicas
+func (o GetDeploymentsDeploymentOutput) SchedulerReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) int { return v.SchedulerReplicas }).(pulumi.IntOutput)
+}
+
+// Deployment scheduler size
+func (o GetDeploymentsDeploymentOutput) SchedulerSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.SchedulerSize }).(pulumi.StringOutput)
+}
+
+// Deployment status
+func (o GetDeploymentsDeploymentOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Deployment status reason
+func (o GetDeploymentsDeploymentOutput) StatusReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.StatusReason }).(pulumi.StringOutput)
+}
+
+// Deployment task pod node pool identifier
+func (o GetDeploymentsDeploymentOutput) TaskPodNodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.TaskPodNodePoolId }).(pulumi.StringOutput)
+}
+
+// Deployment type
+func (o GetDeploymentsDeploymentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Deployment last updated timestamp
+func (o GetDeploymentsDeploymentOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Deployment updater
+func (o GetDeploymentsDeploymentOutput) UpdatedBy() GetDeploymentsDeploymentUpdatedByOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) GetDeploymentsDeploymentUpdatedBy { return v.UpdatedBy }).(GetDeploymentsDeploymentUpdatedByOutput)
+}
+
+// Deployment webserver Airflow API URL
+func (o GetDeploymentsDeploymentOutput) WebserverAirflowApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.WebserverAirflowApiUrl }).(pulumi.StringOutput)
+}
+
+// Deployment webserver ingress hostname
+func (o GetDeploymentsDeploymentOutput) WebserverIngressHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.WebserverIngressHostname }).(pulumi.StringOutput)
+}
+
+// Deployment webserver URL
+func (o GetDeploymentsDeploymentOutput) WebserverUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.WebserverUrl }).(pulumi.StringOutput)
+}
+
+// Deployment worker queues
+func (o GetDeploymentsDeploymentOutput) WorkerQueues() GetDeploymentsDeploymentWorkerQueueArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) []GetDeploymentsDeploymentWorkerQueue { return v.WorkerQueues }).(GetDeploymentsDeploymentWorkerQueueArrayOutput)
+}
+
+// Deployment workload identity
+func (o GetDeploymentsDeploymentOutput) WorkloadIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.WorkloadIdentity }).(pulumi.StringOutput)
+}
+
+// Deployment workspace identifier
+func (o GetDeploymentsDeploymentOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeployment)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentArrayOutput) ToGetDeploymentsDeploymentArrayOutput() GetDeploymentsDeploymentArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentArrayOutput) ToGetDeploymentsDeploymentArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentArrayOutput) Index(i pulumi.IntInput) GetDeploymentsDeploymentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeployment {
+		return vs[0].([]GetDeploymentsDeployment)[vs[1].(int)]
+	}).(GetDeploymentsDeploymentOutput)
+}
+
+type GetDeploymentsDeploymentCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetDeploymentsDeploymentCreatedByInput is an input type that accepts GetDeploymentsDeploymentCreatedByArgs and GetDeploymentsDeploymentCreatedByOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentCreatedByInput` via:
+//
+//	GetDeploymentsDeploymentCreatedByArgs{...}
+type GetDeploymentsDeploymentCreatedByInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentCreatedByOutput() GetDeploymentsDeploymentCreatedByOutput
+	ToGetDeploymentsDeploymentCreatedByOutputWithContext(context.Context) GetDeploymentsDeploymentCreatedByOutput
+}
+
+type GetDeploymentsDeploymentCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetDeploymentsDeploymentCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentCreatedBy)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentCreatedByArgs) ToGetDeploymentsDeploymentCreatedByOutput() GetDeploymentsDeploymentCreatedByOutput {
+	return i.ToGetDeploymentsDeploymentCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentCreatedByArgs) ToGetDeploymentsDeploymentCreatedByOutputWithContext(ctx context.Context) GetDeploymentsDeploymentCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentCreatedByOutput)
+}
+
+type GetDeploymentsDeploymentCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentCreatedBy)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) ToGetDeploymentsDeploymentCreatedByOutput() GetDeploymentsDeploymentCreatedByOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) ToGetDeploymentsDeploymentCreatedByOutputWithContext(ctx context.Context) GetDeploymentsDeploymentCreatedByOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentEnvironmentVariable struct {
+	// Whether Environment variable is a secret
+	IsSecret bool `pulumi:"isSecret"`
+	// Environment variable key
+	Key string `pulumi:"key"`
+	// Environment variable last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Environment variable value
+	Value string `pulumi:"value"`
+}
+
+// GetDeploymentsDeploymentEnvironmentVariableInput is an input type that accepts GetDeploymentsDeploymentEnvironmentVariableArgs and GetDeploymentsDeploymentEnvironmentVariableOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentEnvironmentVariableInput` via:
+//
+//	GetDeploymentsDeploymentEnvironmentVariableArgs{...}
+type GetDeploymentsDeploymentEnvironmentVariableInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentEnvironmentVariableOutput() GetDeploymentsDeploymentEnvironmentVariableOutput
+	ToGetDeploymentsDeploymentEnvironmentVariableOutputWithContext(context.Context) GetDeploymentsDeploymentEnvironmentVariableOutput
+}
+
+type GetDeploymentsDeploymentEnvironmentVariableArgs struct {
+	// Whether Environment variable is a secret
+	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
+	// Environment variable key
+	Key pulumi.StringInput `pulumi:"key"`
+	// Environment variable last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Environment variable value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetDeploymentsDeploymentEnvironmentVariableArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentEnvironmentVariableArgs) ToGetDeploymentsDeploymentEnvironmentVariableOutput() GetDeploymentsDeploymentEnvironmentVariableOutput {
+	return i.ToGetDeploymentsDeploymentEnvironmentVariableOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentEnvironmentVariableArgs) ToGetDeploymentsDeploymentEnvironmentVariableOutputWithContext(ctx context.Context) GetDeploymentsDeploymentEnvironmentVariableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentEnvironmentVariableOutput)
+}
+
+// GetDeploymentsDeploymentEnvironmentVariableArrayInput is an input type that accepts GetDeploymentsDeploymentEnvironmentVariableArray and GetDeploymentsDeploymentEnvironmentVariableArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentEnvironmentVariableArrayInput` via:
+//
+//	GetDeploymentsDeploymentEnvironmentVariableArray{ GetDeploymentsDeploymentEnvironmentVariableArgs{...} }
+type GetDeploymentsDeploymentEnvironmentVariableArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentEnvironmentVariableArrayOutput() GetDeploymentsDeploymentEnvironmentVariableArrayOutput
+	ToGetDeploymentsDeploymentEnvironmentVariableArrayOutputWithContext(context.Context) GetDeploymentsDeploymentEnvironmentVariableArrayOutput
+}
+
+type GetDeploymentsDeploymentEnvironmentVariableArray []GetDeploymentsDeploymentEnvironmentVariableInput
+
+func (GetDeploymentsDeploymentEnvironmentVariableArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentEnvironmentVariableArray) ToGetDeploymentsDeploymentEnvironmentVariableArrayOutput() GetDeploymentsDeploymentEnvironmentVariableArrayOutput {
+	return i.ToGetDeploymentsDeploymentEnvironmentVariableArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentEnvironmentVariableArray) ToGetDeploymentsDeploymentEnvironmentVariableArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentEnvironmentVariableArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentEnvironmentVariableArrayOutput)
+}
+
+type GetDeploymentsDeploymentEnvironmentVariableOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentEnvironmentVariableOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) ToGetDeploymentsDeploymentEnvironmentVariableOutput() GetDeploymentsDeploymentEnvironmentVariableOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) ToGetDeploymentsDeploymentEnvironmentVariableOutputWithContext(ctx context.Context) GetDeploymentsDeploymentEnvironmentVariableOutput {
+	return o
+}
+
+// Whether Environment variable is a secret
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) GetIsSecret() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentEnvironmentVariable) bool { return v.IsSecret }).(pulumi.BoolOutput)
+}
+
+// Environment variable key
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentEnvironmentVariable) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Environment variable last updated timestamp
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentEnvironmentVariable) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Environment variable value
+func (o GetDeploymentsDeploymentEnvironmentVariableOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentEnvironmentVariable) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentEnvironmentVariableArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentEnvironmentVariableArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentEnvironmentVariable)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentEnvironmentVariableArrayOutput) ToGetDeploymentsDeploymentEnvironmentVariableArrayOutput() GetDeploymentsDeploymentEnvironmentVariableArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentEnvironmentVariableArrayOutput) ToGetDeploymentsDeploymentEnvironmentVariableArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentEnvironmentVariableArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentEnvironmentVariableArrayOutput) Index(i pulumi.IntInput) GetDeploymentsDeploymentEnvironmentVariableOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeploymentEnvironmentVariable {
+		return vs[0].([]GetDeploymentsDeploymentEnvironmentVariable)[vs[1].(int)]
+	}).(GetDeploymentsDeploymentEnvironmentVariableOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpec struct {
+	HibernationSpec GetDeploymentsDeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
+}
+
+// GetDeploymentsDeploymentScalingSpecInput is an input type that accepts GetDeploymentsDeploymentScalingSpecArgs and GetDeploymentsDeploymentScalingSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecArgs{...}
+type GetDeploymentsDeploymentScalingSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecOutput() GetDeploymentsDeploymentScalingSpecOutput
+	ToGetDeploymentsDeploymentScalingSpecOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecArgs struct {
+	HibernationSpec GetDeploymentsDeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecArgs) ToGetDeploymentsDeploymentScalingSpecOutput() GetDeploymentsDeploymentScalingSpecOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecArgs) ToGetDeploymentsDeploymentScalingSpecOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecOutput) ToGetDeploymentsDeploymentScalingSpecOutput() GetDeploymentsDeploymentScalingSpecOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecOutput) ToGetDeploymentsDeploymentScalingSpecOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecOutput) HibernationSpec() GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpec) GetDeploymentsDeploymentScalingSpecHibernationSpec {
+		return v.HibernationSpec
+	}).(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpec struct {
+	Override  GetDeploymentsDeploymentScalingSpecHibernationSpecOverride   `pulumi:"override"`
+	Schedules []GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule `pulumi:"schedules"`
+}
+
+// GetDeploymentsDeploymentScalingSpecHibernationSpecInput is an input type that accepts GetDeploymentsDeploymentScalingSpecHibernationSpecArgs and GetDeploymentsDeploymentScalingSpecHibernationSpecOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecHibernationSpecInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecHibernationSpecArgs{...}
+type GetDeploymentsDeploymentScalingSpecHibernationSpecInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOutput
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecArgs struct {
+	Override  GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput      `pulumi:"override"`
+	Schedules GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayInput `pulumi:"schedules"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpec)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOutput) Override() GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpec) GetDeploymentsDeploymentScalingSpecHibernationSpecOverride {
+		return v.Override
+	}).(GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOutput) Schedules() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpec) []GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule {
+		return v.Schedules
+	}).(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecOverride struct {
+	// Whether the override is active
+	IsActive bool `pulumi:"isActive"`
+	// Whether the override is hibernating
+	IsHibernating bool `pulumi:"isHibernating"`
+	// Time until the override is active
+	OverrideUntil string `pulumi:"overrideUntil"`
+}
+
+// GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput is an input type that accepts GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs and GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs{...}
+type GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs struct {
+	// Whether the override is active
+	IsActive pulumi.BoolInput `pulumi:"isActive"`
+	// Whether the override is hibernating
+	IsHibernating pulumi.BoolInput `pulumi:"isHibernating"`
+	// Time until the override is active
+	OverrideUntil pulumi.StringInput `pulumi:"overrideUntil"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecOverride)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput {
+	return o
+}
+
+// Whether the override is active
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecOverride) bool { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// Whether the override is hibernating
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) IsHibernating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecOverride) bool { return v.IsHibernating }).(pulumi.BoolOutput)
+}
+
+// Time until the override is active
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput) OverrideUntil() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecOverride) string { return v.OverrideUntil }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule struct {
+	// Description of the schedule
+	Description string `pulumi:"description"`
+	// Cron expression for hibernation
+	HibernateAtCron string `pulumi:"hibernateAtCron"`
+	// Whether the schedule is enabled
+	IsEnabled bool `pulumi:"isEnabled"`
+	// Cron expression for waking
+	WakeAtCron string `pulumi:"wakeAtCron"`
+}
+
+// GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput is an input type that accepts GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs and GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs{...}
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs struct {
+	// Description of the schedule
+	Description pulumi.StringInput `pulumi:"description"`
+	// Cron expression for hibernation
+	HibernateAtCron pulumi.StringInput `pulumi:"hibernateAtCron"`
+	// Whether the schedule is enabled
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// Cron expression for waking
+	WakeAtCron pulumi.StringInput `pulumi:"wakeAtCron"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+// GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayInput is an input type that accepts GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray and GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray{ GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs{...} }
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput
+	ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray []GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return o
+}
+
+// Description of the schedule
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Cron expression for hibernation
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) HibernateAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule) string { return v.HibernateAtCron }).(pulumi.StringOutput)
+}
+
+// Whether the schedule is enabled
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// Cron expression for waking
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput) WakeAtCron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule) string { return v.WakeAtCron }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput() GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput) ToGetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput) Index(i pulumi.IntInput) GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule {
+		return vs[0].([]GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule)[vs[1].(int)]
+	}).(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput)
+}
+
+type GetDeploymentsDeploymentScalingStatus struct {
+	HibernationStatus GetDeploymentsDeploymentScalingStatusHibernationStatus `pulumi:"hibernationStatus"`
+}
+
+// GetDeploymentsDeploymentScalingStatusInput is an input type that accepts GetDeploymentsDeploymentScalingStatusArgs and GetDeploymentsDeploymentScalingStatusOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingStatusInput` via:
+//
+//	GetDeploymentsDeploymentScalingStatusArgs{...}
+type GetDeploymentsDeploymentScalingStatusInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingStatusOutput() GetDeploymentsDeploymentScalingStatusOutput
+	ToGetDeploymentsDeploymentScalingStatusOutputWithContext(context.Context) GetDeploymentsDeploymentScalingStatusOutput
+}
+
+type GetDeploymentsDeploymentScalingStatusArgs struct {
+	HibernationStatus GetDeploymentsDeploymentScalingStatusHibernationStatusInput `pulumi:"hibernationStatus"`
+}
+
+func (GetDeploymentsDeploymentScalingStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingStatus)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingStatusArgs) ToGetDeploymentsDeploymentScalingStatusOutput() GetDeploymentsDeploymentScalingStatusOutput {
+	return i.ToGetDeploymentsDeploymentScalingStatusOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingStatusArgs) ToGetDeploymentsDeploymentScalingStatusOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingStatusOutput)
+}
+
+type GetDeploymentsDeploymentScalingStatusOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingStatus)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingStatusOutput) ToGetDeploymentsDeploymentScalingStatusOutput() GetDeploymentsDeploymentScalingStatusOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingStatusOutput) ToGetDeploymentsDeploymentScalingStatusOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingStatusOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingStatusOutput) HibernationStatus() GetDeploymentsDeploymentScalingStatusHibernationStatusOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingStatus) GetDeploymentsDeploymentScalingStatusHibernationStatus {
+		return v.HibernationStatus
+	}).(GetDeploymentsDeploymentScalingStatusHibernationStatusOutput)
+}
+
+type GetDeploymentsDeploymentScalingStatusHibernationStatus struct {
+	// Whether the deployment is hibernating
+	IsHibernating bool `pulumi:"isHibernating"`
+	// Time of the next event
+	NextEventAt string `pulumi:"nextEventAt"`
+	// Type of the next event
+	NextEventType string `pulumi:"nextEventType"`
+	// Reason for the current state
+	Reason string `pulumi:"reason"`
+}
+
+// GetDeploymentsDeploymentScalingStatusHibernationStatusInput is an input type that accepts GetDeploymentsDeploymentScalingStatusHibernationStatusArgs and GetDeploymentsDeploymentScalingStatusHibernationStatusOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingStatusHibernationStatusInput` via:
+//
+//	GetDeploymentsDeploymentScalingStatusHibernationStatusArgs{...}
+type GetDeploymentsDeploymentScalingStatusHibernationStatusInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutput() GetDeploymentsDeploymentScalingStatusHibernationStatusOutput
+	ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutputWithContext(context.Context) GetDeploymentsDeploymentScalingStatusHibernationStatusOutput
+}
+
+type GetDeploymentsDeploymentScalingStatusHibernationStatusArgs struct {
+	// Whether the deployment is hibernating
+	IsHibernating pulumi.BoolInput `pulumi:"isHibernating"`
+	// Time of the next event
+	NextEventAt pulumi.StringInput `pulumi:"nextEventAt"`
+	// Type of the next event
+	NextEventType pulumi.StringInput `pulumi:"nextEventType"`
+	// Reason for the current state
+	Reason pulumi.StringInput `pulumi:"reason"`
+}
+
+func (GetDeploymentsDeploymentScalingStatusHibernationStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingStatusHibernationStatusArgs) ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutput() GetDeploymentsDeploymentScalingStatusHibernationStatusOutput {
+	return i.ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingStatusHibernationStatusArgs) ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingStatusHibernationStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingStatusHibernationStatusOutput)
+}
+
+type GetDeploymentsDeploymentScalingStatusHibernationStatusOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingStatusHibernationStatus)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutput() GetDeploymentsDeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) ToGetDeploymentsDeploymentScalingStatusHibernationStatusOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingStatusHibernationStatusOutput {
+	return o
+}
+
+// Whether the deployment is hibernating
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) IsHibernating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingStatusHibernationStatus) bool { return v.IsHibernating }).(pulumi.BoolOutput)
+}
+
+// Time of the next event
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) NextEventAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingStatusHibernationStatus) string { return v.NextEventAt }).(pulumi.StringOutput)
+}
+
+// Type of the next event
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) NextEventType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingStatusHibernationStatus) string { return v.NextEventType }).(pulumi.StringOutput)
+}
+
+// Reason for the current state
+func (o GetDeploymentsDeploymentScalingStatusHibernationStatusOutput) Reason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingStatusHibernationStatus) string { return v.Reason }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetDeploymentsDeploymentUpdatedByInput is an input type that accepts GetDeploymentsDeploymentUpdatedByArgs and GetDeploymentsDeploymentUpdatedByOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentUpdatedByInput` via:
+//
+//	GetDeploymentsDeploymentUpdatedByArgs{...}
+type GetDeploymentsDeploymentUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentUpdatedByOutput() GetDeploymentsDeploymentUpdatedByOutput
+	ToGetDeploymentsDeploymentUpdatedByOutputWithContext(context.Context) GetDeploymentsDeploymentUpdatedByOutput
+}
+
+type GetDeploymentsDeploymentUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetDeploymentsDeploymentUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentUpdatedByArgs) ToGetDeploymentsDeploymentUpdatedByOutput() GetDeploymentsDeploymentUpdatedByOutput {
+	return i.ToGetDeploymentsDeploymentUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentUpdatedByArgs) ToGetDeploymentsDeploymentUpdatedByOutputWithContext(ctx context.Context) GetDeploymentsDeploymentUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentUpdatedByOutput)
+}
+
+type GetDeploymentsDeploymentUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentUpdatedBy)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) ToGetDeploymentsDeploymentUpdatedByOutput() GetDeploymentsDeploymentUpdatedByOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) ToGetDeploymentsDeploymentUpdatedByOutputWithContext(ctx context.Context) GetDeploymentsDeploymentUpdatedByOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetDeploymentsDeploymentWorkerQueue struct {
+	// Worker queue Astro machine value
+	AstroMachine string `pulumi:"astroMachine"`
+	// Worker queue identifier
+	Id string `pulumi:"id"`
+	// Whether Worker queue is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount int `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount int `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name string `pulumi:"name"`
+	// Worker queue node pool identifier
+	NodePoolId string `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu string `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory string `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency int `pulumi:"workerConcurrency"`
+}
+
+// GetDeploymentsDeploymentWorkerQueueInput is an input type that accepts GetDeploymentsDeploymentWorkerQueueArgs and GetDeploymentsDeploymentWorkerQueueOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentWorkerQueueInput` via:
+//
+//	GetDeploymentsDeploymentWorkerQueueArgs{...}
+type GetDeploymentsDeploymentWorkerQueueInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentWorkerQueueOutput() GetDeploymentsDeploymentWorkerQueueOutput
+	ToGetDeploymentsDeploymentWorkerQueueOutputWithContext(context.Context) GetDeploymentsDeploymentWorkerQueueOutput
+}
+
+type GetDeploymentsDeploymentWorkerQueueArgs struct {
+	// Worker queue Astro machine value
+	AstroMachine pulumi.StringInput `pulumi:"astroMachine"`
+	// Worker queue identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether Worker queue is default
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Worker queue max worker count
+	MaxWorkerCount pulumi.IntInput `pulumi:"maxWorkerCount"`
+	// Worker queue min worker count
+	MinWorkerCount pulumi.IntInput `pulumi:"minWorkerCount"`
+	// Worker queue name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Worker queue node pool identifier
+	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
+	// Worker queue pod CPU
+	PodCpu pulumi.StringInput `pulumi:"podCpu"`
+	// Worker queue pod memory
+	PodMemory pulumi.StringInput `pulumi:"podMemory"`
+	// Worker queue worker concurrency
+	WorkerConcurrency pulumi.IntInput `pulumi:"workerConcurrency"`
+}
+
+func (GetDeploymentsDeploymentWorkerQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentWorkerQueueArgs) ToGetDeploymentsDeploymentWorkerQueueOutput() GetDeploymentsDeploymentWorkerQueueOutput {
+	return i.ToGetDeploymentsDeploymentWorkerQueueOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentWorkerQueueArgs) ToGetDeploymentsDeploymentWorkerQueueOutputWithContext(ctx context.Context) GetDeploymentsDeploymentWorkerQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentWorkerQueueOutput)
+}
+
+// GetDeploymentsDeploymentWorkerQueueArrayInput is an input type that accepts GetDeploymentsDeploymentWorkerQueueArray and GetDeploymentsDeploymentWorkerQueueArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentWorkerQueueArrayInput` via:
+//
+//	GetDeploymentsDeploymentWorkerQueueArray{ GetDeploymentsDeploymentWorkerQueueArgs{...} }
+type GetDeploymentsDeploymentWorkerQueueArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentWorkerQueueArrayOutput() GetDeploymentsDeploymentWorkerQueueArrayOutput
+	ToGetDeploymentsDeploymentWorkerQueueArrayOutputWithContext(context.Context) GetDeploymentsDeploymentWorkerQueueArrayOutput
+}
+
+type GetDeploymentsDeploymentWorkerQueueArray []GetDeploymentsDeploymentWorkerQueueInput
+
+func (GetDeploymentsDeploymentWorkerQueueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentWorkerQueueArray) ToGetDeploymentsDeploymentWorkerQueueArrayOutput() GetDeploymentsDeploymentWorkerQueueArrayOutput {
+	return i.ToGetDeploymentsDeploymentWorkerQueueArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentWorkerQueueArray) ToGetDeploymentsDeploymentWorkerQueueArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentWorkerQueueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentWorkerQueueArrayOutput)
+}
+
+type GetDeploymentsDeploymentWorkerQueueOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentWorkerQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentWorkerQueueOutput) ToGetDeploymentsDeploymentWorkerQueueOutput() GetDeploymentsDeploymentWorkerQueueOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentWorkerQueueOutput) ToGetDeploymentsDeploymentWorkerQueueOutputWithContext(ctx context.Context) GetDeploymentsDeploymentWorkerQueueOutput {
+	return o
+}
+
+// Worker queue Astro machine value
+func (o GetDeploymentsDeploymentWorkerQueueOutput) AstroMachine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.AstroMachine }).(pulumi.StringOutput)
+}
+
+// Worker queue identifier
+func (o GetDeploymentsDeploymentWorkerQueueOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether Worker queue is default
+func (o GetDeploymentsDeploymentWorkerQueueOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Worker queue max worker count
+func (o GetDeploymentsDeploymentWorkerQueueOutput) MaxWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) int { return v.MaxWorkerCount }).(pulumi.IntOutput)
+}
+
+// Worker queue min worker count
+func (o GetDeploymentsDeploymentWorkerQueueOutput) MinWorkerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) int { return v.MinWorkerCount }).(pulumi.IntOutput)
+}
+
+// Worker queue name
+func (o GetDeploymentsDeploymentWorkerQueueOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Worker queue node pool identifier
+func (o GetDeploymentsDeploymentWorkerQueueOutput) NodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// Worker queue pod CPU
+func (o GetDeploymentsDeploymentWorkerQueueOutput) PodCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.PodCpu }).(pulumi.StringOutput)
+}
+
+// Worker queue pod memory
+func (o GetDeploymentsDeploymentWorkerQueueOutput) PodMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.PodMemory }).(pulumi.StringOutput)
+}
+
+// Worker queue worker concurrency
+func (o GetDeploymentsDeploymentWorkerQueueOutput) WorkerConcurrency() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) int { return v.WorkerConcurrency }).(pulumi.IntOutput)
+}
+
+type GetDeploymentsDeploymentWorkerQueueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentWorkerQueueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsDeploymentWorkerQueue)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentWorkerQueueArrayOutput) ToGetDeploymentsDeploymentWorkerQueueArrayOutput() GetDeploymentsDeploymentWorkerQueueArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentWorkerQueueArrayOutput) ToGetDeploymentsDeploymentWorkerQueueArrayOutputWithContext(ctx context.Context) GetDeploymentsDeploymentWorkerQueueArrayOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) GetDeploymentsDeploymentWorkerQueueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeploymentWorkerQueue {
+		return vs[0].([]GetDeploymentsDeploymentWorkerQueue)[vs[1].(int)]
+	}).(GetDeploymentsDeploymentWorkerQueueOutput)
+}
+
+type GetOrganizationCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetOrganizationCreatedByInput is an input type that accepts GetOrganizationCreatedByArgs and GetOrganizationCreatedByOutput values.
+// You can construct a concrete instance of `GetOrganizationCreatedByInput` via:
+//
+//	GetOrganizationCreatedByArgs{...}
+type GetOrganizationCreatedByInput interface {
+	pulumi.Input
+
+	ToGetOrganizationCreatedByOutput() GetOrganizationCreatedByOutput
+	ToGetOrganizationCreatedByOutputWithContext(context.Context) GetOrganizationCreatedByOutput
+}
+
+type GetOrganizationCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetOrganizationCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationCreatedBy)(nil)).Elem()
+}
+
+func (i GetOrganizationCreatedByArgs) ToGetOrganizationCreatedByOutput() GetOrganizationCreatedByOutput {
+	return i.ToGetOrganizationCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationCreatedByArgs) ToGetOrganizationCreatedByOutputWithContext(ctx context.Context) GetOrganizationCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationCreatedByOutput)
+}
+
+type GetOrganizationCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationCreatedBy)(nil)).Elem()
+}
+
+func (o GetOrganizationCreatedByOutput) ToGetOrganizationCreatedByOutput() GetOrganizationCreatedByOutput {
+	return o
+}
+
+func (o GetOrganizationCreatedByOutput) ToGetOrganizationCreatedByOutputWithContext(ctx context.Context) GetOrganizationCreatedByOutput {
+	return o
+}
+
+func (o GetOrganizationCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetOrganizationUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetOrganizationUpdatedByInput is an input type that accepts GetOrganizationUpdatedByArgs and GetOrganizationUpdatedByOutput values.
+// You can construct a concrete instance of `GetOrganizationUpdatedByInput` via:
+//
+//	GetOrganizationUpdatedByArgs{...}
+type GetOrganizationUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetOrganizationUpdatedByOutput() GetOrganizationUpdatedByOutput
+	ToGetOrganizationUpdatedByOutputWithContext(context.Context) GetOrganizationUpdatedByOutput
+}
+
+type GetOrganizationUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetOrganizationUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationUpdatedBy)(nil)).Elem()
+}
+
+func (i GetOrganizationUpdatedByArgs) ToGetOrganizationUpdatedByOutput() GetOrganizationUpdatedByOutput {
+	return i.ToGetOrganizationUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationUpdatedByArgs) ToGetOrganizationUpdatedByOutputWithContext(ctx context.Context) GetOrganizationUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationUpdatedByOutput)
+}
+
+type GetOrganizationUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationUpdatedBy)(nil)).Elem()
+}
+
+func (o GetOrganizationUpdatedByOutput) ToGetOrganizationUpdatedByOutput() GetOrganizationUpdatedByOutput {
+	return o
+}
+
+func (o GetOrganizationUpdatedByOutput) ToGetOrganizationUpdatedByOutputWithContext(ctx context.Context) GetOrganizationUpdatedByOutput {
+	return o
+}
+
+func (o GetOrganizationUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetTeamCreatedByInput is an input type that accepts GetTeamCreatedByArgs and GetTeamCreatedByOutput values.
+// You can construct a concrete instance of `GetTeamCreatedByInput` via:
+//
+//	GetTeamCreatedByArgs{...}
+type GetTeamCreatedByInput interface {
+	pulumi.Input
+
+	ToGetTeamCreatedByOutput() GetTeamCreatedByOutput
+	ToGetTeamCreatedByOutputWithContext(context.Context) GetTeamCreatedByOutput
+}
+
+type GetTeamCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamCreatedBy)(nil)).Elem()
+}
+
+func (i GetTeamCreatedByArgs) ToGetTeamCreatedByOutput() GetTeamCreatedByOutput {
+	return i.ToGetTeamCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetTeamCreatedByArgs) ToGetTeamCreatedByOutputWithContext(ctx context.Context) GetTeamCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamCreatedByOutput)
+}
+
+type GetTeamCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetTeamCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamCreatedBy)(nil)).Elem()
+}
+
+func (o GetTeamCreatedByOutput) ToGetTeamCreatedByOutput() GetTeamCreatedByOutput {
+	return o
+}
+
+func (o GetTeamCreatedByOutput) ToGetTeamCreatedByOutputWithContext(ctx context.Context) GetTeamCreatedByOutput {
+	return o
+}
+
+func (o GetTeamCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetTeamCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTeamCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetTeamCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamDeploymentRole struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role string `pulumi:"role"`
+}
+
+// GetTeamDeploymentRoleInput is an input type that accepts GetTeamDeploymentRoleArgs and GetTeamDeploymentRoleOutput values.
+// You can construct a concrete instance of `GetTeamDeploymentRoleInput` via:
+//
+//	GetTeamDeploymentRoleArgs{...}
+type GetTeamDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamDeploymentRoleOutput() GetTeamDeploymentRoleOutput
+	ToGetTeamDeploymentRoleOutputWithContext(context.Context) GetTeamDeploymentRoleOutput
+}
+
+type GetTeamDeploymentRoleArgs struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetTeamDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamDeploymentRole)(nil)).Elem()
+}
+
+func (i GetTeamDeploymentRoleArgs) ToGetTeamDeploymentRoleOutput() GetTeamDeploymentRoleOutput {
+	return i.ToGetTeamDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamDeploymentRoleArgs) ToGetTeamDeploymentRoleOutputWithContext(ctx context.Context) GetTeamDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamDeploymentRoleOutput)
+}
+
+// GetTeamDeploymentRoleArrayInput is an input type that accepts GetTeamDeploymentRoleArray and GetTeamDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamDeploymentRoleArrayInput` via:
+//
+//	GetTeamDeploymentRoleArray{ GetTeamDeploymentRoleArgs{...} }
+type GetTeamDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamDeploymentRoleArrayOutput() GetTeamDeploymentRoleArrayOutput
+	ToGetTeamDeploymentRoleArrayOutputWithContext(context.Context) GetTeamDeploymentRoleArrayOutput
+}
+
+type GetTeamDeploymentRoleArray []GetTeamDeploymentRoleInput
+
+func (GetTeamDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamDeploymentRole)(nil)).Elem()
+}
+
+func (i GetTeamDeploymentRoleArray) ToGetTeamDeploymentRoleArrayOutput() GetTeamDeploymentRoleArrayOutput {
+	return i.ToGetTeamDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamDeploymentRoleArray) ToGetTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) GetTeamDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamDeploymentRoleArrayOutput)
+}
+
+type GetTeamDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamDeploymentRole)(nil)).Elem()
+}
+
+func (o GetTeamDeploymentRoleOutput) ToGetTeamDeploymentRoleOutput() GetTeamDeploymentRoleOutput {
+	return o
+}
+
+func (o GetTeamDeploymentRoleOutput) ToGetTeamDeploymentRoleOutputWithContext(ctx context.Context) GetTeamDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment the role is assigned to
+func (o GetTeamDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role assigned to the deployment
+func (o GetTeamDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetTeamDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamDeploymentRole)(nil)).Elem()
+}
+
+func (o GetTeamDeploymentRoleArrayOutput) ToGetTeamDeploymentRoleArrayOutput() GetTeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamDeploymentRoleArrayOutput) ToGetTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) GetTeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetTeamDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamDeploymentRole {
+		return vs[0].([]GetTeamDeploymentRole)[vs[1].(int)]
+	}).(GetTeamDeploymentRoleOutput)
+}
+
+type GetTeamUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetTeamUpdatedByInput is an input type that accepts GetTeamUpdatedByArgs and GetTeamUpdatedByOutput values.
+// You can construct a concrete instance of `GetTeamUpdatedByInput` via:
+//
+//	GetTeamUpdatedByArgs{...}
+type GetTeamUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetTeamUpdatedByOutput() GetTeamUpdatedByOutput
+	ToGetTeamUpdatedByOutputWithContext(context.Context) GetTeamUpdatedByOutput
+}
+
+type GetTeamUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamUpdatedBy)(nil)).Elem()
+}
+
+func (i GetTeamUpdatedByArgs) ToGetTeamUpdatedByOutput() GetTeamUpdatedByOutput {
+	return i.ToGetTeamUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetTeamUpdatedByArgs) ToGetTeamUpdatedByOutputWithContext(ctx context.Context) GetTeamUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUpdatedByOutput)
+}
+
+type GetTeamUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetTeamUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamUpdatedBy)(nil)).Elem()
+}
+
+func (o GetTeamUpdatedByOutput) ToGetTeamUpdatedByOutput() GetTeamUpdatedByOutput {
+	return o
+}
+
+func (o GetTeamUpdatedByOutput) ToGetTeamUpdatedByOutputWithContext(ctx context.Context) GetTeamUpdatedByOutput {
+	return o
+}
+
+func (o GetTeamUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetTeamUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTeamUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetTeamUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamWorkspaceRole struct {
+	// The role assigned to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetTeamWorkspaceRoleInput is an input type that accepts GetTeamWorkspaceRoleArgs and GetTeamWorkspaceRoleOutput values.
+// You can construct a concrete instance of `GetTeamWorkspaceRoleInput` via:
+//
+//	GetTeamWorkspaceRoleArgs{...}
+type GetTeamWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamWorkspaceRoleOutput() GetTeamWorkspaceRoleOutput
+	ToGetTeamWorkspaceRoleOutputWithContext(context.Context) GetTeamWorkspaceRoleOutput
+}
+
+type GetTeamWorkspaceRoleArgs struct {
+	// The role assigned to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetTeamWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetTeamWorkspaceRoleArgs) ToGetTeamWorkspaceRoleOutput() GetTeamWorkspaceRoleOutput {
+	return i.ToGetTeamWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamWorkspaceRoleArgs) ToGetTeamWorkspaceRoleOutputWithContext(ctx context.Context) GetTeamWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamWorkspaceRoleOutput)
+}
+
+// GetTeamWorkspaceRoleArrayInput is an input type that accepts GetTeamWorkspaceRoleArray and GetTeamWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamWorkspaceRoleArrayInput` via:
+//
+//	GetTeamWorkspaceRoleArray{ GetTeamWorkspaceRoleArgs{...} }
+type GetTeamWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamWorkspaceRoleArrayOutput() GetTeamWorkspaceRoleArrayOutput
+	ToGetTeamWorkspaceRoleArrayOutputWithContext(context.Context) GetTeamWorkspaceRoleArrayOutput
+}
+
+type GetTeamWorkspaceRoleArray []GetTeamWorkspaceRoleInput
+
+func (GetTeamWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetTeamWorkspaceRoleArray) ToGetTeamWorkspaceRoleArrayOutput() GetTeamWorkspaceRoleArrayOutput {
+	return i.ToGetTeamWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamWorkspaceRoleArray) ToGetTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetTeamWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamWorkspaceRoleArrayOutput)
+}
+
+type GetTeamWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetTeamWorkspaceRoleOutput) ToGetTeamWorkspaceRoleOutput() GetTeamWorkspaceRoleOutput {
+	return o
+}
+
+func (o GetTeamWorkspaceRoleOutput) ToGetTeamWorkspaceRoleOutputWithContext(ctx context.Context) GetTeamWorkspaceRoleOutput {
+	return o
+}
+
+// The role assigned to the workspace
+func (o GetTeamWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace the role is assigned to
+func (o GetTeamWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetTeamWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetTeamWorkspaceRoleArrayOutput) ToGetTeamWorkspaceRoleArrayOutput() GetTeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamWorkspaceRoleArrayOutput) ToGetTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetTeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetTeamWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamWorkspaceRole {
+		return vs[0].([]GetTeamWorkspaceRole)[vs[1].(int)]
+	}).(GetTeamWorkspaceRoleOutput)
+}
+
+type GetTeamsTeam struct {
+	// Team creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Team creator
+	CreatedBy GetTeamsTeamCreatedBy `pulumi:"createdBy"`
+	// The roles assigned to the deployments
+	DeploymentRoles []GetTeamsTeamDeploymentRole `pulumi:"deploymentRoles"`
+	// Team description
+	Description string `pulumi:"description"`
+	// Team identifier
+	Id string `pulumi:"id"`
+	// Whether the team is managed by an identity provider
+	IsIdpManaged bool `pulumi:"isIdpManaged"`
+	// Team name
+	Name string `pulumi:"name"`
+	// The role assigned to the organization
+	OrganizationRole string `pulumi:"organizationRole"`
+	// Number of roles assigned to the team
+	RolesCount int `pulumi:"rolesCount"`
+	// Team last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Team updater
+	UpdatedBy GetTeamsTeamUpdatedBy `pulumi:"updatedBy"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles []GetTeamsTeamWorkspaceRole `pulumi:"workspaceRoles"`
+}
+
+// GetTeamsTeamInput is an input type that accepts GetTeamsTeamArgs and GetTeamsTeamOutput values.
+// You can construct a concrete instance of `GetTeamsTeamInput` via:
+//
+//	GetTeamsTeamArgs{...}
+type GetTeamsTeamInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamOutput() GetTeamsTeamOutput
+	ToGetTeamsTeamOutputWithContext(context.Context) GetTeamsTeamOutput
+}
+
+type GetTeamsTeamArgs struct {
+	// Team creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Team creator
+	CreatedBy GetTeamsTeamCreatedByInput `pulumi:"createdBy"`
+	// The roles assigned to the deployments
+	DeploymentRoles GetTeamsTeamDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
+	// Team description
+	Description pulumi.StringInput `pulumi:"description"`
+	// Team identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the team is managed by an identity provider
+	IsIdpManaged pulumi.BoolInput `pulumi:"isIdpManaged"`
+	// Team name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The role assigned to the organization
+	OrganizationRole pulumi.StringInput `pulumi:"organizationRole"`
+	// Number of roles assigned to the team
+	RolesCount pulumi.IntInput `pulumi:"rolesCount"`
+	// Team last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Team updater
+	UpdatedBy GetTeamsTeamUpdatedByInput `pulumi:"updatedBy"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles GetTeamsTeamWorkspaceRoleArrayInput `pulumi:"workspaceRoles"`
+}
+
+func (GetTeamsTeamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeam)(nil)).Elem()
+}
+
+func (i GetTeamsTeamArgs) ToGetTeamsTeamOutput() GetTeamsTeamOutput {
+	return i.ToGetTeamsTeamOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamArgs) ToGetTeamsTeamOutputWithContext(ctx context.Context) GetTeamsTeamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamOutput)
+}
+
+// GetTeamsTeamArrayInput is an input type that accepts GetTeamsTeamArray and GetTeamsTeamArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamArrayInput` via:
+//
+//	GetTeamsTeamArray{ GetTeamsTeamArgs{...} }
+type GetTeamsTeamArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput
+	ToGetTeamsTeamArrayOutputWithContext(context.Context) GetTeamsTeamArrayOutput
+}
+
+type GetTeamsTeamArray []GetTeamsTeamInput
+
+func (GetTeamsTeamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeam)(nil)).Elem()
+}
+
+func (i GetTeamsTeamArray) ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput {
+	return i.ToGetTeamsTeamArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamArray) ToGetTeamsTeamArrayOutputWithContext(ctx context.Context) GetTeamsTeamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamArrayOutput)
+}
+
+type GetTeamsTeamOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeam)(nil)).Elem()
+}
+
+func (o GetTeamsTeamOutput) ToGetTeamsTeamOutput() GetTeamsTeamOutput {
+	return o
+}
+
+func (o GetTeamsTeamOutput) ToGetTeamsTeamOutputWithContext(ctx context.Context) GetTeamsTeamOutput {
+	return o
+}
+
+// Team creation timestamp
+func (o GetTeamsTeamOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Team creator
+func (o GetTeamsTeamOutput) CreatedBy() GetTeamsTeamCreatedByOutput {
+	return o.ApplyT(func(v GetTeamsTeam) GetTeamsTeamCreatedBy { return v.CreatedBy }).(GetTeamsTeamCreatedByOutput)
+}
+
+// The roles assigned to the deployments
+func (o GetTeamsTeamOutput) DeploymentRoles() GetTeamsTeamDeploymentRoleArrayOutput {
+	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamsTeamDeploymentRoleArrayOutput)
+}
+
+// Team description
+func (o GetTeamsTeamOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Team identifier
+func (o GetTeamsTeamOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the team is managed by an identity provider
+func (o GetTeamsTeamOutput) IsIdpManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTeamsTeam) bool { return v.IsIdpManaged }).(pulumi.BoolOutput)
+}
+
+// Team name
+func (o GetTeamsTeamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The role assigned to the organization
+func (o GetTeamsTeamOutput) OrganizationRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.OrganizationRole }).(pulumi.StringOutput)
+}
+
+// Number of roles assigned to the team
+func (o GetTeamsTeamOutput) RolesCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTeamsTeam) int { return v.RolesCount }).(pulumi.IntOutput)
+}
+
+// Team last updated timestamp
+func (o GetTeamsTeamOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Team updater
+func (o GetTeamsTeamOutput) UpdatedBy() GetTeamsTeamUpdatedByOutput {
+	return o.ApplyT(func(v GetTeamsTeam) GetTeamsTeamUpdatedBy { return v.UpdatedBy }).(GetTeamsTeamUpdatedByOutput)
+}
+
+// The roles assigned to the workspaces
+func (o GetTeamsTeamOutput) WorkspaceRoles() GetTeamsTeamWorkspaceRoleArrayOutput {
+	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamWorkspaceRole { return v.WorkspaceRoles }).(GetTeamsTeamWorkspaceRoleArrayOutput)
+}
+
+type GetTeamsTeamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeam)(nil)).Elem()
+}
+
+func (o GetTeamsTeamArrayOutput) ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamArrayOutput) ToGetTeamsTeamArrayOutputWithContext(ctx context.Context) GetTeamsTeamArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeam {
+		return vs[0].([]GetTeamsTeam)[vs[1].(int)]
+	}).(GetTeamsTeamOutput)
+}
+
+type GetTeamsTeamCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetTeamsTeamCreatedByInput is an input type that accepts GetTeamsTeamCreatedByArgs and GetTeamsTeamCreatedByOutput values.
+// You can construct a concrete instance of `GetTeamsTeamCreatedByInput` via:
+//
+//	GetTeamsTeamCreatedByArgs{...}
+type GetTeamsTeamCreatedByInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamCreatedByOutput() GetTeamsTeamCreatedByOutput
+	ToGetTeamsTeamCreatedByOutputWithContext(context.Context) GetTeamsTeamCreatedByOutput
+}
+
+type GetTeamsTeamCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamsTeamCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamCreatedBy)(nil)).Elem()
+}
+
+func (i GetTeamsTeamCreatedByArgs) ToGetTeamsTeamCreatedByOutput() GetTeamsTeamCreatedByOutput {
+	return i.ToGetTeamsTeamCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamCreatedByArgs) ToGetTeamsTeamCreatedByOutputWithContext(ctx context.Context) GetTeamsTeamCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamCreatedByOutput)
+}
+
+type GetTeamsTeamCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamCreatedBy)(nil)).Elem()
+}
+
+func (o GetTeamsTeamCreatedByOutput) ToGetTeamsTeamCreatedByOutput() GetTeamsTeamCreatedByOutput {
+	return o
+}
+
+func (o GetTeamsTeamCreatedByOutput) ToGetTeamsTeamCreatedByOutputWithContext(ctx context.Context) GetTeamsTeamCreatedByOutput {
+	return o
+}
+
+func (o GetTeamsTeamCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamDeploymentRole struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role string `pulumi:"role"`
+}
+
+// GetTeamsTeamDeploymentRoleInput is an input type that accepts GetTeamsTeamDeploymentRoleArgs and GetTeamsTeamDeploymentRoleOutput values.
+// You can construct a concrete instance of `GetTeamsTeamDeploymentRoleInput` via:
+//
+//	GetTeamsTeamDeploymentRoleArgs{...}
+type GetTeamsTeamDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamDeploymentRoleOutput() GetTeamsTeamDeploymentRoleOutput
+	ToGetTeamsTeamDeploymentRoleOutputWithContext(context.Context) GetTeamsTeamDeploymentRoleOutput
+}
+
+type GetTeamsTeamDeploymentRoleArgs struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetTeamsTeamDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamDeploymentRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamDeploymentRoleArgs) ToGetTeamsTeamDeploymentRoleOutput() GetTeamsTeamDeploymentRoleOutput {
+	return i.ToGetTeamsTeamDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamDeploymentRoleArgs) ToGetTeamsTeamDeploymentRoleOutputWithContext(ctx context.Context) GetTeamsTeamDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamDeploymentRoleOutput)
+}
+
+// GetTeamsTeamDeploymentRoleArrayInput is an input type that accepts GetTeamsTeamDeploymentRoleArray and GetTeamsTeamDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamDeploymentRoleArrayInput` via:
+//
+//	GetTeamsTeamDeploymentRoleArray{ GetTeamsTeamDeploymentRoleArgs{...} }
+type GetTeamsTeamDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamDeploymentRoleArrayOutput() GetTeamsTeamDeploymentRoleArrayOutput
+	ToGetTeamsTeamDeploymentRoleArrayOutputWithContext(context.Context) GetTeamsTeamDeploymentRoleArrayOutput
+}
+
+type GetTeamsTeamDeploymentRoleArray []GetTeamsTeamDeploymentRoleInput
+
+func (GetTeamsTeamDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamDeploymentRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamDeploymentRoleArray) ToGetTeamsTeamDeploymentRoleArrayOutput() GetTeamsTeamDeploymentRoleArrayOutput {
+	return i.ToGetTeamsTeamDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamDeploymentRoleArray) ToGetTeamsTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamDeploymentRoleArrayOutput)
+}
+
+type GetTeamsTeamDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamDeploymentRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamDeploymentRoleOutput) ToGetTeamsTeamDeploymentRoleOutput() GetTeamsTeamDeploymentRoleOutput {
+	return o
+}
+
+func (o GetTeamsTeamDeploymentRoleOutput) ToGetTeamsTeamDeploymentRoleOutputWithContext(ctx context.Context) GetTeamsTeamDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment the role is assigned to
+func (o GetTeamsTeamDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role assigned to the deployment
+func (o GetTeamsTeamDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamDeploymentRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamDeploymentRoleArrayOutput) ToGetTeamsTeamDeploymentRoleArrayOutput() GetTeamsTeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamDeploymentRoleArrayOutput) ToGetTeamsTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamDeploymentRole {
+		return vs[0].([]GetTeamsTeamDeploymentRole)[vs[1].(int)]
+	}).(GetTeamsTeamDeploymentRoleOutput)
+}
+
+type GetTeamsTeamUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetTeamsTeamUpdatedByInput is an input type that accepts GetTeamsTeamUpdatedByArgs and GetTeamsTeamUpdatedByOutput values.
+// You can construct a concrete instance of `GetTeamsTeamUpdatedByInput` via:
+//
+//	GetTeamsTeamUpdatedByArgs{...}
+type GetTeamsTeamUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamUpdatedByOutput() GetTeamsTeamUpdatedByOutput
+	ToGetTeamsTeamUpdatedByOutputWithContext(context.Context) GetTeamsTeamUpdatedByOutput
+}
+
+type GetTeamsTeamUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamsTeamUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamUpdatedBy)(nil)).Elem()
+}
+
+func (i GetTeamsTeamUpdatedByArgs) ToGetTeamsTeamUpdatedByOutput() GetTeamsTeamUpdatedByOutput {
+	return i.ToGetTeamsTeamUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamUpdatedByArgs) ToGetTeamsTeamUpdatedByOutputWithContext(ctx context.Context) GetTeamsTeamUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamUpdatedByOutput)
+}
+
+type GetTeamsTeamUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamUpdatedBy)(nil)).Elem()
+}
+
+func (o GetTeamsTeamUpdatedByOutput) ToGetTeamsTeamUpdatedByOutput() GetTeamsTeamUpdatedByOutput {
+	return o
+}
+
+func (o GetTeamsTeamUpdatedByOutput) ToGetTeamsTeamUpdatedByOutputWithContext(ctx context.Context) GetTeamsTeamUpdatedByOutput {
+	return o
+}
+
+func (o GetTeamsTeamUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamWorkspaceRole struct {
+	// The role assigned to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetTeamsTeamWorkspaceRoleInput is an input type that accepts GetTeamsTeamWorkspaceRoleArgs and GetTeamsTeamWorkspaceRoleOutput values.
+// You can construct a concrete instance of `GetTeamsTeamWorkspaceRoleInput` via:
+//
+//	GetTeamsTeamWorkspaceRoleArgs{...}
+type GetTeamsTeamWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamWorkspaceRoleOutput() GetTeamsTeamWorkspaceRoleOutput
+	ToGetTeamsTeamWorkspaceRoleOutputWithContext(context.Context) GetTeamsTeamWorkspaceRoleOutput
+}
+
+type GetTeamsTeamWorkspaceRoleArgs struct {
+	// The role assigned to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetTeamsTeamWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamWorkspaceRoleArgs) ToGetTeamsTeamWorkspaceRoleOutput() GetTeamsTeamWorkspaceRoleOutput {
+	return i.ToGetTeamsTeamWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamWorkspaceRoleArgs) ToGetTeamsTeamWorkspaceRoleOutputWithContext(ctx context.Context) GetTeamsTeamWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamWorkspaceRoleOutput)
+}
+
+// GetTeamsTeamWorkspaceRoleArrayInput is an input type that accepts GetTeamsTeamWorkspaceRoleArray and GetTeamsTeamWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamWorkspaceRoleArrayInput` via:
+//
+//	GetTeamsTeamWorkspaceRoleArray{ GetTeamsTeamWorkspaceRoleArgs{...} }
+type GetTeamsTeamWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamWorkspaceRoleArrayOutput() GetTeamsTeamWorkspaceRoleArrayOutput
+	ToGetTeamsTeamWorkspaceRoleArrayOutputWithContext(context.Context) GetTeamsTeamWorkspaceRoleArrayOutput
+}
+
+type GetTeamsTeamWorkspaceRoleArray []GetTeamsTeamWorkspaceRoleInput
+
+func (GetTeamsTeamWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamWorkspaceRoleArray) ToGetTeamsTeamWorkspaceRoleArrayOutput() GetTeamsTeamWorkspaceRoleArrayOutput {
+	return i.ToGetTeamsTeamWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamWorkspaceRoleArray) ToGetTeamsTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamWorkspaceRoleArrayOutput)
+}
+
+type GetTeamsTeamWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamWorkspaceRoleOutput) ToGetTeamsTeamWorkspaceRoleOutput() GetTeamsTeamWorkspaceRoleOutput {
+	return o
+}
+
+func (o GetTeamsTeamWorkspaceRoleOutput) ToGetTeamsTeamWorkspaceRoleOutputWithContext(ctx context.Context) GetTeamsTeamWorkspaceRoleOutput {
+	return o
+}
+
+// The role assigned to the workspace
+func (o GetTeamsTeamWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace the role is assigned to
+func (o GetTeamsTeamWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamWorkspaceRoleArrayOutput) ToGetTeamsTeamWorkspaceRoleArrayOutput() GetTeamsTeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamWorkspaceRoleArrayOutput) ToGetTeamsTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamWorkspaceRole {
+		return vs[0].([]GetTeamsTeamWorkspaceRole)[vs[1].(int)]
+	}).(GetTeamsTeamWorkspaceRoleOutput)
+}
+
+type GetWorkspaceCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetWorkspaceCreatedByInput is an input type that accepts GetWorkspaceCreatedByArgs and GetWorkspaceCreatedByOutput values.
+// You can construct a concrete instance of `GetWorkspaceCreatedByInput` via:
+//
+//	GetWorkspaceCreatedByArgs{...}
+type GetWorkspaceCreatedByInput interface {
+	pulumi.Input
+
+	ToGetWorkspaceCreatedByOutput() GetWorkspaceCreatedByOutput
+	ToGetWorkspaceCreatedByOutputWithContext(context.Context) GetWorkspaceCreatedByOutput
+}
+
+type GetWorkspaceCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetWorkspaceCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (i GetWorkspaceCreatedByArgs) ToGetWorkspaceCreatedByOutput() GetWorkspaceCreatedByOutput {
+	return i.ToGetWorkspaceCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetWorkspaceCreatedByArgs) ToGetWorkspaceCreatedByOutputWithContext(ctx context.Context) GetWorkspaceCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspaceCreatedByOutput)
+}
+
+type GetWorkspaceCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspaceCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (o GetWorkspaceCreatedByOutput) ToGetWorkspaceCreatedByOutput() GetWorkspaceCreatedByOutput {
+	return o
+}
+
+func (o GetWorkspaceCreatedByOutput) ToGetWorkspaceCreatedByOutputWithContext(ctx context.Context) GetWorkspaceCreatedByOutput {
+	return o
+}
+
+func (o GetWorkspaceCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetWorkspaceUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetWorkspaceUpdatedByInput is an input type that accepts GetWorkspaceUpdatedByArgs and GetWorkspaceUpdatedByOutput values.
+// You can construct a concrete instance of `GetWorkspaceUpdatedByInput` via:
+//
+//	GetWorkspaceUpdatedByArgs{...}
+type GetWorkspaceUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetWorkspaceUpdatedByOutput() GetWorkspaceUpdatedByOutput
+	ToGetWorkspaceUpdatedByOutputWithContext(context.Context) GetWorkspaceUpdatedByOutput
+}
+
+type GetWorkspaceUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetWorkspaceUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (i GetWorkspaceUpdatedByArgs) ToGetWorkspaceUpdatedByOutput() GetWorkspaceUpdatedByOutput {
+	return i.ToGetWorkspaceUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetWorkspaceUpdatedByArgs) ToGetWorkspaceUpdatedByOutputWithContext(ctx context.Context) GetWorkspaceUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspaceUpdatedByOutput)
+}
+
+type GetWorkspaceUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspaceUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (o GetWorkspaceUpdatedByOutput) ToGetWorkspaceUpdatedByOutput() GetWorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o GetWorkspaceUpdatedByOutput) ToGetWorkspaceUpdatedByOutputWithContext(ctx context.Context) GetWorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o GetWorkspaceUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspaceUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspaceUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetWorkspacesWorkspace struct {
+	// Whether new Deployments enforce CI/CD deploys by default
+	CicdEnforcedDefault bool `pulumi:"cicdEnforcedDefault"`
+	// Workspace creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Workspace creator
+	CreatedBy GetWorkspacesWorkspaceCreatedBy `pulumi:"createdBy"`
+	// Workspace description
+	Description string `pulumi:"description"`
+	// Workspace identifier
+	Id string `pulumi:"id"`
+	// Workspace name
+	Name string `pulumi:"name"`
+	// Workspace last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Workspace updater
+	UpdatedBy GetWorkspacesWorkspaceUpdatedBy `pulumi:"updatedBy"`
+}
+
+// GetWorkspacesWorkspaceInput is an input type that accepts GetWorkspacesWorkspaceArgs and GetWorkspacesWorkspaceOutput values.
+// You can construct a concrete instance of `GetWorkspacesWorkspaceInput` via:
+//
+//	GetWorkspacesWorkspaceArgs{...}
+type GetWorkspacesWorkspaceInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesWorkspaceOutput() GetWorkspacesWorkspaceOutput
+	ToGetWorkspacesWorkspaceOutputWithContext(context.Context) GetWorkspacesWorkspaceOutput
+}
+
+type GetWorkspacesWorkspaceArgs struct {
+	// Whether new Deployments enforce CI/CD deploys by default
+	CicdEnforcedDefault pulumi.BoolInput `pulumi:"cicdEnforcedDefault"`
+	// Workspace creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Workspace creator
+	CreatedBy GetWorkspacesWorkspaceCreatedByInput `pulumi:"createdBy"`
+	// Workspace description
+	Description pulumi.StringInput `pulumi:"description"`
+	// Workspace identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Workspace name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Workspace last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Workspace updater
+	UpdatedBy GetWorkspacesWorkspaceUpdatedByInput `pulumi:"updatedBy"`
+}
+
+func (GetWorkspacesWorkspaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (i GetWorkspacesWorkspaceArgs) ToGetWorkspacesWorkspaceOutput() GetWorkspacesWorkspaceOutput {
+	return i.ToGetWorkspacesWorkspaceOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesWorkspaceArgs) ToGetWorkspacesWorkspaceOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesWorkspaceOutput)
+}
+
+// GetWorkspacesWorkspaceArrayInput is an input type that accepts GetWorkspacesWorkspaceArray and GetWorkspacesWorkspaceArrayOutput values.
+// You can construct a concrete instance of `GetWorkspacesWorkspaceArrayInput` via:
+//
+//	GetWorkspacesWorkspaceArray{ GetWorkspacesWorkspaceArgs{...} }
+type GetWorkspacesWorkspaceArrayInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesWorkspaceArrayOutput() GetWorkspacesWorkspaceArrayOutput
+	ToGetWorkspacesWorkspaceArrayOutputWithContext(context.Context) GetWorkspacesWorkspaceArrayOutput
+}
+
+type GetWorkspacesWorkspaceArray []GetWorkspacesWorkspaceInput
+
+func (GetWorkspacesWorkspaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (i GetWorkspacesWorkspaceArray) ToGetWorkspacesWorkspaceArrayOutput() GetWorkspacesWorkspaceArrayOutput {
+	return i.ToGetWorkspacesWorkspaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesWorkspaceArray) ToGetWorkspacesWorkspaceArrayOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesWorkspaceArrayOutput)
+}
+
+type GetWorkspacesWorkspaceOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesWorkspaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (o GetWorkspacesWorkspaceOutput) ToGetWorkspacesWorkspaceOutput() GetWorkspacesWorkspaceOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceOutput) ToGetWorkspacesWorkspaceOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceOutput {
+	return o
+}
+
+// Whether new Deployments enforce CI/CD deploys by default
+func (o GetWorkspacesWorkspaceOutput) CicdEnforcedDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) bool { return v.CicdEnforcedDefault }).(pulumi.BoolOutput)
+}
+
+// Workspace creation timestamp
+func (o GetWorkspacesWorkspaceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Workspace creator
+func (o GetWorkspacesWorkspaceOutput) CreatedBy() GetWorkspacesWorkspaceCreatedByOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) GetWorkspacesWorkspaceCreatedBy { return v.CreatedBy }).(GetWorkspacesWorkspaceCreatedByOutput)
+}
+
+// Workspace description
+func (o GetWorkspacesWorkspaceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Workspace identifier
+func (o GetWorkspacesWorkspaceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Workspace name
+func (o GetWorkspacesWorkspaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Workspace last updated timestamp
+func (o GetWorkspacesWorkspaceOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Workspace updater
+func (o GetWorkspacesWorkspaceOutput) UpdatedBy() GetWorkspacesWorkspaceUpdatedByOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspace) GetWorkspacesWorkspaceUpdatedBy { return v.UpdatedBy }).(GetWorkspacesWorkspaceUpdatedByOutput)
+}
+
+type GetWorkspacesWorkspaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesWorkspaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (o GetWorkspacesWorkspaceArrayOutput) ToGetWorkspacesWorkspaceArrayOutput() GetWorkspacesWorkspaceArrayOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceArrayOutput) ToGetWorkspacesWorkspaceArrayOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceArrayOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceArrayOutput) Index(i pulumi.IntInput) GetWorkspacesWorkspaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkspacesWorkspace {
+		return vs[0].([]GetWorkspacesWorkspace)[vs[1].(int)]
+	}).(GetWorkspacesWorkspaceOutput)
+}
+
+type GetWorkspacesWorkspaceCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetWorkspacesWorkspaceCreatedByInput is an input type that accepts GetWorkspacesWorkspaceCreatedByArgs and GetWorkspacesWorkspaceCreatedByOutput values.
+// You can construct a concrete instance of `GetWorkspacesWorkspaceCreatedByInput` via:
+//
+//	GetWorkspacesWorkspaceCreatedByArgs{...}
+type GetWorkspacesWorkspaceCreatedByInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesWorkspaceCreatedByOutput() GetWorkspacesWorkspaceCreatedByOutput
+	ToGetWorkspacesWorkspaceCreatedByOutputWithContext(context.Context) GetWorkspacesWorkspaceCreatedByOutput
+}
+
+type GetWorkspacesWorkspaceCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetWorkspacesWorkspaceCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (i GetWorkspacesWorkspaceCreatedByArgs) ToGetWorkspacesWorkspaceCreatedByOutput() GetWorkspacesWorkspaceCreatedByOutput {
+	return i.ToGetWorkspacesWorkspaceCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesWorkspaceCreatedByArgs) ToGetWorkspacesWorkspaceCreatedByOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesWorkspaceCreatedByOutput)
+}
+
+type GetWorkspacesWorkspaceCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesWorkspaceCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspaceCreatedBy)(nil)).Elem()
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) ToGetWorkspacesWorkspaceCreatedByOutput() GetWorkspacesWorkspaceCreatedByOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) ToGetWorkspacesWorkspaceCreatedByOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceCreatedByOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetWorkspacesWorkspaceUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetWorkspacesWorkspaceUpdatedByInput is an input type that accepts GetWorkspacesWorkspaceUpdatedByArgs and GetWorkspacesWorkspaceUpdatedByOutput values.
+// You can construct a concrete instance of `GetWorkspacesWorkspaceUpdatedByInput` via:
+//
+//	GetWorkspacesWorkspaceUpdatedByArgs{...}
+type GetWorkspacesWorkspaceUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetWorkspacesWorkspaceUpdatedByOutput() GetWorkspacesWorkspaceUpdatedByOutput
+	ToGetWorkspacesWorkspaceUpdatedByOutputWithContext(context.Context) GetWorkspacesWorkspaceUpdatedByOutput
+}
+
+type GetWorkspacesWorkspaceUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetWorkspacesWorkspaceUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (i GetWorkspacesWorkspaceUpdatedByArgs) ToGetWorkspacesWorkspaceUpdatedByOutput() GetWorkspacesWorkspaceUpdatedByOutput {
+	return i.ToGetWorkspacesWorkspaceUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetWorkspacesWorkspaceUpdatedByArgs) ToGetWorkspacesWorkspaceUpdatedByOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkspacesWorkspaceUpdatedByOutput)
+}
+
+type GetWorkspacesWorkspaceUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetWorkspacesWorkspaceUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedBy)(nil)).Elem()
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) ToGetWorkspacesWorkspaceUpdatedByOutput() GetWorkspacesWorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) ToGetWorkspacesWorkspaceUpdatedByOutputWithContext(ctx context.Context) GetWorkspacesWorkspaceUpdatedByOutput {
+	return o
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetWorkspacesWorkspaceUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkspacesWorkspaceUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ClusterK8sTagInput)(nil)).Elem(), ClusterK8sTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClusterK8sTagArrayInput)(nil)).Elem(), ClusterK8sTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMetadataInput)(nil)).Elem(), ClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMetadataPtrInput)(nil)).Elem(), ClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterNodePoolInput)(nil)).Elem(), ClusterNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterNodePoolArrayInput)(nil)).Elem(), ClusterNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTimeoutsInput)(nil)).Elem(), ClusterTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTimeoutsPtrInput)(nil)).Elem(), ClusterTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentCreatedByInput)(nil)).Elem(), DeploymentCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentCreatedByPtrInput)(nil)).Elem(), DeploymentCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnvironmentVariableInput)(nil)).Elem(), DeploymentEnvironmentVariableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnvironmentVariableArrayInput)(nil)).Elem(), DeploymentEnvironmentVariableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecPtrInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecPtrInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecOverridePtrInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecScheduleInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecScheduleArrayInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingStatusInput)(nil)).Elem(), DeploymentScalingStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingStatusPtrInput)(nil)).Elem(), DeploymentScalingStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingStatusHibernationStatusInput)(nil)).Elem(), DeploymentScalingStatusHibernationStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingStatusHibernationStatusPtrInput)(nil)).Elem(), DeploymentScalingStatusHibernationStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentUpdatedByInput)(nil)).Elem(), DeploymentUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentUpdatedByPtrInput)(nil)).Elem(), DeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueInput)(nil)).Elem(), DeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueArrayInput)(nil)).Elem(), DeploymentWorkerQueueArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterK8sTagInput)(nil)).Elem(), GetClusterK8sTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterK8sTagArrayInput)(nil)).Elem(), GetClusterK8sTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleInput)(nil)).Elem(), TeamRolesDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleArrayInput)(nil)).Elem(), TeamRolesDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesWorkspaceRoleInput)(nil)).Elem(), TeamRolesWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesWorkspaceRoleArrayInput)(nil)).Elem(), TeamRolesWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceCreatedByInput)(nil)).Elem(), WorkspaceCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceCreatedByPtrInput)(nil)).Elem(), WorkspaceCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByPtrInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMetadataInput)(nil)).Elem(), GetClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNodePoolInput)(nil)).Elem(), GetClusterNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNodePoolArrayInput)(nil)).Elem(), GetClusterNodePoolArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationManagedDomainInput)(nil)).Elem(), GetOrganizationManagedDomainArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationManagedDomainArrayInput)(nil)).Elem(), GetOrganizationManagedDomainArray{})
-	pulumi.RegisterOutputType(ClusterK8sTagOutput{})
-	pulumi.RegisterOutputType(ClusterK8sTagArrayOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionInput)(nil)).Elem(), GetClusterOptionsClusterOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionArrayInput)(nil)).Elem(), GetClusterOptionsClusterOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionDatabaseInstanceInput)(nil)).Elem(), GetClusterOptionsClusterOptionDatabaseInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionDatabaseInstanceArrayInput)(nil)).Elem(), GetClusterOptionsClusterOptionDatabaseInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultDatabaseInstanceInput)(nil)).Elem(), GetClusterOptionsClusterOptionDefaultDatabaseInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultNodeInstanceInput)(nil)).Elem(), GetClusterOptionsClusterOptionDefaultNodeInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionDefaultRegionInput)(nil)).Elem(), GetClusterOptionsClusterOptionDefaultRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionNodeInstanceInput)(nil)).Elem(), GetClusterOptionsClusterOptionNodeInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionNodeInstanceArrayInput)(nil)).Elem(), GetClusterOptionsClusterOptionNodeInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionRegionInput)(nil)).Elem(), GetClusterOptionsClusterOptionRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOptionsClusterOptionRegionArrayInput)(nil)).Elem(), GetClusterOptionsClusterOptionRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterTagInput)(nil)).Elem(), GetClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterTagArrayInput)(nil)).Elem(), GetClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterInput)(nil)).Elem(), GetClustersClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterArrayInput)(nil)).Elem(), GetClustersClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterMetadataInput)(nil)).Elem(), GetClustersClusterMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodePoolInput)(nil)).Elem(), GetClustersClusterNodePoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodePoolArrayInput)(nil)).Elem(), GetClustersClusterNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagInput)(nil)).Elem(), GetClustersClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagArrayInput)(nil)).Elem(), GetClustersClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentCreatedByInput)(nil)).Elem(), GetDeploymentCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnvironmentVariableInput)(nil)).Elem(), GetDeploymentEnvironmentVariableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnvironmentVariableArrayInput)(nil)).Elem(), GetDeploymentEnvironmentVariableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasDefaultPodSizeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasResourceQuotaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaCpuInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasResourceQuotaCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsResourceQuotasResourceQuotaMemoryInput)(nil)).Elem(), GetDeploymentOptionsResourceQuotasResourceQuotaMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsRuntimeReleaseInput)(nil)).Elem(), GetDeploymentOptionsRuntimeReleaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsRuntimeReleaseArrayInput)(nil)).Elem(), GetDeploymentOptionsRuntimeReleaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsSchedulerMachineInput)(nil)).Elem(), GetDeploymentOptionsSchedulerMachineArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsSchedulerMachineArrayInput)(nil)).Elem(), GetDeploymentOptionsSchedulerMachineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsSchedulerMachineSpecInput)(nil)).Elem(), GetDeploymentOptionsSchedulerMachineSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerMachineInput)(nil)).Elem(), GetDeploymentOptionsWorkerMachineArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerMachineArrayInput)(nil)).Elem(), GetDeploymentOptionsWorkerMachineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerMachineConcurrencyInput)(nil)).Elem(), GetDeploymentOptionsWorkerMachineConcurrencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerMachineSpecInput)(nil)).Elem(), GetDeploymentOptionsWorkerMachineSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesInput)(nil)).Elem(), GetDeploymentOptionsWorkerQueuesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMaxWorkersInput)(nil)).Elem(), GetDeploymentOptionsWorkerQueuesMaxWorkersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesMinWorkersInput)(nil)).Elem(), GetDeploymentOptionsWorkerQueuesMinWorkersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput)(nil)).Elem(), GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOptionInput)(nil)).Elem(), GetDeploymentOptionsWorkloadIdentityOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOptionArrayInput)(nil)).Elem(), GetDeploymentOptionsWorkloadIdentityOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecScheduleInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecScheduleArrayInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingStatusInput)(nil)).Elem(), GetDeploymentScalingStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingStatusHibernationStatusInput)(nil)).Elem(), GetDeploymentScalingStatusHibernationStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentUpdatedByInput)(nil)).Elem(), GetDeploymentUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentWorkerQueueInput)(nil)).Elem(), GetDeploymentWorkerQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentWorkerQueueArrayInput)(nil)).Elem(), GetDeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentInput)(nil)).Elem(), GetDeploymentsDeploymentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentArrayInput)(nil)).Elem(), GetDeploymentsDeploymentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentCreatedByInput)(nil)).Elem(), GetDeploymentsDeploymentCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariableInput)(nil)).Elem(), GetDeploymentsDeploymentEnvironmentVariableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariableArrayInput)(nil)).Elem(), GetDeploymentsDeploymentEnvironmentVariableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingStatusInput)(nil)).Elem(), GetDeploymentsDeploymentScalingStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingStatusHibernationStatusInput)(nil)).Elem(), GetDeploymentsDeploymentScalingStatusHibernationStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentUpdatedByInput)(nil)).Elem(), GetDeploymentsDeploymentUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueArrayInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCreatedByInput)(nil)).Elem(), GetOrganizationCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationUpdatedByInput)(nil)).Elem(), GetOrganizationUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamCreatedByInput)(nil)).Elem(), GetTeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDeploymentRoleInput)(nil)).Elem(), GetTeamDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDeploymentRoleArrayInput)(nil)).Elem(), GetTeamDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUpdatedByInput)(nil)).Elem(), GetTeamUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamWorkspaceRoleInput)(nil)).Elem(), GetTeamWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamWorkspaceRoleArrayInput)(nil)).Elem(), GetTeamWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamInput)(nil)).Elem(), GetTeamsTeamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamArrayInput)(nil)).Elem(), GetTeamsTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamCreatedByInput)(nil)).Elem(), GetTeamsTeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDeploymentRoleInput)(nil)).Elem(), GetTeamsTeamDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDeploymentRoleArrayInput)(nil)).Elem(), GetTeamsTeamDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamUpdatedByInput)(nil)).Elem(), GetTeamsTeamUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleArrayInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspaceCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspaceUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceInput)(nil)).Elem(), GetWorkspacesWorkspaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceUpdatedByArgs{})
 	pulumi.RegisterOutputType(ClusterMetadataOutput{})
 	pulumi.RegisterOutputType(ClusterMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ClusterNodePoolOutput{})
 	pulumi.RegisterOutputType(ClusterNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(ClusterTimeoutsOutput{})
+	pulumi.RegisterOutputType(ClusterTimeoutsPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentCreatedByOutput{})
+	pulumi.RegisterOutputType(DeploymentCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnvironmentVariableOutput{})
 	pulumi.RegisterOutputType(DeploymentEnvironmentVariableArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOverrideOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOverridePtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecScheduleOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecScheduleArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingStatusOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingStatusPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingStatusHibernationStatusOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingStatusHibernationStatusPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentUpdatedByOutput{})
+	pulumi.RegisterOutputType(DeploymentUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueArrayOutput{})
-	pulumi.RegisterOutputType(GetClusterK8sTagOutput{})
-	pulumi.RegisterOutputType(GetClusterK8sTagArrayOutput{})
+	pulumi.RegisterOutputType(TeamRolesDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(TeamRolesDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(TeamRolesWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(TeamRolesWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(WorkspaceCreatedByOutput{})
+	pulumi.RegisterOutputType(WorkspaceCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(WorkspaceUpdatedByOutput{})
+	pulumi.RegisterOutputType(WorkspaceUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(GetClusterMetadataOutput{})
 	pulumi.RegisterOutputType(GetClusterNodePoolOutput{})
 	pulumi.RegisterOutputType(GetClusterNodePoolArrayOutput{})
-	pulumi.RegisterOutputType(GetOrganizationManagedDomainOutput{})
-	pulumi.RegisterOutputType(GetOrganizationManagedDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionDatabaseInstanceOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionDatabaseInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionDefaultDatabaseInstanceOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionDefaultNodeInstanceOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionDefaultRegionOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionNodeInstanceOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionNodeInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionRegionOutput{})
+	pulumi.RegisterOutputType(GetClusterOptionsClusterOptionRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterTagOutput{})
+	pulumi.RegisterOutputType(GetClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterMetadataOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterNodePoolOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterTagOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentCreatedByOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEnvironmentVariableOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEnvironmentVariableArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasDefaultPodSizeOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasDefaultPodSizeCpuOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasDefaultPodSizeMemoryOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasResourceQuotaOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasResourceQuotaCpuOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsResourceQuotasResourceQuotaMemoryOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsRuntimeReleaseOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsRuntimeReleaseArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsSchedulerMachineOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsSchedulerMachineArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsSchedulerMachineSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerMachineOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerMachineArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerMachineConcurrencyOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerMachineSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerQueuesOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerQueuesMaxWorkersOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerQueuesMinWorkersOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkloadIdentityOptionOutput{})
+	pulumi.RegisterOutputType(GetDeploymentOptionsWorkloadIdentityOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOverrideOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecScheduleOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingStatusOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingStatusHibernationStatusOutput{})
+	pulumi.RegisterOutputType(GetDeploymentUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetDeploymentWorkerQueueOutput{})
+	pulumi.RegisterOutputType(GetDeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentCreatedByOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentEnvironmentVariableOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentEnvironmentVariableArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingStatusOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingStatusHibernationStatusOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetOrganizationCreatedByOutput{})
+	pulumi.RegisterOutputType(GetOrganizationUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamCreatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamCreatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetWorkspaceCreatedByOutput{})
+	pulumi.RegisterOutputType(GetWorkspaceUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesWorkspaceOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesWorkspaceArrayOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesWorkspaceCreatedByOutput{})
+	pulumi.RegisterOutputType(GetWorkspacesWorkspaceUpdatedByOutput{})
 }

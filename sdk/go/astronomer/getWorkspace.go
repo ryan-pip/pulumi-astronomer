@@ -11,7 +11,7 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Astronomer Workspace Resource
+// Workspace data source
 //
 // ## Example Usage
 //
@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := astronomer.LookupWorkspace(ctx, &astronomer.LookupWorkspaceArgs{
-//				Id: "cabcabcabcabcabcabcabcabcabc",
+//				Id: "clozc036j01to01jrlgvueo8t",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -50,20 +50,28 @@ func LookupWorkspace(ctx *pulumi.Context, args *LookupWorkspaceArgs, opts ...pul
 
 // A collection of arguments for invoking getWorkspace.
 type LookupWorkspaceArgs struct {
-	// The Workspace's identifier.
+	// Workspace identifier
 	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getWorkspace.
 type LookupWorkspaceResult struct {
-	// Whether new Deployments enforce CI/CD deploys by default.
+	// Whether new Deployments enforce CI/CD deploys by default
 	CicdEnforcedDefault bool `pulumi:"cicdEnforcedDefault"`
-	// The Workspace's description
+	// Workspace creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Workspace creator
+	CreatedBy GetWorkspaceCreatedBy `pulumi:"createdBy"`
+	// Workspace description
 	Description string `pulumi:"description"`
-	// The Workspace's identifier.
+	// Workspace identifier
 	Id string `pulumi:"id"`
-	// The Workspace's name
+	// Workspace name
 	Name string `pulumi:"name"`
+	// Workspace last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Workspace updater
+	UpdatedBy GetWorkspaceUpdatedBy `pulumi:"updatedBy"`
 }
 
 func LookupWorkspaceOutput(ctx *pulumi.Context, args LookupWorkspaceOutputArgs, opts ...pulumi.InvokeOption) LookupWorkspaceResultOutput {
@@ -81,7 +89,7 @@ func LookupWorkspaceOutput(ctx *pulumi.Context, args LookupWorkspaceOutputArgs, 
 
 // A collection of arguments for invoking getWorkspace.
 type LookupWorkspaceOutputArgs struct {
-	// The Workspace's identifier.
+	// Workspace identifier
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -104,24 +112,44 @@ func (o LookupWorkspaceResultOutput) ToLookupWorkspaceResultOutputWithContext(ct
 	return o
 }
 
-// Whether new Deployments enforce CI/CD deploys by default.
+// Whether new Deployments enforce CI/CD deploys by default
 func (o LookupWorkspaceResultOutput) CicdEnforcedDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) bool { return v.CicdEnforcedDefault }).(pulumi.BoolOutput)
 }
 
-// The Workspace's description
+// Workspace creation timestamp
+func (o LookupWorkspaceResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Workspace creator
+func (o LookupWorkspaceResultOutput) CreatedBy() GetWorkspaceCreatedByOutput {
+	return o.ApplyT(func(v LookupWorkspaceResult) GetWorkspaceCreatedBy { return v.CreatedBy }).(GetWorkspaceCreatedByOutput)
+}
+
+// Workspace description
 func (o LookupWorkspaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Workspace's identifier.
+// Workspace identifier
 func (o LookupWorkspaceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The Workspace's name
+// Workspace name
 func (o LookupWorkspaceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Workspace last updated timestamp
+func (o LookupWorkspaceResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Workspace updater
+func (o LookupWorkspaceResultOutput) UpdatedBy() GetWorkspaceUpdatedByOutput {
+	return o.ApplyT(func(v LookupWorkspaceResult) GetWorkspaceUpdatedBy { return v.UpdatedBy }).(GetWorkspaceUpdatedByOutput)
 }
 
 func init() {

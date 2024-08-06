@@ -20,25 +20,70 @@ export const getCluster: typeof import("./getCluster").getCluster = null as any;
 export const getClusterOutput: typeof import("./getCluster").getClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getCluster","getClusterOutput"], () => require("./getCluster"));
 
+export { GetClusterOptionsArgs, GetClusterOptionsResult, GetClusterOptionsOutputArgs } from "./getClusterOptions";
+export const getClusterOptions: typeof import("./getClusterOptions").getClusterOptions = null as any;
+export const getClusterOptionsOutput: typeof import("./getClusterOptions").getClusterOptionsOutput = null as any;
+utilities.lazyLoad(exports, ["getClusterOptions","getClusterOptionsOutput"], () => require("./getClusterOptions"));
+
+export { GetClustersArgs, GetClustersResult, GetClustersOutputArgs } from "./getClusters";
+export const getClusters: typeof import("./getClusters").getClusters = null as any;
+export const getClustersOutput: typeof import("./getClusters").getClustersOutput = null as any;
+utilities.lazyLoad(exports, ["getClusters","getClustersOutput"], () => require("./getClusters"));
+
 export { GetDeploymentArgs, GetDeploymentResult, GetDeploymentOutputArgs } from "./getDeployment";
 export const getDeployment: typeof import("./getDeployment").getDeployment = null as any;
 export const getDeploymentOutput: typeof import("./getDeployment").getDeploymentOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployment","getDeploymentOutput"], () => require("./getDeployment"));
 
-export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs } from "./getOrganization";
+export { GetDeploymentOptionsArgs, GetDeploymentOptionsResult, GetDeploymentOptionsOutputArgs } from "./getDeploymentOptions";
+export const getDeploymentOptions: typeof import("./getDeploymentOptions").getDeploymentOptions = null as any;
+export const getDeploymentOptionsOutput: typeof import("./getDeploymentOptions").getDeploymentOptionsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeploymentOptions","getDeploymentOptionsOutput"], () => require("./getDeploymentOptions"));
+
+export { GetDeploymentsArgs, GetDeploymentsResult, GetDeploymentsOutputArgs } from "./getDeployments";
+export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
+export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
+
+export { GetOrganizationResult } from "./getOrganization";
 export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
+
+export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
+export const getTeam: typeof import("./getTeam").getTeam = null as any;
+export const getTeamOutput: typeof import("./getTeam").getTeamOutput = null as any;
+utilities.lazyLoad(exports, ["getTeam","getTeamOutput"], () => require("./getTeam"));
+
+export { GetTeamsArgs, GetTeamsResult, GetTeamsOutputArgs } from "./getTeams";
+export const getTeams: typeof import("./getTeams").getTeams = null as any;
+export const getTeamsOutput: typeof import("./getTeams").getTeamsOutput = null as any;
+utilities.lazyLoad(exports, ["getTeams","getTeamsOutput"], () => require("./getTeams"));
 
 export { GetWorkspaceArgs, GetWorkspaceResult, GetWorkspaceOutputArgs } from "./getWorkspace";
 export const getWorkspace: typeof import("./getWorkspace").getWorkspace = null as any;
 export const getWorkspaceOutput: typeof import("./getWorkspace").getWorkspaceOutput = null as any;
 utilities.lazyLoad(exports, ["getWorkspace","getWorkspaceOutput"], () => require("./getWorkspace"));
 
+export { GetWorkspacesArgs, GetWorkspacesResult, GetWorkspacesOutputArgs } from "./getWorkspaces";
+export const getWorkspaces: typeof import("./getWorkspaces").getWorkspaces = null as any;
+export const getWorkspacesOutput: typeof import("./getWorkspaces").getWorkspacesOutput = null as any;
+utilities.lazyLoad(exports, ["getWorkspaces","getWorkspacesOutput"], () => require("./getWorkspaces"));
+
+export { HybridClusterWorkspaceAuthorizationArgs, HybridClusterWorkspaceAuthorizationState } from "./hybridClusterWorkspaceAuthorization";
+export type HybridClusterWorkspaceAuthorization = import("./hybridClusterWorkspaceAuthorization").HybridClusterWorkspaceAuthorization;
+export const HybridClusterWorkspaceAuthorization: typeof import("./hybridClusterWorkspaceAuthorization").HybridClusterWorkspaceAuthorization = null as any;
+utilities.lazyLoad(exports, ["HybridClusterWorkspaceAuthorization"], () => require("./hybridClusterWorkspaceAuthorization"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { TeamRolesArgs, TeamRolesState } from "./teamRoles";
+export type TeamRoles = import("./teamRoles").TeamRoles;
+export const TeamRoles: typeof import("./teamRoles").TeamRoles = null as any;
+utilities.lazyLoad(exports, ["TeamRoles"], () => require("./teamRoles"));
 
 export { WorkspaceArgs, WorkspaceState } from "./workspace";
 export type Workspace = import("./workspace").Workspace;
@@ -63,6 +108,10 @@ const _module = {
                 return new Cluster(name, <any>undefined, { urn })
             case "astronomer:index/deployment:Deployment":
                 return new Deployment(name, <any>undefined, { urn })
+            case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
+                return new HybridClusterWorkspaceAuthorization(name, <any>undefined, { urn })
+            case "astronomer:index/teamRoles:TeamRoles":
+                return new TeamRoles(name, <any>undefined, { urn })
             case "astronomer:index/workspace:Workspace":
                 return new Workspace(name, <any>undefined, { urn })
             default:
@@ -72,6 +121,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("astronomer", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/deployment", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/hybridClusterWorkspaceAuthorization", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/teamRoles", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/workspace", _module)
 pulumi.runtime.registerResourcePackage("astronomer", {
     version: utilities.getVersion(),

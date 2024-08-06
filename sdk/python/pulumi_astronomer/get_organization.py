@@ -22,22 +22,22 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, billing_email=None, created_at=None, id=None, is_scim_enabled=None, managed_domains=None, name=None, payment_method=None, product=None, status=None, support_plan=None, trial_expires_at=None, updated_at=None):
+    def __init__(__self__, billing_email=None, created_at=None, created_by=None, id=None, is_scim_enabled=None, name=None, payment_method=None, product=None, status=None, support_plan=None, trial_expires_at=None, updated_at=None, updated_by=None):
         if billing_email and not isinstance(billing_email, str):
             raise TypeError("Expected argument 'billing_email' to be a str")
         pulumi.set(__self__, "billing_email", billing_email)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if created_by and not isinstance(created_by, dict):
+            raise TypeError("Expected argument 'created_by' to be a dict")
+        pulumi.set(__self__, "created_by", created_by)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if is_scim_enabled and not isinstance(is_scim_enabled, bool):
             raise TypeError("Expected argument 'is_scim_enabled' to be a bool")
         pulumi.set(__self__, "is_scim_enabled", is_scim_enabled)
-        if managed_domains and not isinstance(managed_domains, list):
-            raise TypeError("Expected argument 'managed_domains' to be a list")
-        pulumi.set(__self__, "managed_domains", managed_domains)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -59,12 +59,15 @@ class GetOrganizationResult:
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
+        if updated_by and not isinstance(updated_by, dict):
+            raise TypeError("Expected argument 'updated_by' to be a dict")
+        pulumi.set(__self__, "updated_by", updated_by)
 
     @property
     @pulumi.getter(name="billingEmail")
     def billing_email(self) -> str:
         """
-        Billing email on file for the organization.
+        Organization billing email
         """
         return pulumi.get(self, "billing_email")
 
@@ -72,15 +75,23 @@ class GetOrganizationResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        Timestamped string of when this organization was created
+        Organization creation timestamp
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> 'outputs.GetOrganizationCreatedByResult':
+        """
+        Organization creator
+        """
+        return pulumi.get(self, "created_by")
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        Organization's unique identifier
+        Organization identifier
         """
         return pulumi.get(self, "id")
 
@@ -88,31 +99,23 @@ class GetOrganizationResult:
     @pulumi.getter(name="isScimEnabled")
     def is_scim_enabled(self) -> bool:
         """
-        Whether or not scim is enabled
+        Whether SCIM is enabled for the organization
         """
         return pulumi.get(self, "is_scim_enabled")
-
-    @property
-    @pulumi.getter(name="managedDomains")
-    def managed_domains(self) -> Sequence['outputs.GetOrganizationManagedDomainResult']:
-        """
-        List of managed domains (nested)
-        """
-        return pulumi.get(self, "managed_domains")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        Organization's name
+        Organization name
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="paymentMethod")
-    def payment_method(self) -> Optional[str]:
+    def payment_method(self) -> str:
         """
-        Payment method (if set)
+        Organization payment method
         """
         return pulumi.get(self, "payment_method")
 
@@ -120,7 +123,7 @@ class GetOrganizationResult:
     @pulumi.getter
     def product(self) -> str:
         """
-        Type of astro product (e.g. hosted or hybrid)
+        Organization product type
         """
         return pulumi.get(self, "product")
 
@@ -128,7 +131,7 @@ class GetOrganizationResult:
     @pulumi.getter
     def status(self) -> str:
         """
-        Status of the organization
+        Organization status
         """
         return pulumi.get(self, "status")
 
@@ -136,7 +139,7 @@ class GetOrganizationResult:
     @pulumi.getter(name="supportPlan")
     def support_plan(self) -> str:
         """
-        Type of support plan the organization has
+        Organization support plan
         """
         return pulumi.get(self, "support_plan")
 
@@ -144,7 +147,7 @@ class GetOrganizationResult:
     @pulumi.getter(name="trialExpiresAt")
     def trial_expires_at(self) -> str:
         """
-        When the trial expires, if organization is in a trial
+        Organization trial expiration timestamp
         """
         return pulumi.get(self, "trial_expires_at")
 
@@ -152,9 +155,17 @@ class GetOrganizationResult:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        Last time the organization was updated
+        Organization last updated timestamp
         """
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> 'outputs.GetOrganizationUpdatedByResult':
+        """
+        Organization updater
+        """
+        return pulumi.get(self, "updated_by")
 
 
 class AwaitableGetOrganizationResult(GetOrganizationResult):
@@ -165,23 +176,22 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
         return GetOrganizationResult(
             billing_email=self.billing_email,
             created_at=self.created_at,
+            created_by=self.created_by,
             id=self.id,
             is_scim_enabled=self.is_scim_enabled,
-            managed_domains=self.managed_domains,
             name=self.name,
             payment_method=self.payment_method,
             product=self.product,
             status=self.status,
             support_plan=self.support_plan,
             trial_expires_at=self.trial_expires_at,
-            updated_at=self.updated_at)
+            updated_at=self.updated_at,
+            updated_by=self.updated_by)
 
 
-def get_organization(id: Optional[str] = None,
-                     payment_method: Optional[str] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
+def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
-    Astronomer Organization Resource
+    Organization data source
 
     ## Example Usage
 
@@ -189,39 +199,33 @@ def get_organization(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    test = astronomer.get_organization(id="abc123")
+    example = astronomer.get_organization()
     ```
-
-
-    :param str payment_method: Payment method (if set)
     """
     __args__ = dict()
-    __args__['id'] = id
-    __args__['paymentMethod'] = payment_method
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('astronomer:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
         billing_email=pulumi.get(__ret__, 'billing_email'),
         created_at=pulumi.get(__ret__, 'created_at'),
+        created_by=pulumi.get(__ret__, 'created_by'),
         id=pulumi.get(__ret__, 'id'),
         is_scim_enabled=pulumi.get(__ret__, 'is_scim_enabled'),
-        managed_domains=pulumi.get(__ret__, 'managed_domains'),
         name=pulumi.get(__ret__, 'name'),
         payment_method=pulumi.get(__ret__, 'payment_method'),
         product=pulumi.get(__ret__, 'product'),
         status=pulumi.get(__ret__, 'status'),
         support_plan=pulumi.get(__ret__, 'support_plan'),
         trial_expires_at=pulumi.get(__ret__, 'trial_expires_at'),
-        updated_at=pulumi.get(__ret__, 'updated_at'))
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        updated_by=pulumi.get(__ret__, 'updated_by'))
 
 
 @_utilities.lift_output_func(get_organization)
-def get_organization_output(id: Optional[pulumi.Input[str]] = None,
-                            payment_method: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
+def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
-    Astronomer Organization Resource
+    Organization data source
 
     ## Example Usage
 
@@ -229,10 +233,7 @@ def get_organization_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    test = astronomer.get_organization(id="abc123")
+    example = astronomer.get_organization()
     ```
-
-
-    :param str payment_method: Payment method (if set)
     """
     ...

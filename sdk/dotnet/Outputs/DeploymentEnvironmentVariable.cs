@@ -15,15 +15,19 @@ namespace RyanPip.Astronomer.Outputs
     public sealed class DeploymentEnvironmentVariable
     {
         /// <summary>
-        /// Whether the environment variable is a secret.
+        /// Whether Environment variable is a secret
         /// </summary>
         public readonly bool IsSecret;
         /// <summary>
-        /// The environment variable key, used to call the value in code.
+        /// Environment variable key
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The environment variable value.
+        /// Environment variable last updated timestamp
+        /// </summary>
+        public readonly string? UpdatedAt;
+        /// <summary>
+        /// Environment variable value
         /// </summary>
         public readonly string? Value;
 
@@ -33,10 +37,13 @@ namespace RyanPip.Astronomer.Outputs
 
             string key,
 
+            string? updatedAt,
+
             string? value)
         {
             IsSecret = isSecret;
             Key = key;
+            UpdatedAt = updatedAt;
             Value = value;
         }
     }

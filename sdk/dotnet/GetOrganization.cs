@@ -13,11 +13,9 @@ namespace RyanPip.Astronomer
     public static class GetOrganization
     {
         /// <summary>
-        /// Astronomer Organization Resource
+        /// Organization data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,25 +25,18 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Astronomer.GetOrganization.Invoke(new()
-        ///     {
-        ///         Id = "abc123",
-        ///     });
+        ///     var example = Astronomer.GetOrganization.Invoke();
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Task<GetOrganizationResult> InvokeAsync(GetOrganizationArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("astronomer:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
+        public static Task<GetOrganizationResult> InvokeAsync(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("astronomer:index/getOrganization:getOrganization", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Astronomer Organization Resource
+        /// Organization data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,53 +46,13 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Astronomer.GetOrganization.Invoke(new()
-        ///     {
-        ///         Id = "abc123",
-        ///     });
+        ///     var example = Astronomer.GetOrganization.Invoke();
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Output<GetOrganizationResult> Invoke(GetOrganizationInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("astronomer:index/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
-    }
-
-
-    public sealed class GetOrganizationArgs : global::Pulumi.InvokeArgs
-    {
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
-
-        /// <summary>
-        /// Payment method (if set)
-        /// </summary>
-        [Input("paymentMethod")]
-        public string? PaymentMethod { get; set; }
-
-        public GetOrganizationArgs()
-        {
-        }
-        public static new GetOrganizationArgs Empty => new GetOrganizationArgs();
-    }
-
-    public sealed class GetOrganizationInvokeArgs : global::Pulumi.InvokeArgs
-    {
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
-
-        /// <summary>
-        /// Payment method (if set)
-        /// </summary>
-        [Input("paymentMethod")]
-        public Input<string>? PaymentMethod { get; set; }
-
-        public GetOrganizationInvokeArgs()
-        {
-        }
-        public static new GetOrganizationInvokeArgs Empty => new GetOrganizationInvokeArgs();
+        public static Output<GetOrganizationResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("astronomer:index/getOrganization:getOrganization", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
@@ -109,53 +60,57 @@ namespace RyanPip.Astronomer
     public sealed class GetOrganizationResult
     {
         /// <summary>
-        /// Billing email on file for the organization.
+        /// Organization billing email
         /// </summary>
         public readonly string BillingEmail;
         /// <summary>
-        /// Timestamped string of when this organization was created
+        /// Organization creation timestamp
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// Organization's unique identifier
+        /// Organization creator
+        /// </summary>
+        public readonly Outputs.GetOrganizationCreatedByResult CreatedBy;
+        /// <summary>
+        /// Organization identifier
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether or not scim is enabled
+        /// Whether SCIM is enabled for the organization
         /// </summary>
         public readonly bool IsScimEnabled;
         /// <summary>
-        /// List of managed domains (nested)
-        /// </summary>
-        public readonly ImmutableArray<Outputs.GetOrganizationManagedDomainResult> ManagedDomains;
-        /// <summary>
-        /// Organization's name
+        /// Organization name
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Payment method (if set)
+        /// Organization payment method
         /// </summary>
-        public readonly string? PaymentMethod;
+        public readonly string PaymentMethod;
         /// <summary>
-        /// Type of astro product (e.g. hosted or hybrid)
+        /// Organization product type
         /// </summary>
         public readonly string Product;
         /// <summary>
-        /// Status of the organization
+        /// Organization status
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// Type of support plan the organization has
+        /// Organization support plan
         /// </summary>
         public readonly string SupportPlan;
         /// <summary>
-        /// When the trial expires, if organization is in a trial
+        /// Organization trial expiration timestamp
         /// </summary>
         public readonly string TrialExpiresAt;
         /// <summary>
-        /// Last time the organization was updated
+        /// Organization last updated timestamp
         /// </summary>
         public readonly string UpdatedAt;
+        /// <summary>
+        /// Organization updater
+        /// </summary>
+        public readonly Outputs.GetOrganizationUpdatedByResult UpdatedBy;
 
         [OutputConstructor]
         private GetOrganizationResult(
@@ -163,15 +118,15 @@ namespace RyanPip.Astronomer
 
             string createdAt,
 
+            Outputs.GetOrganizationCreatedByResult createdBy,
+
             string id,
 
             bool isScimEnabled,
 
-            ImmutableArray<Outputs.GetOrganizationManagedDomainResult> managedDomains,
-
             string name,
 
-            string? paymentMethod,
+            string paymentMethod,
 
             string product,
 
@@ -181,13 +136,15 @@ namespace RyanPip.Astronomer
 
             string trialExpiresAt,
 
-            string updatedAt)
+            string updatedAt,
+
+            Outputs.GetOrganizationUpdatedByResult updatedBy)
         {
             BillingEmail = billingEmail;
             CreatedAt = createdAt;
+            CreatedBy = createdBy;
             Id = id;
             IsScimEnabled = isScimEnabled;
-            ManagedDomains = managedDomains;
             Name = name;
             PaymentMethod = paymentMethod;
             Product = product;
@@ -195,6 +152,7 @@ namespace RyanPip.Astronomer
             SupportPlan = supportPlan;
             TrialExpiresAt = trialExpiresAt;
             UpdatedAt = updatedAt;
+            UpdatedBy = updatedBy;
         }
     }
 }

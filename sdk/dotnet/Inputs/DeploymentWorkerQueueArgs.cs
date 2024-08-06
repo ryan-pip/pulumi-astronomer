@@ -13,24 +13,57 @@ namespace RyanPip.Astronomer.Inputs
 
     public sealed class DeploymentWorkerQueueArgs : global::Pulumi.ResourceArgs
     {
-        [Input("astroMachine", required: true)]
-        public Input<string> AstroMachine { get; set; } = null!;
+        /// <summary>
+        /// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        [Input("astroMachine")]
+        public Input<string>? AstroMachine { get; set; }
 
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
+        /// <summary>
+        /// Worker queue default
+        /// </summary>
         [Input("isDefault", required: true)]
         public Input<bool> IsDefault { get; set; } = null!;
 
+        /// <summary>
+        /// Worker queue max worker count
+        /// </summary>
         [Input("maxWorkerCount", required: true)]
         public Input<int> MaxWorkerCount { get; set; } = null!;
 
+        /// <summary>
+        /// Worker queue min worker count
+        /// </summary>
         [Input("minWorkerCount", required: true)]
         public Input<int> MinWorkerCount { get; set; } = null!;
 
+        /// <summary>
+        /// Worker queue name
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Worker queue Node pool identifier - required for 'HYBRID' deployments
+        /// </summary>
+        [Input("nodePoolId")]
+        public Input<string>? NodePoolId { get; set; }
+
+        /// <summary>
+        /// Worker queue pod CPU
+        /// </summary>
+        [Input("podCpu")]
+        public Input<string>? PodCpu { get; set; }
+
+        /// <summary>
+        /// Worker queue pod memory
+        /// </summary>
+        [Input("podMemory")]
+        public Input<string>? PodMemory { get; set; }
+
+        /// <summary>
+        /// Worker queue worker concurrency
+        /// </summary>
         [Input("workerConcurrency", required: true)]
         public Input<int> WorkerConcurrency { get; set; } = null!;
 

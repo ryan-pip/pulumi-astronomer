@@ -11,7 +11,7 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// The provider type for the astronomer package. By default, resources use package-wide configuration
+    /// The provider type for the astro package. By default, resources use package-wide configuration
     /// settings, however an explicit `Provider` instance may be created and passed during resource
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -20,13 +20,19 @@ namespace RyanPip.Astronomer
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// Organization id this provider will operate on.
+        /// API host to use for the provider. Default is `https://api.astronomer.io`
+        /// </summary>
+        [Output("host")]
+        public Output<string?> Host { get; private set; } = null!;
+
+        /// <summary>
+        /// Organization ID this provider will operate on.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        /// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
@@ -65,7 +71,13 @@ namespace RyanPip.Astronomer
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Organization id this provider will operate on.
+        /// API host to use for the provider. Default is `https://api.astronomer.io`
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
+        /// Organization ID this provider will operate on.
         /// </summary>
         [Input("organizationId", required: true)]
         public Input<string> OrganizationId { get; set; } = null!;
@@ -74,7 +86,7 @@ namespace RyanPip.Astronomer
         private Input<string>? _token;
 
         /// <summary>
-        /// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        /// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         /// </summary>
         public Input<string>? Token
         {
@@ -88,7 +100,7 @@ namespace RyanPip.Astronomer
 
         public ProviderArgs()
         {
-            Token = Utilities.GetEnv("ASTRONOMER_API_TOKEN");
+            Token = Utilities.GetEnv("ASTRO_API_TOKEN");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

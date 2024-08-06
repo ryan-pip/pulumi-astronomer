@@ -5,107 +5,1497 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ClusterK8sTag {
-    /**
-     * The tag's key.
-     */
-    key: string;
-    /**
-     * The tag's value.
-     */
-    value: string;
-}
-
 export interface ClusterMetadata {
-    externalIps?: string[];
-    oidcIssuerUrl?: string;
+    /**
+     * Cluster external IPs
+     */
+    externalIps: string[];
+    /**
+     * Cluster OIDC issuer URL
+     */
+    oidcIssuerUrl: string;
 }
 
 export interface ClusterNodePool {
     /**
-     * Whether the node pool is the default node pool of the cluster.
+     * Node pool cloud provider
      */
-    isDefault?: boolean;
+    cloudProvider: string;
     /**
-     * The maximum number of nodes that can be created in the node pool.
+     * Node pool cluster identifier
+     */
+    clusterId: string;
+    /**
+     * Node pool creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Node pool identifier
+     */
+    id: string;
+    /**
+     * Whether the node pool is the default node pool of the cluster
+     */
+    isDefault: boolean;
+    /**
+     * Node pool maximum node count
      */
     maxNodeCount: number;
     /**
-     * The name of the node pool.
+     * Node pool name
      */
     name: string;
     /**
-     * The type of node instance that is used for the node pool.
+     * Node pool node instance type
      */
     nodeInstanceType: string;
+    /**
+     * Node pool supported Astro machines
+     */
+    supportedAstroMachines: string[];
+    /**
+     * Node pool last updated timestamp
+     */
+    updatedAt: string;
+}
+
+export interface ClusterTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
+}
+
+export interface DeploymentCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
 }
 
 export interface DeploymentEnvironmentVariable {
     /**
-     * Whether the environment variable is a secret.
+     * Whether Environment variable is a secret
      */
     isSecret: boolean;
     /**
-     * The environment variable key, used to call the value in code.
+     * Environment variable key
      */
     key: string;
     /**
-     * The environment variable value.
+     * Environment variable last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Environment variable value
      */
     value?: string;
 }
 
-export interface DeploymentWorkerQueue {
-    astroMachine: string;
+export interface DeploymentScalingSpec {
+    /**
+     * Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+     */
+    hibernationSpec: outputs.DeploymentScalingSpecHibernationSpec;
+}
+
+export interface DeploymentScalingSpecHibernationSpec {
+    /**
+     * Hibernation override configuration. Set to null to remove the override.
+     */
+    override?: outputs.DeploymentScalingSpecHibernationSpecOverride;
+    /**
+     * List of hibernation schedules. Set to null to remove all schedules.
+     */
+    schedules?: outputs.DeploymentScalingSpecHibernationSpecSchedule[];
+}
+
+export interface DeploymentScalingSpecHibernationSpecOverride {
+    isActive: boolean;
+    isHibernating: boolean;
+    overrideUntil?: string;
+}
+
+export interface DeploymentScalingSpecHibernationSpecSchedule {
+    description?: string;
+    hibernateAtCron: string;
+    isEnabled: boolean;
+    wakeAtCron: string;
+}
+
+export interface DeploymentScalingStatus {
+    hibernationStatus: outputs.DeploymentScalingStatusHibernationStatus;
+}
+
+export interface DeploymentScalingStatusHibernationStatus {
+    isHibernating: boolean;
+    nextEventAt: string;
+    nextEventType: string;
+    reason: string;
+}
+
+export interface DeploymentUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
     id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface DeploymentWorkerQueue {
+    /**
+     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    astroMachine?: string;
+    /**
+     * Worker queue default
+     */
     isDefault: boolean;
+    /**
+     * Worker queue max worker count
+     */
     maxWorkerCount: number;
+    /**
+     * Worker queue min worker count
+     */
     minWorkerCount: number;
+    /**
+     * Worker queue name
+     */
     name: string;
+    /**
+     * Worker queue Node pool identifier - required for 'HYBRID' deployments
+     */
+    nodePoolId?: string;
+    /**
+     * Worker queue pod CPU
+     */
+    podCpu: string;
+    /**
+     * Worker queue pod memory
+     */
+    podMemory: string;
+    /**
+     * Worker queue worker concurrency
+     */
     workerConcurrency: number;
 }
 
-export interface GetClusterK8sTag {
-    /**
-     * The tag's key.
-     */
-    key: string;
-    /**
-     * The tag's value.
-     */
-    value: string;
-}
-
 export interface GetClusterMetadata {
-    externalIps?: string[];
-    oidcIssuerUrl?: string;
+    /**
+     * Cluster external IPs
+     */
+    externalIps: string[];
+    /**
+     * Cluster OIDC issuer URL
+     */
+    oidcIssuerUrl: string;
 }
 
 export interface GetClusterNodePool {
     /**
-     * Whether the node pool is the default node pool of the cluster.
+     * Node pool cloud provider
      */
-    isDefault?: boolean;
+    cloudProvider: string;
     /**
-     * The maximum number of nodes that can be created in the node pool.
+     * Node pool cluster identifier
+     */
+    clusterId: string;
+    /**
+     * Node pool creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Node pool identifier
+     */
+    id: string;
+    /**
+     * Whether the node pool is the default node pool of the cluster
+     */
+    isDefault: boolean;
+    /**
+     * Node pool maximum node count
      */
     maxNodeCount: number;
     /**
-     * The name of the node pool.
+     * Node pool name
      */
     name: string;
     /**
-     * The type of node instance that is used for the node pool.
+     * Node pool node instance type
      */
     nodeInstanceType: string;
+    /**
+     * Node pool supported Astro machines
+     */
+    supportedAstroMachines: string[];
+    /**
+     * Node pool last updated timestamp
+     */
+    updatedAt: string;
 }
 
-export interface GetOrganizationManagedDomain {
-    createdAt: string;
-    enforcedLogins: string[];
-    id: boolean;
+export interface GetClusterOptionsClusterOption {
+    /**
+     * ClusterOption database instances
+     */
+    databaseInstances: outputs.GetClusterOptionsClusterOptionDatabaseInstance[];
+    /**
+     * ClusterOption default database instance
+     */
+    defaultDatabaseInstance: outputs.GetClusterOptionsClusterOptionDefaultDatabaseInstance;
+    /**
+     * ClusterOption default node instance
+     */
+    defaultNodeInstance: outputs.GetClusterOptionsClusterOptionDefaultNodeInstance;
+    /**
+     * ClusterOption default pod subnet range
+     */
+    defaultPodSubnetRange: string;
+    /**
+     * ClusterOption default region
+     */
+    defaultRegion: outputs.GetClusterOptionsClusterOptionDefaultRegion;
+    /**
+     * ClusterOption default service peering range
+     */
+    defaultServicePeeringRange: string;
+    /**
+     * ClusterOption default service subnet range
+     */
+    defaultServiceSubnetRange: string;
+    /**
+     * ClusterOption default vps subnet range
+     */
+    defaultVpcSubnetRange: string;
+    /**
+     * ClusterOption node count default
+     */
+    nodeCountDefault: number;
+    /**
+     * ClusterOption node count max
+     */
+    nodeCountMax: number;
+    /**
+     * ClusterOption node count min
+     */
+    nodeCountMin: number;
+    /**
+     * ClusterOption node instances
+     */
+    nodeInstances: outputs.GetClusterOptionsClusterOptionNodeInstance[];
+    /**
+     * ClusterOption provider
+     */
+    provider: string;
+    /**
+     * ClusterOption regions
+     */
+    regions: outputs.GetClusterOptionsClusterOptionRegion[];
+}
+
+export interface GetClusterOptionsClusterOptionDatabaseInstance {
+    /**
+     * Provider instance cpu
+     */
+    cpu: number;
+    /**
+     * Provider instance memory
+     */
+    memory: string;
+    /**
+     * Provider instance name
+     */
     name: string;
+}
+
+export interface GetClusterOptionsClusterOptionDefaultDatabaseInstance {
+    /**
+     * Provider instance cpu
+     */
+    cpu: number;
+    /**
+     * Provider instance memory
+     */
+    memory: string;
+    /**
+     * Provider instance name
+     */
+    name: string;
+}
+
+export interface GetClusterOptionsClusterOptionDefaultNodeInstance {
+    /**
+     * Provider instance cpu
+     */
+    cpu: number;
+    /**
+     * Provider instance memory
+     */
+    memory: string;
+    /**
+     * Provider instance name
+     */
+    name: string;
+}
+
+export interface GetClusterOptionsClusterOptionDefaultRegion {
+    /**
+     * Region banned instances
+     */
+    bannedInstances: string[];
+    /**
+     * Region is limited bool
+     */
+    limited: boolean;
+    /**
+     * Region is limited bool
+     */
+    name: string;
+}
+
+export interface GetClusterOptionsClusterOptionNodeInstance {
+    /**
+     * Provider instance cpu
+     */
+    cpu: number;
+    /**
+     * Provider instance memory
+     */
+    memory: string;
+    /**
+     * Provider instance name
+     */
+    name: string;
+}
+
+export interface GetClusterOptionsClusterOptionRegion {
+    /**
+     * Region banned instances
+     */
+    bannedInstances: string[];
+    /**
+     * Region is limited bool
+     */
+    limited: boolean;
+    /**
+     * Region is limited bool
+     */
+    name: string;
+}
+
+export interface GetClusterTag {
+    /**
+     * Cluster tag key
+     */
+    key: string;
+    /**
+     * Cluster tag value
+     */
+    value: string;
+}
+
+export interface GetClustersCluster {
+    /**
+     * Cluster cloud provider
+     */
+    cloudProvider: string;
+    /**
+     * Cluster creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Cluster database instance type
+     */
+    dbInstanceType: string;
+    /**
+     * Cluster identifier
+     */
+    id: string;
+    /**
+     * Whether the cluster is limited
+     */
+    isLimited: boolean;
+    /**
+     * Cluster metadata
+     */
+    metadata: outputs.GetClustersClusterMetadata;
+    /**
+     * Cluster name
+     */
+    name: string;
+    /**
+     * Cluster node pools
+     */
+    nodePools: outputs.GetClustersClusterNodePool[];
+    /**
+     * Cluster pod subnet range
+     */
+    podSubnetRange: string;
+    /**
+     * Cluster provider account
+     */
+    providerAccount: string;
+    /**
+     * Cluster region
+     */
+    region: string;
+    /**
+     * Cluster service peering range
+     */
+    servicePeeringRange: string;
+    /**
+     * Cluster service subnet range
+     */
+    serviceSubnetRange: string;
+    /**
+     * Cluster status
+     */
     status: string;
+    /**
+     * Cluster tags
+     */
+    tags: outputs.GetClustersClusterTag[];
+    /**
+     * Cluster tenant ID
+     */
+    tenantId: string;
+    /**
+     * Cluster type
+     */
+    type: string;
+    /**
+     * Cluster last updated timestamp
+     */
     updatedAt: string;
+    /**
+     * Cluster VPC subnet range
+     */
+    vpcSubnetRange: string;
+    /**
+     * Cluster workspace IDs
+     */
+    workspaceIds: string[];
+}
+
+export interface GetClustersClusterMetadata {
+    /**
+     * Cluster external IPs
+     */
+    externalIps: string[];
+    /**
+     * Cluster OIDC issuer URL
+     */
+    oidcIssuerUrl: string;
+}
+
+export interface GetClustersClusterNodePool {
+    /**
+     * Node pool cloud provider
+     */
+    cloudProvider: string;
+    /**
+     * Node pool cluster identifier
+     */
+    clusterId: string;
+    /**
+     * Node pool creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Node pool identifier
+     */
+    id: string;
+    /**
+     * Whether the node pool is the default node pool of the cluster
+     */
+    isDefault: boolean;
+    /**
+     * Node pool maximum node count
+     */
+    maxNodeCount: number;
+    /**
+     * Node pool name
+     */
+    name: string;
+    /**
+     * Node pool node instance type
+     */
+    nodeInstanceType: string;
+    /**
+     * Node pool supported Astro machines
+     */
+    supportedAstroMachines: string[];
+    /**
+     * Node pool last updated timestamp
+     */
+    updatedAt: string;
+}
+
+export interface GetClustersClusterTag {
+    /**
+     * Cluster tag key
+     */
+    key: string;
+    /**
+     * Cluster tag value
+     */
+    value: string;
+}
+
+export interface GetDeploymentCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetDeploymentEnvironmentVariable {
+    /**
+     * Whether Environment variable is a secret
+     */
+    isSecret: boolean;
+    /**
+     * Environment variable key
+     */
+    key: string;
+    /**
+     * Environment variable last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Environment variable value
+     */
+    value: string;
+}
+
+export interface GetDeploymentOptionsResourceQuotas {
+    /**
+     * Default pod size options
+     */
+    defaultPodSize: outputs.GetDeploymentOptionsResourceQuotasDefaultPodSize;
+    /**
+     * Resource quota options
+     */
+    resourceQuota: outputs.GetDeploymentOptionsResourceQuotasResourceQuota;
+}
+
+export interface GetDeploymentOptionsResourceQuotasDefaultPodSize {
+    /**
+     * CPU resource range
+     */
+    cpu: outputs.GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu;
+    /**
+     * Memory resource range
+     */
+    memory: outputs.GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory;
+}
+
+export interface GetDeploymentOptionsResourceQuotasDefaultPodSizeCpu {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsResourceQuotasDefaultPodSizeMemory {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsResourceQuotasResourceQuota {
+    /**
+     * CPU resource range
+     */
+    cpu: outputs.GetDeploymentOptionsResourceQuotasResourceQuotaCpu;
+    /**
+     * Memory resource range
+     */
+    memory: outputs.GetDeploymentOptionsResourceQuotasResourceQuotaMemory;
+}
+
+export interface GetDeploymentOptionsResourceQuotasResourceQuotaCpu {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsResourceQuotasResourceQuotaMemory {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsRuntimeRelease {
+    airflowDatabaseMigration: boolean;
+    airflowVersion: string;
+    channel: string;
+    releaseDate: string;
+    stellarDatabaseMigration: boolean;
+    version: string;
+}
+
+export interface GetDeploymentOptionsSchedulerMachine {
+    name: string;
+    spec: outputs.GetDeploymentOptionsSchedulerMachineSpec;
+}
+
+export interface GetDeploymentOptionsSchedulerMachineSpec {
+    concurrency: string;
+    cpu: string;
+    ephemeralStorage: string;
+    memory: string;
+}
+
+export interface GetDeploymentOptionsWorkerMachine {
+    concurrency: outputs.GetDeploymentOptionsWorkerMachineConcurrency;
+    name: string;
+    spec: outputs.GetDeploymentOptionsWorkerMachineSpec;
+}
+
+export interface GetDeploymentOptionsWorkerMachineConcurrency {
+    ceiling: string;
+    default: string;
+    floor: string;
+}
+
+export interface GetDeploymentOptionsWorkerMachineSpec {
+    concurrency: string;
+    cpu: string;
+    ephemeralStorage: string;
+    memory: string;
+}
+
+export interface GetDeploymentOptionsWorkerQueues {
+    /**
+     * Worker queue maximum workers
+     */
+    maxWorkers: outputs.GetDeploymentOptionsWorkerQueuesMaxWorkers;
+    /**
+     * Worker queue minimum workers
+     */
+    minWorkers: outputs.GetDeploymentOptionsWorkerQueuesMinWorkers;
+    /**
+     * Worker queue worker concurrency
+     */
+    workerConcurrency: outputs.GetDeploymentOptionsWorkerQueuesWorkerConcurrency;
+}
+
+export interface GetDeploymentOptionsWorkerQueuesMaxWorkers {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsWorkerQueuesMinWorkers {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsWorkerQueuesWorkerConcurrency {
+    /**
+     * Resource range ceiling
+     */
+    ceiling: string;
+    /**
+     * Resource range default
+     */
+    default: string;
+    /**
+     * Resource range floor
+     */
+    floor: string;
+}
+
+export interface GetDeploymentOptionsWorkloadIdentityOption {
+    label: string;
+    role: string;
+}
+
+export interface GetDeploymentScalingSpec {
+    hibernationSpec: outputs.GetDeploymentScalingSpecHibernationSpec;
+}
+
+export interface GetDeploymentScalingSpecHibernationSpec {
+    override: outputs.GetDeploymentScalingSpecHibernationSpecOverride;
+    schedules: outputs.GetDeploymentScalingSpecHibernationSpecSchedule[];
+}
+
+export interface GetDeploymentScalingSpecHibernationSpecOverride {
+    /**
+     * Whether the override is active
+     */
+    isActive: boolean;
+    /**
+     * Whether the override is hibernating
+     */
+    isHibernating: boolean;
+    /**
+     * Time until the override is active
+     */
+    overrideUntil: string;
+}
+
+export interface GetDeploymentScalingSpecHibernationSpecSchedule {
+    /**
+     * Description of the schedule
+     */
+    description: string;
+    /**
+     * Cron expression for hibernation
+     */
+    hibernateAtCron: string;
+    /**
+     * Whether the schedule is enabled
+     */
+    isEnabled: boolean;
+    /**
+     * Cron expression for waking
+     */
+    wakeAtCron: string;
+}
+
+export interface GetDeploymentScalingStatus {
+    hibernationStatus: outputs.GetDeploymentScalingStatusHibernationStatus;
+}
+
+export interface GetDeploymentScalingStatusHibernationStatus {
+    /**
+     * Whether the deployment is hibernating
+     */
+    isHibernating: boolean;
+    /**
+     * Time of the next event
+     */
+    nextEventAt: string;
+    /**
+     * Type of the next event
+     */
+    nextEventType: string;
+    /**
+     * Reason for the current state
+     */
+    reason: string;
+}
+
+export interface GetDeploymentUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetDeploymentWorkerQueue {
+    /**
+     * Worker queue Astro machine value
+     */
+    astroMachine: string;
+    /**
+     * Worker queue identifier
+     */
+    id: string;
+    /**
+     * Whether Worker queue is default
+     */
+    isDefault: boolean;
+    /**
+     * Worker queue max worker count
+     */
+    maxWorkerCount: number;
+    /**
+     * Worker queue min worker count
+     */
+    minWorkerCount: number;
+    /**
+     * Worker queue name
+     */
+    name: string;
+    /**
+     * Worker queue node pool identifier
+     */
+    nodePoolId: string;
+    /**
+     * Worker queue pod CPU
+     */
+    podCpu: string;
+    /**
+     * Worker queue pod memory
+     */
+    podMemory: string;
+    /**
+     * Worker queue worker concurrency
+     */
+    workerConcurrency: number;
+}
+
+export interface GetDeploymentsDeployment {
+    /**
+     * Deployment Airflow version
+     */
+    airflowVersion: string;
+    /**
+     * Deployment Astro Runtime version
+     */
+    astroRuntimeVersion: string;
+    /**
+     * Deployment cloud provider
+     */
+    cloudProvider: string;
+    /**
+     * Deployment cluster identifier
+     */
+    clusterId: string;
+    /**
+     * Deployment contact emails
+     */
+    contactEmails: string[];
+    /**
+     * Deployment creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Deployment creator
+     */
+    createdBy: outputs.GetDeploymentsDeploymentCreatedBy;
+    /**
+     * Deployment DAG tarball version
+     */
+    dagTarballVersion: string;
+    /**
+     * Deployment default task pod CPU
+     */
+    defaultTaskPodCpu: string;
+    /**
+     * Deployment default task pod memory
+     */
+    defaultTaskPodMemory: string;
+    /**
+     * Deployment description
+     */
+    description: string;
+    /**
+     * Deployment desired DAG tarball version
+     */
+    desiredDagTarballVersion: string;
+    /**
+     * Deployment environment variables
+     */
+    environmentVariables: outputs.GetDeploymentsDeploymentEnvironmentVariable[];
+    /**
+     * Deployment executor
+     */
+    executor: string;
+    /**
+     * Deployment external IPs
+     */
+    externalIps: string[];
+    /**
+     * Deployment identifier
+     */
+    id: string;
+    /**
+     * Deployment image repository
+     */
+    imageRepository: string;
+    /**
+     * Deployment image tag
+     */
+    imageTag: string;
+    /**
+     * Deployment image version
+     */
+    imageVersion: string;
+    /**
+     * Whether the Deployment enforces CI/CD deploys
+     */
+    isCicdEnforced: boolean;
+    /**
+     * Whether DAG deploy is enabled
+     */
+    isDagDeployEnabled: boolean;
+    /**
+     * Whether Deployment is in development mode
+     */
+    isDevelopmentMode: boolean;
+    /**
+     * Whether Deployment has high availability
+     */
+    isHighAvailability: boolean;
+    /**
+     * Deployment name
+     */
+    name: string;
+    /**
+     * Deployment namespace
+     */
+    namespace: string;
+    /**
+     * Deployment OIDC issuer URL
+     */
+    oidcIssuerUrl: string;
+    /**
+     * Deployment region
+     */
+    region: string;
+    /**
+     * Deployment resource quota CPU
+     */
+    resourceQuotaCpu: string;
+    /**
+     * Deployment resource quota memory
+     */
+    resourceQuotaMemory: string;
+    /**
+     * Deployment scaling spec
+     */
+    scalingSpec: outputs.GetDeploymentsDeploymentScalingSpec;
+    /**
+     * Deployment scaling status
+     */
+    scalingStatus: outputs.GetDeploymentsDeploymentScalingStatus;
+    /**
+     * Deployment scheduler AU
+     */
+    schedulerAu: number;
+    /**
+     * Deployment scheduler CPU
+     */
+    schedulerCpu: string;
+    /**
+     * Deployment scheduler memory
+     */
+    schedulerMemory: string;
+    /**
+     * Deployment scheduler replicas
+     */
+    schedulerReplicas: number;
+    /**
+     * Deployment scheduler size
+     */
+    schedulerSize: string;
+    /**
+     * Deployment status
+     */
+    status: string;
+    /**
+     * Deployment status reason
+     */
+    statusReason: string;
+    /**
+     * Deployment task pod node pool identifier
+     */
+    taskPodNodePoolId: string;
+    /**
+     * Deployment type
+     */
+    type: string;
+    /**
+     * Deployment last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Deployment updater
+     */
+    updatedBy: outputs.GetDeploymentsDeploymentUpdatedBy;
+    /**
+     * Deployment webserver Airflow API URL
+     */
+    webserverAirflowApiUrl: string;
+    /**
+     * Deployment webserver ingress hostname
+     */
+    webserverIngressHostname: string;
+    /**
+     * Deployment webserver URL
+     */
+    webserverUrl: string;
+    /**
+     * Deployment worker queues
+     */
+    workerQueues: outputs.GetDeploymentsDeploymentWorkerQueue[];
+    /**
+     * Deployment workload identity
+     */
+    workloadIdentity: string;
+    /**
+     * Deployment workspace identifier
+     */
+    workspaceId: string;
+}
+
+export interface GetDeploymentsDeploymentCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetDeploymentsDeploymentEnvironmentVariable {
+    /**
+     * Whether Environment variable is a secret
+     */
+    isSecret: boolean;
+    /**
+     * Environment variable key
+     */
+    key: string;
+    /**
+     * Environment variable last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Environment variable value
+     */
+    value: string;
+}
+
+export interface GetDeploymentsDeploymentScalingSpec {
+    hibernationSpec: outputs.GetDeploymentsDeploymentScalingSpecHibernationSpec;
+}
+
+export interface GetDeploymentsDeploymentScalingSpecHibernationSpec {
+    override: outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecOverride;
+    schedules: outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule[];
+}
+
+export interface GetDeploymentsDeploymentScalingSpecHibernationSpecOverride {
+    /**
+     * Whether the override is active
+     */
+    isActive: boolean;
+    /**
+     * Whether the override is hibernating
+     */
+    isHibernating: boolean;
+    /**
+     * Time until the override is active
+     */
+    overrideUntil: string;
+}
+
+export interface GetDeploymentsDeploymentScalingSpecHibernationSpecSchedule {
+    /**
+     * Description of the schedule
+     */
+    description: string;
+    /**
+     * Cron expression for hibernation
+     */
+    hibernateAtCron: string;
+    /**
+     * Whether the schedule is enabled
+     */
+    isEnabled: boolean;
+    /**
+     * Cron expression for waking
+     */
+    wakeAtCron: string;
+}
+
+export interface GetDeploymentsDeploymentScalingStatus {
+    hibernationStatus: outputs.GetDeploymentsDeploymentScalingStatusHibernationStatus;
+}
+
+export interface GetDeploymentsDeploymentScalingStatusHibernationStatus {
+    /**
+     * Whether the deployment is hibernating
+     */
+    isHibernating: boolean;
+    /**
+     * Time of the next event
+     */
+    nextEventAt: string;
+    /**
+     * Type of the next event
+     */
+    nextEventType: string;
+    /**
+     * Reason for the current state
+     */
+    reason: string;
+}
+
+export interface GetDeploymentsDeploymentUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetDeploymentsDeploymentWorkerQueue {
+    /**
+     * Worker queue Astro machine value
+     */
+    astroMachine: string;
+    /**
+     * Worker queue identifier
+     */
+    id: string;
+    /**
+     * Whether Worker queue is default
+     */
+    isDefault: boolean;
+    /**
+     * Worker queue max worker count
+     */
+    maxWorkerCount: number;
+    /**
+     * Worker queue min worker count
+     */
+    minWorkerCount: number;
+    /**
+     * Worker queue name
+     */
+    name: string;
+    /**
+     * Worker queue node pool identifier
+     */
+    nodePoolId: string;
+    /**
+     * Worker queue pod CPU
+     */
+    podCpu: string;
+    /**
+     * Worker queue pod memory
+     */
+    podMemory: string;
+    /**
+     * Worker queue worker concurrency
+     */
+    workerConcurrency: number;
+}
+
+export interface GetOrganizationCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetOrganizationUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetTeamCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetTeamDeploymentRole {
+    /**
+     * The ID of the deployment the role is assigned to
+     */
+    deploymentId: string;
+    /**
+     * The role assigned to the deployment
+     */
+    role: string;
+}
+
+export interface GetTeamUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetTeamWorkspaceRole {
+    /**
+     * The role assigned to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace the role is assigned to
+     */
+    workspaceId: string;
+}
+
+export interface GetTeamsTeam {
+    /**
+     * Team creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Team creator
+     */
+    createdBy: outputs.GetTeamsTeamCreatedBy;
+    /**
+     * The roles assigned to the deployments
+     */
+    deploymentRoles: outputs.GetTeamsTeamDeploymentRole[];
+    /**
+     * Team description
+     */
+    description: string;
+    /**
+     * Team identifier
+     */
+    id: string;
+    /**
+     * Whether the team is managed by an identity provider
+     */
+    isIdpManaged: boolean;
+    /**
+     * Team name
+     */
+    name: string;
+    /**
+     * The role assigned to the organization
+     */
+    organizationRole: string;
+    /**
+     * Number of roles assigned to the team
+     */
+    rolesCount: number;
+    /**
+     * Team last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Team updater
+     */
+    updatedBy: outputs.GetTeamsTeamUpdatedBy;
+    /**
+     * The roles assigned to the workspaces
+     */
+    workspaceRoles: outputs.GetTeamsTeamWorkspaceRole[];
+}
+
+export interface GetTeamsTeamCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetTeamsTeamDeploymentRole {
+    /**
+     * The ID of the deployment the role is assigned to
+     */
+    deploymentId: string;
+    /**
+     * The role assigned to the deployment
+     */
+    role: string;
+}
+
+export interface GetTeamsTeamUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetTeamsTeamWorkspaceRole {
+    /**
+     * The role assigned to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace the role is assigned to
+     */
+    workspaceId: string;
+}
+
+export interface GetWorkspaceCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetWorkspaceUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetWorkspacesWorkspace {
+    /**
+     * Whether new Deployments enforce CI/CD deploys by default
+     */
+    cicdEnforcedDefault: boolean;
+    /**
+     * Workspace creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Workspace creator
+     */
+    createdBy: outputs.GetWorkspacesWorkspaceCreatedBy;
+    /**
+     * Workspace description
+     */
+    description: string;
+    /**
+     * Workspace identifier
+     */
+    id: string;
+    /**
+     * Workspace name
+     */
+    name: string;
+    /**
+     * Workspace last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Workspace updater
+     */
+    updatedBy: outputs.GetWorkspacesWorkspaceUpdatedBy;
+}
+
+export interface GetWorkspacesWorkspaceCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetWorkspacesWorkspaceUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface TeamRolesDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: string;
+    /**
+     * The role to assign to the deployment
+     */
+    role: string;
+}
+
+export interface TeamRolesWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: string;
+}
+
+export interface WorkspaceCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface WorkspaceUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
 }
 

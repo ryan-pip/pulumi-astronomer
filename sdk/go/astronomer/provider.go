@@ -12,16 +12,18 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// The provider type for the astronomer package. By default, resources use package-wide configuration
+// The provider type for the astro package. By default, resources use package-wide configuration
 // settings, however an explicit `Provider` instance may be created and passed during resource
 // construction to achieve fine-grained programmatic control over provider settings. See the
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// Organization id this provider will operate on.
+	// API host to use for the provider. Default is `https://api.astronomer.io`
+	Host pulumi.StringPtrOutput `pulumi:"host"`
+	// Organization ID this provider will operate on.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+	// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 }
 
@@ -36,7 +38,7 @@ func NewProvider(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'OrganizationId'")
 	}
 	if args.Token == nil {
-		if d := internal.GetEnvOrDefault(nil, nil, "ASTRONOMER_API_TOKEN"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "ASTRO_API_TOKEN"); d != nil {
 			args.Token = pulumi.StringPtr(d.(string))
 		}
 	}
@@ -57,17 +59,21 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// Organization id this provider will operate on.
+	// API host to use for the provider. Default is `https://api.astronomer.io`
+	Host *string `pulumi:"host"`
+	// Organization ID this provider will operate on.
 	OrganizationId string `pulumi:"organizationId"`
-	// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+	// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 	Token *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// Organization id this provider will operate on.
+	// API host to use for the provider. Default is `https://api.astronomer.io`
+	Host pulumi.StringPtrInput
+	// Organization ID this provider will operate on.
 	OrganizationId pulumi.StringInput
-	// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+	// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 	Token pulumi.StringPtrInput
 }
 
@@ -108,12 +114,17 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// Organization id this provider will operate on.
+// API host to use for the provider. Default is `https://api.astronomer.io`
+func (o ProviderOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Organization ID this provider will operate on.
 func (o ProviderOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 func (o ProviderOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }

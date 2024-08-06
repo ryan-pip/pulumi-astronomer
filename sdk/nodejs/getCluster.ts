@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Astronomer Cluster Data Source
+ * Cluster data source
  *
  * ## Example Usage
  *
@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const importedCluster = astronomer.getCluster({
- *     id: "clqoclq8201pp01p0cbt77feb",
+ * const example = astronomer.getCluster({
+ *     id: "clozc036j01to01jrlgvueo8t",
  * });
  * ```
  */
@@ -33,7 +33,7 @@ export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetClusterArgs {
     /**
-     * The cluster's identifier.
+     * Cluster identifier
      */
     id: string;
 }
@@ -43,80 +43,88 @@ export interface GetClusterArgs {
  */
 export interface GetClusterResult {
     /**
-     * The cluster's cloud provider.
+     * Cluster cloud provider
      */
     readonly cloudProvider: string;
     /**
-     * The type of database instance that is used for the cluster. Required for Hybrid clusters.
+     * Cluster creation timestamp
+     */
+    readonly createdAt: string;
+    /**
+     * Cluster database instance type
      */
     readonly dbInstanceType: string;
     /**
-     * The cluster's identifier.
+     * Cluster identifier
      */
     readonly id: string;
     /**
-     * Whether the cluster is limited.
+     * Whether the cluster is limited
      */
     readonly isLimited: boolean;
     /**
-     * The Kubernetes tags in the cluster.
-     */
-    readonly k8sTags: outputs.GetClusterK8sTag[];
-    /**
-     * The cluster's metadata.
+     * Cluster metadata
      */
     readonly metadata: outputs.GetClusterMetadata;
     /**
-     * The cluster's name.
+     * Cluster name
      */
     readonly name: string;
     /**
-     * The list of node pools to create in the cluster.
+     * Cluster node pools
      */
     readonly nodePools: outputs.GetClusterNodePool[];
     /**
-     * The organization this cluster is associated with.
-     */
-    readonly organizationId: string;
-    /**
-     * The subnet range for Pods. For GCP clusters only.
+     * Cluster pod subnet range
      */
     readonly podSubnetRange: string;
     /**
-     * The provider account ID. Required for Hybrid clusters.
+     * Cluster provider account
      */
     readonly providerAccount: string;
     /**
-     * The cluster's region.
+     * Cluster region
      */
     readonly region: string;
     /**
-     * The service peering range. For GCP clusters only.
+     * Cluster service peering range
      */
     readonly servicePeeringRange: string;
     /**
-     * The service subnet range. For GCP clusters only.
+     * Cluster service subnet range
      */
     readonly serviceSubnetRange: string;
     /**
-     * The tenant ID. For Azure clusters only.
+     * Cluster status
+     */
+    readonly status: string;
+    /**
+     * Cluster tags
+     */
+    readonly tags: outputs.GetClusterTag[];
+    /**
+     * Cluster tenant ID
      */
     readonly tenantId: string;
     /**
-     * The cluster's type.
+     * Cluster type
      */
     readonly type: string;
     /**
-     * The VPC subnet range.
+     * Cluster last updated timestamp
+     */
+    readonly updatedAt: string;
+    /**
+     * Cluster VPC subnet range
      */
     readonly vpcSubnetRange: string;
     /**
-     * The list of Workspaces that are authorized to the cluster.
+     * Cluster workspace IDs
      */
     readonly workspaceIds: string[];
 }
 /**
- * Astronomer Cluster Data Source
+ * Cluster data source
  *
  * ## Example Usage
  *
@@ -124,8 +132,8 @@ export interface GetClusterResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const importedCluster = astronomer.getCluster({
- *     id: "clqoclq8201pp01p0cbt77feb",
+ * const example = astronomer.getCluster({
+ *     id: "clozc036j01to01jrlgvueo8t",
  * });
  * ```
  */
@@ -138,7 +146,7 @@ export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.Invok
  */
 export interface GetClusterOutputArgs {
     /**
-     * The cluster's identifier.
+     * Cluster identifier
      */
     id: pulumi.Input<string>;
 }

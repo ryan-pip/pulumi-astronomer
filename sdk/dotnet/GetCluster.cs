@@ -13,11 +13,9 @@ namespace RyanPip.Astronomer
     public static class GetCluster
     {
         /// <summary>
-        /// Astronomer Cluster Data Source
+        /// Cluster data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,25 +25,21 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var importedCluster = Astronomer.GetCluster.Invoke(new()
+        ///     var example = Astronomer.GetCluster.Invoke(new()
         ///     {
-        ///         Id = "clqoclq8201pp01p0cbt77feb",
+        ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("astronomer:index/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Astronomer Cluster Data Source
+        /// Cluster data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,15 +49,13 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var importedCluster = Astronomer.GetCluster.Invoke(new()
+        ///     var example = Astronomer.GetCluster.Invoke(new()
         ///     {
-        ///         Id = "clqoclq8201pp01p0cbt77feb",
+        ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("astronomer:index/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
@@ -73,7 +65,7 @@ namespace RyanPip.Astronomer
     public sealed class GetClusterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster's identifier.
+        /// Cluster identifier
         /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
@@ -87,7 +79,7 @@ namespace RyanPip.Astronomer
     public sealed class GetClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster's identifier.
+        /// Cluster identifier
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -103,75 +95,83 @@ namespace RyanPip.Astronomer
     public sealed class GetClusterResult
     {
         /// <summary>
-        /// The cluster's cloud provider.
+        /// Cluster cloud provider
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
-        /// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+        /// Cluster creation timestamp
+        /// </summary>
+        public readonly string CreatedAt;
+        /// <summary>
+        /// Cluster database instance type
         /// </summary>
         public readonly string DbInstanceType;
         /// <summary>
-        /// The cluster's identifier.
+        /// Cluster identifier
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether the cluster is limited.
+        /// Whether the cluster is limited
         /// </summary>
         public readonly bool IsLimited;
         /// <summary>
-        /// The Kubernetes tags in the cluster.
-        /// </summary>
-        public readonly ImmutableArray<Outputs.GetClusterK8sTagResult> K8sTags;
-        /// <summary>
-        /// The cluster's metadata.
+        /// Cluster metadata
         /// </summary>
         public readonly Outputs.GetClusterMetadataResult Metadata;
         /// <summary>
-        /// The cluster's name.
+        /// Cluster name
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The list of node pools to create in the cluster.
+        /// Cluster node pools
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterNodePoolResult> NodePools;
         /// <summary>
-        /// The organization this cluster is associated with.
-        /// </summary>
-        public readonly string OrganizationId;
-        /// <summary>
-        /// The subnet range for Pods. For GCP clusters only.
+        /// Cluster pod subnet range
         /// </summary>
         public readonly string PodSubnetRange;
         /// <summary>
-        /// The provider account ID. Required for Hybrid clusters.
+        /// Cluster provider account
         /// </summary>
         public readonly string ProviderAccount;
         /// <summary>
-        /// The cluster's region.
+        /// Cluster region
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// The service peering range. For GCP clusters only.
+        /// Cluster service peering range
         /// </summary>
         public readonly string ServicePeeringRange;
         /// <summary>
-        /// The service subnet range. For GCP clusters only.
+        /// Cluster service subnet range
         /// </summary>
         public readonly string ServiceSubnetRange;
         /// <summary>
-        /// The tenant ID. For Azure clusters only.
+        /// Cluster status
+        /// </summary>
+        public readonly string Status;
+        /// <summary>
+        /// Cluster tags
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetClusterTagResult> Tags;
+        /// <summary>
+        /// Cluster tenant ID
         /// </summary>
         public readonly string TenantId;
         /// <summary>
-        /// The cluster's type.
+        /// Cluster type
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// The VPC subnet range.
+        /// Cluster last updated timestamp
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
+        /// Cluster VPC subnet range
         /// </summary>
         public readonly string VpcSubnetRange;
         /// <summary>
-        /// The list of Workspaces that are authorized to the cluster.
+        /// Cluster workspace IDs
         /// </summary>
         public readonly ImmutableArray<string> WorkspaceIds;
 
@@ -179,21 +179,19 @@ namespace RyanPip.Astronomer
         private GetClusterResult(
             string cloudProvider,
 
+            string createdAt,
+
             string dbInstanceType,
 
             string id,
 
             bool isLimited,
 
-            ImmutableArray<Outputs.GetClusterK8sTagResult> k8sTags,
-
             Outputs.GetClusterMetadataResult metadata,
 
             string name,
 
             ImmutableArray<Outputs.GetClusterNodePoolResult> nodePools,
-
-            string organizationId,
 
             string podSubnetRange,
 
@@ -205,30 +203,38 @@ namespace RyanPip.Astronomer
 
             string serviceSubnetRange,
 
+            string status,
+
+            ImmutableArray<Outputs.GetClusterTagResult> tags,
+
             string tenantId,
 
             string type,
+
+            string updatedAt,
 
             string vpcSubnetRange,
 
             ImmutableArray<string> workspaceIds)
         {
             CloudProvider = cloudProvider;
+            CreatedAt = createdAt;
             DbInstanceType = dbInstanceType;
             Id = id;
             IsLimited = isLimited;
-            K8sTags = k8sTags;
             Metadata = metadata;
             Name = name;
             NodePools = nodePools;
-            OrganizationId = organizationId;
             PodSubnetRange = podSubnetRange;
             ProviderAccount = providerAccount;
             Region = region;
             ServicePeeringRange = servicePeeringRange;
             ServiceSubnetRange = serviceSubnetRange;
+            Status = status;
+            Tags = tags;
             TenantId = tenantId;
             Type = type;
+            UpdatedAt = updatedAt;
             VpcSubnetRange = vpcSubnetRange;
             WorkspaceIds = workspaceIds;
         }

@@ -13,11 +13,9 @@ namespace RyanPip.Astronomer
     public static class GetWorkspace
     {
         /// <summary>
-        /// Astronomer Workspace Resource
+        /// Workspace data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,25 +25,21 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var importedWorkspace = Astronomer.GetWorkspace.Invoke(new()
+        ///     var example = Astronomer.GetWorkspace.Invoke(new()
         ///     {
-        ///         Id = "cabcabcabcabcabcabcabcabcabc",
+        ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetWorkspaceResult> InvokeAsync(GetWorkspaceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWorkspaceResult>("astronomer:index/getWorkspace:getWorkspace", args ?? new GetWorkspaceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Astronomer Workspace Resource
+        /// Workspace data source
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,15 +49,13 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var importedWorkspace = Astronomer.GetWorkspace.Invoke(new()
+        ///     var example = Astronomer.GetWorkspace.Invoke(new()
         ///     {
-        ///         Id = "cabcabcabcabcabcabcabcabcabc",
+        ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetWorkspaceResult> Invoke(GetWorkspaceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWorkspaceResult>("astronomer:index/getWorkspace:getWorkspace", args ?? new GetWorkspaceInvokeArgs(), options.WithDefaults());
@@ -73,7 +65,7 @@ namespace RyanPip.Astronomer
     public sealed class GetWorkspaceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Workspace's identifier.
+        /// Workspace identifier
         /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
@@ -87,7 +79,7 @@ namespace RyanPip.Astronomer
     public sealed class GetWorkspaceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Workspace's identifier.
+        /// Workspace identifier
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -103,36 +95,64 @@ namespace RyanPip.Astronomer
     public sealed class GetWorkspaceResult
     {
         /// <summary>
-        /// Whether new Deployments enforce CI/CD deploys by default.
+        /// Whether new Deployments enforce CI/CD deploys by default
         /// </summary>
         public readonly bool CicdEnforcedDefault;
         /// <summary>
-        /// The Workspace's description
+        /// Workspace creation timestamp
+        /// </summary>
+        public readonly string CreatedAt;
+        /// <summary>
+        /// Workspace creator
+        /// </summary>
+        public readonly Outputs.GetWorkspaceCreatedByResult CreatedBy;
+        /// <summary>
+        /// Workspace description
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The Workspace's identifier.
+        /// Workspace identifier
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The Workspace's name
+        /// Workspace name
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Workspace last updated timestamp
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
+        /// Workspace updater
+        /// </summary>
+        public readonly Outputs.GetWorkspaceUpdatedByResult UpdatedBy;
 
         [OutputConstructor]
         private GetWorkspaceResult(
             bool cicdEnforcedDefault,
 
+            string createdAt,
+
+            Outputs.GetWorkspaceCreatedByResult createdBy,
+
             string description,
 
             string id,
 
-            string name)
+            string name,
+
+            string updatedAt,
+
+            Outputs.GetWorkspaceUpdatedByResult updatedBy)
         {
             CicdEnforcedDefault = cicdEnforcedDefault;
+            CreatedAt = createdAt;
+            CreatedBy = createdBy;
             Description = description;
             Id = id;
             Name = name;
+            UpdatedAt = updatedAt;
+            UpdatedBy = updatedBy;
         }
     }
 }

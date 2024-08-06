@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Astronomer Workspace Resource
+// Workspace resource
 //
 // ## Example Usage
 //
@@ -27,9 +28,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.NewWorkspace(ctx, "completeSetup", &astronomer.WorkspaceArgs{
+//			_, err := astronomer.NewWorkspace(ctx, "example", &astronomer.WorkspaceArgs{
+//				Description:         pulumi.String("my first workspace"),
 //				CicdEnforcedDefault: pulumi.Bool(true),
-//				Description:         pulumi.String("Testing Workspace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.NewWorkspace(ctx, "importedWorkspace", &astronomer.WorkspaceArgs{
+//				Description:         pulumi.String("an existing workspace"),
+//				CicdEnforcedDefault: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -42,21 +50,35 @@ import (
 type Workspace struct {
 	pulumi.CustomResourceState
 
-	// Whether new Deployments enforce CI/CD deploys by default.
-	CicdEnforcedDefault pulumi.BoolPtrOutput `pulumi:"cicdEnforcedDefault"`
-	// The Workspace's description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The Workspace's name.
+	// Whether new Deployments enforce CI/CD deploys by default
+	CicdEnforcedDefault pulumi.BoolOutput `pulumi:"cicdEnforcedDefault"`
+	// Workspace creation timestamp
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Workspace creator
+	CreatedBy WorkspaceCreatedByOutput `pulumi:"createdBy"`
+	// Workspace description
+	Description pulumi.StringOutput `pulumi:"description"`
+	// Workspace name
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Workspace last updated timestamp
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// Workspace updater
+	UpdatedBy WorkspaceUpdatedByOutput `pulumi:"updatedBy"`
 }
 
 // NewWorkspace registers a new resource with the given unique name, arguments, and options.
 func NewWorkspace(ctx *pulumi.Context,
 	name string, args *WorkspaceArgs, opts ...pulumi.ResourceOption) (*Workspace, error) {
 	if args == nil {
-		args = &WorkspaceArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.CicdEnforcedDefault == nil {
+		return nil, errors.New("invalid value for required argument 'CicdEnforcedDefault'")
+	}
+	if args.Description == nil {
+		return nil, errors.New("invalid value for required argument 'Description'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Workspace
 	err := ctx.RegisterResource("astronomer:index/workspace:Workspace", name, args, &resource, opts...)
@@ -80,21 +102,37 @@ func GetWorkspace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Workspace resources.
 type workspaceState struct {
-	// Whether new Deployments enforce CI/CD deploys by default.
+	// Whether new Deployments enforce CI/CD deploys by default
 	CicdEnforcedDefault *bool `pulumi:"cicdEnforcedDefault"`
-	// The Workspace's description.
+	// Workspace creation timestamp
+	CreatedAt *string `pulumi:"createdAt"`
+	// Workspace creator
+	CreatedBy *WorkspaceCreatedBy `pulumi:"createdBy"`
+	// Workspace description
 	Description *string `pulumi:"description"`
-	// The Workspace's name.
+	// Workspace name
 	Name *string `pulumi:"name"`
+	// Workspace last updated timestamp
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// Workspace updater
+	UpdatedBy *WorkspaceUpdatedBy `pulumi:"updatedBy"`
 }
 
 type WorkspaceState struct {
-	// Whether new Deployments enforce CI/CD deploys by default.
+	// Whether new Deployments enforce CI/CD deploys by default
 	CicdEnforcedDefault pulumi.BoolPtrInput
-	// The Workspace's description.
+	// Workspace creation timestamp
+	CreatedAt pulumi.StringPtrInput
+	// Workspace creator
+	CreatedBy WorkspaceCreatedByPtrInput
+	// Workspace description
 	Description pulumi.StringPtrInput
-	// The Workspace's name.
+	// Workspace name
 	Name pulumi.StringPtrInput
+	// Workspace last updated timestamp
+	UpdatedAt pulumi.StringPtrInput
+	// Workspace updater
+	UpdatedBy WorkspaceUpdatedByPtrInput
 }
 
 func (WorkspaceState) ElementType() reflect.Type {
@@ -102,21 +140,21 @@ func (WorkspaceState) ElementType() reflect.Type {
 }
 
 type workspaceArgs struct {
-	// Whether new Deployments enforce CI/CD deploys by default.
-	CicdEnforcedDefault *bool `pulumi:"cicdEnforcedDefault"`
-	// The Workspace's description.
-	Description *string `pulumi:"description"`
-	// The Workspace's name.
+	// Whether new Deployments enforce CI/CD deploys by default
+	CicdEnforcedDefault bool `pulumi:"cicdEnforcedDefault"`
+	// Workspace description
+	Description string `pulumi:"description"`
+	// Workspace name
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Workspace resource.
 type WorkspaceArgs struct {
-	// Whether new Deployments enforce CI/CD deploys by default.
-	CicdEnforcedDefault pulumi.BoolPtrInput
-	// The Workspace's description.
-	Description pulumi.StringPtrInput
-	// The Workspace's name.
+	// Whether new Deployments enforce CI/CD deploys by default
+	CicdEnforcedDefault pulumi.BoolInput
+	// Workspace description
+	Description pulumi.StringInput
+	// Workspace name
 	Name pulumi.StringPtrInput
 }
 
@@ -207,19 +245,39 @@ func (o WorkspaceOutput) ToWorkspaceOutputWithContext(ctx context.Context) Works
 	return o
 }
 
-// Whether new Deployments enforce CI/CD deploys by default.
-func (o WorkspaceOutput) CicdEnforcedDefault() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Workspace) pulumi.BoolPtrOutput { return v.CicdEnforcedDefault }).(pulumi.BoolPtrOutput)
+// Whether new Deployments enforce CI/CD deploys by default
+func (o WorkspaceOutput) CicdEnforcedDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Workspace) pulumi.BoolOutput { return v.CicdEnforcedDefault }).(pulumi.BoolOutput)
 }
 
-// The Workspace's description.
-func (o WorkspaceOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Workspace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+// Workspace creation timestamp
+func (o WorkspaceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The Workspace's name.
+// Workspace creator
+func (o WorkspaceOutput) CreatedBy() WorkspaceCreatedByOutput {
+	return o.ApplyT(func(v *Workspace) WorkspaceCreatedByOutput { return v.CreatedBy }).(WorkspaceCreatedByOutput)
+}
+
+// Workspace description
+func (o WorkspaceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// Workspace name
 func (o WorkspaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Workspace last updated timestamp
+func (o WorkspaceOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Workspace updater
+func (o WorkspaceOutput) UpdatedBy() WorkspaceUpdatedByOutput {
+	return o.ApplyT(func(v *Workspace) WorkspaceUpdatedByOutput { return v.UpdatedBy }).(WorkspaceUpdatedByOutput)
 }
 
 type WorkspaceArrayOutput struct{ *pulumi.OutputState }

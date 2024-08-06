@@ -13,13 +13,49 @@ namespace RyanPip.Astronomer
     public static class GetDeployment
     {
         /// <summary>
-        /// Astronomer Deployment Resource
+        /// Deployment data source
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Astronomer = Pulumi.Astronomer;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Astronomer.GetDeployment.Invoke(new()
+        ///     {
+        ///         Id = "clozc036j01to01jrlgvueo8t",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetDeploymentResult> InvokeAsync(GetDeploymentArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("astronomer:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Astronomer Deployment Resource
+        /// Deployment data source
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Astronomer = Pulumi.Astronomer;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Astronomer.GetDeployment.Invoke(new()
+        ///     {
+        ///         Id = "clozc036j01to01jrlgvueo8t",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("astronomer:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
@@ -29,7 +65,7 @@ namespace RyanPip.Astronomer
     public sealed class GetDeploymentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Deployment's Identifier
+        /// Deployment identifier
         /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
@@ -43,7 +79,7 @@ namespace RyanPip.Astronomer
     public sealed class GetDeploymentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Deployment's Identifier
+        /// Deployment identifier
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -59,64 +95,344 @@ namespace RyanPip.Astronomer
     public sealed class GetDeploymentResult
     {
         /// <summary>
-        /// The Deployment's Astro Runtime version.
+        /// Deployment Airflow version
         /// </summary>
         public readonly string AirflowVersion;
         /// <summary>
-        /// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+        /// Deployment Astro Runtime version
+        /// </summary>
+        public readonly string AstroRuntimeVersion;
+        /// <summary>
+        /// Deployment cloud provider
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
-        /// The ID of the cluster to which the Deployment will be created in. Optional if cloud provider and region is specified.
+        /// Deployment cluster identifier
         /// </summary>
         public readonly string ClusterId;
         /// <summary>
-        /// Cluster Name
+        /// Deployment contact emails
         /// </summary>
-        public readonly string ClusterName;
+        public readonly ImmutableArray<string> ContactEmails;
         /// <summary>
-        /// The Deployment's description.
+        /// Deployment creation timestamp
+        /// </summary>
+        public readonly string CreatedAt;
+        /// <summary>
+        /// Deployment creator
+        /// </summary>
+        public readonly Outputs.GetDeploymentCreatedByResult CreatedBy;
+        /// <summary>
+        /// Deployment DAG tarball version
+        /// </summary>
+        public readonly string DagTarballVersion;
+        /// <summary>
+        /// Deployment default task pod CPU
+        /// </summary>
+        public readonly string DefaultTaskPodCpu;
+        /// <summary>
+        /// Deployment default task pod memory
+        /// </summary>
+        public readonly string DefaultTaskPodMemory;
+        /// <summary>
+        /// Deployment description
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The Deployment's Identifier
+        /// Deployment desired DAG tarball version
+        /// </summary>
+        public readonly string DesiredDagTarballVersion;
+        /// <summary>
+        /// Deployment environment variables
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentEnvironmentVariableResult> EnvironmentVariables;
+        /// <summary>
+        /// Deployment executor
+        /// </summary>
+        public readonly string Executor;
+        /// <summary>
+        /// Deployment external IPs
+        /// </summary>
+        public readonly ImmutableArray<string> ExternalIps;
+        /// <summary>
+        /// Deployment identifier
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether the Deployment requires that all deploys are made through CI/CD.
+        /// Deployment image repository
+        /// </summary>
+        public readonly string ImageRepository;
+        /// <summary>
+        /// Deployment image tag
+        /// </summary>
+        public readonly string ImageTag;
+        /// <summary>
+        /// Deployment image version
+        /// </summary>
+        public readonly string ImageVersion;
+        /// <summary>
+        /// Whether the Deployment enforces CI/CD deploys
         /// </summary>
         public readonly bool IsCicdEnforced;
         /// <summary>
-        /// The Deployment's name.
+        /// Whether DAG deploy is enabled
+        /// </summary>
+        public readonly bool IsDagDeployEnabled;
+        /// <summary>
+        /// Whether Deployment is in development mode
+        /// </summary>
+        public readonly bool IsDevelopmentMode;
+        /// <summary>
+        /// Whether Deployment has high availability
+        /// </summary>
+        public readonly bool IsHighAvailability;
+        /// <summary>
+        /// Deployment name
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Deployment namespace
+        /// </summary>
+        public readonly string Namespace;
+        /// <summary>
+        /// Deployment OIDC issuer URL
+        /// </summary>
+        public readonly string OidcIssuerUrl;
+        /// <summary>
+        /// Deployment region
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
+        /// Deployment resource quota CPU
+        /// </summary>
+        public readonly string ResourceQuotaCpu;
+        /// <summary>
+        /// Deployment resource quota memory
+        /// </summary>
+        public readonly string ResourceQuotaMemory;
+        /// <summary>
+        /// Deployment scaling spec
+        /// </summary>
+        public readonly Outputs.GetDeploymentScalingSpecResult ScalingSpec;
+        /// <summary>
+        /// Deployment scaling status
+        /// </summary>
+        public readonly Outputs.GetDeploymentScalingStatusResult ScalingStatus;
+        /// <summary>
+        /// Deployment scheduler AU
+        /// </summary>
+        public readonly int SchedulerAu;
+        /// <summary>
+        /// Deployment scheduler CPU
+        /// </summary>
+        public readonly string SchedulerCpu;
+        /// <summary>
+        /// Deployment scheduler memory
+        /// </summary>
+        public readonly string SchedulerMemory;
+        /// <summary>
+        /// Deployment scheduler replicas
+        /// </summary>
+        public readonly int SchedulerReplicas;
+        /// <summary>
+        /// Deployment scheduler size
+        /// </summary>
+        public readonly string SchedulerSize;
+        /// <summary>
+        /// Deployment status
+        /// </summary>
+        public readonly string Status;
+        /// <summary>
+        /// Deployment status reason
+        /// </summary>
+        public readonly string StatusReason;
+        /// <summary>
+        /// Deployment task pod node pool identifier
+        /// </summary>
+        public readonly string TaskPodNodePoolId;
+        /// <summary>
+        /// Deployment type
+        /// </summary>
+        public readonly string Type;
+        /// <summary>
+        /// Deployment last updated timestamp
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
+        /// Deployment updater
+        /// </summary>
+        public readonly Outputs.GetDeploymentUpdatedByResult UpdatedBy;
+        /// <summary>
+        /// Deployment webserver Airflow API URL
+        /// </summary>
+        public readonly string WebserverAirflowApiUrl;
+        /// <summary>
+        /// Deployment webserver ingress hostname
+        /// </summary>
+        public readonly string WebserverIngressHostname;
+        /// <summary>
+        /// Deployment webserver URL
+        /// </summary>
+        public readonly string WebserverUrl;
+        /// <summary>
+        /// Deployment worker queues
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentWorkerQueueResult> WorkerQueues;
+        /// <summary>
+        /// Deployment workload identity
+        /// </summary>
+        public readonly string WorkloadIdentity;
+        /// <summary>
+        /// Deployment workspace identifier
+        /// </summary>
+        public readonly string WorkspaceId;
 
         [OutputConstructor]
         private GetDeploymentResult(
             string airflowVersion,
 
+            string astroRuntimeVersion,
+
             string cloudProvider,
 
             string clusterId,
 
-            string clusterName,
+            ImmutableArray<string> contactEmails,
+
+            string createdAt,
+
+            Outputs.GetDeploymentCreatedByResult createdBy,
+
+            string dagTarballVersion,
+
+            string defaultTaskPodCpu,
+
+            string defaultTaskPodMemory,
 
             string description,
 
+            string desiredDagTarballVersion,
+
+            ImmutableArray<Outputs.GetDeploymentEnvironmentVariableResult> environmentVariables,
+
+            string executor,
+
+            ImmutableArray<string> externalIps,
+
             string id,
+
+            string imageRepository,
+
+            string imageTag,
+
+            string imageVersion,
 
             bool isCicdEnforced,
 
-            string name)
+            bool isDagDeployEnabled,
+
+            bool isDevelopmentMode,
+
+            bool isHighAvailability,
+
+            string name,
+
+            string @namespace,
+
+            string oidcIssuerUrl,
+
+            string region,
+
+            string resourceQuotaCpu,
+
+            string resourceQuotaMemory,
+
+            Outputs.GetDeploymentScalingSpecResult scalingSpec,
+
+            Outputs.GetDeploymentScalingStatusResult scalingStatus,
+
+            int schedulerAu,
+
+            string schedulerCpu,
+
+            string schedulerMemory,
+
+            int schedulerReplicas,
+
+            string schedulerSize,
+
+            string status,
+
+            string statusReason,
+
+            string taskPodNodePoolId,
+
+            string type,
+
+            string updatedAt,
+
+            Outputs.GetDeploymentUpdatedByResult updatedBy,
+
+            string webserverAirflowApiUrl,
+
+            string webserverIngressHostname,
+
+            string webserverUrl,
+
+            ImmutableArray<Outputs.GetDeploymentWorkerQueueResult> workerQueues,
+
+            string workloadIdentity,
+
+            string workspaceId)
         {
             AirflowVersion = airflowVersion;
+            AstroRuntimeVersion = astroRuntimeVersion;
             CloudProvider = cloudProvider;
             ClusterId = clusterId;
-            ClusterName = clusterName;
+            ContactEmails = contactEmails;
+            CreatedAt = createdAt;
+            CreatedBy = createdBy;
+            DagTarballVersion = dagTarballVersion;
+            DefaultTaskPodCpu = defaultTaskPodCpu;
+            DefaultTaskPodMemory = defaultTaskPodMemory;
             Description = description;
+            DesiredDagTarballVersion = desiredDagTarballVersion;
+            EnvironmentVariables = environmentVariables;
+            Executor = executor;
+            ExternalIps = externalIps;
             Id = id;
+            ImageRepository = imageRepository;
+            ImageTag = imageTag;
+            ImageVersion = imageVersion;
             IsCicdEnforced = isCicdEnforced;
+            IsDagDeployEnabled = isDagDeployEnabled;
+            IsDevelopmentMode = isDevelopmentMode;
+            IsHighAvailability = isHighAvailability;
             Name = name;
+            Namespace = @namespace;
+            OidcIssuerUrl = oidcIssuerUrl;
+            Region = region;
+            ResourceQuotaCpu = resourceQuotaCpu;
+            ResourceQuotaMemory = resourceQuotaMemory;
+            ScalingSpec = scalingSpec;
+            ScalingStatus = scalingStatus;
+            SchedulerAu = schedulerAu;
+            SchedulerCpu = schedulerCpu;
+            SchedulerMemory = schedulerMemory;
+            SchedulerReplicas = schedulerReplicas;
+            SchedulerSize = schedulerSize;
+            Status = status;
+            StatusReason = statusReason;
+            TaskPodNodePoolId = taskPodNodePoolId;
+            Type = type;
+            UpdatedAt = updatedAt;
+            UpdatedBy = updatedBy;
+            WebserverAirflowApiUrl = webserverAirflowApiUrl;
+            WebserverIngressHostname = webserverIngressHostname;
+            WebserverUrl = webserverUrl;
+            WorkerQueues = workerQueues;
+            WorkloadIdentity = workloadIdentity;
+            WorkspaceId = workspaceId;
         }
     }
 }

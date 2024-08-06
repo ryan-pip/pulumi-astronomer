@@ -11,7 +11,7 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Astronomer Organization Resource
+// Organization data source
 //
 // ## Example Usage
 //
@@ -27,9 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetOrganization(ctx, &astronomer.GetOrganizationArgs{
-//				Id: "abc123",
-//			}, nil)
+//			_, err := astronomer.GetOrganization(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -38,73 +36,55 @@ import (
 //	}
 //
 // ```
-func GetOrganization(ctx *pulumi.Context, args *GetOrganizationArgs, opts ...pulumi.InvokeOption) (*GetOrganizationResult, error) {
+func GetOrganization(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetOrganizationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationResult
-	err := ctx.Invoke("astronomer:index/getOrganization:getOrganization", args, &rv, opts...)
+	err := ctx.Invoke("astronomer:index/getOrganization:getOrganization", nil, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getOrganization.
-type GetOrganizationArgs struct {
-	Id string `pulumi:"id"`
-	// Payment method (if set)
-	PaymentMethod *string `pulumi:"paymentMethod"`
-}
-
 // A collection of values returned by getOrganization.
 type GetOrganizationResult struct {
-	// Billing email on file for the organization.
+	// Organization billing email
 	BillingEmail string `pulumi:"billingEmail"`
-	// Timestamped string of when this organization was created
+	// Organization creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
-	// Organization's unique identifier
+	// Organization creator
+	CreatedBy GetOrganizationCreatedBy `pulumi:"createdBy"`
+	// Organization identifier
 	Id string `pulumi:"id"`
-	// Whether or not scim is enabled
+	// Whether SCIM is enabled for the organization
 	IsScimEnabled bool `pulumi:"isScimEnabled"`
-	// List of managed domains (nested)
-	ManagedDomains []GetOrganizationManagedDomain `pulumi:"managedDomains"`
-	// Organization's name
+	// Organization name
 	Name string `pulumi:"name"`
-	// Payment method (if set)
-	PaymentMethod *string `pulumi:"paymentMethod"`
-	// Type of astro product (e.g. hosted or hybrid)
+	// Organization payment method
+	PaymentMethod string `pulumi:"paymentMethod"`
+	// Organization product type
 	Product string `pulumi:"product"`
-	// Status of the organization
+	// Organization status
 	Status string `pulumi:"status"`
-	// Type of support plan the organization has
+	// Organization support plan
 	SupportPlan string `pulumi:"supportPlan"`
-	// When the trial expires, if organization is in a trial
+	// Organization trial expiration timestamp
 	TrialExpiresAt string `pulumi:"trialExpiresAt"`
-	// Last time the organization was updated
+	// Organization last updated timestamp
 	UpdatedAt string `pulumi:"updatedAt"`
+	// Organization updater
+	UpdatedBy GetOrganizationUpdatedBy `pulumi:"updatedBy"`
 }
 
-func GetOrganizationOutput(ctx *pulumi.Context, args GetOrganizationOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOrganizationResult, error) {
-			args := v.(GetOrganizationArgs)
-			r, err := GetOrganization(ctx, &args, opts...)
-			var s GetOrganizationResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
-		}).(GetOrganizationResultOutput)
-}
-
-// A collection of arguments for invoking getOrganization.
-type GetOrganizationOutputArgs struct {
-	Id pulumi.StringInput `pulumi:"id"`
-	// Payment method (if set)
-	PaymentMethod pulumi.StringPtrInput `pulumi:"paymentMethod"`
-}
-
-func (GetOrganizationOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationArgs)(nil)).Elem()
+func GetOrganizationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetOrganizationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetOrganizationResult, error) {
+		r, err := GetOrganization(ctx, opts...)
+		var s GetOrganizationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetOrganizationResultOutput)
 }
 
 // A collection of values returned by getOrganization.
@@ -122,64 +102,69 @@ func (o GetOrganizationResultOutput) ToGetOrganizationResultOutputWithContext(ct
 	return o
 }
 
-// Billing email on file for the organization.
+// Organization billing email
 func (o GetOrganizationResultOutput) BillingEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.BillingEmail }).(pulumi.StringOutput)
 }
 
-// Timestamped string of when this organization was created
+// Organization creation timestamp
 func (o GetOrganizationResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Organization's unique identifier
+// Organization creator
+func (o GetOrganizationResultOutput) CreatedBy() GetOrganizationCreatedByOutput {
+	return o.ApplyT(func(v GetOrganizationResult) GetOrganizationCreatedBy { return v.CreatedBy }).(GetOrganizationCreatedByOutput)
+}
+
+// Organization identifier
 func (o GetOrganizationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether or not scim is enabled
+// Whether SCIM is enabled for the organization
 func (o GetOrganizationResultOutput) IsScimEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationResult) bool { return v.IsScimEnabled }).(pulumi.BoolOutput)
 }
 
-// List of managed domains (nested)
-func (o GetOrganizationResultOutput) ManagedDomains() GetOrganizationManagedDomainArrayOutput {
-	return o.ApplyT(func(v GetOrganizationResult) []GetOrganizationManagedDomain { return v.ManagedDomains }).(GetOrganizationManagedDomainArrayOutput)
-}
-
-// Organization's name
+// Organization name
 func (o GetOrganizationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Payment method (if set)
-func (o GetOrganizationResultOutput) PaymentMethod() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOrganizationResult) *string { return v.PaymentMethod }).(pulumi.StringPtrOutput)
+// Organization payment method
+func (o GetOrganizationResultOutput) PaymentMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.PaymentMethod }).(pulumi.StringOutput)
 }
 
-// Type of astro product (e.g. hosted or hybrid)
+// Organization product type
 func (o GetOrganizationResultOutput) Product() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Product }).(pulumi.StringOutput)
 }
 
-// Status of the organization
+// Organization status
 func (o GetOrganizationResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Type of support plan the organization has
+// Organization support plan
 func (o GetOrganizationResultOutput) SupportPlan() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.SupportPlan }).(pulumi.StringOutput)
 }
 
-// When the trial expires, if organization is in a trial
+// Organization trial expiration timestamp
 func (o GetOrganizationResultOutput) TrialExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.TrialExpiresAt }).(pulumi.StringOutput)
 }
 
-// Last time the organization was updated
+// Organization last updated timestamp
 func (o GetOrganizationResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Organization updater
+func (o GetOrganizationResultOutput) UpdatedBy() GetOrganizationUpdatedByOutput {
+	return o.ApplyT(func(v GetOrganizationResult) GetOrganizationUpdatedBy { return v.UpdatedBy }).(GetOrganizationUpdatedByOutput)
 }
 
 func init() {

@@ -2,10 +2,23 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Astronomer Deployment Resource
+ * Deployment data source
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as astronomer from "@pulumi/astronomer";
+ *
+ * const example = astronomer.getDeployment({
+ *     id: "clozc036j01to01jrlgvueo8t",
+ * });
+ * ```
  */
 export function getDeployment(args: GetDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentResult> {
 
@@ -20,7 +33,7 @@ export function getDeployment(args: GetDeploymentArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetDeploymentArgs {
     /**
-     * The Deployment's Identifier
+     * Deployment identifier
      */
     id: string;
 }
@@ -30,40 +43,211 @@ export interface GetDeploymentArgs {
  */
 export interface GetDeploymentResult {
     /**
-     * The Deployment's Astro Runtime version.
+     * Deployment Airflow version
      */
     readonly airflowVersion: string;
     /**
-     * The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+     * Deployment Astro Runtime version
+     */
+    readonly astroRuntimeVersion: string;
+    /**
+     * Deployment cloud provider
      */
     readonly cloudProvider: string;
     /**
-     * The ID of the cluster to which the Deployment will be created in. Optional if cloud provider and region is specified.
+     * Deployment cluster identifier
      */
     readonly clusterId: string;
     /**
-     * Cluster Name
+     * Deployment contact emails
      */
-    readonly clusterName: string;
+    readonly contactEmails: string[];
     /**
-     * The Deployment's description.
+     * Deployment creation timestamp
+     */
+    readonly createdAt: string;
+    /**
+     * Deployment creator
+     */
+    readonly createdBy: outputs.GetDeploymentCreatedBy;
+    /**
+     * Deployment DAG tarball version
+     */
+    readonly dagTarballVersion: string;
+    /**
+     * Deployment default task pod CPU
+     */
+    readonly defaultTaskPodCpu: string;
+    /**
+     * Deployment default task pod memory
+     */
+    readonly defaultTaskPodMemory: string;
+    /**
+     * Deployment description
      */
     readonly description: string;
     /**
-     * The Deployment's Identifier
+     * Deployment desired DAG tarball version
+     */
+    readonly desiredDagTarballVersion: string;
+    /**
+     * Deployment environment variables
+     */
+    readonly environmentVariables: outputs.GetDeploymentEnvironmentVariable[];
+    /**
+     * Deployment executor
+     */
+    readonly executor: string;
+    /**
+     * Deployment external IPs
+     */
+    readonly externalIps: string[];
+    /**
+     * Deployment identifier
      */
     readonly id: string;
     /**
-     * Whether the Deployment requires that all deploys are made through CI/CD.
+     * Deployment image repository
+     */
+    readonly imageRepository: string;
+    /**
+     * Deployment image tag
+     */
+    readonly imageTag: string;
+    /**
+     * Deployment image version
+     */
+    readonly imageVersion: string;
+    /**
+     * Whether the Deployment enforces CI/CD deploys
      */
     readonly isCicdEnforced: boolean;
     /**
-     * The Deployment's name.
+     * Whether DAG deploy is enabled
+     */
+    readonly isDagDeployEnabled: boolean;
+    /**
+     * Whether Deployment is in development mode
+     */
+    readonly isDevelopmentMode: boolean;
+    /**
+     * Whether Deployment has high availability
+     */
+    readonly isHighAvailability: boolean;
+    /**
+     * Deployment name
      */
     readonly name: string;
+    /**
+     * Deployment namespace
+     */
+    readonly namespace: string;
+    /**
+     * Deployment OIDC issuer URL
+     */
+    readonly oidcIssuerUrl: string;
+    /**
+     * Deployment region
+     */
+    readonly region: string;
+    /**
+     * Deployment resource quota CPU
+     */
+    readonly resourceQuotaCpu: string;
+    /**
+     * Deployment resource quota memory
+     */
+    readonly resourceQuotaMemory: string;
+    /**
+     * Deployment scaling spec
+     */
+    readonly scalingSpec: outputs.GetDeploymentScalingSpec;
+    /**
+     * Deployment scaling status
+     */
+    readonly scalingStatus: outputs.GetDeploymentScalingStatus;
+    /**
+     * Deployment scheduler AU
+     */
+    readonly schedulerAu: number;
+    /**
+     * Deployment scheduler CPU
+     */
+    readonly schedulerCpu: string;
+    /**
+     * Deployment scheduler memory
+     */
+    readonly schedulerMemory: string;
+    /**
+     * Deployment scheduler replicas
+     */
+    readonly schedulerReplicas: number;
+    /**
+     * Deployment scheduler size
+     */
+    readonly schedulerSize: string;
+    /**
+     * Deployment status
+     */
+    readonly status: string;
+    /**
+     * Deployment status reason
+     */
+    readonly statusReason: string;
+    /**
+     * Deployment task pod node pool identifier
+     */
+    readonly taskPodNodePoolId: string;
+    /**
+     * Deployment type
+     */
+    readonly type: string;
+    /**
+     * Deployment last updated timestamp
+     */
+    readonly updatedAt: string;
+    /**
+     * Deployment updater
+     */
+    readonly updatedBy: outputs.GetDeploymentUpdatedBy;
+    /**
+     * Deployment webserver Airflow API URL
+     */
+    readonly webserverAirflowApiUrl: string;
+    /**
+     * Deployment webserver ingress hostname
+     */
+    readonly webserverIngressHostname: string;
+    /**
+     * Deployment webserver URL
+     */
+    readonly webserverUrl: string;
+    /**
+     * Deployment worker queues
+     */
+    readonly workerQueues: outputs.GetDeploymentWorkerQueue[];
+    /**
+     * Deployment workload identity
+     */
+    readonly workloadIdentity: string;
+    /**
+     * Deployment workspace identifier
+     */
+    readonly workspaceId: string;
 }
 /**
- * Astronomer Deployment Resource
+ * Deployment data source
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as astronomer from "@pulumi/astronomer";
+ *
+ * const example = astronomer.getDeployment({
+ *     id: "clozc036j01to01jrlgvueo8t",
+ * });
+ * ```
  */
 export function getDeploymentOutput(args: GetDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentResult> {
     return pulumi.output(args).apply((a: any) => getDeployment(a, opts))
@@ -74,7 +258,7 @@ export function getDeploymentOutput(args: GetDeploymentOutputArgs, opts?: pulumi
  */
 export interface GetDeploymentOutputArgs {
     /**
-     * The Deployment's Identifier
+     * Deployment identifier
      */
     id: pulumi.Input<string>;
 }

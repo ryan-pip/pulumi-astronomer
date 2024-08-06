@@ -14,22 +14,28 @@ namespace RyanPip.Astronomer.Inputs
     public sealed class DeploymentEnvironmentVariableArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the environment variable is a secret.
+        /// Whether Environment variable is a secret
         /// </summary>
         [Input("isSecret", required: true)]
         public Input<bool> IsSecret { get; set; } = null!;
 
         /// <summary>
-        /// The environment variable key, used to call the value in code.
+        /// Environment variable key
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
+
+        /// <summary>
+        /// Environment variable last updated timestamp
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         [Input("value")]
         private Input<string>? _value;
 
         /// <summary>
-        /// The environment variable value.
+        /// Environment variable value
         /// </summary>
         public Input<string>? Value
         {

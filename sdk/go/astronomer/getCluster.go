@@ -11,7 +11,7 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Astronomer Cluster Data Source
+// Cluster data source
 //
 // ## Example Usage
 //
@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := astronomer.LookupCluster(ctx, &astronomer.LookupClusterArgs{
-//				Id: "clqoclq8201pp01p0cbt77feb",
+//				Id: "clozc036j01to01jrlgvueo8t",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -50,47 +50,51 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getCluster.
 type LookupClusterArgs struct {
-	// The cluster's identifier.
+	// Cluster identifier
 	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getCluster.
 type LookupClusterResult struct {
-	// The cluster's cloud provider.
+	// Cluster cloud provider
 	CloudProvider string `pulumi:"cloudProvider"`
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+	// Cluster creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
-	// The cluster's identifier.
+	// Cluster identifier
 	Id string `pulumi:"id"`
-	// Whether the cluster is limited.
+	// Whether the cluster is limited
 	IsLimited bool `pulumi:"isLimited"`
-	// The Kubernetes tags in the cluster.
-	K8sTags []GetClusterK8sTag `pulumi:"k8sTags"`
-	// The cluster's metadata.
+	// Cluster metadata
 	Metadata GetClusterMetadata `pulumi:"metadata"`
-	// The cluster's name.
+	// Cluster name
 	Name string `pulumi:"name"`
-	// The list of node pools to create in the cluster.
+	// Cluster node pools
 	NodePools []GetClusterNodePool `pulumi:"nodePools"`
-	// The organization this cluster is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range
 	PodSubnetRange string `pulumi:"podSubnetRange"`
-	// The provider account ID. Required for Hybrid clusters.
+	// Cluster provider account
 	ProviderAccount string `pulumi:"providerAccount"`
-	// The cluster's region.
+	// Cluster region
 	Region string `pulumi:"region"`
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range
 	ServicePeeringRange string `pulumi:"servicePeeringRange"`
-	// The service subnet range. For GCP clusters only.
+	// Cluster service subnet range
 	ServiceSubnetRange string `pulumi:"serviceSubnetRange"`
-	// The tenant ID. For Azure clusters only.
+	// Cluster status
+	Status string `pulumi:"status"`
+	// Cluster tags
+	Tags []GetClusterTag `pulumi:"tags"`
+	// Cluster tenant ID
 	TenantId string `pulumi:"tenantId"`
-	// The cluster's type.
+	// Cluster type
 	Type string `pulumi:"type"`
-	// The VPC subnet range.
+	// Cluster last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Cluster VPC subnet range
 	VpcSubnetRange string `pulumi:"vpcSubnetRange"`
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds []string `pulumi:"workspaceIds"`
 }
 
@@ -109,7 +113,7 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 
 // A collection of arguments for invoking getCluster.
 type LookupClusterOutputArgs struct {
-	// The cluster's identifier.
+	// Cluster identifier
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -132,92 +136,102 @@ func (o LookupClusterResultOutput) ToLookupClusterResultOutputWithContext(ctx co
 	return o
 }
 
-// The cluster's cloud provider.
+// Cluster cloud provider
 func (o LookupClusterResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+// Cluster creation timestamp
+func (o LookupClusterResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster database instance type
 func (o LookupClusterResultOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
-// The cluster's identifier.
+// Cluster identifier
 func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the cluster is limited.
+// Whether the cluster is limited
 func (o LookupClusterResultOutput) IsLimited() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.IsLimited }).(pulumi.BoolOutput)
 }
 
-// The Kubernetes tags in the cluster.
-func (o LookupClusterResultOutput) K8sTags() GetClusterK8sTagArrayOutput {
-	return o.ApplyT(func(v LookupClusterResult) []GetClusterK8sTag { return v.K8sTags }).(GetClusterK8sTagArrayOutput)
-}
-
-// The cluster's metadata.
+// Cluster metadata
 func (o LookupClusterResultOutput) Metadata() GetClusterMetadataOutput {
 	return o.ApplyT(func(v LookupClusterResult) GetClusterMetadata { return v.Metadata }).(GetClusterMetadataOutput)
 }
 
-// The cluster's name.
+// Cluster name
 func (o LookupClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The list of node pools to create in the cluster.
+// Cluster node pools
 func (o LookupClusterResultOutput) NodePools() GetClusterNodePoolArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterNodePool { return v.NodePools }).(GetClusterNodePoolArrayOutput)
 }
 
-// The organization this cluster is associated with.
-func (o LookupClusterResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
-}
-
-// The subnet range for Pods. For GCP clusters only.
+// Cluster pod subnet range
 func (o LookupClusterResultOutput) PodSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.PodSubnetRange }).(pulumi.StringOutput)
 }
 
-// The provider account ID. Required for Hybrid clusters.
+// Cluster provider account
 func (o LookupClusterResultOutput) ProviderAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderAccount }).(pulumi.StringOutput)
 }
 
-// The cluster's region.
+// Cluster region
 func (o LookupClusterResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// The service peering range. For GCP clusters only.
+// Cluster service peering range
 func (o LookupClusterResultOutput) ServicePeeringRange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ServicePeeringRange }).(pulumi.StringOutput)
 }
 
-// The service subnet range. For GCP clusters only.
+// Cluster service subnet range
 func (o LookupClusterResultOutput) ServiceSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ServiceSubnetRange }).(pulumi.StringOutput)
 }
 
-// The tenant ID. For Azure clusters only.
+// Cluster status
+func (o LookupClusterResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Cluster tags
+func (o LookupClusterResultOutput) Tags() GetClusterTagArrayOutput {
+	return o.ApplyT(func(v LookupClusterResult) []GetClusterTag { return v.Tags }).(GetClusterTagArrayOutput)
+}
+
+// Cluster tenant ID
 func (o LookupClusterResultOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
-// The cluster's type.
+// Cluster type
 func (o LookupClusterResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// The VPC subnet range.
+// Cluster last updated timestamp
+func (o LookupClusterResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster VPC subnet range
 func (o LookupClusterResultOutput) VpcSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.VpcSubnetRange }).(pulumi.StringOutput)
 }
 
-// The list of Workspaces that are authorized to the cluster.
+// Cluster workspace IDs
 func (o LookupClusterResultOutput) WorkspaceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
 }

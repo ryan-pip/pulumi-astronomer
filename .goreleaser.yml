@@ -21,7 +21,7 @@ builds:
       - -X github.com/ryan-pip/pulumi-astronomer/provider/pkg/version.Version={{.Tag }}
     main: ./cmd/pulumi-resource-astronomer/
 changelog:
-  skip: true
+  disable: true
 release:
   disable: false
   prerelease: auto

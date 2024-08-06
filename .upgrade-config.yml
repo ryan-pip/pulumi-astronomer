@@ -1,0 +1,3 @@
+upstream-provider-org: astronomer
+upstream-provider-name: terraform-provider-astro
+remove-plugins: true

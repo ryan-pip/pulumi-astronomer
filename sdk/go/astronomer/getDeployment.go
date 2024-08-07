@@ -11,7 +11,33 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Astronomer Deployment Resource
+// Deployment data source
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := astronomer.LookupDeployment(ctx, &astronomer.LookupDeploymentArgs{
+//				Id: "clozc036j01to01jrlgvueo8t",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDeployment(ctx *pulumi.Context, args *LookupDeploymentArgs, opts ...pulumi.InvokeOption) (*LookupDeploymentResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDeploymentResult
@@ -24,28 +50,108 @@ func LookupDeployment(ctx *pulumi.Context, args *LookupDeploymentArgs, opts ...p
 
 // A collection of arguments for invoking getDeployment.
 type LookupDeploymentArgs struct {
-	// The Deployment's Identifier
+	// Deployment identifier
 	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getDeployment.
 type LookupDeploymentResult struct {
-	// The Deployment's Astro Runtime version.
+	// Deployment Airflow version
 	AirflowVersion string `pulumi:"airflowVersion"`
-	// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+	// Deployment Astro Runtime version
+	AstroRuntimeVersion string `pulumi:"astroRuntimeVersion"`
+	// Deployment cloud provider
 	CloudProvider string `pulumi:"cloudProvider"`
-	// The ID of the cluster to which the Deployment will be created in. Optional if cloud provider and region is specified.
+	// Deployment cluster identifier
 	ClusterId string `pulumi:"clusterId"`
-	// Cluster Name
-	ClusterName string `pulumi:"clusterName"`
-	// The Deployment's description.
+	// Deployment contact emails
+	ContactEmails []string `pulumi:"contactEmails"`
+	// Deployment creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Deployment creator
+	CreatedBy GetDeploymentCreatedBy `pulumi:"createdBy"`
+	// Deployment DAG tarball version
+	DagTarballVersion string `pulumi:"dagTarballVersion"`
+	// Deployment default task pod CPU
+	DefaultTaskPodCpu string `pulumi:"defaultTaskPodCpu"`
+	// Deployment default task pod memory
+	DefaultTaskPodMemory string `pulumi:"defaultTaskPodMemory"`
+	// Deployment description
 	Description string `pulumi:"description"`
-	// The Deployment's Identifier
+	// Deployment desired DAG tarball version
+	DesiredDagTarballVersion string `pulumi:"desiredDagTarballVersion"`
+	// Deployment environment variables
+	EnvironmentVariables []GetDeploymentEnvironmentVariable `pulumi:"environmentVariables"`
+	// Deployment executor
+	Executor string `pulumi:"executor"`
+	// Deployment external IPs
+	ExternalIps []string `pulumi:"externalIps"`
+	// Deployment identifier
 	Id string `pulumi:"id"`
-	// Whether the Deployment requires that all deploys are made through CI/CD.
+	// Deployment image repository
+	ImageRepository string `pulumi:"imageRepository"`
+	// Deployment image tag
+	ImageTag string `pulumi:"imageTag"`
+	// Deployment image version
+	ImageVersion string `pulumi:"imageVersion"`
+	// Whether the Deployment enforces CI/CD deploys
 	IsCicdEnforced bool `pulumi:"isCicdEnforced"`
-	// The Deployment's name.
+	// Whether DAG deploy is enabled
+	IsDagDeployEnabled bool `pulumi:"isDagDeployEnabled"`
+	// Whether Deployment is in development mode
+	IsDevelopmentMode bool `pulumi:"isDevelopmentMode"`
+	// Whether Deployment has high availability
+	IsHighAvailability bool `pulumi:"isHighAvailability"`
+	// Deployment name
 	Name string `pulumi:"name"`
+	// Deployment namespace
+	Namespace string `pulumi:"namespace"`
+	// Deployment OIDC issuer URL
+	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
+	// Deployment region
+	Region string `pulumi:"region"`
+	// Deployment resource quota CPU
+	ResourceQuotaCpu string `pulumi:"resourceQuotaCpu"`
+	// Deployment resource quota memory
+	ResourceQuotaMemory string `pulumi:"resourceQuotaMemory"`
+	// Deployment scaling spec
+	ScalingSpec GetDeploymentScalingSpec `pulumi:"scalingSpec"`
+	// Deployment scaling status
+	ScalingStatus GetDeploymentScalingStatus `pulumi:"scalingStatus"`
+	// Deployment scheduler AU
+	SchedulerAu int `pulumi:"schedulerAu"`
+	// Deployment scheduler CPU
+	SchedulerCpu string `pulumi:"schedulerCpu"`
+	// Deployment scheduler memory
+	SchedulerMemory string `pulumi:"schedulerMemory"`
+	// Deployment scheduler replicas
+	SchedulerReplicas int `pulumi:"schedulerReplicas"`
+	// Deployment scheduler size
+	SchedulerSize string `pulumi:"schedulerSize"`
+	// Deployment status
+	Status string `pulumi:"status"`
+	// Deployment status reason
+	StatusReason string `pulumi:"statusReason"`
+	// Deployment task pod node pool identifier
+	TaskPodNodePoolId string `pulumi:"taskPodNodePoolId"`
+	// Deployment type
+	Type string `pulumi:"type"`
+	// Deployment last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Deployment updater
+	UpdatedBy GetDeploymentUpdatedBy `pulumi:"updatedBy"`
+	// Deployment webserver Airflow API URL
+	WebserverAirflowApiUrl string `pulumi:"webserverAirflowApiUrl"`
+	// Deployment webserver ingress hostname
+	WebserverIngressHostname string `pulumi:"webserverIngressHostname"`
+	// Deployment webserver URL
+	WebserverUrl string `pulumi:"webserverUrl"`
+	// Deployment worker queues
+	WorkerQueues []GetDeploymentWorkerQueue `pulumi:"workerQueues"`
+	// Deployment workload identity
+	WorkloadIdentity string `pulumi:"workloadIdentity"`
+	// Deployment workspace identifier
+	WorkspaceId string `pulumi:"workspaceId"`
 }
 
 func LookupDeploymentOutput(ctx *pulumi.Context, args LookupDeploymentOutputArgs, opts ...pulumi.InvokeOption) LookupDeploymentResultOutput {
@@ -63,7 +169,7 @@ func LookupDeploymentOutput(ctx *pulumi.Context, args LookupDeploymentOutputArgs
 
 // A collection of arguments for invoking getDeployment.
 type LookupDeploymentOutputArgs struct {
-	// The Deployment's Identifier
+	// Deployment identifier
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -86,44 +192,244 @@ func (o LookupDeploymentResultOutput) ToLookupDeploymentResultOutputWithContext(
 	return o
 }
 
-// The Deployment's Astro Runtime version.
+// Deployment Airflow version
 func (o LookupDeploymentResultOutput) AirflowVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.AirflowVersion }).(pulumi.StringOutput)
 }
 
-// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+// Deployment Astro Runtime version
+func (o LookupDeploymentResultOutput) AstroRuntimeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.AstroRuntimeVersion }).(pulumi.StringOutput)
+}
+
+// Deployment cloud provider
 func (o LookupDeploymentResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// The ID of the cluster to which the Deployment will be created in. Optional if cloud provider and region is specified.
+// Deployment cluster identifier
 func (o LookupDeploymentResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// Cluster Name
-func (o LookupDeploymentResultOutput) ClusterName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ClusterName }).(pulumi.StringOutput)
+// Deployment contact emails
+func (o LookupDeploymentResultOutput) ContactEmails() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) []string { return v.ContactEmails }).(pulumi.StringArrayOutput)
 }
 
-// The Deployment's description.
+// Deployment creation timestamp
+func (o LookupDeploymentResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Deployment creator
+func (o LookupDeploymentResultOutput) CreatedBy() GetDeploymentCreatedByOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) GetDeploymentCreatedBy { return v.CreatedBy }).(GetDeploymentCreatedByOutput)
+}
+
+// Deployment DAG tarball version
+func (o LookupDeploymentResultOutput) DagTarballVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.DagTarballVersion }).(pulumi.StringOutput)
+}
+
+// Deployment default task pod CPU
+func (o LookupDeploymentResultOutput) DefaultTaskPodCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.DefaultTaskPodCpu }).(pulumi.StringOutput)
+}
+
+// Deployment default task pod memory
+func (o LookupDeploymentResultOutput) DefaultTaskPodMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.DefaultTaskPodMemory }).(pulumi.StringOutput)
+}
+
+// Deployment description
 func (o LookupDeploymentResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Deployment's Identifier
+// Deployment desired DAG tarball version
+func (o LookupDeploymentResultOutput) DesiredDagTarballVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.DesiredDagTarballVersion }).(pulumi.StringOutput)
+}
+
+// Deployment environment variables
+func (o LookupDeploymentResultOutput) EnvironmentVariables() GetDeploymentEnvironmentVariableArrayOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentEnvironmentVariable { return v.EnvironmentVariables }).(GetDeploymentEnvironmentVariableArrayOutput)
+}
+
+// Deployment executor
+func (o LookupDeploymentResultOutput) Executor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Executor }).(pulumi.StringOutput)
+}
+
+// Deployment external IPs
+func (o LookupDeploymentResultOutput) ExternalIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
+}
+
+// Deployment identifier
 func (o LookupDeploymentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the Deployment requires that all deploys are made through CI/CD.
+// Deployment image repository
+func (o LookupDeploymentResultOutput) ImageRepository() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ImageRepository }).(pulumi.StringOutput)
+}
+
+// Deployment image tag
+func (o LookupDeploymentResultOutput) ImageTag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ImageTag }).(pulumi.StringOutput)
+}
+
+// Deployment image version
+func (o LookupDeploymentResultOutput) ImageVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ImageVersion }).(pulumi.StringOutput)
+}
+
+// Whether the Deployment enforces CI/CD deploys
 func (o LookupDeploymentResultOutput) IsCicdEnforced() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) bool { return v.IsCicdEnforced }).(pulumi.BoolOutput)
 }
 
-// The Deployment's name.
+// Whether DAG deploy is enabled
+func (o LookupDeploymentResultOutput) IsDagDeployEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) bool { return v.IsDagDeployEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether Deployment is in development mode
+func (o LookupDeploymentResultOutput) IsDevelopmentMode() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) bool { return v.IsDevelopmentMode }).(pulumi.BoolOutput)
+}
+
+// Whether Deployment has high availability
+func (o LookupDeploymentResultOutput) IsHighAvailability() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) bool { return v.IsHighAvailability }).(pulumi.BoolOutput)
+}
+
+// Deployment name
 func (o LookupDeploymentResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Deployment namespace
+func (o LookupDeploymentResultOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// Deployment OIDC issuer URL
+func (o LookupDeploymentResultOutput) OidcIssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.OidcIssuerUrl }).(pulumi.StringOutput)
+}
+
+// Deployment region
+func (o LookupDeploymentResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Deployment resource quota CPU
+func (o LookupDeploymentResultOutput) ResourceQuotaCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ResourceQuotaCpu }).(pulumi.StringOutput)
+}
+
+// Deployment resource quota memory
+func (o LookupDeploymentResultOutput) ResourceQuotaMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ResourceQuotaMemory }).(pulumi.StringOutput)
+}
+
+// Deployment scaling spec
+func (o LookupDeploymentResultOutput) ScalingSpec() GetDeploymentScalingSpecOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) GetDeploymentScalingSpec { return v.ScalingSpec }).(GetDeploymentScalingSpecOutput)
+}
+
+// Deployment scaling status
+func (o LookupDeploymentResultOutput) ScalingStatus() GetDeploymentScalingStatusOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) GetDeploymentScalingStatus { return v.ScalingStatus }).(GetDeploymentScalingStatusOutput)
+}
+
+// Deployment scheduler AU
+func (o LookupDeploymentResultOutput) SchedulerAu() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) int { return v.SchedulerAu }).(pulumi.IntOutput)
+}
+
+// Deployment scheduler CPU
+func (o LookupDeploymentResultOutput) SchedulerCpu() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.SchedulerCpu }).(pulumi.StringOutput)
+}
+
+// Deployment scheduler memory
+func (o LookupDeploymentResultOutput) SchedulerMemory() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.SchedulerMemory }).(pulumi.StringOutput)
+}
+
+// Deployment scheduler replicas
+func (o LookupDeploymentResultOutput) SchedulerReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) int { return v.SchedulerReplicas }).(pulumi.IntOutput)
+}
+
+// Deployment scheduler size
+func (o LookupDeploymentResultOutput) SchedulerSize() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.SchedulerSize }).(pulumi.StringOutput)
+}
+
+// Deployment status
+func (o LookupDeploymentResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Deployment status reason
+func (o LookupDeploymentResultOutput) StatusReason() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.StatusReason }).(pulumi.StringOutput)
+}
+
+// Deployment task pod node pool identifier
+func (o LookupDeploymentResultOutput) TaskPodNodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.TaskPodNodePoolId }).(pulumi.StringOutput)
+}
+
+// Deployment type
+func (o LookupDeploymentResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Deployment last updated timestamp
+func (o LookupDeploymentResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Deployment updater
+func (o LookupDeploymentResultOutput) UpdatedBy() GetDeploymentUpdatedByOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) GetDeploymentUpdatedBy { return v.UpdatedBy }).(GetDeploymentUpdatedByOutput)
+}
+
+// Deployment webserver Airflow API URL
+func (o LookupDeploymentResultOutput) WebserverAirflowApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.WebserverAirflowApiUrl }).(pulumi.StringOutput)
+}
+
+// Deployment webserver ingress hostname
+func (o LookupDeploymentResultOutput) WebserverIngressHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.WebserverIngressHostname }).(pulumi.StringOutput)
+}
+
+// Deployment webserver URL
+func (o LookupDeploymentResultOutput) WebserverUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.WebserverUrl }).(pulumi.StringOutput)
+}
+
+// Deployment worker queues
+func (o LookupDeploymentResultOutput) WorkerQueues() GetDeploymentWorkerQueueArrayOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentWorkerQueue { return v.WorkerQueues }).(GetDeploymentWorkerQueueArrayOutput)
+}
+
+// Deployment workload identity
+func (o LookupDeploymentResultOutput) WorkloadIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.WorkloadIdentity }).(pulumi.StringOutput)
+}
+
+// Deployment workspace identifier
+func (o LookupDeploymentResultOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) string { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
 func init() {

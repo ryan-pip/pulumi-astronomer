@@ -8,7 +8,18 @@ declare var exports: any;
 const __config = new pulumi.Config("astronomer");
 
 /**
- * Organization id this provider will operate on.
+ * API host to use for the provider. Default is `https://api.astronomer.io`
+ */
+export declare const host: string | undefined;
+Object.defineProperty(exports, "host", {
+    get() {
+        return __config.get("host");
+    },
+    enumerable: true,
+});
+
+/**
+ * Organization ID this provider will operate on.
  */
 export declare const organizationId: string | undefined;
 Object.defineProperty(exports, "organizationId", {
@@ -19,12 +30,12 @@ Object.defineProperty(exports, "organizationId", {
 });
 
 /**
- * Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+ * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
  */
 export declare const token: string | undefined;
 Object.defineProperty(exports, "token", {
     get() {
-        return __config.get("token") ?? utilities.getEnv("ASTRONOMER_API_TOKEN");
+        return __config.get("token") ?? utilities.getEnv("ASTRO_API_TOKEN");
     },
     enumerable: true,
 });

@@ -12,7 +12,7 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// A cluster within an organization. An Astro cluster is a Kubernetes cluster that hosts the infrastructure required to run Deployments.
+// Cluster resource. If creating multiple clusters, add a delay between each cluster creation to avoid cluster creation limiting errors.
 //
 // ## Example Usage
 //
@@ -28,23 +28,55 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			dedicated, err := astronomer.NewWorkspace(ctx, "dedicated", &astronomer.WorkspaceArgs{
-//				CicdEnforcedDefault: pulumi.Bool(true),
-//				Description:         pulumi.String("Workspace that demos a dedicated deployment set up"),
+//			_, err := astronomer.NewCluster(ctx, "awsExample", &astronomer.ClusterArgs{
+//				Type:           pulumi.String("DEDICATED"),
+//				Region:         pulumi.String("us-east-1"),
+//				CloudProvider:  pulumi.String("AWS"),
+//				VpcSubnetRange: pulumi.String("172.20.0.0/20"),
+//				WorkspaceIds:   pulumi.StringArray{},
+//				Timeouts: &astronomer.ClusterTimeoutsArgs{
+//					Create: pulumi.String("3h"),
+//					Update: pulumi.String("2h"),
+//					Delete: pulumi.String("1h"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.NewCluster(ctx, "awsDedicated", &astronomer.ClusterArgs{
-//				CloudProvider:  pulumi.String("AWS"),
-//				Region:         pulumi.String("us-east-1"),
+//			_, err = astronomer.NewCluster(ctx, "azureExample", &astronomer.ClusterArgs{
 //				Type:           pulumi.String("DEDICATED"),
-//				VpcSubnetRange: pulumi.String("172.20.0.0/20"),
-//				K8sTags:        astronomer.ClusterK8sTagArray{},
-//				NodePools:      astronomer.ClusterNodePoolArray{},
+//				Region:         pulumi.String("westus2"),
+//				CloudProvider:  pulumi.String("AZURE"),
+//				VpcSubnetRange: pulumi.String("172.20.0.0/19"),
 //				WorkspaceIds: pulumi.StringArray{
-//					dedicated.ID(),
+//					pulumi.String("clv4wcf6f003u01m3zp7gsvzg"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.NewCluster(ctx, "gcpExample", &astronomer.ClusterArgs{
+//				Type:                pulumi.String("DEDICATED"),
+//				Region:              pulumi.String("us-central1"),
+//				CloudProvider:       pulumi.String("GCP"),
+//				PodSubnetRange:      pulumi.String("172.21.0.0/19"),
+//				ServicePeeringRange: pulumi.String("172.23.0.0/20"),
+//				ServiceSubnetRange:  pulumi.String("172.22.0.0/22"),
+//				VpcSubnetRange:      pulumi.String("172.20.0.0/22"),
+//				WorkspaceIds:        pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.NewCluster(ctx, "importedCluster", &astronomer.ClusterArgs{
+//				Type:                pulumi.String("DEDICATED"),
+//				Region:              pulumi.String("us-central1"),
+//				CloudProvider:       pulumi.String("GCP"),
+//				PodSubnetRange:      pulumi.String("172.21.0.0/19"),
+//				ServicePeeringRange: pulumi.String("172.23.0.0/20"),
+//				ServiceSubnetRange:  pulumi.String("172.22.0.0/22"),
+//				VpcSubnetRange:      pulumi.String("172.20.0.0/22"),
+//				WorkspaceIds:        pulumi.StringArray{},
 //			})
 //			if err != nil {
 //				return err
@@ -57,39 +89,42 @@ import (
 type Cluster struct {
 	pulumi.CustomResourceState
 
-	// The cluster's cloud provider.
+	// Cluster cloud provider - if changed, the cluster will be recreated.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+	// Cluster creation timestamp
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Cluster database instance type
 	DbInstanceType pulumi.StringOutput `pulumi:"dbInstanceType"`
-	// Whether the cluster is limited.
+	// Whether the cluster is limited
 	IsLimited pulumi.BoolOutput `pulumi:"isLimited"`
-	// The Kubernetes tags in the cluster.
-	K8sTags ClusterK8sTagArrayOutput `pulumi:"k8sTags"`
-	// The cluster's metadata.
+	// Cluster metadata
 	Metadata ClusterMetadataOutput `pulumi:"metadata"`
-	// The name of the node pool.
+	// Cluster name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The list of node pools to create in the cluster.
+	// Cluster node pools
 	NodePools ClusterNodePoolArrayOutput `pulumi:"nodePools"`
-	// The organization this cluster is associated with.
-	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	PodSubnetRange pulumi.StringPtrOutput `pulumi:"podSubnetRange"`
-	// The provider account ID. Required for Hybrid clusters.
+	// Cluster provider account
 	ProviderAccount pulumi.StringOutput `pulumi:"providerAccount"`
-	// The cluster's region.
+	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrOutput `pulumi:"servicePeeringRange"`
-	// The service subnet range. For GCP clusters only.
+	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServiceSubnetRange pulumi.StringPtrOutput `pulumi:"serviceSubnetRange"`
-	// The tenant ID. For Azure clusters only.
-	TenantId pulumi.StringOutput `pulumi:"tenantId"`
-	// The cluster's type.
+	// Cluster status
+	Status pulumi.StringOutput `pulumi:"status"`
+	// Cluster tenant ID
+	TenantId pulumi.StringOutput      `pulumi:"tenantId"`
+	Timeouts ClusterTimeoutsPtrOutput `pulumi:"timeouts"`
+	// Cluster type
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The VPC subnet range.
+	// Cluster last updated timestamp
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// Cluster VPC subnet range. If changed, the cluster will be recreated.
 	VpcSubnetRange pulumi.StringOutput `pulumi:"vpcSubnetRange"`
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds pulumi.StringArrayOutput `pulumi:"workspaceIds"`
 }
 
@@ -138,76 +173,82 @@ func GetCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
-	// The cluster's cloud provider.
+	// Cluster cloud provider - if changed, the cluster will be recreated.
 	CloudProvider *string `pulumi:"cloudProvider"`
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+	// Cluster creation timestamp
+	CreatedAt *string `pulumi:"createdAt"`
+	// Cluster database instance type
 	DbInstanceType *string `pulumi:"dbInstanceType"`
-	// Whether the cluster is limited.
+	// Whether the cluster is limited
 	IsLimited *bool `pulumi:"isLimited"`
-	// The Kubernetes tags in the cluster.
-	K8sTags []ClusterK8sTag `pulumi:"k8sTags"`
-	// The cluster's metadata.
+	// Cluster metadata
 	Metadata *ClusterMetadata `pulumi:"metadata"`
-	// The name of the node pool.
+	// Cluster name
 	Name *string `pulumi:"name"`
-	// The list of node pools to create in the cluster.
+	// Cluster node pools
 	NodePools []ClusterNodePool `pulumi:"nodePools"`
-	// The organization this cluster is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	PodSubnetRange *string `pulumi:"podSubnetRange"`
-	// The provider account ID. Required for Hybrid clusters.
+	// Cluster provider account
 	ProviderAccount *string `pulumi:"providerAccount"`
-	// The cluster's region.
+	// Cluster region - if changed, the cluster will be recreated.
 	Region *string `pulumi:"region"`
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange *string `pulumi:"servicePeeringRange"`
-	// The service subnet range. For GCP clusters only.
+	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServiceSubnetRange *string `pulumi:"serviceSubnetRange"`
-	// The tenant ID. For Azure clusters only.
-	TenantId *string `pulumi:"tenantId"`
-	// The cluster's type.
+	// Cluster status
+	Status *string `pulumi:"status"`
+	// Cluster tenant ID
+	TenantId *string          `pulumi:"tenantId"`
+	Timeouts *ClusterTimeouts `pulumi:"timeouts"`
+	// Cluster type
 	Type *string `pulumi:"type"`
-	// The VPC subnet range.
+	// Cluster last updated timestamp
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// Cluster VPC subnet range. If changed, the cluster will be recreated.
 	VpcSubnetRange *string `pulumi:"vpcSubnetRange"`
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds []string `pulumi:"workspaceIds"`
 }
 
 type ClusterState struct {
-	// The cluster's cloud provider.
+	// Cluster cloud provider - if changed, the cluster will be recreated.
 	CloudProvider pulumi.StringPtrInput
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+	// Cluster creation timestamp
+	CreatedAt pulumi.StringPtrInput
+	// Cluster database instance type
 	DbInstanceType pulumi.StringPtrInput
-	// Whether the cluster is limited.
+	// Whether the cluster is limited
 	IsLimited pulumi.BoolPtrInput
-	// The Kubernetes tags in the cluster.
-	K8sTags ClusterK8sTagArrayInput
-	// The cluster's metadata.
+	// Cluster metadata
 	Metadata ClusterMetadataPtrInput
-	// The name of the node pool.
+	// Cluster name
 	Name pulumi.StringPtrInput
-	// The list of node pools to create in the cluster.
+	// Cluster node pools
 	NodePools ClusterNodePoolArrayInput
-	// The organization this cluster is associated with.
-	OrganizationId pulumi.StringPtrInput
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	PodSubnetRange pulumi.StringPtrInput
-	// The provider account ID. Required for Hybrid clusters.
+	// Cluster provider account
 	ProviderAccount pulumi.StringPtrInput
-	// The cluster's region.
+	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringPtrInput
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrInput
-	// The service subnet range. For GCP clusters only.
+	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServiceSubnetRange pulumi.StringPtrInput
-	// The tenant ID. For Azure clusters only.
+	// Cluster status
+	Status pulumi.StringPtrInput
+	// Cluster tenant ID
 	TenantId pulumi.StringPtrInput
-	// The cluster's type.
+	Timeouts ClusterTimeoutsPtrInput
+	// Cluster type
 	Type pulumi.StringPtrInput
-	// The VPC subnet range.
+	// Cluster last updated timestamp
+	UpdatedAt pulumi.StringPtrInput
+	// Cluster VPC subnet range. If changed, the cluster will be recreated.
 	VpcSubnetRange pulumi.StringPtrInput
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds pulumi.StringArrayInput
 }
 
@@ -216,65 +257,47 @@ func (ClusterState) ElementType() reflect.Type {
 }
 
 type clusterArgs struct {
-	// The cluster's cloud provider.
+	// Cluster cloud provider - if changed, the cluster will be recreated.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
-	DbInstanceType *string `pulumi:"dbInstanceType"`
-	// The Kubernetes tags in the cluster.
-	K8sTags []ClusterK8sTag `pulumi:"k8sTags"`
-	// The name of the node pool.
+	// Cluster name
 	Name *string `pulumi:"name"`
-	// The list of node pools to create in the cluster.
-	NodePools []ClusterNodePool `pulumi:"nodePools"`
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	PodSubnetRange *string `pulumi:"podSubnetRange"`
-	// The provider account ID. Required for Hybrid clusters.
-	ProviderAccount *string `pulumi:"providerAccount"`
-	// The cluster's region.
+	// Cluster region - if changed, the cluster will be recreated.
 	Region string `pulumi:"region"`
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange *string `pulumi:"servicePeeringRange"`
-	// The service subnet range. For GCP clusters only.
-	ServiceSubnetRange *string `pulumi:"serviceSubnetRange"`
-	// The tenant ID. For Azure clusters only.
-	TenantId *string `pulumi:"tenantId"`
-	// The cluster's type.
+	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
+	ServiceSubnetRange *string          `pulumi:"serviceSubnetRange"`
+	Timeouts           *ClusterTimeouts `pulumi:"timeouts"`
+	// Cluster type
 	Type string `pulumi:"type"`
-	// The VPC subnet range.
+	// Cluster VPC subnet range. If changed, the cluster will be recreated.
 	VpcSubnetRange string `pulumi:"vpcSubnetRange"`
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds []string `pulumi:"workspaceIds"`
 }
 
 // The set of arguments for constructing a Cluster resource.
 type ClusterArgs struct {
-	// The cluster's cloud provider.
+	// Cluster cloud provider - if changed, the cluster will be recreated.
 	CloudProvider pulumi.StringInput
-	// The type of database instance that is used for the cluster. Required for Hybrid clusters.
-	DbInstanceType pulumi.StringPtrInput
-	// The Kubernetes tags in the cluster.
-	K8sTags ClusterK8sTagArrayInput
-	// The name of the node pool.
+	// Cluster name
 	Name pulumi.StringPtrInput
-	// The list of node pools to create in the cluster.
-	NodePools ClusterNodePoolArrayInput
-	// The subnet range for Pods. For GCP clusters only.
+	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	PodSubnetRange pulumi.StringPtrInput
-	// The provider account ID. Required for Hybrid clusters.
-	ProviderAccount pulumi.StringPtrInput
-	// The cluster's region.
+	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringInput
-	// The service peering range. For GCP clusters only.
+	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrInput
-	// The service subnet range. For GCP clusters only.
+	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServiceSubnetRange pulumi.StringPtrInput
-	// The tenant ID. For Azure clusters only.
-	TenantId pulumi.StringPtrInput
-	// The cluster's type.
+	Timeouts           ClusterTimeoutsPtrInput
+	// Cluster type
 	Type pulumi.StringInput
-	// The VPC subnet range.
+	// Cluster VPC subnet range. If changed, the cluster will be recreated.
 	VpcSubnetRange pulumi.StringInput
-	// The list of Workspaces that are authorized to the cluster.
+	// Cluster workspace IDs
 	WorkspaceIds pulumi.StringArrayInput
 }
 
@@ -365,87 +388,96 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 	return o
 }
 
-// The cluster's cloud provider.
+// Cluster cloud provider - if changed, the cluster will be recreated.
 func (o ClusterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+// Cluster creation timestamp
+func (o ClusterOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster database instance type
 func (o ClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
-// Whether the cluster is limited.
+// Whether the cluster is limited
 func (o ClusterOutput) IsLimited() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsLimited }).(pulumi.BoolOutput)
 }
 
-// The Kubernetes tags in the cluster.
-func (o ClusterOutput) K8sTags() ClusterK8sTagArrayOutput {
-	return o.ApplyT(func(v *Cluster) ClusterK8sTagArrayOutput { return v.K8sTags }).(ClusterK8sTagArrayOutput)
-}
-
-// The cluster's metadata.
+// Cluster metadata
 func (o ClusterOutput) Metadata() ClusterMetadataOutput {
 	return o.ApplyT(func(v *Cluster) ClusterMetadataOutput { return v.Metadata }).(ClusterMetadataOutput)
 }
 
-// The name of the node pool.
+// Cluster name
 func (o ClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The list of node pools to create in the cluster.
+// Cluster node pools
 func (o ClusterOutput) NodePools() ClusterNodePoolArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterNodePoolArrayOutput { return v.NodePools }).(ClusterNodePoolArrayOutput)
 }
 
-// The organization this cluster is associated with.
-func (o ClusterOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
-}
-
-// The subnet range for Pods. For GCP clusters only.
+// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 func (o ClusterOutput) PodSubnetRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.PodSubnetRange }).(pulumi.StringPtrOutput)
 }
 
-// The provider account ID. Required for Hybrid clusters.
+// Cluster provider account
 func (o ClusterOutput) ProviderAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderAccount }).(pulumi.StringOutput)
 }
 
-// The cluster's region.
+// Cluster region - if changed, the cluster will be recreated.
 func (o ClusterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The service peering range. For GCP clusters only.
+// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 func (o ClusterOutput) ServicePeeringRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.ServicePeeringRange }).(pulumi.StringPtrOutput)
 }
 
-// The service subnet range. For GCP clusters only.
+// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 func (o ClusterOutput) ServiceSubnetRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.ServiceSubnetRange }).(pulumi.StringPtrOutput)
 }
 
-// The tenant ID. For Azure clusters only.
+// Cluster status
+func (o ClusterOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Cluster tenant ID
 func (o ClusterOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
-// The cluster's type.
+func (o ClusterOutput) Timeouts() ClusterTimeoutsPtrOutput {
+	return o.ApplyT(func(v *Cluster) ClusterTimeoutsPtrOutput { return v.Timeouts }).(ClusterTimeoutsPtrOutput)
+}
+
+// Cluster type
 func (o ClusterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The VPC subnet range.
+// Cluster last updated timestamp
+func (o ClusterOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Cluster VPC subnet range. If changed, the cluster will be recreated.
 func (o ClusterOutput) VpcSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.VpcSubnetRange }).(pulumi.StringOutput)
 }
 
-// The list of Workspaces that are authorized to the cluster.
+// Cluster workspace IDs
 func (o ClusterOutput) WorkspaceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringArrayOutput { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
 }

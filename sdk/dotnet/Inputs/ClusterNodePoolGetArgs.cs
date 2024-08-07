@@ -14,28 +14,70 @@ namespace RyanPip.Astronomer.Inputs
     public sealed class ClusterNodePoolGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the node pool is the default node pool of the cluster.
+        /// Node pool cloud provider
+        /// </summary>
+        [Input("cloudProvider")]
+        public Input<string>? CloudProvider { get; set; }
+
+        /// <summary>
+        /// Node pool cluster identifier
+        /// </summary>
+        [Input("clusterId")]
+        public Input<string>? ClusterId { get; set; }
+
+        /// <summary>
+        /// Node pool creation timestamp
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Node pool identifier
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Whether the node pool is the default node pool of the cluster
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// The maximum number of nodes that can be created in the node pool.
+        /// Node pool maximum node count
         /// </summary>
-        [Input("maxNodeCount", required: true)]
-        public Input<int> MaxNodeCount { get; set; } = null!;
+        [Input("maxNodeCount")]
+        public Input<int>? MaxNodeCount { get; set; }
 
         /// <summary>
-        /// The name of the node pool.
+        /// Node pool name
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of node instance that is used for the node pool.
+        /// Node pool node instance type
         /// </summary>
-        [Input("nodeInstanceType", required: true)]
-        public Input<string> NodeInstanceType { get; set; } = null!;
+        [Input("nodeInstanceType")]
+        public Input<string>? NodeInstanceType { get; set; }
+
+        [Input("supportedAstroMachines")]
+        private InputList<string>? _supportedAstroMachines;
+
+        /// <summary>
+        /// Node pool supported Astro machines
+        /// </summary>
+        public InputList<string> SupportedAstroMachines
+        {
+            get => _supportedAstroMachines ?? (_supportedAstroMachines = new InputList<string>());
+            set => _supportedAstroMachines = value;
+        }
+
+        /// <summary>
+        /// Node pool last updated timestamp
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public ClusterNodePoolGetArgs()
         {

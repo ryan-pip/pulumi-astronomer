@@ -18,17 +18,13 @@ import (
 	_ "embed"
 	"fmt"
 	"path/filepath"
-	"strings"
-	"unicode"
 
-	shimprovider "github.com/GK-Consulting/terraform-provider-astronomer/shim"
-	"github.com/ettle/strcase"
+	shimprovider "github.com/astronomer/terraform-provider-astro/shim"
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"github.com/ryan-pip/pulumi-astronomer/provider/pkg/version"
 )
 
@@ -37,43 +33,9 @@ var bridgeMetadata []byte
 
 // all of the token components used below.
 const (
-	// This variable controls the default name of the package in the package
+	mainPkg = "astronomer"
 	mainMod = "index" // the astronomer module
 )
-
-func convertName(tfname string) (module string, name string) {
-	tfNameItems := strings.Split(tfname, "_")
-	contract.Assertf(len(tfNameItems) >= 2, "Invalid snake case name %s", tfname)
-	contract.Assertf(tfNameItems[0] == "astronomer", "Invalid snake case name %s. Does not start with astronomer", tfname)
-	module = mainMod
-	name = strings.Join(tfNameItems[1:], "_")
-	contract.Assertf(!unicode.IsDigit(rune(name[0])), "Pulumi name must not start with a digit: %s", name)
-	name = strcase.ToPascal(name)
-	return
-}
-
-func makeDataSource(ds string) tokens.ModuleMember {
-	mod, name := convertName(ds)
-	return tfbridge.MakeDataSource("astronomer", mod, "get"+name)
-}
-
-func makeResource(res string) tokens.Type {
-	mod, name := convertName(res)
-	return tfbridge.MakeResource("astronomer", mod, name)
-}
-
-func moduleComputeStrategy() tfbridge.Strategy {
-	return tfbridge.Strategy{
-		Resource: func(tfToken string, elem *tfbridge.ResourceInfo) error {
-			elem.Tok = makeResource(tfToken)
-			return nil
-		},
-		DataSource: func(tfToken string, elem *tfbridge.DataSourceInfo) error {
-			elem.Tok = makeDataSource(tfToken)
-			return nil
-		},
-	}
-}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -88,77 +50,46 @@ func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 	p := pf.ShimProvider(shimprovider.NewProvider())
 
-	// Create a Pulumi provider mapping
+	delegateID := func(pulumiField string) tfbridge.ComputeID {
+		return tfbridge.DelegateIDField(resource.PropertyKey(pulumiField),
+			"astro", "https://github.com/ryan-pip/pulumi-astronomer")
+	}
+
 	prov := tfbridge.ProviderInfo{
-		P:    p,
-		Name: "astronomer",
-		// DisplayName is a way to be able to change the casing of the provider
-		// name when being displayed on the Pulumi registry
-		DisplayName: "Astronomer",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
-		Publisher: "ryan-pip",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "https://raw.githubusercontent.com/ryan-pip/pulumi-astronomer/main/docs/astronomer.svg",
-		// PluginDownloadURL is an optional URL used to download the Provider
-		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
+		P:                 p,
+		Name:              "astro",
+		DisplayName:       "Astronomer",
+		Publisher:         "ryan-pip",
+		LogoURL:           "https://raw.githubusercontent.com/ryan-pip/pulumi-astronomer/main/docs/astronomer.svg",
 		PluginDownloadURL: "github://api.github.com/ryan-pip/pulumi-astronomer",
 		Description:       "A Pulumi package for creating and managing Astronomer Cloud resources",
-		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
-		// For all available categories, see `Keywords` in
-		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
 		Keywords: []string{
 			"pulumi",
 			"astronomer",
 			"category/infrastructure",
 		},
-		License:    "Apache-2.0",
-		Homepage:   "https://github.com/ryan-pip/pulumi-astronomer",
-		Repository: "https://github.com/ryan-pip/pulumi-astronomer",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
-		// should match the TF provider module's require directive, not any replace directives.
+		License:           "Apache-2.0",
+		Homepage:          "https://github.com/ryan-pip/pulumi-astronomer",
+		Repository:        "https://github.com/ryan-pip/pulumi-astronomer",
 		Version:           version.Version,
-		GitHubOrg:         "GK-Consulting",
+		GitHubOrg:         "astronomer",
 		MetadataInfo:      tfbridge.NewProviderMetadata(bridgeMetadata),
 		TFProviderVersion: "0.3.0",
-		UpstreamRepoPath:  "./upstream",
 		Config: map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
 			"token": {
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"ASTRONOMER_API_TOKEN"},
+					EnvVars: []string{"ASTRO_API_TOKEN"},
 				},
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type.
-			//
-			// "aws_iam_role": {
-			//   Tok: makeResource(mainMod, "aws_iam_role"),
-			// },
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"astro_hybrid_cluster_workspace_authorization": {
+				ComputeID: delegateID("clusterId"),
+			},
+			"astro_team_roles": {ComputeID: delegateID("teamId")},
 		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each data source in the Terraform provider to a Pulumi function.
-			//
-			// "aws_ami": {
-			//	Tok: makeDataSource(mainMod, "aws_ami"),
-			// },
-		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@ryan-pip/pulumi_astronomer",
 
@@ -204,7 +135,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	prov.MustComputeTokens(moduleComputeStrategy())
+	prov.MustComputeTokens(tokens.SingleModule("astro_", mainMod,
+		tokens.MakeStandard(mainPkg)))
 	prov.SetAutonaming(255, "-")
 
 	return prov

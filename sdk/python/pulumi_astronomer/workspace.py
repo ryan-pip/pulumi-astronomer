@@ -8,57 +8,57 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['WorkspaceArgs', 'Workspace']
 
 @pulumi.input_type
 class WorkspaceArgs:
     def __init__(__self__, *,
-                 cicd_enforced_default: Optional[pulumi.Input[bool]] = None,
-                 description: Optional[pulumi.Input[str]] = None,
+                 cicd_enforced_default: pulumi.Input[bool],
+                 description: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Workspace resource.
-        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default.
-        :param pulumi.Input[str] description: The Workspace's description.
-        :param pulumi.Input[str] name: The Workspace's name.
+        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default
+        :param pulumi.Input[str] description: Workspace description
+        :param pulumi.Input[str] name: Workspace name
         """
-        if cicd_enforced_default is not None:
-            pulumi.set(__self__, "cicd_enforced_default", cicd_enforced_default)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "cicd_enforced_default", cicd_enforced_default)
+        pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="cicdEnforcedDefault")
-    def cicd_enforced_default(self) -> Optional[pulumi.Input[bool]]:
+    def cicd_enforced_default(self) -> pulumi.Input[bool]:
         """
-        Whether new Deployments enforce CI/CD deploys by default.
+        Whether new Deployments enforce CI/CD deploys by default
         """
         return pulumi.get(self, "cicd_enforced_default")
 
     @cicd_enforced_default.setter
-    def cicd_enforced_default(self, value: Optional[pulumi.Input[bool]]):
+    def cicd_enforced_default(self, value: pulumi.Input[bool]):
         pulumi.set(self, "cicd_enforced_default", value)
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[str]]:
+    def description(self) -> pulumi.Input[str]:
         """
-        The Workspace's description.
+        Workspace description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[str]]):
+    def description(self, value: pulumi.Input[str]):
         pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The Workspace's name.
+        Workspace name
         """
         return pulumi.get(self, "name")
 
@@ -71,26 +71,42 @@ class WorkspaceArgs:
 class _WorkspaceState:
     def __init__(__self__, *,
                  cicd_enforced_default: Optional[pulumi.Input[bool]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 created_by: Optional[pulumi.Input['WorkspaceCreatedByArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 updated_by: Optional[pulumi.Input['WorkspaceUpdatedByArgs']] = None):
         """
         Input properties used for looking up and filtering Workspace resources.
-        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default.
-        :param pulumi.Input[str] description: The Workspace's description.
-        :param pulumi.Input[str] name: The Workspace's name.
+        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default
+        :param pulumi.Input[str] created_at: Workspace creation timestamp
+        :param pulumi.Input['WorkspaceCreatedByArgs'] created_by: Workspace creator
+        :param pulumi.Input[str] description: Workspace description
+        :param pulumi.Input[str] name: Workspace name
+        :param pulumi.Input[str] updated_at: Workspace last updated timestamp
+        :param pulumi.Input['WorkspaceUpdatedByArgs'] updated_by: Workspace updater
         """
         if cicd_enforced_default is not None:
             pulumi.set(__self__, "cicd_enforced_default", cicd_enforced_default)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if updated_by is not None:
+            pulumi.set(__self__, "updated_by", updated_by)
 
     @property
     @pulumi.getter(name="cicdEnforcedDefault")
     def cicd_enforced_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether new Deployments enforce CI/CD deploys by default.
+        Whether new Deployments enforce CI/CD deploys by default
         """
         return pulumi.get(self, "cicd_enforced_default")
 
@@ -99,10 +115,34 @@ class _WorkspaceState:
         pulumi.set(self, "cicd_enforced_default", value)
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Workspace creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional[pulumi.Input['WorkspaceCreatedByArgs']]:
+        """
+        Workspace creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @created_by.setter
+    def created_by(self, value: Optional[pulumi.Input['WorkspaceCreatedByArgs']]):
+        pulumi.set(self, "created_by", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The Workspace's description.
+        Workspace description
         """
         return pulumi.get(self, "description")
 
@@ -114,13 +154,37 @@ class _WorkspaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The Workspace's name.
+        Workspace name
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Workspace last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> Optional[pulumi.Input['WorkspaceUpdatedByArgs']]:
+        """
+        Workspace updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @updated_by.setter
+    def updated_by(self, value: Optional[pulumi.Input['WorkspaceUpdatedByArgs']]):
+        pulumi.set(self, "updated_by", value)
 
 
 class Workspace(pulumi.CustomResource):
@@ -133,7 +197,7 @@ class Workspace(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Astronomer Workspace Resource
+        Workspace resource
 
         ## Example Usage
 
@@ -141,25 +205,28 @@ class Workspace(pulumi.CustomResource):
         import pulumi
         import pulumi_astronomer as astronomer
 
-        complete_setup = astronomer.Workspace("completeSetup",
-            cicd_enforced_default=True,
-            description="Testing Workspace")
+        example = astronomer.Workspace("example",
+            description="my first workspace",
+            cicd_enforced_default=True)
+        imported_workspace = astronomer.Workspace("importedWorkspace",
+            description="an existing workspace",
+            cicd_enforced_default=True)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default.
-        :param pulumi.Input[str] description: The Workspace's description.
-        :param pulumi.Input[str] name: The Workspace's name.
+        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default
+        :param pulumi.Input[str] description: Workspace description
+        :param pulumi.Input[str] name: Workspace name
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[WorkspaceArgs] = None,
+                 args: WorkspaceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Astronomer Workspace Resource
+        Workspace resource
 
         ## Example Usage
 
@@ -167,9 +234,12 @@ class Workspace(pulumi.CustomResource):
         import pulumi
         import pulumi_astronomer as astronomer
 
-        complete_setup = astronomer.Workspace("completeSetup",
-            cicd_enforced_default=True,
-            description="Testing Workspace")
+        example = astronomer.Workspace("example",
+            description="my first workspace",
+            cicd_enforced_default=True)
+        imported_workspace = astronomer.Workspace("importedWorkspace",
+            description="an existing workspace",
+            cicd_enforced_default=True)
         ```
 
         :param str resource_name: The name of the resource.
@@ -199,9 +269,17 @@ class Workspace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WorkspaceArgs.__new__(WorkspaceArgs)
 
+            if cicd_enforced_default is None and not opts.urn:
+                raise TypeError("Missing required property 'cicd_enforced_default'")
             __props__.__dict__["cicd_enforced_default"] = cicd_enforced_default
+            if description is None and not opts.urn:
+                raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["created_by"] = None
+            __props__.__dict__["updated_at"] = None
+            __props__.__dict__["updated_by"] = None
         super(Workspace, __self__).__init__(
             'astronomer:index/workspace:Workspace',
             resource_name,
@@ -213,8 +291,12 @@ class Workspace(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cicd_enforced_default: Optional[pulumi.Input[bool]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            created_by: Optional[pulumi.Input[pulumi.InputType['WorkspaceCreatedByArgs']]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'Workspace':
+            name: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None,
+            updated_by: Optional[pulumi.Input[pulumi.InputType['WorkspaceUpdatedByArgs']]] = None) -> 'Workspace':
         """
         Get an existing Workspace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -222,32 +304,56 @@ class Workspace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default.
-        :param pulumi.Input[str] description: The Workspace's description.
-        :param pulumi.Input[str] name: The Workspace's name.
+        :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default
+        :param pulumi.Input[str] created_at: Workspace creation timestamp
+        :param pulumi.Input[pulumi.InputType['WorkspaceCreatedByArgs']] created_by: Workspace creator
+        :param pulumi.Input[str] description: Workspace description
+        :param pulumi.Input[str] name: Workspace name
+        :param pulumi.Input[str] updated_at: Workspace last updated timestamp
+        :param pulumi.Input[pulumi.InputType['WorkspaceUpdatedByArgs']] updated_by: Workspace updater
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _WorkspaceState.__new__(_WorkspaceState)
 
         __props__.__dict__["cicd_enforced_default"] = cicd_enforced_default
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["created_by"] = created_by
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["updated_by"] = updated_by
         return Workspace(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="cicdEnforcedDefault")
-    def cicd_enforced_default(self) -> pulumi.Output[Optional[bool]]:
+    def cicd_enforced_default(self) -> pulumi.Output[bool]:
         """
-        Whether new Deployments enforce CI/CD deploys by default.
+        Whether new Deployments enforce CI/CD deploys by default
         """
         return pulumi.get(self, "cicd_enforced_default")
 
     @property
-    @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[str]]:
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
         """
-        The Workspace's description.
+        Workspace creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> pulumi.Output['outputs.WorkspaceCreatedBy']:
+        """
+        Workspace creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[str]:
+        """
+        Workspace description
         """
         return pulumi.get(self, "description")
 
@@ -255,7 +361,23 @@ class Workspace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The Workspace's name.
+        Workspace name
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        Workspace last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> pulumi.Output['outputs.WorkspaceUpdatedBy']:
+        """
+        Workspace updater
+        """
+        return pulumi.get(self, "updated_by")
 

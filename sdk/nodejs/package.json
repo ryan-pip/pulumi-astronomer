@@ -1,7 +1,7 @@
 {
     "name": "@ryan-pip/pulumi_astronomer",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing Astronomer Cloud resources. Based on terraform-provider-astronomer: version v0.3.0",
+    "description": "A Pulumi package for creating and managing Astronomer Cloud resources. Based on terraform-provider-astro: version v0.3.0",
     "keywords": [
         "pulumi",
         "astronomer",

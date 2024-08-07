@@ -32,9 +32,19 @@ namespace RyanPip.Astronomer
 
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("astronomer");
 
+        private static readonly __Value<string?> _host = new __Value<string?>(() => __config.Get("host"));
+        /// <summary>
+        /// API host to use for the provider. Default is `https://api.astronomer.io`
+        /// </summary>
+        public static string? Host
+        {
+            get => _host.Get();
+            set => _host.Set(value);
+        }
+
         private static readonly __Value<string?> _organizationId = new __Value<string?>(() => __config.Get("organizationId"));
         /// <summary>
-        /// Organization id this provider will operate on.
+        /// Organization ID this provider will operate on.
         /// </summary>
         public static string? OrganizationId
         {
@@ -42,9 +52,9 @@ namespace RyanPip.Astronomer
             set => _organizationId.Set(value);
         }
 
-        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("ASTRONOMER_API_TOKEN"));
+        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("ASTRO_API_TOKEN"));
         /// <summary>
-        /// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+        /// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         /// </summary>
         public static string? Token
         {

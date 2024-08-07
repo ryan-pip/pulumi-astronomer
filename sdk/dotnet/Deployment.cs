@@ -11,139 +11,292 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// An Astro Deployment is an Airflow environment that is powered by all core Airflow components.
+    /// Deployment resource
     /// </summary>
     [AstronomerResourceType("astronomer:index/deployment:Deployment")]
     public partial class Deployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Deployment's Astro Runtime version.
+        /// Deployment Airflow version
         /// </summary>
-        [Output("astroRuntimeVersion")]
-        public Output<string?> AstroRuntimeVersion { get; private set; } = null!;
+        [Output("airflowVersion")]
+        public Output<string> AirflowVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+        /// Deployment's current Astro Runtime version
+        /// </summary>
+        [Output("astroRuntimeVersion")]
+        public Output<string> AstroRuntimeVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
         /// </summary>
         [Output("cloudProvider")]
         public Output<string> CloudProvider { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the cluster where the Deployment will be created.
+        /// Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         /// </summary>
         [Output("clusterId")]
-        public Output<string?> ClusterId { get; private set; } = null!;
+        public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
+        /// Deployment contact emails
+        /// </summary>
+        [Output("contactEmails")]
+        public Output<ImmutableArray<string>> ContactEmails { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment creation timestamp
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment creator
+        /// </summary>
+        [Output("createdBy")]
+        public Output<Outputs.DeploymentCreatedBy> CreatedBy { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment DAG tarball version
+        /// </summary>
+        [Output("dagTarballVersion")]
+        public Output<string> DagTarballVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("defaultTaskPodCpu")]
-        public Output<string> DefaultTaskPodCpu { get; private set; } = null!;
+        public Output<string?> DefaultTaskPodCpu { get; private set; } = null!;
 
         /// <summary>
-        /// The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+        /// Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("defaultTaskPodMemory")]
-        public Output<string> DefaultTaskPodMemory { get; private set; } = null!;
+        public Output<string?> DefaultTaskPodMemory { get; private set; } = null!;
 
         /// <summary>
-        /// The Deployment's description.
+        /// Deployment description
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// List of environment variables to add to the Deployment.
+        /// Deployment desired DAG tarball version
+        /// </summary>
+        [Output("desiredDagTarballVersion")]
+        public Output<string> DesiredDagTarballVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment environment variables
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableArray<Outputs.DeploymentEnvironmentVariable>> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// The Deployment's executor type.
+        /// Deployment executor
         /// </summary>
         [Output("executor")]
         public Output<string> Executor { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment requires that all deploys are made through CI/CD.
+        /// Deployment external IPs
+        /// </summary>
+        [Output("externalIps")]
+        public Output<ImmutableArray<string>> ExternalIps { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment image repository
+        /// </summary>
+        [Output("imageRepository")]
+        public Output<string> ImageRepository { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment image tag
+        /// </summary>
+        [Output("imageTag")]
+        public Output<string> ImageTag { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment image version
+        /// </summary>
+        [Output("imageVersion")]
+        public Output<string> ImageVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment CI/CD enforced
         /// </summary>
         [Output("isCicdEnforced")]
         public Output<bool> IsCicdEnforced { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment has DAG deploys enabled.
+        /// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         /// </summary>
         [Output("isDagDeployEnabled")]
         public Output<bool> IsDagDeployEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment is in development mode.
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         /// </summary>
         [Output("isDevelopmentMode")]
-        public Output<bool> IsDevelopmentMode { get; private set; } = null!;
+        public Output<bool?> IsDevelopmentMode { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+        /// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("isHighAvailability")]
-        public Output<bool> IsHighAvailability { get; private set; } = null!;
+        public Output<bool?> IsHighAvailability { get; private set; } = null!;
 
         /// <summary>
-        /// The Deployment's name.
+        /// Deployment name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The region to host the Deployment in. Optional if `ClusterId` is specified.
+        /// Deployment namespace
+        /// </summary>
+        [Output("namespace")]
+        public Output<string> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment OIDC issuer URL
+        /// </summary>
+        [Output("oidcIssuerUrl")]
+        public Output<string> OidcIssuerUrl { get; private set; } = null!;
+
+        [Output("originalAstroRuntimeVersion")]
+        public Output<string?> OriginalAstroRuntimeVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+        /// Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("resourceQuotaCpu")]
-        public Output<string> ResourceQuotaCpu { get; private set; } = null!;
+        public Output<string?> ResourceQuotaCpu { get; private set; } = null!;
 
         /// <summary>
-        /// The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+        /// Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("resourceQuotaMemory")]
-        public Output<string> ResourceQuotaMemory { get; private set; } = null!;
+        public Output<string?> ResourceQuotaMemory { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the scheduler pod.
+        /// Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        [Output("scalingSpec")]
+        public Output<Outputs.DeploymentScalingSpec?> ScalingSpec { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scaling status
+        /// </summary>
+        [Output("scalingStatus")]
+        public Output<Outputs.DeploymentScalingStatus> ScalingStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scheduler AU - required for 'HYBRID' deployments
+        /// </summary>
+        [Output("schedulerAu")]
+        public Output<int?> SchedulerAu { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scheduler CPU
+        /// </summary>
+        [Output("schedulerCpu")]
+        public Output<string> SchedulerCpu { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scheduler memory
+        /// </summary>
+        [Output("schedulerMemory")]
+        public Output<string> SchedulerMemory { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scheduler replicas - required for 'HYBRID' deployments
+        /// </summary>
+        [Output("schedulerReplicas")]
+        public Output<int> SchedulerReplicas { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("schedulerSize")]
-        public Output<string> SchedulerSize { get; private set; } = null!;
+        public Output<string?> SchedulerSize { get; private set; } = null!;
 
         /// <summary>
-        /// The node pool ID for the task pods. For KUBERNETES executor only.
+        /// Deployment status
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment status reason
+        /// </summary>
+        [Output("statusReason")]
+        public Output<string> StatusReason { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         /// </summary>
         [Output("taskPodNodePoolId")]
         public Output<string?> TaskPodNodePoolId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the Deployment.
+        /// Deployment type - if changing this value, the deployment will be recreated with the new type
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+        /// Deployment last updated timestamp
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment updater
+        /// </summary>
+        [Output("updatedBy")]
+        public Output<Outputs.DeploymentUpdatedBy> UpdatedBy { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment webserver Airflow API URL
+        /// </summary>
+        [Output("webserverAirflowApiUrl")]
+        public Output<string> WebserverAirflowApiUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment webserver ingress hostname
+        /// </summary>
+        [Output("webserverIngressHostname")]
+        public Output<string> WebserverIngressHostname { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment webserver URL
+        /// </summary>
+        [Output("webserverUrl")]
+        public Output<string> WebserverUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// Deployment worker queues - required for deployments with 'CELERY' executor
         /// </summary>
         [Output("workerQueues")]
         public Output<ImmutableArray<Outputs.DeploymentWorkerQueue>> WorkerQueues { get; private set; } = null!;
 
         /// <summary>
-        /// The Deployment's workload identity.
+        /// Deployment workload identity. This value can be changed via the Astro API if applicable.
         /// </summary>
         [Output("workloadIdentity")]
         public Output<string> WorkloadIdentity { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the workspace to which the Deployment belongs.
+        /// Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         /// </summary>
         [Output("workspaceId")]
         public Output<string> WorkspaceId { get; private set; } = null!;
@@ -196,46 +349,52 @@ namespace RyanPip.Astronomer
     public sealed class DeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment's Astro Runtime version.
-        /// </summary>
-        [Input("astroRuntimeVersion")]
-        public Input<string>? AstroRuntimeVersion { get; set; }
-
-        /// <summary>
-        /// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+        /// Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
         /// </summary>
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }
 
         /// <summary>
-        /// The ID of the cluster where the Deployment will be created.
+        /// Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
-        /// <summary>
-        /// The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
-        /// </summary>
-        [Input("defaultTaskPodCpu", required: true)]
-        public Input<string> DefaultTaskPodCpu { get; set; } = null!;
+        [Input("contactEmails", required: true)]
+        private InputList<string>? _contactEmails;
 
         /// <summary>
-        /// The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+        /// Deployment contact emails
         /// </summary>
-        [Input("defaultTaskPodMemory", required: true)]
-        public Input<string> DefaultTaskPodMemory { get; set; } = null!;
+        public InputList<string> ContactEmails
+        {
+            get => _contactEmails ?? (_contactEmails = new InputList<string>());
+            set => _contactEmails = value;
+        }
 
         /// <summary>
-        /// The Deployment's description.
+        /// Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
+        [Input("defaultTaskPodCpu")]
+        public Input<string>? DefaultTaskPodCpu { get; set; }
 
-        [Input("environmentVariables")]
+        /// <summary>
+        /// Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        [Input("defaultTaskPodMemory")]
+        public Input<string>? DefaultTaskPodMemory { get; set; }
+
+        /// <summary>
+        /// Deployment description
+        /// </summary>
+        [Input("description", required: true)]
+        public Input<string> Description { get; set; } = null!;
+
+        [Input("environmentVariables", required: true)]
         private InputList<Inputs.DeploymentEnvironmentVariableArgs>? _environmentVariables;
 
         /// <summary>
-        /// List of environment variables to add to the Deployment.
+        /// Deployment environment variables
         /// </summary>
         public InputList<Inputs.DeploymentEnvironmentVariableArgs> EnvironmentVariables
         {
@@ -244,73 +403,94 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The Deployment's executor type.
+        /// Deployment executor
         /// </summary>
         [Input("executor", required: true)]
         public Input<string> Executor { get; set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment requires that all deploys are made through CI/CD.
+        /// Deployment CI/CD enforced
         /// </summary>
         [Input("isCicdEnforced", required: true)]
         public Input<bool> IsCicdEnforced { get; set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment has DAG deploys enabled.
+        /// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         /// </summary>
         [Input("isDagDeployEnabled", required: true)]
         public Input<bool> IsDagDeployEnabled { get; set; } = null!;
 
         /// <summary>
-        /// Whether the Deployment is in development mode.
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         /// </summary>
-        [Input("isDevelopmentMode", required: true)]
-        public Input<bool> IsDevelopmentMode { get; set; } = null!;
+        [Input("isDevelopmentMode")]
+        public Input<bool>? IsDevelopmentMode { get; set; }
 
         /// <summary>
-        /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+        /// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
-        [Input("isHighAvailability", required: true)]
-        public Input<bool> IsHighAvailability { get; set; } = null!;
+        [Input("isHighAvailability")]
+        public Input<bool>? IsHighAvailability { get; set; }
 
         /// <summary>
-        /// The Deployment's name.
+        /// Deployment name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("originalAstroRuntimeVersion")]
+        public Input<string>? OriginalAstroRuntimeVersion { get; set; }
+
         /// <summary>
-        /// The region to host the Deployment in. Optional if `ClusterId` is specified.
+        /// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+        /// Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
-        [Input("resourceQuotaCpu", required: true)]
-        public Input<string> ResourceQuotaCpu { get; set; } = null!;
+        [Input("resourceQuotaCpu")]
+        public Input<string>? ResourceQuotaCpu { get; set; }
 
         /// <summary>
-        /// The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+        /// Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
-        [Input("resourceQuotaMemory", required: true)]
-        public Input<string> ResourceQuotaMemory { get; set; } = null!;
+        [Input("resourceQuotaMemory")]
+        public Input<string>? ResourceQuotaMemory { get; set; }
 
         /// <summary>
-        /// The size of the scheduler pod.
+        /// Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
-        [Input("schedulerSize", required: true)]
-        public Input<string> SchedulerSize { get; set; } = null!;
+        [Input("scalingSpec")]
+        public Input<Inputs.DeploymentScalingSpecArgs>? ScalingSpec { get; set; }
 
         /// <summary>
-        /// The node pool ID for the task pods. For KUBERNETES executor only.
+        /// Deployment scheduler AU - required for 'HYBRID' deployments
+        /// </summary>
+        [Input("schedulerAu")]
+        public Input<int>? SchedulerAu { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler replicas - required for 'HYBRID' deployments
+        /// </summary>
+        [Input("schedulerReplicas")]
+        public Input<int>? SchedulerReplicas { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        [Input("schedulerSize")]
+        public Input<string>? SchedulerSize { get; set; }
+
+        /// <summary>
+        /// Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         /// </summary>
         [Input("taskPodNodePoolId")]
         public Input<string>? TaskPodNodePoolId { get; set; }
 
         /// <summary>
-        /// The type of the Deployment.
+        /// Deployment type - if changing this value, the deployment will be recreated with the new type
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -319,7 +499,7 @@ namespace RyanPip.Astronomer
         private InputList<Inputs.DeploymentWorkerQueueArgs>? _workerQueues;
 
         /// <summary>
-        /// The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+        /// Deployment worker queues - required for deployments with 'CELERY' executor
         /// </summary>
         public InputList<Inputs.DeploymentWorkerQueueArgs> WorkerQueues
         {
@@ -328,7 +508,7 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The ID of the workspace to which the Deployment belongs.
+        /// Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         /// </summary>
         [Input("workspaceId", required: true)]
         public Input<string> WorkspaceId { get; set; } = null!;
@@ -342,46 +522,88 @@ namespace RyanPip.Astronomer
     public sealed class DeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment's Astro Runtime version.
+        /// Deployment Airflow version
+        /// </summary>
+        [Input("airflowVersion")]
+        public Input<string>? AirflowVersion { get; set; }
+
+        /// <summary>
+        /// Deployment's current Astro Runtime version
         /// </summary>
         [Input("astroRuntimeVersion")]
         public Input<string>? AstroRuntimeVersion { get; set; }
 
         /// <summary>
-        /// The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+        /// Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
         /// </summary>
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }
 
         /// <summary>
-        /// The ID of the cluster where the Deployment will be created.
+        /// Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        [Input("contactEmails")]
+        private InputList<string>? _contactEmails;
+
         /// <summary>
-        /// The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
+        /// Deployment contact emails
+        /// </summary>
+        public InputList<string> ContactEmails
+        {
+            get => _contactEmails ?? (_contactEmails = new InputList<string>());
+            set => _contactEmails = value;
+        }
+
+        /// <summary>
+        /// Deployment creation timestamp
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Deployment creator
+        /// </summary>
+        [Input("createdBy")]
+        public Input<Inputs.DeploymentCreatedByGetArgs>? CreatedBy { get; set; }
+
+        /// <summary>
+        /// Deployment DAG tarball version
+        /// </summary>
+        [Input("dagTarballVersion")]
+        public Input<string>? DagTarballVersion { get; set; }
+
+        /// <summary>
+        /// Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("defaultTaskPodCpu")]
         public Input<string>? DefaultTaskPodCpu { get; set; }
 
         /// <summary>
-        /// The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+        /// Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("defaultTaskPodMemory")]
         public Input<string>? DefaultTaskPodMemory { get; set; }
 
         /// <summary>
-        /// The Deployment's description.
+        /// Deployment description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Deployment desired DAG tarball version
+        /// </summary>
+        [Input("desiredDagTarballVersion")]
+        public Input<string>? DesiredDagTarballVersion { get; set; }
 
         [Input("environmentVariables")]
         private InputList<Inputs.DeploymentEnvironmentVariableGetArgs>? _environmentVariables;
 
         /// <summary>
-        /// List of environment variables to add to the Deployment.
+        /// Deployment environment variables
         /// </summary>
         public InputList<Inputs.DeploymentEnvironmentVariableGetArgs> EnvironmentVariables
         {
@@ -390,82 +612,205 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The Deployment's executor type.
+        /// Deployment executor
         /// </summary>
         [Input("executor")]
         public Input<string>? Executor { get; set; }
 
+        [Input("externalIps")]
+        private InputList<string>? _externalIps;
+
         /// <summary>
-        /// Whether the Deployment requires that all deploys are made through CI/CD.
+        /// Deployment external IPs
+        /// </summary>
+        public InputList<string> ExternalIps
+        {
+            get => _externalIps ?? (_externalIps = new InputList<string>());
+            set => _externalIps = value;
+        }
+
+        /// <summary>
+        /// Deployment image repository
+        /// </summary>
+        [Input("imageRepository")]
+        public Input<string>? ImageRepository { get; set; }
+
+        /// <summary>
+        /// Deployment image tag
+        /// </summary>
+        [Input("imageTag")]
+        public Input<string>? ImageTag { get; set; }
+
+        /// <summary>
+        /// Deployment image version
+        /// </summary>
+        [Input("imageVersion")]
+        public Input<string>? ImageVersion { get; set; }
+
+        /// <summary>
+        /// Deployment CI/CD enforced
         /// </summary>
         [Input("isCicdEnforced")]
         public Input<bool>? IsCicdEnforced { get; set; }
 
         /// <summary>
-        /// Whether the Deployment has DAG deploys enabled.
+        /// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         /// </summary>
         [Input("isDagDeployEnabled")]
         public Input<bool>? IsDagDeployEnabled { get; set; }
 
         /// <summary>
-        /// Whether the Deployment is in development mode.
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         /// </summary>
         [Input("isDevelopmentMode")]
         public Input<bool>? IsDevelopmentMode { get; set; }
 
         /// <summary>
-        /// Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+        /// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("isHighAvailability")]
         public Input<bool>? IsHighAvailability { get; set; }
 
         /// <summary>
-        /// The Deployment's name.
+        /// Deployment name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region to host the Deployment in. Optional if `ClusterId` is specified.
+        /// Deployment namespace
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Deployment OIDC issuer URL
+        /// </summary>
+        [Input("oidcIssuerUrl")]
+        public Input<string>? OidcIssuerUrl { get; set; }
+
+        [Input("originalAstroRuntimeVersion")]
+        public Input<string>? OriginalAstroRuntimeVersion { get; set; }
+
+        /// <summary>
+        /// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+        /// Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("resourceQuotaCpu")]
         public Input<string>? ResourceQuotaCpu { get; set; }
 
         /// <summary>
-        /// The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+        /// Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("resourceQuotaMemory")]
         public Input<string>? ResourceQuotaMemory { get; set; }
 
         /// <summary>
-        /// The size of the scheduler pod.
+        /// Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+        /// </summary>
+        [Input("scalingSpec")]
+        public Input<Inputs.DeploymentScalingSpecGetArgs>? ScalingSpec { get; set; }
+
+        /// <summary>
+        /// Deployment scaling status
+        /// </summary>
+        [Input("scalingStatus")]
+        public Input<Inputs.DeploymentScalingStatusGetArgs>? ScalingStatus { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler AU - required for 'HYBRID' deployments
+        /// </summary>
+        [Input("schedulerAu")]
+        public Input<int>? SchedulerAu { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler CPU
+        /// </summary>
+        [Input("schedulerCpu")]
+        public Input<string>? SchedulerCpu { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler memory
+        /// </summary>
+        [Input("schedulerMemory")]
+        public Input<string>? SchedulerMemory { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler replicas - required for 'HYBRID' deployments
+        /// </summary>
+        [Input("schedulerReplicas")]
+        public Input<int>? SchedulerReplicas { get; set; }
+
+        /// <summary>
+        /// Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("schedulerSize")]
         public Input<string>? SchedulerSize { get; set; }
 
         /// <summary>
-        /// The node pool ID for the task pods. For KUBERNETES executor only.
+        /// Deployment status
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Deployment status reason
+        /// </summary>
+        [Input("statusReason")]
+        public Input<string>? StatusReason { get; set; }
+
+        /// <summary>
+        /// Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         /// </summary>
         [Input("taskPodNodePoolId")]
         public Input<string>? TaskPodNodePoolId { get; set; }
 
         /// <summary>
-        /// The type of the Deployment.
+        /// Deployment type - if changing this value, the deployment will be recreated with the new type
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Deployment last updated timestamp
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Deployment updater
+        /// </summary>
+        [Input("updatedBy")]
+        public Input<Inputs.DeploymentUpdatedByGetArgs>? UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Deployment webserver Airflow API URL
+        /// </summary>
+        [Input("webserverAirflowApiUrl")]
+        public Input<string>? WebserverAirflowApiUrl { get; set; }
+
+        /// <summary>
+        /// Deployment webserver ingress hostname
+        /// </summary>
+        [Input("webserverIngressHostname")]
+        public Input<string>? WebserverIngressHostname { get; set; }
+
+        /// <summary>
+        /// Deployment webserver URL
+        /// </summary>
+        [Input("webserverUrl")]
+        public Input<string>? WebserverUrl { get; set; }
 
         [Input("workerQueues")]
         private InputList<Inputs.DeploymentWorkerQueueGetArgs>? _workerQueues;
 
         /// <summary>
-        /// The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+        /// Deployment worker queues - required for deployments with 'CELERY' executor
         /// </summary>
         public InputList<Inputs.DeploymentWorkerQueueGetArgs> WorkerQueues
         {
@@ -474,13 +819,13 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The Deployment's workload identity.
+        /// Deployment workload identity. This value can be changed via the Astro API if applicable.
         /// </summary>
         [Input("workloadIdentity")]
         public Input<string>? WorkloadIdentity { get; set; }
 
         /// <summary>
-        /// The ID of the workspace to which the Deployment belongs.
+        /// Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         /// </summary>
         [Input("workspaceId")]
         public Input<string>? WorkspaceId { get; set; }

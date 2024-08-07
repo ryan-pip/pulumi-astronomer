@@ -11,7 +11,7 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// A cluster within an organization. An Astro cluster is a Kubernetes cluster that hosts the infrastructure required to run Deployments.
+    /// Cluster resource. If creating multiple clusters, add a delay between each cluster creation to avoid cluster creation limiting errors.
     /// 
     /// ## Example Usage
     /// 
@@ -23,24 +23,55 @@ namespace RyanPip.Astronomer
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dedicated = new Astronomer.Workspace("dedicated", new()
+    ///     var awsExample = new Astronomer.Cluster("awsExample", new()
     ///     {
-    ///         CicdEnforcedDefault = true,
-    ///         Description = "Workspace that demos a dedicated deployment set up",
+    ///         Type = "DEDICATED",
+    ///         Region = "us-east-1",
+    ///         CloudProvider = "AWS",
+    ///         VpcSubnetRange = "172.20.0.0/20",
+    ///         WorkspaceIds = new[] {},
+    ///         Timeouts = new Astronomer.Inputs.ClusterTimeoutsArgs
+    ///         {
+    ///             Create = "3h",
+    ///             Update = "2h",
+    ///             Delete = "1h",
+    ///         },
     ///     });
     /// 
-    ///     var awsDedicated = new Astronomer.Cluster("awsDedicated", new()
+    ///     var azureExample = new Astronomer.Cluster("azureExample", new()
     ///     {
-    ///         CloudProvider = "AWS",
-    ///         Region = "us-east-1",
     ///         Type = "DEDICATED",
-    ///         VpcSubnetRange = "172.20.0.0/20",
-    ///         K8sTags = new[] {},
-    ///         NodePools = new[] {},
+    ///         Region = "westus2",
+    ///         CloudProvider = "AZURE",
+    ///         VpcSubnetRange = "172.20.0.0/19",
     ///         WorkspaceIds = new[]
     ///         {
-    ///             dedicated.Id,
+    ///             "clv4wcf6f003u01m3zp7gsvzg",
     ///         },
+    ///     });
+    /// 
+    ///     var gcpExample = new Astronomer.Cluster("gcpExample", new()
+    ///     {
+    ///         Type = "DEDICATED",
+    ///         Region = "us-central1",
+    ///         CloudProvider = "GCP",
+    ///         PodSubnetRange = "172.21.0.0/19",
+    ///         ServicePeeringRange = "172.23.0.0/20",
+    ///         ServiceSubnetRange = "172.22.0.0/22",
+    ///         VpcSubnetRange = "172.20.0.0/22",
+    ///         WorkspaceIds = new[] {},
+    ///     });
+    /// 
+    ///     var importedCluster = new Astronomer.Cluster("importedCluster", new()
+    ///     {
+    ///         Type = "DEDICATED",
+    ///         Region = "us-central1",
+    ///         CloudProvider = "GCP",
+    ///         PodSubnetRange = "172.21.0.0/19",
+    ///         ServicePeeringRange = "172.23.0.0/20",
+    ///         ServiceSubnetRange = "172.22.0.0/22",
+    ///         VpcSubnetRange = "172.20.0.0/22",
+    ///         WorkspaceIds = new[] {},
     ///     });
     /// 
     /// });
@@ -50,103 +81,112 @@ namespace RyanPip.Astronomer
     public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The cluster's cloud provider.
+        /// Cluster cloud provider - if changed, the cluster will be recreated.
         /// </summary>
         [Output("cloudProvider")]
         public Output<string> CloudProvider { get; private set; } = null!;
 
         /// <summary>
-        /// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+        /// Cluster creation timestamp
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Cluster database instance type
         /// </summary>
         [Output("dbInstanceType")]
         public Output<string> DbInstanceType { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the cluster is limited.
+        /// Whether the cluster is limited
         /// </summary>
         [Output("isLimited")]
         public Output<bool> IsLimited { get; private set; } = null!;
 
         /// <summary>
-        /// The Kubernetes tags in the cluster.
-        /// </summary>
-        [Output("k8sTags")]
-        public Output<ImmutableArray<Outputs.ClusterK8sTag>> K8sTags { get; private set; } = null!;
-
-        /// <summary>
-        /// The cluster's metadata.
+        /// Cluster metadata
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.ClusterMetadata> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the node pool.
+        /// Cluster name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The list of node pools to create in the cluster.
+        /// Cluster node pools
         /// </summary>
         [Output("nodePools")]
         public Output<ImmutableArray<Outputs.ClusterNodePool>> NodePools { get; private set; } = null!;
 
         /// <summary>
-        /// The organization this cluster is associated with.
-        /// </summary>
-        [Output("organizationId")]
-        public Output<string> OrganizationId { get; private set; } = null!;
-
-        /// <summary>
-        /// The subnet range for Pods. For GCP clusters only.
+        /// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Output("podSubnetRange")]
         public Output<string?> PodSubnetRange { get; private set; } = null!;
 
         /// <summary>
-        /// The provider account ID. Required for Hybrid clusters.
+        /// Cluster provider account
         /// </summary>
         [Output("providerAccount")]
         public Output<string> ProviderAccount { get; private set; } = null!;
 
         /// <summary>
-        /// The cluster's region.
+        /// Cluster region - if changed, the cluster will be recreated.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The service peering range. For GCP clusters only.
+        /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Output("servicePeeringRange")]
         public Output<string?> ServicePeeringRange { get; private set; } = null!;
 
         /// <summary>
-        /// The service subnet range. For GCP clusters only.
+        /// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Output("serviceSubnetRange")]
         public Output<string?> ServiceSubnetRange { get; private set; } = null!;
 
         /// <summary>
-        /// The tenant ID. For Azure clusters only.
+        /// Cluster status
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Cluster tenant ID
         /// </summary>
         [Output("tenantId")]
         public Output<string> TenantId { get; private set; } = null!;
 
+        [Output("timeouts")]
+        public Output<Outputs.ClusterTimeouts?> Timeouts { get; private set; } = null!;
+
         /// <summary>
-        /// The cluster's type.
+        /// Cluster type
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The VPC subnet range.
+        /// Cluster last updated timestamp
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Cluster VPC subnet range. If changed, the cluster will be recreated.
         /// </summary>
         [Output("vpcSubnetRange")]
         public Output<string> VpcSubnetRange { get; private set; } = null!;
 
         /// <summary>
-        /// The list of Workspaces that are authorized to the cluster.
+        /// Cluster workspace IDs
         /// </summary>
         [Output("workspaceIds")]
         public Output<ImmutableArray<string>> WorkspaceIds { get; private set; } = null!;
@@ -199,91 +239,52 @@ namespace RyanPip.Astronomer
     public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The cluster's cloud provider.
+        /// Cluster cloud provider - if changed, the cluster will be recreated.
         /// </summary>
         [Input("cloudProvider", required: true)]
         public Input<string> CloudProvider { get; set; } = null!;
 
         /// <summary>
-        /// The type of database instance that is used for the cluster. Required for Hybrid clusters.
-        /// </summary>
-        [Input("dbInstanceType")]
-        public Input<string>? DbInstanceType { get; set; }
-
-        [Input("k8sTags")]
-        private InputList<Inputs.ClusterK8sTagArgs>? _k8sTags;
-
-        /// <summary>
-        /// The Kubernetes tags in the cluster.
-        /// </summary>
-        public InputList<Inputs.ClusterK8sTagArgs> K8sTags
-        {
-            get => _k8sTags ?? (_k8sTags = new InputList<Inputs.ClusterK8sTagArgs>());
-            set => _k8sTags = value;
-        }
-
-        /// <summary>
-        /// The name of the node pool.
+        /// Cluster name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("nodePools")]
-        private InputList<Inputs.ClusterNodePoolArgs>? _nodePools;
-
         /// <summary>
-        /// The list of node pools to create in the cluster.
-        /// </summary>
-        public InputList<Inputs.ClusterNodePoolArgs> NodePools
-        {
-            get => _nodePools ?? (_nodePools = new InputList<Inputs.ClusterNodePoolArgs>());
-            set => _nodePools = value;
-        }
-
-        /// <summary>
-        /// The subnet range for Pods. For GCP clusters only.
+        /// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("podSubnetRange")]
         public Input<string>? PodSubnetRange { get; set; }
 
         /// <summary>
-        /// The provider account ID. Required for Hybrid clusters.
-        /// </summary>
-        [Input("providerAccount")]
-        public Input<string>? ProviderAccount { get; set; }
-
-        /// <summary>
-        /// The cluster's region.
+        /// Cluster region - if changed, the cluster will be recreated.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// The service peering range. For GCP clusters only.
+        /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("servicePeeringRange")]
         public Input<string>? ServicePeeringRange { get; set; }
 
         /// <summary>
-        /// The service subnet range. For GCP clusters only.
+        /// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("serviceSubnetRange")]
         public Input<string>? ServiceSubnetRange { get; set; }
 
-        /// <summary>
-        /// The tenant ID. For Azure clusters only.
-        /// </summary>
-        [Input("tenantId")]
-        public Input<string>? TenantId { get; set; }
+        [Input("timeouts")]
+        public Input<Inputs.ClusterTimeoutsArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// The cluster's type.
+        /// Cluster type
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The VPC subnet range.
+        /// Cluster VPC subnet range. If changed, the cluster will be recreated.
         /// </summary>
         [Input("vpcSubnetRange", required: true)]
         public Input<string> VpcSubnetRange { get; set; } = null!;
@@ -292,7 +293,7 @@ namespace RyanPip.Astronomer
         private InputList<string>? _workspaceIds;
 
         /// <summary>
-        /// The list of Workspaces that are authorized to the cluster.
+        /// Cluster workspace IDs
         /// </summary>
         public InputList<string> WorkspaceIds
         {
@@ -309,43 +310,37 @@ namespace RyanPip.Astronomer
     public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The cluster's cloud provider.
+        /// Cluster cloud provider - if changed, the cluster will be recreated.
         /// </summary>
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }
 
         /// <summary>
-        /// The type of database instance that is used for the cluster. Required for Hybrid clusters.
+        /// Cluster creation timestamp
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Cluster database instance type
         /// </summary>
         [Input("dbInstanceType")]
         public Input<string>? DbInstanceType { get; set; }
 
         /// <summary>
-        /// Whether the cluster is limited.
+        /// Whether the cluster is limited
         /// </summary>
         [Input("isLimited")]
         public Input<bool>? IsLimited { get; set; }
 
-        [Input("k8sTags")]
-        private InputList<Inputs.ClusterK8sTagGetArgs>? _k8sTags;
-
         /// <summary>
-        /// The Kubernetes tags in the cluster.
-        /// </summary>
-        public InputList<Inputs.ClusterK8sTagGetArgs> K8sTags
-        {
-            get => _k8sTags ?? (_k8sTags = new InputList<Inputs.ClusterK8sTagGetArgs>());
-            set => _k8sTags = value;
-        }
-
-        /// <summary>
-        /// The cluster's metadata.
+        /// Cluster metadata
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ClusterMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
-        /// The name of the node pool.
+        /// Cluster name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -354,7 +349,7 @@ namespace RyanPip.Astronomer
         private InputList<Inputs.ClusterNodePoolGetArgs>? _nodePools;
 
         /// <summary>
-        /// The list of node pools to create in the cluster.
+        /// Cluster node pools
         /// </summary>
         public InputList<Inputs.ClusterNodePoolGetArgs> NodePools
         {
@@ -363,55 +358,64 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The organization this cluster is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
-
-        /// <summary>
-        /// The subnet range for Pods. For GCP clusters only.
+        /// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("podSubnetRange")]
         public Input<string>? PodSubnetRange { get; set; }
 
         /// <summary>
-        /// The provider account ID. Required for Hybrid clusters.
+        /// Cluster provider account
         /// </summary>
         [Input("providerAccount")]
         public Input<string>? ProviderAccount { get; set; }
 
         /// <summary>
-        /// The cluster's region.
+        /// Cluster region - if changed, the cluster will be recreated.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The service peering range. For GCP clusters only.
+        /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("servicePeeringRange")]
         public Input<string>? ServicePeeringRange { get; set; }
 
         /// <summary>
-        /// The service subnet range. For GCP clusters only.
+        /// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("serviceSubnetRange")]
         public Input<string>? ServiceSubnetRange { get; set; }
 
         /// <summary>
-        /// The tenant ID. For Azure clusters only.
+        /// Cluster status
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Cluster tenant ID
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
 
+        [Input("timeouts")]
+        public Input<Inputs.ClusterTimeoutsGetArgs>? Timeouts { get; set; }
+
         /// <summary>
-        /// The cluster's type.
+        /// Cluster type
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The VPC subnet range.
+        /// Cluster last updated timestamp
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Cluster VPC subnet range. If changed, the cluster will be recreated.
         /// </summary>
         [Input("vpcSubnetRange")]
         public Input<string>? VpcSubnetRange { get; set; }
@@ -420,7 +424,7 @@ namespace RyanPip.Astronomer
         private InputList<string>? _workspaceIds;
 
         /// <summary>
-        /// The list of Workspaces that are authorized to the cluster.
+        /// Cluster workspace IDs
         /// </summary>
         public InputList<string> WorkspaceIds
         {

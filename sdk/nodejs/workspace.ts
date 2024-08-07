@@ -2,10 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Astronomer Workspace Resource
+ * Workspace resource
  *
  * ## Example Usage
  *
@@ -13,9 +15,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@ryan-pip/pulumi_astronomer";
  *
- * const completeSetup = new astronomer.Workspace("completeSetup", {
+ * const example = new astronomer.Workspace("example", {
+ *     description: "my first workspace",
  *     cicdEnforcedDefault: true,
- *     description: "Testing Workspace",
+ * });
+ * const importedWorkspace = new astronomer.Workspace("importedWorkspace", {
+ *     description: "an existing workspace",
+ *     cicdEnforcedDefault: true,
  * });
  * ```
  */
@@ -48,17 +54,33 @@ export class Workspace extends pulumi.CustomResource {
     }
 
     /**
-     * Whether new Deployments enforce CI/CD deploys by default.
+     * Whether new Deployments enforce CI/CD deploys by default
      */
-    public readonly cicdEnforcedDefault!: pulumi.Output<boolean | undefined>;
+    public readonly cicdEnforcedDefault!: pulumi.Output<boolean>;
     /**
-     * The Workspace's description.
+     * Workspace creation timestamp
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The Workspace's name.
+     * Workspace creator
+     */
+    public /*out*/ readonly createdBy!: pulumi.Output<outputs.WorkspaceCreatedBy>;
+    /**
+     * Workspace description
+     */
+    public readonly description!: pulumi.Output<string>;
+    /**
+     * Workspace name
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Workspace last updated timestamp
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * Workspace updater
+     */
+    public /*out*/ readonly updatedBy!: pulumi.Output<outputs.WorkspaceUpdatedBy>;
 
     /**
      * Create a Workspace resource with the given unique name, arguments, and options.
@@ -67,20 +89,34 @@ export class Workspace extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: WorkspaceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: WorkspaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WorkspaceArgs | WorkspaceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WorkspaceState | undefined;
             resourceInputs["cicdEnforcedDefault"] = state ? state.cicdEnforcedDefault : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["createdBy"] = state ? state.createdBy : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["updatedBy"] = state ? state.updatedBy : undefined;
         } else {
             const args = argsOrState as WorkspaceArgs | undefined;
+            if ((!args || args.cicdEnforcedDefault === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'cicdEnforcedDefault'");
+            }
+            if ((!args || args.description === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'description'");
+            }
             resourceInputs["cicdEnforcedDefault"] = args ? args.cicdEnforcedDefault : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["createdBy"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["updatedBy"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Workspace.__pulumiType, name, resourceInputs, opts);
@@ -92,17 +128,33 @@ export class Workspace extends pulumi.CustomResource {
  */
 export interface WorkspaceState {
     /**
-     * Whether new Deployments enforce CI/CD deploys by default.
+     * Whether new Deployments enforce CI/CD deploys by default
      */
     cicdEnforcedDefault?: pulumi.Input<boolean>;
     /**
-     * The Workspace's description.
+     * Workspace creation timestamp
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Workspace creator
+     */
+    createdBy?: pulumi.Input<inputs.WorkspaceCreatedBy>;
+    /**
+     * Workspace description
      */
     description?: pulumi.Input<string>;
     /**
-     * The Workspace's name.
+     * Workspace name
      */
     name?: pulumi.Input<string>;
+    /**
+     * Workspace last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * Workspace updater
+     */
+    updatedBy?: pulumi.Input<inputs.WorkspaceUpdatedBy>;
 }
 
 /**
@@ -110,15 +162,15 @@ export interface WorkspaceState {
  */
 export interface WorkspaceArgs {
     /**
-     * Whether new Deployments enforce CI/CD deploys by default.
+     * Whether new Deployments enforce CI/CD deploys by default
      */
-    cicdEnforcedDefault?: pulumi.Input<boolean>;
+    cicdEnforcedDefault: pulumi.Input<boolean>;
     /**
-     * The Workspace's description.
+     * Workspace description
      */
-    description?: pulumi.Input<string>;
+    description: pulumi.Input<string>;
     /**
-     * The Workspace's name.
+     * Workspace name
      */
     name?: pulumi.Input<string>;
 }

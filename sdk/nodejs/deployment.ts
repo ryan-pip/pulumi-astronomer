@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * An Astro Deployment is an Airflow environment that is powered by all core Airflow components.
+ * Deployment resource
  */
 export class Deployment extends pulumi.CustomResource {
     /**
@@ -38,91 +38,192 @@ export class Deployment extends pulumi.CustomResource {
     }
 
     /**
-     * Deployment's Astro Runtime version.
+     * Deployment Airflow version
      */
-    public readonly astroRuntimeVersion!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly airflowVersion!: pulumi.Output<string>;
     /**
-     * The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+     * Deployment's current Astro Runtime version
+     */
+    public /*out*/ readonly astroRuntimeVersion!: pulumi.Output<string>;
+    /**
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
      */
     public readonly cloudProvider!: pulumi.Output<string>;
     /**
-     * The ID of the cluster where the Deployment will be created.
+     * Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
      */
-    public readonly clusterId!: pulumi.Output<string | undefined>;
+    public readonly clusterId!: pulumi.Output<string>;
     /**
-     * The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
+     * Deployment contact emails
      */
-    public readonly defaultTaskPodCpu!: pulumi.Output<string>;
+    public readonly contactEmails!: pulumi.Output<string[]>;
     /**
-     * The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+     * Deployment creation timestamp
      */
-    public readonly defaultTaskPodMemory!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The Deployment's description.
+     * Deployment creator
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly createdBy!: pulumi.Output<outputs.DeploymentCreatedBy>;
     /**
-     * List of environment variables to add to the Deployment.
+     * Deployment DAG tarball version
      */
-    public readonly environmentVariables!: pulumi.Output<outputs.DeploymentEnvironmentVariable[] | undefined>;
+    public /*out*/ readonly dagTarballVersion!: pulumi.Output<string>;
     /**
-     * The Deployment's executor type.
+     * Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    public readonly defaultTaskPodCpu!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    public readonly defaultTaskPodMemory!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment description
+     */
+    public readonly description!: pulumi.Output<string>;
+    /**
+     * Deployment desired DAG tarball version
+     */
+    public /*out*/ readonly desiredDagTarballVersion!: pulumi.Output<string>;
+    /**
+     * Deployment environment variables
+     */
+    public readonly environmentVariables!: pulumi.Output<outputs.DeploymentEnvironmentVariable[]>;
+    /**
+     * Deployment executor
      */
     public readonly executor!: pulumi.Output<string>;
     /**
-     * Whether the Deployment requires that all deploys are made through CI/CD.
+     * Deployment external IPs
+     */
+    public /*out*/ readonly externalIps!: pulumi.Output<string[]>;
+    /**
+     * Deployment image repository
+     */
+    public /*out*/ readonly imageRepository!: pulumi.Output<string>;
+    /**
+     * Deployment image tag
+     */
+    public /*out*/ readonly imageTag!: pulumi.Output<string>;
+    /**
+     * Deployment image version
+     */
+    public /*out*/ readonly imageVersion!: pulumi.Output<string>;
+    /**
+     * Deployment CI/CD enforced
      */
     public readonly isCicdEnforced!: pulumi.Output<boolean>;
     /**
-     * Whether the Deployment has DAG deploys enabled.
+     * Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
      */
     public readonly isDagDeployEnabled!: pulumi.Output<boolean>;
     /**
-     * Whether the Deployment is in development mode.
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
      */
-    public readonly isDevelopmentMode!: pulumi.Output<boolean>;
+    public readonly isDevelopmentMode!: pulumi.Output<boolean | undefined>;
     /**
-     * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+     * Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    public readonly isHighAvailability!: pulumi.Output<boolean>;
+    public readonly isHighAvailability!: pulumi.Output<boolean | undefined>;
     /**
-     * The Deployment's name.
+     * Deployment name
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The region to host the Deployment in. Optional if `ClusterId` is specified.
+     * Deployment namespace
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly namespace!: pulumi.Output<string>;
     /**
-     * The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+     * Deployment OIDC issuer URL
      */
-    public readonly resourceQuotaCpu!: pulumi.Output<string>;
+    public /*out*/ readonly oidcIssuerUrl!: pulumi.Output<string>;
+    public readonly originalAstroRuntimeVersion!: pulumi.Output<string | undefined>;
     /**
-     * The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+     * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
-    public readonly resourceQuotaMemory!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string>;
     /**
-     * The size of the scheduler pod.
+     * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    public readonly schedulerSize!: pulumi.Output<string>;
+    public readonly resourceQuotaCpu!: pulumi.Output<string | undefined>;
     /**
-     * The node pool ID for the task pods. For KUBERNETES executor only.
+     * Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    public readonly resourceQuotaMemory!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+     */
+    public readonly scalingSpec!: pulumi.Output<outputs.DeploymentScalingSpec | undefined>;
+    /**
+     * Deployment scaling status
+     */
+    public /*out*/ readonly scalingStatus!: pulumi.Output<outputs.DeploymentScalingStatus>;
+    /**
+     * Deployment scheduler AU - required for 'HYBRID' deployments
+     */
+    public readonly schedulerAu!: pulumi.Output<number | undefined>;
+    /**
+     * Deployment scheduler CPU
+     */
+    public /*out*/ readonly schedulerCpu!: pulumi.Output<string>;
+    /**
+     * Deployment scheduler memory
+     */
+    public /*out*/ readonly schedulerMemory!: pulumi.Output<string>;
+    /**
+     * Deployment scheduler replicas - required for 'HYBRID' deployments
+     */
+    public readonly schedulerReplicas!: pulumi.Output<number>;
+    /**
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    public readonly schedulerSize!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment status
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Deployment status reason
+     */
+    public /*out*/ readonly statusReason!: pulumi.Output<string>;
+    /**
+     * Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
      */
     public readonly taskPodNodePoolId!: pulumi.Output<string | undefined>;
     /**
-     * The type of the Deployment.
+     * Deployment type - if changing this value, the deployment will be recreated with the new type
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+     * Deployment last updated timestamp
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * Deployment updater
+     */
+    public /*out*/ readonly updatedBy!: pulumi.Output<outputs.DeploymentUpdatedBy>;
+    /**
+     * Deployment webserver Airflow API URL
+     */
+    public /*out*/ readonly webserverAirflowApiUrl!: pulumi.Output<string>;
+    /**
+     * Deployment webserver ingress hostname
+     */
+    public /*out*/ readonly webserverIngressHostname!: pulumi.Output<string>;
+    /**
+     * Deployment webserver URL
+     */
+    public /*out*/ readonly webserverUrl!: pulumi.Output<string>;
+    /**
+     * Deployment worker queues - required for deployments with 'CELERY' executor
      */
     public readonly workerQueues!: pulumi.Output<outputs.DeploymentWorkerQueue[] | undefined>;
     /**
-     * The Deployment's workload identity.
+     * Deployment workload identity. This value can be changed via the Astro API if applicable.
      */
     public /*out*/ readonly workloadIdentity!: pulumi.Output<string>;
     /**
-     * The ID of the workspace to which the Deployment belongs.
+     * Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
      */
     public readonly workspaceId!: pulumi.Output<string>;
 
@@ -139,35 +240,64 @@ export class Deployment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentState | undefined;
+            resourceInputs["airflowVersion"] = state ? state.airflowVersion : undefined;
             resourceInputs["astroRuntimeVersion"] = state ? state.astroRuntimeVersion : undefined;
             resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["contactEmails"] = state ? state.contactEmails : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["createdBy"] = state ? state.createdBy : undefined;
+            resourceInputs["dagTarballVersion"] = state ? state.dagTarballVersion : undefined;
             resourceInputs["defaultTaskPodCpu"] = state ? state.defaultTaskPodCpu : undefined;
             resourceInputs["defaultTaskPodMemory"] = state ? state.defaultTaskPodMemory : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["desiredDagTarballVersion"] = state ? state.desiredDagTarballVersion : undefined;
             resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
             resourceInputs["executor"] = state ? state.executor : undefined;
+            resourceInputs["externalIps"] = state ? state.externalIps : undefined;
+            resourceInputs["imageRepository"] = state ? state.imageRepository : undefined;
+            resourceInputs["imageTag"] = state ? state.imageTag : undefined;
+            resourceInputs["imageVersion"] = state ? state.imageVersion : undefined;
             resourceInputs["isCicdEnforced"] = state ? state.isCicdEnforced : undefined;
             resourceInputs["isDagDeployEnabled"] = state ? state.isDagDeployEnabled : undefined;
             resourceInputs["isDevelopmentMode"] = state ? state.isDevelopmentMode : undefined;
             resourceInputs["isHighAvailability"] = state ? state.isHighAvailability : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["oidcIssuerUrl"] = state ? state.oidcIssuerUrl : undefined;
+            resourceInputs["originalAstroRuntimeVersion"] = state ? state.originalAstroRuntimeVersion : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["resourceQuotaCpu"] = state ? state.resourceQuotaCpu : undefined;
             resourceInputs["resourceQuotaMemory"] = state ? state.resourceQuotaMemory : undefined;
+            resourceInputs["scalingSpec"] = state ? state.scalingSpec : undefined;
+            resourceInputs["scalingStatus"] = state ? state.scalingStatus : undefined;
+            resourceInputs["schedulerAu"] = state ? state.schedulerAu : undefined;
+            resourceInputs["schedulerCpu"] = state ? state.schedulerCpu : undefined;
+            resourceInputs["schedulerMemory"] = state ? state.schedulerMemory : undefined;
+            resourceInputs["schedulerReplicas"] = state ? state.schedulerReplicas : undefined;
             resourceInputs["schedulerSize"] = state ? state.schedulerSize : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["statusReason"] = state ? state.statusReason : undefined;
             resourceInputs["taskPodNodePoolId"] = state ? state.taskPodNodePoolId : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["updatedBy"] = state ? state.updatedBy : undefined;
+            resourceInputs["webserverAirflowApiUrl"] = state ? state.webserverAirflowApiUrl : undefined;
+            resourceInputs["webserverIngressHostname"] = state ? state.webserverIngressHostname : undefined;
+            resourceInputs["webserverUrl"] = state ? state.webserverUrl : undefined;
             resourceInputs["workerQueues"] = state ? state.workerQueues : undefined;
             resourceInputs["workloadIdentity"] = state ? state.workloadIdentity : undefined;
             resourceInputs["workspaceId"] = state ? state.workspaceId : undefined;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
-            if ((!args || args.defaultTaskPodCpu === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'defaultTaskPodCpu'");
+            if ((!args || args.contactEmails === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'contactEmails'");
             }
-            if ((!args || args.defaultTaskPodMemory === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'defaultTaskPodMemory'");
+            if ((!args || args.description === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'description'");
+            }
+            if ((!args || args.environmentVariables === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'environmentVariables'");
             }
             if ((!args || args.executor === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'executor'");
@@ -178,30 +308,15 @@ export class Deployment extends pulumi.CustomResource {
             if ((!args || args.isDagDeployEnabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'isDagDeployEnabled'");
             }
-            if ((!args || args.isDevelopmentMode === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'isDevelopmentMode'");
-            }
-            if ((!args || args.isHighAvailability === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'isHighAvailability'");
-            }
-            if ((!args || args.resourceQuotaCpu === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'resourceQuotaCpu'");
-            }
-            if ((!args || args.resourceQuotaMemory === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'resourceQuotaMemory'");
-            }
-            if ((!args || args.schedulerSize === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'schedulerSize'");
-            }
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             if ((!args || args.workspaceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'workspaceId'");
             }
-            resourceInputs["astroRuntimeVersion"] = args ? args.astroRuntimeVersion : undefined;
             resourceInputs["cloudProvider"] = args ? args.cloudProvider : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["contactEmails"] = args ? args.contactEmails : undefined;
             resourceInputs["defaultTaskPodCpu"] = args ? args.defaultTaskPodCpu : undefined;
             resourceInputs["defaultTaskPodMemory"] = args ? args.defaultTaskPodMemory : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -212,14 +327,40 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["isDevelopmentMode"] = args ? args.isDevelopmentMode : undefined;
             resourceInputs["isHighAvailability"] = args ? args.isHighAvailability : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["originalAstroRuntimeVersion"] = args ? args.originalAstroRuntimeVersion : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["resourceQuotaCpu"] = args ? args.resourceQuotaCpu : undefined;
             resourceInputs["resourceQuotaMemory"] = args ? args.resourceQuotaMemory : undefined;
+            resourceInputs["scalingSpec"] = args ? args.scalingSpec : undefined;
+            resourceInputs["schedulerAu"] = args ? args.schedulerAu : undefined;
+            resourceInputs["schedulerReplicas"] = args ? args.schedulerReplicas : undefined;
             resourceInputs["schedulerSize"] = args ? args.schedulerSize : undefined;
             resourceInputs["taskPodNodePoolId"] = args ? args.taskPodNodePoolId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["workerQueues"] = args ? args.workerQueues : undefined;
             resourceInputs["workspaceId"] = args ? args.workspaceId : undefined;
+            resourceInputs["airflowVersion"] = undefined /*out*/;
+            resourceInputs["astroRuntimeVersion"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["createdBy"] = undefined /*out*/;
+            resourceInputs["dagTarballVersion"] = undefined /*out*/;
+            resourceInputs["desiredDagTarballVersion"] = undefined /*out*/;
+            resourceInputs["externalIps"] = undefined /*out*/;
+            resourceInputs["imageRepository"] = undefined /*out*/;
+            resourceInputs["imageTag"] = undefined /*out*/;
+            resourceInputs["imageVersion"] = undefined /*out*/;
+            resourceInputs["namespace"] = undefined /*out*/;
+            resourceInputs["oidcIssuerUrl"] = undefined /*out*/;
+            resourceInputs["scalingStatus"] = undefined /*out*/;
+            resourceInputs["schedulerCpu"] = undefined /*out*/;
+            resourceInputs["schedulerMemory"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["statusReason"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["updatedBy"] = undefined /*out*/;
+            resourceInputs["webserverAirflowApiUrl"] = undefined /*out*/;
+            resourceInputs["webserverIngressHostname"] = undefined /*out*/;
+            resourceInputs["webserverUrl"] = undefined /*out*/;
             resourceInputs["workloadIdentity"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -232,91 +373,192 @@ export class Deployment extends pulumi.CustomResource {
  */
 export interface DeploymentState {
     /**
-     * Deployment's Astro Runtime version.
+     * Deployment Airflow version
+     */
+    airflowVersion?: pulumi.Input<string>;
+    /**
+     * Deployment's current Astro Runtime version
      */
     astroRuntimeVersion?: pulumi.Input<string>;
     /**
-     * The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
      */
     cloudProvider?: pulumi.Input<string>;
     /**
-     * The ID of the cluster where the Deployment will be created.
+     * Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
+     * Deployment contact emails
+     */
+    contactEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Deployment creation timestamp
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Deployment creator
+     */
+    createdBy?: pulumi.Input<inputs.DeploymentCreatedBy>;
+    /**
+     * Deployment DAG tarball version
+     */
+    dagTarballVersion?: pulumi.Input<string>;
+    /**
+     * Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
     defaultTaskPodCpu?: pulumi.Input<string>;
     /**
-     * The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+     * Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
     defaultTaskPodMemory?: pulumi.Input<string>;
     /**
-     * The Deployment's description.
+     * Deployment description
      */
     description?: pulumi.Input<string>;
     /**
-     * List of environment variables to add to the Deployment.
+     * Deployment desired DAG tarball version
+     */
+    desiredDagTarballVersion?: pulumi.Input<string>;
+    /**
+     * Deployment environment variables
      */
     environmentVariables?: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
     /**
-     * The Deployment's executor type.
+     * Deployment executor
      */
     executor?: pulumi.Input<string>;
     /**
-     * Whether the Deployment requires that all deploys are made through CI/CD.
+     * Deployment external IPs
+     */
+    externalIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Deployment image repository
+     */
+    imageRepository?: pulumi.Input<string>;
+    /**
+     * Deployment image tag
+     */
+    imageTag?: pulumi.Input<string>;
+    /**
+     * Deployment image version
+     */
+    imageVersion?: pulumi.Input<string>;
+    /**
+     * Deployment CI/CD enforced
      */
     isCicdEnforced?: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment has DAG deploys enabled.
+     * Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
      */
     isDagDeployEnabled?: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment is in development mode.
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
      */
     isDevelopmentMode?: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+     * Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
      */
     isHighAvailability?: pulumi.Input<boolean>;
     /**
-     * The Deployment's name.
+     * Deployment name
      */
     name?: pulumi.Input<string>;
     /**
-     * The region to host the Deployment in. Optional if `ClusterId` is specified.
+     * Deployment namespace
+     */
+    namespace?: pulumi.Input<string>;
+    /**
+     * Deployment OIDC issuer URL
+     */
+    oidcIssuerUrl?: pulumi.Input<string>;
+    originalAstroRuntimeVersion?: pulumi.Input<string>;
+    /**
+     * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
     region?: pulumi.Input<string>;
     /**
-     * The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+     * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
     resourceQuotaCpu?: pulumi.Input<string>;
     /**
-     * The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+     * Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
     resourceQuotaMemory?: pulumi.Input<string>;
     /**
-     * The size of the scheduler pod.
+     * Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+     */
+    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec>;
+    /**
+     * Deployment scaling status
+     */
+    scalingStatus?: pulumi.Input<inputs.DeploymentScalingStatus>;
+    /**
+     * Deployment scheduler AU - required for 'HYBRID' deployments
+     */
+    schedulerAu?: pulumi.Input<number>;
+    /**
+     * Deployment scheduler CPU
+     */
+    schedulerCpu?: pulumi.Input<string>;
+    /**
+     * Deployment scheduler memory
+     */
+    schedulerMemory?: pulumi.Input<string>;
+    /**
+     * Deployment scheduler replicas - required for 'HYBRID' deployments
+     */
+    schedulerReplicas?: pulumi.Input<number>;
+    /**
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
      */
     schedulerSize?: pulumi.Input<string>;
     /**
-     * The node pool ID for the task pods. For KUBERNETES executor only.
+     * Deployment status
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * Deployment status reason
+     */
+    statusReason?: pulumi.Input<string>;
+    /**
+     * Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
      */
     taskPodNodePoolId?: pulumi.Input<string>;
     /**
-     * The type of the Deployment.
+     * Deployment type - if changing this value, the deployment will be recreated with the new type
      */
     type?: pulumi.Input<string>;
     /**
-     * The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+     * Deployment last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * Deployment updater
+     */
+    updatedBy?: pulumi.Input<inputs.DeploymentUpdatedBy>;
+    /**
+     * Deployment webserver Airflow API URL
+     */
+    webserverAirflowApiUrl?: pulumi.Input<string>;
+    /**
+     * Deployment webserver ingress hostname
+     */
+    webserverIngressHostname?: pulumi.Input<string>;
+    /**
+     * Deployment webserver URL
+     */
+    webserverUrl?: pulumi.Input<string>;
+    /**
+     * Deployment worker queues - required for deployments with 'CELERY' executor
      */
     workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
     /**
-     * The Deployment's workload identity.
+     * Deployment workload identity. This value can be changed via the Astro API if applicable.
      */
     workloadIdentity?: pulumi.Input<string>;
     /**
-     * The ID of the workspace to which the Deployment belongs.
+     * Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
      */
     workspaceId?: pulumi.Input<string>;
 }
@@ -326,87 +568,100 @@ export interface DeploymentState {
  */
 export interface DeploymentArgs {
     /**
-     * Deployment's Astro Runtime version.
-     */
-    astroRuntimeVersion?: pulumi.Input<string>;
-    /**
-     * The cloud provider for the Deployment's cluster. Optional if `ClusterId` is specified.
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
      */
     cloudProvider?: pulumi.Input<string>;
     /**
-     * The ID of the cluster where the Deployment will be created.
+     * Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The default CPU resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in number of CPU cores.
+     * Deployment contact emails
      */
-    defaultTaskPodCpu: pulumi.Input<string>;
+    contactEmails: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The default memory resource usage for a worker Pod when running the Kubernetes executor or KubernetesPodOperator. Units are in `Gi`. This value must always be twice the value of `DefaultTaskPodCpu`.
+     * Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    defaultTaskPodMemory: pulumi.Input<string>;
+    defaultTaskPodCpu?: pulumi.Input<string>;
     /**
-     * The Deployment's description.
+     * Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    description?: pulumi.Input<string>;
+    defaultTaskPodMemory?: pulumi.Input<string>;
     /**
-     * List of environment variables to add to the Deployment.
+     * Deployment description
      */
-    environmentVariables?: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
+    description: pulumi.Input<string>;
     /**
-     * The Deployment's executor type.
+     * Deployment environment variables
+     */
+    environmentVariables: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
+    /**
+     * Deployment executor
      */
     executor: pulumi.Input<string>;
     /**
-     * Whether the Deployment requires that all deploys are made through CI/CD.
+     * Deployment CI/CD enforced
      */
     isCicdEnforced: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment has DAG deploys enabled.
+     * Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
      */
     isDagDeployEnabled: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment is in development mode.
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
      */
-    isDevelopmentMode: pulumi.Input<boolean>;
+    isDevelopmentMode?: pulumi.Input<boolean>;
     /**
-     * Whether the Deployment is configured for high availability. If `true`, multiple scheduler pods will be online.
+     * Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    isHighAvailability: pulumi.Input<boolean>;
+    isHighAvailability?: pulumi.Input<boolean>;
     /**
-     * The Deployment's name.
+     * Deployment name
      */
     name?: pulumi.Input<string>;
+    originalAstroRuntimeVersion?: pulumi.Input<string>;
     /**
-     * The region to host the Deployment in. Optional if `ClusterId` is specified.
+     * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
     region?: pulumi.Input<string>;
     /**
-     * The CPU quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current CPU usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in number of CPU cores.
+     * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaCpu: pulumi.Input<string>;
+    resourceQuotaCpu?: pulumi.Input<string>;
     /**
-     * The memory quota for worker Pods when running the Kubernetes executor or KubernetesPodOperator. If current memory usage across all workers exceeds the quota, no new worker Pods can be scheduled. Units are in `Gi`. This value must always be twice the value of `ResourceQuotaCpu`.
+     * Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaMemory: pulumi.Input<string>;
+    resourceQuotaMemory?: pulumi.Input<string>;
     /**
-     * The size of the scheduler pod.
+     * Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
      */
-    schedulerSize: pulumi.Input<string>;
+    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec>;
     /**
-     * The node pool ID for the task pods. For KUBERNETES executor only.
+     * Deployment scheduler AU - required for 'HYBRID' deployments
+     */
+    schedulerAu?: pulumi.Input<number>;
+    /**
+     * Deployment scheduler replicas - required for 'HYBRID' deployments
+     */
+    schedulerReplicas?: pulumi.Input<number>;
+    /**
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    schedulerSize?: pulumi.Input<string>;
+    /**
+     * Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
      */
     taskPodNodePoolId?: pulumi.Input<string>;
     /**
-     * The type of the Deployment.
+     * Deployment type - if changing this value, the deployment will be recreated with the new type
      */
     type: pulumi.Input<string>;
     /**
-     * The list of worker queues configured for the Deployment. Applies only when `Executor` is `CELERY`. At least 1 worker queue is needed. All Deployments need at least 1 worker queue called `default`.
+     * Deployment worker queues - required for deployments with 'CELERY' executor
      */
     workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
     /**
-     * The ID of the workspace to which the Deployment belongs.
+     * Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
      */
     workspaceId: pulumi.Input<string>;
 }

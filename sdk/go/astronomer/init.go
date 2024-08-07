@@ -25,6 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Cluster{}
 	case "astronomer:index/deployment:Deployment":
 		r = &Deployment{}
+	case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
+		r = &HybridClusterWorkspaceAuthorization{}
+	case "astronomer:index/teamRoles:TeamRoles":
+		r = &TeamRoles{}
 	case "astronomer:index/workspace:Workspace":
 		r = &Workspace{}
 	default:
@@ -66,6 +70,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"astronomer",
 		"index/deployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/hybridClusterWorkspaceAuthorization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/teamRoles",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

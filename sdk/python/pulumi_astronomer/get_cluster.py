@@ -22,10 +22,13 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, db_instance_type=None, id=None, is_limited=None, k8s_tags=None, metadata=None, name=None, node_pools=None, organization_id=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, tenant_id=None, type=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, id=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
         if db_instance_type and not isinstance(db_instance_type, str):
             raise TypeError("Expected argument 'db_instance_type' to be a str")
         pulumi.set(__self__, "db_instance_type", db_instance_type)
@@ -35,9 +38,6 @@ class GetClusterResult:
         if is_limited and not isinstance(is_limited, bool):
             raise TypeError("Expected argument 'is_limited' to be a bool")
         pulumi.set(__self__, "is_limited", is_limited)
-        if k8s_tags and not isinstance(k8s_tags, list):
-            raise TypeError("Expected argument 'k8s_tags' to be a list")
-        pulumi.set(__self__, "k8s_tags", k8s_tags)
         if metadata and not isinstance(metadata, dict):
             raise TypeError("Expected argument 'metadata' to be a dict")
         pulumi.set(__self__, "metadata", metadata)
@@ -47,9 +47,6 @@ class GetClusterResult:
         if node_pools and not isinstance(node_pools, list):
             raise TypeError("Expected argument 'node_pools' to be a list")
         pulumi.set(__self__, "node_pools", node_pools)
-        if organization_id and not isinstance(organization_id, str):
-            raise TypeError("Expected argument 'organization_id' to be a str")
-        pulumi.set(__self__, "organization_id", organization_id)
         if pod_subnet_range and not isinstance(pod_subnet_range, str):
             raise TypeError("Expected argument 'pod_subnet_range' to be a str")
         pulumi.set(__self__, "pod_subnet_range", pod_subnet_range)
@@ -65,12 +62,21 @@ class GetClusterResult:
         if service_subnet_range and not isinstance(service_subnet_range, str):
             raise TypeError("Expected argument 'service_subnet_range' to be a str")
         pulumi.set(__self__, "service_subnet_range", service_subnet_range)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if tenant_id and not isinstance(tenant_id, str):
             raise TypeError("Expected argument 'tenant_id' to be a str")
         pulumi.set(__self__, "tenant_id", tenant_id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
         if vpc_subnet_range and not isinstance(vpc_subnet_range, str):
             raise TypeError("Expected argument 'vpc_subnet_range' to be a str")
         pulumi.set(__self__, "vpc_subnet_range", vpc_subnet_range)
@@ -82,15 +88,23 @@ class GetClusterResult:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
         """
-        The cluster's cloud provider.
+        Cluster cloud provider
         """
         return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Cluster creation timestamp
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="dbInstanceType")
     def db_instance_type(self) -> str:
         """
-        The type of database instance that is used for the cluster. Required for Hybrid clusters.
+        Cluster database instance type
         """
         return pulumi.get(self, "db_instance_type")
 
@@ -98,7 +112,7 @@ class GetClusterResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        The cluster's identifier.
+        Cluster identifier
         """
         return pulumi.get(self, "id")
 
@@ -106,23 +120,15 @@ class GetClusterResult:
     @pulumi.getter(name="isLimited")
     def is_limited(self) -> bool:
         """
-        Whether the cluster is limited.
+        Whether the cluster is limited
         """
         return pulumi.get(self, "is_limited")
-
-    @property
-    @pulumi.getter(name="k8sTags")
-    def k8s_tags(self) -> Sequence['outputs.GetClusterK8sTagResult']:
-        """
-        The Kubernetes tags in the cluster.
-        """
-        return pulumi.get(self, "k8s_tags")
 
     @property
     @pulumi.getter
     def metadata(self) -> 'outputs.GetClusterMetadataResult':
         """
-        The cluster's metadata.
+        Cluster metadata
         """
         return pulumi.get(self, "metadata")
 
@@ -130,7 +136,7 @@ class GetClusterResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        The cluster's name.
+        Cluster name
         """
         return pulumi.get(self, "name")
 
@@ -138,23 +144,15 @@ class GetClusterResult:
     @pulumi.getter(name="nodePools")
     def node_pools(self) -> Sequence['outputs.GetClusterNodePoolResult']:
         """
-        The list of node pools to create in the cluster.
+        Cluster node pools
         """
         return pulumi.get(self, "node_pools")
-
-    @property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> str:
-        """
-        The organization this cluster is associated with.
-        """
-        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="podSubnetRange")
     def pod_subnet_range(self) -> str:
         """
-        The subnet range for Pods. For GCP clusters only.
+        Cluster pod subnet range
         """
         return pulumi.get(self, "pod_subnet_range")
 
@@ -162,7 +160,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerAccount")
     def provider_account(self) -> str:
         """
-        The provider account ID. Required for Hybrid clusters.
+        Cluster provider account
         """
         return pulumi.get(self, "provider_account")
 
@@ -170,7 +168,7 @@ class GetClusterResult:
     @pulumi.getter
     def region(self) -> str:
         """
-        The cluster's region.
+        Cluster region
         """
         return pulumi.get(self, "region")
 
@@ -178,7 +176,7 @@ class GetClusterResult:
     @pulumi.getter(name="servicePeeringRange")
     def service_peering_range(self) -> str:
         """
-        The service peering range. For GCP clusters only.
+        Cluster service peering range
         """
         return pulumi.get(self, "service_peering_range")
 
@@ -186,15 +184,31 @@ class GetClusterResult:
     @pulumi.getter(name="serviceSubnetRange")
     def service_subnet_range(self) -> str:
         """
-        The service subnet range. For GCP clusters only.
+        Cluster service subnet range
         """
         return pulumi.get(self, "service_subnet_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Cluster status
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetClusterTagResult']:
+        """
+        Cluster tags
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> str:
         """
-        The tenant ID. For Azure clusters only.
+        Cluster tenant ID
         """
         return pulumi.get(self, "tenant_id")
 
@@ -202,15 +216,23 @@ class GetClusterResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        The cluster's type.
+        Cluster type
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Cluster last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="vpcSubnetRange")
     def vpc_subnet_range(self) -> str:
         """
-        The VPC subnet range.
+        Cluster VPC subnet range
         """
         return pulumi.get(self, "vpc_subnet_range")
 
@@ -218,7 +240,7 @@ class GetClusterResult:
     @pulumi.getter(name="workspaceIds")
     def workspace_ids(self) -> Sequence[str]:
         """
-        The list of Workspaces that are authorized to the cluster.
+        Cluster workspace IDs
         """
         return pulumi.get(self, "workspace_ids")
 
@@ -230,21 +252,23 @@ class AwaitableGetClusterResult(GetClusterResult):
             yield self
         return GetClusterResult(
             cloud_provider=self.cloud_provider,
+            created_at=self.created_at,
             db_instance_type=self.db_instance_type,
             id=self.id,
             is_limited=self.is_limited,
-            k8s_tags=self.k8s_tags,
             metadata=self.metadata,
             name=self.name,
             node_pools=self.node_pools,
-            organization_id=self.organization_id,
             pod_subnet_range=self.pod_subnet_range,
             provider_account=self.provider_account,
             region=self.region,
             service_peering_range=self.service_peering_range,
             service_subnet_range=self.service_subnet_range,
+            status=self.status,
+            tags=self.tags,
             tenant_id=self.tenant_id,
             type=self.type,
+            updated_at=self.updated_at,
             vpc_subnet_range=self.vpc_subnet_range,
             workspace_ids=self.workspace_ids)
 
@@ -252,7 +276,7 @@ class AwaitableGetClusterResult(GetClusterResult):
 def get_cluster(id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    Astronomer Cluster Data Source
+    Cluster data source
 
     ## Example Usage
 
@@ -260,11 +284,11 @@ def get_cluster(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    imported_cluster = astronomer.get_cluster(id="clqoclq8201pp01p0cbt77feb")
+    example = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
     ```
 
 
-    :param str id: The cluster's identifier.
+    :param str id: Cluster identifier
     """
     __args__ = dict()
     __args__['id'] = id
@@ -273,21 +297,23 @@ def get_cluster(id: Optional[str] = None,
 
     return AwaitableGetClusterResult(
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
+        created_at=pulumi.get(__ret__, 'created_at'),
         db_instance_type=pulumi.get(__ret__, 'db_instance_type'),
         id=pulumi.get(__ret__, 'id'),
         is_limited=pulumi.get(__ret__, 'is_limited'),
-        k8s_tags=pulumi.get(__ret__, 'k8s_tags'),
         metadata=pulumi.get(__ret__, 'metadata'),
         name=pulumi.get(__ret__, 'name'),
         node_pools=pulumi.get(__ret__, 'node_pools'),
-        organization_id=pulumi.get(__ret__, 'organization_id'),
         pod_subnet_range=pulumi.get(__ret__, 'pod_subnet_range'),
         provider_account=pulumi.get(__ret__, 'provider_account'),
         region=pulumi.get(__ret__, 'region'),
         service_peering_range=pulumi.get(__ret__, 'service_peering_range'),
         service_subnet_range=pulumi.get(__ret__, 'service_subnet_range'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'),
         type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_subnet_range=pulumi.get(__ret__, 'vpc_subnet_range'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
 
@@ -296,7 +322,7 @@ def get_cluster(id: Optional[str] = None,
 def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
     """
-    Astronomer Cluster Data Source
+    Cluster data source
 
     ## Example Usage
 
@@ -304,10 +330,10 @@ def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    imported_cluster = astronomer.get_cluster(id="clqoclq8201pp01p0cbt77feb")
+    example = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
     ```
 
 
-    :param str id: The cluster's identifier.
+    :param str id: Cluster identifier
     """
     ...

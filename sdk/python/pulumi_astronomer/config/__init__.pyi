@@ -9,13 +9,18 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
+host: Optional[str]
+"""
+API host to use for the provider. Default is `https://api.astronomer.io`
+"""
+
 organizationId: Optional[str]
 """
-Organization id this provider will operate on.
+Organization ID this provider will operate on.
 """
 
 token: Optional[str]
 """
-Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 """
 

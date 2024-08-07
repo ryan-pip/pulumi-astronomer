@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The provider type for the astronomer package. By default, resources use package-wide configuration
+ * The provider type for the astro package. By default, resources use package-wide configuration
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -26,11 +26,15 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * Organization id this provider will operate on.
+     * API host to use for the provider. Default is `https://api.astronomer.io`
+     */
+    public readonly host!: pulumi.Output<string | undefined>;
+    /**
+     * Organization ID this provider will operate on.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+     * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
      */
     public readonly token!: pulumi.Output<string | undefined>;
 
@@ -48,8 +52,9 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.organizationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'organizationId'");
             }
+            resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("ASTRONOMER_API_TOKEN");
+            resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("ASTRO_API_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["token"] };
@@ -63,11 +68,15 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * Organization id this provider will operate on.
+     * API host to use for the provider. Default is `https://api.astronomer.io`
+     */
+    host?: pulumi.Input<string>;
+    /**
+     * Organization ID this provider will operate on.
      */
     organizationId: pulumi.Input<string>;
     /**
-     * Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+     * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
      */
     token?: pulumi.Input<string>;
 }

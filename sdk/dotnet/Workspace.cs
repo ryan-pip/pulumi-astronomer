@@ -11,7 +11,7 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// Astronomer Workspace Resource
+    /// Workspace resource
     /// 
     /// ## Example Usage
     /// 
@@ -23,10 +23,16 @@ namespace RyanPip.Astronomer
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var completeSetup = new Astronomer.Workspace("completeSetup", new()
+    ///     var example = new Astronomer.Workspace("example", new()
     ///     {
+    ///         Description = "my first workspace",
     ///         CicdEnforcedDefault = true,
-    ///         Description = "Testing Workspace",
+    ///     });
+    /// 
+    ///     var importedWorkspace = new Astronomer.Workspace("importedWorkspace", new()
+    ///     {
+    ///         Description = "an existing workspace",
+    ///         CicdEnforcedDefault = true,
     ///     });
     /// 
     /// });
@@ -36,22 +42,46 @@ namespace RyanPip.Astronomer
     public partial class Workspace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether new Deployments enforce CI/CD deploys by default.
+        /// Whether new Deployments enforce CI/CD deploys by default
         /// </summary>
         [Output("cicdEnforcedDefault")]
-        public Output<bool?> CicdEnforcedDefault { get; private set; } = null!;
+        public Output<bool> CicdEnforcedDefault { get; private set; } = null!;
 
         /// <summary>
-        /// The Workspace's description.
+        /// Workspace creation timestamp
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Workspace creator
+        /// </summary>
+        [Output("createdBy")]
+        public Output<Outputs.WorkspaceCreatedBy> CreatedBy { get; private set; } = null!;
+
+        /// <summary>
+        /// Workspace description
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The Workspace's name.
+        /// Workspace name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Workspace last updated timestamp
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Workspace updater
+        /// </summary>
+        [Output("updatedBy")]
+        public Output<Outputs.WorkspaceUpdatedBy> UpdatedBy { get; private set; } = null!;
 
 
         /// <summary>
@@ -61,7 +91,7 @@ namespace RyanPip.Astronomer
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Workspace(string name, WorkspaceArgs? args = null, CustomResourceOptions? options = null)
+        public Workspace(string name, WorkspaceArgs args, CustomResourceOptions? options = null)
             : base("astronomer:index/workspace:Workspace", name, args ?? new WorkspaceArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -101,19 +131,19 @@ namespace RyanPip.Astronomer
     public sealed class WorkspaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether new Deployments enforce CI/CD deploys by default.
+        /// Whether new Deployments enforce CI/CD deploys by default
         /// </summary>
-        [Input("cicdEnforcedDefault")]
-        public Input<bool>? CicdEnforcedDefault { get; set; }
+        [Input("cicdEnforcedDefault", required: true)]
+        public Input<bool> CicdEnforcedDefault { get; set; } = null!;
 
         /// <summary>
-        /// The Workspace's description.
+        /// Workspace description
         /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
+        [Input("description", required: true)]
+        public Input<string> Description { get; set; } = null!;
 
         /// <summary>
-        /// The Workspace's name.
+        /// Workspace name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -127,22 +157,46 @@ namespace RyanPip.Astronomer
     public sealed class WorkspaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether new Deployments enforce CI/CD deploys by default.
+        /// Whether new Deployments enforce CI/CD deploys by default
         /// </summary>
         [Input("cicdEnforcedDefault")]
         public Input<bool>? CicdEnforcedDefault { get; set; }
 
         /// <summary>
-        /// The Workspace's description.
+        /// Workspace creation timestamp
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Workspace creator
+        /// </summary>
+        [Input("createdBy")]
+        public Input<Inputs.WorkspaceCreatedByGetArgs>? CreatedBy { get; set; }
+
+        /// <summary>
+        /// Workspace description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The Workspace's name.
+        /// Workspace name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Workspace last updated timestamp
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Workspace updater
+        /// </summary>
+        [Input("updatedBy")]
+        public Input<Inputs.WorkspaceUpdatedByGetArgs>? UpdatedBy { get; set; }
 
         public WorkspaceState()
         {

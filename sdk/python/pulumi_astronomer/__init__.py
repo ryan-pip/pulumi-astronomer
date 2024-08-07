@@ -8,10 +8,19 @@ import typing
 from .cluster import *
 from .deployment import *
 from .get_cluster import *
+from .get_cluster_options import *
+from .get_clusters import *
 from .get_deployment import *
+from .get_deployment_options import *
+from .get_deployments import *
 from .get_organization import *
+from .get_team import *
+from .get_teams import *
 from .get_workspace import *
+from .get_workspaces import *
+from .hybrid_cluster_workspace_authorization import *
 from .provider import *
+from .team_roles import *
 from .workspace import *
 from ._inputs import *
 from . import outputs
@@ -40,6 +49,22 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/hybridClusterWorkspaceAuthorization",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization": "HybridClusterWorkspaceAuthorization"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/teamRoles",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/teamRoles:TeamRoles": "TeamRoles"
   }
  },
  {

@@ -1,15 +1,24 @@
 {
     "renames": {
         "resources": {
-            "astronomer:index/cluster:Cluster": "astronomer_cluster",
-            "astronomer:index/deployment:Deployment": "astronomer_deployment",
-            "astronomer:index/workspace:Workspace": "astronomer_workspace"
+            "astronomer:index/cluster:Cluster": "astro_cluster",
+            "astronomer:index/deployment:Deployment": "astro_deployment",
+            "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization": "astro_hybrid_cluster_workspace_authorization",
+            "astronomer:index/teamRoles:TeamRoles": "astro_team_roles",
+            "astronomer:index/workspace:Workspace": "astro_workspace"
         },
         "functions": {
-            "astronomer:index/getCluster:getCluster": "astronomer_cluster",
-            "astronomer:index/getDeployment:getDeployment": "astronomer_deployment",
-            "astronomer:index/getOrganization:getOrganization": "astronomer_organization",
-            "astronomer:index/getWorkspace:getWorkspace": "astronomer_workspace"
+            "astronomer:index/getCluster:getCluster": "astro_cluster",
+            "astronomer:index/getClusterOptions:getClusterOptions": "astro_cluster_options",
+            "astronomer:index/getClusters:getClusters": "astro_clusters",
+            "astronomer:index/getDeployment:getDeployment": "astro_deployment",
+            "astronomer:index/getDeploymentOptions:getDeploymentOptions": "astro_deployment_options",
+            "astronomer:index/getDeployments:getDeployments": "astro_deployments",
+            "astronomer:index/getOrganization:getOrganization": "astro_organization",
+            "astronomer:index/getTeam:getTeam": "astro_team",
+            "astronomer:index/getTeams:getTeams": "astro_teams",
+            "astronomer:index/getWorkspace:getWorkspace": "astro_workspace",
+            "astronomer:index/getWorkspaces:getWorkspaces": "astro_workspaces"
         },
         "renamedProperties": {
             "astronomer:index/ClusterMetadata:ClusterMetadata": {
@@ -17,66 +26,150 @@
                 "oidcIssuerUrl": "oidc_issuer_url"
             },
             "astronomer:index/ClusterNodePool:ClusterNodePool": {
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "createdAt": "created_at",
                 "isDefault": "is_default",
                 "maxNodeCount": "max_node_count",
-                "nodeInstanceType": "node_instance_type"
+                "nodeInstanceType": "node_instance_type",
+                "supportedAstroMachines": "supported_astro_machines",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/DeploymentCreatedBy:DeploymentCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
             },
             "astronomer:index/DeploymentEnvironmentVariable:DeploymentEnvironmentVariable": {
-                "isSecret": "is_secret"
+                "isSecret": "is_secret",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/DeploymentScalingSpec:DeploymentScalingSpec": {
+                "hibernationSpec": "hibernation_spec"
+            },
+            "astronomer:index/DeploymentScalingSpecHibernationSpecOverride:DeploymentScalingSpecHibernationSpecOverride": {
+                "isActive": "is_active",
+                "isHibernating": "is_hibernating",
+                "overrideUntil": "override_until"
+            },
+            "astronomer:index/DeploymentScalingSpecHibernationSpecSchedule:DeploymentScalingSpecHibernationSpecSchedule": {
+                "hibernateAtCron": "hibernate_at_cron",
+                "isEnabled": "is_enabled",
+                "wakeAtCron": "wake_at_cron"
+            },
+            "astronomer:index/DeploymentScalingStatus:DeploymentScalingStatus": {
+                "hibernationStatus": "hibernation_status"
+            },
+            "astronomer:index/DeploymentScalingStatusHibernationStatus:DeploymentScalingStatusHibernationStatus": {
+                "isHibernating": "is_hibernating",
+                "nextEventAt": "next_event_at",
+                "nextEventType": "next_event_type"
+            },
+            "astronomer:index/DeploymentUpdatedBy:DeploymentUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
             },
             "astronomer:index/DeploymentWorkerQueue:DeploymentWorkerQueue": {
                 "astroMachine": "astro_machine",
                 "isDefault": "is_default",
                 "maxWorkerCount": "max_worker_count",
                 "minWorkerCount": "min_worker_count",
+                "nodePoolId": "node_pool_id",
+                "podCpu": "pod_cpu",
+                "podMemory": "pod_memory",
                 "workerConcurrency": "worker_concurrency"
+            },
+            "astronomer:index/TeamRolesDeploymentRole:TeamRolesDeploymentRole": {
+                "deploymentId": "deployment_id"
+            },
+            "astronomer:index/TeamRolesWorkspaceRole:TeamRolesWorkspaceRole": {
+                "workspaceId": "workspace_id"
+            },
+            "astronomer:index/WorkspaceCreatedBy:WorkspaceCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/WorkspaceUpdatedBy:WorkspaceUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
             },
             "astronomer:index/cluster:Cluster": {
                 "cloudProvider": "cloud_provider",
+                "createdAt": "created_at",
                 "dbInstanceType": "db_instance_type",
                 "isLimited": "is_limited",
-                "k8sTags": "k8s_tags",
                 "nodePools": "node_pools",
-                "organizationId": "organization_id",
                 "podSubnetRange": "pod_subnet_range",
                 "providerAccount": "provider_account",
                 "servicePeeringRange": "service_peering_range",
                 "serviceSubnetRange": "service_subnet_range",
                 "tenantId": "tenant_id",
+                "updatedAt": "updated_at",
                 "vpcSubnetRange": "vpc_subnet_range",
                 "workspaceIds": "workspace_ids"
             },
             "astronomer:index/deployment:Deployment": {
+                "airflowVersion": "airflow_version",
                 "astroRuntimeVersion": "astro_runtime_version",
                 "cloudProvider": "cloud_provider",
                 "clusterId": "cluster_id",
+                "contactEmails": "contact_emails",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "dagTarballVersion": "dag_tarball_version",
                 "defaultTaskPodCpu": "default_task_pod_cpu",
                 "defaultTaskPodMemory": "default_task_pod_memory",
+                "desiredDagTarballVersion": "desired_dag_tarball_version",
                 "environmentVariables": "environment_variables",
+                "externalIps": "external_ips",
+                "imageRepository": "image_repository",
+                "imageTag": "image_tag",
+                "imageVersion": "image_version",
                 "isCicdEnforced": "is_cicd_enforced",
                 "isDagDeployEnabled": "is_dag_deploy_enabled",
                 "isDevelopmentMode": "is_development_mode",
                 "isHighAvailability": "is_high_availability",
+                "oidcIssuerUrl": "oidc_issuer_url",
+                "originalAstroRuntimeVersion": "original_astro_runtime_version",
                 "resourceQuotaCpu": "resource_quota_cpu",
                 "resourceQuotaMemory": "resource_quota_memory",
+                "scalingSpec": "scaling_spec",
+                "scalingStatus": "scaling_status",
+                "schedulerAu": "scheduler_au",
+                "schedulerCpu": "scheduler_cpu",
+                "schedulerMemory": "scheduler_memory",
+                "schedulerReplicas": "scheduler_replicas",
                 "schedulerSize": "scheduler_size",
+                "statusReason": "status_reason",
                 "taskPodNodePoolId": "task_pod_node_pool_id",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by",
+                "webserverAirflowApiUrl": "webserver_airflow_api_url",
+                "webserverIngressHostname": "webserver_ingress_hostname",
+                "webserverUrl": "webserver_url",
                 "workerQueues": "worker_queues",
                 "workloadIdentity": "workload_identity",
                 "workspaceId": "workspace_id"
             },
             "astronomer:index/getCluster:getCluster": {
                 "cloudProvider": "cloud_provider",
+                "createdAt": "created_at",
                 "dbInstanceType": "db_instance_type",
                 "isLimited": "is_limited",
-                "k8sTags": "k8s_tags",
                 "nodePools": "node_pools",
-                "organizationId": "organization_id",
                 "podSubnetRange": "pod_subnet_range",
                 "providerAccount": "provider_account",
                 "servicePeeringRange": "service_peering_range",
                 "serviceSubnetRange": "service_subnet_range",
                 "tenantId": "tenant_id",
+                "updatedAt": "updated_at",
                 "vpcSubnetRange": "vpc_subnet_range",
                 "workspaceIds": "workspace_ids"
             },
@@ -85,37 +178,423 @@
                 "oidcIssuerUrl": "oidc_issuer_url"
             },
             "astronomer:index/getClusterNodePool:getClusterNodePool": {
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "createdAt": "created_at",
                 "isDefault": "is_default",
                 "maxNodeCount": "max_node_count",
-                "nodeInstanceType": "node_instance_type"
+                "nodeInstanceType": "node_instance_type",
+                "supportedAstroMachines": "supported_astro_machines",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/getClusterOptions:getClusterOptions": {
+                "cloudProvider": "cloud_provider",
+                "clusterOptions": "cluster_options"
+            },
+            "astronomer:index/getClusterOptionsClusterOption:getClusterOptionsClusterOption": {
+                "databaseInstances": "database_instances",
+                "defaultDatabaseInstance": "default_database_instance",
+                "defaultNodeInstance": "default_node_instance",
+                "defaultPodSubnetRange": "default_pod_subnet_range",
+                "defaultRegion": "default_region",
+                "defaultServicePeeringRange": "default_service_peering_range",
+                "defaultServiceSubnetRange": "default_service_subnet_range",
+                "defaultVpcSubnetRange": "default_vpc_subnet_range",
+                "nodeCountDefault": "node_count_default",
+                "nodeCountMax": "node_count_max",
+                "nodeCountMin": "node_count_min",
+                "nodeInstances": "node_instances"
+            },
+            "astronomer:index/getClusterOptionsClusterOptionDefaultRegion:getClusterOptionsClusterOptionDefaultRegion": {
+                "bannedInstances": "banned_instances"
+            },
+            "astronomer:index/getClusterOptionsClusterOptionRegion:getClusterOptionsClusterOptionRegion": {
+                "bannedInstances": "banned_instances"
+            },
+            "astronomer:index/getClusters:getClusters": {
+                "cloudProvider": "cloud_provider"
+            },
+            "astronomer:index/getClustersCluster:getClustersCluster": {
+                "cloudProvider": "cloud_provider",
+                "createdAt": "created_at",
+                "dbInstanceType": "db_instance_type",
+                "isLimited": "is_limited",
+                "nodePools": "node_pools",
+                "podSubnetRange": "pod_subnet_range",
+                "providerAccount": "provider_account",
+                "servicePeeringRange": "service_peering_range",
+                "serviceSubnetRange": "service_subnet_range",
+                "tenantId": "tenant_id",
+                "updatedAt": "updated_at",
+                "vpcSubnetRange": "vpc_subnet_range",
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/getClustersClusterMetadata:getClustersClusterMetadata": {
+                "externalIps": "external_ips",
+                "oidcIssuerUrl": "oidc_issuer_url"
+            },
+            "astronomer:index/getClustersClusterNodePool:getClustersClusterNodePool": {
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "createdAt": "created_at",
+                "isDefault": "is_default",
+                "maxNodeCount": "max_node_count",
+                "nodeInstanceType": "node_instance_type",
+                "supportedAstroMachines": "supported_astro_machines",
+                "updatedAt": "updated_at"
             },
             "astronomer:index/getDeployment:getDeployment": {
                 "airflowVersion": "airflow_version",
+                "astroRuntimeVersion": "astro_runtime_version",
                 "cloudProvider": "cloud_provider",
                 "clusterId": "cluster_id",
-                "clusterName": "cluster_name",
-                "isCicdEnforced": "is_cicd_enforced"
+                "contactEmails": "contact_emails",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "dagTarballVersion": "dag_tarball_version",
+                "defaultTaskPodCpu": "default_task_pod_cpu",
+                "defaultTaskPodMemory": "default_task_pod_memory",
+                "desiredDagTarballVersion": "desired_dag_tarball_version",
+                "environmentVariables": "environment_variables",
+                "externalIps": "external_ips",
+                "imageRepository": "image_repository",
+                "imageTag": "image_tag",
+                "imageVersion": "image_version",
+                "isCicdEnforced": "is_cicd_enforced",
+                "isDagDeployEnabled": "is_dag_deploy_enabled",
+                "isDevelopmentMode": "is_development_mode",
+                "isHighAvailability": "is_high_availability",
+                "oidcIssuerUrl": "oidc_issuer_url",
+                "resourceQuotaCpu": "resource_quota_cpu",
+                "resourceQuotaMemory": "resource_quota_memory",
+                "scalingSpec": "scaling_spec",
+                "scalingStatus": "scaling_status",
+                "schedulerAu": "scheduler_au",
+                "schedulerCpu": "scheduler_cpu",
+                "schedulerMemory": "scheduler_memory",
+                "schedulerReplicas": "scheduler_replicas",
+                "schedulerSize": "scheduler_size",
+                "statusReason": "status_reason",
+                "taskPodNodePoolId": "task_pod_node_pool_id",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by",
+                "webserverAirflowApiUrl": "webserver_airflow_api_url",
+                "webserverIngressHostname": "webserver_ingress_hostname",
+                "webserverUrl": "webserver_url",
+                "workerQueues": "worker_queues",
+                "workloadIdentity": "workload_identity",
+                "workspaceId": "workspace_id"
+            },
+            "astronomer:index/getDeploymentCreatedBy:getDeploymentCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getDeploymentEnvironmentVariable:getDeploymentEnvironmentVariable": {
+                "isSecret": "is_secret",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/getDeploymentOptions:getDeploymentOptions": {
+                "cloudProvider": "cloud_provider",
+                "deploymentId": "deployment_id",
+                "deploymentType": "deployment_type",
+                "resourceQuotas": "resource_quotas",
+                "runtimeReleases": "runtime_releases",
+                "schedulerMachines": "scheduler_machines",
+                "workerMachines": "worker_machines",
+                "workerQueues": "worker_queues",
+                "workloadIdentityOptions": "workload_identity_options"
+            },
+            "astronomer:index/getDeploymentOptionsResourceQuotas:getDeploymentOptionsResourceQuotas": {
+                "defaultPodSize": "default_pod_size",
+                "resourceQuota": "resource_quota"
+            },
+            "astronomer:index/getDeploymentOptionsRuntimeRelease:getDeploymentOptionsRuntimeRelease": {
+                "airflowDatabaseMigration": "airflow_database_migration",
+                "airflowVersion": "airflow_version",
+                "releaseDate": "release_date",
+                "stellarDatabaseMigration": "stellar_database_migration"
+            },
+            "astronomer:index/getDeploymentOptionsSchedulerMachineSpec:getDeploymentOptionsSchedulerMachineSpec": {
+                "ephemeralStorage": "ephemeral_storage"
+            },
+            "astronomer:index/getDeploymentOptionsWorkerMachineSpec:getDeploymentOptionsWorkerMachineSpec": {
+                "ephemeralStorage": "ephemeral_storage"
+            },
+            "astronomer:index/getDeploymentOptionsWorkerQueues:getDeploymentOptionsWorkerQueues": {
+                "maxWorkers": "max_workers",
+                "minWorkers": "min_workers",
+                "workerConcurrency": "worker_concurrency"
+            },
+            "astronomer:index/getDeploymentScalingSpec:getDeploymentScalingSpec": {
+                "hibernationSpec": "hibernation_spec"
+            },
+            "astronomer:index/getDeploymentScalingSpecHibernationSpecOverride:getDeploymentScalingSpecHibernationSpecOverride": {
+                "isActive": "is_active",
+                "isHibernating": "is_hibernating",
+                "overrideUntil": "override_until"
+            },
+            "astronomer:index/getDeploymentScalingSpecHibernationSpecSchedule:getDeploymentScalingSpecHibernationSpecSchedule": {
+                "hibernateAtCron": "hibernate_at_cron",
+                "isEnabled": "is_enabled",
+                "wakeAtCron": "wake_at_cron"
+            },
+            "astronomer:index/getDeploymentScalingStatus:getDeploymentScalingStatus": {
+                "hibernationStatus": "hibernation_status"
+            },
+            "astronomer:index/getDeploymentScalingStatusHibernationStatus:getDeploymentScalingStatusHibernationStatus": {
+                "isHibernating": "is_hibernating",
+                "nextEventAt": "next_event_at",
+                "nextEventType": "next_event_type"
+            },
+            "astronomer:index/getDeploymentUpdatedBy:getDeploymentUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getDeploymentWorkerQueue:getDeploymentWorkerQueue": {
+                "astroMachine": "astro_machine",
+                "isDefault": "is_default",
+                "maxWorkerCount": "max_worker_count",
+                "minWorkerCount": "min_worker_count",
+                "nodePoolId": "node_pool_id",
+                "podCpu": "pod_cpu",
+                "podMemory": "pod_memory",
+                "workerConcurrency": "worker_concurrency"
+            },
+            "astronomer:index/getDeployments:getDeployments": {
+                "deploymentIds": "deployment_ids",
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/getDeploymentsDeployment:getDeploymentsDeployment": {
+                "airflowVersion": "airflow_version",
+                "astroRuntimeVersion": "astro_runtime_version",
+                "cloudProvider": "cloud_provider",
+                "clusterId": "cluster_id",
+                "contactEmails": "contact_emails",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "dagTarballVersion": "dag_tarball_version",
+                "defaultTaskPodCpu": "default_task_pod_cpu",
+                "defaultTaskPodMemory": "default_task_pod_memory",
+                "desiredDagTarballVersion": "desired_dag_tarball_version",
+                "environmentVariables": "environment_variables",
+                "externalIps": "external_ips",
+                "imageRepository": "image_repository",
+                "imageTag": "image_tag",
+                "imageVersion": "image_version",
+                "isCicdEnforced": "is_cicd_enforced",
+                "isDagDeployEnabled": "is_dag_deploy_enabled",
+                "isDevelopmentMode": "is_development_mode",
+                "isHighAvailability": "is_high_availability",
+                "oidcIssuerUrl": "oidc_issuer_url",
+                "resourceQuotaCpu": "resource_quota_cpu",
+                "resourceQuotaMemory": "resource_quota_memory",
+                "scalingSpec": "scaling_spec",
+                "scalingStatus": "scaling_status",
+                "schedulerAu": "scheduler_au",
+                "schedulerCpu": "scheduler_cpu",
+                "schedulerMemory": "scheduler_memory",
+                "schedulerReplicas": "scheduler_replicas",
+                "schedulerSize": "scheduler_size",
+                "statusReason": "status_reason",
+                "taskPodNodePoolId": "task_pod_node_pool_id",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by",
+                "webserverAirflowApiUrl": "webserver_airflow_api_url",
+                "webserverIngressHostname": "webserver_ingress_hostname",
+                "webserverUrl": "webserver_url",
+                "workerQueues": "worker_queues",
+                "workloadIdentity": "workload_identity",
+                "workspaceId": "workspace_id"
+            },
+            "astronomer:index/getDeploymentsDeploymentCreatedBy:getDeploymentsDeploymentCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getDeploymentsDeploymentEnvironmentVariable:getDeploymentsDeploymentEnvironmentVariable": {
+                "isSecret": "is_secret",
+                "updatedAt": "updated_at"
+            },
+            "astronomer:index/getDeploymentsDeploymentScalingSpec:getDeploymentsDeploymentScalingSpec": {
+                "hibernationSpec": "hibernation_spec"
+            },
+            "astronomer:index/getDeploymentsDeploymentScalingSpecHibernationSpecOverride:getDeploymentsDeploymentScalingSpecHibernationSpecOverride": {
+                "isActive": "is_active",
+                "isHibernating": "is_hibernating",
+                "overrideUntil": "override_until"
+            },
+            "astronomer:index/getDeploymentsDeploymentScalingSpecHibernationSpecSchedule:getDeploymentsDeploymentScalingSpecHibernationSpecSchedule": {
+                "hibernateAtCron": "hibernate_at_cron",
+                "isEnabled": "is_enabled",
+                "wakeAtCron": "wake_at_cron"
+            },
+            "astronomer:index/getDeploymentsDeploymentScalingStatus:getDeploymentsDeploymentScalingStatus": {
+                "hibernationStatus": "hibernation_status"
+            },
+            "astronomer:index/getDeploymentsDeploymentScalingStatusHibernationStatus:getDeploymentsDeploymentScalingStatusHibernationStatus": {
+                "isHibernating": "is_hibernating",
+                "nextEventAt": "next_event_at",
+                "nextEventType": "next_event_type"
+            },
+            "astronomer:index/getDeploymentsDeploymentUpdatedBy:getDeploymentsDeploymentUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getDeploymentsDeploymentWorkerQueue:getDeploymentsDeploymentWorkerQueue": {
+                "astroMachine": "astro_machine",
+                "isDefault": "is_default",
+                "maxWorkerCount": "max_worker_count",
+                "minWorkerCount": "min_worker_count",
+                "nodePoolId": "node_pool_id",
+                "podCpu": "pod_cpu",
+                "podMemory": "pod_memory",
+                "workerConcurrency": "worker_concurrency"
             },
             "astronomer:index/getOrganization:getOrganization": {
                 "billingEmail": "billing_email",
                 "createdAt": "created_at",
+                "createdBy": "created_by",
                 "isScimEnabled": "is_scim_enabled",
-                "managedDomains": "managed_domains",
                 "paymentMethod": "payment_method",
                 "supportPlan": "support_plan",
                 "trialExpiresAt": "trial_expires_at",
-                "updatedAt": "updated_at"
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by"
             },
-            "astronomer:index/getOrganizationManagedDomain:getOrganizationManagedDomain": {
+            "astronomer:index/getOrganizationCreatedBy:getOrganizationCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getOrganizationUpdatedBy:getOrganizationUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getTeam:getTeam": {
                 "createdAt": "created_at",
-                "enforcedLogins": "enforced_logins",
-                "updatedAt": "updated_at"
+                "createdBy": "created_by",
+                "deploymentRoles": "deployment_roles",
+                "isIdpManaged": "is_idp_managed",
+                "organizationRole": "organization_role",
+                "rolesCount": "roles_count",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by",
+                "workspaceRoles": "workspace_roles"
+            },
+            "astronomer:index/getTeamCreatedBy:getTeamCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getTeamDeploymentRole:getTeamDeploymentRole": {
+                "deploymentId": "deployment_id"
+            },
+            "astronomer:index/getTeamUpdatedBy:getTeamUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getTeamWorkspaceRole:getTeamWorkspaceRole": {
+                "workspaceId": "workspace_id"
+            },
+            "astronomer:index/getTeamsTeam:getTeamsTeam": {
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "deploymentRoles": "deployment_roles",
+                "isIdpManaged": "is_idp_managed",
+                "organizationRole": "organization_role",
+                "rolesCount": "roles_count",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by",
+                "workspaceRoles": "workspace_roles"
+            },
+            "astronomer:index/getTeamsTeamCreatedBy:getTeamsTeamCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getTeamsTeamDeploymentRole:getTeamsTeamDeploymentRole": {
+                "deploymentId": "deployment_id"
+            },
+            "astronomer:index/getTeamsTeamUpdatedBy:getTeamsTeamUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getTeamsTeamWorkspaceRole:getTeamsTeamWorkspaceRole": {
+                "workspaceId": "workspace_id"
             },
             "astronomer:index/getWorkspace:getWorkspace": {
-                "cicdEnforcedDefault": "cicd_enforced_default"
+                "cicdEnforcedDefault": "cicd_enforced_default",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by"
+            },
+            "astronomer:index/getWorkspaceCreatedBy:getWorkspaceCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getWorkspaceUpdatedBy:getWorkspaceUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getWorkspaces:getWorkspaces": {
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/getWorkspacesWorkspace:getWorkspacesWorkspace": {
+                "cicdEnforcedDefault": "cicd_enforced_default",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by"
+            },
+            "astronomer:index/getWorkspacesWorkspaceCreatedBy:getWorkspacesWorkspaceCreatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/getWorkspacesWorkspaceUpdatedBy:getWorkspacesWorkspaceUpdatedBy": {
+                "apiTokenName": "api_token_name",
+                "avatarUrl": "avatar_url",
+                "fullName": "full_name",
+                "subjectType": "subject_type"
+            },
+            "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization": {
+                "clusterId": "cluster_id",
+                "workspaceIds": "workspace_ids"
+            },
+            "astronomer:index/teamRoles:TeamRoles": {
+                "deploymentRoles": "deployment_roles",
+                "organizationRole": "organization_role",
+                "teamId": "team_id",
+                "workspaceRoles": "workspace_roles"
             },
             "astronomer:index/workspace:Workspace": {
-                "cicdEnforcedDefault": "cicd_enforced_default"
+                "cicdEnforcedDefault": "cicd_enforced_default",
+                "createdAt": "created_at",
+                "createdBy": "created_by",
+                "updatedAt": "updated_at",
+                "updatedBy": "updated_by"
             },
             "astronomer:index:Provider": {
                 "organizationId": "organization_id"

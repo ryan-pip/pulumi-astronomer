@@ -11,19 +11,24 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// Organization id this provider will operate on.
+// API host to use for the provider. Default is `https://api.astronomer.io`
+func GetHost(ctx *pulumi.Context) string {
+	return config.Get(ctx, "astronomer:host")
+}
+
+// Organization ID this provider will operate on.
 func GetOrganizationId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "astronomer:organizationId")
 }
 
-// Astronomer API Token. Can be set with an `ASTRONOMER_API_TOKEN` env var.
+// Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
 func GetToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "astronomer:token")
 	if err == nil {
 		return v
 	}
 	var value string
-	if d := internal.GetEnvOrDefault(nil, nil, "ASTRONOMER_API_TOKEN"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "ASTRO_API_TOKEN"); d != nil {
 		value = d.(string)
 	}
 	return value

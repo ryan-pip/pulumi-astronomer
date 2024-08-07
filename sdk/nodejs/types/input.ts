@@ -5,63 +5,229 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ClusterK8sTag {
-    /**
-     * The tag's key.
-     */
-    key: pulumi.Input<string>;
-    /**
-     * The tag's value.
-     */
-    value: pulumi.Input<string>;
-}
-
 export interface ClusterMetadata {
+    /**
+     * Cluster external IPs
+     */
     externalIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Cluster OIDC issuer URL
+     */
     oidcIssuerUrl?: pulumi.Input<string>;
 }
 
 export interface ClusterNodePool {
     /**
-     * Whether the node pool is the default node pool of the cluster.
+     * Node pool cloud provider
+     */
+    cloudProvider?: pulumi.Input<string>;
+    /**
+     * Node pool cluster identifier
+     */
+    clusterId?: pulumi.Input<string>;
+    /**
+     * Node pool creation timestamp
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Node pool identifier
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Whether the node pool is the default node pool of the cluster
      */
     isDefault?: pulumi.Input<boolean>;
     /**
-     * The maximum number of nodes that can be created in the node pool.
+     * Node pool maximum node count
      */
-    maxNodeCount: pulumi.Input<number>;
+    maxNodeCount?: pulumi.Input<number>;
     /**
-     * The name of the node pool.
+     * Node pool name
      */
-    name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * The type of node instance that is used for the node pool.
+     * Node pool node instance type
      */
-    nodeInstanceType: pulumi.Input<string>;
+    nodeInstanceType?: pulumi.Input<string>;
+    /**
+     * Node pool supported Astro machines
+     */
+    supportedAstroMachines?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Node pool last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+}
+
+export interface ClusterTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: pulumi.Input<string>;
+}
+
+export interface DeploymentCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 export interface DeploymentEnvironmentVariable {
     /**
-     * Whether the environment variable is a secret.
+     * Whether Environment variable is a secret
      */
     isSecret: pulumi.Input<boolean>;
     /**
-     * The environment variable key, used to call the value in code.
+     * Environment variable key
      */
     key: pulumi.Input<string>;
     /**
-     * The environment variable value.
+     * Environment variable last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * Environment variable value
      */
     value?: pulumi.Input<string>;
 }
 
-export interface DeploymentWorkerQueue {
-    astroMachine: pulumi.Input<string>;
+export interface DeploymentScalingSpec {
+    /**
+     * Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+     */
+    hibernationSpec: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpec>;
+}
+
+export interface DeploymentScalingSpecHibernationSpec {
+    /**
+     * Hibernation override configuration. Set to null to remove the override.
+     */
+    override?: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecOverride>;
+    /**
+     * List of hibernation schedules. Set to null to remove all schedules.
+     */
+    schedules?: pulumi.Input<pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecSchedule>[]>;
+}
+
+export interface DeploymentScalingSpecHibernationSpecOverride {
+    isActive?: pulumi.Input<boolean>;
+    isHibernating: pulumi.Input<boolean>;
+    overrideUntil?: pulumi.Input<string>;
+}
+
+export interface DeploymentScalingSpecHibernationSpecSchedule {
+    description?: pulumi.Input<string>;
+    hibernateAtCron: pulumi.Input<string>;
+    isEnabled: pulumi.Input<boolean>;
+    wakeAtCron: pulumi.Input<string>;
+}
+
+export interface DeploymentScalingStatus {
+    hibernationStatus?: pulumi.Input<inputs.DeploymentScalingStatusHibernationStatus>;
+}
+
+export interface DeploymentScalingStatusHibernationStatus {
+    isHibernating?: pulumi.Input<boolean>;
+    nextEventAt?: pulumi.Input<string>;
+    nextEventType?: pulumi.Input<string>;
+    reason?: pulumi.Input<string>;
+}
+
+export interface DeploymentUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
     id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface DeploymentWorkerQueue {
+    /**
+     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+     */
+    astroMachine?: pulumi.Input<string>;
+    /**
+     * Worker queue default
+     */
     isDefault: pulumi.Input<boolean>;
+    /**
+     * Worker queue max worker count
+     */
     maxWorkerCount: pulumi.Input<number>;
+    /**
+     * Worker queue min worker count
+     */
     minWorkerCount: pulumi.Input<number>;
+    /**
+     * Worker queue name
+     */
     name: pulumi.Input<string>;
+    /**
+     * Worker queue Node pool identifier - required for 'HYBRID' deployments
+     */
+    nodePoolId?: pulumi.Input<string>;
+    /**
+     * Worker queue pod CPU
+     */
+    podCpu?: pulumi.Input<string>;
+    /**
+     * Worker queue pod memory
+     */
+    podMemory?: pulumi.Input<string>;
+    /**
+     * Worker queue worker concurrency
+     */
     workerConcurrency: pulumi.Input<number>;
 }
 
+export interface TeamRolesDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The role to assign to the deployment
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface TeamRolesWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: pulumi.Input<string>;
+}
+
+export interface WorkspaceCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface WorkspaceUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}

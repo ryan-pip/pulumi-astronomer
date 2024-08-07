@@ -14,7 +14,13 @@ namespace RyanPip.Astronomer.Outputs
     [OutputType]
     public sealed class ClusterMetadata
     {
+        /// <summary>
+        /// Cluster external IPs
+        /// </summary>
         public readonly ImmutableArray<string> ExternalIps;
+        /// <summary>
+        /// Cluster OIDC issuer URL
+        /// </summary>
         public readonly string? OidcIssuerUrl;
 
         [OutputConstructor]

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const exampleWorkspaces = astronomer.getWorkspaces({});
+ * const exampleWorkspacesWorkspaces = astronomer.getWorkspaces({});
  * const exampleWorkspacesFilterByWorkspaceIds = astronomer.getWorkspaces({
  *     workspaceIds: [
  *         "clozc036j01to01jrlgvueo8t",
@@ -28,6 +28,7 @@ import * as utilities from "./utilities";
  *         "my second workspace",
  *     ],
  * });
+ * export const exampleWorkspaces = exampleWorkspacesWorkspaces;
  * ```
  */
 export function getWorkspaces(args?: GetWorkspacesArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkspacesResult> {
@@ -69,7 +70,7 @@ export interface GetWorkspacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const exampleWorkspaces = astronomer.getWorkspaces({});
+ * const exampleWorkspacesWorkspaces = astronomer.getWorkspaces({});
  * const exampleWorkspacesFilterByWorkspaceIds = astronomer.getWorkspaces({
  *     workspaceIds: [
  *         "clozc036j01to01jrlgvueo8t",
@@ -82,6 +83,7 @@ export interface GetWorkspacesResult {
  *         "my second workspace",
  *     ],
  * });
+ * export const exampleWorkspaces = exampleWorkspacesWorkspaces;
  * ```
  */
 export function getWorkspacesOutput(args?: GetWorkspacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkspacesResult> {

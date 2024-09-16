@@ -292,11 +292,11 @@ class Workspace(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cicd_enforced_default: Optional[pulumi.Input[bool]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            created_by: Optional[pulumi.Input[pulumi.InputType['WorkspaceCreatedByArgs']]] = None,
+            created_by: Optional[pulumi.Input[Union['WorkspaceCreatedByArgs', 'WorkspaceCreatedByArgsDict']]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            updated_by: Optional[pulumi.Input[pulumi.InputType['WorkspaceUpdatedByArgs']]] = None) -> 'Workspace':
+            updated_by: Optional[pulumi.Input[Union['WorkspaceUpdatedByArgs', 'WorkspaceUpdatedByArgsDict']]] = None) -> 'Workspace':
         """
         Get an existing Workspace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -306,11 +306,11 @@ class Workspace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cicd_enforced_default: Whether new Deployments enforce CI/CD deploys by default
         :param pulumi.Input[str] created_at: Workspace creation timestamp
-        :param pulumi.Input[pulumi.InputType['WorkspaceCreatedByArgs']] created_by: Workspace creator
+        :param pulumi.Input[Union['WorkspaceCreatedByArgs', 'WorkspaceCreatedByArgsDict']] created_by: Workspace creator
         :param pulumi.Input[str] description: Workspace description
         :param pulumi.Input[str] name: Workspace name
         :param pulumi.Input[str] updated_at: Workspace last updated timestamp
-        :param pulumi.Input[pulumi.InputType['WorkspaceUpdatedByArgs']] updated_by: Workspace updater
+        :param pulumi.Input[Union['WorkspaceUpdatedByArgs', 'WorkspaceUpdatedByArgsDict']] updated_by: Workspace updater
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

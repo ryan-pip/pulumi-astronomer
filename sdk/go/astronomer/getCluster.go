@@ -27,12 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.LookupCluster(ctx, &astronomer.LookupClusterArgs{
+//			exampleCluster, err := astronomer.LookupCluster(ctx, &astronomer.LookupClusterArgs{
 //				Id: "clozc036j01to01jrlgvueo8t",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("cluster", exampleCluster)
 //			return nil
 //		})
 //	}
@@ -62,6 +63,8 @@ type LookupClusterResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// Cluster health status
+	HealthStatus GetClusterHealthStatus `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id string `pulumi:"id"`
 	// Whether the cluster is limited
@@ -149,6 +152,11 @@ func (o LookupClusterResultOutput) CreatedAt() pulumi.StringOutput {
 // Cluster database instance type
 func (o LookupClusterResultOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DbInstanceType }).(pulumi.StringOutput)
+}
+
+// Cluster health status
+func (o LookupClusterResultOutput) HealthStatus() GetClusterHealthStatusOutput {
+	return o.ApplyT(func(v LookupClusterResult) GetClusterHealthStatus { return v.HealthStatus }).(GetClusterHealthStatusOutput)
 }
 
 // Cluster identifier

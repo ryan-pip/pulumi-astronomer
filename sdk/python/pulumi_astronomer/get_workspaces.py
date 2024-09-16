@@ -84,7 +84,7 @@ def get_workspaces(names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example_workspaces = astronomer.get_workspaces()
+    example_workspaces_workspaces = astronomer.get_workspaces()
     example_workspaces_filter_by_workspace_ids = astronomer.get_workspaces(workspace_ids=[
         "clozc036j01to01jrlgvueo8t",
         "clozc036j01to01jrlgvueo81",
@@ -93,6 +93,7 @@ def get_workspaces(names: Optional[Sequence[str]] = None,
         "my first workspace",
         "my second workspace",
     ])
+    pulumi.export("exampleWorkspaces", example_workspaces_workspaces)
     ```
     """
     __args__ = dict()
@@ -121,7 +122,7 @@ def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]]
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example_workspaces = astronomer.get_workspaces()
+    example_workspaces_workspaces = astronomer.get_workspaces()
     example_workspaces_filter_by_workspace_ids = astronomer.get_workspaces(workspace_ids=[
         "clozc036j01to01jrlgvueo8t",
         "clozc036j01to01jrlgvueo81",
@@ -130,6 +131,7 @@ def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]]
         "my first workspace",
         "my second workspace",
     ])
+    pulumi.export("exampleWorkspaces", example_workspaces_workspaces)
     ```
     """
     ...

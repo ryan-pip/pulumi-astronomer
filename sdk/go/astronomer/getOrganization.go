@@ -27,10 +27,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetOrganization(ctx, nil, nil)
+//			exampleOrganization, err := astronomer.GetOrganization(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("organization", exampleOrganization)
 //			return nil
 //		})
 //	}

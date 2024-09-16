@@ -27,12 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.LookupWorkspace(ctx, &astronomer.LookupWorkspaceArgs{
+//			exampleWorkspace, err := astronomer.LookupWorkspace(ctx, &astronomer.LookupWorkspaceArgs{
 //				Id: "clozc036j01to01jrlgvueo8t",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("workspace", exampleWorkspace)
 //			return nil
 //		})
 //	}

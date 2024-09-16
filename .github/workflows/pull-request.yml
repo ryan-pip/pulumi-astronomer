@@ -18,7 +18,7 @@ jobs:
         dotnetversion:
           - 6.0.x
         goversion:
-          - 1.21.x
+          - 1.22.x
         nodeversion:
           - 20.x
         pythonversion:
@@ -28,7 +28,7 @@ jobs:
         language:
           - nodejs
           - python
-          - dotnet
+          # - dotnet
           - go
           # - java
 

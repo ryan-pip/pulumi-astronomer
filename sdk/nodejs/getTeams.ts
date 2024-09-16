@@ -15,13 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const exampleTeams = astronomer.getTeams({});
+ * const exampleTeamsTeams = astronomer.getTeams({});
  * const exampleTeamsFilterByNames = astronomer.getTeams({
  *     names: [
  *         "my first team",
  *         "my second team",
  *     ],
  * });
+ * export const exampleTeams = exampleTeamsTeams;
  * ```
  */
 export function getTeams(args?: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
@@ -60,13 +61,14 @@ export interface GetTeamsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const exampleTeams = astronomer.getTeams({});
+ * const exampleTeamsTeams = astronomer.getTeams({});
  * const exampleTeamsFilterByNames = astronomer.getTeams({
  *     names: [
  *         "my first team",
  *         "my second team",
  *     ],
  * });
+ * export const exampleTeams = exampleTeamsTeams;
  * ```
  */
 export function getTeamsOutput(args?: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {

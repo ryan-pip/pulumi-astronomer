@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { ApiTokenArgs, ApiTokenState } from "./apiToken";
+export type ApiToken = import("./apiToken").ApiToken;
+export const ApiToken: typeof import("./apiToken").ApiToken = null as any;
+utilities.lazyLoad(exports, ["ApiToken"], () => require("./apiToken"));
+
 export { ClusterArgs, ClusterState } from "./cluster";
 export type Cluster = import("./cluster").Cluster;
 export const Cluster: typeof import("./cluster").Cluster = null as any;
@@ -14,6 +19,16 @@ export { DeploymentArgs, DeploymentState } from "./deployment";
 export type Deployment = import("./deployment").Deployment;
 export const Deployment: typeof import("./deployment").Deployment = null as any;
 utilities.lazyLoad(exports, ["Deployment"], () => require("./deployment"));
+
+export { GetApiTokenArgs, GetApiTokenResult, GetApiTokenOutputArgs } from "./getApiToken";
+export const getApiToken: typeof import("./getApiToken").getApiToken = null as any;
+export const getApiTokenOutput: typeof import("./getApiToken").getApiTokenOutput = null as any;
+utilities.lazyLoad(exports, ["getApiToken","getApiTokenOutput"], () => require("./getApiToken"));
+
+export { GetApiTokensArgs, GetApiTokensResult, GetApiTokensOutputArgs } from "./getApiTokens";
+export const getApiTokens: typeof import("./getApiTokens").getApiTokens = null as any;
+export const getApiTokensOutput: typeof import("./getApiTokens").getApiTokensOutput = null as any;
+utilities.lazyLoad(exports, ["getApiTokens","getApiTokensOutput"], () => require("./getApiTokens"));
 
 export { GetClusterArgs, GetClusterResult, GetClusterOutputArgs } from "./getCluster";
 export const getCluster: typeof import("./getCluster").getCluster = null as any;
@@ -60,6 +75,16 @@ export const getTeams: typeof import("./getTeams").getTeams = null as any;
 export const getTeamsOutput: typeof import("./getTeams").getTeamsOutput = null as any;
 utilities.lazyLoad(exports, ["getTeams","getTeamsOutput"], () => require("./getTeams"));
 
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
+export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
 export { GetWorkspaceArgs, GetWorkspaceResult, GetWorkspaceOutputArgs } from "./getWorkspace";
 export const getWorkspace: typeof import("./getWorkspace").getWorkspace = null as any;
 export const getWorkspaceOutput: typeof import("./getWorkspace").getWorkspaceOutput = null as any;
@@ -80,10 +105,25 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { TeamArgs, TeamState } from "./team";
+export type Team = import("./team").Team;
+export const Team: typeof import("./team").Team = null as any;
+utilities.lazyLoad(exports, ["Team"], () => require("./team"));
+
 export { TeamRolesArgs, TeamRolesState } from "./teamRoles";
 export type TeamRoles = import("./teamRoles").TeamRoles;
 export const TeamRoles: typeof import("./teamRoles").TeamRoles = null as any;
 utilities.lazyLoad(exports, ["TeamRoles"], () => require("./teamRoles"));
+
+export { UserInviteArgs, UserInviteState } from "./userInvite";
+export type UserInvite = import("./userInvite").UserInvite;
+export const UserInvite: typeof import("./userInvite").UserInvite = null as any;
+utilities.lazyLoad(exports, ["UserInvite"], () => require("./userInvite"));
+
+export { UserRolesArgs, UserRolesState } from "./userRoles";
+export type UserRoles = import("./userRoles").UserRoles;
+export const UserRoles: typeof import("./userRoles").UserRoles = null as any;
+utilities.lazyLoad(exports, ["UserRoles"], () => require("./userRoles"));
 
 export { WorkspaceArgs, WorkspaceState } from "./workspace";
 export type Workspace = import("./workspace").Workspace;
@@ -104,14 +144,22 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "astronomer:index/apiToken:ApiToken":
+                return new ApiToken(name, <any>undefined, { urn })
             case "astronomer:index/cluster:Cluster":
                 return new Cluster(name, <any>undefined, { urn })
             case "astronomer:index/deployment:Deployment":
                 return new Deployment(name, <any>undefined, { urn })
             case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
                 return new HybridClusterWorkspaceAuthorization(name, <any>undefined, { urn })
+            case "astronomer:index/team:Team":
+                return new Team(name, <any>undefined, { urn })
             case "astronomer:index/teamRoles:TeamRoles":
                 return new TeamRoles(name, <any>undefined, { urn })
+            case "astronomer:index/userInvite:UserInvite":
+                return new UserInvite(name, <any>undefined, { urn })
+            case "astronomer:index/userRoles:UserRoles":
+                return new UserRoles(name, <any>undefined, { urn })
             case "astronomer:index/workspace:Workspace":
                 return new Workspace(name, <any>undefined, { urn })
             default:
@@ -119,10 +167,14 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("astronomer", "index/apiToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/deployment", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/hybridClusterWorkspaceAuthorization", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/team", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/teamRoles", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/userInvite", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/userRoles", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/workspace", _module)
 pulumi.runtime.registerResourcePackage("astronomer", {
     version: utilities.getVersion(),

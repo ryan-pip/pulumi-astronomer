@@ -27,12 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.LookupDeployment(ctx, &astronomer.LookupDeploymentArgs{
+//			exampleDeployment, err := astronomer.LookupDeployment(ctx, &astronomer.LookupDeploymentArgs{
 //				Id: "clozc036j01to01jrlgvueo8t",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("deployment", exampleDeployment)
 //			return nil
 //		})
 //	}

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getDeploymentOptions({});
+ * const exampleDeploymentOptions = astronomer.getDeploymentOptions({});
  * const exampleWithDeploymentIdQueryParam = astronomer.getDeploymentOptions({
  *     deploymentId: "clozc036j01to01jrlgvueo8t",
  * });
@@ -28,6 +28,7 @@ import * as utilities from "./utilities";
  * const exampleWithCloudProviderQueryParam = astronomer.getDeploymentOptions({
  *     cloudProvider: "AWS",
  * });
+ * export const deploymentOptions = exampleDeploymentOptions;
  * ```
  */
 export function getDeploymentOptions(args?: GetDeploymentOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentOptionsResult> {
@@ -126,7 +127,7 @@ export interface GetDeploymentOptionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getDeploymentOptions({});
+ * const exampleDeploymentOptions = astronomer.getDeploymentOptions({});
  * const exampleWithDeploymentIdQueryParam = astronomer.getDeploymentOptions({
  *     deploymentId: "clozc036j01to01jrlgvueo8t",
  * });
@@ -139,6 +140,7 @@ export interface GetDeploymentOptionsResult {
  * const exampleWithCloudProviderQueryParam = astronomer.getDeploymentOptions({
  *     cloudProvider: "AWS",
  * });
+ * export const deploymentOptions = exampleDeploymentOptions;
  * ```
  */
 export function getDeploymentOptionsOutput(args?: GetDeploymentOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentOptionsResult> {

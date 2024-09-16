@@ -27,20 +27,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetTeam(ctx, &astronomer.GetTeamArgs{
+//			exampleTeam, err := astronomer.LookupTeam(ctx, &astronomer.LookupTeamArgs{
 //				Id: "clwbclrc100bl01ozjj5s4jmq",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("team", exampleTeam)
 //			return nil
 //		})
 //	}
 //
 // ```
-func GetTeam(ctx *pulumi.Context, args *GetTeamArgs, opts ...pulumi.InvokeOption) (*GetTeamResult, error) {
+func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetTeamResult
+	var rv LookupTeamResult
 	err := ctx.Invoke("astronomer:index/getTeam:getTeam", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -49,137 +50,137 @@ func GetTeam(ctx *pulumi.Context, args *GetTeamArgs, opts ...pulumi.InvokeOption
 }
 
 // A collection of arguments for invoking getTeam.
-type GetTeamArgs struct {
-	// Team identifier
+type LookupTeamArgs struct {
+	// Team ID
 	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getTeam.
-type GetTeamResult struct {
+type LookupTeamResult struct {
 	// Team creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamCreatedBy `pulumi:"createdBy"`
-	// The roles assigned to the deployments
+	// The roles assigned to the Deployments
 	DeploymentRoles []GetTeamDeploymentRole `pulumi:"deploymentRoles"`
 	// Team description
 	Description string `pulumi:"description"`
-	// Team identifier
+	// Team ID
 	Id string `pulumi:"id"`
-	// Whether the team is managed by an identity provider
+	// Whether the Team is managed by an identity provider
 	IsIdpManaged bool `pulumi:"isIdpManaged"`
 	// Team name
 	Name string `pulumi:"name"`
-	// The role assigned to the organization
+	// The role assigned to the Organization
 	OrganizationRole string `pulumi:"organizationRole"`
-	// Number of roles assigned to the team
+	// Number of roles assigned to the Team
 	RolesCount int `pulumi:"rolesCount"`
 	// Team last updated timestamp
 	UpdatedAt string `pulumi:"updatedAt"`
 	// Team updater
 	UpdatedBy GetTeamUpdatedBy `pulumi:"updatedBy"`
-	// The roles assigned to the workspaces
+	// The roles assigned to the Workspaces
 	WorkspaceRoles []GetTeamWorkspaceRole `pulumi:"workspaceRoles"`
 }
 
-func GetTeamOutput(ctx *pulumi.Context, args GetTeamOutputArgs, opts ...pulumi.InvokeOption) GetTeamResultOutput {
+func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetTeamResult, error) {
-			args := v.(GetTeamArgs)
-			r, err := GetTeam(ctx, &args, opts...)
-			var s GetTeamResult
+		ApplyT(func(v interface{}) (LookupTeamResult, error) {
+			args := v.(LookupTeamArgs)
+			r, err := LookupTeam(ctx, &args, opts...)
+			var s LookupTeamResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetTeamResultOutput)
+		}).(LookupTeamResultOutput)
 }
 
 // A collection of arguments for invoking getTeam.
-type GetTeamOutputArgs struct {
-	// Team identifier
+type LookupTeamOutputArgs struct {
+	// Team ID
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
-func (GetTeamOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamArgs)(nil)).Elem()
+func (LookupTeamOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTeamArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getTeam.
-type GetTeamResultOutput struct{ *pulumi.OutputState }
+type LookupTeamResultOutput struct{ *pulumi.OutputState }
 
-func (GetTeamResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamResult)(nil)).Elem()
+func (LookupTeamResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTeamResult)(nil)).Elem()
 }
 
-func (o GetTeamResultOutput) ToGetTeamResultOutput() GetTeamResultOutput {
+func (o LookupTeamResultOutput) ToLookupTeamResultOutput() LookupTeamResultOutput {
 	return o
 }
 
-func (o GetTeamResultOutput) ToGetTeamResultOutputWithContext(ctx context.Context) GetTeamResultOutput {
+func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.Context) LookupTeamResultOutput {
 	return o
 }
 
 // Team creation timestamp
-func (o GetTeamResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o LookupTeamResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // Team creator
-func (o GetTeamResultOutput) CreatedBy() GetTeamCreatedByOutput {
-	return o.ApplyT(func(v GetTeamResult) GetTeamCreatedBy { return v.CreatedBy }).(GetTeamCreatedByOutput)
+func (o LookupTeamResultOutput) CreatedBy() GetTeamCreatedByOutput {
+	return o.ApplyT(func(v LookupTeamResult) GetTeamCreatedBy { return v.CreatedBy }).(GetTeamCreatedByOutput)
 }
 
-// The roles assigned to the deployments
-func (o GetTeamResultOutput) DeploymentRoles() GetTeamDeploymentRoleArrayOutput {
-	return o.ApplyT(func(v GetTeamResult) []GetTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamDeploymentRoleArrayOutput)
+// The roles assigned to the Deployments
+func (o LookupTeamResultOutput) DeploymentRoles() GetTeamDeploymentRoleArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamDeploymentRoleArrayOutput)
 }
 
 // Team description
-func (o GetTeamResultOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.Description }).(pulumi.StringOutput)
+func (o LookupTeamResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Team identifier
-func (o GetTeamResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.Id }).(pulumi.StringOutput)
+// Team ID
+func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the team is managed by an identity provider
-func (o GetTeamResultOutput) IsIdpManaged() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetTeamResult) bool { return v.IsIdpManaged }).(pulumi.BoolOutput)
+// Whether the Team is managed by an identity provider
+func (o LookupTeamResultOutput) IsIdpManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTeamResult) bool { return v.IsIdpManaged }).(pulumi.BoolOutput)
 }
 
 // Team name
-func (o GetTeamResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupTeamResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The role assigned to the organization
-func (o GetTeamResultOutput) OrganizationRole() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.OrganizationRole }).(pulumi.StringOutput)
+// The role assigned to the Organization
+func (o LookupTeamResultOutput) OrganizationRole() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.OrganizationRole }).(pulumi.StringOutput)
 }
 
-// Number of roles assigned to the team
-func (o GetTeamResultOutput) RolesCount() pulumi.IntOutput {
-	return o.ApplyT(func(v GetTeamResult) int { return v.RolesCount }).(pulumi.IntOutput)
+// Number of roles assigned to the Team
+func (o LookupTeamResultOutput) RolesCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTeamResult) int { return v.RolesCount }).(pulumi.IntOutput)
 }
 
 // Team last updated timestamp
-func (o GetTeamResultOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o LookupTeamResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // Team updater
-func (o GetTeamResultOutput) UpdatedBy() GetTeamUpdatedByOutput {
-	return o.ApplyT(func(v GetTeamResult) GetTeamUpdatedBy { return v.UpdatedBy }).(GetTeamUpdatedByOutput)
+func (o LookupTeamResultOutput) UpdatedBy() GetTeamUpdatedByOutput {
+	return o.ApplyT(func(v LookupTeamResult) GetTeamUpdatedBy { return v.UpdatedBy }).(GetTeamUpdatedByOutput)
 }
 
-// The roles assigned to the workspaces
-func (o GetTeamResultOutput) WorkspaceRoles() GetTeamWorkspaceRoleArrayOutput {
-	return o.ApplyT(func(v GetTeamResult) []GetTeamWorkspaceRole { return v.WorkspaceRoles }).(GetTeamWorkspaceRoleArrayOutput)
+// The roles assigned to the Workspaces
+func (o LookupTeamResultOutput) WorkspaceRoles() GetTeamWorkspaceRoleArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamWorkspaceRole { return v.WorkspaceRoles }).(GetTeamWorkspaceRoleArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetTeamResultOutput{})
+	pulumi.RegisterOutputType(LookupTeamResultOutput{})
 }

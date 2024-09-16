@@ -87,6 +87,7 @@ def get_clusters(cloud_provider: Optional[str] = None,
     example_clusters = astronomer.get_clusters()
     example_clusters_filter_by_names = astronomer.get_clusters(names=["my cluster"])
     example_clusters_filter_by_cloud_provider = astronomer.get_clusters(cloud_provider="AWS")
+    pulumi.export("clusters", example_clusters)
     ```
     """
     __args__ = dict()
@@ -118,6 +119,7 @@ def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = 
     example_clusters = astronomer.get_clusters()
     example_clusters_filter_by_names = astronomer.get_clusters(names=["my cluster"])
     example_clusters_filter_by_cloud_provider = astronomer.get_clusters(cloud_provider="AWS")
+    pulumi.export("clusters", example_clusters)
     ```
     """
     ...

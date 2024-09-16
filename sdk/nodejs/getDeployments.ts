@@ -25,6 +25,7 @@ import * as utilities from "./utilities";
  * const exampleDeploymentsFilterByWorkspaceIds = astronomer.getDeployments({
  *     workspaceIds: ["clozc036j01to01jrlgvu798d"],
  * });
+ * export const deployments = exampleDeployments;
  * ```
  */
 export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
@@ -79,6 +80,7 @@ export interface GetDeploymentsResult {
  * const exampleDeploymentsFilterByWorkspaceIds = astronomer.getDeployments({
  *     workspaceIds: ["clozc036j01to01jrlgvu798d"],
  * });
+ * export const deployments = exampleDeployments;
  * ```
  */
 export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {

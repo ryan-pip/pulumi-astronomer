@@ -5,11 +5,74 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ApiTokenCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface ApiTokenRole {
+    /**
+     * The ID of the entity to assign the role to
+     */
+    entityId: pulumi.Input<string>;
+    /**
+     * The type of entity to assign the role to
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * The role to assign to the entity
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface ApiTokenUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface ClusterHealthStatus {
+    /**
+     * Cluster health status details
+     */
+    details?: pulumi.Input<pulumi.Input<inputs.ClusterHealthStatusDetail>[]>;
+    /**
+     * Cluster health status value
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface ClusterHealthStatusDetail {
+    /**
+     * Cluster health status detail code
+     */
+    code?: pulumi.Input<string>;
+    /**
+     * Cluster health status detail description
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Cluster health status detail severity
+     */
+    severity?: pulumi.Input<string>;
+}
+
 export interface ClusterMetadata {
     /**
      * Cluster external IPs
      */
     externalIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Cluster kube DNS IP
+     */
+    kubeDnsIp?: pulumi.Input<string>;
     /**
      * Cluster OIDC issuer URL
      */
@@ -192,6 +255,26 @@ export interface DeploymentWorkerQueue {
     workerConcurrency: pulumi.Input<number>;
 }
 
+export interface TeamCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface TeamDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The role to assign to the deployment
+     */
+    role: pulumi.Input<string>;
+}
+
 export interface TeamRolesDeploymentRole {
     /**
      * The ID of the deployment to assign the role to
@@ -204,6 +287,66 @@ export interface TeamRolesDeploymentRole {
 }
 
 export interface TeamRolesWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: pulumi.Input<string>;
+}
+
+export interface TeamUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface TeamWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: pulumi.Input<string>;
+}
+
+export interface UserInviteInvitee {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface UserInviteInviter {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface UserRolesDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The role to assign to the deployment
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface UserRolesWorkspaceRole {
     /**
      * The role to assign to the workspace
      */

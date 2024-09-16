@@ -95,6 +95,8 @@ type Cluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringOutput `pulumi:"dbInstanceType"`
+	// Cluster health status
+	HealthStatus ClusterHealthStatusOutput `pulumi:"healthStatus"`
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolOutput `pulumi:"isLimited"`
 	// Cluster metadata
@@ -179,6 +181,8 @@ type clusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType *string `pulumi:"dbInstanceType"`
+	// Cluster health status
+	HealthStatus *ClusterHealthStatus `pulumi:"healthStatus"`
 	// Whether the cluster is limited
 	IsLimited *bool `pulumi:"isLimited"`
 	// Cluster metadata
@@ -219,6 +223,8 @@ type ClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Cluster database instance type
 	DbInstanceType pulumi.StringPtrInput
+	// Cluster health status
+	HealthStatus ClusterHealthStatusPtrInput
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolPtrInput
 	// Cluster metadata
@@ -401,6 +407,11 @@ func (o ClusterOutput) CreatedAt() pulumi.StringOutput {
 // Cluster database instance type
 func (o ClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DbInstanceType }).(pulumi.StringOutput)
+}
+
+// Cluster health status
+func (o ClusterOutput) HealthStatus() ClusterHealthStatusOutput {
+	return o.ApplyT(func(v *Cluster) ClusterHealthStatusOutput { return v.HealthStatus }).(ClusterHealthStatusOutput)
 }
 
 // Whether the cluster is limited

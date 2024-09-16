@@ -13,9 +13,813 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ApiTokenCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// ApiTokenCreatedByInput is an input type that accepts ApiTokenCreatedByArgs and ApiTokenCreatedByOutput values.
+// You can construct a concrete instance of `ApiTokenCreatedByInput` via:
+//
+//	ApiTokenCreatedByArgs{...}
+type ApiTokenCreatedByInput interface {
+	pulumi.Input
+
+	ToApiTokenCreatedByOutput() ApiTokenCreatedByOutput
+	ToApiTokenCreatedByOutputWithContext(context.Context) ApiTokenCreatedByOutput
+}
+
+type ApiTokenCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ApiTokenCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (i ApiTokenCreatedByArgs) ToApiTokenCreatedByOutput() ApiTokenCreatedByOutput {
+	return i.ToApiTokenCreatedByOutputWithContext(context.Background())
+}
+
+func (i ApiTokenCreatedByArgs) ToApiTokenCreatedByOutputWithContext(ctx context.Context) ApiTokenCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenCreatedByOutput)
+}
+
+func (i ApiTokenCreatedByArgs) ToApiTokenCreatedByPtrOutput() ApiTokenCreatedByPtrOutput {
+	return i.ToApiTokenCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i ApiTokenCreatedByArgs) ToApiTokenCreatedByPtrOutputWithContext(ctx context.Context) ApiTokenCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenCreatedByOutput).ToApiTokenCreatedByPtrOutputWithContext(ctx)
+}
+
+// ApiTokenCreatedByPtrInput is an input type that accepts ApiTokenCreatedByArgs, ApiTokenCreatedByPtr and ApiTokenCreatedByPtrOutput values.
+// You can construct a concrete instance of `ApiTokenCreatedByPtrInput` via:
+//
+//	        ApiTokenCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type ApiTokenCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToApiTokenCreatedByPtrOutput() ApiTokenCreatedByPtrOutput
+	ToApiTokenCreatedByPtrOutputWithContext(context.Context) ApiTokenCreatedByPtrOutput
+}
+
+type apiTokenCreatedByPtrType ApiTokenCreatedByArgs
+
+func ApiTokenCreatedByPtr(v *ApiTokenCreatedByArgs) ApiTokenCreatedByPtrInput {
+	return (*apiTokenCreatedByPtrType)(v)
+}
+
+func (*apiTokenCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (i *apiTokenCreatedByPtrType) ToApiTokenCreatedByPtrOutput() ApiTokenCreatedByPtrOutput {
+	return i.ToApiTokenCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *apiTokenCreatedByPtrType) ToApiTokenCreatedByPtrOutputWithContext(ctx context.Context) ApiTokenCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenCreatedByPtrOutput)
+}
+
+type ApiTokenCreatedByOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (o ApiTokenCreatedByOutput) ToApiTokenCreatedByOutput() ApiTokenCreatedByOutput {
+	return o
+}
+
+func (o ApiTokenCreatedByOutput) ToApiTokenCreatedByOutputWithContext(ctx context.Context) ApiTokenCreatedByOutput {
+	return o
+}
+
+func (o ApiTokenCreatedByOutput) ToApiTokenCreatedByPtrOutput() ApiTokenCreatedByPtrOutput {
+	return o.ToApiTokenCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o ApiTokenCreatedByOutput) ToApiTokenCreatedByPtrOutputWithContext(ctx context.Context) ApiTokenCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ApiTokenCreatedBy) *ApiTokenCreatedBy {
+		return &v
+	}).(ApiTokenCreatedByPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ApiTokenCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (o ApiTokenCreatedByPtrOutput) ToApiTokenCreatedByPtrOutput() ApiTokenCreatedByPtrOutput {
+	return o
+}
+
+func (o ApiTokenCreatedByPtrOutput) ToApiTokenCreatedByPtrOutputWithContext(ctx context.Context) ApiTokenCreatedByPtrOutput {
+	return o
+}
+
+func (o ApiTokenCreatedByPtrOutput) Elem() ApiTokenCreatedByOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) ApiTokenCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret ApiTokenCreatedBy
+		return ret
+	}).(ApiTokenCreatedByOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ApiTokenRole struct {
+	// The ID of the entity to assign the role to
+	EntityId string `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType string `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role string `pulumi:"role"`
+}
+
+// ApiTokenRoleInput is an input type that accepts ApiTokenRoleArgs and ApiTokenRoleOutput values.
+// You can construct a concrete instance of `ApiTokenRoleInput` via:
+//
+//	ApiTokenRoleArgs{...}
+type ApiTokenRoleInput interface {
+	pulumi.Input
+
+	ToApiTokenRoleOutput() ApiTokenRoleOutput
+	ToApiTokenRoleOutputWithContext(context.Context) ApiTokenRoleOutput
+}
+
+type ApiTokenRoleArgs struct {
+	// The ID of the entity to assign the role to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (ApiTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenRole)(nil)).Elem()
+}
+
+func (i ApiTokenRoleArgs) ToApiTokenRoleOutput() ApiTokenRoleOutput {
+	return i.ToApiTokenRoleOutputWithContext(context.Background())
+}
+
+func (i ApiTokenRoleArgs) ToApiTokenRoleOutputWithContext(ctx context.Context) ApiTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenRoleOutput)
+}
+
+// ApiTokenRoleArrayInput is an input type that accepts ApiTokenRoleArray and ApiTokenRoleArrayOutput values.
+// You can construct a concrete instance of `ApiTokenRoleArrayInput` via:
+//
+//	ApiTokenRoleArray{ ApiTokenRoleArgs{...} }
+type ApiTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToApiTokenRoleArrayOutput() ApiTokenRoleArrayOutput
+	ToApiTokenRoleArrayOutputWithContext(context.Context) ApiTokenRoleArrayOutput
+}
+
+type ApiTokenRoleArray []ApiTokenRoleInput
+
+func (ApiTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApiTokenRole)(nil)).Elem()
+}
+
+func (i ApiTokenRoleArray) ToApiTokenRoleArrayOutput() ApiTokenRoleArrayOutput {
+	return i.ToApiTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i ApiTokenRoleArray) ToApiTokenRoleArrayOutputWithContext(ctx context.Context) ApiTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenRoleArrayOutput)
+}
+
+type ApiTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenRole)(nil)).Elem()
+}
+
+func (o ApiTokenRoleOutput) ToApiTokenRoleOutput() ApiTokenRoleOutput {
+	return o
+}
+
+func (o ApiTokenRoleOutput) ToApiTokenRoleOutputWithContext(ctx context.Context) ApiTokenRoleOutput {
+	return o
+}
+
+// The ID of the entity to assign the role to
+func (o ApiTokenRoleOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v ApiTokenRole) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The type of entity to assign the role to
+func (o ApiTokenRoleOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v ApiTokenRole) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The role to assign to the entity
+func (o ApiTokenRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v ApiTokenRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type ApiTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApiTokenRole)(nil)).Elem()
+}
+
+func (o ApiTokenRoleArrayOutput) ToApiTokenRoleArrayOutput() ApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o ApiTokenRoleArrayOutput) ToApiTokenRoleArrayOutputWithContext(ctx context.Context) ApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o ApiTokenRoleArrayOutput) Index(i pulumi.IntInput) ApiTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApiTokenRole {
+		return vs[0].([]ApiTokenRole)[vs[1].(int)]
+	}).(ApiTokenRoleOutput)
+}
+
+type ApiTokenUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// ApiTokenUpdatedByInput is an input type that accepts ApiTokenUpdatedByArgs and ApiTokenUpdatedByOutput values.
+// You can construct a concrete instance of `ApiTokenUpdatedByInput` via:
+//
+//	ApiTokenUpdatedByArgs{...}
+type ApiTokenUpdatedByInput interface {
+	pulumi.Input
+
+	ToApiTokenUpdatedByOutput() ApiTokenUpdatedByOutput
+	ToApiTokenUpdatedByOutputWithContext(context.Context) ApiTokenUpdatedByOutput
+}
+
+type ApiTokenUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ApiTokenUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (i ApiTokenUpdatedByArgs) ToApiTokenUpdatedByOutput() ApiTokenUpdatedByOutput {
+	return i.ToApiTokenUpdatedByOutputWithContext(context.Background())
+}
+
+func (i ApiTokenUpdatedByArgs) ToApiTokenUpdatedByOutputWithContext(ctx context.Context) ApiTokenUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenUpdatedByOutput)
+}
+
+func (i ApiTokenUpdatedByArgs) ToApiTokenUpdatedByPtrOutput() ApiTokenUpdatedByPtrOutput {
+	return i.ToApiTokenUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i ApiTokenUpdatedByArgs) ToApiTokenUpdatedByPtrOutputWithContext(ctx context.Context) ApiTokenUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenUpdatedByOutput).ToApiTokenUpdatedByPtrOutputWithContext(ctx)
+}
+
+// ApiTokenUpdatedByPtrInput is an input type that accepts ApiTokenUpdatedByArgs, ApiTokenUpdatedByPtr and ApiTokenUpdatedByPtrOutput values.
+// You can construct a concrete instance of `ApiTokenUpdatedByPtrInput` via:
+//
+//	        ApiTokenUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type ApiTokenUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToApiTokenUpdatedByPtrOutput() ApiTokenUpdatedByPtrOutput
+	ToApiTokenUpdatedByPtrOutputWithContext(context.Context) ApiTokenUpdatedByPtrOutput
+}
+
+type apiTokenUpdatedByPtrType ApiTokenUpdatedByArgs
+
+func ApiTokenUpdatedByPtr(v *ApiTokenUpdatedByArgs) ApiTokenUpdatedByPtrInput {
+	return (*apiTokenUpdatedByPtrType)(v)
+}
+
+func (*apiTokenUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (i *apiTokenUpdatedByPtrType) ToApiTokenUpdatedByPtrOutput() ApiTokenUpdatedByPtrOutput {
+	return i.ToApiTokenUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *apiTokenUpdatedByPtrType) ToApiTokenUpdatedByPtrOutputWithContext(ctx context.Context) ApiTokenUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiTokenUpdatedByPtrOutput)
+}
+
+type ApiTokenUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (o ApiTokenUpdatedByOutput) ToApiTokenUpdatedByOutput() ApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o ApiTokenUpdatedByOutput) ToApiTokenUpdatedByOutputWithContext(ctx context.Context) ApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o ApiTokenUpdatedByOutput) ToApiTokenUpdatedByPtrOutput() ApiTokenUpdatedByPtrOutput {
+	return o.ToApiTokenUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o ApiTokenUpdatedByOutput) ToApiTokenUpdatedByPtrOutputWithContext(ctx context.Context) ApiTokenUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ApiTokenUpdatedBy) *ApiTokenUpdatedBy {
+		return &v
+	}).(ApiTokenUpdatedByPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ApiTokenUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (ApiTokenUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (o ApiTokenUpdatedByPtrOutput) ToApiTokenUpdatedByPtrOutput() ApiTokenUpdatedByPtrOutput {
+	return o
+}
+
+func (o ApiTokenUpdatedByPtrOutput) ToApiTokenUpdatedByPtrOutputWithContext(ctx context.Context) ApiTokenUpdatedByPtrOutput {
+	return o
+}
+
+func (o ApiTokenUpdatedByPtrOutput) Elem() ApiTokenUpdatedByOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) ApiTokenUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret ApiTokenUpdatedBy
+		return ret
+	}).(ApiTokenUpdatedByOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ApiTokenUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiTokenUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ClusterHealthStatus struct {
+	// Cluster health status details
+	Details []ClusterHealthStatusDetail `pulumi:"details"`
+	// Cluster health status value
+	Value *string `pulumi:"value"`
+}
+
+// ClusterHealthStatusInput is an input type that accepts ClusterHealthStatusArgs and ClusterHealthStatusOutput values.
+// You can construct a concrete instance of `ClusterHealthStatusInput` via:
+//
+//	ClusterHealthStatusArgs{...}
+type ClusterHealthStatusInput interface {
+	pulumi.Input
+
+	ToClusterHealthStatusOutput() ClusterHealthStatusOutput
+	ToClusterHealthStatusOutputWithContext(context.Context) ClusterHealthStatusOutput
+}
+
+type ClusterHealthStatusArgs struct {
+	// Cluster health status details
+	Details ClusterHealthStatusDetailArrayInput `pulumi:"details"`
+	// Cluster health status value
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (ClusterHealthStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterHealthStatus)(nil)).Elem()
+}
+
+func (i ClusterHealthStatusArgs) ToClusterHealthStatusOutput() ClusterHealthStatusOutput {
+	return i.ToClusterHealthStatusOutputWithContext(context.Background())
+}
+
+func (i ClusterHealthStatusArgs) ToClusterHealthStatusOutputWithContext(ctx context.Context) ClusterHealthStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterHealthStatusOutput)
+}
+
+func (i ClusterHealthStatusArgs) ToClusterHealthStatusPtrOutput() ClusterHealthStatusPtrOutput {
+	return i.ToClusterHealthStatusPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterHealthStatusArgs) ToClusterHealthStatusPtrOutputWithContext(ctx context.Context) ClusterHealthStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterHealthStatusOutput).ToClusterHealthStatusPtrOutputWithContext(ctx)
+}
+
+// ClusterHealthStatusPtrInput is an input type that accepts ClusterHealthStatusArgs, ClusterHealthStatusPtr and ClusterHealthStatusPtrOutput values.
+// You can construct a concrete instance of `ClusterHealthStatusPtrInput` via:
+//
+//	        ClusterHealthStatusArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterHealthStatusPtrInput interface {
+	pulumi.Input
+
+	ToClusterHealthStatusPtrOutput() ClusterHealthStatusPtrOutput
+	ToClusterHealthStatusPtrOutputWithContext(context.Context) ClusterHealthStatusPtrOutput
+}
+
+type clusterHealthStatusPtrType ClusterHealthStatusArgs
+
+func ClusterHealthStatusPtr(v *ClusterHealthStatusArgs) ClusterHealthStatusPtrInput {
+	return (*clusterHealthStatusPtrType)(v)
+}
+
+func (*clusterHealthStatusPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterHealthStatus)(nil)).Elem()
+}
+
+func (i *clusterHealthStatusPtrType) ToClusterHealthStatusPtrOutput() ClusterHealthStatusPtrOutput {
+	return i.ToClusterHealthStatusPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterHealthStatusPtrType) ToClusterHealthStatusPtrOutputWithContext(ctx context.Context) ClusterHealthStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterHealthStatusPtrOutput)
+}
+
+type ClusterHealthStatusOutput struct{ *pulumi.OutputState }
+
+func (ClusterHealthStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterHealthStatus)(nil)).Elem()
+}
+
+func (o ClusterHealthStatusOutput) ToClusterHealthStatusOutput() ClusterHealthStatusOutput {
+	return o
+}
+
+func (o ClusterHealthStatusOutput) ToClusterHealthStatusOutputWithContext(ctx context.Context) ClusterHealthStatusOutput {
+	return o
+}
+
+func (o ClusterHealthStatusOutput) ToClusterHealthStatusPtrOutput() ClusterHealthStatusPtrOutput {
+	return o.ToClusterHealthStatusPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterHealthStatusOutput) ToClusterHealthStatusPtrOutputWithContext(ctx context.Context) ClusterHealthStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterHealthStatus) *ClusterHealthStatus {
+		return &v
+	}).(ClusterHealthStatusPtrOutput)
+}
+
+// Cluster health status details
+func (o ClusterHealthStatusOutput) Details() ClusterHealthStatusDetailArrayOutput {
+	return o.ApplyT(func(v ClusterHealthStatus) []ClusterHealthStatusDetail { return v.Details }).(ClusterHealthStatusDetailArrayOutput)
+}
+
+// Cluster health status value
+func (o ClusterHealthStatusOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterHealthStatus) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type ClusterHealthStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterHealthStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterHealthStatus)(nil)).Elem()
+}
+
+func (o ClusterHealthStatusPtrOutput) ToClusterHealthStatusPtrOutput() ClusterHealthStatusPtrOutput {
+	return o
+}
+
+func (o ClusterHealthStatusPtrOutput) ToClusterHealthStatusPtrOutputWithContext(ctx context.Context) ClusterHealthStatusPtrOutput {
+	return o
+}
+
+func (o ClusterHealthStatusPtrOutput) Elem() ClusterHealthStatusOutput {
+	return o.ApplyT(func(v *ClusterHealthStatus) ClusterHealthStatus {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterHealthStatus
+		return ret
+	}).(ClusterHealthStatusOutput)
+}
+
+// Cluster health status details
+func (o ClusterHealthStatusPtrOutput) Details() ClusterHealthStatusDetailArrayOutput {
+	return o.ApplyT(func(v *ClusterHealthStatus) []ClusterHealthStatusDetail {
+		if v == nil {
+			return nil
+		}
+		return v.Details
+	}).(ClusterHealthStatusDetailArrayOutput)
+}
+
+// Cluster health status value
+func (o ClusterHealthStatusPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterHealthStatus) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type ClusterHealthStatusDetail struct {
+	// Cluster health status detail code
+	Code *string `pulumi:"code"`
+	// Cluster health status detail description
+	Description *string `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity *string `pulumi:"severity"`
+}
+
+// ClusterHealthStatusDetailInput is an input type that accepts ClusterHealthStatusDetailArgs and ClusterHealthStatusDetailOutput values.
+// You can construct a concrete instance of `ClusterHealthStatusDetailInput` via:
+//
+//	ClusterHealthStatusDetailArgs{...}
+type ClusterHealthStatusDetailInput interface {
+	pulumi.Input
+
+	ToClusterHealthStatusDetailOutput() ClusterHealthStatusDetailOutput
+	ToClusterHealthStatusDetailOutputWithContext(context.Context) ClusterHealthStatusDetailOutput
+}
+
+type ClusterHealthStatusDetailArgs struct {
+	// Cluster health status detail code
+	Code pulumi.StringPtrInput `pulumi:"code"`
+	// Cluster health status detail description
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity pulumi.StringPtrInput `pulumi:"severity"`
+}
+
+func (ClusterHealthStatusDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i ClusterHealthStatusDetailArgs) ToClusterHealthStatusDetailOutput() ClusterHealthStatusDetailOutput {
+	return i.ToClusterHealthStatusDetailOutputWithContext(context.Background())
+}
+
+func (i ClusterHealthStatusDetailArgs) ToClusterHealthStatusDetailOutputWithContext(ctx context.Context) ClusterHealthStatusDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterHealthStatusDetailOutput)
+}
+
+// ClusterHealthStatusDetailArrayInput is an input type that accepts ClusterHealthStatusDetailArray and ClusterHealthStatusDetailArrayOutput values.
+// You can construct a concrete instance of `ClusterHealthStatusDetailArrayInput` via:
+//
+//	ClusterHealthStatusDetailArray{ ClusterHealthStatusDetailArgs{...} }
+type ClusterHealthStatusDetailArrayInput interface {
+	pulumi.Input
+
+	ToClusterHealthStatusDetailArrayOutput() ClusterHealthStatusDetailArrayOutput
+	ToClusterHealthStatusDetailArrayOutputWithContext(context.Context) ClusterHealthStatusDetailArrayOutput
+}
+
+type ClusterHealthStatusDetailArray []ClusterHealthStatusDetailInput
+
+func (ClusterHealthStatusDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i ClusterHealthStatusDetailArray) ToClusterHealthStatusDetailArrayOutput() ClusterHealthStatusDetailArrayOutput {
+	return i.ToClusterHealthStatusDetailArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterHealthStatusDetailArray) ToClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) ClusterHealthStatusDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterHealthStatusDetailArrayOutput)
+}
+
+type ClusterHealthStatusDetailOutput struct{ *pulumi.OutputState }
+
+func (ClusterHealthStatusDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o ClusterHealthStatusDetailOutput) ToClusterHealthStatusDetailOutput() ClusterHealthStatusDetailOutput {
+	return o
+}
+
+func (o ClusterHealthStatusDetailOutput) ToClusterHealthStatusDetailOutputWithContext(ctx context.Context) ClusterHealthStatusDetailOutput {
+	return o
+}
+
+// Cluster health status detail code
+func (o ClusterHealthStatusDetailOutput) Code() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterHealthStatusDetail) *string { return v.Code }).(pulumi.StringPtrOutput)
+}
+
+// Cluster health status detail description
+func (o ClusterHealthStatusDetailOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterHealthStatusDetail) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Cluster health status detail severity
+func (o ClusterHealthStatusDetailOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterHealthStatusDetail) *string { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
+type ClusterHealthStatusDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterHealthStatusDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o ClusterHealthStatusDetailArrayOutput) ToClusterHealthStatusDetailArrayOutput() ClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o ClusterHealthStatusDetailArrayOutput) ToClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) ClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o ClusterHealthStatusDetailArrayOutput) Index(i pulumi.IntInput) ClusterHealthStatusDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterHealthStatusDetail {
+		return vs[0].([]ClusterHealthStatusDetail)[vs[1].(int)]
+	}).(ClusterHealthStatusDetailOutput)
+}
+
 type ClusterMetadata struct {
 	// Cluster external IPs
 	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp *string `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl *string `pulumi:"oidcIssuerUrl"`
 }
@@ -34,6 +838,8 @@ type ClusterMetadataInput interface {
 type ClusterMetadataArgs struct {
 	// Cluster external IPs
 	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp pulumi.StringPtrInput `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl pulumi.StringPtrInput `pulumi:"oidcIssuerUrl"`
 }
@@ -120,6 +926,11 @@ func (o ClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
 }
 
+// Cluster kube DNS IP
+func (o ClusterMetadataOutput) KubeDnsIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterMetadata) *string { return v.KubeDnsIp }).(pulumi.StringPtrOutput)
+}
+
 // Cluster OIDC issuer URL
 func (o ClusterMetadataOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterMetadata) *string { return v.OidcIssuerUrl }).(pulumi.StringPtrOutput)
@@ -157,6 +968,16 @@ func (o ClusterMetadataPtrOutput) ExternalIps() pulumi.StringArrayOutput {
 		}
 		return v.ExternalIps
 	}).(pulumi.StringArrayOutput)
+}
+
+// Cluster kube DNS IP
+func (o ClusterMetadataPtrOutput) KubeDnsIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KubeDnsIp
+	}).(pulumi.StringPtrOutput)
 }
 
 // Cluster OIDC issuer URL
@@ -2114,6 +2935,320 @@ func (o DeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) DeploymentWor
 	}).(DeploymentWorkerQueueOutput)
 }
 
+type TeamCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// TeamCreatedByInput is an input type that accepts TeamCreatedByArgs and TeamCreatedByOutput values.
+// You can construct a concrete instance of `TeamCreatedByInput` via:
+//
+//	TeamCreatedByArgs{...}
+type TeamCreatedByInput interface {
+	pulumi.Input
+
+	ToTeamCreatedByOutput() TeamCreatedByOutput
+	ToTeamCreatedByOutputWithContext(context.Context) TeamCreatedByOutput
+}
+
+type TeamCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (TeamCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamCreatedBy)(nil)).Elem()
+}
+
+func (i TeamCreatedByArgs) ToTeamCreatedByOutput() TeamCreatedByOutput {
+	return i.ToTeamCreatedByOutputWithContext(context.Background())
+}
+
+func (i TeamCreatedByArgs) ToTeamCreatedByOutputWithContext(ctx context.Context) TeamCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamCreatedByOutput)
+}
+
+func (i TeamCreatedByArgs) ToTeamCreatedByPtrOutput() TeamCreatedByPtrOutput {
+	return i.ToTeamCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i TeamCreatedByArgs) ToTeamCreatedByPtrOutputWithContext(ctx context.Context) TeamCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamCreatedByOutput).ToTeamCreatedByPtrOutputWithContext(ctx)
+}
+
+// TeamCreatedByPtrInput is an input type that accepts TeamCreatedByArgs, TeamCreatedByPtr and TeamCreatedByPtrOutput values.
+// You can construct a concrete instance of `TeamCreatedByPtrInput` via:
+//
+//	        TeamCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type TeamCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToTeamCreatedByPtrOutput() TeamCreatedByPtrOutput
+	ToTeamCreatedByPtrOutputWithContext(context.Context) TeamCreatedByPtrOutput
+}
+
+type teamCreatedByPtrType TeamCreatedByArgs
+
+func TeamCreatedByPtr(v *TeamCreatedByArgs) TeamCreatedByPtrInput {
+	return (*teamCreatedByPtrType)(v)
+}
+
+func (*teamCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TeamCreatedBy)(nil)).Elem()
+}
+
+func (i *teamCreatedByPtrType) ToTeamCreatedByPtrOutput() TeamCreatedByPtrOutput {
+	return i.ToTeamCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *teamCreatedByPtrType) ToTeamCreatedByPtrOutputWithContext(ctx context.Context) TeamCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamCreatedByPtrOutput)
+}
+
+type TeamCreatedByOutput struct{ *pulumi.OutputState }
+
+func (TeamCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamCreatedBy)(nil)).Elem()
+}
+
+func (o TeamCreatedByOutput) ToTeamCreatedByOutput() TeamCreatedByOutput {
+	return o
+}
+
+func (o TeamCreatedByOutput) ToTeamCreatedByOutputWithContext(ctx context.Context) TeamCreatedByOutput {
+	return o
+}
+
+func (o TeamCreatedByOutput) ToTeamCreatedByPtrOutput() TeamCreatedByPtrOutput {
+	return o.ToTeamCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o TeamCreatedByOutput) ToTeamCreatedByPtrOutputWithContext(ctx context.Context) TeamCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TeamCreatedBy) *TeamCreatedBy {
+		return &v
+	}).(TeamCreatedByPtrOutput)
+}
+
+func (o TeamCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type TeamCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (TeamCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TeamCreatedBy)(nil)).Elem()
+}
+
+func (o TeamCreatedByPtrOutput) ToTeamCreatedByPtrOutput() TeamCreatedByPtrOutput {
+	return o
+}
+
+func (o TeamCreatedByPtrOutput) ToTeamCreatedByPtrOutputWithContext(ctx context.Context) TeamCreatedByPtrOutput {
+	return o
+}
+
+func (o TeamCreatedByPtrOutput) Elem() TeamCreatedByOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) TeamCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret TeamCreatedBy
+		return ret
+	}).(TeamCreatedByOutput)
+}
+
+func (o TeamCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type TeamDeploymentRole struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role string `pulumi:"role"`
+}
+
+// TeamDeploymentRoleInput is an input type that accepts TeamDeploymentRoleArgs and TeamDeploymentRoleOutput values.
+// You can construct a concrete instance of `TeamDeploymentRoleInput` via:
+//
+//	TeamDeploymentRoleArgs{...}
+type TeamDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToTeamDeploymentRoleOutput() TeamDeploymentRoleOutput
+	ToTeamDeploymentRoleOutputWithContext(context.Context) TeamDeploymentRoleOutput
+}
+
+type TeamDeploymentRoleArgs struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (TeamDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamDeploymentRole)(nil)).Elem()
+}
+
+func (i TeamDeploymentRoleArgs) ToTeamDeploymentRoleOutput() TeamDeploymentRoleOutput {
+	return i.ToTeamDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i TeamDeploymentRoleArgs) ToTeamDeploymentRoleOutputWithContext(ctx context.Context) TeamDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamDeploymentRoleOutput)
+}
+
+// TeamDeploymentRoleArrayInput is an input type that accepts TeamDeploymentRoleArray and TeamDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `TeamDeploymentRoleArrayInput` via:
+//
+//	TeamDeploymentRoleArray{ TeamDeploymentRoleArgs{...} }
+type TeamDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToTeamDeploymentRoleArrayOutput() TeamDeploymentRoleArrayOutput
+	ToTeamDeploymentRoleArrayOutputWithContext(context.Context) TeamDeploymentRoleArrayOutput
+}
+
+type TeamDeploymentRoleArray []TeamDeploymentRoleInput
+
+func (TeamDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamDeploymentRole)(nil)).Elem()
+}
+
+func (i TeamDeploymentRoleArray) ToTeamDeploymentRoleArrayOutput() TeamDeploymentRoleArrayOutput {
+	return i.ToTeamDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i TeamDeploymentRoleArray) ToTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) TeamDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamDeploymentRoleArrayOutput)
+}
+
+type TeamDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (TeamDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamDeploymentRole)(nil)).Elem()
+}
+
+func (o TeamDeploymentRoleOutput) ToTeamDeploymentRoleOutput() TeamDeploymentRoleOutput {
+	return o
+}
+
+func (o TeamDeploymentRoleOutput) ToTeamDeploymentRoleOutputWithContext(ctx context.Context) TeamDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment to assign the role to
+func (o TeamDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role to assign to the deployment
+func (o TeamDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type TeamDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamDeploymentRole)(nil)).Elem()
+}
+
+func (o TeamDeploymentRoleArrayOutput) ToTeamDeploymentRoleArrayOutput() TeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o TeamDeploymentRoleArrayOutput) ToTeamDeploymentRoleArrayOutputWithContext(ctx context.Context) TeamDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o TeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) TeamDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamDeploymentRole {
+		return vs[0].([]TeamDeploymentRole)[vs[1].(int)]
+	}).(TeamDeploymentRoleOutput)
+}
+
 type TeamRolesDeploymentRole struct {
 	// The ID of the deployment to assign the role to
 	DeploymentId string `pulumi:"deploymentId"`
@@ -2324,6 +3459,948 @@ func (o TeamRolesWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) TeamRolesWor
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamRolesWorkspaceRole {
 		return vs[0].([]TeamRolesWorkspaceRole)[vs[1].(int)]
 	}).(TeamRolesWorkspaceRoleOutput)
+}
+
+type TeamUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// TeamUpdatedByInput is an input type that accepts TeamUpdatedByArgs and TeamUpdatedByOutput values.
+// You can construct a concrete instance of `TeamUpdatedByInput` via:
+//
+//	TeamUpdatedByArgs{...}
+type TeamUpdatedByInput interface {
+	pulumi.Input
+
+	ToTeamUpdatedByOutput() TeamUpdatedByOutput
+	ToTeamUpdatedByOutputWithContext(context.Context) TeamUpdatedByOutput
+}
+
+type TeamUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (TeamUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamUpdatedBy)(nil)).Elem()
+}
+
+func (i TeamUpdatedByArgs) ToTeamUpdatedByOutput() TeamUpdatedByOutput {
+	return i.ToTeamUpdatedByOutputWithContext(context.Background())
+}
+
+func (i TeamUpdatedByArgs) ToTeamUpdatedByOutputWithContext(ctx context.Context) TeamUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamUpdatedByOutput)
+}
+
+func (i TeamUpdatedByArgs) ToTeamUpdatedByPtrOutput() TeamUpdatedByPtrOutput {
+	return i.ToTeamUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i TeamUpdatedByArgs) ToTeamUpdatedByPtrOutputWithContext(ctx context.Context) TeamUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamUpdatedByOutput).ToTeamUpdatedByPtrOutputWithContext(ctx)
+}
+
+// TeamUpdatedByPtrInput is an input type that accepts TeamUpdatedByArgs, TeamUpdatedByPtr and TeamUpdatedByPtrOutput values.
+// You can construct a concrete instance of `TeamUpdatedByPtrInput` via:
+//
+//	        TeamUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type TeamUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToTeamUpdatedByPtrOutput() TeamUpdatedByPtrOutput
+	ToTeamUpdatedByPtrOutputWithContext(context.Context) TeamUpdatedByPtrOutput
+}
+
+type teamUpdatedByPtrType TeamUpdatedByArgs
+
+func TeamUpdatedByPtr(v *TeamUpdatedByArgs) TeamUpdatedByPtrInput {
+	return (*teamUpdatedByPtrType)(v)
+}
+
+func (*teamUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TeamUpdatedBy)(nil)).Elem()
+}
+
+func (i *teamUpdatedByPtrType) ToTeamUpdatedByPtrOutput() TeamUpdatedByPtrOutput {
+	return i.ToTeamUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *teamUpdatedByPtrType) ToTeamUpdatedByPtrOutputWithContext(ctx context.Context) TeamUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamUpdatedByPtrOutput)
+}
+
+type TeamUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (TeamUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamUpdatedBy)(nil)).Elem()
+}
+
+func (o TeamUpdatedByOutput) ToTeamUpdatedByOutput() TeamUpdatedByOutput {
+	return o
+}
+
+func (o TeamUpdatedByOutput) ToTeamUpdatedByOutputWithContext(ctx context.Context) TeamUpdatedByOutput {
+	return o
+}
+
+func (o TeamUpdatedByOutput) ToTeamUpdatedByPtrOutput() TeamUpdatedByPtrOutput {
+	return o.ToTeamUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o TeamUpdatedByOutput) ToTeamUpdatedByPtrOutputWithContext(ctx context.Context) TeamUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TeamUpdatedBy) *TeamUpdatedBy {
+		return &v
+	}).(TeamUpdatedByPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type TeamUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (TeamUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TeamUpdatedBy)(nil)).Elem()
+}
+
+func (o TeamUpdatedByPtrOutput) ToTeamUpdatedByPtrOutput() TeamUpdatedByPtrOutput {
+	return o
+}
+
+func (o TeamUpdatedByPtrOutput) ToTeamUpdatedByPtrOutputWithContext(ctx context.Context) TeamUpdatedByPtrOutput {
+	return o
+}
+
+func (o TeamUpdatedByPtrOutput) Elem() TeamUpdatedByOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) TeamUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret TeamUpdatedBy
+		return ret
+	}).(TeamUpdatedByOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TeamUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeamUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type TeamWorkspaceRole struct {
+	// The role to assign to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// TeamWorkspaceRoleInput is an input type that accepts TeamWorkspaceRoleArgs and TeamWorkspaceRoleOutput values.
+// You can construct a concrete instance of `TeamWorkspaceRoleInput` via:
+//
+//	TeamWorkspaceRoleArgs{...}
+type TeamWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToTeamWorkspaceRoleOutput() TeamWorkspaceRoleOutput
+	ToTeamWorkspaceRoleOutputWithContext(context.Context) TeamWorkspaceRoleOutput
+}
+
+type TeamWorkspaceRoleArgs struct {
+	// The role to assign to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (TeamWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i TeamWorkspaceRoleArgs) ToTeamWorkspaceRoleOutput() TeamWorkspaceRoleOutput {
+	return i.ToTeamWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i TeamWorkspaceRoleArgs) ToTeamWorkspaceRoleOutputWithContext(ctx context.Context) TeamWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamWorkspaceRoleOutput)
+}
+
+// TeamWorkspaceRoleArrayInput is an input type that accepts TeamWorkspaceRoleArray and TeamWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `TeamWorkspaceRoleArrayInput` via:
+//
+//	TeamWorkspaceRoleArray{ TeamWorkspaceRoleArgs{...} }
+type TeamWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToTeamWorkspaceRoleArrayOutput() TeamWorkspaceRoleArrayOutput
+	ToTeamWorkspaceRoleArrayOutputWithContext(context.Context) TeamWorkspaceRoleArrayOutput
+}
+
+type TeamWorkspaceRoleArray []TeamWorkspaceRoleInput
+
+func (TeamWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamWorkspaceRole)(nil)).Elem()
+}
+
+func (i TeamWorkspaceRoleArray) ToTeamWorkspaceRoleArrayOutput() TeamWorkspaceRoleArrayOutput {
+	return i.ToTeamWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i TeamWorkspaceRoleArray) ToTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) TeamWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamWorkspaceRoleArrayOutput)
+}
+
+type TeamWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (TeamWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o TeamWorkspaceRoleOutput) ToTeamWorkspaceRoleOutput() TeamWorkspaceRoleOutput {
+	return o
+}
+
+func (o TeamWorkspaceRoleOutput) ToTeamWorkspaceRoleOutputWithContext(ctx context.Context) TeamWorkspaceRoleOutput {
+	return o
+}
+
+// The role to assign to the workspace
+func (o TeamWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace to assign the role to
+func (o TeamWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type TeamWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamWorkspaceRole)(nil)).Elem()
+}
+
+func (o TeamWorkspaceRoleArrayOutput) ToTeamWorkspaceRoleArrayOutput() TeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o TeamWorkspaceRoleArrayOutput) ToTeamWorkspaceRoleArrayOutputWithContext(ctx context.Context) TeamWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o TeamWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) TeamWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamWorkspaceRole {
+		return vs[0].([]TeamWorkspaceRole)[vs[1].(int)]
+	}).(TeamWorkspaceRoleOutput)
+}
+
+type UserInviteInvitee struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// UserInviteInviteeInput is an input type that accepts UserInviteInviteeArgs and UserInviteInviteeOutput values.
+// You can construct a concrete instance of `UserInviteInviteeInput` via:
+//
+//	UserInviteInviteeArgs{...}
+type UserInviteInviteeInput interface {
+	pulumi.Input
+
+	ToUserInviteInviteeOutput() UserInviteInviteeOutput
+	ToUserInviteInviteeOutputWithContext(context.Context) UserInviteInviteeOutput
+}
+
+type UserInviteInviteeArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (UserInviteInviteeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserInviteInvitee)(nil)).Elem()
+}
+
+func (i UserInviteInviteeArgs) ToUserInviteInviteeOutput() UserInviteInviteeOutput {
+	return i.ToUserInviteInviteeOutputWithContext(context.Background())
+}
+
+func (i UserInviteInviteeArgs) ToUserInviteInviteeOutputWithContext(ctx context.Context) UserInviteInviteeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviteeOutput)
+}
+
+func (i UserInviteInviteeArgs) ToUserInviteInviteePtrOutput() UserInviteInviteePtrOutput {
+	return i.ToUserInviteInviteePtrOutputWithContext(context.Background())
+}
+
+func (i UserInviteInviteeArgs) ToUserInviteInviteePtrOutputWithContext(ctx context.Context) UserInviteInviteePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviteeOutput).ToUserInviteInviteePtrOutputWithContext(ctx)
+}
+
+// UserInviteInviteePtrInput is an input type that accepts UserInviteInviteeArgs, UserInviteInviteePtr and UserInviteInviteePtrOutput values.
+// You can construct a concrete instance of `UserInviteInviteePtrInput` via:
+//
+//	        UserInviteInviteeArgs{...}
+//
+//	or:
+//
+//	        nil
+type UserInviteInviteePtrInput interface {
+	pulumi.Input
+
+	ToUserInviteInviteePtrOutput() UserInviteInviteePtrOutput
+	ToUserInviteInviteePtrOutputWithContext(context.Context) UserInviteInviteePtrOutput
+}
+
+type userInviteInviteePtrType UserInviteInviteeArgs
+
+func UserInviteInviteePtr(v *UserInviteInviteeArgs) UserInviteInviteePtrInput {
+	return (*userInviteInviteePtrType)(v)
+}
+
+func (*userInviteInviteePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserInviteInvitee)(nil)).Elem()
+}
+
+func (i *userInviteInviteePtrType) ToUserInviteInviteePtrOutput() UserInviteInviteePtrOutput {
+	return i.ToUserInviteInviteePtrOutputWithContext(context.Background())
+}
+
+func (i *userInviteInviteePtrType) ToUserInviteInviteePtrOutputWithContext(ctx context.Context) UserInviteInviteePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviteePtrOutput)
+}
+
+type UserInviteInviteeOutput struct{ *pulumi.OutputState }
+
+func (UserInviteInviteeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserInviteInvitee)(nil)).Elem()
+}
+
+func (o UserInviteInviteeOutput) ToUserInviteInviteeOutput() UserInviteInviteeOutput {
+	return o
+}
+
+func (o UserInviteInviteeOutput) ToUserInviteInviteeOutputWithContext(ctx context.Context) UserInviteInviteeOutput {
+	return o
+}
+
+func (o UserInviteInviteeOutput) ToUserInviteInviteePtrOutput() UserInviteInviteePtrOutput {
+	return o.ToUserInviteInviteePtrOutputWithContext(context.Background())
+}
+
+func (o UserInviteInviteeOutput) ToUserInviteInviteePtrOutputWithContext(ctx context.Context) UserInviteInviteePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserInviteInvitee) *UserInviteInvitee {
+		return &v
+	}).(UserInviteInviteePtrOutput)
+}
+
+func (o UserInviteInviteeOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteeOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteeOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteeOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteeOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInvitee) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type UserInviteInviteePtrOutput struct{ *pulumi.OutputState }
+
+func (UserInviteInviteePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserInviteInvitee)(nil)).Elem()
+}
+
+func (o UserInviteInviteePtrOutput) ToUserInviteInviteePtrOutput() UserInviteInviteePtrOutput {
+	return o
+}
+
+func (o UserInviteInviteePtrOutput) ToUserInviteInviteePtrOutputWithContext(ctx context.Context) UserInviteInviteePtrOutput {
+	return o
+}
+
+func (o UserInviteInviteePtrOutput) Elem() UserInviteInviteeOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) UserInviteInvitee {
+		if v != nil {
+			return *v
+		}
+		var ret UserInviteInvitee
+		return ret
+	}).(UserInviteInviteeOutput)
+}
+
+func (o UserInviteInviteePtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteePtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteePtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteePtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviteePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInvitee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type UserInviteInviter struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// UserInviteInviterInput is an input type that accepts UserInviteInviterArgs and UserInviteInviterOutput values.
+// You can construct a concrete instance of `UserInviteInviterInput` via:
+//
+//	UserInviteInviterArgs{...}
+type UserInviteInviterInput interface {
+	pulumi.Input
+
+	ToUserInviteInviterOutput() UserInviteInviterOutput
+	ToUserInviteInviterOutputWithContext(context.Context) UserInviteInviterOutput
+}
+
+type UserInviteInviterArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (UserInviteInviterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserInviteInviter)(nil)).Elem()
+}
+
+func (i UserInviteInviterArgs) ToUserInviteInviterOutput() UserInviteInviterOutput {
+	return i.ToUserInviteInviterOutputWithContext(context.Background())
+}
+
+func (i UserInviteInviterArgs) ToUserInviteInviterOutputWithContext(ctx context.Context) UserInviteInviterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviterOutput)
+}
+
+func (i UserInviteInviterArgs) ToUserInviteInviterPtrOutput() UserInviteInviterPtrOutput {
+	return i.ToUserInviteInviterPtrOutputWithContext(context.Background())
+}
+
+func (i UserInviteInviterArgs) ToUserInviteInviterPtrOutputWithContext(ctx context.Context) UserInviteInviterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviterOutput).ToUserInviteInviterPtrOutputWithContext(ctx)
+}
+
+// UserInviteInviterPtrInput is an input type that accepts UserInviteInviterArgs, UserInviteInviterPtr and UserInviteInviterPtrOutput values.
+// You can construct a concrete instance of `UserInviteInviterPtrInput` via:
+//
+//	        UserInviteInviterArgs{...}
+//
+//	or:
+//
+//	        nil
+type UserInviteInviterPtrInput interface {
+	pulumi.Input
+
+	ToUserInviteInviterPtrOutput() UserInviteInviterPtrOutput
+	ToUserInviteInviterPtrOutputWithContext(context.Context) UserInviteInviterPtrOutput
+}
+
+type userInviteInviterPtrType UserInviteInviterArgs
+
+func UserInviteInviterPtr(v *UserInviteInviterArgs) UserInviteInviterPtrInput {
+	return (*userInviteInviterPtrType)(v)
+}
+
+func (*userInviteInviterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserInviteInviter)(nil)).Elem()
+}
+
+func (i *userInviteInviterPtrType) ToUserInviteInviterPtrOutput() UserInviteInviterPtrOutput {
+	return i.ToUserInviteInviterPtrOutputWithContext(context.Background())
+}
+
+func (i *userInviteInviterPtrType) ToUserInviteInviterPtrOutputWithContext(ctx context.Context) UserInviteInviterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserInviteInviterPtrOutput)
+}
+
+type UserInviteInviterOutput struct{ *pulumi.OutputState }
+
+func (UserInviteInviterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserInviteInviter)(nil)).Elem()
+}
+
+func (o UserInviteInviterOutput) ToUserInviteInviterOutput() UserInviteInviterOutput {
+	return o
+}
+
+func (o UserInviteInviterOutput) ToUserInviteInviterOutputWithContext(ctx context.Context) UserInviteInviterOutput {
+	return o
+}
+
+func (o UserInviteInviterOutput) ToUserInviteInviterPtrOutput() UserInviteInviterPtrOutput {
+	return o.ToUserInviteInviterPtrOutputWithContext(context.Background())
+}
+
+func (o UserInviteInviterOutput) ToUserInviteInviterPtrOutputWithContext(ctx context.Context) UserInviteInviterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserInviteInviter) *UserInviteInviter {
+		return &v
+	}).(UserInviteInviterPtrOutput)
+}
+
+func (o UserInviteInviterOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInviteInviter) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type UserInviteInviterPtrOutput struct{ *pulumi.OutputState }
+
+func (UserInviteInviterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserInviteInviter)(nil)).Elem()
+}
+
+func (o UserInviteInviterPtrOutput) ToUserInviteInviterPtrOutput() UserInviteInviterPtrOutput {
+	return o
+}
+
+func (o UserInviteInviterPtrOutput) ToUserInviteInviterPtrOutputWithContext(ctx context.Context) UserInviteInviterPtrOutput {
+	return o
+}
+
+func (o UserInviteInviterPtrOutput) Elem() UserInviteInviterOutput {
+	return o.ApplyT(func(v *UserInviteInviter) UserInviteInviter {
+		if v != nil {
+			return *v
+		}
+		var ret UserInviteInviter
+		return ret
+	}).(UserInviteInviterOutput)
+}
+
+func (o UserInviteInviterPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UserInviteInviterPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInviteInviter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type UserRolesDeploymentRole struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role string `pulumi:"role"`
+}
+
+// UserRolesDeploymentRoleInput is an input type that accepts UserRolesDeploymentRoleArgs and UserRolesDeploymentRoleOutput values.
+// You can construct a concrete instance of `UserRolesDeploymentRoleInput` via:
+//
+//	UserRolesDeploymentRoleArgs{...}
+type UserRolesDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToUserRolesDeploymentRoleOutput() UserRolesDeploymentRoleOutput
+	ToUserRolesDeploymentRoleOutputWithContext(context.Context) UserRolesDeploymentRoleOutput
+}
+
+type UserRolesDeploymentRoleArgs struct {
+	// The ID of the deployment to assign the role to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role to assign to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (UserRolesDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesDeploymentRole)(nil)).Elem()
+}
+
+func (i UserRolesDeploymentRoleArgs) ToUserRolesDeploymentRoleOutput() UserRolesDeploymentRoleOutput {
+	return i.ToUserRolesDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i UserRolesDeploymentRoleArgs) ToUserRolesDeploymentRoleOutputWithContext(ctx context.Context) UserRolesDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesDeploymentRoleOutput)
+}
+
+// UserRolesDeploymentRoleArrayInput is an input type that accepts UserRolesDeploymentRoleArray and UserRolesDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `UserRolesDeploymentRoleArrayInput` via:
+//
+//	UserRolesDeploymentRoleArray{ UserRolesDeploymentRoleArgs{...} }
+type UserRolesDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToUserRolesDeploymentRoleArrayOutput() UserRolesDeploymentRoleArrayOutput
+	ToUserRolesDeploymentRoleArrayOutputWithContext(context.Context) UserRolesDeploymentRoleArrayOutput
+}
+
+type UserRolesDeploymentRoleArray []UserRolesDeploymentRoleInput
+
+func (UserRolesDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesDeploymentRole)(nil)).Elem()
+}
+
+func (i UserRolesDeploymentRoleArray) ToUserRolesDeploymentRoleArrayOutput() UserRolesDeploymentRoleArrayOutput {
+	return i.ToUserRolesDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i UserRolesDeploymentRoleArray) ToUserRolesDeploymentRoleArrayOutputWithContext(ctx context.Context) UserRolesDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesDeploymentRoleArrayOutput)
+}
+
+type UserRolesDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (UserRolesDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesDeploymentRole)(nil)).Elem()
+}
+
+func (o UserRolesDeploymentRoleOutput) ToUserRolesDeploymentRoleOutput() UserRolesDeploymentRoleOutput {
+	return o
+}
+
+func (o UserRolesDeploymentRoleOutput) ToUserRolesDeploymentRoleOutputWithContext(ctx context.Context) UserRolesDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment to assign the role to
+func (o UserRolesDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role to assign to the deployment
+func (o UserRolesDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type UserRolesDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRolesDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesDeploymentRole)(nil)).Elem()
+}
+
+func (o UserRolesDeploymentRoleArrayOutput) ToUserRolesDeploymentRoleArrayOutput() UserRolesDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesDeploymentRoleArrayOutput) ToUserRolesDeploymentRoleArrayOutputWithContext(ctx context.Context) UserRolesDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesDeploymentRoleArrayOutput) Index(i pulumi.IntInput) UserRolesDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRolesDeploymentRole {
+		return vs[0].([]UserRolesDeploymentRole)[vs[1].(int)]
+	}).(UserRolesDeploymentRoleOutput)
+}
+
+type UserRolesWorkspaceRole struct {
+	// The role to assign to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// UserRolesWorkspaceRoleInput is an input type that accepts UserRolesWorkspaceRoleArgs and UserRolesWorkspaceRoleOutput values.
+// You can construct a concrete instance of `UserRolesWorkspaceRoleInput` via:
+//
+//	UserRolesWorkspaceRoleArgs{...}
+type UserRolesWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToUserRolesWorkspaceRoleOutput() UserRolesWorkspaceRoleOutput
+	ToUserRolesWorkspaceRoleOutputWithContext(context.Context) UserRolesWorkspaceRoleOutput
+}
+
+type UserRolesWorkspaceRoleArgs struct {
+	// The role to assign to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace to assign the role to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (UserRolesWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (i UserRolesWorkspaceRoleArgs) ToUserRolesWorkspaceRoleOutput() UserRolesWorkspaceRoleOutput {
+	return i.ToUserRolesWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i UserRolesWorkspaceRoleArgs) ToUserRolesWorkspaceRoleOutputWithContext(ctx context.Context) UserRolesWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesWorkspaceRoleOutput)
+}
+
+// UserRolesWorkspaceRoleArrayInput is an input type that accepts UserRolesWorkspaceRoleArray and UserRolesWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `UserRolesWorkspaceRoleArrayInput` via:
+//
+//	UserRolesWorkspaceRoleArray{ UserRolesWorkspaceRoleArgs{...} }
+type UserRolesWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToUserRolesWorkspaceRoleArrayOutput() UserRolesWorkspaceRoleArrayOutput
+	ToUserRolesWorkspaceRoleArrayOutputWithContext(context.Context) UserRolesWorkspaceRoleArrayOutput
+}
+
+type UserRolesWorkspaceRoleArray []UserRolesWorkspaceRoleInput
+
+func (UserRolesWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (i UserRolesWorkspaceRoleArray) ToUserRolesWorkspaceRoleArrayOutput() UserRolesWorkspaceRoleArrayOutput {
+	return i.ToUserRolesWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i UserRolesWorkspaceRoleArray) ToUserRolesWorkspaceRoleArrayOutputWithContext(ctx context.Context) UserRolesWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesWorkspaceRoleArrayOutput)
+}
+
+type UserRolesWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (UserRolesWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (o UserRolesWorkspaceRoleOutput) ToUserRolesWorkspaceRoleOutput() UserRolesWorkspaceRoleOutput {
+	return o
+}
+
+func (o UserRolesWorkspaceRoleOutput) ToUserRolesWorkspaceRoleOutputWithContext(ctx context.Context) UserRolesWorkspaceRoleOutput {
+	return o
+}
+
+// The role to assign to the workspace
+func (o UserRolesWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace to assign the role to
+func (o UserRolesWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type UserRolesWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRolesWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesWorkspaceRole)(nil)).Elem()
+}
+
+func (o UserRolesWorkspaceRoleArrayOutput) ToUserRolesWorkspaceRoleArrayOutput() UserRolesWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesWorkspaceRoleArrayOutput) ToUserRolesWorkspaceRoleArrayOutputWithContext(ctx context.Context) UserRolesWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) UserRolesWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRolesWorkspaceRole {
+		return vs[0].([]UserRolesWorkspaceRole)[vs[1].(int)]
+	}).(UserRolesWorkspaceRoleOutput)
 }
 
 type WorkspaceCreatedBy struct {
@@ -2742,9 +4819,947 @@ func (o WorkspaceUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetApiTokenCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetApiTokenCreatedByInput is an input type that accepts GetApiTokenCreatedByArgs and GetApiTokenCreatedByOutput values.
+// You can construct a concrete instance of `GetApiTokenCreatedByInput` via:
+//
+//	GetApiTokenCreatedByArgs{...}
+type GetApiTokenCreatedByInput interface {
+	pulumi.Input
+
+	ToGetApiTokenCreatedByOutput() GetApiTokenCreatedByOutput
+	ToGetApiTokenCreatedByOutputWithContext(context.Context) GetApiTokenCreatedByOutput
+}
+
+type GetApiTokenCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetApiTokenCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (i GetApiTokenCreatedByArgs) ToGetApiTokenCreatedByOutput() GetApiTokenCreatedByOutput {
+	return i.ToGetApiTokenCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetApiTokenCreatedByArgs) ToGetApiTokenCreatedByOutputWithContext(ctx context.Context) GetApiTokenCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokenCreatedByOutput)
+}
+
+type GetApiTokenCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokenCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (o GetApiTokenCreatedByOutput) ToGetApiTokenCreatedByOutput() GetApiTokenCreatedByOutput {
+	return o
+}
+
+func (o GetApiTokenCreatedByOutput) ToGetApiTokenCreatedByOutputWithContext(ctx context.Context) GetApiTokenCreatedByOutput {
+	return o
+}
+
+func (o GetApiTokenCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetApiTokenRole struct {
+	// The ID of the entity to assign the role to
+	EntityId string `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType string `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role string `pulumi:"role"`
+}
+
+// GetApiTokenRoleInput is an input type that accepts GetApiTokenRoleArgs and GetApiTokenRoleOutput values.
+// You can construct a concrete instance of `GetApiTokenRoleInput` via:
+//
+//	GetApiTokenRoleArgs{...}
+type GetApiTokenRoleInput interface {
+	pulumi.Input
+
+	ToGetApiTokenRoleOutput() GetApiTokenRoleOutput
+	ToGetApiTokenRoleOutputWithContext(context.Context) GetApiTokenRoleOutput
+}
+
+type GetApiTokenRoleArgs struct {
+	// The ID of the entity to assign the role to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetApiTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenRole)(nil)).Elem()
+}
+
+func (i GetApiTokenRoleArgs) ToGetApiTokenRoleOutput() GetApiTokenRoleOutput {
+	return i.ToGetApiTokenRoleOutputWithContext(context.Background())
+}
+
+func (i GetApiTokenRoleArgs) ToGetApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokenRoleOutput)
+}
+
+// GetApiTokenRoleArrayInput is an input type that accepts GetApiTokenRoleArray and GetApiTokenRoleArrayOutput values.
+// You can construct a concrete instance of `GetApiTokenRoleArrayInput` via:
+//
+//	GetApiTokenRoleArray{ GetApiTokenRoleArgs{...} }
+type GetApiTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetApiTokenRoleArrayOutput() GetApiTokenRoleArrayOutput
+	ToGetApiTokenRoleArrayOutputWithContext(context.Context) GetApiTokenRoleArrayOutput
+}
+
+type GetApiTokenRoleArray []GetApiTokenRoleInput
+
+func (GetApiTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokenRole)(nil)).Elem()
+}
+
+func (i GetApiTokenRoleArray) ToGetApiTokenRoleArrayOutput() GetApiTokenRoleArrayOutput {
+	return i.ToGetApiTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiTokenRoleArray) ToGetApiTokenRoleArrayOutputWithContext(ctx context.Context) GetApiTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokenRoleArrayOutput)
+}
+
+type GetApiTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenRole)(nil)).Elem()
+}
+
+func (o GetApiTokenRoleOutput) ToGetApiTokenRoleOutput() GetApiTokenRoleOutput {
+	return o
+}
+
+func (o GetApiTokenRoleOutput) ToGetApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokenRoleOutput {
+	return o
+}
+
+// The ID of the entity to assign the role to
+func (o GetApiTokenRoleOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenRole) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The type of entity to assign the role to
+func (o GetApiTokenRoleOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenRole) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The role to assign to the entity
+func (o GetApiTokenRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetApiTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokenRole)(nil)).Elem()
+}
+
+func (o GetApiTokenRoleArrayOutput) ToGetApiTokenRoleArrayOutput() GetApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetApiTokenRoleArrayOutput) ToGetApiTokenRoleArrayOutputWithContext(ctx context.Context) GetApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetApiTokenRoleArrayOutput) Index(i pulumi.IntInput) GetApiTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiTokenRole {
+		return vs[0].([]GetApiTokenRole)[vs[1].(int)]
+	}).(GetApiTokenRoleOutput)
+}
+
+type GetApiTokenUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetApiTokenUpdatedByInput is an input type that accepts GetApiTokenUpdatedByArgs and GetApiTokenUpdatedByOutput values.
+// You can construct a concrete instance of `GetApiTokenUpdatedByInput` via:
+//
+//	GetApiTokenUpdatedByArgs{...}
+type GetApiTokenUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetApiTokenUpdatedByOutput() GetApiTokenUpdatedByOutput
+	ToGetApiTokenUpdatedByOutputWithContext(context.Context) GetApiTokenUpdatedByOutput
+}
+
+type GetApiTokenUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetApiTokenUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (i GetApiTokenUpdatedByArgs) ToGetApiTokenUpdatedByOutput() GetApiTokenUpdatedByOutput {
+	return i.ToGetApiTokenUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetApiTokenUpdatedByArgs) ToGetApiTokenUpdatedByOutputWithContext(ctx context.Context) GetApiTokenUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokenUpdatedByOutput)
+}
+
+type GetApiTokenUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokenUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (o GetApiTokenUpdatedByOutput) ToGetApiTokenUpdatedByOutput() GetApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o GetApiTokenUpdatedByOutput) ToGetApiTokenUpdatedByOutputWithContext(ctx context.Context) GetApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o GetApiTokenUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokenUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetApiTokensApiToken struct {
+	// API Token creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// API Token creator
+	CreatedBy GetApiTokensApiTokenCreatedBy `pulumi:"createdBy"`
+	// API Token description
+	Description string `pulumi:"description"`
+	// time when the API token will expire in UTC
+	EndAt string `pulumi:"endAt"`
+	// API Token expiry period in days
+	ExpiryPeriodInDays int `pulumi:"expiryPeriodInDays"`
+	// API Token identifier
+	Id string `pulumi:"id"`
+	// API Token last used timestamp
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// API Token name
+	Name string `pulumi:"name"`
+	// The roles assigned to the API Token
+	Roles []GetApiTokensApiTokenRole `pulumi:"roles"`
+	// API Token short token
+	ShortToken string `pulumi:"shortToken"`
+	// time when the API token will become valid in UTC
+	StartAt string `pulumi:"startAt"`
+	// API Token type
+	Type string `pulumi:"type"`
+	// API Token last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// API Token updater
+	UpdatedBy GetApiTokensApiTokenUpdatedBy `pulumi:"updatedBy"`
+}
+
+// GetApiTokensApiTokenInput is an input type that accepts GetApiTokensApiTokenArgs and GetApiTokensApiTokenOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenInput` via:
+//
+//	GetApiTokensApiTokenArgs{...}
+type GetApiTokensApiTokenInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenOutput() GetApiTokensApiTokenOutput
+	ToGetApiTokensApiTokenOutputWithContext(context.Context) GetApiTokensApiTokenOutput
+}
+
+type GetApiTokensApiTokenArgs struct {
+	// API Token creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// API Token creator
+	CreatedBy GetApiTokensApiTokenCreatedByInput `pulumi:"createdBy"`
+	// API Token description
+	Description pulumi.StringInput `pulumi:"description"`
+	// time when the API token will expire in UTC
+	EndAt pulumi.StringInput `pulumi:"endAt"`
+	// API Token expiry period in days
+	ExpiryPeriodInDays pulumi.IntInput `pulumi:"expiryPeriodInDays"`
+	// API Token identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// API Token last used timestamp
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// API Token name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The roles assigned to the API Token
+	Roles GetApiTokensApiTokenRoleArrayInput `pulumi:"roles"`
+	// API Token short token
+	ShortToken pulumi.StringInput `pulumi:"shortToken"`
+	// time when the API token will become valid in UTC
+	StartAt pulumi.StringInput `pulumi:"startAt"`
+	// API Token type
+	Type pulumi.StringInput `pulumi:"type"`
+	// API Token last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// API Token updater
+	UpdatedBy GetApiTokensApiTokenUpdatedByInput `pulumi:"updatedBy"`
+}
+
+func (GetApiTokensApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiToken)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenArgs) ToGetApiTokensApiTokenOutput() GetApiTokensApiTokenOutput {
+	return i.ToGetApiTokensApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenArgs) ToGetApiTokensApiTokenOutputWithContext(ctx context.Context) GetApiTokensApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenOutput)
+}
+
+// GetApiTokensApiTokenArrayInput is an input type that accepts GetApiTokensApiTokenArray and GetApiTokensApiTokenArrayOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenArrayInput` via:
+//
+//	GetApiTokensApiTokenArray{ GetApiTokensApiTokenArgs{...} }
+type GetApiTokensApiTokenArrayInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenArrayOutput() GetApiTokensApiTokenArrayOutput
+	ToGetApiTokensApiTokenArrayOutputWithContext(context.Context) GetApiTokensApiTokenArrayOutput
+}
+
+type GetApiTokensApiTokenArray []GetApiTokensApiTokenInput
+
+func (GetApiTokensApiTokenArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokensApiToken)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenArray) ToGetApiTokensApiTokenArrayOutput() GetApiTokensApiTokenArrayOutput {
+	return i.ToGetApiTokensApiTokenArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenArray) ToGetApiTokensApiTokenArrayOutputWithContext(ctx context.Context) GetApiTokensApiTokenArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenArrayOutput)
+}
+
+type GetApiTokensApiTokenOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiToken)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenOutput) ToGetApiTokensApiTokenOutput() GetApiTokensApiTokenOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenOutput) ToGetApiTokensApiTokenOutputWithContext(ctx context.Context) GetApiTokensApiTokenOutput {
+	return o
+}
+
+// API Token creation timestamp
+func (o GetApiTokensApiTokenOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// API Token creator
+func (o GetApiTokensApiTokenOutput) CreatedBy() GetApiTokensApiTokenCreatedByOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) GetApiTokensApiTokenCreatedBy { return v.CreatedBy }).(GetApiTokensApiTokenCreatedByOutput)
+}
+
+// API Token description
+func (o GetApiTokensApiTokenOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// time when the API token will expire in UTC
+func (o GetApiTokensApiTokenOutput) EndAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.EndAt }).(pulumi.StringOutput)
+}
+
+// API Token expiry period in days
+func (o GetApiTokensApiTokenOutput) ExpiryPeriodInDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) int { return v.ExpiryPeriodInDays }).(pulumi.IntOutput)
+}
+
+// API Token identifier
+func (o GetApiTokensApiTokenOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// API Token last used timestamp
+func (o GetApiTokensApiTokenOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// API Token name
+func (o GetApiTokensApiTokenOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The roles assigned to the API Token
+func (o GetApiTokensApiTokenOutput) Roles() GetApiTokensApiTokenRoleArrayOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) []GetApiTokensApiTokenRole { return v.Roles }).(GetApiTokensApiTokenRoleArrayOutput)
+}
+
+// API Token short token
+func (o GetApiTokensApiTokenOutput) ShortToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.ShortToken }).(pulumi.StringOutput)
+}
+
+// time when the API token will become valid in UTC
+func (o GetApiTokensApiTokenOutput) StartAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.StartAt }).(pulumi.StringOutput)
+}
+
+// API Token type
+func (o GetApiTokensApiTokenOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// API Token last updated timestamp
+func (o GetApiTokensApiTokenOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// API Token updater
+func (o GetApiTokensApiTokenOutput) UpdatedBy() GetApiTokensApiTokenUpdatedByOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) GetApiTokensApiTokenUpdatedBy { return v.UpdatedBy }).(GetApiTokensApiTokenUpdatedByOutput)
+}
+
+type GetApiTokensApiTokenArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokensApiToken)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenArrayOutput) ToGetApiTokensApiTokenArrayOutput() GetApiTokensApiTokenArrayOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenArrayOutput) ToGetApiTokensApiTokenArrayOutputWithContext(ctx context.Context) GetApiTokensApiTokenArrayOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenArrayOutput) Index(i pulumi.IntInput) GetApiTokensApiTokenOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiTokensApiToken {
+		return vs[0].([]GetApiTokensApiToken)[vs[1].(int)]
+	}).(GetApiTokensApiTokenOutput)
+}
+
+type GetApiTokensApiTokenCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetApiTokensApiTokenCreatedByInput is an input type that accepts GetApiTokensApiTokenCreatedByArgs and GetApiTokensApiTokenCreatedByOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenCreatedByInput` via:
+//
+//	GetApiTokensApiTokenCreatedByArgs{...}
+type GetApiTokensApiTokenCreatedByInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenCreatedByOutput() GetApiTokensApiTokenCreatedByOutput
+	ToGetApiTokensApiTokenCreatedByOutputWithContext(context.Context) GetApiTokensApiTokenCreatedByOutput
+}
+
+type GetApiTokensApiTokenCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetApiTokensApiTokenCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenCreatedByArgs) ToGetApiTokensApiTokenCreatedByOutput() GetApiTokensApiTokenCreatedByOutput {
+	return i.ToGetApiTokensApiTokenCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenCreatedByArgs) ToGetApiTokensApiTokenCreatedByOutputWithContext(ctx context.Context) GetApiTokensApiTokenCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenCreatedByOutput)
+}
+
+type GetApiTokensApiTokenCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenCreatedBy)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) ToGetApiTokensApiTokenCreatedByOutput() GetApiTokensApiTokenCreatedByOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) ToGetApiTokensApiTokenCreatedByOutputWithContext(ctx context.Context) GetApiTokensApiTokenCreatedByOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetApiTokensApiTokenRole struct {
+	// The ID of the entity to assign the role to
+	EntityId string `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType string `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role string `pulumi:"role"`
+}
+
+// GetApiTokensApiTokenRoleInput is an input type that accepts GetApiTokensApiTokenRoleArgs and GetApiTokensApiTokenRoleOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenRoleInput` via:
+//
+//	GetApiTokensApiTokenRoleArgs{...}
+type GetApiTokensApiTokenRoleInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenRoleOutput() GetApiTokensApiTokenRoleOutput
+	ToGetApiTokensApiTokenRoleOutputWithContext(context.Context) GetApiTokensApiTokenRoleOutput
+}
+
+type GetApiTokensApiTokenRoleArgs struct {
+	// The ID of the entity to assign the role to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The type of entity to assign the role to
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The role to assign to the entity
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetApiTokensApiTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenRole)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenRoleArgs) ToGetApiTokensApiTokenRoleOutput() GetApiTokensApiTokenRoleOutput {
+	return i.ToGetApiTokensApiTokenRoleOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenRoleArgs) ToGetApiTokensApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokensApiTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenRoleOutput)
+}
+
+// GetApiTokensApiTokenRoleArrayInput is an input type that accepts GetApiTokensApiTokenRoleArray and GetApiTokensApiTokenRoleArrayOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenRoleArrayInput` via:
+//
+//	GetApiTokensApiTokenRoleArray{ GetApiTokensApiTokenRoleArgs{...} }
+type GetApiTokensApiTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenRoleArrayOutput() GetApiTokensApiTokenRoleArrayOutput
+	ToGetApiTokensApiTokenRoleArrayOutputWithContext(context.Context) GetApiTokensApiTokenRoleArrayOutput
+}
+
+type GetApiTokensApiTokenRoleArray []GetApiTokensApiTokenRoleInput
+
+func (GetApiTokensApiTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokensApiTokenRole)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenRoleArray) ToGetApiTokensApiTokenRoleArrayOutput() GetApiTokensApiTokenRoleArrayOutput {
+	return i.ToGetApiTokensApiTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenRoleArray) ToGetApiTokensApiTokenRoleArrayOutputWithContext(ctx context.Context) GetApiTokensApiTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenRoleArrayOutput)
+}
+
+type GetApiTokensApiTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenRole)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenRoleOutput) ToGetApiTokensApiTokenRoleOutput() GetApiTokensApiTokenRoleOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenRoleOutput) ToGetApiTokensApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokensApiTokenRoleOutput {
+	return o
+}
+
+// The ID of the entity to assign the role to
+func (o GetApiTokensApiTokenRoleOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenRole) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The type of entity to assign the role to
+func (o GetApiTokensApiTokenRoleOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenRole) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The role to assign to the entity
+func (o GetApiTokensApiTokenRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetApiTokensApiTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiTokensApiTokenRole)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenRoleArrayOutput) ToGetApiTokensApiTokenRoleArrayOutput() GetApiTokensApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenRoleArrayOutput) ToGetApiTokensApiTokenRoleArrayOutputWithContext(ctx context.Context) GetApiTokensApiTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenRoleArrayOutput) Index(i pulumi.IntInput) GetApiTokensApiTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiTokensApiTokenRole {
+		return vs[0].([]GetApiTokensApiTokenRole)[vs[1].(int)]
+	}).(GetApiTokensApiTokenRoleOutput)
+}
+
+type GetApiTokensApiTokenUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetApiTokensApiTokenUpdatedByInput is an input type that accepts GetApiTokensApiTokenUpdatedByArgs and GetApiTokensApiTokenUpdatedByOutput values.
+// You can construct a concrete instance of `GetApiTokensApiTokenUpdatedByInput` via:
+//
+//	GetApiTokensApiTokenUpdatedByArgs{...}
+type GetApiTokensApiTokenUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetApiTokensApiTokenUpdatedByOutput() GetApiTokensApiTokenUpdatedByOutput
+	ToGetApiTokensApiTokenUpdatedByOutputWithContext(context.Context) GetApiTokensApiTokenUpdatedByOutput
+}
+
+type GetApiTokensApiTokenUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetApiTokensApiTokenUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (i GetApiTokensApiTokenUpdatedByArgs) ToGetApiTokensApiTokenUpdatedByOutput() GetApiTokensApiTokenUpdatedByOutput {
+	return i.ToGetApiTokensApiTokenUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetApiTokensApiTokenUpdatedByArgs) ToGetApiTokensApiTokenUpdatedByOutputWithContext(ctx context.Context) GetApiTokensApiTokenUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiTokensApiTokenUpdatedByOutput)
+}
+
+type GetApiTokensApiTokenUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetApiTokensApiTokenUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiTokensApiTokenUpdatedBy)(nil)).Elem()
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) ToGetApiTokensApiTokenUpdatedByOutput() GetApiTokensApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) ToGetApiTokensApiTokenUpdatedByOutputWithContext(ctx context.Context) GetApiTokensApiTokenUpdatedByOutput {
+	return o
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetApiTokensApiTokenUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetClusterHealthStatus struct {
+	// Cluster health status details
+	Details []GetClusterHealthStatusDetail `pulumi:"details"`
+	// Cluster health status value
+	Value string `pulumi:"value"`
+}
+
+// GetClusterHealthStatusInput is an input type that accepts GetClusterHealthStatusArgs and GetClusterHealthStatusOutput values.
+// You can construct a concrete instance of `GetClusterHealthStatusInput` via:
+//
+//	GetClusterHealthStatusArgs{...}
+type GetClusterHealthStatusInput interface {
+	pulumi.Input
+
+	ToGetClusterHealthStatusOutput() GetClusterHealthStatusOutput
+	ToGetClusterHealthStatusOutputWithContext(context.Context) GetClusterHealthStatusOutput
+}
+
+type GetClusterHealthStatusArgs struct {
+	// Cluster health status details
+	Details GetClusterHealthStatusDetailArrayInput `pulumi:"details"`
+	// Cluster health status value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClusterHealthStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterHealthStatus)(nil)).Elem()
+}
+
+func (i GetClusterHealthStatusArgs) ToGetClusterHealthStatusOutput() GetClusterHealthStatusOutput {
+	return i.ToGetClusterHealthStatusOutputWithContext(context.Background())
+}
+
+func (i GetClusterHealthStatusArgs) ToGetClusterHealthStatusOutputWithContext(ctx context.Context) GetClusterHealthStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterHealthStatusOutput)
+}
+
+type GetClusterHealthStatusOutput struct{ *pulumi.OutputState }
+
+func (GetClusterHealthStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterHealthStatus)(nil)).Elem()
+}
+
+func (o GetClusterHealthStatusOutput) ToGetClusterHealthStatusOutput() GetClusterHealthStatusOutput {
+	return o
+}
+
+func (o GetClusterHealthStatusOutput) ToGetClusterHealthStatusOutputWithContext(ctx context.Context) GetClusterHealthStatusOutput {
+	return o
+}
+
+// Cluster health status details
+func (o GetClusterHealthStatusOutput) Details() GetClusterHealthStatusDetailArrayOutput {
+	return o.ApplyT(func(v GetClusterHealthStatus) []GetClusterHealthStatusDetail { return v.Details }).(GetClusterHealthStatusDetailArrayOutput)
+}
+
+// Cluster health status value
+func (o GetClusterHealthStatusOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterHealthStatus) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClusterHealthStatusDetail struct {
+	// Cluster health status detail code
+	Code string `pulumi:"code"`
+	// Cluster health status detail description
+	Description string `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity string `pulumi:"severity"`
+}
+
+// GetClusterHealthStatusDetailInput is an input type that accepts GetClusterHealthStatusDetailArgs and GetClusterHealthStatusDetailOutput values.
+// You can construct a concrete instance of `GetClusterHealthStatusDetailInput` via:
+//
+//	GetClusterHealthStatusDetailArgs{...}
+type GetClusterHealthStatusDetailInput interface {
+	pulumi.Input
+
+	ToGetClusterHealthStatusDetailOutput() GetClusterHealthStatusDetailOutput
+	ToGetClusterHealthStatusDetailOutputWithContext(context.Context) GetClusterHealthStatusDetailOutput
+}
+
+type GetClusterHealthStatusDetailArgs struct {
+	// Cluster health status detail code
+	Code pulumi.StringInput `pulumi:"code"`
+	// Cluster health status detail description
+	Description pulumi.StringInput `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity pulumi.StringInput `pulumi:"severity"`
+}
+
+func (GetClusterHealthStatusDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i GetClusterHealthStatusDetailArgs) ToGetClusterHealthStatusDetailOutput() GetClusterHealthStatusDetailOutput {
+	return i.ToGetClusterHealthStatusDetailOutputWithContext(context.Background())
+}
+
+func (i GetClusterHealthStatusDetailArgs) ToGetClusterHealthStatusDetailOutputWithContext(ctx context.Context) GetClusterHealthStatusDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterHealthStatusDetailOutput)
+}
+
+// GetClusterHealthStatusDetailArrayInput is an input type that accepts GetClusterHealthStatusDetailArray and GetClusterHealthStatusDetailArrayOutput values.
+// You can construct a concrete instance of `GetClusterHealthStatusDetailArrayInput` via:
+//
+//	GetClusterHealthStatusDetailArray{ GetClusterHealthStatusDetailArgs{...} }
+type GetClusterHealthStatusDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterHealthStatusDetailArrayOutput() GetClusterHealthStatusDetailArrayOutput
+	ToGetClusterHealthStatusDetailArrayOutputWithContext(context.Context) GetClusterHealthStatusDetailArrayOutput
+}
+
+type GetClusterHealthStatusDetailArray []GetClusterHealthStatusDetailInput
+
+func (GetClusterHealthStatusDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i GetClusterHealthStatusDetailArray) ToGetClusterHealthStatusDetailArrayOutput() GetClusterHealthStatusDetailArrayOutput {
+	return i.ToGetClusterHealthStatusDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterHealthStatusDetailArray) ToGetClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) GetClusterHealthStatusDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterHealthStatusDetailArrayOutput)
+}
+
+type GetClusterHealthStatusDetailOutput struct{ *pulumi.OutputState }
+
+func (GetClusterHealthStatusDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o GetClusterHealthStatusDetailOutput) ToGetClusterHealthStatusDetailOutput() GetClusterHealthStatusDetailOutput {
+	return o
+}
+
+func (o GetClusterHealthStatusDetailOutput) ToGetClusterHealthStatusDetailOutputWithContext(ctx context.Context) GetClusterHealthStatusDetailOutput {
+	return o
+}
+
+// Cluster health status detail code
+func (o GetClusterHealthStatusDetailOutput) Code() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterHealthStatusDetail) string { return v.Code }).(pulumi.StringOutput)
+}
+
+// Cluster health status detail description
+func (o GetClusterHealthStatusDetailOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterHealthStatusDetail) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Cluster health status detail severity
+func (o GetClusterHealthStatusDetailOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterHealthStatusDetail) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+type GetClusterHealthStatusDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterHealthStatusDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o GetClusterHealthStatusDetailArrayOutput) ToGetClusterHealthStatusDetailArrayOutput() GetClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o GetClusterHealthStatusDetailArrayOutput) ToGetClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) GetClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o GetClusterHealthStatusDetailArrayOutput) Index(i pulumi.IntInput) GetClusterHealthStatusDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterHealthStatusDetail {
+		return vs[0].([]GetClusterHealthStatusDetail)[vs[1].(int)]
+	}).(GetClusterHealthStatusDetailOutput)
+}
+
 type GetClusterMetadata struct {
 	// Cluster external IPs
 	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp string `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
 }
@@ -2763,6 +5778,8 @@ type GetClusterMetadataInput interface {
 type GetClusterMetadataArgs struct {
 	// Cluster external IPs
 	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp pulumi.StringInput `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
 }
@@ -2796,6 +5813,11 @@ func (o GetClusterMetadataOutput) ToGetClusterMetadataOutputWithContext(ctx cont
 // Cluster external IPs
 func (o GetClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
+}
+
+// Cluster kube DNS IP
+func (o GetClusterMetadataOutput) KubeDnsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterMetadata) string { return v.KubeDnsIp }).(pulumi.StringOutput)
 }
 
 // Cluster OIDC issuer URL
@@ -3873,6 +6895,8 @@ type GetClustersCluster struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// Cluster health status
+	HealthStatus GetClustersClusterHealthStatus `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id string `pulumi:"id"`
 	// Whether the cluster is limited
@@ -3927,6 +6951,8 @@ type GetClustersClusterArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringInput `pulumi:"dbInstanceType"`
+	// Cluster health status
+	HealthStatus GetClustersClusterHealthStatusInput `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id pulumi.StringInput `pulumi:"id"`
 	// Whether the cluster is limited
@@ -4027,6 +7053,11 @@ func (o GetClustersClusterOutput) CreatedAt() pulumi.StringOutput {
 // Cluster database instance type
 func (o GetClustersClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.DbInstanceType }).(pulumi.StringOutput)
+}
+
+// Cluster health status
+func (o GetClustersClusterOutput) HealthStatus() GetClustersClusterHealthStatusOutput {
+	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterHealthStatus { return v.HealthStatus }).(GetClustersClusterHealthStatusOutput)
 }
 
 // Cluster identifier
@@ -4134,9 +7165,187 @@ func (o GetClustersClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClust
 	}).(GetClustersClusterOutput)
 }
 
+type GetClustersClusterHealthStatus struct {
+	// Cluster health status details
+	Details []GetClustersClusterHealthStatusDetail `pulumi:"details"`
+	// Cluster health status value
+	Value string `pulumi:"value"`
+}
+
+// GetClustersClusterHealthStatusInput is an input type that accepts GetClustersClusterHealthStatusArgs and GetClustersClusterHealthStatusOutput values.
+// You can construct a concrete instance of `GetClustersClusterHealthStatusInput` via:
+//
+//	GetClustersClusterHealthStatusArgs{...}
+type GetClustersClusterHealthStatusInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterHealthStatusOutput() GetClustersClusterHealthStatusOutput
+	ToGetClustersClusterHealthStatusOutputWithContext(context.Context) GetClustersClusterHealthStatusOutput
+}
+
+type GetClustersClusterHealthStatusArgs struct {
+	// Cluster health status details
+	Details GetClustersClusterHealthStatusDetailArrayInput `pulumi:"details"`
+	// Cluster health status value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClustersClusterHealthStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterHealthStatus)(nil)).Elem()
+}
+
+func (i GetClustersClusterHealthStatusArgs) ToGetClustersClusterHealthStatusOutput() GetClustersClusterHealthStatusOutput {
+	return i.ToGetClustersClusterHealthStatusOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterHealthStatusArgs) ToGetClustersClusterHealthStatusOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterHealthStatusOutput)
+}
+
+type GetClustersClusterHealthStatusOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterHealthStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterHealthStatus)(nil)).Elem()
+}
+
+func (o GetClustersClusterHealthStatusOutput) ToGetClustersClusterHealthStatusOutput() GetClustersClusterHealthStatusOutput {
+	return o
+}
+
+func (o GetClustersClusterHealthStatusOutput) ToGetClustersClusterHealthStatusOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusOutput {
+	return o
+}
+
+// Cluster health status details
+func (o GetClustersClusterHealthStatusOutput) Details() GetClustersClusterHealthStatusDetailArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterHealthStatus) []GetClustersClusterHealthStatusDetail { return v.Details }).(GetClustersClusterHealthStatusDetailArrayOutput)
+}
+
+// Cluster health status value
+func (o GetClustersClusterHealthStatusOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterHealthStatus) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterHealthStatusDetail struct {
+	// Cluster health status detail code
+	Code string `pulumi:"code"`
+	// Cluster health status detail description
+	Description string `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity string `pulumi:"severity"`
+}
+
+// GetClustersClusterHealthStatusDetailInput is an input type that accepts GetClustersClusterHealthStatusDetailArgs and GetClustersClusterHealthStatusDetailOutput values.
+// You can construct a concrete instance of `GetClustersClusterHealthStatusDetailInput` via:
+//
+//	GetClustersClusterHealthStatusDetailArgs{...}
+type GetClustersClusterHealthStatusDetailInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterHealthStatusDetailOutput() GetClustersClusterHealthStatusDetailOutput
+	ToGetClustersClusterHealthStatusDetailOutputWithContext(context.Context) GetClustersClusterHealthStatusDetailOutput
+}
+
+type GetClustersClusterHealthStatusDetailArgs struct {
+	// Cluster health status detail code
+	Code pulumi.StringInput `pulumi:"code"`
+	// Cluster health status detail description
+	Description pulumi.StringInput `pulumi:"description"`
+	// Cluster health status detail severity
+	Severity pulumi.StringInput `pulumi:"severity"`
+}
+
+func (GetClustersClusterHealthStatusDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i GetClustersClusterHealthStatusDetailArgs) ToGetClustersClusterHealthStatusDetailOutput() GetClustersClusterHealthStatusDetailOutput {
+	return i.ToGetClustersClusterHealthStatusDetailOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterHealthStatusDetailArgs) ToGetClustersClusterHealthStatusDetailOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterHealthStatusDetailOutput)
+}
+
+// GetClustersClusterHealthStatusDetailArrayInput is an input type that accepts GetClustersClusterHealthStatusDetailArray and GetClustersClusterHealthStatusDetailArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterHealthStatusDetailArrayInput` via:
+//
+//	GetClustersClusterHealthStatusDetailArray{ GetClustersClusterHealthStatusDetailArgs{...} }
+type GetClustersClusterHealthStatusDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterHealthStatusDetailArrayOutput() GetClustersClusterHealthStatusDetailArrayOutput
+	ToGetClustersClusterHealthStatusDetailArrayOutputWithContext(context.Context) GetClustersClusterHealthStatusDetailArrayOutput
+}
+
+type GetClustersClusterHealthStatusDetailArray []GetClustersClusterHealthStatusDetailInput
+
+func (GetClustersClusterHealthStatusDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (i GetClustersClusterHealthStatusDetailArray) ToGetClustersClusterHealthStatusDetailArrayOutput() GetClustersClusterHealthStatusDetailArrayOutput {
+	return i.ToGetClustersClusterHealthStatusDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterHealthStatusDetailArray) ToGetClustersClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterHealthStatusDetailArrayOutput)
+}
+
+type GetClustersClusterHealthStatusDetailOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterHealthStatusDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o GetClustersClusterHealthStatusDetailOutput) ToGetClustersClusterHealthStatusDetailOutput() GetClustersClusterHealthStatusDetailOutput {
+	return o
+}
+
+func (o GetClustersClusterHealthStatusDetailOutput) ToGetClustersClusterHealthStatusDetailOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusDetailOutput {
+	return o
+}
+
+// Cluster health status detail code
+func (o GetClustersClusterHealthStatusDetailOutput) Code() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterHealthStatusDetail) string { return v.Code }).(pulumi.StringOutput)
+}
+
+// Cluster health status detail description
+func (o GetClustersClusterHealthStatusDetailOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterHealthStatusDetail) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Cluster health status detail severity
+func (o GetClustersClusterHealthStatusDetailOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterHealthStatusDetail) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterHealthStatusDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterHealthStatusDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterHealthStatusDetail)(nil)).Elem()
+}
+
+func (o GetClustersClusterHealthStatusDetailArrayOutput) ToGetClustersClusterHealthStatusDetailArrayOutput() GetClustersClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterHealthStatusDetailArrayOutput) ToGetClustersClusterHealthStatusDetailArrayOutputWithContext(ctx context.Context) GetClustersClusterHealthStatusDetailArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterHealthStatusDetailArrayOutput) Index(i pulumi.IntInput) GetClustersClusterHealthStatusDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterHealthStatusDetail {
+		return vs[0].([]GetClustersClusterHealthStatusDetail)[vs[1].(int)]
+	}).(GetClustersClusterHealthStatusDetailOutput)
+}
+
 type GetClustersClusterMetadata struct {
 	// Cluster external IPs
 	ExternalIps []string `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp string `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
 }
@@ -4155,6 +7364,8 @@ type GetClustersClusterMetadataInput interface {
 type GetClustersClusterMetadataArgs struct {
 	// Cluster external IPs
 	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
+	// Cluster kube DNS IP
+	KubeDnsIp pulumi.StringInput `pulumi:"kubeDnsIp"`
 	// Cluster OIDC issuer URL
 	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
 }
@@ -4188,6 +7399,11 @@ func (o GetClustersClusterMetadataOutput) ToGetClustersClusterMetadataOutputWith
 // Cluster external IPs
 func (o GetClustersClusterMetadataOutput) ExternalIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClustersClusterMetadata) []string { return v.ExternalIps }).(pulumi.StringArrayOutput)
+}
+
+// Cluster kube DNS IP
+func (o GetClustersClusterMetadataOutput) KubeDnsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterMetadata) string { return v.KubeDnsIp }).(pulumi.StringOutput)
 }
 
 // Cluster OIDC issuer URL
@@ -8708,25 +11924,25 @@ type GetTeamsTeam struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamsTeamCreatedBy `pulumi:"createdBy"`
-	// The roles assigned to the deployments
+	// The roles assigned to the Deployments
 	DeploymentRoles []GetTeamsTeamDeploymentRole `pulumi:"deploymentRoles"`
 	// Team description
 	Description string `pulumi:"description"`
-	// Team identifier
+	// Team ID
 	Id string `pulumi:"id"`
-	// Whether the team is managed by an identity provider
+	// Whether the Team is managed by an identity provider
 	IsIdpManaged bool `pulumi:"isIdpManaged"`
 	// Team name
 	Name string `pulumi:"name"`
-	// The role assigned to the organization
+	// The role assigned to the Organization
 	OrganizationRole string `pulumi:"organizationRole"`
-	// Number of roles assigned to the team
+	// Number of roles assigned to the Team
 	RolesCount int `pulumi:"rolesCount"`
 	// Team last updated timestamp
 	UpdatedAt string `pulumi:"updatedAt"`
 	// Team updater
 	UpdatedBy GetTeamsTeamUpdatedBy `pulumi:"updatedBy"`
-	// The roles assigned to the workspaces
+	// The roles assigned to the Workspaces
 	WorkspaceRoles []GetTeamsTeamWorkspaceRole `pulumi:"workspaceRoles"`
 }
 
@@ -8746,25 +11962,25 @@ type GetTeamsTeamArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamsTeamCreatedByInput `pulumi:"createdBy"`
-	// The roles assigned to the deployments
+	// The roles assigned to the Deployments
 	DeploymentRoles GetTeamsTeamDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
 	// Team description
 	Description pulumi.StringInput `pulumi:"description"`
-	// Team identifier
+	// Team ID
 	Id pulumi.StringInput `pulumi:"id"`
-	// Whether the team is managed by an identity provider
+	// Whether the Team is managed by an identity provider
 	IsIdpManaged pulumi.BoolInput `pulumi:"isIdpManaged"`
 	// Team name
 	Name pulumi.StringInput `pulumi:"name"`
-	// The role assigned to the organization
+	// The role assigned to the Organization
 	OrganizationRole pulumi.StringInput `pulumi:"organizationRole"`
-	// Number of roles assigned to the team
+	// Number of roles assigned to the Team
 	RolesCount pulumi.IntInput `pulumi:"rolesCount"`
 	// Team last updated timestamp
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Team updater
 	UpdatedBy GetTeamsTeamUpdatedByInput `pulumi:"updatedBy"`
-	// The roles assigned to the workspaces
+	// The roles assigned to the Workspaces
 	WorkspaceRoles GetTeamsTeamWorkspaceRoleArrayInput `pulumi:"workspaceRoles"`
 }
 
@@ -8829,7 +12045,7 @@ func (o GetTeamsTeamOutput) CreatedBy() GetTeamsTeamCreatedByOutput {
 	return o.ApplyT(func(v GetTeamsTeam) GetTeamsTeamCreatedBy { return v.CreatedBy }).(GetTeamsTeamCreatedByOutput)
 }
 
-// The roles assigned to the deployments
+// The roles assigned to the Deployments
 func (o GetTeamsTeamOutput) DeploymentRoles() GetTeamsTeamDeploymentRoleArrayOutput {
 	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamsTeamDeploymentRoleArrayOutput)
 }
@@ -8839,12 +12055,12 @@ func (o GetTeamsTeamOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamsTeam) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Team identifier
+// Team ID
 func (o GetTeamsTeamOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamsTeam) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the team is managed by an identity provider
+// Whether the Team is managed by an identity provider
 func (o GetTeamsTeamOutput) IsIdpManaged() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetTeamsTeam) bool { return v.IsIdpManaged }).(pulumi.BoolOutput)
 }
@@ -8854,12 +12070,12 @@ func (o GetTeamsTeamOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamsTeam) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The role assigned to the organization
+// The role assigned to the Organization
 func (o GetTeamsTeamOutput) OrganizationRole() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamsTeam) string { return v.OrganizationRole }).(pulumi.StringOutput)
 }
 
-// Number of roles assigned to the team
+// Number of roles assigned to the Team
 func (o GetTeamsTeamOutput) RolesCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetTeamsTeam) int { return v.RolesCount }).(pulumi.IntOutput)
 }
@@ -8874,7 +12090,7 @@ func (o GetTeamsTeamOutput) UpdatedBy() GetTeamsTeamUpdatedByOutput {
 	return o.ApplyT(func(v GetTeamsTeam) GetTeamsTeamUpdatedBy { return v.UpdatedBy }).(GetTeamsTeamUpdatedByOutput)
 }
 
-// The roles assigned to the workspaces
+// The roles assigned to the Workspaces
 func (o GetTeamsTeamOutput) WorkspaceRoles() GetTeamsTeamWorkspaceRoleArrayOutput {
 	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamWorkspaceRole { return v.WorkspaceRoles }).(GetTeamsTeamWorkspaceRoleArrayOutput)
 }
@@ -9267,6 +12483,608 @@ func (o GetTeamsTeamWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetTeamsT
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamWorkspaceRole {
 		return vs[0].([]GetTeamsTeamWorkspaceRole)[vs[1].(int)]
 	}).(GetTeamsTeamWorkspaceRoleOutput)
+}
+
+type GetUserDeploymentRole struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role string `pulumi:"role"`
+}
+
+// GetUserDeploymentRoleInput is an input type that accepts GetUserDeploymentRoleArgs and GetUserDeploymentRoleOutput values.
+// You can construct a concrete instance of `GetUserDeploymentRoleInput` via:
+//
+//	GetUserDeploymentRoleArgs{...}
+type GetUserDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToGetUserDeploymentRoleOutput() GetUserDeploymentRoleOutput
+	ToGetUserDeploymentRoleOutputWithContext(context.Context) GetUserDeploymentRoleOutput
+}
+
+type GetUserDeploymentRoleArgs struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetUserDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUserDeploymentRoleArgs) ToGetUserDeploymentRoleOutput() GetUserDeploymentRoleOutput {
+	return i.ToGetUserDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i GetUserDeploymentRoleArgs) ToGetUserDeploymentRoleOutputWithContext(ctx context.Context) GetUserDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserDeploymentRoleOutput)
+}
+
+// GetUserDeploymentRoleArrayInput is an input type that accepts GetUserDeploymentRoleArray and GetUserDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `GetUserDeploymentRoleArrayInput` via:
+//
+//	GetUserDeploymentRoleArray{ GetUserDeploymentRoleArgs{...} }
+type GetUserDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUserDeploymentRoleArrayOutput() GetUserDeploymentRoleArrayOutput
+	ToGetUserDeploymentRoleArrayOutputWithContext(context.Context) GetUserDeploymentRoleArrayOutput
+}
+
+type GetUserDeploymentRoleArray []GetUserDeploymentRoleInput
+
+func (GetUserDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUserDeploymentRoleArray) ToGetUserDeploymentRoleArrayOutput() GetUserDeploymentRoleArrayOutput {
+	return i.ToGetUserDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserDeploymentRoleArray) ToGetUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUserDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserDeploymentRoleArrayOutput)
+}
+
+type GetUserDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUserDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUserDeploymentRoleOutput) ToGetUserDeploymentRoleOutput() GetUserDeploymentRoleOutput {
+	return o
+}
+
+func (o GetUserDeploymentRoleOutput) ToGetUserDeploymentRoleOutputWithContext(ctx context.Context) GetUserDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment the role is assigned to
+func (o GetUserDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role assigned to the deployment
+func (o GetUserDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetUserDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUserDeploymentRoleArrayOutput) ToGetUserDeploymentRoleArrayOutput() GetUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUserDeploymentRoleArrayOutput) ToGetUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUserDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetUserDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserDeploymentRole {
+		return vs[0].([]GetUserDeploymentRole)[vs[1].(int)]
+	}).(GetUserDeploymentRoleOutput)
+}
+
+type GetUserWorkspaceRole struct {
+	// The role assigned to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetUserWorkspaceRoleInput is an input type that accepts GetUserWorkspaceRoleArgs and GetUserWorkspaceRoleOutput values.
+// You can construct a concrete instance of `GetUserWorkspaceRoleInput` via:
+//
+//	GetUserWorkspaceRoleArgs{...}
+type GetUserWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToGetUserWorkspaceRoleOutput() GetUserWorkspaceRoleOutput
+	ToGetUserWorkspaceRoleOutputWithContext(context.Context) GetUserWorkspaceRoleOutput
+}
+
+type GetUserWorkspaceRoleArgs struct {
+	// The role assigned to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetUserWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUserWorkspaceRoleArgs) ToGetUserWorkspaceRoleOutput() GetUserWorkspaceRoleOutput {
+	return i.ToGetUserWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i GetUserWorkspaceRoleArgs) ToGetUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUserWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserWorkspaceRoleOutput)
+}
+
+// GetUserWorkspaceRoleArrayInput is an input type that accepts GetUserWorkspaceRoleArray and GetUserWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `GetUserWorkspaceRoleArrayInput` via:
+//
+//	GetUserWorkspaceRoleArray{ GetUserWorkspaceRoleArgs{...} }
+type GetUserWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUserWorkspaceRoleArrayOutput() GetUserWorkspaceRoleArrayOutput
+	ToGetUserWorkspaceRoleArrayOutputWithContext(context.Context) GetUserWorkspaceRoleArrayOutput
+}
+
+type GetUserWorkspaceRoleArray []GetUserWorkspaceRoleInput
+
+func (GetUserWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUserWorkspaceRoleArray) ToGetUserWorkspaceRoleArrayOutput() GetUserWorkspaceRoleArrayOutput {
+	return i.ToGetUserWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserWorkspaceRoleArray) ToGetUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUserWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserWorkspaceRoleArrayOutput)
+}
+
+type GetUserWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUserWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUserWorkspaceRoleOutput) ToGetUserWorkspaceRoleOutput() GetUserWorkspaceRoleOutput {
+	return o
+}
+
+func (o GetUserWorkspaceRoleOutput) ToGetUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUserWorkspaceRoleOutput {
+	return o
+}
+
+// The role assigned to the workspace
+func (o GetUserWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace the role is assigned to
+func (o GetUserWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetUserWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUserWorkspaceRoleArrayOutput) ToGetUserWorkspaceRoleArrayOutput() GetUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUserWorkspaceRoleArrayOutput) ToGetUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUserWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetUserWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserWorkspaceRole {
+		return vs[0].([]GetUserWorkspaceRole)[vs[1].(int)]
+	}).(GetUserWorkspaceRoleOutput)
+}
+
+type GetUsersUser struct {
+	// User avatar URL
+	AvatarUrl string `pulumi:"avatarUrl"`
+	// User creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// The roles assigned to the deployments
+	DeploymentRoles []GetUsersUserDeploymentRole `pulumi:"deploymentRoles"`
+	// User full name
+	FullName string `pulumi:"fullName"`
+	// User identifier
+	Id string `pulumi:"id"`
+	// The role assigned to the organization
+	OrganizationRole string `pulumi:"organizationRole"`
+	// User status
+	Status string `pulumi:"status"`
+	// User last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// User username
+	Username string `pulumi:"username"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles []GetUsersUserWorkspaceRole `pulumi:"workspaceRoles"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	// User avatar URL
+	AvatarUrl pulumi.StringInput `pulumi:"avatarUrl"`
+	// User creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The roles assigned to the deployments
+	DeploymentRoles GetUsersUserDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
+	// User full name
+	FullName pulumi.StringInput `pulumi:"fullName"`
+	// User identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// The role assigned to the organization
+	OrganizationRole pulumi.StringInput `pulumi:"organizationRole"`
+	// User status
+	Status pulumi.StringInput `pulumi:"status"`
+	// User last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// User username
+	Username pulumi.StringInput `pulumi:"username"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles GetUsersUserWorkspaceRoleArrayInput `pulumi:"workspaceRoles"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+// User avatar URL
+func (o GetUsersUserOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+// User creation timestamp
+func (o GetUsersUserOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The roles assigned to the deployments
+func (o GetUsersUserOutput) DeploymentRoles() GetUsersUserDeploymentRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersUser) []GetUsersUserDeploymentRole { return v.DeploymentRoles }).(GetUsersUserDeploymentRoleArrayOutput)
+}
+
+// User full name
+func (o GetUsersUserOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+// User identifier
+func (o GetUsersUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The role assigned to the organization
+func (o GetUsersUserOutput) OrganizationRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.OrganizationRole }).(pulumi.StringOutput)
+}
+
+// User status
+func (o GetUsersUserOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// User last updated timestamp
+func (o GetUsersUserOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// User username
+func (o GetUsersUserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The roles assigned to the workspaces
+func (o GetUsersUserOutput) WorkspaceRoles() GetUsersUserWorkspaceRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersUser) []GetUsersUserWorkspaceRole { return v.WorkspaceRoles }).(GetUsersUserWorkspaceRoleArrayOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
+type GetUsersUserDeploymentRole struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role string `pulumi:"role"`
+}
+
+// GetUsersUserDeploymentRoleInput is an input type that accepts GetUsersUserDeploymentRoleArgs and GetUsersUserDeploymentRoleOutput values.
+// You can construct a concrete instance of `GetUsersUserDeploymentRoleInput` via:
+//
+//	GetUsersUserDeploymentRoleArgs{...}
+type GetUsersUserDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersUserDeploymentRoleOutput() GetUsersUserDeploymentRoleOutput
+	ToGetUsersUserDeploymentRoleOutputWithContext(context.Context) GetUsersUserDeploymentRoleOutput
+}
+
+type GetUsersUserDeploymentRoleArgs struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetUsersUserDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUsersUserDeploymentRoleArgs) ToGetUsersUserDeploymentRoleOutput() GetUsersUserDeploymentRoleOutput {
+	return i.ToGetUsersUserDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserDeploymentRoleArgs) ToGetUsersUserDeploymentRoleOutputWithContext(ctx context.Context) GetUsersUserDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserDeploymentRoleOutput)
+}
+
+// GetUsersUserDeploymentRoleArrayInput is an input type that accepts GetUsersUserDeploymentRoleArray and GetUsersUserDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserDeploymentRoleArrayInput` via:
+//
+//	GetUsersUserDeploymentRoleArray{ GetUsersUserDeploymentRoleArgs{...} }
+type GetUsersUserDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserDeploymentRoleArrayOutput() GetUsersUserDeploymentRoleArrayOutput
+	ToGetUsersUserDeploymentRoleArrayOutputWithContext(context.Context) GetUsersUserDeploymentRoleArrayOutput
+}
+
+type GetUsersUserDeploymentRoleArray []GetUsersUserDeploymentRoleInput
+
+func (GetUsersUserDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUsersUserDeploymentRoleArray) ToGetUsersUserDeploymentRoleArrayOutput() GetUsersUserDeploymentRoleArrayOutput {
+	return i.ToGetUsersUserDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserDeploymentRoleArray) ToGetUsersUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUsersUserDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserDeploymentRoleArrayOutput)
+}
+
+type GetUsersUserDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUsersUserDeploymentRoleOutput) ToGetUsersUserDeploymentRoleOutput() GetUsersUserDeploymentRoleOutput {
+	return o
+}
+
+func (o GetUsersUserDeploymentRoleOutput) ToGetUsersUserDeploymentRoleOutputWithContext(ctx context.Context) GetUsersUserDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment the role is assigned to
+func (o GetUsersUserDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role assigned to the deployment
+func (o GetUsersUserDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetUsersUserDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUsersUserDeploymentRoleArrayOutput) ToGetUsersUserDeploymentRoleArrayOutput() GetUsersUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserDeploymentRoleArrayOutput) ToGetUsersUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUsersUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetUsersUserDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUserDeploymentRole {
+		return vs[0].([]GetUsersUserDeploymentRole)[vs[1].(int)]
+	}).(GetUsersUserDeploymentRoleOutput)
+}
+
+type GetUsersUserWorkspaceRole struct {
+	// The role assigned to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetUsersUserWorkspaceRoleInput is an input type that accepts GetUsersUserWorkspaceRoleArgs and GetUsersUserWorkspaceRoleOutput values.
+// You can construct a concrete instance of `GetUsersUserWorkspaceRoleInput` via:
+//
+//	GetUsersUserWorkspaceRoleArgs{...}
+type GetUsersUserWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersUserWorkspaceRoleOutput() GetUsersUserWorkspaceRoleOutput
+	ToGetUsersUserWorkspaceRoleOutputWithContext(context.Context) GetUsersUserWorkspaceRoleOutput
+}
+
+type GetUsersUserWorkspaceRoleArgs struct {
+	// The role assigned to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetUsersUserWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUsersUserWorkspaceRoleArgs) ToGetUsersUserWorkspaceRoleOutput() GetUsersUserWorkspaceRoleOutput {
+	return i.ToGetUsersUserWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserWorkspaceRoleArgs) ToGetUsersUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUsersUserWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserWorkspaceRoleOutput)
+}
+
+// GetUsersUserWorkspaceRoleArrayInput is an input type that accepts GetUsersUserWorkspaceRoleArray and GetUsersUserWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserWorkspaceRoleArrayInput` via:
+//
+//	GetUsersUserWorkspaceRoleArray{ GetUsersUserWorkspaceRoleArgs{...} }
+type GetUsersUserWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserWorkspaceRoleArrayOutput() GetUsersUserWorkspaceRoleArrayOutput
+	ToGetUsersUserWorkspaceRoleArrayOutputWithContext(context.Context) GetUsersUserWorkspaceRoleArrayOutput
+}
+
+type GetUsersUserWorkspaceRoleArray []GetUsersUserWorkspaceRoleInput
+
+func (GetUsersUserWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUsersUserWorkspaceRoleArray) ToGetUsersUserWorkspaceRoleArrayOutput() GetUsersUserWorkspaceRoleArrayOutput {
+	return i.ToGetUsersUserWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserWorkspaceRoleArray) ToGetUsersUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUsersUserWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserWorkspaceRoleArrayOutput)
+}
+
+type GetUsersUserWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUsersUserWorkspaceRoleOutput) ToGetUsersUserWorkspaceRoleOutput() GetUsersUserWorkspaceRoleOutput {
+	return o
+}
+
+func (o GetUsersUserWorkspaceRoleOutput) ToGetUsersUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUsersUserWorkspaceRoleOutput {
+	return o
+}
+
+// The role assigned to the workspace
+func (o GetUsersUserWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace the role is assigned to
+func (o GetUsersUserWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetUsersUserWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUsersUserWorkspaceRoleArrayOutput) ToGetUsersUserWorkspaceRoleArrayOutput() GetUsersUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserWorkspaceRoleArrayOutput) ToGetUsersUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUsersUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetUsersUserWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUserWorkspaceRole {
+		return vs[0].([]GetUsersUserWorkspaceRole)[vs[1].(int)]
+	}).(GetUsersUserWorkspaceRoleOutput)
 }
 
 type GetWorkspaceCreatedBy struct {
@@ -9746,6 +13564,16 @@ func (o GetWorkspacesWorkspaceUpdatedByOutput) Username() pulumi.StringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByPtrInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenRoleInput)(nil)).Elem(), ApiTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenRoleArrayInput)(nil)).Elem(), ApiTokenRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenUpdatedByInput)(nil)).Elem(), ApiTokenUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenUpdatedByPtrInput)(nil)).Elem(), ApiTokenUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterHealthStatusInput)(nil)).Elem(), ClusterHealthStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterHealthStatusPtrInput)(nil)).Elem(), ClusterHealthStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterHealthStatusDetailInput)(nil)).Elem(), ClusterHealthStatusDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterHealthStatusDetailArrayInput)(nil)).Elem(), ClusterHealthStatusDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMetadataInput)(nil)).Elem(), ClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMetadataPtrInput)(nil)).Elem(), ClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterNodePoolInput)(nil)).Elem(), ClusterNodePoolArgs{})
@@ -9772,14 +13600,43 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentUpdatedByPtrInput)(nil)).Elem(), DeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueInput)(nil)).Elem(), DeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueArrayInput)(nil)).Elem(), DeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByInput)(nil)).Elem(), TeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByPtrInput)(nil)).Elem(), TeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamDeploymentRoleInput)(nil)).Elem(), TeamDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamDeploymentRoleArrayInput)(nil)).Elem(), TeamDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleInput)(nil)).Elem(), TeamRolesDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleArrayInput)(nil)).Elem(), TeamRolesDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesWorkspaceRoleInput)(nil)).Elem(), TeamRolesWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesWorkspaceRoleArrayInput)(nil)).Elem(), TeamRolesWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamUpdatedByInput)(nil)).Elem(), TeamUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamUpdatedByPtrInput)(nil)).Elem(), TeamUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamWorkspaceRoleInput)(nil)).Elem(), TeamWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamWorkspaceRoleArrayInput)(nil)).Elem(), TeamWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviteeInput)(nil)).Elem(), UserInviteInviteeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviteePtrInput)(nil)).Elem(), UserInviteInviteeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviterInput)(nil)).Elem(), UserInviteInviterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviterPtrInput)(nil)).Elem(), UserInviteInviterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDeploymentRoleInput)(nil)).Elem(), UserRolesDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDeploymentRoleArrayInput)(nil)).Elem(), UserRolesDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesWorkspaceRoleInput)(nil)).Elem(), UserRolesWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesWorkspaceRoleArrayInput)(nil)).Elem(), UserRolesWorkspaceRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceCreatedByInput)(nil)).Elem(), WorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceCreatedByPtrInput)(nil)).Elem(), WorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByPtrInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenCreatedByInput)(nil)).Elem(), GetApiTokenCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenRoleInput)(nil)).Elem(), GetApiTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenRoleArrayInput)(nil)).Elem(), GetApiTokenRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenUpdatedByInput)(nil)).Elem(), GetApiTokenUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenInput)(nil)).Elem(), GetApiTokensApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenArrayInput)(nil)).Elem(), GetApiTokensApiTokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenCreatedByInput)(nil)).Elem(), GetApiTokensApiTokenCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenRoleInput)(nil)).Elem(), GetApiTokensApiTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenRoleArrayInput)(nil)).Elem(), GetApiTokensApiTokenRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokensApiTokenUpdatedByInput)(nil)).Elem(), GetApiTokensApiTokenUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterHealthStatusInput)(nil)).Elem(), GetClusterHealthStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterHealthStatusDetailInput)(nil)).Elem(), GetClusterHealthStatusDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterHealthStatusDetailArrayInput)(nil)).Elem(), GetClusterHealthStatusDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMetadataInput)(nil)).Elem(), GetClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNodePoolInput)(nil)).Elem(), GetClusterNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNodePoolArrayInput)(nil)).Elem(), GetClusterNodePoolArray{})
@@ -9798,6 +13655,9 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterTagArrayInput)(nil)).Elem(), GetClusterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterInput)(nil)).Elem(), GetClustersClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterArrayInput)(nil)).Elem(), GetClustersClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterHealthStatusInput)(nil)).Elem(), GetClustersClusterHealthStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterHealthStatusDetailInput)(nil)).Elem(), GetClustersClusterHealthStatusDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterHealthStatusDetailArrayInput)(nil)).Elem(), GetClustersClusterHealthStatusDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterMetadataInput)(nil)).Elem(), GetClustersClusterMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodePoolInput)(nil)).Elem(), GetClustersClusterNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodePoolArrayInput)(nil)).Elem(), GetClustersClusterNodePoolArray{})
@@ -9869,12 +13729,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamUpdatedByInput)(nil)).Elem(), GetTeamsTeamUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleArrayInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDeploymentRoleInput)(nil)).Elem(), GetUserDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDeploymentRoleArrayInput)(nil)).Elem(), GetUserDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleInput)(nil)).Elem(), GetUserWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleArrayInput)(nil)).Elem(), GetUserWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDeploymentRoleInput)(nil)).Elem(), GetUsersUserDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDeploymentRoleArrayInput)(nil)).Elem(), GetUsersUserDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserWorkspaceRoleInput)(nil)).Elem(), GetUsersUserWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserWorkspaceRoleArrayInput)(nil)).Elem(), GetUsersUserWorkspaceRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspaceUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceInput)(nil)).Elem(), GetWorkspacesWorkspaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceUpdatedByArgs{})
+	pulumi.RegisterOutputType(ApiTokenCreatedByOutput{})
+	pulumi.RegisterOutputType(ApiTokenCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(ApiTokenRoleOutput{})
+	pulumi.RegisterOutputType(ApiTokenRoleArrayOutput{})
+	pulumi.RegisterOutputType(ApiTokenUpdatedByOutput{})
+	pulumi.RegisterOutputType(ApiTokenUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(ClusterHealthStatusOutput{})
+	pulumi.RegisterOutputType(ClusterHealthStatusPtrOutput{})
+	pulumi.RegisterOutputType(ClusterHealthStatusDetailOutput{})
+	pulumi.RegisterOutputType(ClusterHealthStatusDetailArrayOutput{})
 	pulumi.RegisterOutputType(ClusterMetadataOutput{})
 	pulumi.RegisterOutputType(ClusterMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ClusterNodePoolOutput{})
@@ -9901,14 +13781,43 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(TeamCreatedByOutput{})
+	pulumi.RegisterOutputType(TeamCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(TeamDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(TeamDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(TeamRolesDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(TeamRolesDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(TeamRolesWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(TeamRolesWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(TeamUpdatedByOutput{})
+	pulumi.RegisterOutputType(TeamUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(TeamWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(TeamWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(UserInviteInviteeOutput{})
+	pulumi.RegisterOutputType(UserInviteInviteePtrOutput{})
+	pulumi.RegisterOutputType(UserInviteInviterOutput{})
+	pulumi.RegisterOutputType(UserInviteInviterPtrOutput{})
+	pulumi.RegisterOutputType(UserRolesDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(UserRolesDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(UserRolesWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(UserRolesWorkspaceRoleArrayOutput{})
 	pulumi.RegisterOutputType(WorkspaceCreatedByOutput{})
 	pulumi.RegisterOutputType(WorkspaceCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(WorkspaceUpdatedByOutput{})
 	pulumi.RegisterOutputType(WorkspaceUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(GetApiTokenCreatedByOutput{})
+	pulumi.RegisterOutputType(GetApiTokenRoleOutput{})
+	pulumi.RegisterOutputType(GetApiTokenRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetApiTokenUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenArrayOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenCreatedByOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenRoleOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetApiTokensApiTokenUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetClusterHealthStatusOutput{})
+	pulumi.RegisterOutputType(GetClusterHealthStatusDetailOutput{})
+	pulumi.RegisterOutputType(GetClusterHealthStatusDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterMetadataOutput{})
 	pulumi.RegisterOutputType(GetClusterNodePoolOutput{})
 	pulumi.RegisterOutputType(GetClusterNodePoolArrayOutput{})
@@ -9927,6 +13836,9 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterTagArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterHealthStatusOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterHealthStatusDetailOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterHealthStatusDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterMetadataOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterNodePoolOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterNodePoolArrayOutput{})
@@ -9998,6 +13910,16 @@ func init() {
 	pulumi.RegisterOutputType(GetTeamsTeamUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUserDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(GetUserDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUserWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(GetUserWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersUserDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersUserWorkspaceRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkspaceCreatedByOutput{})
 	pulumi.RegisterOutputType(GetWorkspaceUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetWorkspacesWorkspaceOutput{})

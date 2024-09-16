@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  * const exampleClustersFilterByCloudProvider = astronomer.getClusters({
  *     cloudProvider: "AWS",
  * });
+ * export const clusters = exampleClusters;
  * ```
  */
 export function getClusters(args?: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
@@ -70,6 +71,7 @@ export interface GetClustersResult {
  * const exampleClustersFilterByCloudProvider = astronomer.getClusters({
  *     cloudProvider: "AWS",
  * });
+ * export const clusters = exampleClusters;
  * ```
  */
 export function getClustersOutput(args?: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {

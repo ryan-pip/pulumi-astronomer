@@ -19,9 +19,10 @@ import * as utilities from "./utilities";
  *     type: "HYBRID",
  * });
  * const exampleClusterOptionsFilterByProvider = astronomer.getClusterOptions({
- *     cloudProvider: "AWS",
  *     type: "HYBRID",
+ *     cloudProvider: "AWS",
  * });
+ * export const clusterOptions = exampleClusterOptions;
  * ```
  */
 export function getClusterOptions(args: GetClusterOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOptionsResult> {
@@ -66,9 +67,10 @@ export interface GetClusterOptionsResult {
  *     type: "HYBRID",
  * });
  * const exampleClusterOptionsFilterByProvider = astronomer.getClusterOptions({
- *     cloudProvider: "AWS",
  *     type: "HYBRID",
+ *     cloudProvider: "AWS",
  * });
+ * export const clusterOptions = exampleClusterOptions;
  * ```
  */
 export function getClusterOptionsOutput(args: GetClusterOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOptionsResult> {

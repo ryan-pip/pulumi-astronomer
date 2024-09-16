@@ -21,14 +21,22 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "astronomer:index/apiToken:ApiToken":
+		r = &ApiToken{}
 	case "astronomer:index/cluster:Cluster":
 		r = &Cluster{}
 	case "astronomer:index/deployment:Deployment":
 		r = &Deployment{}
 	case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
 		r = &HybridClusterWorkspaceAuthorization{}
+	case "astronomer:index/team:Team":
+		r = &Team{}
 	case "astronomer:index/teamRoles:TeamRoles":
 		r = &TeamRoles{}
+	case "astronomer:index/userInvite:UserInvite":
+		r = &UserInvite{}
+	case "astronomer:index/userRoles:UserRoles":
+		r = &UserRoles{}
 	case "astronomer:index/workspace:Workspace":
 		r = &Workspace{}
 	default:
@@ -64,6 +72,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"astronomer",
+		"index/apiToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
 		"index/cluster",
 		&module{version},
 	)
@@ -79,7 +92,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"astronomer",
+		"index/team",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
 		"index/teamRoles",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/userInvite",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/userRoles",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

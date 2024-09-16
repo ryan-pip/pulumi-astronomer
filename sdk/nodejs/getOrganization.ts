@@ -15,7 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getOrganization({});
+ * const exampleOrganization = astronomer.getOrganization({});
+ * export const organization = exampleOrganization;
  * ```
  */
 export function getOrganization(opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
@@ -91,7 +92,8 @@ export interface GetOrganizationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getOrganization({});
+ * const exampleOrganization = astronomer.getOrganization({});
+ * export const organization = exampleOrganization;
  * ```
  */
 export function getOrganizationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {

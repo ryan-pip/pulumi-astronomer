@@ -5,11 +5,74 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ApiTokenCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface ApiTokenRole {
+    /**
+     * The ID of the entity to assign the role to
+     */
+    entityId: string;
+    /**
+     * The type of entity to assign the role to
+     */
+    entityType: string;
+    /**
+     * The role to assign to the entity
+     */
+    role: string;
+}
+
+export interface ApiTokenUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface ClusterHealthStatus {
+    /**
+     * Cluster health status details
+     */
+    details: outputs.ClusterHealthStatusDetail[];
+    /**
+     * Cluster health status value
+     */
+    value: string;
+}
+
+export interface ClusterHealthStatusDetail {
+    /**
+     * Cluster health status detail code
+     */
+    code: string;
+    /**
+     * Cluster health status detail description
+     */
+    description: string;
+    /**
+     * Cluster health status detail severity
+     */
+    severity: string;
+}
+
 export interface ClusterMetadata {
     /**
      * Cluster external IPs
      */
     externalIps: string[];
+    /**
+     * Cluster kube DNS IP
+     */
+    kubeDnsIp: string;
     /**
      * Cluster OIDC issuer URL
      */
@@ -192,11 +255,166 @@ export interface DeploymentWorkerQueue {
     workerConcurrency: number;
 }
 
+export interface GetApiTokenCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetApiTokenRole {
+    /**
+     * The ID of the entity to assign the role to
+     */
+    entityId: string;
+    /**
+     * The type of entity to assign the role to
+     */
+    entityType: string;
+    /**
+     * The role to assign to the entity
+     */
+    role: string;
+}
+
+export interface GetApiTokenUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetApiTokensApiToken {
+    /**
+     * API Token creation timestamp
+     */
+    createdAt: string;
+    /**
+     * API Token creator
+     */
+    createdBy: outputs.GetApiTokensApiTokenCreatedBy;
+    /**
+     * API Token description
+     */
+    description: string;
+    /**
+     * time when the API token will expire in UTC
+     */
+    endAt: string;
+    /**
+     * API Token expiry period in days
+     */
+    expiryPeriodInDays: number;
+    /**
+     * API Token identifier
+     */
+    id: string;
+    /**
+     * API Token last used timestamp
+     */
+    lastUsedAt: string;
+    /**
+     * API Token name
+     */
+    name: string;
+    /**
+     * The roles assigned to the API Token
+     */
+    roles: outputs.GetApiTokensApiTokenRole[];
+    /**
+     * API Token short token
+     */
+    shortToken: string;
+    /**
+     * time when the API token will become valid in UTC
+     */
+    startAt: string;
+    /**
+     * API Token type
+     */
+    type: string;
+    /**
+     * API Token last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * API Token updater
+     */
+    updatedBy: outputs.GetApiTokensApiTokenUpdatedBy;
+}
+
+export interface GetApiTokensApiTokenCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetApiTokensApiTokenRole {
+    /**
+     * The ID of the entity to assign the role to
+     */
+    entityId: string;
+    /**
+     * The type of entity to assign the role to
+     */
+    entityType: string;
+    /**
+     * The role to assign to the entity
+     */
+    role: string;
+}
+
+export interface GetApiTokensApiTokenUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetClusterHealthStatus {
+    /**
+     * Cluster health status details
+     */
+    details: outputs.GetClusterHealthStatusDetail[];
+    /**
+     * Cluster health status value
+     */
+    value: string;
+}
+
+export interface GetClusterHealthStatusDetail {
+    /**
+     * Cluster health status detail code
+     */
+    code: string;
+    /**
+     * Cluster health status detail description
+     */
+    description: string;
+    /**
+     * Cluster health status detail severity
+     */
+    severity: string;
+}
+
 export interface GetClusterMetadata {
     /**
      * Cluster external IPs
      */
     externalIps: string[];
+    /**
+     * Cluster kube DNS IP
+     */
+    kubeDnsIp: string;
     /**
      * Cluster OIDC issuer URL
      */
@@ -420,6 +638,10 @@ export interface GetClustersCluster {
      */
     dbInstanceType: string;
     /**
+     * Cluster health status
+     */
+    healthStatus: outputs.GetClustersClusterHealthStatus;
+    /**
      * Cluster identifier
      */
     id: string;
@@ -489,11 +711,41 @@ export interface GetClustersCluster {
     workspaceIds: string[];
 }
 
+export interface GetClustersClusterHealthStatus {
+    /**
+     * Cluster health status details
+     */
+    details: outputs.GetClustersClusterHealthStatusDetail[];
+    /**
+     * Cluster health status value
+     */
+    value: string;
+}
+
+export interface GetClustersClusterHealthStatusDetail {
+    /**
+     * Cluster health status detail code
+     */
+    code: string;
+    /**
+     * Cluster health status detail description
+     */
+    description: string;
+    /**
+     * Cluster health status detail severity
+     */
+    severity: string;
+}
+
 export interface GetClustersClusterMetadata {
     /**
      * Cluster external IPs
      */
     externalIps: string[];
+    /**
+     * Cluster kube DNS IP
+     */
+    kubeDnsIp: string;
     /**
      * Cluster OIDC issuer URL
      */
@@ -1307,7 +1559,7 @@ export interface GetTeamsTeam {
      */
     createdBy: outputs.GetTeamsTeamCreatedBy;
     /**
-     * The roles assigned to the deployments
+     * The roles assigned to the Deployments
      */
     deploymentRoles: outputs.GetTeamsTeamDeploymentRole[];
     /**
@@ -1315,11 +1567,11 @@ export interface GetTeamsTeam {
      */
     description: string;
     /**
-     * Team identifier
+     * Team ID
      */
     id: string;
     /**
-     * Whether the team is managed by an identity provider
+     * Whether the Team is managed by an identity provider
      */
     isIdpManaged: boolean;
     /**
@@ -1327,11 +1579,11 @@ export interface GetTeamsTeam {
      */
     name: string;
     /**
-     * The role assigned to the organization
+     * The role assigned to the Organization
      */
     organizationRole: string;
     /**
-     * Number of roles assigned to the team
+     * Number of roles assigned to the Team
      */
     rolesCount: number;
     /**
@@ -1343,7 +1595,7 @@ export interface GetTeamsTeam {
      */
     updatedBy: outputs.GetTeamsTeamUpdatedBy;
     /**
-     * The roles assigned to the workspaces
+     * The roles assigned to the Workspaces
      */
     workspaceRoles: outputs.GetTeamsTeamWorkspaceRole[];
 }
@@ -1378,6 +1630,93 @@ export interface GetTeamsTeamUpdatedBy {
 }
 
 export interface GetTeamsTeamWorkspaceRole {
+    /**
+     * The role assigned to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace the role is assigned to
+     */
+    workspaceId: string;
+}
+
+export interface GetUserDeploymentRole {
+    /**
+     * The ID of the deployment the role is assigned to
+     */
+    deploymentId: string;
+    /**
+     * The role assigned to the deployment
+     */
+    role: string;
+}
+
+export interface GetUserWorkspaceRole {
+    /**
+     * The role assigned to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace the role is assigned to
+     */
+    workspaceId: string;
+}
+
+export interface GetUsersUser {
+    /**
+     * User avatar URL
+     */
+    avatarUrl: string;
+    /**
+     * User creation timestamp
+     */
+    createdAt: string;
+    /**
+     * The roles assigned to the deployments
+     */
+    deploymentRoles: outputs.GetUsersUserDeploymentRole[];
+    /**
+     * User full name
+     */
+    fullName: string;
+    /**
+     * User identifier
+     */
+    id: string;
+    /**
+     * The role assigned to the organization
+     */
+    organizationRole: string;
+    /**
+     * User status
+     */
+    status: string;
+    /**
+     * User last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * User username
+     */
+    username: string;
+    /**
+     * The roles assigned to the workspaces
+     */
+    workspaceRoles: outputs.GetUsersUserWorkspaceRole[];
+}
+
+export interface GetUsersUserDeploymentRole {
+    /**
+     * The ID of the deployment the role is assigned to
+     */
+    deploymentId: string;
+    /**
+     * The role assigned to the deployment
+     */
+    role: string;
+}
+
+export interface GetUsersUserWorkspaceRole {
     /**
      * The role assigned to the workspace
      */
@@ -1459,6 +1798,26 @@ export interface GetWorkspacesWorkspaceUpdatedBy {
     username: string;
 }
 
+export interface TeamCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface TeamDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: string;
+    /**
+     * The role to assign to the deployment
+     */
+    role: string;
+}
+
 export interface TeamRolesDeploymentRole {
     /**
      * The ID of the deployment to assign the role to
@@ -1471,6 +1830,66 @@ export interface TeamRolesDeploymentRole {
 }
 
 export interface TeamRolesWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: string;
+}
+
+export interface TeamUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface TeamWorkspaceRole {
+    /**
+     * The role to assign to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace to assign the role to
+     */
+    workspaceId: string;
+}
+
+export interface UserInviteInvitee {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface UserInviteInviter {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface UserRolesDeploymentRole {
+    /**
+     * The ID of the deployment to assign the role to
+     */
+    deploymentId: string;
+    /**
+     * The role to assign to the deployment
+     */
+    role: string;
+}
+
+export interface UserRolesWorkspaceRole {
     /**
      * The role to assign to the workspace
      */

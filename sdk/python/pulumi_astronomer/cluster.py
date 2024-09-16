@@ -178,6 +178,7 @@ class _ClusterState:
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  db_instance_type: Optional[pulumi.Input[str]] = None,
+                 health_status: Optional[pulumi.Input['ClusterHealthStatusArgs']] = None,
                  is_limited: Optional[pulumi.Input[bool]] = None,
                  metadata: Optional[pulumi.Input['ClusterMetadataArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -199,6 +200,7 @@ class _ClusterState:
         :param pulumi.Input[str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
         :param pulumi.Input[str] created_at: Cluster creation timestamp
         :param pulumi.Input[str] db_instance_type: Cluster database instance type
+        :param pulumi.Input['ClusterHealthStatusArgs'] health_status: Cluster health status
         :param pulumi.Input[bool] is_limited: Whether the cluster is limited
         :param pulumi.Input['ClusterMetadataArgs'] metadata: Cluster metadata
         :param pulumi.Input[str] name: Cluster name
@@ -221,6 +223,8 @@ class _ClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if db_instance_type is not None:
             pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if health_status is not None:
+            pulumi.set(__self__, "health_status", health_status)
         if is_limited is not None:
             pulumi.set(__self__, "is_limited", is_limited)
         if metadata is not None:
@@ -289,6 +293,18 @@ class _ClusterState:
     @db_instance_type.setter
     def db_instance_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "db_instance_type", value)
+
+    @property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> Optional[pulumi.Input['ClusterHealthStatusArgs']]:
+        """
+        Cluster health status
+        """
+        return pulumi.get(self, "health_status")
+
+    @health_status.setter
+    def health_status(self, value: Optional[pulumi.Input['ClusterHealthStatusArgs']]):
+        pulumi.set(self, "health_status", value)
 
     @property
     @pulumi.getter(name="isLimited")
@@ -491,7 +507,7 @@ class Cluster(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  service_peering_range: Optional[pulumi.Input[str]] = None,
                  service_subnet_range: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['ClusterTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vpc_subnet_range: Optional[pulumi.Input[str]] = None,
                  workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -511,11 +527,11 @@ class Cluster(pulumi.CustomResource):
             cloud_provider="AWS",
             vpc_subnet_range="172.20.0.0/20",
             workspace_ids=[],
-            timeouts=astronomer.ClusterTimeoutsArgs(
-                create="3h",
-                update="2h",
-                delete="1h",
-            ))
+            timeouts={
+                "create": "3h",
+                "update": "2h",
+                "delete": "1h",
+            })
         azure_example = astronomer.Cluster("azureExample",
             type="DEDICATED",
             region="westus2",
@@ -575,11 +591,11 @@ class Cluster(pulumi.CustomResource):
             cloud_provider="AWS",
             vpc_subnet_range="172.20.0.0/20",
             workspace_ids=[],
-            timeouts=astronomer.ClusterTimeoutsArgs(
-                create="3h",
-                update="2h",
-                delete="1h",
-            ))
+            timeouts={
+                "create": "3h",
+                "update": "2h",
+                "delete": "1h",
+            })
         azure_example = astronomer.Cluster("azureExample",
             type="DEDICATED",
             region="westus2",
@@ -627,7 +643,7 @@ class Cluster(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  service_peering_range: Optional[pulumi.Input[str]] = None,
                  service_subnet_range: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['ClusterTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vpc_subnet_range: Optional[pulumi.Input[str]] = None,
                  workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -662,6 +678,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["workspace_ids"] = workspace_ids
             __props__.__dict__["created_at"] = None
             __props__.__dict__["db_instance_type"] = None
+            __props__.__dict__["health_status"] = None
             __props__.__dict__["is_limited"] = None
             __props__.__dict__["metadata"] = None
             __props__.__dict__["node_pools"] = None
@@ -682,10 +699,11 @@ class Cluster(pulumi.CustomResource):
             cloud_provider: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             db_instance_type: Optional[pulumi.Input[str]] = None,
+            health_status: Optional[pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']]] = None,
             is_limited: Optional[pulumi.Input[bool]] = None,
-            metadata: Optional[pulumi.Input[pulumi.InputType['ClusterMetadataArgs']]] = None,
+            metadata: Optional[pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            node_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterNodePoolArgs']]]]] = None,
+            node_pools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]]] = None,
             pod_subnet_range: Optional[pulumi.Input[str]] = None,
             provider_account: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -693,7 +711,7 @@ class Cluster(pulumi.CustomResource):
             service_subnet_range: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None,
-            timeouts: Optional[pulumi.Input[pulumi.InputType['ClusterTimeoutsArgs']]] = None,
+            timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             vpc_subnet_range: Optional[pulumi.Input[str]] = None,
@@ -708,10 +726,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
         :param pulumi.Input[str] created_at: Cluster creation timestamp
         :param pulumi.Input[str] db_instance_type: Cluster database instance type
+        :param pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']] health_status: Cluster health status
         :param pulumi.Input[bool] is_limited: Whether the cluster is limited
-        :param pulumi.Input[pulumi.InputType['ClusterMetadataArgs']] metadata: Cluster metadata
+        :param pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']] metadata: Cluster metadata
         :param pulumi.Input[str] name: Cluster name
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterNodePoolArgs']]]] node_pools: Cluster node pools
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]] node_pools: Cluster node pools
         :param pulumi.Input[str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[str] provider_account: Cluster provider account
         :param pulumi.Input[str] region: Cluster region - if changed, the cluster will be recreated.
@@ -731,6 +750,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["db_instance_type"] = db_instance_type
+        __props__.__dict__["health_status"] = health_status
         __props__.__dict__["is_limited"] = is_limited
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
@@ -772,6 +792,14 @@ class Cluster(pulumi.CustomResource):
         Cluster database instance type
         """
         return pulumi.get(self, "db_instance_type")
+
+    @property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> pulumi.Output['outputs.ClusterHealthStatus']:
+        """
+        Cluster health status
+        """
+        return pulumi.get(self, "health_status")
 
     @property
     @pulumi.getter(name="isLimited")

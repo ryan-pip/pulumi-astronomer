@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetTeams(ctx, nil, nil)
+//			exampleTeamsTeams, err := astronomer.GetTeams(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -40,6 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("exampleTeams", exampleTeamsTeams)
 //			return nil
 //		})
 //	}

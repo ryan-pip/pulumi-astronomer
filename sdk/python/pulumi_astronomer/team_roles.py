@@ -160,20 +160,20 @@ class TeamRoles(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesDeploymentRoleArgs']]]]] = None,
+                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
                  organization_role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesWorkspaceRoleArgs']]]]] = None,
+                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
                  __props__=None):
         """
         Team Roles resource
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesDeploymentRoleArgs']]]] deployment_roles: The roles to assign to the deployments
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments
         :param pulumi.Input[str] organization_role: The role to assign to the organization
         :param pulumi.Input[str] team_id: The ID of the team to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesWorkspaceRoleArgs']]]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces
         """
         ...
     @overload
@@ -199,10 +199,10 @@ class TeamRoles(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesDeploymentRoleArgs']]]]] = None,
+                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
                  organization_role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesWorkspaceRoleArgs']]]]] = None,
+                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -230,10 +230,10 @@ class TeamRoles(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesDeploymentRoleArgs']]]]] = None,
+            deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
             organization_role: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
-            workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesWorkspaceRoleArgs']]]]] = None) -> 'TeamRoles':
+            workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None) -> 'TeamRoles':
         """
         Get an existing TeamRoles resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -241,10 +241,10 @@ class TeamRoles(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesDeploymentRoleArgs']]]] deployment_roles: The roles to assign to the deployments
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments
         :param pulumi.Input[str] organization_role: The role to assign to the organization
         :param pulumi.Input[str] team_id: The ID of the team to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TeamRolesWorkspaceRoleArgs']]]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -27,19 +27,20 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetClusterOptions(ctx, &astronomer.GetClusterOptionsArgs{
+//			exampleClusterOptions, err := astronomer.GetClusterOptions(ctx, &astronomer.GetClusterOptionsArgs{
 //				Type: "HYBRID",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = astronomer.GetClusterOptions(ctx, &astronomer.GetClusterOptionsArgs{
-//				CloudProvider: pulumi.StringRef("AWS"),
 //				Type:          "HYBRID",
+//				CloudProvider: pulumi.StringRef("AWS"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("clusterOptions", exampleClusterOptions)
 //			return nil
 //		})
 //	}

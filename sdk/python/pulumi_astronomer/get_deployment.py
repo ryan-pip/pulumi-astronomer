@@ -620,7 +620,8 @@ def get_deployment(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_deployment(id="clozc036j01to01jrlgvueo8t")
+    example_deployment = astronomer.get_deployment(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("deployment", example_deployment)
     ```
 
 
@@ -694,7 +695,8 @@ def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_deployment(id="clozc036j01to01jrlgvueo8t")
+    example_deployment = astronomer.get_deployment(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("deployment", example_deployment)
     ```
 
 

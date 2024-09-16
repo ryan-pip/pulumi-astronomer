@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getWorkspace({
+ * const exampleWorkspace = astronomer.getWorkspace({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const workspace = exampleWorkspace;
  * ```
  */
 export function getWorkspace(args: GetWorkspaceArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkspaceResult> {
@@ -84,9 +85,10 @@ export interface GetWorkspaceResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getWorkspace({
+ * const exampleWorkspace = astronomer.getWorkspace({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const workspace = exampleWorkspace;
  * ```
  */
 export function getWorkspaceOutput(args: GetWorkspaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkspaceResult> {

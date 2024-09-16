@@ -5,8 +5,11 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .api_token import *
 from .cluster import *
 from .deployment import *
+from .get_api_token import *
+from .get_api_tokens import *
 from .get_cluster import *
 from .get_cluster_options import *
 from .get_clusters import *
@@ -16,11 +19,16 @@ from .get_deployments import *
 from .get_organization import *
 from .get_team import *
 from .get_teams import *
+from .get_user import *
+from .get_users import *
 from .get_workspace import *
 from .get_workspaces import *
 from .hybrid_cluster_workspace_authorization import *
 from .provider import *
+from .team import *
 from .team_roles import *
+from .user_invite import *
+from .user_roles import *
 from .workspace import *
 from ._inputs import *
 from . import outputs
@@ -35,6 +43,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "astronomer",
+  "mod": "index/apiToken",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/apiToken:ApiToken": "ApiToken"
+  }
+ },
  {
   "pkg": "astronomer",
   "mod": "index/cluster",
@@ -61,10 +77,34 @@ _utilities.register(
  },
  {
   "pkg": "astronomer",
+  "mod": "index/team",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/team:Team": "Team"
+  }
+ },
+ {
+  "pkg": "astronomer",
   "mod": "index/teamRoles",
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/teamRoles:TeamRoles": "TeamRoles"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/userInvite",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/userInvite:UserInvite": "UserInvite"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/userRoles",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/userRoles:UserRoles": "UserRoles"
   }
  },
  {

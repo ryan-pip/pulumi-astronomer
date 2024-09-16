@@ -11,6 +11,11 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'ApiTokenCreatedBy',
+    'ApiTokenRole',
+    'ApiTokenUpdatedBy',
+    'ClusterHealthStatus',
+    'ClusterHealthStatusDetail',
     'ClusterMetadata',
     'ClusterNodePool',
     'ClusterTimeouts',
@@ -24,10 +29,27 @@ __all__ = [
     'DeploymentScalingStatusHibernationStatus',
     'DeploymentUpdatedBy',
     'DeploymentWorkerQueue',
+    'TeamCreatedBy',
+    'TeamDeploymentRole',
     'TeamRolesDeploymentRole',
     'TeamRolesWorkspaceRole',
+    'TeamUpdatedBy',
+    'TeamWorkspaceRole',
+    'UserInviteInvitee',
+    'UserInviteInviter',
+    'UserRolesDeploymentRole',
+    'UserRolesWorkspaceRole',
     'WorkspaceCreatedBy',
     'WorkspaceUpdatedBy',
+    'GetApiTokenCreatedByResult',
+    'GetApiTokenRoleResult',
+    'GetApiTokenUpdatedByResult',
+    'GetApiTokensApiTokenResult',
+    'GetApiTokensApiTokenCreatedByResult',
+    'GetApiTokensApiTokenRoleResult',
+    'GetApiTokensApiTokenUpdatedByResult',
+    'GetClusterHealthStatusResult',
+    'GetClusterHealthStatusDetailResult',
     'GetClusterMetadataResult',
     'GetClusterNodePoolResult',
     'GetClusterOptionsClusterOptionResult',
@@ -39,6 +61,8 @@ __all__ = [
     'GetClusterOptionsClusterOptionRegionResult',
     'GetClusterTagResult',
     'GetClustersClusterResult',
+    'GetClustersClusterHealthStatusResult',
+    'GetClustersClusterHealthStatusDetailResult',
     'GetClustersClusterMetadataResult',
     'GetClustersClusterNodePoolResult',
     'GetClustersClusterTagResult',
@@ -92,6 +116,11 @@ __all__ = [
     'GetTeamsTeamDeploymentRoleResult',
     'GetTeamsTeamUpdatedByResult',
     'GetTeamsTeamWorkspaceRoleResult',
+    'GetUserDeploymentRoleResult',
+    'GetUserWorkspaceRoleResult',
+    'GetUsersUserResult',
+    'GetUsersUserDeploymentRoleResult',
+    'GetUsersUserWorkspaceRoleResult',
     'GetWorkspaceCreatedByResult',
     'GetWorkspaceUpdatedByResult',
     'GetWorkspacesWorkspaceResult',
@@ -100,12 +129,299 @@ __all__ = [
 ]
 
 @pulumi.output_type
+class ApiTokenCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApiTokenCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApiTokenCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApiTokenCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ApiTokenRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entityId":
+            suggest = "entity_id"
+        elif key == "entityType":
+            suggest = "entity_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApiTokenRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApiTokenRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApiTokenRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 entity_id: str,
+                 entity_type: str,
+                 role: str):
+        """
+        :param str entity_id: The ID of the entity to assign the role to
+        :param str entity_type: The type of entity to assign the role to
+        :param str role: The role to assign to the entity
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> str:
+        """
+        The ID of the entity to assign the role to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> str:
+        """
+        The type of entity to assign the role to
+        """
+        return pulumi.get(self, "entity_type")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the entity
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class ApiTokenUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApiTokenUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApiTokenUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApiTokenUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ClusterHealthStatus(dict):
+    def __init__(__self__, *,
+                 details: Optional[Sequence['outputs.ClusterHealthStatusDetail']] = None,
+                 value: Optional[str] = None):
+        """
+        :param Sequence['ClusterHealthStatusDetailArgs'] details: Cluster health status details
+        :param str value: Cluster health status value
+        """
+        if details is not None:
+            pulumi.set(__self__, "details", details)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional[Sequence['outputs.ClusterHealthStatusDetail']]:
+        """
+        Cluster health status details
+        """
+        return pulumi.get(self, "details")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        Cluster health status value
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ClusterHealthStatusDetail(dict):
+    def __init__(__self__, *,
+                 code: Optional[str] = None,
+                 description: Optional[str] = None,
+                 severity: Optional[str] = None):
+        """
+        :param str code: Cluster health status detail code
+        :param str description: Cluster health status detail description
+        :param str severity: Cluster health status detail severity
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[str]:
+        """
+        Cluster health status detail code
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Cluster health status detail description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[str]:
+        """
+        Cluster health status detail severity
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
 class ClusterMetadata(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "externalIps":
             suggest = "external_ips"
+        elif key == "kubeDnsIp":
+            suggest = "kube_dns_ip"
         elif key == "oidcIssuerUrl":
             suggest = "oidc_issuer_url"
 
@@ -122,13 +438,17 @@ class ClusterMetadata(dict):
 
     def __init__(__self__, *,
                  external_ips: Optional[Sequence[str]] = None,
+                 kube_dns_ip: Optional[str] = None,
                  oidc_issuer_url: Optional[str] = None):
         """
         :param Sequence[str] external_ips: Cluster external IPs
+        :param str kube_dns_ip: Cluster kube DNS IP
         :param str oidc_issuer_url: Cluster OIDC issuer URL
         """
         if external_ips is not None:
             pulumi.set(__self__, "external_ips", external_ips)
+        if kube_dns_ip is not None:
+            pulumi.set(__self__, "kube_dns_ip", kube_dns_ip)
         if oidc_issuer_url is not None:
             pulumi.set(__self__, "oidc_issuer_url", oidc_issuer_url)
 
@@ -139,6 +459,14 @@ class ClusterMetadata(dict):
         Cluster external IPs
         """
         return pulumi.get(self, "external_ips")
+
+    @property
+    @pulumi.getter(name="kubeDnsIp")
+    def kube_dns_ip(self) -> Optional[str]:
+        """
+        Cluster kube DNS IP
+        """
+        return pulumi.get(self, "kube_dns_ip")
 
     @property
     @pulumi.getter(name="oidcIssuerUrl")
@@ -974,6 +1302,128 @@ class DeploymentWorkerQueue(dict):
 
 
 @pulumi.output_type
+class TeamCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class TeamDeploymentRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamDeploymentRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamDeploymentRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamDeploymentRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: str,
+                 role: str):
+        """
+        :param str deployment_id: The ID of the deployment to assign the role to
+        :param str role: The role to assign to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> str:
+        """
+        The ID of the deployment to assign the role to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the deployment
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
 class TeamRolesDeploymentRole(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1036,6 +1486,372 @@ class TeamRolesWorkspaceRole(dict):
 
     def get(self, key: str, default = None) -> Any:
         TeamRolesWorkspaceRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role: str,
+                 workspace_id: str):
+        """
+        :param str role: The role to assign to the workspace
+        :param str workspace_id: The ID of the workspace to assign the role to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The ID of the workspace to assign the role to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class TeamUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class TeamWorkspaceRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "workspaceId":
+            suggest = "workspace_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamWorkspaceRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamWorkspaceRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamWorkspaceRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role: str,
+                 workspace_id: str):
+        """
+        :param str role: The role to assign to the workspace
+        :param str workspace_id: The ID of the workspace to assign the role to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The ID of the workspace to assign the role to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class UserInviteInvitee(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserInviteInvitee. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserInviteInvitee.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserInviteInvitee.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class UserInviteInviter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserInviteInviter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserInviteInviter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserInviteInviter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[str] = None,
+                 avatar_url: Optional[str] = None,
+                 full_name: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subject_type: Optional[str] = None,
+                 username: Optional[str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[str]:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[str]:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[str]:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[str]:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class UserRolesDeploymentRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserRolesDeploymentRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserRolesDeploymentRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserRolesDeploymentRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: str,
+                 role: str):
+        """
+        :param str deployment_id: The ID of the deployment to assign the role to
+        :param str role: The role to assign to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> str:
+        """
+        The ID of the deployment to assign the role to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the deployment
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class UserRolesWorkspaceRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "workspaceId":
+            suggest = "workspace_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserRolesWorkspaceRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserRolesWorkspaceRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserRolesWorkspaceRole.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -1218,15 +2034,516 @@ class WorkspaceUpdatedBy(dict):
 
 
 @pulumi.output_type
+class GetApiTokenCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: str,
+                 avatar_url: str,
+                 full_name: str,
+                 id: str,
+                 subject_type: str,
+                 username: str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> str:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> str:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> str:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> str:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetApiTokenRoleResult(dict):
+    def __init__(__self__, *,
+                 entity_id: str,
+                 entity_type: str,
+                 role: str):
+        """
+        :param str entity_id: The ID of the entity to assign the role to
+        :param str entity_type: The type of entity to assign the role to
+        :param str role: The role to assign to the entity
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> str:
+        """
+        The ID of the entity to assign the role to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> str:
+        """
+        The type of entity to assign the role to
+        """
+        return pulumi.get(self, "entity_type")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the entity
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetApiTokenUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: str,
+                 avatar_url: str,
+                 full_name: str,
+                 id: str,
+                 subject_type: str,
+                 username: str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> str:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> str:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> str:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> str:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetApiTokensApiTokenResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 created_by: 'outputs.GetApiTokensApiTokenCreatedByResult',
+                 description: str,
+                 end_at: str,
+                 expiry_period_in_days: int,
+                 id: str,
+                 last_used_at: str,
+                 name: str,
+                 roles: Sequence['outputs.GetApiTokensApiTokenRoleResult'],
+                 short_token: str,
+                 start_at: str,
+                 type: str,
+                 updated_at: str,
+                 updated_by: 'outputs.GetApiTokensApiTokenUpdatedByResult'):
+        """
+        :param str created_at: API Token creation timestamp
+        :param 'GetApiTokensApiTokenCreatedByArgs' created_by: API Token creator
+        :param str description: API Token description
+        :param str end_at: time when the API token will expire in UTC
+        :param int expiry_period_in_days: API Token expiry period in days
+        :param str id: API Token identifier
+        :param str last_used_at: API Token last used timestamp
+        :param str name: API Token name
+        :param Sequence['GetApiTokensApiTokenRoleArgs'] roles: The roles assigned to the API Token
+        :param str short_token: API Token short token
+        :param str start_at: time when the API token will become valid in UTC
+        :param str type: API Token type
+        :param str updated_at: API Token last updated timestamp
+        :param 'GetApiTokensApiTokenUpdatedByArgs' updated_by: API Token updater
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "end_at", end_at)
+        pulumi.set(__self__, "expiry_period_in_days", expiry_period_in_days)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "short_token", short_token)
+        pulumi.set(__self__, "start_at", start_at)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "updated_by", updated_by)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        API Token creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> 'outputs.GetApiTokensApiTokenCreatedByResult':
+        """
+        API Token creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        API Token description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="endAt")
+    def end_at(self) -> str:
+        """
+        time when the API token will expire in UTC
+        """
+        return pulumi.get(self, "end_at")
+
+    @property
+    @pulumi.getter(name="expiryPeriodInDays")
+    def expiry_period_in_days(self) -> int:
+        """
+        API Token expiry period in days
+        """
+        return pulumi.get(self, "expiry_period_in_days")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        API Token identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> str:
+        """
+        API Token last used timestamp
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        API Token name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetApiTokensApiTokenRoleResult']:
+        """
+        The roles assigned to the API Token
+        """
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter(name="shortToken")
+    def short_token(self) -> str:
+        """
+        API Token short token
+        """
+        return pulumi.get(self, "short_token")
+
+    @property
+    @pulumi.getter(name="startAt")
+    def start_at(self) -> str:
+        """
+        time when the API token will become valid in UTC
+        """
+        return pulumi.get(self, "start_at")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        API Token type
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        API Token last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> 'outputs.GetApiTokensApiTokenUpdatedByResult':
+        """
+        API Token updater
+        """
+        return pulumi.get(self, "updated_by")
+
+
+@pulumi.output_type
+class GetApiTokensApiTokenCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: str,
+                 avatar_url: str,
+                 full_name: str,
+                 id: str,
+                 subject_type: str,
+                 username: str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> str:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> str:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> str:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> str:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetApiTokensApiTokenRoleResult(dict):
+    def __init__(__self__, *,
+                 entity_id: str,
+                 entity_type: str,
+                 role: str):
+        """
+        :param str entity_id: The ID of the entity to assign the role to
+        :param str entity_type: The type of entity to assign the role to
+        :param str role: The role to assign to the entity
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> str:
+        """
+        The ID of the entity to assign the role to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> str:
+        """
+        The type of entity to assign the role to
+        """
+        return pulumi.get(self, "entity_type")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role to assign to the entity
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetApiTokensApiTokenUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: str,
+                 avatar_url: str,
+                 full_name: str,
+                 id: str,
+                 subject_type: str,
+                 username: str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> str:
+        return pulumi.get(self, "api_token_name")
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> str:
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> str:
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> str:
+        return pulumi.get(self, "subject_type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetClusterHealthStatusResult(dict):
+    def __init__(__self__, *,
+                 details: Sequence['outputs.GetClusterHealthStatusDetailResult'],
+                 value: str):
+        """
+        :param Sequence['GetClusterHealthStatusDetailArgs'] details: Cluster health status details
+        :param str value: Cluster health status value
+        """
+        pulumi.set(__self__, "details", details)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Sequence['outputs.GetClusterHealthStatusDetailResult']:
+        """
+        Cluster health status details
+        """
+        return pulumi.get(self, "details")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Cluster health status value
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetClusterHealthStatusDetailResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 description: str,
+                 severity: str):
+        """
+        :param str code: Cluster health status detail code
+        :param str description: Cluster health status detail description
+        :param str severity: Cluster health status detail severity
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        """
+        Cluster health status detail code
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Cluster health status detail description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        Cluster health status detail severity
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
 class GetClusterMetadataResult(dict):
     def __init__(__self__, *,
                  external_ips: Sequence[str],
+                 kube_dns_ip: str,
                  oidc_issuer_url: str):
         """
         :param Sequence[str] external_ips: Cluster external IPs
+        :param str kube_dns_ip: Cluster kube DNS IP
         :param str oidc_issuer_url: Cluster OIDC issuer URL
         """
         pulumi.set(__self__, "external_ips", external_ips)
+        pulumi.set(__self__, "kube_dns_ip", kube_dns_ip)
         pulumi.set(__self__, "oidc_issuer_url", oidc_issuer_url)
 
     @property
@@ -1236,6 +2553,14 @@ class GetClusterMetadataResult(dict):
         Cluster external IPs
         """
         return pulumi.get(self, "external_ips")
+
+    @property
+    @pulumi.getter(name="kubeDnsIp")
+    def kube_dns_ip(self) -> str:
+        """
+        Cluster kube DNS IP
+        """
+        return pulumi.get(self, "kube_dns_ip")
 
     @property
     @pulumi.getter(name="oidcIssuerUrl")
@@ -1799,6 +3124,7 @@ class GetClustersClusterResult(dict):
                  cloud_provider: str,
                  created_at: str,
                  db_instance_type: str,
+                 health_status: 'outputs.GetClustersClusterHealthStatusResult',
                  id: str,
                  is_limited: bool,
                  metadata: 'outputs.GetClustersClusterMetadataResult',
@@ -1820,6 +3146,7 @@ class GetClustersClusterResult(dict):
         :param str cloud_provider: Cluster cloud provider
         :param str created_at: Cluster creation timestamp
         :param str db_instance_type: Cluster database instance type
+        :param 'GetClustersClusterHealthStatusArgs' health_status: Cluster health status
         :param str id: Cluster identifier
         :param bool is_limited: Whether the cluster is limited
         :param 'GetClustersClusterMetadataArgs' metadata: Cluster metadata
@@ -1841,6 +3168,7 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "db_instance_type", db_instance_type)
+        pulumi.set(__self__, "health_status", health_status)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "is_limited", is_limited)
         pulumi.set(__self__, "metadata", metadata)
@@ -1882,6 +3210,14 @@ class GetClustersClusterResult(dict):
         Cluster database instance type
         """
         return pulumi.get(self, "db_instance_type")
+
+    @property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> 'outputs.GetClustersClusterHealthStatusResult':
+        """
+        Cluster health status
+        """
+        return pulumi.get(self, "health_status")
 
     @property
     @pulumi.getter
@@ -2021,15 +3357,87 @@ class GetClustersClusterResult(dict):
 
 
 @pulumi.output_type
+class GetClustersClusterHealthStatusResult(dict):
+    def __init__(__self__, *,
+                 details: Sequence['outputs.GetClustersClusterHealthStatusDetailResult'],
+                 value: str):
+        """
+        :param Sequence['GetClustersClusterHealthStatusDetailArgs'] details: Cluster health status details
+        :param str value: Cluster health status value
+        """
+        pulumi.set(__self__, "details", details)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Sequence['outputs.GetClustersClusterHealthStatusDetailResult']:
+        """
+        Cluster health status details
+        """
+        return pulumi.get(self, "details")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Cluster health status value
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetClustersClusterHealthStatusDetailResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 description: str,
+                 severity: str):
+        """
+        :param str code: Cluster health status detail code
+        :param str description: Cluster health status detail description
+        :param str severity: Cluster health status detail severity
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        """
+        Cluster health status detail code
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Cluster health status detail description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        Cluster health status detail severity
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
 class GetClustersClusterMetadataResult(dict):
     def __init__(__self__, *,
                  external_ips: Sequence[str],
+                 kube_dns_ip: str,
                  oidc_issuer_url: str):
         """
         :param Sequence[str] external_ips: Cluster external IPs
+        :param str kube_dns_ip: Cluster kube DNS IP
         :param str oidc_issuer_url: Cluster OIDC issuer URL
         """
         pulumi.set(__self__, "external_ips", external_ips)
+        pulumi.set(__self__, "kube_dns_ip", kube_dns_ip)
         pulumi.set(__self__, "oidc_issuer_url", oidc_issuer_url)
 
     @property
@@ -2039,6 +3447,14 @@ class GetClustersClusterMetadataResult(dict):
         Cluster external IPs
         """
         return pulumi.get(self, "external_ips")
+
+    @property
+    @pulumi.getter(name="kubeDnsIp")
+    def kube_dns_ip(self) -> str:
+        """
+        Cluster kube DNS IP
+        """
+        return pulumi.get(self, "kube_dns_ip")
 
     @property
     @pulumi.getter(name="oidcIssuerUrl")
@@ -4498,16 +5914,16 @@ class GetTeamsTeamResult(dict):
         """
         :param str created_at: Team creation timestamp
         :param 'GetTeamsTeamCreatedByArgs' created_by: Team creator
-        :param Sequence['GetTeamsTeamDeploymentRoleArgs'] deployment_roles: The roles assigned to the deployments
+        :param Sequence['GetTeamsTeamDeploymentRoleArgs'] deployment_roles: The roles assigned to the Deployments
         :param str description: Team description
-        :param str id: Team identifier
-        :param bool is_idp_managed: Whether the team is managed by an identity provider
+        :param str id: Team ID
+        :param bool is_idp_managed: Whether the Team is managed by an identity provider
         :param str name: Team name
-        :param str organization_role: The role assigned to the organization
-        :param int roles_count: Number of roles assigned to the team
+        :param str organization_role: The role assigned to the Organization
+        :param int roles_count: Number of roles assigned to the Team
         :param str updated_at: Team last updated timestamp
         :param 'GetTeamsTeamUpdatedByArgs' updated_by: Team updater
-        :param Sequence['GetTeamsTeamWorkspaceRoleArgs'] workspace_roles: The roles assigned to the workspaces
+        :param Sequence['GetTeamsTeamWorkspaceRoleArgs'] workspace_roles: The roles assigned to the Workspaces
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "created_by", created_by)
@@ -4542,7 +5958,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter(name="deploymentRoles")
     def deployment_roles(self) -> Sequence['outputs.GetTeamsTeamDeploymentRoleResult']:
         """
-        The roles assigned to the deployments
+        The roles assigned to the Deployments
         """
         return pulumi.get(self, "deployment_roles")
 
@@ -4558,7 +5974,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Team identifier
+        Team ID
         """
         return pulumi.get(self, "id")
 
@@ -4566,7 +5982,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter(name="isIdpManaged")
     def is_idp_managed(self) -> bool:
         """
-        Whether the team is managed by an identity provider
+        Whether the Team is managed by an identity provider
         """
         return pulumi.get(self, "is_idp_managed")
 
@@ -4582,7 +5998,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter(name="organizationRole")
     def organization_role(self) -> str:
         """
-        The role assigned to the organization
+        The role assigned to the Organization
         """
         return pulumi.get(self, "organization_role")
 
@@ -4590,7 +6006,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter(name="rolesCount")
     def roles_count(self) -> int:
         """
-        Number of roles assigned to the team
+        Number of roles assigned to the Team
         """
         return pulumi.get(self, "roles_count")
 
@@ -4614,7 +6030,7 @@ class GetTeamsTeamResult(dict):
     @pulumi.getter(name="workspaceRoles")
     def workspace_roles(self) -> Sequence['outputs.GetTeamsTeamWorkspaceRoleResult']:
         """
-        The roles assigned to the workspaces
+        The roles assigned to the Workspaces
         """
         return pulumi.get(self, "workspace_roles")
 
@@ -4744,6 +6160,239 @@ class GetTeamsTeamUpdatedByResult(dict):
 
 @pulumi.output_type
 class GetTeamsTeamWorkspaceRoleResult(dict):
+    def __init__(__self__, *,
+                 role: str,
+                 workspace_id: str):
+        """
+        :param str role: The role assigned to the workspace
+        :param str workspace_id: The ID of the workspace the role is assigned to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role assigned to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The ID of the workspace the role is assigned to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetUserDeploymentRoleResult(dict):
+    def __init__(__self__, *,
+                 deployment_id: str,
+                 role: str):
+        """
+        :param str deployment_id: The ID of the deployment the role is assigned to
+        :param str role: The role assigned to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> str:
+        """
+        The ID of the deployment the role is assigned to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role assigned to the deployment
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetUserWorkspaceRoleResult(dict):
+    def __init__(__self__, *,
+                 role: str,
+                 workspace_id: str):
+        """
+        :param str role: The role assigned to the workspace
+        :param str workspace_id: The ID of the workspace the role is assigned to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role assigned to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The ID of the workspace the role is assigned to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetUsersUserResult(dict):
+    def __init__(__self__, *,
+                 avatar_url: str,
+                 created_at: str,
+                 deployment_roles: Sequence['outputs.GetUsersUserDeploymentRoleResult'],
+                 full_name: str,
+                 id: str,
+                 organization_role: str,
+                 status: str,
+                 updated_at: str,
+                 username: str,
+                 workspace_roles: Sequence['outputs.GetUsersUserWorkspaceRoleResult']):
+        """
+        :param str avatar_url: User avatar URL
+        :param str created_at: User creation timestamp
+        :param Sequence['GetUsersUserDeploymentRoleArgs'] deployment_roles: The roles assigned to the deployments
+        :param str full_name: User full name
+        :param str id: User identifier
+        :param str organization_role: The role assigned to the organization
+        :param str status: User status
+        :param str updated_at: User last updated timestamp
+        :param str username: User username
+        :param Sequence['GetUsersUserWorkspaceRoleArgs'] workspace_roles: The roles assigned to the workspaces
+        """
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "deployment_roles", deployment_roles)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "organization_role", organization_role)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "workspace_roles", workspace_roles)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> str:
+        """
+        User avatar URL
+        """
+        return pulumi.get(self, "avatar_url")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        User creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deploymentRoles")
+    def deployment_roles(self) -> Sequence['outputs.GetUsersUserDeploymentRoleResult']:
+        """
+        The roles assigned to the deployments
+        """
+        return pulumi.get(self, "deployment_roles")
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> str:
+        """
+        User full name
+        """
+        return pulumi.get(self, "full_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        User identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="organizationRole")
+    def organization_role(self) -> str:
+        """
+        The role assigned to the organization
+        """
+        return pulumi.get(self, "organization_role")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        User status
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        User last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        User username
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="workspaceRoles")
+    def workspace_roles(self) -> Sequence['outputs.GetUsersUserWorkspaceRoleResult']:
+        """
+        The roles assigned to the workspaces
+        """
+        return pulumi.get(self, "workspace_roles")
+
+
+@pulumi.output_type
+class GetUsersUserDeploymentRoleResult(dict):
+    def __init__(__self__, *,
+                 deployment_id: str,
+                 role: str):
+        """
+        :param str deployment_id: The ID of the deployment the role is assigned to
+        :param str role: The role assigned to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> str:
+        """
+        The ID of the deployment the role is assigned to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role assigned to the deployment
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetUsersUserWorkspaceRoleResult(dict):
     def __init__(__self__, *,
                  role: str,
                  workspace_id: str):

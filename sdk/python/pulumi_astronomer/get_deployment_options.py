@@ -191,11 +191,12 @@ def get_deployment_options(cloud_provider: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_deployment_options()
+    example_deployment_options = astronomer.get_deployment_options()
     example_with_deployment_id_query_param = astronomer.get_deployment_options(deployment_id="clozc036j01to01jrlgvueo8t")
     example_with_deployment_type_query_param = astronomer.get_deployment_options(deployment_type="DEDICATED")
     example_with_executor_query_param = astronomer.get_deployment_options(executor="CELERY")
     example_with_cloud_provider_query_param = astronomer.get_deployment_options(cloud_provider="AWS")
+    pulumi.export("deploymentOptions", example_deployment_options)
     ```
 
 
@@ -242,11 +243,12 @@ def get_deployment_options_output(cloud_provider: Optional[pulumi.Input[Optional
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_deployment_options()
+    example_deployment_options = astronomer.get_deployment_options()
     example_with_deployment_id_query_param = astronomer.get_deployment_options(deployment_id="clozc036j01to01jrlgvueo8t")
     example_with_deployment_type_query_param = astronomer.get_deployment_options(deployment_type="DEDICATED")
     example_with_executor_query_param = astronomer.get_deployment_options(executor="CELERY")
     example_with_cloud_provider_query_param = astronomer.get_deployment_options(cloud_provider="AWS")
+    pulumi.export("deploymentOptions", example_deployment_options)
     ```
 
 

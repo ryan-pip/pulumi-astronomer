@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getTeam({
+ * const exampleTeam = astronomer.getTeam({
  *     id: "clwbclrc100bl01ozjj5s4jmq",
  * });
+ * export const team = exampleTeam;
  * ```
  */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
@@ -33,7 +34,7 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetTeamArgs {
     /**
-     * Team identifier
+     * Team ID
      */
     id: string;
 }
@@ -51,7 +52,7 @@ export interface GetTeamResult {
      */
     readonly createdBy: outputs.GetTeamCreatedBy;
     /**
-     * The roles assigned to the deployments
+     * The roles assigned to the Deployments
      */
     readonly deploymentRoles: outputs.GetTeamDeploymentRole[];
     /**
@@ -59,11 +60,11 @@ export interface GetTeamResult {
      */
     readonly description: string;
     /**
-     * Team identifier
+     * Team ID
      */
     readonly id: string;
     /**
-     * Whether the team is managed by an identity provider
+     * Whether the Team is managed by an identity provider
      */
     readonly isIdpManaged: boolean;
     /**
@@ -71,11 +72,11 @@ export interface GetTeamResult {
      */
     readonly name: string;
     /**
-     * The role assigned to the organization
+     * The role assigned to the Organization
      */
     readonly organizationRole: string;
     /**
-     * Number of roles assigned to the team
+     * Number of roles assigned to the Team
      */
     readonly rolesCount: number;
     /**
@@ -87,7 +88,7 @@ export interface GetTeamResult {
      */
     readonly updatedBy: outputs.GetTeamUpdatedBy;
     /**
-     * The roles assigned to the workspaces
+     * The roles assigned to the Workspaces
      */
     readonly workspaceRoles: outputs.GetTeamWorkspaceRole[];
 }
@@ -100,9 +101,10 @@ export interface GetTeamResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getTeam({
+ * const exampleTeam = astronomer.getTeam({
  *     id: "clwbclrc100bl01ozjj5s4jmq",
  * });
+ * export const team = exampleTeam;
  * ```
  */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
@@ -114,7 +116,7 @@ export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetTeamOutputArgs {
     /**
-     * Team identifier
+     * Team ID
      */
     id: pulumi.Input<string>;
 }

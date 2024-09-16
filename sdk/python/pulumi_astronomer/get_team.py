@@ -80,7 +80,7 @@ class GetTeamResult:
     @pulumi.getter(name="deploymentRoles")
     def deployment_roles(self) -> Sequence['outputs.GetTeamDeploymentRoleResult']:
         """
-        The roles assigned to the deployments
+        The roles assigned to the Deployments
         """
         return pulumi.get(self, "deployment_roles")
 
@@ -96,7 +96,7 @@ class GetTeamResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        Team identifier
+        Team ID
         """
         return pulumi.get(self, "id")
 
@@ -104,7 +104,7 @@ class GetTeamResult:
     @pulumi.getter(name="isIdpManaged")
     def is_idp_managed(self) -> bool:
         """
-        Whether the team is managed by an identity provider
+        Whether the Team is managed by an identity provider
         """
         return pulumi.get(self, "is_idp_managed")
 
@@ -120,7 +120,7 @@ class GetTeamResult:
     @pulumi.getter(name="organizationRole")
     def organization_role(self) -> str:
         """
-        The role assigned to the organization
+        The role assigned to the Organization
         """
         return pulumi.get(self, "organization_role")
 
@@ -128,7 +128,7 @@ class GetTeamResult:
     @pulumi.getter(name="rolesCount")
     def roles_count(self) -> int:
         """
-        Number of roles assigned to the team
+        Number of roles assigned to the Team
         """
         return pulumi.get(self, "roles_count")
 
@@ -152,7 +152,7 @@ class GetTeamResult:
     @pulumi.getter(name="workspaceRoles")
     def workspace_roles(self) -> Sequence['outputs.GetTeamWorkspaceRoleResult']:
         """
-        The roles assigned to the workspaces
+        The roles assigned to the Workspaces
         """
         return pulumi.get(self, "workspace_roles")
 
@@ -188,11 +188,12 @@ def get_team(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_team(id="clwbclrc100bl01ozjj5s4jmq")
+    example_team = astronomer.get_team(id="clwbclrc100bl01ozjj5s4jmq")
+    pulumi.export("team", example_team)
     ```
 
 
-    :param str id: Team identifier
+    :param str id: Team ID
     """
     __args__ = dict()
     __args__['id'] = id
@@ -226,10 +227,11 @@ def get_team_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_team(id="clwbclrc100bl01ozjj5s4jmq")
+    example_team = astronomer.get_team(id="clwbclrc100bl01ozjj5s4jmq")
+    pulumi.export("team", example_team)
     ```
 
 
-    :param str id: Team identifier
+    :param str id: Team ID
     """
     ...

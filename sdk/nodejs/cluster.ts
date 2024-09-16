@@ -97,6 +97,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly dbInstanceType!: pulumi.Output<string>;
     /**
+     * Cluster health status
+     */
+    public /*out*/ readonly healthStatus!: pulumi.Output<outputs.ClusterHealthStatus>;
+    /**
      * Whether the cluster is limited
      */
     public /*out*/ readonly isLimited!: pulumi.Output<boolean>;
@@ -174,6 +178,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dbInstanceType"] = state ? state.dbInstanceType : undefined;
+            resourceInputs["healthStatus"] = state ? state.healthStatus : undefined;
             resourceInputs["isLimited"] = state ? state.isLimited : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -219,6 +224,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["workspaceIds"] = args ? args.workspaceIds : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dbInstanceType"] = undefined /*out*/;
+            resourceInputs["healthStatus"] = undefined /*out*/;
             resourceInputs["isLimited"] = undefined /*out*/;
             resourceInputs["metadata"] = undefined /*out*/;
             resourceInputs["nodePools"] = undefined /*out*/;
@@ -248,6 +254,10 @@ export interface ClusterState {
      * Cluster database instance type
      */
     dbInstanceType?: pulumi.Input<string>;
+    /**
+     * Cluster health status
+     */
+    healthStatus?: pulumi.Input<inputs.ClusterHealthStatus>;
     /**
      * Whether the cluster is limited
      */

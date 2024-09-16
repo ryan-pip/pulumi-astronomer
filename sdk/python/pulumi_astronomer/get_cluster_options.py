@@ -85,8 +85,9 @@ def get_cluster_options(cloud_provider: Optional[str] = None,
     import pulumi_astronomer as astronomer
 
     example_cluster_options = astronomer.get_cluster_options(type="HYBRID")
-    example_cluster_options_filter_by_provider = astronomer.get_cluster_options(cloud_provider="AWS",
-        type="HYBRID")
+    example_cluster_options_filter_by_provider = astronomer.get_cluster_options(type="HYBRID",
+        cloud_provider="AWS")
+    pulumi.export("clusterOptions", example_cluster_options)
     ```
     """
     __args__ = dict()
@@ -116,8 +117,9 @@ def get_cluster_options_output(cloud_provider: Optional[pulumi.Input[Optional[st
     import pulumi_astronomer as astronomer
 
     example_cluster_options = astronomer.get_cluster_options(type="HYBRID")
-    example_cluster_options_filter_by_provider = astronomer.get_cluster_options(cloud_provider="AWS",
-        type="HYBRID")
+    example_cluster_options_filter_by_provider = astronomer.get_cluster_options(type="HYBRID",
+        cloud_provider="AWS")
+    pulumi.export("clusterOptions", example_cluster_options)
     ```
     """
     ...

@@ -10,6 +10,11 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'ApiTokenCreatedByArgs',
+    'ApiTokenRoleArgs',
+    'ApiTokenUpdatedByArgs',
+    'ClusterHealthStatusArgs',
+    'ClusterHealthStatusDetailArgs',
     'ClusterMetadataArgs',
     'ClusterNodePoolArgs',
     'ClusterTimeoutsArgs',
@@ -23,23 +28,335 @@ __all__ = [
     'DeploymentScalingStatusHibernationStatusArgs',
     'DeploymentUpdatedByArgs',
     'DeploymentWorkerQueueArgs',
+    'TeamCreatedByArgs',
+    'TeamDeploymentRoleArgs',
     'TeamRolesDeploymentRoleArgs',
     'TeamRolesWorkspaceRoleArgs',
+    'TeamUpdatedByArgs',
+    'TeamWorkspaceRoleArgs',
+    'UserInviteInviteeArgs',
+    'UserInviteInviterArgs',
+    'UserRolesDeploymentRoleArgs',
+    'UserRolesWorkspaceRoleArgs',
     'WorkspaceCreatedByArgs',
     'WorkspaceUpdatedByArgs',
 ]
 
 @pulumi.input_type
+class ApiTokenCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class ApiTokenRoleArgs:
+    def __init__(__self__, *,
+                 entity_id: pulumi.Input[str],
+                 entity_type: pulumi.Input[str],
+                 role: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] entity_id: The ID of the entity to assign the role to
+        :param pulumi.Input[str] entity_type: The type of entity to assign the role to
+        :param pulumi.Input[str] role: The role to assign to the entity
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the entity to assign the role to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[str]:
+        """
+        The type of entity to assign the role to
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "entity_type", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role to assign to the entity
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+
+@pulumi.input_type
+class ApiTokenUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class ClusterHealthStatusArgs:
+    def __init__(__self__, *,
+                 details: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]] details: Cluster health status details
+        :param pulumi.Input[str] value: Cluster health status value
+        """
+        if details is not None:
+            pulumi.set(__self__, "details", details)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]:
+        """
+        Cluster health status details
+        """
+        return pulumi.get(self, "details")
+
+    @details.setter
+    def details(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]):
+        pulumi.set(self, "details", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster health status value
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ClusterHealthStatusDetailArgs:
+    def __init__(__self__, *,
+                 code: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 severity: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] code: Cluster health status detail code
+        :param pulumi.Input[str] description: Cluster health status detail description
+        :param pulumi.Input[str] severity: Cluster health status detail severity
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster health status detail code
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster health status detail description
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster health status detail severity
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
+
+@pulumi.input_type
 class ClusterMetadataArgs:
     def __init__(__self__, *,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 kube_dns_ip: Optional[pulumi.Input[str]] = None,
                  oidc_issuer_url: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] external_ips: Cluster external IPs
+        :param pulumi.Input[str] kube_dns_ip: Cluster kube DNS IP
         :param pulumi.Input[str] oidc_issuer_url: Cluster OIDC issuer URL
         """
         if external_ips is not None:
             pulumi.set(__self__, "external_ips", external_ips)
+        if kube_dns_ip is not None:
+            pulumi.set(__self__, "kube_dns_ip", kube_dns_ip)
         if oidc_issuer_url is not None:
             pulumi.set(__self__, "oidc_issuer_url", oidc_issuer_url)
 
@@ -54,6 +371,18 @@ class ClusterMetadataArgs:
     @external_ips.setter
     def external_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "external_ips", value)
+
+    @property
+    @pulumi.getter(name="kubeDnsIp")
+    def kube_dns_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster kube DNS IP
+        """
+        return pulumi.get(self, "kube_dns_ip")
+
+    @kube_dns_ip.setter
+    def kube_dns_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kube_dns_ip", value)
 
     @property
     @pulumi.getter(name="oidcIssuerUrl")
@@ -881,6 +1210,120 @@ class DeploymentWorkerQueueArgs:
 
 
 @pulumi.input_type
+class TeamCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class TeamDeploymentRoleArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[str],
+                 role: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] deployment_id: The ID of the deployment to assign the role to
+        :param pulumi.Input[str] role: The role to assign to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the deployment to assign the role to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role to assign to the deployment
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+
+@pulumi.input_type
 class TeamRolesDeploymentRoleArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[str],
@@ -919,6 +1362,348 @@ class TeamRolesDeploymentRoleArgs:
 
 @pulumi.input_type
 class TeamRolesWorkspaceRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 workspace_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role: The role to assign to the workspace
+        :param pulumi.Input[str] workspace_id: The ID of the workspace to assign the role to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role to assign to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the workspace to assign the role to
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @workspace_id.setter
+    def workspace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "workspace_id", value)
+
+
+@pulumi.input_type
+class TeamUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class TeamWorkspaceRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 workspace_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role: The role to assign to the workspace
+        :param pulumi.Input[str] workspace_id: The ID of the workspace to assign the role to
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role to assign to the workspace
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the workspace to assign the role to
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @workspace_id.setter
+    def workspace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "workspace_id", value)
+
+
+@pulumi.input_type
+class UserInviteInviteeArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class UserInviteInviterArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[str]] = None,
+                 avatar_url: Optional[pulumi.Input[str]] = None,
+                 full_name: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 subject_type: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "full_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class UserRolesDeploymentRoleArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[str],
+                 role: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] deployment_id: The ID of the deployment to assign the role to
+        :param pulumi.Input[str] role: The role to assign to the deployment
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the deployment to assign the role to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role to assign to the deployment
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+
+@pulumi.input_type
+class UserRolesWorkspaceRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[str],
                  workspace_id: pulumi.Input[str]):

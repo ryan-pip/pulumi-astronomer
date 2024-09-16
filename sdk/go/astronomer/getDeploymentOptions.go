@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := astronomer.GetDeploymentOptions(ctx, nil, nil)
+//			exampleDeploymentOptions, err := astronomer.GetDeploymentOptions(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -55,6 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("deploymentOptions", exampleDeploymentOptions)
 //			return nil
 //		})
 //	}

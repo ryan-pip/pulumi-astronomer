@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getDeployment({
+ * const exampleDeployment = astronomer.getDeployment({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const deployment = exampleDeployment;
  * ```
  */
 export function getDeployment(args: GetDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentResult> {
@@ -244,9 +245,10 @@ export interface GetDeploymentResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getDeployment({
+ * const exampleDeployment = astronomer.getDeployment({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const deployment = exampleDeployment;
  * ```
  */
 export function getDeploymentOutput(args: GetDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentResult> {

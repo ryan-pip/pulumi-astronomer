@@ -1192,7 +1192,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentEnvironmentVariableArgs']]]]] = None,
+                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
                  is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1203,13 +1203,13 @@ class Deployment(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  resource_quota_cpu: Optional[pulumi.Input[str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[str]] = None,
-                 scaling_spec: Optional[pulumi.Input[pulumi.InputType['DeploymentScalingSpecArgs']]] = None,
+                 scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
                  scheduler_au: Optional[pulumi.Input[int]] = None,
                  scheduler_replicas: Optional[pulumi.Input[int]] = None,
                  scheduler_size: Optional[pulumi.Input[str]] = None,
                  task_pod_node_pool_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentWorkerQueueArgs']]]]] = None,
+                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1223,7 +1223,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] default_task_pod_cpu: Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] description: Deployment description
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentEnvironmentVariableArgs']]]] environment_variables: Deployment environment variables
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables
         :param pulumi.Input[str] executor: Deployment executor
         :param pulumi.Input[bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
@@ -1233,13 +1233,13 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input[str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
-        :param pulumi.Input[pulumi.InputType['DeploymentScalingSpecArgs']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[int] scheduler_au: Deployment scheduler AU - required for 'HYBRID' deployments
         :param pulumi.Input[int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
         :param pulumi.Input[str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         :param pulumi.Input[str] type: Deployment type - if changing this value, the deployment will be recreated with the new type
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentWorkerQueueArgs']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
         :param pulumi.Input[str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """
         ...
@@ -1272,7 +1272,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentEnvironmentVariableArgs']]]]] = None,
+                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
                  is_dag_deploy_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1283,13 +1283,13 @@ class Deployment(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  resource_quota_cpu: Optional[pulumi.Input[str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[str]] = None,
-                 scaling_spec: Optional[pulumi.Input[pulumi.InputType['DeploymentScalingSpecArgs']]] = None,
+                 scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
                  scheduler_au: Optional[pulumi.Input[int]] = None,
                  scheduler_replicas: Optional[pulumi.Input[int]] = None,
                  scheduler_size: Optional[pulumi.Input[str]] = None,
                  task_pod_node_pool_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentWorkerQueueArgs']]]]] = None,
+                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1380,13 +1380,13 @@ class Deployment(pulumi.CustomResource):
             cluster_id: Optional[pulumi.Input[str]] = None,
             contact_emails: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            created_by: Optional[pulumi.Input[pulumi.InputType['DeploymentCreatedByArgs']]] = None,
+            created_by: Optional[pulumi.Input[Union['DeploymentCreatedByArgs', 'DeploymentCreatedByArgsDict']]] = None,
             dag_tarball_version: Optional[pulumi.Input[str]] = None,
             default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
             default_task_pod_memory: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             desired_dag_tarball_version: Optional[pulumi.Input[str]] = None,
-            environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentEnvironmentVariableArgs']]]]] = None,
+            environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
             executor: Optional[pulumi.Input[str]] = None,
             external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             image_repository: Optional[pulumi.Input[str]] = None,
@@ -1403,8 +1403,8 @@ class Deployment(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             resource_quota_cpu: Optional[pulumi.Input[str]] = None,
             resource_quota_memory: Optional[pulumi.Input[str]] = None,
-            scaling_spec: Optional[pulumi.Input[pulumi.InputType['DeploymentScalingSpecArgs']]] = None,
-            scaling_status: Optional[pulumi.Input[pulumi.InputType['DeploymentScalingStatusArgs']]] = None,
+            scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
+            scaling_status: Optional[pulumi.Input[Union['DeploymentScalingStatusArgs', 'DeploymentScalingStatusArgsDict']]] = None,
             scheduler_au: Optional[pulumi.Input[int]] = None,
             scheduler_cpu: Optional[pulumi.Input[str]] = None,
             scheduler_memory: Optional[pulumi.Input[str]] = None,
@@ -1415,11 +1415,11 @@ class Deployment(pulumi.CustomResource):
             task_pod_node_pool_id: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            updated_by: Optional[pulumi.Input[pulumi.InputType['DeploymentUpdatedByArgs']]] = None,
+            updated_by: Optional[pulumi.Input[Union['DeploymentUpdatedByArgs', 'DeploymentUpdatedByArgsDict']]] = None,
             webserver_airflow_api_url: Optional[pulumi.Input[str]] = None,
             webserver_ingress_hostname: Optional[pulumi.Input[str]] = None,
             webserver_url: Optional[pulumi.Input[str]] = None,
-            worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentWorkerQueueArgs']]]]] = None,
+            worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
             workload_identity: Optional[pulumi.Input[str]] = None,
             workspace_id: Optional[pulumi.Input[str]] = None) -> 'Deployment':
         """
@@ -1435,13 +1435,13 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_emails: Deployment contact emails
         :param pulumi.Input[str] created_at: Deployment creation timestamp
-        :param pulumi.Input[pulumi.InputType['DeploymentCreatedByArgs']] created_by: Deployment creator
+        :param pulumi.Input[Union['DeploymentCreatedByArgs', 'DeploymentCreatedByArgsDict']] created_by: Deployment creator
         :param pulumi.Input[str] dag_tarball_version: Deployment DAG tarball version
         :param pulumi.Input[str] default_task_pod_cpu: Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] description: Deployment description
         :param pulumi.Input[str] desired_dag_tarball_version: Deployment desired DAG tarball version
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentEnvironmentVariableArgs']]]] environment_variables: Deployment environment variables
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables
         :param pulumi.Input[str] executor: Deployment executor
         :param pulumi.Input[Sequence[pulumi.Input[str]]] external_ips: Deployment external IPs
         :param pulumi.Input[str] image_repository: Deployment image repository
@@ -1457,8 +1457,8 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input[str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
-        :param pulumi.Input[pulumi.InputType['DeploymentScalingSpecArgs']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
-        :param pulumi.Input[pulumi.InputType['DeploymentScalingStatusArgs']] scaling_status: Deployment scaling status
+        :param pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[Union['DeploymentScalingStatusArgs', 'DeploymentScalingStatusArgsDict']] scaling_status: Deployment scaling status
         :param pulumi.Input[int] scheduler_au: Deployment scheduler AU - required for 'HYBRID' deployments
         :param pulumi.Input[str] scheduler_cpu: Deployment scheduler CPU
         :param pulumi.Input[str] scheduler_memory: Deployment scheduler memory
@@ -1469,11 +1469,11 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         :param pulumi.Input[str] type: Deployment type - if changing this value, the deployment will be recreated with the new type
         :param pulumi.Input[str] updated_at: Deployment last updated timestamp
-        :param pulumi.Input[pulumi.InputType['DeploymentUpdatedByArgs']] updated_by: Deployment updater
+        :param pulumi.Input[Union['DeploymentUpdatedByArgs', 'DeploymentUpdatedByArgsDict']] updated_by: Deployment updater
         :param pulumi.Input[str] webserver_airflow_api_url: Deployment webserver Airflow API URL
         :param pulumi.Input[str] webserver_ingress_hostname: Deployment webserver ingress hostname
         :param pulumi.Input[str] webserver_url: Deployment webserver URL
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentWorkerQueueArgs']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
         :param pulumi.Input[str] workload_identity: Deployment workload identity. This value can be changed via the Astro API if applicable.
         :param pulumi.Input[str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """

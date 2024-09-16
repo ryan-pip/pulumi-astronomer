@@ -98,6 +98,7 @@ def get_deployments(deployment_ids: Optional[Sequence[str]] = None,
     example_deployments_filter_by_names = astronomer.get_deployments(names=["my deployment"])
     example_deployments_filter_by_deployment_ids = astronomer.get_deployments(deployment_ids=["clozc036j01to01jrlgvueo8t"])
     example_deployments_filter_by_workspace_ids = astronomer.get_deployments(workspace_ids=["clozc036j01to01jrlgvu798d"])
+    pulumi.export("deployments", example_deployments)
     ```
     """
     __args__ = dict()
@@ -133,6 +134,7 @@ def get_deployments_output(deployment_ids: Optional[pulumi.Input[Optional[Sequen
     example_deployments_filter_by_names = astronomer.get_deployments(names=["my deployment"])
     example_deployments_filter_by_deployment_ids = astronomer.get_deployments(deployment_ids=["clozc036j01to01jrlgvueo8t"])
     example_deployments_filter_by_workspace_ids = astronomer.get_deployments(workspace_ids=["clozc036j01to01jrlgvu798d"])
+    pulumi.export("deployments", example_deployments)
     ```
     """
     ...

@@ -74,11 +74,12 @@ def get_teams(names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example_teams = astronomer.get_teams()
+    example_teams_teams = astronomer.get_teams()
     example_teams_filter_by_names = astronomer.get_teams(names=[
         "my first team",
         "my second team",
     ])
+    pulumi.export("exampleTeams", example_teams_teams)
     ```
     """
     __args__ = dict()
@@ -104,11 +105,12 @@ def get_teams_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = No
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example_teams = astronomer.get_teams()
+    example_teams_teams = astronomer.get_teams()
     example_teams_filter_by_names = astronomer.get_teams(names=[
         "my first team",
         "my second team",
     ])
+    pulumi.export("exampleTeams", example_teams_teams)
     ```
     """
     ...

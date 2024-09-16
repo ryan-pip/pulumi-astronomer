@@ -87,7 +87,9 @@ func Provider() tfbridge.ProviderInfo {
 			"astro_hybrid_cluster_workspace_authorization": {
 				ComputeID: delegateID("clusterId"),
 			},
-			"astro_team_roles": {ComputeID: delegateID("teamId")},
+			"astro_team_roles":  {ComputeID: delegateID("teamId")},
+			"astro_user_invite": {ComputeID: delegateID("inviteId")},
+			"astro_user_roles":  {ComputeID: delegateID("userId")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{

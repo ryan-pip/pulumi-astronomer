@@ -199,7 +199,8 @@ def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_organization()
+    example_organization = astronomer.get_organization()
+    pulumi.export("organization", example_organization)
     ```
     """
     __args__ = dict()
@@ -233,7 +234,8 @@ def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_organization()
+    example_organization = astronomer.get_organization()
+    pulumi.export("organization", example_organization)
     ```
     """
     ...

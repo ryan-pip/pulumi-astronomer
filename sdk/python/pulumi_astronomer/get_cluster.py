@@ -22,7 +22,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, id=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, health_status=None, id=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -32,6 +32,9 @@ class GetClusterResult:
         if db_instance_type and not isinstance(db_instance_type, str):
             raise TypeError("Expected argument 'db_instance_type' to be a str")
         pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if health_status and not isinstance(health_status, dict):
+            raise TypeError("Expected argument 'health_status' to be a dict")
+        pulumi.set(__self__, "health_status", health_status)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -107,6 +110,14 @@ class GetClusterResult:
         Cluster database instance type
         """
         return pulumi.get(self, "db_instance_type")
+
+    @property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> 'outputs.GetClusterHealthStatusResult':
+        """
+        Cluster health status
+        """
+        return pulumi.get(self, "health_status")
 
     @property
     @pulumi.getter
@@ -254,6 +265,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             cloud_provider=self.cloud_provider,
             created_at=self.created_at,
             db_instance_type=self.db_instance_type,
+            health_status=self.health_status,
             id=self.id,
             is_limited=self.is_limited,
             metadata=self.metadata,
@@ -284,7 +296,8 @@ def get_cluster(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
+    example_cluster = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("cluster", example_cluster)
     ```
 
 
@@ -299,6 +312,7 @@ def get_cluster(id: Optional[str] = None,
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
         created_at=pulumi.get(__ret__, 'created_at'),
         db_instance_type=pulumi.get(__ret__, 'db_instance_type'),
+        health_status=pulumi.get(__ret__, 'health_status'),
         id=pulumi.get(__ret__, 'id'),
         is_limited=pulumi.get(__ret__, 'is_limited'),
         metadata=pulumi.get(__ret__, 'metadata'),
@@ -330,7 +344,8 @@ def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
+    example_cluster = astronomer.get_cluster(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("cluster", example_cluster)
     ```
 
 

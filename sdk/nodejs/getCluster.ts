@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getCluster({
+ * const exampleCluster = astronomer.getCluster({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const cluster = exampleCluster;
  * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
@@ -54,6 +55,10 @@ export interface GetClusterResult {
      * Cluster database instance type
      */
     readonly dbInstanceType: string;
+    /**
+     * Cluster health status
+     */
+    readonly healthStatus: outputs.GetClusterHealthStatus;
     /**
      * Cluster identifier
      */
@@ -132,9 +137,10 @@ export interface GetClusterResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as astronomer from "@pulumi/astronomer";
  *
- * const example = astronomer.getCluster({
+ * const exampleCluster = astronomer.getCluster({
  *     id: "clozc036j01to01jrlgvueo8t",
  * });
+ * export const cluster = exampleCluster;
  * ```
  */
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterResult> {

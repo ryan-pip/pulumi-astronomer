@@ -140,7 +140,8 @@ def get_workspace(id: Optional[str] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_workspace(id="clozc036j01to01jrlgvueo8t")
+    example_workspace = astronomer.get_workspace(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("workspace", example_workspace)
     ```
 
 
@@ -174,7 +175,8 @@ def get_workspace_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_astronomer as astronomer
 
-    example = astronomer.get_workspace(id="clozc036j01to01jrlgvueo8t")
+    example_workspace = astronomer.get_workspace(id="clozc036j01to01jrlgvueo8t")
+    pulumi.export("workspace", example_workspace)
     ```
 
 

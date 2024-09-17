@@ -173,6 +173,6 @@ jobs:
         language:
           - nodejs
           - python
-          - dotnet
+          # - dotnet
           - go
           # - java

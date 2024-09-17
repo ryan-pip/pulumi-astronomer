@@ -1,0 +1,8 @@
+name: astro_yaml
+runtime: yaml
+description: A minimal Pulumi YAML program
+resources:
+  group:
+    type: astro:index:Workspace
+    properties:
+      name: Test

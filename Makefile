@@ -45,11 +45,7 @@ development:: install_plugins provider lint_provider build_sdks install_sdks cle
 build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
-upstream/.git:
-	@echo "Initializing upstream" ; \
-	git -c advice.detachedHead=false clone --depth 1 --branch 'v$(PROVIDER_VERSION)' 'https://github.com/GK-Consulting/terraform-provider-astronomer' upstream
-
-tfgen:: install_plugins upstream/.git
+tfgen:: install_plugins
 	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)

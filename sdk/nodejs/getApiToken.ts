@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getApiToken(args: GetApiTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetApiTokenResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getApiToken:getApiToken", {
         "id": args.id,
@@ -116,7 +115,10 @@ export interface GetApiTokenResult {
  * ```
  */
 export function getApiTokenOutput(args: GetApiTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiTokenResult> {
-    return pulumi.output(args).apply((a: any) => getApiToken(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getApiToken:getApiToken", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

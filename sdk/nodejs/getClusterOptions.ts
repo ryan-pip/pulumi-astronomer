@@ -26,7 +26,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getClusterOptions(args: GetClusterOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOptionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getClusterOptions:getClusterOptions", {
         "cloudProvider": args.cloudProvider,
@@ -74,7 +73,11 @@ export interface GetClusterOptionsResult {
  * ```
  */
 export function getClusterOptionsOutput(args: GetClusterOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOptionsResult> {
-    return pulumi.output(args).apply((a: any) => getClusterOptions(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getClusterOptions:getClusterOptions", {
+        "cloudProvider": args.cloudProvider,
+        "type": args.type,
+    }, opts);
 }
 
 /**

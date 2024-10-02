@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  */
 export function getDeploymentOptions(args?: GetDeploymentOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentOptionsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getDeploymentOptions:getDeploymentOptions", {
         "cloudProvider": args.cloudProvider,
@@ -144,7 +143,14 @@ export interface GetDeploymentOptionsResult {
  * ```
  */
 export function getDeploymentOptionsOutput(args?: GetDeploymentOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentOptionsResult> {
-    return pulumi.output(args).apply((a: any) => getDeploymentOptions(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getDeploymentOptions:getDeploymentOptions", {
+        "cloudProvider": args.cloudProvider,
+        "deploymentId": args.deploymentId,
+        "deploymentType": args.deploymentType,
+        "executor": args.executor,
+    }, opts);
 }
 
 /**

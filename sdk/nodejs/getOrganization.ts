@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getOrganization(opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getOrganization:getOrganization", {
     }, opts);
@@ -97,5 +96,7 @@ export interface GetOrganizationResult {
  * ```
  */
 export function getOrganizationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
-    return pulumi.output(getOrganization(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getOrganization:getOrganization", {
+    }, opts);
 }

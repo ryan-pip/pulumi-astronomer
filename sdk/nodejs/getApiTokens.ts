@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  */
 export function getApiTokens(args?: GetApiTokensArgs, opts?: pulumi.InvokeOptions): Promise<GetApiTokensResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getApiTokens:getApiTokens", {
         "deploymentId": args.deploymentId,
@@ -84,7 +83,13 @@ export interface GetApiTokensResult {
  * ```
  */
 export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiTokensResult> {
-    return pulumi.output(args).apply((a: any) => getApiTokens(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getApiTokens:getApiTokens", {
+        "deploymentId": args.deploymentId,
+        "includeOnlyOrganizationTokens": args.includeOnlyOrganizationTokens,
+        "workspaceId": args.workspaceId,
+    }, opts);
 }
 
 /**

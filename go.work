@@ -1,9 +1,11 @@
-go 1.22
+go 1.22.0
+
+toolchain go1.23.1
 
 use (
-    ./provider
-    ./provider/shim
-    // ******
-    // Add ./sdk folder when SDK has been published the first time
-    ./sdk
+	./provider
+	./provider/shim
+	// ******
+	// Add ./sdk folder when SDK has been published the first time
+	./sdk
 )

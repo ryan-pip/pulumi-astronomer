@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getTeams(args?: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getTeams:getTeams", {
         "names": args.names,
@@ -72,7 +71,11 @@ export interface GetTeamsResult {
  * ```
  */
 export function getTeamsOutput(args?: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
-    return pulumi.output(args).apply((a: any) => getTeams(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getTeams:getTeams", {
+        "names": args.names,
+    }, opts);
 }
 
 /**

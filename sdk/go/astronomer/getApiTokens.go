@@ -84,14 +84,20 @@ type GetApiTokensResult struct {
 
 func GetApiTokensOutput(ctx *pulumi.Context, args GetApiTokensOutputArgs, opts ...pulumi.InvokeOption) GetApiTokensResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetApiTokensResult, error) {
+		ApplyT(func(v interface{}) (GetApiTokensResultOutput, error) {
 			args := v.(GetApiTokensArgs)
-			r, err := GetApiTokens(ctx, &args, opts...)
-			var s GetApiTokensResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetApiTokensResult
+			secret, err := ctx.InvokePackageRaw("astronomer:index/getApiTokens:getApiTokens", args, &rv, "", opts...)
+			if err != nil {
+				return GetApiTokensResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetApiTokensResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetApiTokensResultOutput), nil
+			}
+			return output, nil
 		}).(GetApiTokensResultOutput)
 }
 

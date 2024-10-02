@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  */
 export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("astronomer:index/getDeployments:getDeployments", {
         "deploymentIds": args.deploymentIds,
@@ -84,7 +83,13 @@ export interface GetDeploymentsResult {
  * ```
  */
 export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
-    return pulumi.output(args).apply((a: any) => getDeployments(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("astronomer:index/getDeployments:getDeployments", {
+        "deploymentIds": args.deploymentIds,
+        "names": args.names,
+        "workspaceIds": args.workspaceIds,
+    }, opts);
 }
 
 /**

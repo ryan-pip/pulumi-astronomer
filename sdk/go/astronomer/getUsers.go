@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleUsersUsers, err := astronomer.GetUsers(ctx, nil, nil)
+//			exampleUsersUsers, err := astronomer.GetUsers(ctx, &astronomer.GetUsersArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

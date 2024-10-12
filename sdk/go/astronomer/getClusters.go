@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleClusters, err := astronomer.GetClusters(ctx, nil, nil)
+//			exampleClusters, err := astronomer.GetClusters(ctx, &astronomer.GetClustersArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

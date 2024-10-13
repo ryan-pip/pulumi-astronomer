@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -330,9 +335,6 @@ def get_cluster(id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_subnet_range=pulumi.get(__ret__, 'vpc_subnet_range'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
-
-
-@_utilities.lift_output_func(get_cluster)
 def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
     """
@@ -351,4 +353,29 @@ def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
 
     :param str id: Cluster identifier
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult)
+    return __ret__.apply(lambda __response__: GetClusterResult(
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        db_instance_type=pulumi.get(__response__, 'db_instance_type'),
+        health_status=pulumi.get(__response__, 'health_status'),
+        id=pulumi.get(__response__, 'id'),
+        is_limited=pulumi.get(__response__, 'is_limited'),
+        metadata=pulumi.get(__response__, 'metadata'),
+        name=pulumi.get(__response__, 'name'),
+        node_pools=pulumi.get(__response__, 'node_pools'),
+        pod_subnet_range=pulumi.get(__response__, 'pod_subnet_range'),
+        provider_account=pulumi.get(__response__, 'provider_account'),
+        region=pulumi.get(__response__, 'region'),
+        service_peering_range=pulumi.get(__response__, 'service_peering_range'),
+        service_subnet_range=pulumi.get(__response__, 'service_subnet_range'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        tenant_id=pulumi.get(__response__, 'tenant_id'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        vpc_subnet_range=pulumi.get(__response__, 'vpc_subnet_range'),
+        workspace_ids=pulumi.get(__response__, 'workspace_ids')))

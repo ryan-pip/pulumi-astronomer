@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -114,9 +119,6 @@ def get_deployments(deployment_ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
-
-
-@_utilities.lift_output_func(get_deployments)
 def get_deployments_output(deployment_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            workspace_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -137,4 +139,15 @@ def get_deployments_output(deployment_ids: Optional[pulumi.Input[Optional[Sequen
     pulumi.export("deployments", example_deployments)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['deploymentIds'] = deployment_ids
+    __args__['names'] = names
+    __args__['workspaceIds'] = workspace_ids
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
+    return __ret__.apply(lambda __response__: GetDeploymentsResult(
+        deployment_ids=pulumi.get(__response__, 'deployment_ids'),
+        deployments=pulumi.get(__response__, 'deployments'),
+        id=pulumi.get(__response__, 'id'),
+        names=pulumi.get(__response__, 'names'),
+        workspace_ids=pulumi.get(__response__, 'workspace_ids')))

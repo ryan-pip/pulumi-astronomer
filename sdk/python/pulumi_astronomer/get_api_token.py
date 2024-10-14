@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -239,9 +244,6 @@ def get_api_token(id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'))
-
-
-@_utilities.lift_output_func(get_api_token)
 def get_api_token_output(id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiTokenResult]:
     """
@@ -260,4 +262,22 @@ def get_api_token_output(id: Optional[pulumi.Input[str]] = None,
 
     :param str id: API Token identifier
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getApiToken:getApiToken', __args__, opts=opts, typ=GetApiTokenResult)
+    return __ret__.apply(lambda __response__: GetApiTokenResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        created_by=pulumi.get(__response__, 'created_by'),
+        description=pulumi.get(__response__, 'description'),
+        end_at=pulumi.get(__response__, 'end_at'),
+        expiry_period_in_days=pulumi.get(__response__, 'expiry_period_in_days'),
+        id=pulumi.get(__response__, 'id'),
+        last_used_at=pulumi.get(__response__, 'last_used_at'),
+        name=pulumi.get(__response__, 'name'),
+        roles=pulumi.get(__response__, 'roles'),
+        short_token=pulumi.get(__response__, 'short_token'),
+        start_at=pulumi.get(__response__, 'start_at'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        updated_by=pulumi.get(__response__, 'updated_by')))

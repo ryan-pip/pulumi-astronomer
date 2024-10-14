@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleWorkspacesWorkspaces, err := astronomer.GetWorkspaces(ctx, nil, nil)
+//			exampleWorkspacesWorkspaces, err := astronomer.GetWorkspaces(ctx, &astronomer.GetWorkspacesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

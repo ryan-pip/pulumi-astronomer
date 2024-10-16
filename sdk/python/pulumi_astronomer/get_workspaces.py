@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -107,9 +112,6 @@ def get_workspaces(names: Optional[Sequence[str]] = None,
         names=pulumi.get(__ret__, 'names'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'),
         workspaces=pulumi.get(__ret__, 'workspaces'))
-
-
-@_utilities.lift_output_func(get_workspaces)
 def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           workspace_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkspacesResult]:
@@ -134,4 +136,13 @@ def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]]
     pulumi.export("exampleWorkspaces", example_workspaces_workspaces)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['names'] = names
+    __args__['workspaceIds'] = workspace_ids
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult)
+    return __ret__.apply(lambda __response__: GetWorkspacesResult(
+        id=pulumi.get(__response__, 'id'),
+        names=pulumi.get(__response__, 'names'),
+        workspace_ids=pulumi.get(__response__, 'workspace_ids'),
+        workspaces=pulumi.get(__response__, 'workspaces')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -101,9 +106,6 @@ def get_users(deployment_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-
-
-@_utilities.lift_output_func(get_users)
 def get_users_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None,
                      workspace_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
@@ -122,4 +124,13 @@ def get_users_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None
     pulumi.export("exampleUsers", example_users_users)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['deploymentId'] = deployment_id
+    __args__['workspaceId'] = workspace_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
+    return __ret__.apply(lambda __response__: GetUsersResult(
+        deployment_id=pulumi.get(__response__, 'deployment_id'),
+        id=pulumi.get(__response__, 'id'),
+        users=pulumi.get(__response__, 'users'),
+        workspace_id=pulumi.get(__response__, 'workspace_id')))

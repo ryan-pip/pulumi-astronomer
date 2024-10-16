@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -101,9 +106,6 @@ def get_clusters(cloud_provider: Optional[str] = None,
         clusters=pulumi.get(__ret__, 'clusters'),
         id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'))
-
-
-@_utilities.lift_output_func(get_clusters)
 def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = None,
                         names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClustersResult]:
@@ -122,4 +124,13 @@ def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = 
     pulumi.export("clusters", example_clusters)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['cloudProvider'] = cloud_provider
+    __args__['names'] = names
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getClusters:getClusters', __args__, opts=opts, typ=GetClustersResult)
+    return __ret__.apply(lambda __response__: GetClustersResult(
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        clusters=pulumi.get(__response__, 'clusters'),
+        id=pulumi.get(__response__, 'id'),
+        names=pulumi.get(__response__, 'names')))

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleApiTokens, err := astronomer.GetApiTokens(ctx, nil, nil)
+//			exampleApiTokens, err := astronomer.GetApiTokens(ctx, &astronomer.GetApiTokensArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

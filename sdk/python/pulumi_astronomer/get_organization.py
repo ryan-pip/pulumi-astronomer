@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -221,9 +226,6 @@ def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
         trial_expires_at=pulumi.get(__ret__, 'trial_expires_at'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'))
-
-
-@_utilities.lift_output_func(get_organization)
 def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     Organization data source
@@ -238,4 +240,20 @@ def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     pulumi.export("organization", example_organization)
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
+    return __ret__.apply(lambda __response__: GetOrganizationResult(
+        billing_email=pulumi.get(__response__, 'billing_email'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        created_by=pulumi.get(__response__, 'created_by'),
+        id=pulumi.get(__response__, 'id'),
+        is_scim_enabled=pulumi.get(__response__, 'is_scim_enabled'),
+        name=pulumi.get(__response__, 'name'),
+        payment_method=pulumi.get(__response__, 'payment_method'),
+        product=pulumi.get(__response__, 'product'),
+        status=pulumi.get(__response__, 'status'),
+        support_plan=pulumi.get(__response__, 'support_plan'),
+        trial_expires_at=pulumi.get(__response__, 'trial_expires_at'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        updated_by=pulumi.get(__response__, 'updated_by')))

@@ -4,43 +4,91 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ApiTokenCreatedByArgs',
+    'ApiTokenCreatedByArgsDict',
     'ApiTokenRoleArgs',
+    'ApiTokenRoleArgsDict',
     'ApiTokenUpdatedByArgs',
+    'ApiTokenUpdatedByArgsDict',
     'ClusterHealthStatusArgs',
+    'ClusterHealthStatusArgsDict',
     'ClusterHealthStatusDetailArgs',
+    'ClusterHealthStatusDetailArgsDict',
     'ClusterMetadataArgs',
+    'ClusterMetadataArgsDict',
     'ClusterNodePoolArgs',
+    'ClusterNodePoolArgsDict',
     'ClusterTimeoutsArgs',
+    'ClusterTimeoutsArgsDict',
     'DeploymentCreatedByArgs',
+    'DeploymentCreatedByArgsDict',
     'DeploymentEnvironmentVariableArgs',
+    'DeploymentEnvironmentVariableArgsDict',
     'DeploymentScalingSpecArgs',
+    'DeploymentScalingSpecArgsDict',
     'DeploymentScalingSpecHibernationSpecArgs',
+    'DeploymentScalingSpecHibernationSpecArgsDict',
     'DeploymentScalingSpecHibernationSpecOverrideArgs',
+    'DeploymentScalingSpecHibernationSpecOverrideArgsDict',
     'DeploymentScalingSpecHibernationSpecScheduleArgs',
+    'DeploymentScalingSpecHibernationSpecScheduleArgsDict',
     'DeploymentScalingStatusArgs',
+    'DeploymentScalingStatusArgsDict',
     'DeploymentScalingStatusHibernationStatusArgs',
+    'DeploymentScalingStatusHibernationStatusArgsDict',
     'DeploymentUpdatedByArgs',
+    'DeploymentUpdatedByArgsDict',
     'DeploymentWorkerQueueArgs',
+    'DeploymentWorkerQueueArgsDict',
     'TeamCreatedByArgs',
+    'TeamCreatedByArgsDict',
     'TeamDeploymentRoleArgs',
+    'TeamDeploymentRoleArgsDict',
     'TeamRolesDeploymentRoleArgs',
+    'TeamRolesDeploymentRoleArgsDict',
     'TeamRolesWorkspaceRoleArgs',
+    'TeamRolesWorkspaceRoleArgsDict',
     'TeamUpdatedByArgs',
+    'TeamUpdatedByArgsDict',
     'TeamWorkspaceRoleArgs',
+    'TeamWorkspaceRoleArgsDict',
     'UserInviteInviteeArgs',
+    'UserInviteInviteeArgsDict',
     'UserInviteInviterArgs',
+    'UserInviteInviterArgsDict',
     'UserRolesDeploymentRoleArgs',
+    'UserRolesDeploymentRoleArgsDict',
     'UserRolesWorkspaceRoleArgs',
+    'UserRolesWorkspaceRoleArgsDict',
     'WorkspaceCreatedByArgs',
+    'WorkspaceCreatedByArgsDict',
     'WorkspaceUpdatedByArgs',
+    'WorkspaceUpdatedByArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ApiTokenCreatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    ApiTokenCreatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ApiTokenCreatedByArgs:
@@ -119,6 +167,23 @@ class ApiTokenCreatedByArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ApiTokenRoleArgsDict(TypedDict):
+        entity_id: pulumi.Input[str]
+        """
+        The ID of the entity to assign the role to
+        """
+        entity_type: pulumi.Input[str]
+        """
+        The type of entity to assign the role to
+        """
+        role: pulumi.Input[str]
+        """
+        The role to assign to the entity
+        """
+elif False:
+    ApiTokenRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ApiTokenRoleArgs:
     def __init__(__self__, *,
@@ -170,6 +235,17 @@ class ApiTokenRoleArgs:
     def role(self, value: pulumi.Input[str]):
         pulumi.set(self, "role", value)
 
+
+if not MYPY:
+    class ApiTokenUpdatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    ApiTokenUpdatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ApiTokenUpdatedByArgs:
@@ -248,6 +324,19 @@ class ApiTokenUpdatedByArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ClusterHealthStatusArgsDict(TypedDict):
+        details: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgsDict']]]]
+        """
+        Cluster health status details
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        Cluster health status value
+        """
+elif False:
+    ClusterHealthStatusArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterHealthStatusArgs:
     def __init__(__self__, *,
@@ -286,6 +375,23 @@ class ClusterHealthStatusArgs:
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class ClusterHealthStatusDetailArgsDict(TypedDict):
+        code: NotRequired[pulumi.Input[str]]
+        """
+        Cluster health status detail code
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Cluster health status detail description
+        """
+        severity: NotRequired[pulumi.Input[str]]
+        """
+        Cluster health status detail severity
+        """
+elif False:
+    ClusterHealthStatusDetailArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterHealthStatusDetailArgs:
@@ -342,6 +448,23 @@ class ClusterHealthStatusDetailArgs:
         pulumi.set(self, "severity", value)
 
 
+if not MYPY:
+    class ClusterMetadataArgsDict(TypedDict):
+        external_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Cluster external IPs
+        """
+        kube_dns_ip: NotRequired[pulumi.Input[str]]
+        """
+        Cluster kube DNS IP
+        """
+        oidc_issuer_url: NotRequired[pulumi.Input[str]]
+        """
+        Cluster OIDC issuer URL
+        """
+elif False:
+    ClusterMetadataArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterMetadataArgs:
     def __init__(__self__, *,
@@ -396,6 +519,51 @@ class ClusterMetadataArgs:
     def oidc_issuer_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "oidc_issuer_url", value)
 
+
+if not MYPY:
+    class ClusterNodePoolArgsDict(TypedDict):
+        cloud_provider: NotRequired[pulumi.Input[str]]
+        """
+        Node pool cloud provider
+        """
+        cluster_id: NotRequired[pulumi.Input[str]]
+        """
+        Node pool cluster identifier
+        """
+        created_at: NotRequired[pulumi.Input[str]]
+        """
+        Node pool creation timestamp
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Node pool identifier
+        """
+        is_default: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the node pool is the default node pool of the cluster
+        """
+        max_node_count: NotRequired[pulumi.Input[int]]
+        """
+        Node pool maximum node count
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Node pool name
+        """
+        node_instance_type: NotRequired[pulumi.Input[str]]
+        """
+        Node pool node instance type
+        """
+        supported_astro_machines: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Node pool supported Astro machines
+        """
+        updated_at: NotRequired[pulumi.Input[str]]
+        """
+        Node pool last updated timestamp
+        """
+elif False:
+    ClusterNodePoolArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterNodePoolArgs:
@@ -564,6 +732,23 @@ class ClusterNodePoolArgs:
         pulumi.set(self, "updated_at", value)
 
 
+if not MYPY:
+    class ClusterTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        delete: NotRequired[pulumi.Input[str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        update: NotRequired[pulumi.Input[str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+elif False:
+    ClusterTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterTimeoutsArgs:
     def __init__(__self__, *,
@@ -618,6 +803,17 @@ class ClusterTimeoutsArgs:
     def update(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update", value)
 
+
+if not MYPY:
+    class DeploymentCreatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    DeploymentCreatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentCreatedByArgs:
@@ -696,6 +892,27 @@ class DeploymentCreatedByArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class DeploymentEnvironmentVariableArgsDict(TypedDict):
+        is_secret: pulumi.Input[bool]
+        """
+        Whether Environment variable is a secret
+        """
+        key: pulumi.Input[str]
+        """
+        Environment variable key
+        """
+        updated_at: NotRequired[pulumi.Input[str]]
+        """
+        Environment variable last updated timestamp
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        Environment variable value
+        """
+elif False:
+    DeploymentEnvironmentVariableArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DeploymentEnvironmentVariableArgs:
     def __init__(__self__, *,
@@ -765,6 +982,15 @@ class DeploymentEnvironmentVariableArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class DeploymentScalingSpecArgsDict(TypedDict):
+        hibernation_spec: pulumi.Input['DeploymentScalingSpecHibernationSpecArgsDict']
+        """
+        Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
+        """
+elif False:
+    DeploymentScalingSpecArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DeploymentScalingSpecArgs:
     def __init__(__self__, *,
@@ -786,6 +1012,19 @@ class DeploymentScalingSpecArgs:
     def hibernation_spec(self, value: pulumi.Input['DeploymentScalingSpecHibernationSpecArgs']):
         pulumi.set(self, "hibernation_spec", value)
 
+
+if not MYPY:
+    class DeploymentScalingSpecHibernationSpecArgsDict(TypedDict):
+        override: NotRequired[pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgsDict']]
+        """
+        Hibernation override configuration. Set to null to remove the override.
+        """
+        schedules: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgsDict']]]]
+        """
+        List of hibernation schedules. Set to null to remove all schedules.
+        """
+elif False:
+    DeploymentScalingSpecHibernationSpecArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecArgs:
@@ -826,6 +1065,14 @@ class DeploymentScalingSpecHibernationSpecArgs:
         pulumi.set(self, "schedules", value)
 
 
+if not MYPY:
+    class DeploymentScalingSpecHibernationSpecOverrideArgsDict(TypedDict):
+        is_hibernating: pulumi.Input[bool]
+        is_active: NotRequired[pulumi.Input[bool]]
+        override_until: NotRequired[pulumi.Input[str]]
+elif False:
+    DeploymentScalingSpecHibernationSpecOverrideArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecOverrideArgs:
     def __init__(__self__, *,
@@ -865,6 +1112,15 @@ class DeploymentScalingSpecHibernationSpecOverrideArgs:
     def override_until(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "override_until", value)
 
+
+if not MYPY:
+    class DeploymentScalingSpecHibernationSpecScheduleArgsDict(TypedDict):
+        hibernate_at_cron: pulumi.Input[str]
+        is_enabled: pulumi.Input[bool]
+        wake_at_cron: pulumi.Input[str]
+        description: NotRequired[pulumi.Input[str]]
+elif False:
+    DeploymentScalingSpecHibernationSpecScheduleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecScheduleArgs:
@@ -916,6 +1172,12 @@ class DeploymentScalingSpecHibernationSpecScheduleArgs:
         pulumi.set(self, "description", value)
 
 
+if not MYPY:
+    class DeploymentScalingStatusArgsDict(TypedDict):
+        hibernation_status: NotRequired[pulumi.Input['DeploymentScalingStatusHibernationStatusArgsDict']]
+elif False:
+    DeploymentScalingStatusArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DeploymentScalingStatusArgs:
     def __init__(__self__, *,
@@ -932,6 +1194,15 @@ class DeploymentScalingStatusArgs:
     def hibernation_status(self, value: Optional[pulumi.Input['DeploymentScalingStatusHibernationStatusArgs']]):
         pulumi.set(self, "hibernation_status", value)
 
+
+if not MYPY:
+    class DeploymentScalingStatusHibernationStatusArgsDict(TypedDict):
+        is_hibernating: NotRequired[pulumi.Input[bool]]
+        next_event_at: NotRequired[pulumi.Input[str]]
+        next_event_type: NotRequired[pulumi.Input[str]]
+        reason: NotRequired[pulumi.Input[str]]
+elif False:
+    DeploymentScalingStatusHibernationStatusArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentScalingStatusHibernationStatusArgs:
@@ -985,6 +1256,17 @@ class DeploymentScalingStatusHibernationStatusArgs:
     def reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "reason", value)
 
+
+if not MYPY:
+    class DeploymentUpdatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    DeploymentUpdatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentUpdatedByArgs:
@@ -1062,6 +1344,47 @@ class DeploymentUpdatedByArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class DeploymentWorkerQueueArgsDict(TypedDict):
+        is_default: pulumi.Input[bool]
+        """
+        Worker queue default
+        """
+        max_worker_count: pulumi.Input[int]
+        """
+        Worker queue max worker count
+        """
+        min_worker_count: pulumi.Input[int]
+        """
+        Worker queue min worker count
+        """
+        name: pulumi.Input[str]
+        """
+        Worker queue name
+        """
+        worker_concurrency: pulumi.Input[int]
+        """
+        Worker queue worker concurrency
+        """
+        astro_machine: NotRequired[pulumi.Input[str]]
+        """
+        Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        """
+        node_pool_id: NotRequired[pulumi.Input[str]]
+        """
+        Worker queue Node pool identifier - required for 'HYBRID' deployments
+        """
+        pod_cpu: NotRequired[pulumi.Input[str]]
+        """
+        Worker queue pod CPU
+        """
+        pod_memory: NotRequired[pulumi.Input[str]]
+        """
+        Worker queue pod memory
+        """
+elif False:
+    DeploymentWorkerQueueArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentWorkerQueueArgs:
@@ -1209,6 +1532,17 @@ class DeploymentWorkerQueueArgs:
         pulumi.set(self, "pod_memory", value)
 
 
+if not MYPY:
+    class TeamCreatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    TeamCreatedByArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TeamCreatedByArgs:
     def __init__(__self__, *,
@@ -1286,6 +1620,19 @@ class TeamCreatedByArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class TeamDeploymentRoleArgsDict(TypedDict):
+        deployment_id: pulumi.Input[str]
+        """
+        The ID of the deployment to assign the role to
+        """
+        role: pulumi.Input[str]
+        """
+        The role to assign to the deployment
+        """
+elif False:
+    TeamDeploymentRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TeamDeploymentRoleArgs:
     def __init__(__self__, *,
@@ -1322,6 +1669,19 @@ class TeamDeploymentRoleArgs:
     def role(self, value: pulumi.Input[str]):
         pulumi.set(self, "role", value)
 
+
+if not MYPY:
+    class TeamRolesDeploymentRoleArgsDict(TypedDict):
+        deployment_id: pulumi.Input[str]
+        """
+        The ID of the deployment to assign the role to
+        """
+        role: pulumi.Input[str]
+        """
+        The role to assign to the deployment
+        """
+elif False:
+    TeamRolesDeploymentRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TeamRolesDeploymentRoleArgs:
@@ -1360,6 +1720,19 @@ class TeamRolesDeploymentRoleArgs:
         pulumi.set(self, "role", value)
 
 
+if not MYPY:
+    class TeamRolesWorkspaceRoleArgsDict(TypedDict):
+        role: pulumi.Input[str]
+        """
+        The role to assign to the workspace
+        """
+        workspace_id: pulumi.Input[str]
+        """
+        The ID of the workspace to assign the role to
+        """
+elif False:
+    TeamRolesWorkspaceRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TeamRolesWorkspaceRoleArgs:
     def __init__(__self__, *,
@@ -1396,6 +1769,17 @@ class TeamRolesWorkspaceRoleArgs:
     def workspace_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "workspace_id", value)
 
+
+if not MYPY:
+    class TeamUpdatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    TeamUpdatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TeamUpdatedByArgs:
@@ -1474,6 +1858,19 @@ class TeamUpdatedByArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class TeamWorkspaceRoleArgsDict(TypedDict):
+        role: pulumi.Input[str]
+        """
+        The role to assign to the workspace
+        """
+        workspace_id: pulumi.Input[str]
+        """
+        The ID of the workspace to assign the role to
+        """
+elif False:
+    TeamWorkspaceRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TeamWorkspaceRoleArgs:
     def __init__(__self__, *,
@@ -1510,6 +1907,17 @@ class TeamWorkspaceRoleArgs:
     def workspace_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "workspace_id", value)
 
+
+if not MYPY:
+    class UserInviteInviteeArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    UserInviteInviteeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UserInviteInviteeArgs:
@@ -1588,6 +1996,17 @@ class UserInviteInviteeArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class UserInviteInviterArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    UserInviteInviterArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UserInviteInviterArgs:
     def __init__(__self__, *,
@@ -1665,6 +2084,19 @@ class UserInviteInviterArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class UserRolesDeploymentRoleArgsDict(TypedDict):
+        deployment_id: pulumi.Input[str]
+        """
+        The ID of the deployment to assign the role to
+        """
+        role: pulumi.Input[str]
+        """
+        The role to assign to the deployment
+        """
+elif False:
+    UserRolesDeploymentRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UserRolesDeploymentRoleArgs:
     def __init__(__self__, *,
@@ -1702,6 +2134,19 @@ class UserRolesDeploymentRoleArgs:
         pulumi.set(self, "role", value)
 
 
+if not MYPY:
+    class UserRolesWorkspaceRoleArgsDict(TypedDict):
+        role: pulumi.Input[str]
+        """
+        The role to assign to the workspace
+        """
+        workspace_id: pulumi.Input[str]
+        """
+        The ID of the workspace to assign the role to
+        """
+elif False:
+    UserRolesWorkspaceRoleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UserRolesWorkspaceRoleArgs:
     def __init__(__self__, *,
@@ -1738,6 +2183,17 @@ class UserRolesWorkspaceRoleArgs:
     def workspace_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "workspace_id", value)
 
+
+if not MYPY:
+    class WorkspaceCreatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    WorkspaceCreatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class WorkspaceCreatedByArgs:
@@ -1815,6 +2271,17 @@ class WorkspaceCreatedByArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class WorkspaceUpdatedByArgsDict(TypedDict):
+        api_token_name: NotRequired[pulumi.Input[str]]
+        avatar_url: NotRequired[pulumi.Input[str]]
+        full_name: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        subject_type: NotRequired[pulumi.Input[str]]
+        username: NotRequired[pulumi.Input[str]]
+elif False:
+    WorkspaceUpdatedByArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class WorkspaceUpdatedByArgs:

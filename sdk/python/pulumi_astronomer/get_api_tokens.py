@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -114,9 +119,6 @@ def get_api_tokens(deployment_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         include_only_organization_tokens=pulumi.get(__ret__, 'include_only_organization_tokens'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-
-
-@_utilities.lift_output_func(get_api_tokens)
 def get_api_tokens_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None,
                           include_only_organization_tokens: Optional[pulumi.Input[Optional[bool]]] = None,
                           workspace_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -137,4 +139,15 @@ def get_api_tokens_output(deployment_id: Optional[pulumi.Input[Optional[str]]] =
     pulumi.export("apiTokens", example_api_tokens)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['deploymentId'] = deployment_id
+    __args__['includeOnlyOrganizationTokens'] = include_only_organization_tokens
+    __args__['workspaceId'] = workspace_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getApiTokens:getApiTokens', __args__, opts=opts, typ=GetApiTokensResult)
+    return __ret__.apply(lambda __response__: GetApiTokensResult(
+        api_tokens=pulumi.get(__response__, 'api_tokens'),
+        deployment_id=pulumi.get(__response__, 'deployment_id'),
+        id=pulumi.get(__response__, 'id'),
+        include_only_organization_tokens=pulumi.get(__response__, 'include_only_organization_tokens'),
+        workspace_id=pulumi.get(__response__, 'workspace_id')))

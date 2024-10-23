@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -681,9 +686,6 @@ def get_deployment(id: Optional[str] = None,
         worker_queues=pulumi.get(__ret__, 'worker_queues'),
         workload_identity=pulumi.get(__ret__, 'workload_identity'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-
-
-@_utilities.lift_output_func(get_deployment)
 def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentResult]:
     """
@@ -702,4 +704,56 @@ def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
 
     :param str id: Deployment identifier
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('astronomer:index/getDeployment:getDeployment', __args__, opts=opts, typ=GetDeploymentResult)
+    return __ret__.apply(lambda __response__: GetDeploymentResult(
+        airflow_version=pulumi.get(__response__, 'airflow_version'),
+        astro_runtime_version=pulumi.get(__response__, 'astro_runtime_version'),
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        contact_emails=pulumi.get(__response__, 'contact_emails'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        created_by=pulumi.get(__response__, 'created_by'),
+        dag_tarball_version=pulumi.get(__response__, 'dag_tarball_version'),
+        default_task_pod_cpu=pulumi.get(__response__, 'default_task_pod_cpu'),
+        default_task_pod_memory=pulumi.get(__response__, 'default_task_pod_memory'),
+        description=pulumi.get(__response__, 'description'),
+        desired_dag_tarball_version=pulumi.get(__response__, 'desired_dag_tarball_version'),
+        environment_variables=pulumi.get(__response__, 'environment_variables'),
+        executor=pulumi.get(__response__, 'executor'),
+        external_ips=pulumi.get(__response__, 'external_ips'),
+        id=pulumi.get(__response__, 'id'),
+        image_repository=pulumi.get(__response__, 'image_repository'),
+        image_tag=pulumi.get(__response__, 'image_tag'),
+        image_version=pulumi.get(__response__, 'image_version'),
+        is_cicd_enforced=pulumi.get(__response__, 'is_cicd_enforced'),
+        is_dag_deploy_enabled=pulumi.get(__response__, 'is_dag_deploy_enabled'),
+        is_development_mode=pulumi.get(__response__, 'is_development_mode'),
+        is_high_availability=pulumi.get(__response__, 'is_high_availability'),
+        name=pulumi.get(__response__, 'name'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        oidc_issuer_url=pulumi.get(__response__, 'oidc_issuer_url'),
+        region=pulumi.get(__response__, 'region'),
+        resource_quota_cpu=pulumi.get(__response__, 'resource_quota_cpu'),
+        resource_quota_memory=pulumi.get(__response__, 'resource_quota_memory'),
+        scaling_spec=pulumi.get(__response__, 'scaling_spec'),
+        scaling_status=pulumi.get(__response__, 'scaling_status'),
+        scheduler_au=pulumi.get(__response__, 'scheduler_au'),
+        scheduler_cpu=pulumi.get(__response__, 'scheduler_cpu'),
+        scheduler_memory=pulumi.get(__response__, 'scheduler_memory'),
+        scheduler_replicas=pulumi.get(__response__, 'scheduler_replicas'),
+        scheduler_size=pulumi.get(__response__, 'scheduler_size'),
+        status=pulumi.get(__response__, 'status'),
+        status_reason=pulumi.get(__response__, 'status_reason'),
+        task_pod_node_pool_id=pulumi.get(__response__, 'task_pod_node_pool_id'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        updated_by=pulumi.get(__response__, 'updated_by'),
+        webserver_airflow_api_url=pulumi.get(__response__, 'webserver_airflow_api_url'),
+        webserver_ingress_hostname=pulumi.get(__response__, 'webserver_ingress_hostname'),
+        webserver_url=pulumi.get(__response__, 'webserver_url'),
+        worker_queues=pulumi.get(__response__, 'worker_queues'),
+        workload_identity=pulumi.get(__response__, 'workload_identity'),
+        workspace_id=pulumi.get(__response__, 'workspace_id')))

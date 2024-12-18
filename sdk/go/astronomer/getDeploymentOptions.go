@@ -112,21 +112,11 @@ type GetDeploymentOptionsResult struct {
 }
 
 func GetDeploymentOptionsOutput(ctx *pulumi.Context, args GetDeploymentOptionsOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentOptionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetDeploymentOptionsResultOutput, error) {
 			args := v.(GetDeploymentOptionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetDeploymentOptionsResult
-			secret, err := ctx.InvokePackageRaw("astronomer:index/getDeploymentOptions:getDeploymentOptions", args, &rv, "", opts...)
-			if err != nil {
-				return GetDeploymentOptionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetDeploymentOptionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetDeploymentOptionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("astronomer:index/getDeploymentOptions:getDeploymentOptions", args, GetDeploymentOptionsResultOutput{}, options).(GetDeploymentOptionsResultOutput), nil
 		}).(GetDeploymentOptionsResultOutput)
 }
 

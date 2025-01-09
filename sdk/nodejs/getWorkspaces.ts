@@ -85,7 +85,7 @@ export interface GetWorkspacesResult {
  * export const exampleWorkspaces = exampleWorkspacesWorkspaces;
  * ```
  */
-export function getWorkspacesOutput(args?: GetWorkspacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkspacesResult> {
+export function getWorkspacesOutput(args?: GetWorkspacesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWorkspacesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getWorkspaces:getWorkspaces", {

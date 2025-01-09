@@ -114,7 +114,7 @@ def get_workspaces(names: Optional[Sequence[str]] = None,
         workspaces=pulumi.get(__ret__, 'workspaces'))
 def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           workspace_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkspacesResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWorkspacesResult]:
     """
     Workspaces data source
 
@@ -139,7 +139,7 @@ def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]]
     __args__ = dict()
     __args__['names'] = names
     __args__['workspaceIds'] = workspace_ids
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult)
     return __ret__.apply(lambda __response__: GetWorkspacesResult(
         id=pulumi.get(__response__, 'id'),

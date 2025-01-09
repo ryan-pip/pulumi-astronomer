@@ -122,7 +122,7 @@ def get_deployments(deployment_ids: Optional[Sequence[str]] = None,
 def get_deployments_output(deployment_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            workspace_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentsResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentsResult]:
     """
     Deployments data source
 
@@ -143,7 +143,7 @@ def get_deployments_output(deployment_ids: Optional[pulumi.Input[Optional[Sequen
     __args__['deploymentIds'] = deployment_ids
     __args__['names'] = names
     __args__['workspaceIds'] = workspace_ids
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
     return __ret__.apply(lambda __response__: GetDeploymentsResult(
         deployment_ids=pulumi.get(__response__, 'deployment_ids'),

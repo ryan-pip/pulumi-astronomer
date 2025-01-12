@@ -72,7 +72,7 @@ export interface GetClusterOptionsResult {
  * export const clusterOptions = exampleClusterOptions;
  * ```
  */
-export function getClusterOptionsOutput(args: GetClusterOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOptionsResult> {
+export function getClusterOptionsOutput(args: GetClusterOptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterOptionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getClusterOptions:getClusterOptions", {
         "cloudProvider": args.cloudProvider,

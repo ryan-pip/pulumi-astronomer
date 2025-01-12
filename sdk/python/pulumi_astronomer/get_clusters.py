@@ -108,7 +108,7 @@ def get_clusters(cloud_provider: Optional[str] = None,
         names=pulumi.get(__ret__, 'names'))
 def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = None,
                         names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClustersResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
     Clusters data source
 
@@ -127,7 +127,7 @@ def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = 
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
     __args__['names'] = names
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getClusters:getClusters', __args__, opts=opts, typ=GetClustersResult)
     return __ret__.apply(lambda __response__: GetClustersResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),

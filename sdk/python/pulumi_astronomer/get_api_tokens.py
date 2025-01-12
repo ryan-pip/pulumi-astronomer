@@ -122,7 +122,7 @@ def get_api_tokens(deployment_id: Optional[str] = None,
 def get_api_tokens_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None,
                           include_only_organization_tokens: Optional[pulumi.Input[Optional[bool]]] = None,
                           workspace_id: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiTokensResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiTokensResult]:
     """
     API Tokens data source
 
@@ -143,7 +143,7 @@ def get_api_tokens_output(deployment_id: Optional[pulumi.Input[Optional[str]]] =
     __args__['deploymentId'] = deployment_id
     __args__['includeOnlyOrganizationTokens'] = include_only_organization_tokens
     __args__['workspaceId'] = workspace_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getApiTokens:getApiTokens', __args__, opts=opts, typ=GetApiTokensResult)
     return __ret__.apply(lambda __response__: GetApiTokensResult(
         api_tokens=pulumi.get(__response__, 'api_tokens'),

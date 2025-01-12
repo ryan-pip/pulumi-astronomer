@@ -97,7 +97,7 @@ def get_teams(names: Optional[Sequence[str]] = None,
         names=pulumi.get(__ret__, 'names'),
         teams=pulumi.get(__ret__, 'teams'))
 def get_teams_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamsResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamsResult]:
     """
     Teams data source
 
@@ -117,7 +117,7 @@ def get_teams_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = No
     """
     __args__ = dict()
     __args__['names'] = names
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getTeams:getTeams', __args__, opts=opts, typ=GetTeamsResult)
     return __ret__.apply(lambda __response__: GetTeamsResult(
         id=pulumi.get(__response__, 'id'),

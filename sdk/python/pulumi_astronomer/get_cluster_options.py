@@ -108,7 +108,7 @@ def get_cluster_options(cloud_provider: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_cluster_options_output(cloud_provider: Optional[pulumi.Input[Optional[str]]] = None,
                                type: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterOptionsResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterOptionsResult]:
     """
     ClusterOptions data source
 
@@ -127,7 +127,7 @@ def get_cluster_options_output(cloud_provider: Optional[pulumi.Input[Optional[st
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getClusterOptions:getClusterOptions', __args__, opts=opts, typ=GetClusterOptionsResult)
     return __ret__.apply(lambda __response__: GetClusterOptionsResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),

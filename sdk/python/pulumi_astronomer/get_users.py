@@ -108,7 +108,7 @@ def get_users(deployment_id: Optional[str] = None,
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
 def get_users_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None,
                      workspace_id: Optional[pulumi.Input[Optional[str]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     Users data source
 
@@ -127,7 +127,7 @@ def get_users_output(deployment_id: Optional[pulumi.Input[Optional[str]]] = None
     __args__ = dict()
     __args__['deploymentId'] = deployment_id
     __args__['workspaceId'] = workspace_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         deployment_id=pulumi.get(__response__, 'deployment_id'),

@@ -235,7 +235,7 @@ def get_deployment_options_output(cloud_provider: Optional[pulumi.Input[Optional
                                   deployment_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   deployment_type: Optional[pulumi.Input[Optional[str]]] = None,
                                   executor: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentOptionsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentOptionsResult]:
     """
     Deployment options data source
 
@@ -264,7 +264,7 @@ def get_deployment_options_output(cloud_provider: Optional[pulumi.Input[Optional
     __args__['deploymentId'] = deployment_id
     __args__['deploymentType'] = deployment_type
     __args__['executor'] = executor
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getDeploymentOptions:getDeploymentOptions', __args__, opts=opts, typ=GetDeploymentOptionsResult)
     return __ret__.apply(lambda __response__: GetDeploymentOptionsResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),

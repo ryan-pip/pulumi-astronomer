@@ -687,7 +687,7 @@ def get_deployment(id: Optional[str] = None,
         workload_identity=pulumi.get(__ret__, 'workload_identity'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
 def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentResult]:
     """
     Deployment data source
 
@@ -706,7 +706,7 @@ def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getDeployment:getDeployment', __args__, opts=opts, typ=GetDeploymentResult)
     return __ret__.apply(lambda __response__: GetDeploymentResult(
         airflow_version=pulumi.get(__response__, 'airflow_version'),

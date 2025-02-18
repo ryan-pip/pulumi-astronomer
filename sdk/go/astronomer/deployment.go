@@ -105,7 +105,7 @@ type Deployment struct {
 	WebserverIngressHostname pulumi.StringOutput `pulumi:"webserverIngressHostname"`
 	// Deployment webserver URL
 	WebserverUrl pulumi.StringOutput `pulumi:"webserverUrl"`
-	// Deployment worker queues - required for deployments with 'CELERY' executor
+	// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 	WorkerQueues DeploymentWorkerQueueArrayOutput `pulumi:"workerQueues"`
 	// Deployment workload identity. This value can be changed via the Astro API if applicable.
 	WorkloadIdentity pulumi.StringOutput `pulumi:"workloadIdentity"`
@@ -256,7 +256,7 @@ type deploymentState struct {
 	WebserverIngressHostname *string `pulumi:"webserverIngressHostname"`
 	// Deployment webserver URL
 	WebserverUrl *string `pulumi:"webserverUrl"`
-	// Deployment worker queues - required for deployments with 'CELERY' executor
+	// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 	WorkerQueues []DeploymentWorkerQueue `pulumi:"workerQueues"`
 	// Deployment workload identity. This value can be changed via the Astro API if applicable.
 	WorkloadIdentity *string `pulumi:"workloadIdentity"`
@@ -354,7 +354,7 @@ type DeploymentState struct {
 	WebserverIngressHostname pulumi.StringPtrInput
 	// Deployment webserver URL
 	WebserverUrl pulumi.StringPtrInput
-	// Deployment worker queues - required for deployments with 'CELERY' executor
+	// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 	WorkerQueues DeploymentWorkerQueueArrayInput
 	// Deployment workload identity. This value can be changed via the Astro API if applicable.
 	WorkloadIdentity pulumi.StringPtrInput
@@ -412,7 +412,7 @@ type deploymentArgs struct {
 	TaskPodNodePoolId *string `pulumi:"taskPodNodePoolId"`
 	// Deployment type - if changing this value, the deployment will be recreated with the new type
 	Type string `pulumi:"type"`
-	// Deployment worker queues - required for deployments with 'CELERY' executor
+	// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 	WorkerQueues []DeploymentWorkerQueue `pulumi:"workerQueues"`
 	// Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
 	WorkspaceId string `pulumi:"workspaceId"`
@@ -465,7 +465,7 @@ type DeploymentArgs struct {
 	TaskPodNodePoolId pulumi.StringPtrInput
 	// Deployment type - if changing this value, the deployment will be recreated with the new type
 	Type pulumi.StringInput
-	// Deployment worker queues - required for deployments with 'CELERY' executor
+	// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 	WorkerQueues DeploymentWorkerQueueArrayInput
 	// Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
 	WorkspaceId pulumi.StringInput
@@ -782,7 +782,7 @@ func (o DeploymentOutput) WebserverUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.WebserverUrl }).(pulumi.StringOutput)
 }
 
-// Deployment worker queues - required for deployments with 'CELERY' executor
+// Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
 func (o DeploymentOutput) WorkerQueues() DeploymentWorkerQueueArrayOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentWorkerQueueArrayOutput { return v.WorkerQueues }).(DeploymentWorkerQueueArrayOutput)
 }

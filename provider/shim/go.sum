@@ -8,8 +8,8 @@ github.com/apapsch/go-jsonmerge/v2 v2.0.0/go.mod h1:lvDnEdqiQrp0O42VQGgmlKpxL1AP
 github.com/apparentlymart/go-textseg/v12 v12.0.0/go.mod h1:S/4uRK2UtaQttw1GenVJEynmyUenKwP++x/+DdGV/Ec=
 github.com/apparentlymart/go-textseg/v15 v15.0.0 h1:uYvfpb3DyLSCGWnctWKGj857c6ew1u1fNQOlOtuGxQY=
 github.com/apparentlymart/go-textseg/v15 v15.0.0/go.mod h1:K8XmNZdhEBkdlyDdvbmmsvpAG721bKi0joRfFdHIWJ4=
-github.com/astronomer/terraform-provider-astro v1.0.0 h1:dHCsjGBfyF+MBF2srsBa7MmAJKP1ZpOQJ8NIyzPSuig=
-github.com/astronomer/terraform-provider-astro v1.0.0/go.mod h1:+Yq8yet4PJIm+j8W7tjcekUfNBsdzUC5pAT4Yj2GykI=
+github.com/astronomer/terraform-provider-astro v1.0.5 h1:QENRK7lEyUoISJLWqjBn3nwC+HedU9JgYyBZXKiEfRY=
+github.com/astronomer/terraform-provider-astro v1.0.5/go.mod h1:+Yq8yet4PJIm+j8W7tjcekUfNBsdzUC5pAT4Yj2GykI=
 github.com/bmatcuk/doublestar v1.1.1/go.mod h1:UD6OnuiIn0yFxxA2le/rnRU1G4RaI4UvFv1sNto9p6w=
 github.com/bufbuild/protocompile v0.4.0 h1:LbFKd2XowZvQ/kajzguUp2DC9UEIQhIq77fZZlaQsNA=
 github.com/bufbuild/protocompile v0.4.0/go.mod h1:3v93+mbWn/v3xzN+31nwkJfrEpAUwp+BagBSZWx+TP8=

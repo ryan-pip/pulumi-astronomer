@@ -245,7 +245,7 @@ def get_api_token(id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'))
 def get_api_token_output(id: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiTokenResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiTokenResult]:
     """
     API Token data source
 
@@ -264,7 +264,7 @@ def get_api_token_output(id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getApiToken:getApiToken', __args__, opts=opts, typ=GetApiTokenResult)
     return __ret__.apply(lambda __response__: GetApiTokenResult(
         created_at=pulumi.get(__response__, 'created_at'),

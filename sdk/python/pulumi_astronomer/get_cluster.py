@@ -336,7 +336,7 @@ def get_cluster(id: Optional[str] = None,
         vpc_subnet_range=pulumi.get(__ret__, 'vpc_subnet_range'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
 def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     Cluster data source
 
@@ -355,7 +355,7 @@ def get_cluster_output(id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult)
     return __ret__.apply(lambda __response__: GetClusterResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),

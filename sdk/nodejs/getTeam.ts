@@ -106,7 +106,7 @@ export interface GetTeamResult {
  * export const team = exampleTeam;
  * ```
  */
-export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
+export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getTeam:getTeam", {
         "id": args.id,

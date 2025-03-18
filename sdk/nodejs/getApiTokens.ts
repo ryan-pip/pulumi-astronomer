@@ -82,7 +82,7 @@ export interface GetApiTokensResult {
  * export const apiTokens = exampleApiTokens;
  * ```
  */
-export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiTokensResult> {
+export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiTokensResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getApiTokens:getApiTokens", {

@@ -142,7 +142,7 @@ export interface GetDeploymentOptionsResult {
  * export const deploymentOptions = exampleDeploymentOptions;
  * ```
  */
-export function getDeploymentOptionsOutput(args?: GetDeploymentOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentOptionsResult> {
+export function getDeploymentOptionsOutput(args?: GetDeploymentOptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDeploymentOptionsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getDeploymentOptions:getDeploymentOptions", {

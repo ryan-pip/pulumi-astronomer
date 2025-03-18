@@ -72,21 +72,11 @@ type GetClusterOptionsResult struct {
 }
 
 func GetClusterOptionsOutput(ctx *pulumi.Context, args GetClusterOptionsOutputArgs, opts ...pulumi.InvokeOption) GetClusterOptionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetClusterOptionsResultOutput, error) {
 			args := v.(GetClusterOptionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetClusterOptionsResult
-			secret, err := ctx.InvokePackageRaw("astronomer:index/getClusterOptions:getClusterOptions", args, &rv, "", opts...)
-			if err != nil {
-				return GetClusterOptionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetClusterOptionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetClusterOptionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("astronomer:index/getClusterOptions:getClusterOptions", args, GetClusterOptionsResultOutput{}, options).(GetClusterOptionsResultOutput), nil
 		}).(GetClusterOptionsResultOutput)
 }
 

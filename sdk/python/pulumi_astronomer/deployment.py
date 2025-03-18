@@ -71,7 +71,7 @@ class DeploymentArgs:
         :param pulumi.Input[int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
         :param pulumi.Input[str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         pulumi.set(__self__, "contact_emails", contact_emails)
         pulumi.set(__self__, "description", description)
@@ -405,7 +405,7 @@ class DeploymentArgs:
     @pulumi.getter(name="workerQueues")
     def worker_queues(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
         """
-        Deployment worker queues - required for deployments with 'CELERY' executor
+        Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         return pulumi.get(self, "worker_queues")
 
@@ -511,7 +511,7 @@ class _DeploymentState:
         :param pulumi.Input[str] webserver_airflow_api_url: Deployment webserver Airflow API URL
         :param pulumi.Input[str] webserver_ingress_hostname: Deployment webserver ingress hostname
         :param pulumi.Input[str] webserver_url: Deployment webserver URL
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         :param pulumi.Input[str] workload_identity: Deployment workload identity. This value can be changed via the Astro API if applicable.
         :param pulumi.Input[str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """
@@ -1153,7 +1153,7 @@ class _DeploymentState:
     @pulumi.getter(name="workerQueues")
     def worker_queues(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
         """
-        Deployment worker queues - required for deployments with 'CELERY' executor
+        Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         return pulumi.get(self, "worker_queues")
 
@@ -1244,7 +1244,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         :param pulumi.Input[str] type: Deployment type - if changing this value, the deployment will be recreated with the new type
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         :param pulumi.Input[str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """
         ...
@@ -1478,7 +1478,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] webserver_airflow_api_url: Deployment webserver Airflow API URL
         :param pulumi.Input[str] webserver_ingress_hostname: Deployment webserver ingress hostname
         :param pulumi.Input[str] webserver_url: Deployment webserver URL
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         :param pulumi.Input[str] workload_identity: Deployment workload identity. This value can be changed via the Astro API if applicable.
         :param pulumi.Input[str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """
@@ -1897,7 +1897,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="workerQueues")
     def worker_queues(self) -> pulumi.Output[Optional[Sequence['outputs.DeploymentWorkerQueue']]]:
         """
-        Deployment worker queues - required for deployments with 'CELERY' executor
+        Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         return pulumi.get(self, "worker_queues")
 

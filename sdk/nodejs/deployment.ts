@@ -215,7 +215,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     public /*out*/ readonly webserverUrl!: pulumi.Output<string>;
     /**
-     * Deployment worker queues - required for deployments with 'CELERY' executor
+     * Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
      */
     public readonly workerQueues!: pulumi.Output<outputs.DeploymentWorkerQueue[] | undefined>;
     /**
@@ -550,7 +550,7 @@ export interface DeploymentState {
      */
     webserverUrl?: pulumi.Input<string>;
     /**
-     * Deployment worker queues - required for deployments with 'CELERY' executor
+     * Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
      */
     workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
     /**
@@ -657,7 +657,7 @@ export interface DeploymentArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * Deployment worker queues - required for deployments with 'CELERY' executor
+     * Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
      */
     workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
     /**

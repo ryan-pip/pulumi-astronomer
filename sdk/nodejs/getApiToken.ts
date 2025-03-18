@@ -114,7 +114,7 @@ export interface GetApiTokenResult {
  * export const apiToken = exampleApiToken;
  * ```
  */
-export function getApiTokenOutput(args: GetApiTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiTokenResult> {
+export function getApiTokenOutput(args: GetApiTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("astronomer:index/getApiToken:getApiToken", {
         "id": args.id,

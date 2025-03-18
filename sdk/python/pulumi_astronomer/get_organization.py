@@ -226,7 +226,7 @@ def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
         trial_expires_at=pulumi.get(__ret__, 'trial_expires_at'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'))
-def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
+def get_organization_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     Organization data source
 
@@ -241,7 +241,7 @@ def get_organization_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         billing_email=pulumi.get(__response__, 'billing_email'),

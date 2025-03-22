@@ -33,6 +33,7 @@ class DeploymentArgs:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[str]] = None,
                  is_development_mode: Optional[pulumi.Input[bool]] = None,
                  is_high_availability: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -89,6 +90,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "default_task_pod_cpu", default_task_pod_cpu)
         if default_task_pod_memory is not None:
             pulumi.set(__self__, "default_task_pod_memory", default_task_pod_memory)
+        if desired_workload_identity is not None:
+            pulumi.set(__self__, "desired_workload_identity", desired_workload_identity)
         if is_development_mode is not None:
             pulumi.set(__self__, "is_development_mode", is_development_mode)
         if is_high_availability is not None:
@@ -261,6 +264,15 @@ class DeploymentArgs:
         pulumi.set(self, "default_task_pod_memory", value)
 
     @property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "desired_workload_identity")
+
+    @desired_workload_identity.setter
+    def desired_workload_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "desired_workload_identity", value)
+
+    @property
     @pulumi.getter(name="isDevelopmentMode")
     def is_development_mode(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -429,6 +441,7 @@ class _DeploymentState:
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  desired_dag_tarball_version: Optional[pulumi.Input[str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]] = None,
                  executor: Optional[pulumi.Input[str]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -539,6 +552,8 @@ class _DeploymentState:
             pulumi.set(__self__, "description", description)
         if desired_dag_tarball_version is not None:
             pulumi.set(__self__, "desired_dag_tarball_version", desired_dag_tarball_version)
+        if desired_workload_identity is not None:
+            pulumi.set(__self__, "desired_workload_identity", desired_workload_identity)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if executor is not None:
@@ -755,6 +770,15 @@ class _DeploymentState:
     @desired_dag_tarball_version.setter
     def desired_dag_tarball_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "desired_dag_tarball_version", value)
+
+    @property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "desired_workload_identity")
+
+    @desired_workload_identity.setter
+    def desired_workload_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "desired_workload_identity", value)
 
     @property
     @pulumi.getter(name="environmentVariables")
@@ -1197,6 +1221,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
@@ -1277,6 +1302,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[bool]] = None,
@@ -1315,6 +1341,7 @@ class Deployment(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["desired_workload_identity"] = desired_workload_identity
             if environment_variables is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_variables'")
             __props__.__dict__["environment_variables"] = environment_variables
@@ -1391,6 +1418,7 @@ class Deployment(pulumi.CustomResource):
             default_task_pod_memory: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             desired_dag_tarball_version: Optional[pulumi.Input[str]] = None,
+            desired_workload_identity: Optional[pulumi.Input[str]] = None,
             environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
             executor: Optional[pulumi.Input[str]] = None,
             external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1498,6 +1526,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["default_task_pod_memory"] = default_task_pod_memory
         __props__.__dict__["description"] = description
         __props__.__dict__["desired_dag_tarball_version"] = desired_dag_tarball_version
+        __props__.__dict__["desired_workload_identity"] = desired_workload_identity
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["executor"] = executor
         __props__.__dict__["external_ips"] = external_ips
@@ -1631,6 +1660,11 @@ class Deployment(pulumi.CustomResource):
         Deployment desired DAG tarball version
         """
         return pulumi.get(self, "desired_dag_tarball_version")
+
+    @property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "desired_workload_identity")
 
     @property
     @pulumi.getter(name="environmentVariables")

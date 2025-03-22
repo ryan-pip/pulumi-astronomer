@@ -43,44 +43,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.NewCluster(ctx, "azureExample", &astronomer.ClusterArgs{
-//				Type:           pulumi.String("DEDICATED"),
-//				Region:         pulumi.String("westus2"),
-//				CloudProvider:  pulumi.String("AZURE"),
-//				VpcSubnetRange: pulumi.String("172.20.0.0/19"),
-//				WorkspaceIds: pulumi.StringArray{
-//					pulumi.String("clv4wcf6f003u01m3zp7gsvzg"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = astronomer.NewCluster(ctx, "gcpExample", &astronomer.ClusterArgs{
-//				Type:                pulumi.String("DEDICATED"),
-//				Region:              pulumi.String("us-central1"),
-//				CloudProvider:       pulumi.String("GCP"),
-//				PodSubnetRange:      pulumi.String("172.21.0.0/19"),
-//				ServicePeeringRange: pulumi.String("172.23.0.0/20"),
-//				ServiceSubnetRange:  pulumi.String("172.22.0.0/22"),
-//				VpcSubnetRange:      pulumi.String("172.20.0.0/22"),
-//				WorkspaceIds:        pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = astronomer.NewCluster(ctx, "importedCluster", &astronomer.ClusterArgs{
-//				Type:                pulumi.String("DEDICATED"),
-//				Region:              pulumi.String("us-central1"),
-//				CloudProvider:       pulumi.String("GCP"),
-//				PodSubnetRange:      pulumi.String("172.21.0.0/19"),
-//				ServicePeeringRange: pulumi.String("172.23.0.0/20"),
-//				ServiceSubnetRange:  pulumi.String("172.22.0.0/22"),
-//				VpcSubnetRange:      pulumi.String("172.20.0.0/22"),
-//				WorkspaceIds:        pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}

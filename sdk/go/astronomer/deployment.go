@@ -39,7 +39,8 @@ type Deployment struct {
 	// Deployment description
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Deployment desired DAG tarball version
-	DesiredDagTarballVersion pulumi.StringOutput `pulumi:"desiredDagTarballVersion"`
+	DesiredDagTarballVersion pulumi.StringOutput    `pulumi:"desiredDagTarballVersion"`
+	DesiredWorkloadIdentity  pulumi.StringPtrOutput `pulumi:"desiredWorkloadIdentity"`
 	// Deployment environment variables
 	EnvironmentVariables DeploymentEnvironmentVariableArrayOutput `pulumi:"environmentVariables"`
 	// Deployment executor
@@ -191,6 +192,7 @@ type deploymentState struct {
 	Description *string `pulumi:"description"`
 	// Deployment desired DAG tarball version
 	DesiredDagTarballVersion *string `pulumi:"desiredDagTarballVersion"`
+	DesiredWorkloadIdentity  *string `pulumi:"desiredWorkloadIdentity"`
 	// Deployment environment variables
 	EnvironmentVariables []DeploymentEnvironmentVariable `pulumi:"environmentVariables"`
 	// Deployment executor
@@ -289,6 +291,7 @@ type DeploymentState struct {
 	Description pulumi.StringPtrInput
 	// Deployment desired DAG tarball version
 	DesiredDagTarballVersion pulumi.StringPtrInput
+	DesiredWorkloadIdentity  pulumi.StringPtrInput
 	// Deployment environment variables
 	EnvironmentVariables DeploymentEnvironmentVariableArrayInput
 	// Deployment executor
@@ -378,7 +381,8 @@ type deploymentArgs struct {
 	// Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
 	DefaultTaskPodMemory *string `pulumi:"defaultTaskPodMemory"`
 	// Deployment description
-	Description string `pulumi:"description"`
+	Description             string  `pulumi:"description"`
+	DesiredWorkloadIdentity *string `pulumi:"desiredWorkloadIdentity"`
 	// Deployment environment variables
 	EnvironmentVariables []DeploymentEnvironmentVariable `pulumi:"environmentVariables"`
 	// Deployment executor
@@ -431,7 +435,8 @@ type DeploymentArgs struct {
 	// Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
 	DefaultTaskPodMemory pulumi.StringPtrInput
 	// Deployment description
-	Description pulumi.StringInput
+	Description             pulumi.StringInput
+	DesiredWorkloadIdentity pulumi.StringPtrInput
 	// Deployment environment variables
 	EnvironmentVariables DeploymentEnvironmentVariableArrayInput
 	// Deployment executor
@@ -616,6 +621,10 @@ func (o DeploymentOutput) Description() pulumi.StringOutput {
 // Deployment desired DAG tarball version
 func (o DeploymentOutput) DesiredDagTarballVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.DesiredDagTarballVersion }).(pulumi.StringOutput)
+}
+
+func (o DeploymentOutput) DesiredWorkloadIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.DesiredWorkloadIdentity }).(pulumi.StringPtrOutput)
 }
 
 // Deployment environment variables

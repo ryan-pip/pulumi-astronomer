@@ -537,30 +537,6 @@ class Cluster(pulumi.CustomResource):
                 "update": "2h",
                 "delete": "1h",
             })
-        azure_example = astronomer.Cluster("azureExample",
-            type="DEDICATED",
-            region="westus2",
-            cloud_provider="AZURE",
-            vpc_subnet_range="172.20.0.0/19",
-            workspace_ids=["clv4wcf6f003u01m3zp7gsvzg"])
-        gcp_example = astronomer.Cluster("gcpExample",
-            type="DEDICATED",
-            region="us-central1",
-            cloud_provider="GCP",
-            pod_subnet_range="172.21.0.0/19",
-            service_peering_range="172.23.0.0/20",
-            service_subnet_range="172.22.0.0/22",
-            vpc_subnet_range="172.20.0.0/22",
-            workspace_ids=[])
-        imported_cluster = astronomer.Cluster("importedCluster",
-            type="DEDICATED",
-            region="us-central1",
-            cloud_provider="GCP",
-            pod_subnet_range="172.21.0.0/19",
-            service_peering_range="172.23.0.0/20",
-            service_subnet_range="172.22.0.0/22",
-            vpc_subnet_range="172.20.0.0/22",
-            workspace_ids=[])
         ```
 
         :param str resource_name: The name of the resource.
@@ -601,30 +577,6 @@ class Cluster(pulumi.CustomResource):
                 "update": "2h",
                 "delete": "1h",
             })
-        azure_example = astronomer.Cluster("azureExample",
-            type="DEDICATED",
-            region="westus2",
-            cloud_provider="AZURE",
-            vpc_subnet_range="172.20.0.0/19",
-            workspace_ids=["clv4wcf6f003u01m3zp7gsvzg"])
-        gcp_example = astronomer.Cluster("gcpExample",
-            type="DEDICATED",
-            region="us-central1",
-            cloud_provider="GCP",
-            pod_subnet_range="172.21.0.0/19",
-            service_peering_range="172.23.0.0/20",
-            service_subnet_range="172.22.0.0/22",
-            vpc_subnet_range="172.20.0.0/22",
-            workspace_ids=[])
-        imported_cluster = astronomer.Cluster("importedCluster",
-            type="DEDICATED",
-            region="us-central1",
-            cloud_provider="GCP",
-            pod_subnet_range="172.21.0.0/19",
-            service_peering_range="172.23.0.0/20",
-            service_subnet_range="172.22.0.0/22",
-            vpc_subnet_range="172.20.0.0/22",
-            workspace_ids=[])
         ```
 
         :param str resource_name: The name of the resource.

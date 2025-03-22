@@ -34,7 +34,7 @@ require (
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
-	github.com/astronomer/terraform-provider-astro v1.0.3 // indirect
+	github.com/astronomer/terraform-provider-astro v1.0.6 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aws/aws-sdk-go v1.50.36 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect

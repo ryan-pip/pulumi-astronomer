@@ -27,33 +27,6 @@ import * as utilities from "./utilities";
  *         "delete": "1h",
  *     },
  * });
- * const azureExample = new astronomer.Cluster("azureExample", {
- *     type: "DEDICATED",
- *     region: "westus2",
- *     cloudProvider: "AZURE",
- *     vpcSubnetRange: "172.20.0.0/19",
- *     workspaceIds: ["clv4wcf6f003u01m3zp7gsvzg"],
- * });
- * const gcpExample = new astronomer.Cluster("gcpExample", {
- *     type: "DEDICATED",
- *     region: "us-central1",
- *     cloudProvider: "GCP",
- *     podSubnetRange: "172.21.0.0/19",
- *     servicePeeringRange: "172.23.0.0/20",
- *     serviceSubnetRange: "172.22.0.0/22",
- *     vpcSubnetRange: "172.20.0.0/22",
- *     workspaceIds: [],
- * });
- * const importedCluster = new astronomer.Cluster("importedCluster", {
- *     type: "DEDICATED",
- *     region: "us-central1",
- *     cloudProvider: "GCP",
- *     podSubnetRange: "172.21.0.0/19",
- *     servicePeeringRange: "172.23.0.0/20",
- *     serviceSubnetRange: "172.22.0.0/22",
- *     vpcSubnetRange: "172.20.0.0/22",
- *     workspaceIds: [],
- * });
  * ```
  */
 export class Cluster extends pulumi.CustomResource {

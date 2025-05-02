@@ -85,6 +85,7 @@ export class Deployment extends pulumi.CustomResource {
      * Deployment desired DAG tarball version
      */
     public /*out*/ readonly desiredDagTarballVersion!: pulumi.Output<string>;
+    public readonly desiredWorkloadIdentity!: pulumi.Output<string | undefined>;
     /**
      * Deployment environment variables
      */
@@ -252,6 +253,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["defaultTaskPodMemory"] = state ? state.defaultTaskPodMemory : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["desiredDagTarballVersion"] = state ? state.desiredDagTarballVersion : undefined;
+            resourceInputs["desiredWorkloadIdentity"] = state ? state.desiredWorkloadIdentity : undefined;
             resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
             resourceInputs["executor"] = state ? state.executor : undefined;
             resourceInputs["externalIps"] = state ? state.externalIps : undefined;
@@ -320,6 +322,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["defaultTaskPodCpu"] = args ? args.defaultTaskPodCpu : undefined;
             resourceInputs["defaultTaskPodMemory"] = args ? args.defaultTaskPodMemory : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["desiredWorkloadIdentity"] = args ? args.desiredWorkloadIdentity : undefined;
             resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
             resourceInputs["executor"] = args ? args.executor : undefined;
             resourceInputs["isCicdEnforced"] = args ? args.isCicdEnforced : undefined;
@@ -420,6 +423,7 @@ export interface DeploymentState {
      * Deployment desired DAG tarball version
      */
     desiredDagTarballVersion?: pulumi.Input<string>;
+    desiredWorkloadIdentity?: pulumi.Input<string>;
     /**
      * Deployment environment variables
      */
@@ -591,6 +595,7 @@ export interface DeploymentArgs {
      * Deployment description
      */
     description: pulumi.Input<string>;
+    desiredWorkloadIdentity?: pulumi.Input<string>;
     /**
      * Deployment environment variables
      */

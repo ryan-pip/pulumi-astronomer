@@ -24,7 +24,7 @@ Object.defineProperty(exports, "host", {
 export declare const organizationId: string | undefined;
 Object.defineProperty(exports, "organizationId", {
     get() {
-        return __config.get("organizationId");
+        return __config.get("organizationId") ?? utilities.getEnv("ASTRO_ORGANIZATION_ID");
     },
     enumerable: true,
 });

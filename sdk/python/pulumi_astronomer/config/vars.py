@@ -32,7 +32,7 @@ class _ExportableConfig(types.ModuleType):
         """
         Organization ID this provider will operate on.
         """
-        return __config__.get('organizationId')
+        return __config__.get('organizationId') or _utilities.get_env('ASTRO_ORGANIZATION_ID')
 
     @_builtins.property
     def token(self) -> Optional[str]:

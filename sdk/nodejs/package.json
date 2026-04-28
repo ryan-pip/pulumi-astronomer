@@ -1,6 +1,6 @@
 {
     "name": "@ryan-pip/pulumi_astronomer",
-    "version": "1.1.0-alpha.1777369603+58dcf38d.dirty",
+    "version": "1.1.0-alpha.1777372242+34355289.dirty",
     "description": "A Pulumi package for creating and managing Astronomer Cloud resources. Based on terraform-provider-astro: version v1.2.3",
     "keywords": [
         "pulumi",
@@ -24,7 +24,7 @@
     "pulumi": {
         "resource": true,
         "name": "astronomer",
-        "version": "1.1.0-alpha.1777369603+58dcf38d.dirty",
+        "version": "1.1.0-alpha.1777372242+34355289.dirty",
         "server": "github://api.github.com/ryan-pip/pulumi-astronomer"
     }
 }

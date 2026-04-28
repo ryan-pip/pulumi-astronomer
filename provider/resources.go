@@ -82,6 +82,11 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"ASTRO_API_TOKEN"},
 				},
 			},
+			"organization_id": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ASTRO_ORGANIZATION_ID"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{

@@ -32,7 +32,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Organization ID this provider will operate on.
      */
-    declare public readonly organizationId: pulumi.Output<string>;
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
     /**
      * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
      */
@@ -45,15 +45,12 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if (args?.organizationId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'organizationId'");
-            }
             resourceInputs["host"] = args?.host;
-            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["organizationId"] = (args?.organizationId) ?? utilities.getEnv("ASTRO_ORGANIZATION_ID");
             resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("ASTRO_API_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -83,7 +80,7 @@ export interface ProviderArgs {
     /**
      * Organization ID this provider will operate on.
      */
-    organizationId: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
     /**
      * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
      */

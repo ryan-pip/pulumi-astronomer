@@ -19,35 +19,26 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 organization_id: pulumi.Input[_builtins.str],
                  host: Optional[pulumi.Input[_builtins.str]] = None,
+                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
-        :param pulumi.Input[_builtins.str] organization_id: Organization ID this provider will operate on.
         :param pulumi.Input[_builtins.str] host: API host to use for the provider. Default is `https://api.astronomer.io`
+        :param pulumi.Input[_builtins.str] organization_id: Organization ID this provider will operate on.
         :param pulumi.Input[_builtins.str] token: Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
         """
-        pulumi.set(__self__, "organization_id", organization_id)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if organization_id is None:
+            organization_id = _utilities.get_env('ASTRO_ORGANIZATION_ID')
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if token is None:
             token = _utilities.get_env('ASTRO_API_TOKEN')
         if token is not None:
             pulumi.set(__self__, "token", token)
-
-    @_builtins.property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Organization ID this provider will operate on.
-        """
-        return pulumi.get(self, "organization_id")
-
-    @organization_id.setter
-    def organization_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -60,6 +51,18 @@ class ProviderArgs:
     @host.setter
     def host(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Organization ID this provider will operate on.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -101,7 +104,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the astro package. By default, resources use package-wide configuration
@@ -138,8 +141,8 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["host"] = host
-            if organization_id is None and not opts.urn:
-                raise TypeError("Missing required property 'organization_id'")
+            if organization_id is None:
+                organization_id = _utilities.get_env('ASTRO_ORGANIZATION_ID')
             __props__.__dict__["organization_id"] = organization_id
             if token is None:
                 token = _utilities.get_env('ASTRO_API_TOKEN')
@@ -162,7 +165,7 @@ class Provider(pulumi.ProviderResource):
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> pulumi.Output[_builtins.str]:
+    def organization_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Organization ID this provider will operate on.
         """

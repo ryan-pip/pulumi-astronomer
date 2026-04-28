@@ -18,7 +18,15 @@ func GetHost(ctx *pulumi.Context) string {
 
 // Organization ID this provider will operate on.
 func GetOrganizationId(ctx *pulumi.Context) string {
-	return config.Get(ctx, "astronomer:organizationId")
+	v, err := config.Try(ctx, "astronomer:organizationId")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "ASTRO_ORGANIZATION_ID"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.

@@ -72,6 +72,7 @@ jobs:
     env:
       ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
       ASTRO_WORKSPACE_ID: ${{ secrets.ASTRO_WORKSPACE_ID }}
+      ASTRO_ORGANIZATION_ID: ${{ secrets.ASTRO_ORGANIZATION_ID }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4

@@ -90,24 +90,8 @@ jobs:
       - name: Build provider
         run: make prepare_local_workspace
 
-      - name: Write executables list
-        run: ls bin/pulumi-* > bin/executables.txt
-
-      - name: Upload prerequisites bin
-        uses: actions/upload-artifact@v4
-        with:
-          name: prerequisites-bin
-          path: bin
-          retention-days: 1
-          if-no-files-found: error
-
-      - name: Upload schema-embed.json
-        uses: actions/upload-artifact@v4
-        with:
-          name: schema-embed.json
-          path: provider/cmd/pulumi-resource-astronomer/schema-embed.json
-          retention-days: 1
-          if-no-files-found: error
+      - name: Upload prerequisites
+        uses: ./.github/actions/upload-prerequisites
 
   # ── build SDKs (matrix, needs prerequisites) ──────────────────────────────
 

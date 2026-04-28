@@ -96,38 +96,26 @@ func Provider() tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@ryan-pip/pulumi_astronomer",
 
-			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
-				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
+				"@types/node": "^10.0.0",
 				"@types/mime": "^2.0.0",
 			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
 			PackageName: "pulumi_astronomer",
 
-			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 
-			// PyProject.Enabled emits sdk/python/pyproject.toml (PEP 621)
-			// instead of legacy setup.py. We do NOT set RespectSchemaVersion
-			// on purpose: the generated pyproject.toml is committed, and
-			// pulumictl-derived versions change per build (sha + dirty
-			// suffix), which would break the build_sdk worktree-clean check.
-			// The wheel built under sdk/python/bin/ keeps the placeholder
-			// version, which is fine for local install/test; release.yml
-			// injects the real version when publishing.
 			PyProject: struct {
 				Enabled bool
 			}{Enabled: true},
+			RespectSchemaVersion: true,
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
@@ -137,6 +125,7 @@ func Provider() tfbridge.ProviderInfo {
 				"astronomer",
 			),
 			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace: "RyanPip",

@@ -1,5 +1,7 @@
 [settings]
 experimental = true # Required for Go binaries (e.g. pulumictl).
+fetch_remote_versions_cache = "24h" # Reduce GitHub API calls to confirm pinned versions.
+http_retries = 3
 
 [tools]
 github-cli = "latest"
@@ -14,9 +16,9 @@ pulumi = "latest"
 uv = "latest"
 golangci-lint = "2"
 "go:github.com/pulumi/pulumictl/cmd/pulumictl" = "latest"
-"go:github.com/pulumi/upgrade-provider" = "main"
-"go:golang.org/x/tools/gopls" = "latest"
-
+# Dev-only tools (gopls, upgrade-provider) intentionally omitted: CI doesn't
+# need them and the upgrade-provider workflow uses a separate action. Add to
+# your own ~/.config/mise/config.toml or .mise.local.toml if you want them.
 
 [env]
 GOTOOLCHAIN = "go1.25.9"

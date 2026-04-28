@@ -36,6 +36,11 @@ jobs:
 
       - name: Setup mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+        with:
+          version: 2026.3.7
+          cache_save: false # Only the prerequisites job saves the mise cache.
 
       - name: Run golangci-lint
         # Lint library packages only; cmd/ depends on schema-embed.json which is generated.
@@ -84,6 +89,11 @@ jobs:
 
       - name: Setup mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+        with:
+          version: 2026.3.7
+          cache_save: false # Only the prerequisites job saves the mise cache.
 
       - name: go vet
         # Exclude cmd/: depends on schema-embed.json which is generated at build time.
@@ -116,6 +126,11 @@ jobs:
 
       - name: Setup mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+        with:
+          version: 2026.3.7
+          cache_save: true # This job populates the mise cache for the rest of the workflow.
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"
@@ -160,6 +175,11 @@ jobs:
 
       - name: Setup mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+        with:
+          version: 2026.3.7
+          cache_save: false # Only the prerequisites job saves the mise cache.
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"
@@ -222,6 +242,11 @@ jobs:
 
       - name: Setup mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+        with:
+          version: 2026.3.7
+          cache_save: false # Only the prerequisites job saves the mise cache.
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"

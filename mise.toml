@@ -4,7 +4,7 @@ experimental = true # Required for Go binaries (e.g. pulumictl).
 [tools]
 github-cli = "latest"
 
-go = "1.24"
+go = "1.25"
 node = "22"
 python = "3.11"
 dotnet = "8.0"
@@ -17,4 +17,4 @@ golangci-lint = "2"
 
 
 [env]
-GOTOOLCHAIN = "go1.24.13"
+GOTOOLCHAIN = "go1.25.9"

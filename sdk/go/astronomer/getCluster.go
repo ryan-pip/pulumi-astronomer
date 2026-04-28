@@ -57,16 +57,28 @@ type LookupClusterArgs struct {
 
 // A collection of values returned by getCluster.
 type LookupClusterResult struct {
-	// Cluster cloud provider
+	// Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Cluster creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// The secondary region for Disaster Recovery
+	DrRegion string `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only)
+	DrSecondaryVpcCidr string `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region
+	DrVpcSubnetRange string `pulumi:"drVpcSubnetRange"`
+	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+	EnableReplicationTimeControl bool `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus GetClusterHealthStatus `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id string `pulumi:"id"`
+	// Whether Disaster Recovery is enabled on the cluster
+	IsDrEnabled bool `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region
+	IsFailedOver bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited bool `pulumi:"isLimited"`
 	// Cluster metadata
@@ -135,7 +147,7 @@ func (o LookupClusterResultOutput) ToLookupClusterResultOutputWithContext(ctx co
 	return o
 }
 
-// Cluster cloud provider
+// Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o LookupClusterResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -150,6 +162,26 @@ func (o LookupClusterResultOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The secondary region for Disaster Recovery
+func (o LookupClusterResultOutput) DrRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrRegion }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking in the DR region (AWS only)
+func (o LookupClusterResultOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The VPC subnet range for the Disaster Recovery region
+func (o LookupClusterResultOutput) DrVpcSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrVpcSubnetRange }).(pulumi.StringOutput)
+}
+
+// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+func (o LookupClusterResultOutput) EnableReplicationTimeControl() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.EnableReplicationTimeControl }).(pulumi.BoolOutput)
+}
+
 // Cluster health status
 func (o LookupClusterResultOutput) HealthStatus() GetClusterHealthStatusOutput {
 	return o.ApplyT(func(v LookupClusterResult) GetClusterHealthStatus { return v.HealthStatus }).(GetClusterHealthStatusOutput)
@@ -158,6 +190,16 @@ func (o LookupClusterResultOutput) HealthStatus() GetClusterHealthStatusOutput {
 // Cluster identifier
 func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether Disaster Recovery is enabled on the cluster
+func (o LookupClusterResultOutput) IsDrEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.IsDrEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether the cluster is currently failed over to the DR region
+func (o LookupClusterResultOutput) IsFailedOver() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.IsFailedOver }).(pulumi.BoolOutput)
 }
 
 // Whether the cluster is limited

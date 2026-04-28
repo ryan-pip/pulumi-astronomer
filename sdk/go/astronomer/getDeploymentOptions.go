@@ -79,7 +79,7 @@ type GetDeploymentOptionsArgs struct {
 	DeploymentId *string `pulumi:"deploymentId"`
 	// Deployment type
 	DeploymentType *string `pulumi:"deploymentType"`
-	// Executor
+	// Executor. Valid values: CELERY, KUBERNETES, ASTRO.
 	Executor *string `pulumi:"executor"`
 }
 
@@ -91,7 +91,7 @@ type GetDeploymentOptionsResult struct {
 	DeploymentId *string `pulumi:"deploymentId"`
 	// Deployment type
 	DeploymentType *string `pulumi:"deploymentType"`
-	// Executor
+	// Executor. Valid values: CELERY, KUBERNETES, ASTRO.
 	Executor *string `pulumi:"executor"`
 	// Available executors
 	Executors []string `pulumi:"executors"`
@@ -128,7 +128,7 @@ type GetDeploymentOptionsOutputArgs struct {
 	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
 	// Deployment type
 	DeploymentType pulumi.StringPtrInput `pulumi:"deploymentType"`
-	// Executor
+	// Executor. Valid values: CELERY, KUBERNETES, ASTRO.
 	Executor pulumi.StringPtrInput `pulumi:"executor"`
 }
 
@@ -166,7 +166,7 @@ func (o GetDeploymentOptionsResultOutput) DeploymentType() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v GetDeploymentOptionsResult) *string { return v.DeploymentType }).(pulumi.StringPtrOutput)
 }
 
-// Executor
+// Executor. Valid values: CELERY, KUBERNETES, ASTRO.
 func (o GetDeploymentOptionsResultOutput) Executor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentOptionsResult) *string { return v.Executor }).(pulumi.StringPtrOutput)
 }

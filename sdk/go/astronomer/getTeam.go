@@ -61,6 +61,8 @@ type LookupTeamResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamCreatedBy `pulumi:"createdBy"`
+	// The DAG roles assigned to the team
+	DagRoles []GetTeamDagRole `pulumi:"dagRoles"`
 	// The roles assigned to the Deployments
 	DeploymentRoles []GetTeamDeploymentRole `pulumi:"deploymentRoles"`
 	// Team description
@@ -75,6 +77,8 @@ type LookupTeamResult struct {
 	OrganizationRole string `pulumi:"organizationRole"`
 	// Number of roles assigned to the Team
 	RolesCount int `pulumi:"rolesCount"`
+	// The members of the Team
+	TeamMembers []GetTeamTeamMember `pulumi:"teamMembers"`
 	// Team last updated timestamp
 	UpdatedAt string `pulumi:"updatedAt"`
 	// Team updater
@@ -127,6 +131,11 @@ func (o LookupTeamResultOutput) CreatedBy() GetTeamCreatedByOutput {
 	return o.ApplyT(func(v LookupTeamResult) GetTeamCreatedBy { return v.CreatedBy }).(GetTeamCreatedByOutput)
 }
 
+// The DAG roles assigned to the team
+func (o LookupTeamResultOutput) DagRoles() GetTeamDagRoleArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamDagRole { return v.DagRoles }).(GetTeamDagRoleArrayOutput)
+}
+
 // The roles assigned to the Deployments
 func (o LookupTeamResultOutput) DeploymentRoles() GetTeamDeploymentRoleArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []GetTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamDeploymentRoleArrayOutput)
@@ -160,6 +169,11 @@ func (o LookupTeamResultOutput) OrganizationRole() pulumi.StringOutput {
 // Number of roles assigned to the Team
 func (o LookupTeamResultOutput) RolesCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTeamResult) int { return v.RolesCount }).(pulumi.IntOutput)
+}
+
+// The members of the Team
+func (o LookupTeamResultOutput) TeamMembers() GetTeamTeamMemberArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamTeamMember { return v.TeamMembers }).(GetTeamTeamMemberArrayOutput)
 }
 
 // Team last updated timestamp

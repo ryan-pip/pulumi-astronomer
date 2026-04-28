@@ -58,12 +58,14 @@ func GetClusterOptions(ctx *pulumi.Context, args *GetClusterOptionsArgs, opts ..
 
 // A collection of arguments for invoking getClusterOptions.
 type GetClusterOptionsArgs struct {
+	// ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	Type          string  `pulumi:"type"`
 }
 
 // A collection of values returned by getClusterOptions.
 type GetClusterOptionsResult struct {
+	// ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider  *string                          `pulumi:"cloudProvider"`
 	ClusterOptions []GetClusterOptionsClusterOption `pulumi:"clusterOptions"`
 	// The provider-assigned unique ID for this managed resource.
@@ -82,6 +84,7 @@ func GetClusterOptionsOutput(ctx *pulumi.Context, args GetClusterOptionsOutputAr
 
 // A collection of arguments for invoking getClusterOptions.
 type GetClusterOptionsOutputArgs struct {
+	// ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
 	Type          pulumi.StringInput    `pulumi:"type"`
 }
@@ -105,6 +108,7 @@ func (o GetClusterOptionsResultOutput) ToGetClusterOptionsResultOutputWithContex
 	return o
 }
 
+// ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o GetClusterOptionsResultOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetClusterOptionsResult) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }

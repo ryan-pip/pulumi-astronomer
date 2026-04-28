@@ -16,14 +16,26 @@ import (
 type Cluster struct {
 	pulumi.CustomResourceState
 
-	// Cluster cloud provider - if changed, the cluster will be recreated.
+	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
 	// Cluster creation timestamp
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringOutput `pulumi:"dbInstanceType"`
+	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+	DrRegion pulumi.StringOutput `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+	DrSecondaryVpcCidr pulumi.StringOutput `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+	DrVpcSubnetRange pulumi.StringOutput `pulumi:"drVpcSubnetRange"`
+	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	EnableReplicationTimeControl pulumi.BoolOutput `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus ClusterHealthStatusOutput `pulumi:"healthStatus"`
+	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	IsDrEnabled pulumi.BoolOutput `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+	IsFailedOver pulumi.BoolOutput `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolOutput `pulumi:"isLimited"`
 	// Cluster metadata
@@ -102,14 +114,26 @@ func GetCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
-	// Cluster cloud provider - if changed, the cluster will be recreated.
+	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// Cluster creation timestamp
 	CreatedAt *string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType *string `pulumi:"dbInstanceType"`
+	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+	DrRegion *string `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+	DrSecondaryVpcCidr *string `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
+	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	EnableReplicationTimeControl *bool `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus *ClusterHealthStatus `pulumi:"healthStatus"`
+	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	IsDrEnabled *bool `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+	IsFailedOver *bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited *bool `pulumi:"isLimited"`
 	// Cluster metadata
@@ -144,14 +168,26 @@ type clusterState struct {
 }
 
 type ClusterState struct {
-	// Cluster cloud provider - if changed, the cluster will be recreated.
+	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringPtrInput
 	// Cluster creation timestamp
 	CreatedAt pulumi.StringPtrInput
 	// Cluster database instance type
 	DbInstanceType pulumi.StringPtrInput
+	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+	DrRegion pulumi.StringPtrInput
+	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+	DrSecondaryVpcCidr pulumi.StringPtrInput
+	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+	DrVpcSubnetRange pulumi.StringPtrInput
+	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	EnableReplicationTimeControl pulumi.BoolPtrInput
 	// Cluster health status
 	HealthStatus ClusterHealthStatusPtrInput
+	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	IsDrEnabled pulumi.BoolPtrInput
+	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+	IsFailedOver pulumi.BoolPtrInput
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolPtrInput
 	// Cluster metadata
@@ -190,8 +226,20 @@ func (ClusterState) ElementType() reflect.Type {
 }
 
 type clusterArgs struct {
-	// Cluster cloud provider - if changed, the cluster will be recreated.
+	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
+	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+	DrRegion *string `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+	DrSecondaryVpcCidr *string `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
+	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	EnableReplicationTimeControl *bool `pulumi:"enableReplicationTimeControl"`
+	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	IsDrEnabled *bool `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+	IsFailedOver *bool `pulumi:"isFailedOver"`
 	// Cluster name
 	Name *string `pulumi:"name"`
 	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -213,8 +261,20 @@ type clusterArgs struct {
 
 // The set of arguments for constructing a Cluster resource.
 type ClusterArgs struct {
-	// Cluster cloud provider - if changed, the cluster will be recreated.
+	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput
+	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+	DrRegion pulumi.StringPtrInput
+	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+	DrSecondaryVpcCidr pulumi.StringPtrInput
+	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+	DrVpcSubnetRange pulumi.StringPtrInput
+	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	EnableReplicationTimeControl pulumi.BoolPtrInput
+	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	IsDrEnabled pulumi.BoolPtrInput
+	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+	IsFailedOver pulumi.BoolPtrInput
 	// Cluster name
 	Name pulumi.StringPtrInput
 	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -321,7 +381,7 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 	return o
 }
 
-// Cluster cloud provider - if changed, the cluster will be recreated.
+// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o ClusterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -336,9 +396,39 @@ func (o ClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
+func (o ClusterOutput) DrRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrRegion }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+func (o ClusterOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
+func (o ClusterOutput) DrVpcSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrVpcSubnetRange }).(pulumi.StringOutput)
+}
+
+// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+func (o ClusterOutput) EnableReplicationTimeControl() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.EnableReplicationTimeControl }).(pulumi.BoolOutput)
+}
+
 // Cluster health status
 func (o ClusterOutput) HealthStatus() ClusterHealthStatusOutput {
 	return o.ApplyT(func(v *Cluster) ClusterHealthStatusOutput { return v.HealthStatus }).(ClusterHealthStatusOutput)
+}
+
+// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+func (o ClusterOutput) IsDrEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsDrEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+func (o ClusterOutput) IsFailedOver() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsFailedOver }).(pulumi.BoolOutput)
 }
 
 // Whether the cluster is limited

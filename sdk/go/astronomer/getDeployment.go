@@ -61,7 +61,7 @@ type LookupDeploymentResult struct {
 	AirflowVersion string `pulumi:"airflowVersion"`
 	// Deployment Astro Runtime version
 	AstroRuntimeVersion string `pulumi:"astroRuntimeVersion"`
-	// Deployment cloud provider
+	// Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Deployment cluster identifier
 	ClusterId string `pulumi:"clusterId"`
@@ -83,7 +83,7 @@ type LookupDeploymentResult struct {
 	DesiredDagTarballVersion string `pulumi:"desiredDagTarballVersion"`
 	// Deployment environment variables
 	EnvironmentVariables []GetDeploymentEnvironmentVariable `pulumi:"environmentVariables"`
-	// Deployment executor
+	// Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
 	Executor string `pulumi:"executor"`
 	// Deployment external IPs
 	ExternalIps []string `pulumi:"externalIps"`
@@ -111,6 +111,8 @@ type LookupDeploymentResult struct {
 	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
 	// Deployment region
 	Region string `pulumi:"region"`
+	// Deployment remote execution configuration
+	RemoteExecution GetDeploymentRemoteExecution `pulumi:"remoteExecution"`
 	// Deployment resource quota CPU
 	ResourceQuotaCpu string `pulumi:"resourceQuotaCpu"`
 	// Deployment resource quota memory
@@ -127,7 +129,7 @@ type LookupDeploymentResult struct {
 	SchedulerMemory string `pulumi:"schedulerMemory"`
 	// Deployment scheduler replicas
 	SchedulerReplicas int `pulumi:"schedulerReplicas"`
-	// Deployment scheduler size
+	// Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
 	SchedulerSize string `pulumi:"schedulerSize"`
 	// Deployment status
 	Status string `pulumi:"status"`
@@ -199,7 +201,7 @@ func (o LookupDeploymentResultOutput) AstroRuntimeVersion() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.AstroRuntimeVersion }).(pulumi.StringOutput)
 }
 
-// Deployment cloud provider
+// Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o LookupDeploymentResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -254,7 +256,7 @@ func (o LookupDeploymentResultOutput) EnvironmentVariables() GetDeploymentEnviro
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentEnvironmentVariable { return v.EnvironmentVariables }).(GetDeploymentEnvironmentVariableArrayOutput)
 }
 
-// Deployment executor
+// Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
 func (o LookupDeploymentResultOutput) Executor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Executor }).(pulumi.StringOutput)
 }
@@ -324,6 +326,11 @@ func (o LookupDeploymentResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Deployment remote execution configuration
+func (o LookupDeploymentResultOutput) RemoteExecution() GetDeploymentRemoteExecutionOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) GetDeploymentRemoteExecution { return v.RemoteExecution }).(GetDeploymentRemoteExecutionOutput)
+}
+
 // Deployment resource quota CPU
 func (o LookupDeploymentResultOutput) ResourceQuotaCpu() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.ResourceQuotaCpu }).(pulumi.StringOutput)
@@ -364,7 +371,7 @@ func (o LookupDeploymentResultOutput) SchedulerReplicas() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) int { return v.SchedulerReplicas }).(pulumi.IntOutput)
 }
 
-// Deployment scheduler size
+// Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
 func (o LookupDeploymentResultOutput) SchedulerSize() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.SchedulerSize }).(pulumi.StringOutput)
 }

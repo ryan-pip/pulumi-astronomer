@@ -1,24 +1,31 @@
+version: "2"
+
 linters:
+  default: none
   enable:
-    - deadcode
+    # Core correctness
     - errcheck
-    - goconst
-    - gofmt
-    - golint
-    - gosec
     - govet
     - ineffassign
-    - interfacer
+    - staticcheck
+    - unused
+    # Style / quality
+    - goconst
     - lll
-    - megacheck
     - misspell
     - nakedret
-    - structcheck
     - unconvert
-    - varcheck
-  enable-all: false
+    # Security
+    - gosec
+    # Replaces golint / interfacer (removed in golangci-lint v1.57+)
+    - revive
+  exclusions:
+    paths:
+      - schema.go
+      - pulumiManifest.go
+      # cmd/ depends on schema-embed.json generated at build time;
+      # entry point has no logic to lint.
+      - cmd
+
 run:
-  skip-files:
-    - schema.go
-    - pulumiManifest.go
   timeout: 20m

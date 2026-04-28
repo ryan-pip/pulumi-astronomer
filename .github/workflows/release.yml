@@ -129,11 +129,6 @@ jobs:
           node-version: 22.x
           registry-url: ${{ env.NPM_REGISTRY_URL }}
 
-      - name: Upgrade npm for trusted publishing
-        # npm trusted publishing requires npm >= 11.5.1; Node 22 LTS still ships an older npm.
-        if: matrix.language == 'nodejs'
-        run: npm install -g npm@latest
-
       - name: Download prerequisites
         uses: ./.github/actions/download-prerequisites
 
@@ -160,15 +155,18 @@ jobs:
           packages_dir: ${{ github.workspace }}/sdk/python/bin/dist
 
       - name: Publish package to npm
-        # OIDC-based trusted publishing (no token); requires the npm package to have a
+        # OIDC trusted publishing (no token). Requires the npm package to have a
         # trusted publisher configured for this repo + workflow, and id-token: write
-        # on this job (set above). Pre-release tags (v*.*.*-*) publish to the `next`
-        # dist-tag so they don't become the default `npm install` target.
+        # on this job (set above). Trusted publishing needs npm >= 11.5.1, but
+        # Node 22 LTS ships npm 10.x and `npm install -g npm@latest` hits a
+        # known self-upgrade MODULE_NOT_FOUND bug — invoking via `npx` runs a
+        # clean npm out of the npx cache and avoids it. Pre-release tags
+        # (v*.*.*-*) publish to the `next` dist-tag so they don't claim `latest`.
         if: matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true'
         working-directory: ${{ github.workspace }}/sdk/nodejs/bin
         run: |
           if [[ "${GITHUB_REF_NAME}" == *-* ]]; then
-            npm publish --provenance --access public --tag next
+            npx -y npm@latest publish --provenance --access public --tag next
           else
-            npm publish --provenance --access public
+            npx -y npm@latest publish --provenance --access public
           fi

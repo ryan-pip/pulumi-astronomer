@@ -30,3 +30,7 @@ runs:
         version: 2026.3.7
         working_directory: ${{ runner.temp }}/mise-ci
         cache_save: ${{ inputs.cache_save }}
+        # Key on platform + mise.ci.toml hash only. Omitting {{version}}
+        # keeps the cache valid across the near-daily mise CLI releases — it
+        # would otherwise invalidate every time we bump the pinned version.
+        cache_key: "mise-{{platform}}-{{file_hash}}"

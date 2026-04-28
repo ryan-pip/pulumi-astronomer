@@ -110,14 +110,21 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName:          "pulumi_astronomer",
-			RespectSchemaVersion: true,
+			PackageName: "pulumi_astronomer",
 
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 
+			// PyProject.Enabled emits sdk/python/pyproject.toml (PEP 621)
+			// instead of legacy setup.py. We do NOT set RespectSchemaVersion
+			// on purpose: the generated pyproject.toml is committed, and
+			// pulumictl-derived versions change per build (sha + dirty
+			// suffix), which would break the build_sdk worktree-clean check.
+			// The wheel built under sdk/python/bin/ keeps the placeholder
+			// version, which is fine for local install/test; release.yml
+			// injects the real version when publishing.
 			PyProject: struct {
 				Enabled bool
 			}{Enabled: true},

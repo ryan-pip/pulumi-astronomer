@@ -129,5 +129,9 @@ test_python_smoke:: build_python # mocked Python SDK smoke tests; never touches 
 # Live Python integration tests against the Astronomer API.
 # Requires ASTRO_API_TOKEN + ASTRO_WORKSPACE_ID. Tests skip themselves when unset.
 # GOWORK=off because examples/ is an independent module not listed in ./go.work.
-test_python:: build_python
+# PATH prepend makes the locally-built `pulumi-resource-astronomer` binary
+# discoverable by the test's pulumi engine — otherwise it tries to download
+# the plugin from GitHub Releases at the build version, which doesn't exist.
+test_python:: export PATH := $(WORKING_DIR)/bin:$(PATH)
+test_python:: provider build_python
 	cd examples && GOWORK=off go test -v -tags=python -parallel 1 -timeout 30m -run 'TestAcc.*Py'

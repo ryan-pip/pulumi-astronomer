@@ -37,8 +37,8 @@ func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
 }
 
 // requireLiveCreds skips the test unless workspace-scoped Astronomer credentials
-// are present in the environment. Live tests run via `make test_live` and the
-// manually-triggered `live-tests` GitHub workflow only — never on default PRs.
+// are present in the environment. Live tests run locally via `make test_python`
+// and in CI via the `live` job (gated on the astronomer-live environment).
 func requireLiveCreds(t *testing.T) string {
 	if os.Getenv("ASTRO_API_TOKEN") == "" {
 		t.Skip("ASTRO_API_TOKEN not set; skipping live test")

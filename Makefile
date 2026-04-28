@@ -43,16 +43,14 @@ build_nodejs:: install_plugins tfgen # build the node sdk
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
 
-build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
 build_python:: install_plugins tfgen # build the python sdk
-	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
+	$(WORKING_DIR)/bin/$(TFGEN) python --out sdk/python/
 	cd sdk/python/ && \
-        cp ../../README.md . && \
-        python3 setup.py clean --all 2>/dev/null && \
-        rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-        sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
-        rm ./bin/setup.py.bak && \
-        cd ./bin && python3 setup.py build sdist
+		cp ../../README.md . && \
+		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+		python3 -m venv ./bin/venv && \
+		./bin/venv/bin/python -m pip install --quiet build==1.2.1 && \
+		cd ./bin && ./venv/bin/python -m build .
 
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:: install_plugins tfgen # build the dotnet sdk
@@ -117,5 +115,19 @@ install_nodejs_sdk::
 
 install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
 
-test::
-	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+test:: test_python # run all hermetic tests (no live API calls)
+	cd provider && go test -v -short ./...
+
+test_python_smoke:: build_python # mocked Python SDK smoke tests; never touches system Python
+	cd tests/python && \
+		uv venv --clear --quiet .venv && \
+		. .venv/bin/activate && \
+		uv pip install --quiet pytest "pulumi>=3.0.0,<4.0.0" && \
+		uv pip install --quiet ../../sdk/python/bin/dist/pulumi_astronomer-*.whl && \
+		pytest -v
+
+# Live Python integration tests against the Astronomer API.
+# Requires ASTRO_API_TOKEN + ASTRO_WORKSPACE_ID. Tests skip themselves when unset.
+# GOWORK=off because examples/ is an independent module not listed in ./go.work.
+test_python:: build_python
+	cd examples && GOWORK=off go test -v -tags=python -parallel 1 -timeout 30m -run 'TestAcc.*Py'

@@ -1,0 +1,3 @@
+name: astro-get-workspace-py
+runtime: python
+description: Live integration test — read-only get_workspace data source lookup

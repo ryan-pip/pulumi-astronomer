@@ -8,6 +8,16 @@
 Pulumi.*.yaml
 **/node_modules/
 *.DS_Store
+*.local.toml
+*.local.json
+
+# Python Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.pyc
 
 **/command-output/
 
@@ -29,3 +39,4 @@ sdk/java/.gradle
 sdk/java/gradle
 sdk/java/gradlew
 sdk/java/gradlew.bat
+sdk/python/pulumi_astronomer/pulumi-plugin.json

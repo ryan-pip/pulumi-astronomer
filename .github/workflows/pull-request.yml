@@ -8,6 +8,11 @@ on:
       - .devcontainer
       - examples
 
+# Restrict GITHUB_TOKEN to read-only on contents by default. Individual jobs
+# can request additional permissions if needed.
+permissions:
+  contents: read
+
 jobs:
   build_sdk:
     name: build_sdk
@@ -22,7 +27,7 @@ jobs:
         nodeversion:
           - 20.x
         pythonversion:
-          - "3.9"
+          - "3.11"
         javaversion:
           - "11"
         language:
@@ -132,6 +137,86 @@ jobs:
       - name: go test
         # Exclude cmd/ packages for the same reason (schema-embed.json not present without make tfgen).
         run: cd provider && go test -v -short -parallel 10 . ./pkg/...
+
+  python_smoke:
+    name: python-smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.25.x
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        with:
+          repo: pulumi/pulumictl
+
+      - name: Install pulumi
+        uses: pulumi/actions@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Run Python SDK smoke tests
+        run: make test_python_smoke
+
+  live:
+    name: live
+    runs-on: ubuntu-latest
+    # The astronomer-live environment must be configured in repo Settings →
+    # Environments with required reviewers and the ASTRO_API_TOKEN +
+    # ASTRO_WORKSPACE_ID secrets. Required-reviewer gating means the job
+    # pauses for human approval before secrets unlock — even on PRs from
+    # the main branch — providing defense in depth against compromised
+    # workflow code in a public repo.
+    environment: astronomer-live
+    # Skips itself if secrets are missing (e.g. fork PRs that can't access
+    # the environment) instead of failing.
+    env:
+      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+      ASTRO_WORKSPACE_ID: ${{ secrets.ASTRO_WORKSPACE_ID }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.25.x
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        with:
+          repo: pulumi/pulumictl
+
+      - name: Install pulumi
+        uses: pulumi/actions@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Run live integration tests
+        run: make test_python
 
   schema_validation:
     name: schema-validation

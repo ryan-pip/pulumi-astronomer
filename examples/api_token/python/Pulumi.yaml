@@ -1,0 +1,3 @@
+name: astro-api-token-py
+runtime: python
+description: Live integration test — creates a workspace-scoped ApiToken

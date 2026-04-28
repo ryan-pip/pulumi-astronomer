@@ -5,7 +5,7 @@
   keywords = ["pulumi", "astronomer", "category/infrastructure"]
   readme = "README.md"
   requires-python = ">=3.9"
-  version = "1.1.0a1777372242+34355289.dirty"
+  version = "1.1.0a1777373691+eb9e3f98.dirty"
   [project.license]
     text = "Apache-2.0"
   [project.urls]

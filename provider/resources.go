@@ -75,7 +75,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version:           version.Version,
 		GitHubOrg:         "astronomer",
 		MetadataInfo:      tfbridge.NewProviderMetadata(bridgeMetadata),
-		TFProviderVersion: "v1.0.3",
+		TFProviderVersion: "1.0.3",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"token": {
 				Default: &tfbridge.DefaultInfo{

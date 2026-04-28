@@ -39,4 +39,3 @@ sdk/java/.gradle
 sdk/java/gradle
 sdk/java/gradlew
 sdk/java/gradlew.bat
-sdk/python/pulumi_astronomer/pulumi-plugin.json

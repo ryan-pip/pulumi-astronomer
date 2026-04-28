@@ -48,9 +48,7 @@ build_python:: install_plugins tfgen # build the python sdk
 	cd sdk/python/ && \
 		cp ../../README.md . && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-		python3 -m venv ./bin/venv && \
-		./bin/venv/bin/python -m pip install --quiet build==1.2.1 && \
-		cd ./bin && ./venv/bin/python -m build .
+		cd ./bin && uv build --quiet --wheel
 
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:: install_plugins tfgen # build the dotnet sdk

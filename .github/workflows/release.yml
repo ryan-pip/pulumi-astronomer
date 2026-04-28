@@ -43,13 +43,10 @@ jobs:
             sdk/go.sum
             examples/go.sum
 
-      - name: Setup mise
-        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
-        env:
-          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+      - name: Setup mise (CI subset)
+        uses: ./.github/actions/setup-mise
         with:
-          version: 2026.3.7
-          cache_save: true # This job populates the mise cache for the rest of the workflow.
+          cache_save: "true" # This job populates the mise cache for the rest of the workflow.
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"
@@ -84,13 +81,8 @@ jobs:
             sdk/go.sum
             examples/go.sum
 
-      - name: Setup mise
-        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
-        env:
-          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
-        with:
-          version: 2026.3.7
-          cache_save: false # Only the prerequisites job saves the mise cache.
+      - name: Setup mise (CI subset)
+        uses: ./.github/actions/setup-mise
 
       - name: Set GoReleaser tag
         # Use the literal pushed tag. pulumictl appends `+<sha>` build metadata to
@@ -138,13 +130,8 @@ jobs:
             sdk/go.sum
             examples/go.sum
 
-      - name: Setup mise
-        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
-        env:
-          MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
-        with:
-          version: 2026.3.7
-          cache_save: false # Only the prerequisites job saves the mise cache.
+      - name: Setup mise (CI subset)
+        uses: ./.github/actions/setup-mise
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"

@@ -110,12 +110,17 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumi_astronomer",
+			PackageName:          "pulumi_astronomer",
+			RespectSchemaVersion: true,
 
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
+
+			PyProject: struct {
+				Enabled bool
+			}{Enabled: true},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(

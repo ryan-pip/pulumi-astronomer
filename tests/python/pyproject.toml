@@ -1,0 +1,10 @@
+[project]
+name = "pulumi-astronomer-tests"
+version = "0.0.0"
+description = "SDK smoke tests for pulumi-astronomer (mocked runtime, no live API calls)"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers"

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package astronomer wires the upstream terraform-provider-astro into Pulumi via the bridge.
 package astronomer
 
 import (
@@ -20,7 +21,7 @@ import (
 	"path/filepath"
 
 	shimprovider "github.com/astronomer/terraform-provider-astro/shim"
-	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -41,7 +42,7 @@ const (
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
 // for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
+func preConfigureCallback(_ resource.PropertyMap, _ shim.ResourceConfig) error {
 	return nil
 }
 
@@ -74,7 +75,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version:           version.Version,
 		GitHubOrg:         "astronomer",
 		MetadataInfo:      tfbridge.NewProviderMetadata(bridgeMetadata),
-		TFProviderVersion: "0.3.0",
+		TFProviderVersion: "v1.0.3",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"token": {
 				Default: &tfbridge.DefaultInfo{

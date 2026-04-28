@@ -39,7 +39,7 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
         go-version: ${{matrix.goversion}}
 
@@ -90,3 +90,66 @@ jobs:
             git diff
             exit 1
         fi
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x
+
+      - name: Install golangci-lint v2
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | \
+            sh -s -- -b $(go env GOPATH)/bin v2.5.0
+          golangci-lint --version
+
+      - name: Run golangci-lint
+        # Lint library packages only; cmd/ depends on schema-embed.json which is generated at build time.
+        run: cd provider && golangci-lint run --path-prefix provider -c ../.golangci.yml . ./pkg/...
+
+  unit_test:
+    name: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x
+
+      - name: go vet
+        # Exclude cmd/ packages: they embed schema-embed.json which is generated at build time.
+        run: cd provider && go vet . ./pkg/...
+
+      - name: go test
+        # Exclude cmd/ packages for the same reason (schema-embed.json not present without make tfgen).
+        run: cd provider && go test -v -short -parallel 10 . ./pkg/...
+
+  schema_validation:
+    name: schema-validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Validate schema is valid JSON
+        run: |
+          jq . provider/cmd/pulumi-resource-astronomer/schema.json > /dev/null
+          echo "Schema JSON is valid"
+
+      - name: Check schema resource count
+        run: |
+          COUNT=$(jq '.resources | length' provider/cmd/pulumi-resource-astronomer/schema.json)
+          echo "Schema contains $COUNT resources"
+          if [ "$COUNT" -eq 0 ]; then
+            echo "ERROR: Schema has zero resources - something went wrong with generation"
+            exit 1
+          fi

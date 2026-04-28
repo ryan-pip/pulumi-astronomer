@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package version exposes the build-time semver injected by the Go linker.
 package version
 
 // Version is initialized by the Go linker to contain the semver of this build.

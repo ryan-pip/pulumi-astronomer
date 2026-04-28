@@ -1,6 +1,6 @@
 {
   "resource": true,
   "name": "astronomer",
-  "version": "1.1.0-alpha.1777372242+34355289.dirty",
+  "version": "1.1.0-alpha.1777373691+eb9e3f98.dirty",
   "server": "github://api.github.com/ryan-pip/pulumi-astronomer"
 }

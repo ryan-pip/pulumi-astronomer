@@ -1,122 +1,129 @@
-ROOT_DIR         := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL            := /bin/bash
 PROJECT          := github.com/ryan-pip/pulumi-astronomer
-NODE_MODULE_NAME := @ryan-pip/pulumi_astronomer
-TF_NAME          := astronomer
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
-
-JAVA_GEN         := pulumi-java-gen
-JAVA_GEN_VERSION := v0.9.9
 TFGEN            := pulumi-tfgen-astronomer
 PROVIDER         := pulumi-resource-astronomer
-VERSION          := $(shell pulumictl get version)
-
 TESTPARALLELISM  := 4
-
 WORKING_DIR      := $(shell pwd)
 
-.PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python cleanup
+# Override in CI: `make [target] PROVIDER_VERSION=x.y.z` or set the env var.
+# Local builds use this fixed default; CI sets it from `pulumictl get version`.
+PROVIDER_VERSION ?= 1.0.0-alpha.0+dev
 
-development:: install_plugins provider lint_provider build_sdks install_sdks cleanup # Build the provider & SDKs for a development environment
+LDFLAGS := -X $(PROJECT)/$(VERSION_PATH)=$(PROVIDER_VERSION)
 
-# Required for the codegen action that runs in pulumi/pulumi and pulumi/pulumi-terraform-bridge
-build:: install_plugins provider build_sdks install_sdks
-only_build:: build
+# Create sentinel and bin directories up front so `touch` targets don't fail.
+_ := $(shell mkdir -p .make bin)
 
-tfgen:: install_plugins
-	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
-	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
-	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
+.PHONY: build development only_build schema provider build_sdks \
+        build_nodejs build_python build_go build_dotnet \
+        prepare_local_workspace test_python_smoke test_python \
+        lint tidy fmt clean install_sdks install_nodejs_sdk \
+        install_python_sdk install_go_sdk install_dotnet_sdk
 
-provider:: tfgen install_plugins # build the provider binary
-	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+# ── top-level aliases ─────────────────────────────────────────────────────────
 
-build_sdks:: install_plugins provider build_nodejs build_python build_go # build_dotnet # build all the sdks
+build: schema provider build_sdks
 
-build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
-build_nodejs:: install_plugins tfgen # build the node sdk
-	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
+development: build install_sdks
+
+only_build: build
+
+# ── tfgen binary ──────────────────────────────────────────────────────────────
+
+# File target: rebuilt only when provider source or go.mod/go.sum change.
+bin/$(TFGEN): provider/resources.go provider/go.*
+	cd provider && go build -o $(WORKING_DIR)/bin/$(TFGEN) \
+		-ldflags "$(LDFLAGS)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(TFGEN)
+
+# ── schema ────────────────────────────────────────────────────────────────────
+
+# Sentinel: rebuilt only when tfgen binary is newer.
+schema: .make/schema
+
+.make/schema: bin/$(TFGEN)
+	$(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
+	cd provider && VERSION=$(PROVIDER_VERSION) go generate cmd/$(PROVIDER)/main.go
+	@touch $@
+
+# ── provider binary ───────────────────────────────────────────────────────────
+
+# File target: rebuilt only when schema changes.
+provider: bin/$(PROVIDER)
+
+bin/$(PROVIDER): .make/schema
+	cd provider && go build -o $(WORKING_DIR)/bin/$(PROVIDER) \
+		-ldflags "$(LDFLAGS)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(PROVIDER)
+
+# ── CI workspace prep ─────────────────────────────────────────────────────────
+
+# Builds everything CI needs before SDK jobs: tfgen, schema, provider binary.
+# SDK jobs download the output of this target and run make --touch to skip it.
+prepare_local_workspace: bin/$(TFGEN) .make/schema bin/$(PROVIDER)
+
+# ── SDK targets ───────────────────────────────────────────────────────────────
+
+# Each SDK depends only on the schema sentinel, not on the provider binary.
+# This lets CI build all SDKs in parallel after downloading the prerequisites.
+
+build_sdks: build_nodejs build_python build_go build_dotnet
+
+build_nodejs: .make/build_nodejs
+
+.make/build_nodejs: .make/schema
+	$(WORKING_DIR)/bin/$(TFGEN) nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
-        yarn install && \
-        yarn run tsc && \
-        cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+		yarn install && \
+		yarn run tsc && \
+		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/
+	@touch $@
 
-build_python:: install_plugins tfgen # build the python sdk
+build_python: .make/build_python
+
+.make/build_python: .make/schema
 	$(WORKING_DIR)/bin/$(TFGEN) python --out sdk/python/
 	cd sdk/python/ && \
 		cp ../../README.md . && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
 		cd ./bin && uv build --quiet --wheel
+	@touch $@
 
-build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
-build_dotnet:: install_plugins tfgen # build the dotnet sdk
-	pulumictl get version --language dotnet
-	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
+build_go: .make/build_go
+
+.make/build_go: .make/schema
+	$(WORKING_DIR)/bin/$(TFGEN) go --out sdk/go/
+	cd sdk/go/ && go mod tidy
+	@touch $@
+
+build_dotnet: .make/build_dotnet
+
+.make/build_dotnet: .make/schema
+	$(WORKING_DIR)/bin/$(TFGEN) dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
-		echo "${DOTNET_VERSION}" >version.txt && \
-        dotnet build /p:Version=${DOTNET_VERSION}
+		echo "$(PROVIDER_VERSION)" > version.txt && \
+		dotnet build /p:Version=$(PROVIDER_VERSION)
+	@touch $@
 
-build_go:: install_plugins tfgen # build the go sdk
-	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
-	cd sdk/go/ && \
-		go mod tidy
+# ── install SDKs ──────────────────────────────────────────────────────────────
 
-build_java:: PACKAGE_VERSION := $(shell pulumictl get version --language generic)
-build_java:: $(WORKING_DIR)/bin/$(JAVA_GEN)
-	$(WORKING_DIR)/bin/$(JAVA_GEN) generate --schema provider/cmd/$(PROVIDER)/schema.json --out sdk/java  --build gradle-nexus
-	cd sdk/java/ && \
-		echo "module fake_java_module // Exclude this directory from Go tools\n\ngo 1.17" > go.mod && \
-		gradle --console=plain build
+install_sdks: install_nodejs_sdk install_python_sdk install_go_sdk
 
-$(WORKING_DIR)/bin/$(JAVA_GEN)::
-	$(shell pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java)
+install_nodejs_sdk:
+	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
-lint_provider:: provider # lint the provider code
-	cd provider && golangci-lint run -c ../.golangci.yml
+install_python_sdk:
 
-tidy:: # call go mod tidy in relevant directories
-	find ./provider -name go.mod -execdir go mod tidy \;
+install_go_sdk:
 
-cleanup:: # cleans up the temporary directory
-	rm -r $(WORKING_DIR)/bin
-	rm -f provider/cmd/${PROVIDER}/schema.go
-
-help::
-	@grep '^[^.#]\+:\s\+.*#' Makefile | \
- 	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
- 	expand -t20
-
-clean::
-	rm -rf sdk/{dotnet,nodejs,go,python} sdk/go.sum
-
-.PHONY: fmt
-fmt::
-	@echo "Fixing source code with gofmt..."
-	find . -name '*.go' | grep -v vendor | xargs gofmt -s -w
-
-install_plugins::
-	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 4.3.1
-
-install_dotnet_sdk::
+install_dotnet_sdk:
 	mkdir -p $(WORKING_DIR)/nuget
 	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
 
-install_python_sdk::
+# ── tests ─────────────────────────────────────────────────────────────────────
 
-install_go_sdk::
-
-install_nodejs_sdk::
-	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
-
-install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
-
-test:: test_python # run all hermetic tests (no live API calls)
-	cd provider && go test -v -short ./...
-
-test_python_smoke:: build_python # mocked Python SDK smoke tests; never touches system Python
+# Mocked Python SDK smoke tests — never touches system Python.
+test_python_smoke: build_python
 	cd tests/python && \
 		uv venv --clear --quiet .venv && \
 		. .venv/bin/activate && \
@@ -125,11 +132,32 @@ test_python_smoke:: build_python # mocked Python SDK smoke tests; never touches 
 		pytest -v
 
 # Live Python integration tests against the Astronomer API.
-# Requires ASTRO_API_TOKEN + ASTRO_WORKSPACE_ID. Tests skip themselves when unset.
-# GOWORK=off because examples/ is an independent module not listed in ./go.work.
-# PATH prepend makes the locally-built `pulumi-resource-astronomer` binary
-# discoverable by the test's pulumi engine — otherwise it tries to download
-# the plugin from GitHub Releases at the build version, which doesn't exist.
-test_python:: export PATH := $(WORKING_DIR)/bin:$(PATH)
-test_python:: provider build_python
+# Requires ASTRO_API_TOKEN + ASTRO_WORKSPACE_ID + ASTRO_ORGANIZATION_ID.
+# Tests skip themselves when any of these are unset.
+# GOWORK=off: examples/ is an independent module not in go.work.
+# PATH prepend: makes the locally-built provider binary discoverable by the
+# test's pulumi engine without downloading from GitHub Releases.
+test_python: export PATH := $(WORKING_DIR)/bin:$(PATH)
+test_python: provider build_python
 	cd examples && GOWORK=off go test -v -tags=python -parallel 1 -timeout 30m -run 'TestAcc.*Py'
+
+# ── lint / fmt / tidy ─────────────────────────────────────────────────────────
+
+lint:
+	cd provider && golangci-lint run --path-prefix provider -c ../.golangci.yml . ./pkg/...
+
+tidy:
+	find ./provider -name go.mod -execdir go mod tidy \;
+
+fmt:
+	find . -name '*.go' | grep -v vendor | xargs gofmt -s -w
+
+# ── clean ─────────────────────────────────────────────────────────────────────
+
+clean:
+	rm -rf sdk/{dotnet,nodejs,go,python}
+	rm -rf bin/* .make/*
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?##' Makefile | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  %-20s %s\n", $$1, $$2}'

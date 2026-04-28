@@ -12,40 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  build_sdk:
-    name: build_sdk
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        language:
-          - nodejs
-          - python
-          - go
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Unshallow clone for tags
-        run: git fetch --prune --unshallow --tags
-
-      - name: Setup mise
-        uses: jdx/mise-action@v2
-
-      - name: Build SDK
-        run: make build_${{ matrix.language }}
-
-      - name: Check worktree clean
-        # Version-bearing files are regenerated per build; everything else
-        # must match what was committed.
-        uses: pulumi/git-status-check-action@v1
-        with:
-          allowed-changes: |
-            sdk/**/pulumi-plugin.json
-            sdk/nodejs/package.json
-            sdk/python/pyproject.toml
-            sdk/go/**/internal/pulumiUtilities.go
+  # ── parallel, no dependencies ─────────────────────────────────────────────
 
   lint:
     name: lint
@@ -58,43 +25,8 @@ jobs:
         uses: jdx/mise-action@v2
 
       - name: Run golangci-lint
-        # Lint library packages only; cmd/ depends on schema-embed.json which is generated at build time.
+        # Lint library packages only; cmd/ depends on schema-embed.json which is generated.
         run: cd provider && golangci-lint run --path-prefix provider -c ../.golangci.yml . ./pkg/...
-
-  unit_test:
-    name: unit-test
-    runs-on: ubuntu-latest
-    # The astronomer-live environment gate was intentionally dropped here
-    # so PRs run end-to-end without a required-reviewer pause. The
-    # `pull_request` trigger means fork PRs run with fork-owned code and
-    # no secrets — `make test_python` skips itself when ASTRO_API_TOKEN is
-    # unset.
-    env:
-      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
-      ASTRO_WORKSPACE_ID: ${{ secrets.ASTRO_WORKSPACE_ID }}
-      ASTRO_ORGANIZATION_ID: ${{ secrets.ASTRO_ORGANIZATION_ID }}
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Unshallow clone for tags
-        run: git fetch --prune --unshallow --tags
-
-      - name: Setup mise
-        uses: jdx/mise-action@v2
-
-      - name: go vet
-        # Exclude cmd/ packages: they embed schema-embed.json which is generated at build time.
-        run: cd provider && go vet . ./pkg/...
-
-      - name: go test
-        run: cd provider && go test -v -short -parallel 10 . ./pkg/...
-
-      - name: Python SDK smoke tests
-        run: make test_python_smoke
-
-      - name: Live integration tests
-        run: make test_python
 
   schema_validation:
     name: schema-validation
@@ -113,6 +45,180 @@ jobs:
           COUNT=$(jq '.resources | length' provider/cmd/pulumi-resource-astronomer/schema.json)
           echo "Schema contains $COUNT resources"
           if [ "$COUNT" -eq 0 ]; then
-            echo "ERROR: Schema has zero resources - something went wrong with generation"
+            echo "ERROR: Schema has zero resources"
             exit 1
           fi
+
+  go_test:
+    name: go-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+
+      - name: go vet
+        # Exclude cmd/: depends on schema-embed.json which is generated at build time.
+        run: cd provider && go vet . ./pkg/...
+
+      - name: go test
+        run: cd provider && go test -v -short -parallel 10 . ./pkg/...
+
+  # ── prerequisites: build provider once, share artifact ────────────────────
+
+  prerequisites:
+    name: prerequisites
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+
+      - name: Set provider version
+        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+
+      - name: Build provider
+        run: make prepare_local_workspace
+
+      - name: Upload prerequisites
+        uses: actions/upload-artifact@v4
+        with:
+          name: prerequisites
+          path: |
+            bin/pulumi-tfgen-astronomer
+            bin/pulumi-resource-astronomer
+          retention-days: 1
+          if-no-files-found: error
+
+  # ── build SDKs (matrix, needs prerequisites) ──────────────────────────────
+
+  build_sdk:
+    name: build_sdk
+    runs-on: ubuntu-latest
+    needs: prerequisites
+    strategy:
+      fail-fast: true
+      matrix:
+        language:
+          - nodejs
+          - python
+          - go
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+
+      - name: Set provider version
+        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+
+      - name: Download prerequisites
+        uses: actions/download-artifact@v4
+        with:
+          name: prerequisites
+          path: bin
+
+      - name: Restore permissions
+        run: chmod +x bin/pulumi-tfgen-astronomer bin/pulumi-resource-astronomer
+
+      - name: Restore makefile progress
+        # Marks schema + provider as done so make build_$lang skips rebuilding them.
+        run: make --touch schema provider
+
+      - name: Build SDK
+        run: make build_${{ matrix.language }}
+
+      - name: Check worktree clean
+        # Version-bearing files are regenerated per build; everything else must match.
+        uses: pulumi/git-status-check-action@v1
+        with:
+          allowed-changes: |
+            sdk/**/pulumi-plugin.json
+            sdk/nodejs/package.json
+            sdk/python/pyproject.toml
+            sdk/go/**/internal/pulumiUtilities.go
+
+      - name: Compress SDK
+        if: matrix.language == 'python'
+        run: tar -czf sdk/python.tar.gz -C sdk/python .
+
+      - name: Upload Python SDK
+        if: matrix.language == 'python'
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-sdk
+          path: sdk/python.tar.gz
+          retention-days: 1
+          if-no-files-found: error
+
+  # ── Python tests (needs prerequisites + python SDK) ───────────────────────
+
+  python_tests:
+    name: python-tests
+    runs-on: ubuntu-latest
+    needs:
+      - prerequisites
+      - build_sdk
+    # The astronomer-live environment gate was intentionally dropped so PRs run
+    # end-to-end without a required-reviewer pause. The `pull_request` trigger
+    # means fork PRs run with fork-owned code and no secrets — make test_python
+    # skips itself when ASTRO_API_TOKEN is unset.
+    env:
+      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+      ASTRO_WORKSPACE_ID: ${{ secrets.ASTRO_WORKSPACE_ID }}
+      ASTRO_ORGANIZATION_ID: ${{ secrets.ASTRO_ORGANIZATION_ID }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+
+      - name: Set provider version
+        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+
+      - name: Download prerequisites
+        uses: actions/download-artifact@v4
+        with:
+          name: prerequisites
+          path: bin
+
+      - name: Restore permissions
+        run: chmod +x bin/pulumi-tfgen-astronomer bin/pulumi-resource-astronomer
+
+      - name: Download Python SDK
+        uses: actions/download-artifact@v4
+        with:
+          name: python-sdk
+          path: sdk
+
+      - name: Extract Python SDK
+        run: mkdir -p sdk/python && tar -xzf sdk/python.tar.gz -C sdk/python
+
+      - name: Restore makefile progress
+        # Marks schema + build_python as done so test targets skip SDK rebuild.
+        run: make --touch schema build_python
+
+      - name: Python SDK smoke tests
+        run: make test_python_smoke
+
+      - name: Live integration tests
+        run: make test_python

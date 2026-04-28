@@ -97,6 +97,7 @@ jobs:
           path: |
             bin/pulumi-tfgen-astronomer
             bin/pulumi-resource-astronomer
+            provider/cmd/pulumi-resource-astronomer/schema-embed.json
           retention-days: 1
           if-no-files-found: error
 
@@ -131,7 +132,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: prerequisites
-          path: bin
+          path: .
 
       - name: Restore permissions
         run: chmod +x bin/pulumi-tfgen-astronomer bin/pulumi-resource-astronomer
@@ -199,7 +200,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: prerequisites
-          path: bin
+          path: .
 
       - name: Restore permissions
         run: chmod +x bin/pulumi-tfgen-astronomer bin/pulumi-resource-astronomer
@@ -214,8 +215,9 @@ jobs:
         run: mkdir -p sdk/python && tar -xzf sdk/python.tar.gz -C sdk/python
 
       - name: Restore makefile progress
-        # Marks schema + build_python as done so test targets skip SDK rebuild.
-        run: make --touch schema build_python
+        # Marks schema + provider + build_python as done so test targets skip rebuilding.
+        # provider must be touched AFTER schema so bin/$(PROVIDER) stays newer than .make/schema.
+        run: make --touch schema provider build_python
 
       - name: Python SDK smoke tests
         run: make test_python_smoke

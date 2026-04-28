@@ -43,7 +43,7 @@ jobs:
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
 
       - name: Set provider version
-        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+        run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"
 
       - name: Build provider
         run: make prepare_local_workspace
@@ -120,7 +120,7 @@ jobs:
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
 
       - name: Set provider version
-        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+        run: echo "PROVIDER_VERSION=$(pulumictl get version -o)" >> "$GITHUB_ENV"
 
       - name: Configure npm registry
         if: matrix.language == 'nodejs'

@@ -4,7 +4,7 @@ archives:
     name_template: '{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}'
 before:
   hooks:
-    - make tfgen
+    - make schema
 builds:
   - binary: pulumi-resource-astronomer
     dir: provider

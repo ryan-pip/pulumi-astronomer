@@ -11,6 +11,9 @@ on:
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # ── parallel, no dependencies ─────────────────────────────────────────────
 
@@ -19,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: Run golangci-lint
         # Lint library packages only; cmd/ depends on schema-embed.json which is generated.
@@ -33,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Validate schema is valid JSON
         run: |
@@ -54,13 +57,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: go vet
         # Exclude cmd/: depends on schema-embed.json which is generated at build time.
@@ -76,13 +79,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
@@ -109,13 +112,13 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
@@ -132,7 +135,7 @@ jobs:
 
       - name: Check worktree clean
         # Version-bearing files are regenerated per build; everything else must match.
-        uses: pulumi/git-status-check-action@v1
+        uses: pulumi/git-status-check-action@54000b91124a8dd9fd6a872cb41f5dd246a46e7c # v1.1.1
         with:
           allowed-changes: |
             sdk/**/pulumi-plugin.json
@@ -146,7 +149,7 @@ jobs:
 
       - name: Upload Python SDK
         if: matrix.language == 'python'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: python-sdk
           path: sdk/python.tar.gz
@@ -171,13 +174,13 @@ jobs:
       ASTRO_ORGANIZATION_ID: ${{ secrets.ASTRO_ORGANIZATION_ID }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: Set provider version
         run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
@@ -186,7 +189,7 @@ jobs:
         uses: ./.github/actions/download-prerequisites
 
       - name: Download Python SDK
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: python-sdk
           path: sdk

@@ -12,47 +12,85 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   PUBLISH_NPM: true
   NPM_REGISTRY_URL: https://registry.npmjs.org
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   NUGET_FEED_URL: https://api.nuget.org/v3/index.json
   PUBLISH_NUGET: false
-  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-  PYPI_USERNAME: "__token__"
-  PYPI_REPOSITORY_URL: ""
   PUBLISH_PYPI: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  # ── build provider once, share artifact ───────────────────────────────────
+
+  prerequisites:
+    name: prerequisites
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - name: Setup mise
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
+
+      - name: Set provider version
+        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+
+      - name: Build provider
+        run: make prepare_local_workspace
+
+      - name: Upload prerequisites
+        uses: ./.github/actions/upload-prerequisites
+
+  # ── publish multi-platform binaries via GoReleaser (parallel) ─────────────
+
   publish_binary:
-    name: publish
+    name: publish-binary
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
 
       - name: Set PreRelease Version
-        run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+        run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> "$GITHUB_ENV"
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@5742e2a039330cbb23ebf35f046f814d4c6ff811 # v5.1.0
         with:
           args: -p 3 release --clean
           version: latest
 
+  # ── build and publish SDKs (matrix, needs prerequisites + binary) ──────────
+
   publish_sdk:
-    name: Publish SDKs
+    name: publish-sdk
     runs-on: ubuntu-latest
-    needs: publish_binary
+    needs:
+      - prerequisites
+      - publish_binary
     permissions:
       id-token: write
     strategy:
@@ -62,28 +100,50 @@ jobs:
           - nodejs
           - python
           - go
+
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
-      - name: Setup mise
-        uses: jdx/mise-action@v2
-
-      - if: ${{ matrix.language == 'nodejs' }}
-        name: Configure npm registry
-        uses: actions/setup-node@v4
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
-          node-version: 20.x
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - name: Setup mise
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
+
+      - name: Set provider version
+        run: echo "PROVIDER_VERSION=$(pulumictl get version)" >> "$GITHUB_ENV"
+
+      - name: Configure npm registry
+        if: matrix.language == 'nodejs'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22.x
           registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - name: Upgrade npm for trusted publishing
+        # npm trusted publishing requires npm >= 11.5.1; Node 22 LTS still ships an older npm.
+        if: matrix.language == 'nodejs'
+        run: npm install -g npm@latest
+
+      - name: Download prerequisites
+        uses: ./.github/actions/download-prerequisites
+
+      - name: Restore makefile progress
+        # Marks schema + provider as done so make build_$lang skips rebuilding them.
+        run: make --touch schema provider
 
       - name: Build SDK
         run: make build_${{ matrix.language }}
 
       - name: Check worktree clean
-        uses: pulumi/git-status-check-action@v1
+        uses: pulumi/git-status-check-action@54000b91124a8dd9fd6a872cb41f5dd246a46e7c # v1.1.1
         with:
           allowed-changes: |
             sdk/**/pulumi-plugin.json
@@ -91,15 +151,22 @@ jobs:
             sdk/python/pyproject.toml
             sdk/go/**/internal/pulumiUtilities.go
 
-      - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
-        name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish package to PyPI
+        if: matrix.language == 'python' && env.PUBLISH_PYPI == 'true'
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
         with:
           packages_dir: ${{ github.workspace }}/sdk/python/bin/dist
 
-      - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: "public"
-          token: ${{ env.NPM_TOKEN }}
-          package: ${{ github.workspace }}/sdk/nodejs/bin/package.json
+      - name: Publish package to npm
+        # OIDC-based trusted publishing (no token); requires the npm package to have a
+        # trusted publisher configured for this repo + workflow, and id-token: write
+        # on this job (set above). Pre-release tags (v*.*.*-*) publish to the `next`
+        # dist-tag so they don't become the default `npm install` target.
+        if: matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true'
+        working-directory: ${{ github.workspace }}/sdk/nodejs/bin
+        run: |
+          if [[ "${GITHUB_REF_NAME}" == *-* ]]; then
+            npm publish --provenance --access public --tag next
+          else
+            npm publish --provenance --access public
+          fi

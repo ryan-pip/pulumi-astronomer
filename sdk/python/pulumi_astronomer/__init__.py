@@ -6,17 +6,25 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .agent_token import *
+from .alert import *
 from .api_token import *
 from .cluster import *
+from .custom_role import *
 from .deployment import *
+from .get_alert import *
+from .get_alerts import *
 from .get_api_token import *
 from .get_api_tokens import *
 from .get_cluster import *
 from .get_cluster_options import *
 from .get_clusters import *
+from .get_custom_role import *
 from .get_deployment import *
 from .get_deployment_options import *
 from .get_deployments import *
+from .get_notification_channel import *
+from .get_notification_channels import *
 from .get_organization import *
 from .get_team import *
 from .get_teams import *
@@ -25,8 +33,10 @@ from .get_users import *
 from .get_workspace import *
 from .get_workspaces import *
 from .hybrid_cluster_workspace_authorization import *
+from .notification_channel import *
 from .provider import *
 from .team import *
+from .team_membership import *
 from .team_roles import *
 from .user_invite import *
 from .user_roles import *
@@ -46,6 +56,22 @@ _utilities.register(
 [
  {
   "pkg": "astronomer",
+  "mod": "index/agentToken",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/agentToken:AgentToken": "AgentToken"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/alert",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/alert:Alert": "Alert"
+  }
+ },
+ {
+  "pkg": "astronomer",
   "mod": "index/apiToken",
   "fqn": "pulumi_astronomer",
   "classes": {
@@ -58,6 +84,14 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/customRole",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/customRole:CustomRole": "CustomRole"
   }
  },
  {
@@ -78,10 +112,26 @@ _utilities.register(
  },
  {
   "pkg": "astronomer",
+  "mod": "index/notificationChannel",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/notificationChannel:NotificationChannel": "NotificationChannel"
+  }
+ },
+ {
+  "pkg": "astronomer",
   "mod": "index/team",
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/team:Team": "Team"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/teamMembership",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/teamMembership:TeamMembership": "TeamMembership"
   }
  },
  {

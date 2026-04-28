@@ -16,6 +16,15 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AlertCreatedBy',
+    'AlertNotificationChannel',
+    'AlertNotificationChannelCreatedBy',
+    'AlertNotificationChannelDefinition',
+    'AlertNotificationChannelUpdatedBy',
+    'AlertRules',
+    'AlertRulesPatternMatch',
+    'AlertRulesProperties',
+    'AlertUpdatedBy',
     'ApiTokenCreatedBy',
     'ApiTokenRole',
     'ApiTokenUpdatedBy',
@@ -24,8 +33,11 @@ __all__ = [
     'ClusterMetadata',
     'ClusterNodePool',
     'ClusterTimeouts',
+    'CustomRoleCreatedBy',
+    'CustomRoleUpdatedBy',
     'DeploymentCreatedBy',
     'DeploymentEnvironmentVariable',
+    'DeploymentRemoteExecution',
     'DeploymentScalingSpec',
     'DeploymentScalingSpecHibernationSpec',
     'DeploymentScalingSpecHibernationSpecOverride',
@@ -34,18 +46,37 @@ __all__ = [
     'DeploymentScalingStatusHibernationStatus',
     'DeploymentUpdatedBy',
     'DeploymentWorkerQueue',
+    'NotificationChannelCreatedBy',
+    'NotificationChannelDefinition',
+    'NotificationChannelUpdatedBy',
     'TeamCreatedBy',
+    'TeamDagRole',
     'TeamDeploymentRole',
+    'TeamRolesDagRole',
     'TeamRolesDeploymentRole',
     'TeamRolesWorkspaceRole',
     'TeamUpdatedBy',
     'TeamWorkspaceRole',
     'UserInviteInvitee',
     'UserInviteInviter',
+    'UserRolesDagRole',
     'UserRolesDeploymentRole',
     'UserRolesWorkspaceRole',
     'WorkspaceCreatedBy',
     'WorkspaceUpdatedBy',
+    'GetAlertCreatedByResult',
+    'GetAlertNotificationChannelResult',
+    'GetAlertNotificationChannelCreatedByResult',
+    'GetAlertNotificationChannelDefinitionResult',
+    'GetAlertNotificationChannelUpdatedByResult',
+    'GetAlertRulesResult',
+    'GetAlertRulesPatternMatchResult',
+    'GetAlertUpdatedByResult',
+    'GetAlertsAlertResult',
+    'GetAlertsAlertCreatedByResult',
+    'GetAlertsAlertRulesResult',
+    'GetAlertsAlertRulesPatternMatchResult',
+    'GetAlertsAlertUpdatedByResult',
     'GetApiTokenCreatedByResult',
     'GetApiTokenRoleResult',
     'GetApiTokenUpdatedByResult',
@@ -71,6 +102,8 @@ __all__ = [
     'GetClustersClusterMetadataResult',
     'GetClustersClusterNodePoolResult',
     'GetClustersClusterTagResult',
+    'GetCustomRoleCreatedByResult',
+    'GetCustomRoleUpdatedByResult',
     'GetDeploymentCreatedByResult',
     'GetDeploymentEnvironmentVariableResult',
     'GetDeploymentOptionsResourceQuotasResult',
@@ -91,6 +124,7 @@ __all__ = [
     'GetDeploymentOptionsWorkerQueuesMinWorkersResult',
     'GetDeploymentOptionsWorkerQueuesWorkerConcurrencyResult',
     'GetDeploymentOptionsWorkloadIdentityOptionResult',
+    'GetDeploymentRemoteExecutionResult',
     'GetDeploymentScalingSpecResult',
     'GetDeploymentScalingSpecHibernationSpecResult',
     'GetDeploymentScalingSpecHibernationSpecOverrideResult',
@@ -102,6 +136,7 @@ __all__ = [
     'GetDeploymentsDeploymentResult',
     'GetDeploymentsDeploymentCreatedByResult',
     'GetDeploymentsDeploymentEnvironmentVariableResult',
+    'GetDeploymentsDeploymentRemoteExecutionResult',
     'GetDeploymentsDeploymentScalingSpecResult',
     'GetDeploymentsDeploymentScalingSpecHibernationSpecResult',
     'GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideResult',
@@ -110,20 +145,33 @@ __all__ = [
     'GetDeploymentsDeploymentScalingStatusHibernationStatusResult',
     'GetDeploymentsDeploymentUpdatedByResult',
     'GetDeploymentsDeploymentWorkerQueueResult',
+    'GetNotificationChannelCreatedByResult',
+    'GetNotificationChannelDefinitionResult',
+    'GetNotificationChannelUpdatedByResult',
+    'GetNotificationChannelsNotificationChannelResult',
+    'GetNotificationChannelsNotificationChannelCreatedByResult',
+    'GetNotificationChannelsNotificationChannelDefinitionResult',
+    'GetNotificationChannelsNotificationChannelUpdatedByResult',
     'GetOrganizationCreatedByResult',
     'GetOrganizationUpdatedByResult',
     'GetTeamCreatedByResult',
+    'GetTeamDagRoleResult',
     'GetTeamDeploymentRoleResult',
+    'GetTeamTeamMemberResult',
     'GetTeamUpdatedByResult',
     'GetTeamWorkspaceRoleResult',
     'GetTeamsTeamResult',
     'GetTeamsTeamCreatedByResult',
+    'GetTeamsTeamDagRoleResult',
     'GetTeamsTeamDeploymentRoleResult',
+    'GetTeamsTeamTeamMemberResult',
     'GetTeamsTeamUpdatedByResult',
     'GetTeamsTeamWorkspaceRoleResult',
+    'GetUserDagRoleResult',
     'GetUserDeploymentRoleResult',
     'GetUserWorkspaceRoleResult',
     'GetUsersUserResult',
+    'GetUsersUserDagRoleResult',
     'GetUsersUserDeploymentRoleResult',
     'GetUsersUserWorkspaceRoleResult',
     'GetWorkspaceCreatedByResult',
@@ -132,6 +180,843 @@ __all__ = [
     'GetWorkspacesWorkspaceCreatedByResult',
     'GetWorkspacesWorkspaceUpdatedByResult',
 ]
+
+@pulumi.output_type
+class AlertCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class AlertNotificationChannel(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entityId":
+            suggest = "entity_id"
+        elif key == "entityType":
+            suggest = "entity_type"
+        elif key == "createdAt":
+            suggest = "created_at"
+        elif key == "createdBy":
+            suggest = "created_by"
+        elif key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "entityName":
+            suggest = "entity_name"
+        elif key == "isShared":
+            suggest = "is_shared"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+        elif key == "updatedBy":
+            suggest = "updated_by"
+        elif key == "workspaceId":
+            suggest = "workspace_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertNotificationChannel. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertNotificationChannel.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertNotificationChannel.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 definition: 'outputs.AlertNotificationChannelDefinition',
+                 entity_id: _builtins.str,
+                 entity_type: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 created_at: Optional[_builtins.str] = None,
+                 created_by: Optional['outputs.AlertNotificationChannelCreatedBy'] = None,
+                 deployment_id: Optional[_builtins.str] = None,
+                 entity_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 is_shared: Optional[_builtins.bool] = None,
+                 updated_at: Optional[_builtins.str] = None,
+                 updated_by: Optional['outputs.AlertNotificationChannelUpdatedBy'] = None,
+                 workspace_id: Optional[_builtins.str] = None):
+        """
+        :param 'AlertNotificationChannelDefinitionArgs' definition: The notification channel's definition
+        :param _builtins.str entity_id: The entity ID the notification channel is scoped to
+        :param _builtins.str entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param _builtins.str name: The notification channel's name
+        :param _builtins.str type: The notification channel's type
+        :param _builtins.str created_at: Notification Channel creation timestamp
+        :param 'AlertNotificationChannelCreatedByArgs' created_by: Notification Channel creator
+        :param _builtins.str deployment_id: The deployment ID the notification channel is scoped to
+        :param _builtins.str entity_name: The name of the entity the notification channel is scoped to
+        :param _builtins.str id: The notification channel's ID
+        :param _builtins.bool is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        :param _builtins.str updated_at: Notification Channel last updated timestamp
+        :param 'AlertNotificationChannelUpdatedByArgs' updated_by: Notification Channel updater
+        :param _builtins.str workspace_id: The workspace ID the notification channel is scoped to
+        """
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if entity_name is not None:
+            pulumi.set(__self__, "entity_name", entity_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_shared is not None:
+            pulumi.set(__self__, "is_shared", is_shared)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if updated_by is not None:
+            pulumi.set(__self__, "updated_by", updated_by)
+        if workspace_id is not None:
+            pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> 'outputs.AlertNotificationChannelDefinition':
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        Notification Channel creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional['outputs.AlertNotificationChannelCreatedBy']:
+        """
+        Notification Channel creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[_builtins.str]:
+        """
+        The deployment ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the entity the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> Optional[_builtins.bool]:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[_builtins.str]:
+        """
+        Notification Channel last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> Optional['outputs.AlertNotificationChannelUpdatedBy']:
+        """
+        Notification Channel updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> Optional[_builtins.str]:
+        """
+        The workspace ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class AlertNotificationChannelCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertNotificationChannelCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertNotificationChannelCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertNotificationChannelCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class AlertNotificationChannelDefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+        elif key == "dagId":
+            suggest = "dag_id"
+        elif key == "deploymentApiToken":
+            suggest = "deployment_api_token"
+        elif key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "integrationKey":
+            suggest = "integration_key"
+        elif key == "webhookUrl":
+            suggest = "webhook_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertNotificationChannelDefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertNotificationChannelDefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertNotificationChannelDefinition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: Optional[_builtins.str] = None,
+                 dag_id: Optional[_builtins.str] = None,
+                 deployment_api_token: Optional[_builtins.str] = None,
+                 deployment_id: Optional[_builtins.str] = None,
+                 integration_key: Optional[_builtins.str] = None,
+                 recipients: Optional[Sequence[_builtins.str]] = None,
+                 webhook_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[_builtins.str]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> Optional[_builtins.str]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[_builtins.str]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> Optional[_builtins.str]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[_builtins.str]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class AlertNotificationChannelUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertNotificationChannelUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertNotificationChannelUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertNotificationChannelUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class AlertRules(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "patternMatches":
+            suggest = "pattern_matches"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRules. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRules.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRules.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pattern_matches: Sequence['outputs.AlertRulesPatternMatch'],
+                 properties: 'outputs.AlertRulesProperties'):
+        """
+        :param Sequence['AlertRulesPatternMatchArgs'] pattern_matches: The alert's pattern matches to match against
+        :param 'AlertRulesPropertiesArgs' properties: The alert's properties used to define the alert
+        """
+        pulumi.set(__self__, "pattern_matches", pattern_matches)
+        pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="patternMatches")
+    def pattern_matches(self) -> Sequence['outputs.AlertRulesPatternMatch']:
+        """
+        The alert's pattern matches to match against
+        """
+        return pulumi.get(self, "pattern_matches")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> 'outputs.AlertRulesProperties':
+        """
+        The alert's properties used to define the alert
+        """
+        return pulumi.get(self, "properties")
+
+
+@pulumi.output_type
+class AlertRulesPatternMatch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entityType":
+            suggest = "entity_type"
+        elif key == "operatorType":
+            suggest = "operator_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRulesPatternMatch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRulesPatternMatch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRulesPatternMatch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 entity_type: _builtins.str,
+                 operator_type: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str entity_type: The type of entity to match against
+        :param _builtins.str operator_type: The type of operator to use for the pattern match
+        :param Sequence[_builtins.str] values: The values to match against
+        """
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "operator_type", operator_type)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity to match against
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter(name="operatorType")
+    def operator_type(self) -> _builtins.str:
+        """
+        The type of operator to use for the pattern match
+        """
+        return pulumi.get(self, "operator_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values to match against
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlertRulesProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "dagDeadline":
+            suggest = "dag_deadline"
+        elif key == "dagDurationSeconds":
+            suggest = "dag_duration_seconds"
+        elif key == "daysOfWeeks":
+            suggest = "days_of_weeks"
+        elif key == "lookBackPeriodSeconds":
+            suggest = "look_back_period_seconds"
+        elif key == "taskDurationSeconds":
+            suggest = "task_duration_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRulesProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRulesProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRulesProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: _builtins.str,
+                 dag_deadline: Optional[_builtins.str] = None,
+                 dag_duration_seconds: Optional[_builtins.int] = None,
+                 days_of_weeks: Optional[Sequence[_builtins.str]] = None,
+                 look_back_period_seconds: Optional[_builtins.int] = None,
+                 task_duration_seconds: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str deployment_id: The ID of the deployment for the alert rule
+        :param _builtins.str dag_deadline: The deadline for the DAG in HH:MM 24-hour UTC format
+        :param _builtins.int dag_duration_seconds: The duration of the DAG in seconds (minimum 60)
+        :param Sequence[_builtins.str] days_of_weeks: The days of the week for the timeliness rule
+        :param _builtins.int look_back_period_seconds: The look-back period in seconds (minimum 60)
+        :param _builtins.int task_duration_seconds: The duration of the Task in seconds (minimum 60)
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        if dag_deadline is not None:
+            pulumi.set(__self__, "dag_deadline", dag_deadline)
+        if dag_duration_seconds is not None:
+            pulumi.set(__self__, "dag_duration_seconds", dag_duration_seconds)
+        if days_of_weeks is not None:
+            pulumi.set(__self__, "days_of_weeks", days_of_weeks)
+        if look_back_period_seconds is not None:
+            pulumi.set(__self__, "look_back_period_seconds", look_back_period_seconds)
+        if task_duration_seconds is not None:
+            pulumi.set(__self__, "task_duration_seconds", task_duration_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The ID of the deployment for the alert rule
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dagDeadline")
+    def dag_deadline(self) -> Optional[_builtins.str]:
+        """
+        The deadline for the DAG in HH:MM 24-hour UTC format
+        """
+        return pulumi.get(self, "dag_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="dagDurationSeconds")
+    def dag_duration_seconds(self) -> Optional[_builtins.int]:
+        """
+        The duration of the DAG in seconds (minimum 60)
+        """
+        return pulumi.get(self, "dag_duration_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="daysOfWeeks")
+    def days_of_weeks(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The days of the week for the timeliness rule
+        """
+        return pulumi.get(self, "days_of_weeks")
+
+    @_builtins.property
+    @pulumi.getter(name="lookBackPeriodSeconds")
+    def look_back_period_seconds(self) -> Optional[_builtins.int]:
+        """
+        The look-back period in seconds (minimum 60)
+        """
+        return pulumi.get(self, "look_back_period_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="taskDurationSeconds")
+    def task_duration_seconds(self) -> Optional[_builtins.int]:
+        """
+        The duration of the Task in seconds (minimum 60)
+        """
+        return pulumi.get(self, "task_duration_seconds")
+
+
+@pulumi.output_type
+class AlertUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
 
 @pulumi.output_type
 class ApiTokenCreatedBy(dict):
@@ -218,6 +1103,8 @@ class ApiTokenRole(dict):
             suggest = "entity_id"
         elif key == "entityType":
             suggest = "entity_type"
+        elif key == "deploymentId":
+            suggest = "deployment_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ApiTokenRole. Access the value via the '{suggest}' property getter instead.")
@@ -233,21 +1120,25 @@ class ApiTokenRole(dict):
     def __init__(__self__, *,
                  entity_id: _builtins.str,
                  entity_type: _builtins.str,
-                 role: _builtins.str):
+                 role: _builtins.str,
+                 deployment_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str entity_id: The ID of the entity to assign the role to
+        :param _builtins.str entity_id: The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
         :param _builtins.str entity_type: The type of entity to assign the role to
         :param _builtins.str role: The role to assign to the entity
+        :param _builtins.str deployment_id: The Deployment ID. Required for DAG and TAG entity types.
         """
         pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "entity_type", entity_type)
         pulumi.set(__self__, "role", role)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
     def entity_id(self) -> _builtins.str:
         """
-        The ID of the entity to assign the role to
+        The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
         """
         return pulumi.get(self, "entity_id")
 
@@ -266,6 +1157,14 @@ class ApiTokenRole(dict):
         The role to assign to the entity
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[_builtins.str]:
+        """
+        The Deployment ID. Required for DAG and TAG entity types.
+        """
+        return pulumi.get(self, "deployment_id")
 
 
 @pulumi.output_type
@@ -527,7 +1426,7 @@ class ClusterNodePool(dict):
                  supported_astro_machines: Optional[Sequence[_builtins.str]] = None,
                  updated_at: Optional[_builtins.str] = None):
         """
-        :param _builtins.str cloud_provider: Node pool cloud provider
+        :param _builtins.str cloud_provider: Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param _builtins.str cluster_id: Node pool cluster identifier
         :param _builtins.str created_at: Node pool creation timestamp
         :param _builtins.str id: Node pool identifier
@@ -563,7 +1462,7 @@ class ClusterNodePool(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[_builtins.str]:
         """
-        Node pool cloud provider
+        Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -681,6 +1580,158 @@ class ClusterTimeouts(dict):
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
+
+
+@pulumi.output_type
+class CustomRoleCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomRoleCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomRoleCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomRoleCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class CustomRoleUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomRoleUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomRoleUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomRoleUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -829,6 +1880,95 @@ class DeploymentEnvironmentVariable(dict):
         Environment variable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DeploymentRemoteExecution(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedIpAddressRanges":
+            suggest = "allowed_ip_address_ranges"
+        elif key == "remoteApiUrl":
+            suggest = "remote_api_url"
+        elif key == "taskLogBucket":
+            suggest = "task_log_bucket"
+        elif key == "taskLogUrlPattern":
+            suggest = "task_log_url_pattern"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DeploymentRemoteExecution. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DeploymentRemoteExecution.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DeploymentRemoteExecution.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 allowed_ip_address_ranges: Optional[Sequence[_builtins.str]] = None,
+                 remote_api_url: Optional[_builtins.str] = None,
+                 task_log_bucket: Optional[_builtins.str] = None,
+                 task_log_url_pattern: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enabled: Whether remote execution is enabled
+        :param Sequence[_builtins.str] allowed_ip_address_ranges: The allowed IP address ranges for remote execution
+        :param _builtins.str remote_api_url: The URL for the remote API
+        :param _builtins.str task_log_bucket: The bucket for task logs
+        :param _builtins.str task_log_url_pattern: The URL pattern for task logs
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        if allowed_ip_address_ranges is not None:
+            pulumi.set(__self__, "allowed_ip_address_ranges", allowed_ip_address_ranges)
+        if remote_api_url is not None:
+            pulumi.set(__self__, "remote_api_url", remote_api_url)
+        if task_log_bucket is not None:
+            pulumi.set(__self__, "task_log_bucket", task_log_bucket)
+        if task_log_url_pattern is not None:
+            pulumi.set(__self__, "task_log_url_pattern", task_log_url_pattern)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether remote execution is enabled
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpAddressRanges")
+    def allowed_ip_address_ranges(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The allowed IP address ranges for remote execution
+        """
+        return pulumi.get(self, "allowed_ip_address_ranges")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteApiUrl")
+    def remote_api_url(self) -> Optional[_builtins.str]:
+        """
+        The URL for the remote API
+        """
+        return pulumi.get(self, "remote_api_url")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogBucket")
+    def task_log_bucket(self) -> Optional[_builtins.str]:
+        """
+        The bucket for task logs
+        """
+        return pulumi.get(self, "task_log_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogUrlPattern")
+    def task_log_url_pattern(self) -> Optional[_builtins.str]:
+        """
+        The URL pattern for task logs
+        """
+        return pulumi.get(self, "task_log_url_pattern")
 
 
 @pulumi.output_type
@@ -1214,7 +2354,7 @@ class DeploymentWorkerQueue(dict):
         :param _builtins.int min_worker_count: Worker queue min worker count
         :param _builtins.str name: Worker queue name
         :param _builtins.int worker_concurrency: Worker queue worker concurrency
-        :param _builtins.str astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        :param _builtins.str astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param _builtins.str node_pool_id: Worker queue Node pool identifier - required for 'HYBRID' deployments
         :param _builtins.str pod_cpu: Worker queue pod CPU
         :param _builtins.str pod_memory: Worker queue pod memory
@@ -1277,7 +2417,7 @@ class DeploymentWorkerQueue(dict):
     @pulumi.getter(name="astroMachine")
     def astro_machine(self) -> Optional[_builtins.str]:
         """
-        Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         """
         return pulumi.get(self, "astro_machine")
 
@@ -1304,6 +2444,276 @@ class DeploymentWorkerQueue(dict):
         Worker queue pod memory
         """
         return pulumi.get(self, "pod_memory")
+
+
+@pulumi.output_type
+class NotificationChannelCreatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationChannelCreatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationChannelCreatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationChannelCreatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class NotificationChannelDefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+        elif key == "dagId":
+            suggest = "dag_id"
+        elif key == "deploymentApiToken":
+            suggest = "deployment_api_token"
+        elif key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "integrationKey":
+            suggest = "integration_key"
+        elif key == "webhookUrl":
+            suggest = "webhook_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationChannelDefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationChannelDefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationChannelDefinition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: Optional[_builtins.str] = None,
+                 dag_id: Optional[_builtins.str] = None,
+                 deployment_api_token: Optional[_builtins.str] = None,
+                 deployment_id: Optional[_builtins.str] = None,
+                 integration_key: Optional[_builtins.str] = None,
+                 recipients: Optional[Sequence[_builtins.str]] = None,
+                 webhook_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[_builtins.str]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> Optional[_builtins.str]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[_builtins.str]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> Optional[_builtins.str]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[_builtins.str]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class NotificationChannelUpdatedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiTokenName":
+            suggest = "api_token_name"
+        elif key == "avatarUrl":
+            suggest = "avatar_url"
+        elif key == "fullName":
+            suggest = "full_name"
+        elif key == "subjectType":
+            suggest = "subject_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationChannelUpdatedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationChannelUpdatedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationChannelUpdatedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token_name: Optional[_builtins.str] = None,
+                 avatar_url: Optional[_builtins.str] = None,
+                 full_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 subject_type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -1383,6 +2793,78 @@ class TeamCreatedBy(dict):
 
 
 @pulumi.output_type
+class TeamDagRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "dagId":
+            suggest = "dag_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamDagRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamDagRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamDagRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 dag_id: Optional[_builtins.str] = None,
+                 tag: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG.
+        :param _builtins.str role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param _builtins.str dag_id: The DAG ID. Required if tag is not specified.
+        :param _builtins.str tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[_builtins.str]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
 class TeamDeploymentRole(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1426,6 +2908,78 @@ class TeamDeploymentRole(dict):
         The role to assign to the deployment
         """
         return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class TeamRolesDagRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "dagId":
+            suggest = "dag_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TeamRolesDagRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TeamRolesDagRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TeamRolesDagRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 dag_id: Optional[_builtins.str] = None,
+                 tag: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG.
+        :param _builtins.str role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param _builtins.str dag_id: The DAG ID. Required if tag is not specified.
+        :param _builtins.str tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[_builtins.str]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
 
 
 @pulumi.output_type
@@ -1795,6 +3349,78 @@ class UserInviteInviter(dict):
 
 
 @pulumi.output_type
+class UserRolesDagRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "dagId":
+            suggest = "dag_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserRolesDagRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserRolesDagRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserRolesDagRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 dag_id: Optional[_builtins.str] = None,
+                 tag: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG.
+        :param _builtins.str role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param _builtins.str dag_id: The DAG ID. Required if tag is not specified.
+        :param _builtins.str tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[_builtins.str]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
 class UserRolesDeploymentRole(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2039,6 +3665,832 @@ class WorkspaceUpdatedBy(dict):
 
 
 @pulumi.output_type
+class GetAlertCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAlertNotificationChannelResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 created_by: 'outputs.GetAlertNotificationChannelCreatedByResult',
+                 definition: 'outputs.GetAlertNotificationChannelDefinitionResult',
+                 deployment_id: _builtins.str,
+                 entity_id: _builtins.str,
+                 entity_name: _builtins.str,
+                 entity_type: _builtins.str,
+                 id: _builtins.str,
+                 is_shared: _builtins.bool,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 updated_by: 'outputs.GetAlertNotificationChannelUpdatedByResult',
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str created_at: Notification Channel creation timestamp
+        :param 'GetAlertNotificationChannelCreatedByArgs' created_by: Notification Channel creator
+        :param 'GetAlertNotificationChannelDefinitionArgs' definition: The notification channel's definition
+        :param _builtins.str deployment_id: The deployment ID the notification channel is scoped to
+        :param _builtins.str entity_id: The entity ID the notification channel is scoped to
+        :param _builtins.str entity_name: The name of the entity the notification channel is scoped to
+        :param _builtins.str entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param _builtins.str id: The notification channel's ID
+        :param _builtins.bool is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        :param _builtins.str name: The notification channel's name
+        :param _builtins.str type: The notification channel's type
+        :param _builtins.str updated_at: Notification Channel last updated timestamp
+        :param 'GetAlertNotificationChannelUpdatedByArgs' updated_by: Notification Channel updater
+        :param _builtins.str workspace_id: The workspace ID the notification channel is scoped to
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_shared", is_shared)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "updated_by", updated_by)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Notification Channel creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> 'outputs.GetAlertNotificationChannelCreatedByResult':
+        """
+        Notification Channel creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> 'outputs.GetAlertNotificationChannelDefinitionResult':
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The deployment ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> _builtins.str:
+        """
+        The name of the entity the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> _builtins.bool:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Notification Channel last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> 'outputs.GetAlertNotificationChannelUpdatedByResult':
+        """
+        Notification Channel updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        The workspace ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetAlertNotificationChannelCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAlertNotificationChannelDefinitionResult(dict):
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 dag_id: _builtins.str,
+                 deployment_api_token: _builtins.str,
+                 deployment_id: _builtins.str,
+                 integration_key: _builtins.str,
+                 recipients: Sequence[_builtins.str],
+                 webhook_url: _builtins.str):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "integration_key", integration_key)
+        pulumi.set(__self__, "recipients", recipients)
+        pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> _builtins.str:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> _builtins.str:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Sequence[_builtins.str]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> _builtins.str:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class GetAlertNotificationChannelUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAlertRulesResult(dict):
+    def __init__(__self__, *,
+                 pattern_matches: Sequence['outputs.GetAlertRulesPatternMatchResult'],
+                 properties: Mapping[str, _builtins.str]):
+        """
+        :param Sequence['GetAlertRulesPatternMatchArgs'] pattern_matches: The alert's pattern matches to match against
+        :param Mapping[str, _builtins.str] properties: The alert's properties used to define the alert
+        """
+        pulumi.set(__self__, "pattern_matches", pattern_matches)
+        pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="patternMatches")
+    def pattern_matches(self) -> Sequence['outputs.GetAlertRulesPatternMatchResult']:
+        """
+        The alert's pattern matches to match against
+        """
+        return pulumi.get(self, "pattern_matches")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Mapping[str, _builtins.str]:
+        """
+        The alert's properties used to define the alert
+        """
+        return pulumi.get(self, "properties")
+
+
+@pulumi.output_type
+class GetAlertRulesPatternMatchResult(dict):
+    def __init__(__self__, *,
+                 entity_type: _builtins.str,
+                 operator_type: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str entity_type: The type of entity to match against
+        :param _builtins.str operator_type: The type of operator to use for the pattern match
+        :param Sequence[_builtins.str] values: The values to match against
+        """
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "operator_type", operator_type)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity to match against
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter(name="operatorType")
+    def operator_type(self) -> _builtins.str:
+        """
+        The type of operator to use for the pattern match
+        """
+        return pulumi.get(self, "operator_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values to match against
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetAlertUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAlertsAlertResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 created_by: 'outputs.GetAlertsAlertCreatedByResult',
+                 deployment_id: _builtins.str,
+                 entity_id: _builtins.str,
+                 entity_name: _builtins.str,
+                 entity_type: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 rules: 'outputs.GetAlertsAlertRulesResult',
+                 severity: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 updated_by: 'outputs.GetAlertsAlertUpdatedByResult',
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str created_at: Alert creation timestamp
+        :param 'GetAlertsAlertCreatedByArgs' created_by: Alert creator
+        :param _builtins.str deployment_id: Deployment identifier associated with the alert
+        :param _builtins.str entity_id: Entity identifier associated with the alert
+        :param _builtins.str entity_name: Name of the entity associated with the alert
+        :param _builtins.str entity_type: Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+        :param _builtins.str id: Alert identifier
+        :param _builtins.str name: Alert name
+        :param 'GetAlertsAlertRulesArgs' rules: Alert rules defining the conditions for triggering the alert
+        :param _builtins.str severity: Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+        :param _builtins.str type: Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+        :param _builtins.str updated_at: Alert last updated timestamp
+        :param 'GetAlertsAlertUpdatedByArgs' updated_by: Alert updater
+        :param _builtins.str workspace_id: Workspace identifier associated with the alert
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "rules", rules)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "updated_by", updated_by)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Alert creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> 'outputs.GetAlertsAlertCreatedByResult':
+        """
+        Alert creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        Deployment identifier associated with the alert
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        Entity identifier associated with the alert
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> _builtins.str:
+        """
+        Name of the entity associated with the alert
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Alert identifier
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Alert name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> 'outputs.GetAlertsAlertRulesResult':
+        """
+        Alert rules defining the conditions for triggering the alert
+        """
+        return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Alert last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> 'outputs.GetAlertsAlertUpdatedByResult':
+        """
+        Alert updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Workspace identifier associated with the alert
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetAlertsAlertCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAlertsAlertRulesResult(dict):
+    def __init__(__self__, *,
+                 pattern_matches: Sequence['outputs.GetAlertsAlertRulesPatternMatchResult'],
+                 properties: Mapping[str, _builtins.str]):
+        """
+        :param Sequence['GetAlertsAlertRulesPatternMatchArgs'] pattern_matches: The alert's pattern matches to match against
+        :param Mapping[str, _builtins.str] properties: The alert's properties used to define the alert
+        """
+        pulumi.set(__self__, "pattern_matches", pattern_matches)
+        pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="patternMatches")
+    def pattern_matches(self) -> Sequence['outputs.GetAlertsAlertRulesPatternMatchResult']:
+        """
+        The alert's pattern matches to match against
+        """
+        return pulumi.get(self, "pattern_matches")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Mapping[str, _builtins.str]:
+        """
+        The alert's properties used to define the alert
+        """
+        return pulumi.get(self, "properties")
+
+
+@pulumi.output_type
+class GetAlertsAlertRulesPatternMatchResult(dict):
+    def __init__(__self__, *,
+                 entity_type: _builtins.str,
+                 operator_type: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str entity_type: The type of entity to match against
+        :param _builtins.str operator_type: The type of operator to use for the pattern match
+        :param Sequence[_builtins.str] values: The values to match against
+        """
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "operator_type", operator_type)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity to match against
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter(name="operatorType")
+    def operator_type(self) -> _builtins.str:
+        """
+        The type of operator to use for the pattern match
+        """
+        return pulumi.get(self, "operator_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values to match against
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetAlertsAlertUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class GetApiTokenCreatedByResult(dict):
     def __init__(__self__, *,
                  api_token_name: _builtins.str,
@@ -2088,17 +4540,28 @@ class GetApiTokenCreatedByResult(dict):
 @pulumi.output_type
 class GetApiTokenRoleResult(dict):
     def __init__(__self__, *,
+                 deployment_id: _builtins.str,
                  entity_id: _builtins.str,
                  entity_type: _builtins.str,
                  role: _builtins.str):
         """
+        :param _builtins.str deployment_id: The Deployment ID for DAG and TAG entity types
         :param _builtins.str entity_id: The ID of the entity to assign the role to
         :param _builtins.str entity_type: The type of entity to assign the role to
         :param _builtins.str role: The role to assign to the entity
         """
+        pulumi.set(__self__, "deployment_id", deployment_id)
         pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "entity_type", entity_type)
         pulumi.set(__self__, "role", role)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID for DAG and TAG entity types
+        """
+        return pulumi.get(self, "deployment_id")
 
     @_builtins.property
     @pulumi.getter(name="entityId")
@@ -2383,17 +4846,28 @@ class GetApiTokensApiTokenCreatedByResult(dict):
 @pulumi.output_type
 class GetApiTokensApiTokenRoleResult(dict):
     def __init__(__self__, *,
+                 deployment_id: _builtins.str,
                  entity_id: _builtins.str,
                  entity_type: _builtins.str,
                  role: _builtins.str):
         """
+        :param _builtins.str deployment_id: The Deployment ID for DAG and TAG entity types
         :param _builtins.str entity_id: The ID of the entity to assign the role to
         :param _builtins.str entity_type: The type of entity to assign the role to
         :param _builtins.str role: The role to assign to the entity
         """
+        pulumi.set(__self__, "deployment_id", deployment_id)
         pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "entity_type", entity_type)
         pulumi.set(__self__, "role", role)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID for DAG and TAG entity types
+        """
+        return pulumi.get(self, "deployment_id")
 
     @_builtins.property
     @pulumi.getter(name="entityId")
@@ -2590,7 +5064,7 @@ class GetClusterNodePoolResult(dict):
                  supported_astro_machines: Sequence[_builtins.str],
                  updated_at: _builtins.str):
         """
-        :param _builtins.str cloud_provider: Node pool cloud provider
+        :param _builtins.str cloud_provider: Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param _builtins.str cluster_id: Node pool cluster identifier
         :param _builtins.str created_at: Node pool creation timestamp
         :param _builtins.str id: Node pool identifier
@@ -2616,7 +5090,7 @@ class GetClusterNodePoolResult(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Node pool cloud provider
+        Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3129,8 +5603,14 @@ class GetClustersClusterResult(dict):
                  cloud_provider: _builtins.str,
                  created_at: _builtins.str,
                  db_instance_type: _builtins.str,
+                 dr_region: _builtins.str,
+                 dr_secondary_vpc_cidr: _builtins.str,
+                 dr_vpc_subnet_range: _builtins.str,
+                 enable_replication_time_control: _builtins.bool,
                  health_status: 'outputs.GetClustersClusterHealthStatusResult',
                  id: _builtins.str,
+                 is_dr_enabled: _builtins.bool,
+                 is_failed_over: _builtins.bool,
                  is_limited: _builtins.bool,
                  metadata: 'outputs.GetClustersClusterMetadataResult',
                  name: _builtins.str,
@@ -3148,11 +5628,17 @@ class GetClustersClusterResult(dict):
                  vpc_subnet_range: _builtins.str,
                  workspace_ids: Sequence[_builtins.str]):
         """
-        :param _builtins.str cloud_provider: Cluster cloud provider
+        :param _builtins.str cloud_provider: Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param _builtins.str created_at: Cluster creation timestamp
         :param _builtins.str db_instance_type: Cluster database instance type
+        :param _builtins.str dr_region: The secondary region for Disaster Recovery
+        :param _builtins.str dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only)
+        :param _builtins.str dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region
+        :param _builtins.bool enable_replication_time_control: Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
         :param 'GetClustersClusterHealthStatusArgs' health_status: Cluster health status
         :param _builtins.str id: Cluster identifier
+        :param _builtins.bool is_dr_enabled: Whether Disaster Recovery is enabled on the cluster
+        :param _builtins.bool is_failed_over: Whether the cluster is currently failed over to the DR region
         :param _builtins.bool is_limited: Whether the cluster is limited
         :param 'GetClustersClusterMetadataArgs' metadata: Cluster metadata
         :param _builtins.str name: Cluster name
@@ -3173,8 +5659,14 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "db_instance_type", db_instance_type)
+        pulumi.set(__self__, "dr_region", dr_region)
+        pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
+        pulumi.set(__self__, "enable_replication_time_control", enable_replication_time_control)
         pulumi.set(__self__, "health_status", health_status)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
+        pulumi.set(__self__, "is_failed_over", is_failed_over)
         pulumi.set(__self__, "is_limited", is_limited)
         pulumi.set(__self__, "metadata", metadata)
         pulumi.set(__self__, "name", name)
@@ -3196,7 +5688,7 @@ class GetClustersClusterResult(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Cluster cloud provider
+        Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3217,6 +5709,38 @@ class GetClustersClusterResult(dict):
         return pulumi.get(self, "db_instance_type")
 
     @_builtins.property
+    @pulumi.getter(name="drRegion")
+    def dr_region(self) -> _builtins.str:
+        """
+        The secondary region for Disaster Recovery
+        """
+        return pulumi.get(self, "dr_region")
+
+    @_builtins.property
+    @pulumi.getter(name="drSecondaryVpcCidr")
+    def dr_secondary_vpc_cidr(self) -> _builtins.str:
+        """
+        Secondary CIDR for pod networking in the DR region (AWS only)
+        """
+        return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="drVpcSubnetRange")
+    def dr_vpc_subnet_range(self) -> _builtins.str:
+        """
+        The VPC subnet range for the Disaster Recovery region
+        """
+        return pulumi.get(self, "dr_vpc_subnet_range")
+
+    @_builtins.property
+    @pulumi.getter(name="enableReplicationTimeControl")
+    def enable_replication_time_control(self) -> _builtins.bool:
+        """
+        Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        """
+        return pulumi.get(self, "enable_replication_time_control")
+
+    @_builtins.property
     @pulumi.getter(name="healthStatus")
     def health_status(self) -> 'outputs.GetClustersClusterHealthStatusResult':
         """
@@ -3231,6 +5755,22 @@ class GetClustersClusterResult(dict):
         Cluster identifier
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDrEnabled")
+    def is_dr_enabled(self) -> _builtins.bool:
+        """
+        Whether Disaster Recovery is enabled on the cluster
+        """
+        return pulumi.get(self, "is_dr_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isFailedOver")
+    def is_failed_over(self) -> _builtins.bool:
+        """
+        Whether the cluster is currently failed over to the DR region
+        """
+        return pulumi.get(self, "is_failed_over")
 
     @_builtins.property
     @pulumi.getter(name="isLimited")
@@ -3484,7 +6024,7 @@ class GetClustersClusterNodePoolResult(dict):
                  supported_astro_machines: Sequence[_builtins.str],
                  updated_at: _builtins.str):
         """
-        :param _builtins.str cloud_provider: Node pool cloud provider
+        :param _builtins.str cloud_provider: Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param _builtins.str cluster_id: Node pool cluster identifier
         :param _builtins.str created_at: Node pool creation timestamp
         :param _builtins.str id: Node pool identifier
@@ -3510,7 +6050,7 @@ class GetClustersClusterNodePoolResult(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Node pool cloud provider
+        Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3614,6 +6154,100 @@ class GetClustersClusterTagResult(dict):
         Cluster tag value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCustomRoleCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetCustomRoleUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -4325,6 +6959,68 @@ class GetDeploymentOptionsWorkloadIdentityOptionResult(dict):
 
 
 @pulumi.output_type
+class GetDeploymentRemoteExecutionResult(dict):
+    def __init__(__self__, *,
+                 allowed_ip_address_ranges: Sequence[_builtins.str],
+                 enabled: _builtins.bool,
+                 remote_api_url: _builtins.str,
+                 task_log_bucket: _builtins.str,
+                 task_log_url_pattern: _builtins.str):
+        """
+        :param Sequence[_builtins.str] allowed_ip_address_ranges: The allowed IP address ranges for remote execution
+        :param _builtins.bool enabled: Whether remote execution is enabled
+        :param _builtins.str remote_api_url: The URL for the remote API
+        :param _builtins.str task_log_bucket: The bucket for task logs
+        :param _builtins.str task_log_url_pattern: The URL pattern for task logs
+        """
+        pulumi.set(__self__, "allowed_ip_address_ranges", allowed_ip_address_ranges)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "remote_api_url", remote_api_url)
+        pulumi.set(__self__, "task_log_bucket", task_log_bucket)
+        pulumi.set(__self__, "task_log_url_pattern", task_log_url_pattern)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpAddressRanges")
+    def allowed_ip_address_ranges(self) -> Sequence[_builtins.str]:
+        """
+        The allowed IP address ranges for remote execution
+        """
+        return pulumi.get(self, "allowed_ip_address_ranges")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether remote execution is enabled
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteApiUrl")
+    def remote_api_url(self) -> _builtins.str:
+        """
+        The URL for the remote API
+        """
+        return pulumi.get(self, "remote_api_url")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogBucket")
+    def task_log_bucket(self) -> _builtins.str:
+        """
+        The bucket for task logs
+        """
+        return pulumi.get(self, "task_log_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogUrlPattern")
+    def task_log_url_pattern(self) -> _builtins.str:
+        """
+        The URL pattern for task logs
+        """
+        return pulumi.get(self, "task_log_url_pattern")
+
+
+@pulumi.output_type
 class GetDeploymentScalingSpecResult(dict):
     def __init__(__self__, *,
                  hibernation_spec: 'outputs.GetDeploymentScalingSpecHibernationSpecResult'):
@@ -4570,7 +7266,7 @@ class GetDeploymentWorkerQueueResult(dict):
                  pod_memory: _builtins.str,
                  worker_concurrency: _builtins.int):
         """
-        :param _builtins.str astro_machine: Worker queue Astro machine value
+        :param _builtins.str astro_machine: Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param _builtins.str id: Worker queue identifier
         :param _builtins.bool is_default: Whether Worker queue is default
         :param _builtins.int max_worker_count: Worker queue max worker count
@@ -4596,7 +7292,7 @@ class GetDeploymentWorkerQueueResult(dict):
     @pulumi.getter(name="astroMachine")
     def astro_machine(self) -> _builtins.str:
         """
-        Worker queue Astro machine value
+        Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         """
         return pulumi.get(self, "astro_machine")
 
@@ -4703,6 +7399,7 @@ class GetDeploymentsDeploymentResult(dict):
                  namespace: _builtins.str,
                  oidc_issuer_url: _builtins.str,
                  region: _builtins.str,
+                 remote_execution: 'outputs.GetDeploymentsDeploymentRemoteExecutionResult',
                  resource_quota_cpu: _builtins.str,
                  resource_quota_memory: _builtins.str,
                  scaling_spec: 'outputs.GetDeploymentsDeploymentScalingSpecResult',
@@ -4727,7 +7424,7 @@ class GetDeploymentsDeploymentResult(dict):
         """
         :param _builtins.str airflow_version: Deployment Airflow version
         :param _builtins.str astro_runtime_version: Deployment Astro Runtime version
-        :param _builtins.str cloud_provider: Deployment cloud provider
+        :param _builtins.str cloud_provider: Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param _builtins.str cluster_id: Deployment cluster identifier
         :param Sequence[_builtins.str] contact_emails: Deployment contact emails
         :param _builtins.str created_at: Deployment creation timestamp
@@ -4738,7 +7435,7 @@ class GetDeploymentsDeploymentResult(dict):
         :param _builtins.str description: Deployment description
         :param _builtins.str desired_dag_tarball_version: Deployment desired DAG tarball version
         :param Sequence['GetDeploymentsDeploymentEnvironmentVariableArgs'] environment_variables: Deployment environment variables
-        :param _builtins.str executor: Deployment executor
+        :param _builtins.str executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param Sequence[_builtins.str] external_ips: Deployment external IPs
         :param _builtins.str id: Deployment identifier
         :param _builtins.str image_repository: Deployment image repository
@@ -4752,6 +7449,7 @@ class GetDeploymentsDeploymentResult(dict):
         :param _builtins.str namespace: Deployment namespace
         :param _builtins.str oidc_issuer_url: Deployment OIDC issuer URL
         :param _builtins.str region: Deployment region
+        :param 'GetDeploymentsDeploymentRemoteExecutionArgs' remote_execution: Deployment remote execution configuration
         :param _builtins.str resource_quota_cpu: Deployment resource quota CPU
         :param _builtins.str resource_quota_memory: Deployment resource quota memory
         :param 'GetDeploymentsDeploymentScalingSpecArgs' scaling_spec: Deployment scaling spec
@@ -4760,7 +7458,7 @@ class GetDeploymentsDeploymentResult(dict):
         :param _builtins.str scheduler_cpu: Deployment scheduler CPU
         :param _builtins.str scheduler_memory: Deployment scheduler memory
         :param _builtins.int scheduler_replicas: Deployment scheduler replicas
-        :param _builtins.str scheduler_size: Deployment scheduler size
+        :param _builtins.str scheduler_size: Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         :param _builtins.str status: Deployment status
         :param _builtins.str status_reason: Deployment status reason
         :param _builtins.str task_pod_node_pool_id: Deployment task pod node pool identifier
@@ -4801,6 +7499,7 @@ class GetDeploymentsDeploymentResult(dict):
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "oidc_issuer_url", oidc_issuer_url)
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "remote_execution", remote_execution)
         pulumi.set(__self__, "resource_quota_cpu", resource_quota_cpu)
         pulumi.set(__self__, "resource_quota_memory", resource_quota_memory)
         pulumi.set(__self__, "scaling_spec", scaling_spec)
@@ -4843,7 +7542,7 @@ class GetDeploymentsDeploymentResult(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Deployment cloud provider
+        Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -4931,7 +7630,7 @@ class GetDeploymentsDeploymentResult(dict):
     @pulumi.getter
     def executor(self) -> _builtins.str:
         """
-        Deployment executor
+        Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
@@ -5040,6 +7739,14 @@ class GetDeploymentsDeploymentResult(dict):
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="remoteExecution")
+    def remote_execution(self) -> 'outputs.GetDeploymentsDeploymentRemoteExecutionResult':
+        """
+        Deployment remote execution configuration
+        """
+        return pulumi.get(self, "remote_execution")
+
+    @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
     def resource_quota_cpu(self) -> _builtins.str:
         """
@@ -5107,7 +7814,7 @@ class GetDeploymentsDeploymentResult(dict):
     @pulumi.getter(name="schedulerSize")
     def scheduler_size(self) -> _builtins.str:
         """
-        Deployment scheduler size
+        Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
@@ -5304,6 +8011,68 @@ class GetDeploymentsDeploymentEnvironmentVariableResult(dict):
         Environment variable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDeploymentsDeploymentRemoteExecutionResult(dict):
+    def __init__(__self__, *,
+                 allowed_ip_address_ranges: Sequence[_builtins.str],
+                 enabled: _builtins.bool,
+                 remote_api_url: _builtins.str,
+                 task_log_bucket: _builtins.str,
+                 task_log_url_pattern: _builtins.str):
+        """
+        :param Sequence[_builtins.str] allowed_ip_address_ranges: The allowed IP address ranges for remote execution
+        :param _builtins.bool enabled: Whether remote execution is enabled
+        :param _builtins.str remote_api_url: The URL for the remote API
+        :param _builtins.str task_log_bucket: The bucket for task logs
+        :param _builtins.str task_log_url_pattern: The URL pattern for task logs
+        """
+        pulumi.set(__self__, "allowed_ip_address_ranges", allowed_ip_address_ranges)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "remote_api_url", remote_api_url)
+        pulumi.set(__self__, "task_log_bucket", task_log_bucket)
+        pulumi.set(__self__, "task_log_url_pattern", task_log_url_pattern)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpAddressRanges")
+    def allowed_ip_address_ranges(self) -> Sequence[_builtins.str]:
+        """
+        The allowed IP address ranges for remote execution
+        """
+        return pulumi.get(self, "allowed_ip_address_ranges")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether remote execution is enabled
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteApiUrl")
+    def remote_api_url(self) -> _builtins.str:
+        """
+        The URL for the remote API
+        """
+        return pulumi.get(self, "remote_api_url")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogBucket")
+    def task_log_bucket(self) -> _builtins.str:
+        """
+        The bucket for task logs
+        """
+        return pulumi.get(self, "task_log_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogUrlPattern")
+    def task_log_url_pattern(self) -> _builtins.str:
+        """
+        The URL pattern for task logs
+        """
+        return pulumi.get(self, "task_log_url_pattern")
 
 
 @pulumi.output_type
@@ -5552,7 +8321,7 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
                  pod_memory: _builtins.str,
                  worker_concurrency: _builtins.int):
         """
-        :param _builtins.str astro_machine: Worker queue Astro machine value
+        :param _builtins.str astro_machine: Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param _builtins.str id: Worker queue identifier
         :param _builtins.bool is_default: Whether Worker queue is default
         :param _builtins.int max_worker_count: Worker queue max worker count
@@ -5578,7 +8347,7 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
     @pulumi.getter(name="astroMachine")
     def astro_machine(self) -> _builtins.str:
         """
-        Worker queue Astro machine value
+        Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         """
         return pulumi.get(self, "astro_machine")
 
@@ -5653,6 +8422,523 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
         Worker queue worker concurrency
         """
         return pulumi.get(self, "worker_concurrency")
+
+
+@pulumi.output_type
+class GetNotificationChannelCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetNotificationChannelDefinitionResult(dict):
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 dag_id: _builtins.str,
+                 deployment_api_token: _builtins.str,
+                 deployment_id: _builtins.str,
+                 integration_key: _builtins.str,
+                 recipients: Sequence[_builtins.str],
+                 webhook_url: _builtins.str):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "integration_key", integration_key)
+        pulumi.set(__self__, "recipients", recipients)
+        pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> _builtins.str:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> _builtins.str:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Sequence[_builtins.str]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> _builtins.str:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class GetNotificationChannelUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetNotificationChannelsNotificationChannelResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 created_by: 'outputs.GetNotificationChannelsNotificationChannelCreatedByResult',
+                 definition: 'outputs.GetNotificationChannelsNotificationChannelDefinitionResult',
+                 deployment_id: _builtins.str,
+                 entity_id: _builtins.str,
+                 entity_name: _builtins.str,
+                 entity_type: _builtins.str,
+                 id: _builtins.str,
+                 is_shared: _builtins.bool,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 updated_by: 'outputs.GetNotificationChannelsNotificationChannelUpdatedByResult',
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str created_at: Notification Channel creation timestamp
+        :param 'GetNotificationChannelsNotificationChannelCreatedByArgs' created_by: Notification Channel creator
+        :param 'GetNotificationChannelsNotificationChannelDefinitionArgs' definition: The notification channel's definition
+        :param _builtins.str deployment_id: The deployment ID the notification channel is scoped to
+        :param _builtins.str entity_id: The entity ID the notification channel is scoped to
+        :param _builtins.str entity_name: The name of the entity the notification channel is scoped to
+        :param _builtins.str entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param _builtins.str id: The notification channel's ID
+        :param _builtins.bool is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        :param _builtins.str name: The notification channel's name
+        :param _builtins.str type: The notification channel's type
+        :param _builtins.str updated_at: Notification Channel last updated timestamp
+        :param 'GetNotificationChannelsNotificationChannelUpdatedByArgs' updated_by: Notification Channel updater
+        :param _builtins.str workspace_id: The workspace ID the notification channel is scoped to
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_shared", is_shared)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "updated_by", updated_by)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Notification Channel creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> 'outputs.GetNotificationChannelsNotificationChannelCreatedByResult':
+        """
+        Notification Channel creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> 'outputs.GetNotificationChannelsNotificationChannelDefinitionResult':
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The deployment ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> _builtins.str:
+        """
+        The name of the entity the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> _builtins.bool:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Notification Channel last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> 'outputs.GetNotificationChannelsNotificationChannelUpdatedByResult':
+        """
+        Notification Channel updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        The workspace ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetNotificationChannelsNotificationChannelCreatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetNotificationChannelsNotificationChannelDefinitionResult(dict):
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 dag_id: _builtins.str,
+                 deployment_api_token: _builtins.str,
+                 deployment_id: _builtins.str,
+                 integration_key: _builtins.str,
+                 recipients: Sequence[_builtins.str],
+                 webhook_url: _builtins.str):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "integration_key", integration_key)
+        pulumi.set(__self__, "recipients", recipients)
+        pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> _builtins.str:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> _builtins.str:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Sequence[_builtins.str]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> _builtins.str:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class GetNotificationChannelsNotificationChannelUpdatedByResult(dict):
+    def __init__(__self__, *,
+                 api_token_name: _builtins.str,
+                 avatar_url: _builtins.str,
+                 full_name: _builtins.str,
+                 id: _builtins.str,
+                 subject_type: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "api_token_name", api_token_name)
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subject_type", subject_type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> _builtins.str:
+        return pulumi.get(self, "api_token_name")
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> _builtins.str:
+        return pulumi.get(self, "subject_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -5797,6 +9083,57 @@ class GetTeamCreatedByResult(dict):
 
 
 @pulumi.output_type
+class GetTeamDagRoleResult(dict):
+    def __init__(__self__, *,
+                 dag_id: _builtins.str,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str dag_id: The DAG ID
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG
+        :param _builtins.str role: The DAG role
+        :param _builtins.str tag: The DAG tag
+        """
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The DAG tag
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
 class GetTeamDeploymentRoleResult(dict):
     def __init__(__self__, *,
                  deployment_id: _builtins.str,
@@ -5823,6 +9160,68 @@ class GetTeamDeploymentRoleResult(dict):
         The role assigned to the deployment
         """
         return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetTeamTeamMemberResult(dict):
+    def __init__(__self__, *,
+                 avatar_url: _builtins.str,
+                 created_at: _builtins.str,
+                 full_name: _builtins.str,
+                 user_id: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str avatar_url: Team member avatar URL
+        :param _builtins.str created_at: Team member creation timestamp
+        :param _builtins.str full_name: Team member full name
+        :param _builtins.str user_id: The ID of the user in the Team
+        :param _builtins.str username: Team member username
+        """
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        """
+        Team member avatar URL
+        """
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Team member creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        """
+        Team member full name
+        """
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        The ID of the user in the Team
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Team member username
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -5906,6 +9305,7 @@ class GetTeamsTeamResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
                  created_by: 'outputs.GetTeamsTeamCreatedByResult',
+                 dag_roles: Sequence['outputs.GetTeamsTeamDagRoleResult'],
                  deployment_roles: Sequence['outputs.GetTeamsTeamDeploymentRoleResult'],
                  description: _builtins.str,
                  id: _builtins.str,
@@ -5913,12 +9313,14 @@ class GetTeamsTeamResult(dict):
                  name: _builtins.str,
                  organization_role: _builtins.str,
                  roles_count: _builtins.int,
+                 team_members: Sequence['outputs.GetTeamsTeamTeamMemberResult'],
                  updated_at: _builtins.str,
                  updated_by: 'outputs.GetTeamsTeamUpdatedByResult',
                  workspace_roles: Sequence['outputs.GetTeamsTeamWorkspaceRoleResult']):
         """
         :param _builtins.str created_at: Team creation timestamp
         :param 'GetTeamsTeamCreatedByArgs' created_by: Team creator
+        :param Sequence['GetTeamsTeamDagRoleArgs'] dag_roles: The DAG roles assigned to the team
         :param Sequence['GetTeamsTeamDeploymentRoleArgs'] deployment_roles: The roles assigned to the Deployments
         :param _builtins.str description: Team description
         :param _builtins.str id: Team ID
@@ -5926,12 +9328,14 @@ class GetTeamsTeamResult(dict):
         :param _builtins.str name: Team name
         :param _builtins.str organization_role: The role assigned to the Organization
         :param _builtins.int roles_count: Number of roles assigned to the Team
+        :param Sequence['GetTeamsTeamTeamMemberArgs'] team_members: The members of the Team
         :param _builtins.str updated_at: Team last updated timestamp
         :param 'GetTeamsTeamUpdatedByArgs' updated_by: Team updater
         :param Sequence['GetTeamsTeamWorkspaceRoleArgs'] workspace_roles: The roles assigned to the Workspaces
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "dag_roles", dag_roles)
         pulumi.set(__self__, "deployment_roles", deployment_roles)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
@@ -5939,6 +9343,7 @@ class GetTeamsTeamResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "organization_role", organization_role)
         pulumi.set(__self__, "roles_count", roles_count)
+        pulumi.set(__self__, "team_members", team_members)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "updated_by", updated_by)
         pulumi.set(__self__, "workspace_roles", workspace_roles)
@@ -5958,6 +9363,14 @@ class GetTeamsTeamResult(dict):
         Team creator
         """
         return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Sequence['outputs.GetTeamsTeamDagRoleResult']:
+        """
+        The DAG roles assigned to the team
+        """
+        return pulumi.get(self, "dag_roles")
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
@@ -6014,6 +9427,14 @@ class GetTeamsTeamResult(dict):
         Number of roles assigned to the Team
         """
         return pulumi.get(self, "roles_count")
+
+    @_builtins.property
+    @pulumi.getter(name="teamMembers")
+    def team_members(self) -> Sequence['outputs.GetTeamsTeamTeamMemberResult']:
+        """
+        The members of the Team
+        """
+        return pulumi.get(self, "team_members")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -6088,6 +9509,57 @@ class GetTeamsTeamCreatedByResult(dict):
 
 
 @pulumi.output_type
+class GetTeamsTeamDagRoleResult(dict):
+    def __init__(__self__, *,
+                 dag_id: _builtins.str,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str dag_id: The DAG ID
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG
+        :param _builtins.str role: The DAG role
+        :param _builtins.str tag: The DAG tag
+        """
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The DAG tag
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
 class GetTeamsTeamDeploymentRoleResult(dict):
     def __init__(__self__, *,
                  deployment_id: _builtins.str,
@@ -6114,6 +9586,68 @@ class GetTeamsTeamDeploymentRoleResult(dict):
         The role assigned to the deployment
         """
         return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetTeamsTeamTeamMemberResult(dict):
+    def __init__(__self__, *,
+                 avatar_url: _builtins.str,
+                 created_at: _builtins.str,
+                 full_name: _builtins.str,
+                 user_id: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str avatar_url: Team member avatar URL
+        :param _builtins.str created_at: Team member creation timestamp
+        :param _builtins.str full_name: Team member full name
+        :param _builtins.str user_id: The ID of the user in the Team
+        :param _builtins.str username: Team member username
+        """
+        pulumi.set(__self__, "avatar_url", avatar_url)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "full_name", full_name)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> _builtins.str:
+        """
+        Team member avatar URL
+        """
+        return pulumi.get(self, "avatar_url")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Team member creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> _builtins.str:
+        """
+        Team member full name
+        """
+        return pulumi.get(self, "full_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        The ID of the user in the Team
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Team member username
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -6193,6 +9727,57 @@ class GetTeamsTeamWorkspaceRoleResult(dict):
 
 
 @pulumi.output_type
+class GetUserDagRoleResult(dict):
+    def __init__(__self__, *,
+                 dag_id: _builtins.str,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str dag_id: The DAG ID
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG
+        :param _builtins.str role: The DAG role
+        :param _builtins.str tag: The DAG tag
+        """
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The DAG tag
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
 class GetUserDeploymentRoleResult(dict):
     def __init__(__self__, *,
                  deployment_id: _builtins.str,
@@ -6255,6 +9840,7 @@ class GetUsersUserResult(dict):
     def __init__(__self__, *,
                  avatar_url: _builtins.str,
                  created_at: _builtins.str,
+                 dag_roles: Sequence['outputs.GetUsersUserDagRoleResult'],
                  deployment_roles: Sequence['outputs.GetUsersUserDeploymentRoleResult'],
                  full_name: _builtins.str,
                  id: _builtins.str,
@@ -6266,6 +9852,7 @@ class GetUsersUserResult(dict):
         """
         :param _builtins.str avatar_url: User avatar URL
         :param _builtins.str created_at: User creation timestamp
+        :param Sequence['GetUsersUserDagRoleArgs'] dag_roles: The DAG roles assigned to the user
         :param Sequence['GetUsersUserDeploymentRoleArgs'] deployment_roles: The roles assigned to the deployments
         :param _builtins.str full_name: User full name
         :param _builtins.str id: User identifier
@@ -6277,6 +9864,7 @@ class GetUsersUserResult(dict):
         """
         pulumi.set(__self__, "avatar_url", avatar_url)
         pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "dag_roles", dag_roles)
         pulumi.set(__self__, "deployment_roles", deployment_roles)
         pulumi.set(__self__, "full_name", full_name)
         pulumi.set(__self__, "id", id)
@@ -6301,6 +9889,14 @@ class GetUsersUserResult(dict):
         User creation timestamp
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Sequence['outputs.GetUsersUserDagRoleResult']:
+        """
+        The DAG roles assigned to the user
+        """
+        return pulumi.get(self, "dag_roles")
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
@@ -6365,6 +9961,57 @@ class GetUsersUserResult(dict):
         The roles assigned to the workspaces
         """
         return pulumi.get(self, "workspace_roles")
+
+
+@pulumi.output_type
+class GetUsersUserDagRoleResult(dict):
+    def __init__(__self__, *,
+                 dag_id: _builtins.str,
+                 deployment_id: _builtins.str,
+                 role: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str dag_id: The DAG ID
+        :param _builtins.str deployment_id: The Deployment ID containing the DAG
+        :param _builtins.str role: The DAG role
+        :param _builtins.str tag: The DAG tag
+        """
+        pulumi.set(__self__, "dag_id", dag_id)
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> _builtins.str:
+        """
+        The DAG ID
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> _builtins.str:
+        """
+        The Deployment ID containing the DAG
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The DAG role
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The DAG tag
+        """
+        return pulumi.get(self, "tag")
 
 
 @pulumi.output_type

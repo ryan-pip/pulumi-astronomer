@@ -59,7 +59,7 @@ export interface GetDeploymentOptionsArgs {
      */
     deploymentType?: string;
     /**
-     * Executor
+     * Executor. Valid values: CELERY, KUBERNETES, ASTRO.
      */
     executor?: string;
 }
@@ -81,7 +81,7 @@ export interface GetDeploymentOptionsResult {
      */
     readonly deploymentType?: string;
     /**
-     * Executor
+     * Executor. Valid values: CELERY, KUBERNETES, ASTRO.
      */
     readonly executor?: string;
     /**
@@ -170,7 +170,7 @@ export interface GetDeploymentOptionsOutputArgs {
      */
     deploymentType?: pulumi.Input<string>;
     /**
-     * Executor
+     * Executor. Valid values: CELERY, KUBERNETES, ASTRO.
      */
     executor?: pulumi.Input<string>;
 }

@@ -46,7 +46,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly astroRuntimeVersion: pulumi.Output<string>;
     /**
-     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     declare public readonly cloudProvider: pulumi.Output<string>;
     /**
@@ -86,11 +86,15 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly desiredDagTarballVersion: pulumi.Output<string>;
     /**
-     * Deployment environment variables
+     * Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+     */
+    declare public readonly desiredWorkloadIdentity: pulumi.Output<string | undefined>;
+    /**
+     * Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
      */
     declare public readonly environmentVariables: pulumi.Output<outputs.DeploymentEnvironmentVariable[]>;
     /**
-     * Deployment executor
+     * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
     declare public readonly executor: pulumi.Output<string>;
     /**
@@ -138,13 +142,17 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly oidcIssuerUrl: pulumi.Output<string>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
      */
-    declare public readonly originalAstroRuntimeVersion: pulumi.Output<string | undefined>;
+    declare public readonly originalAstroRuntimeVersion: pulumi.Output<string>;
     /**
      * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
     declare public readonly region: pulumi.Output<string>;
+    /**
+     * Deployment remote execution configuration - only for 'DEDICATED' deployments
+     */
+    declare public readonly remoteExecution: pulumi.Output<outputs.DeploymentRemoteExecution | undefined>;
     /**
      * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
@@ -178,7 +186,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly schedulerReplicas: pulumi.Output<number>;
     /**
-     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
     declare public readonly schedulerSize: pulumi.Output<string | undefined>;
     /**
@@ -255,6 +263,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["defaultTaskPodMemory"] = state?.defaultTaskPodMemory;
             resourceInputs["description"] = state?.description;
             resourceInputs["desiredDagTarballVersion"] = state?.desiredDagTarballVersion;
+            resourceInputs["desiredWorkloadIdentity"] = state?.desiredWorkloadIdentity;
             resourceInputs["environmentVariables"] = state?.environmentVariables;
             resourceInputs["executor"] = state?.executor;
             resourceInputs["externalIps"] = state?.externalIps;
@@ -270,6 +279,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["oidcIssuerUrl"] = state?.oidcIssuerUrl;
             resourceInputs["originalAstroRuntimeVersion"] = state?.originalAstroRuntimeVersion;
             resourceInputs["region"] = state?.region;
+            resourceInputs["remoteExecution"] = state?.remoteExecution;
             resourceInputs["resourceQuotaCpu"] = state?.resourceQuotaCpu;
             resourceInputs["resourceQuotaMemory"] = state?.resourceQuotaMemory;
             resourceInputs["scalingSpec"] = state?.scalingSpec;
@@ -323,6 +333,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["defaultTaskPodCpu"] = args?.defaultTaskPodCpu;
             resourceInputs["defaultTaskPodMemory"] = args?.defaultTaskPodMemory;
             resourceInputs["description"] = args?.description;
+            resourceInputs["desiredWorkloadIdentity"] = args?.desiredWorkloadIdentity;
             resourceInputs["environmentVariables"] = args?.environmentVariables;
             resourceInputs["executor"] = args?.executor;
             resourceInputs["isCicdEnforced"] = args?.isCicdEnforced;
@@ -332,6 +343,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["originalAstroRuntimeVersion"] = args?.originalAstroRuntimeVersion;
             resourceInputs["region"] = args?.region;
+            resourceInputs["remoteExecution"] = args?.remoteExecution;
             resourceInputs["resourceQuotaCpu"] = args?.resourceQuotaCpu;
             resourceInputs["resourceQuotaMemory"] = args?.resourceQuotaMemory;
             resourceInputs["scalingSpec"] = args?.scalingSpec;
@@ -384,7 +396,7 @@ export interface DeploymentState {
      */
     astroRuntimeVersion?: pulumi.Input<string>;
     /**
-     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -424,11 +436,15 @@ export interface DeploymentState {
      */
     desiredDagTarballVersion?: pulumi.Input<string>;
     /**
-     * Deployment environment variables
+     * Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+     */
+    desiredWorkloadIdentity?: pulumi.Input<string>;
+    /**
+     * Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
      */
     environmentVariables?: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
     /**
-     * Deployment executor
+     * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
     executor?: pulumi.Input<string>;
     /**
@@ -476,13 +492,17 @@ export interface DeploymentState {
      */
     oidcIssuerUrl?: pulumi.Input<string>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
      */
     originalAstroRuntimeVersion?: pulumi.Input<string>;
     /**
      * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
     region?: pulumi.Input<string>;
+    /**
+     * Deployment remote execution configuration - only for 'DEDICATED' deployments
+     */
+    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution>;
     /**
      * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
@@ -516,7 +536,7 @@ export interface DeploymentState {
      */
     schedulerReplicas?: pulumi.Input<number>;
     /**
-     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
     schedulerSize?: pulumi.Input<string>;
     /**
@@ -574,7 +594,7 @@ export interface DeploymentState {
  */
 export interface DeploymentArgs {
     /**
-     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+     * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -598,11 +618,15 @@ export interface DeploymentArgs {
      */
     description: pulumi.Input<string>;
     /**
-     * Deployment environment variables
+     * Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+     */
+    desiredWorkloadIdentity?: pulumi.Input<string>;
+    /**
+     * Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
      */
     environmentVariables: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
     /**
-     * Deployment executor
+     * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
     executor: pulumi.Input<string>;
     /**
@@ -626,13 +650,17 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
      */
     originalAstroRuntimeVersion?: pulumi.Input<string>;
     /**
      * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
     region?: pulumi.Input<string>;
+    /**
+     * Deployment remote execution configuration - only for 'DEDICATED' deployments
+     */
+    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution>;
     /**
      * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
@@ -654,7 +682,7 @@ export interface DeploymentArgs {
      */
     schedulerReplicas?: pulumi.Input<number>;
     /**
-     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+     * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
     schedulerSize?: pulumi.Input<string>;
     /**

@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AgentTokenArgs, AgentTokenState } from "./agentToken";
+export type AgentToken = import("./agentToken").AgentToken;
+export const AgentToken: typeof import("./agentToken").AgentToken = null as any;
+utilities.lazyLoad(exports, ["AgentToken"], () => require("./agentToken"));
+
+export { AlertArgs, AlertState } from "./alert";
+export type Alert = import("./alert").Alert;
+export const Alert: typeof import("./alert").Alert = null as any;
+utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
+
 export { ApiTokenArgs, ApiTokenState } from "./apiToken";
 export type ApiToken = import("./apiToken").ApiToken;
 export const ApiToken: typeof import("./apiToken").ApiToken = null as any;
@@ -15,10 +25,25 @@ export type Cluster = import("./cluster").Cluster;
 export const Cluster: typeof import("./cluster").Cluster = null as any;
 utilities.lazyLoad(exports, ["Cluster"], () => require("./cluster"));
 
+export { CustomRoleArgs, CustomRoleState } from "./customRole";
+export type CustomRole = import("./customRole").CustomRole;
+export const CustomRole: typeof import("./customRole").CustomRole = null as any;
+utilities.lazyLoad(exports, ["CustomRole"], () => require("./customRole"));
+
 export { DeploymentArgs, DeploymentState } from "./deployment";
 export type Deployment = import("./deployment").Deployment;
 export const Deployment: typeof import("./deployment").Deployment = null as any;
 utilities.lazyLoad(exports, ["Deployment"], () => require("./deployment"));
+
+export { GetAlertArgs, GetAlertResult, GetAlertOutputArgs } from "./getAlert";
+export const getAlert: typeof import("./getAlert").getAlert = null as any;
+export const getAlertOutput: typeof import("./getAlert").getAlertOutput = null as any;
+utilities.lazyLoad(exports, ["getAlert","getAlertOutput"], () => require("./getAlert"));
+
+export { GetAlertsArgs, GetAlertsResult, GetAlertsOutputArgs } from "./getAlerts";
+export const getAlerts: typeof import("./getAlerts").getAlerts = null as any;
+export const getAlertsOutput: typeof import("./getAlerts").getAlertsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlerts","getAlertsOutput"], () => require("./getAlerts"));
 
 export { GetApiTokenArgs, GetApiTokenResult, GetApiTokenOutputArgs } from "./getApiToken";
 export const getApiToken: typeof import("./getApiToken").getApiToken = null as any;
@@ -45,6 +70,11 @@ export const getClusters: typeof import("./getClusters").getClusters = null as a
 export const getClustersOutput: typeof import("./getClusters").getClustersOutput = null as any;
 utilities.lazyLoad(exports, ["getClusters","getClustersOutput"], () => require("./getClusters"));
 
+export { GetCustomRoleArgs, GetCustomRoleResult, GetCustomRoleOutputArgs } from "./getCustomRole";
+export const getCustomRole: typeof import("./getCustomRole").getCustomRole = null as any;
+export const getCustomRoleOutput: typeof import("./getCustomRole").getCustomRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getCustomRole","getCustomRoleOutput"], () => require("./getCustomRole"));
+
 export { GetDeploymentArgs, GetDeploymentResult, GetDeploymentOutputArgs } from "./getDeployment";
 export const getDeployment: typeof import("./getDeployment").getDeployment = null as any;
 export const getDeploymentOutput: typeof import("./getDeployment").getDeploymentOutput = null as any;
@@ -59,6 +89,16 @@ export { GetDeploymentsArgs, GetDeploymentsResult, GetDeploymentsOutputArgs } fr
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
 export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
+
+export { GetNotificationChannelArgs, GetNotificationChannelResult, GetNotificationChannelOutputArgs } from "./getNotificationChannel";
+export const getNotificationChannel: typeof import("./getNotificationChannel").getNotificationChannel = null as any;
+export const getNotificationChannelOutput: typeof import("./getNotificationChannel").getNotificationChannelOutput = null as any;
+utilities.lazyLoad(exports, ["getNotificationChannel","getNotificationChannelOutput"], () => require("./getNotificationChannel"));
+
+export { GetNotificationChannelsArgs, GetNotificationChannelsResult, GetNotificationChannelsOutputArgs } from "./getNotificationChannels";
+export const getNotificationChannels: typeof import("./getNotificationChannels").getNotificationChannels = null as any;
+export const getNotificationChannelsOutput: typeof import("./getNotificationChannels").getNotificationChannelsOutput = null as any;
+utilities.lazyLoad(exports, ["getNotificationChannels","getNotificationChannelsOutput"], () => require("./getNotificationChannels"));
 
 export { GetOrganizationResult } from "./getOrganization";
 export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
@@ -100,6 +140,11 @@ export type HybridClusterWorkspaceAuthorization = import("./hybridClusterWorkspa
 export const HybridClusterWorkspaceAuthorization: typeof import("./hybridClusterWorkspaceAuthorization").HybridClusterWorkspaceAuthorization = null as any;
 utilities.lazyLoad(exports, ["HybridClusterWorkspaceAuthorization"], () => require("./hybridClusterWorkspaceAuthorization"));
 
+export { NotificationChannelArgs, NotificationChannelState } from "./notificationChannel";
+export type NotificationChannel = import("./notificationChannel").NotificationChannel;
+export const NotificationChannel: typeof import("./notificationChannel").NotificationChannel = null as any;
+utilities.lazyLoad(exports, ["NotificationChannel"], () => require("./notificationChannel"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -107,6 +152,11 @@ export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
 utilities.lazyLoad(exports, ["Team"], () => require("./team"));
+
+export { TeamMembershipArgs, TeamMembershipState } from "./teamMembership";
+export type TeamMembership = import("./teamMembership").TeamMembership;
+export const TeamMembership: typeof import("./teamMembership").TeamMembership = null as any;
+utilities.lazyLoad(exports, ["TeamMembership"], () => require("./teamMembership"));
 
 export { TeamRolesArgs, TeamRolesState } from "./teamRoles";
 export type TeamRoles = import("./teamRoles").TeamRoles;
@@ -142,16 +192,26 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "astronomer:index/agentToken:AgentToken":
+                return new AgentToken(name, <any>undefined, { urn })
+            case "astronomer:index/alert:Alert":
+                return new Alert(name, <any>undefined, { urn })
             case "astronomer:index/apiToken:ApiToken":
                 return new ApiToken(name, <any>undefined, { urn })
             case "astronomer:index/cluster:Cluster":
                 return new Cluster(name, <any>undefined, { urn })
+            case "astronomer:index/customRole:CustomRole":
+                return new CustomRole(name, <any>undefined, { urn })
             case "astronomer:index/deployment:Deployment":
                 return new Deployment(name, <any>undefined, { urn })
             case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
                 return new HybridClusterWorkspaceAuthorization(name, <any>undefined, { urn })
+            case "astronomer:index/notificationChannel:NotificationChannel":
+                return new NotificationChannel(name, <any>undefined, { urn })
             case "astronomer:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
+            case "astronomer:index/teamMembership:TeamMembership":
+                return new TeamMembership(name, <any>undefined, { urn })
             case "astronomer:index/teamRoles:TeamRoles":
                 return new TeamRoles(name, <any>undefined, { urn })
             case "astronomer:index/userInvite:UserInvite":
@@ -165,11 +225,16 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("astronomer", "index/agentToken", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/alert", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/apiToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/cluster", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/customRole", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/deployment", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/hybridClusterWorkspaceAuthorization", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/notificationChannel", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/team", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/teamMembership", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/teamRoles", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/userInvite", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/userRoles", _module)

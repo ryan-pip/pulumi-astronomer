@@ -26,6 +26,12 @@ class ClusterArgs:
                  type: pulumi.Input[_builtins.str],
                  vpc_subnet_range: pulumi.Input[_builtins.str],
                  workspace_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
                  service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,11 +40,17 @@ class ClusterArgs:
         """
         The set of arguments for constructing a Cluster resource.
 
-        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] type: Cluster type
         :param pulumi.Input[_builtins.str] vpc_subnet_range: Cluster VPC subnet range. If changed, the cluster will be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] workspace_ids: Cluster workspace IDs
+        :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
+        :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] service_peering_range: Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -49,6 +61,18 @@ class ClusterArgs:
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "vpc_subnet_range", vpc_subnet_range)
         pulumi.set(__self__, "workspace_ids", workspace_ids)
+        if dr_region is not None:
+            pulumi.set(__self__, "dr_region", dr_region)
+        if dr_secondary_vpc_cidr is not None:
+            pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_vpc_subnet_range is not None:
+            pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
+        if enable_replication_time_control is not None:
+            pulumi.set(__self__, "enable_replication_time_control", enable_replication_time_control)
+        if is_dr_enabled is not None:
+            pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
+        if is_failed_over is not None:
+            pulumi.set(__self__, "is_failed_over", is_failed_over)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pod_subnet_range is not None:
@@ -64,7 +88,7 @@ class ClusterArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Input[_builtins.str]:
         """
-        Cluster cloud provider - if changed, the cluster will be recreated.
+        Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -119,6 +143,78 @@ class ClusterArgs:
     @workspace_ids.setter
     def workspace_ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "workspace_ids", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drRegion")
+    def dr_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_region")
+
+    @dr_region.setter
+    def dr_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drSecondaryVpcCidr")
+    def dr_secondary_vpc_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @dr_secondary_vpc_cidr.setter
+    def dr_secondary_vpc_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_secondary_vpc_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drVpcSubnetRange")
+    def dr_vpc_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_vpc_subnet_range")
+
+    @dr_vpc_subnet_range.setter
+    def dr_vpc_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_vpc_subnet_range", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableReplicationTimeControl")
+    def enable_replication_time_control(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
+        """
+        return pulumi.get(self, "enable_replication_time_control")
+
+    @enable_replication_time_control.setter
+    def enable_replication_time_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_replication_time_control", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDrEnabled")
+    def is_dr_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        """
+        return pulumi.get(self, "is_dr_enabled")
+
+    @is_dr_enabled.setter
+    def is_dr_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_dr_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isFailedOver")
+    def is_failed_over(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+        """
+        return pulumi.get(self, "is_failed_over")
+
+    @is_failed_over.setter
+    def is_failed_over(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_failed_over", value)
 
     @_builtins.property
     @pulumi.getter
@@ -184,7 +280,13 @@ class _ClusterState:
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  db_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  health_status: Optional[pulumi.Input['ClusterHealthStatusArgs']] = None,
+                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_limited: Optional[pulumi.Input[_builtins.bool]] = None,
                  metadata: Optional[pulumi.Input['ClusterMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -204,10 +306,16 @@ class _ClusterState:
         """
         Input properties used for looking up and filtering Cluster resources.
 
-        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] created_at: Cluster creation timestamp
         :param pulumi.Input[_builtins.str] db_instance_type: Cluster database instance type
+        :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input['ClusterHealthStatusArgs'] health_status: Cluster health status
+        :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.bool] is_limited: Whether the cluster is limited
         :param pulumi.Input['ClusterMetadataArgs'] metadata: Cluster metadata
         :param pulumi.Input[_builtins.str] name: Cluster name
@@ -230,8 +338,20 @@ class _ClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if db_instance_type is not None:
             pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if dr_region is not None:
+            pulumi.set(__self__, "dr_region", dr_region)
+        if dr_secondary_vpc_cidr is not None:
+            pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_vpc_subnet_range is not None:
+            pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
+        if enable_replication_time_control is not None:
+            pulumi.set(__self__, "enable_replication_time_control", enable_replication_time_control)
         if health_status is not None:
             pulumi.set(__self__, "health_status", health_status)
+        if is_dr_enabled is not None:
+            pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
+        if is_failed_over is not None:
+            pulumi.set(__self__, "is_failed_over", is_failed_over)
         if is_limited is not None:
             pulumi.set(__self__, "is_limited", is_limited)
         if metadata is not None:
@@ -269,7 +389,7 @@ class _ClusterState:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Cluster cloud provider - if changed, the cluster will be recreated.
+        Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -302,6 +422,54 @@ class _ClusterState:
         pulumi.set(self, "db_instance_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="drRegion")
+    def dr_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_region")
+
+    @dr_region.setter
+    def dr_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drSecondaryVpcCidr")
+    def dr_secondary_vpc_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @dr_secondary_vpc_cidr.setter
+    def dr_secondary_vpc_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_secondary_vpc_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drVpcSubnetRange")
+    def dr_vpc_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_vpc_subnet_range")
+
+    @dr_vpc_subnet_range.setter
+    def dr_vpc_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dr_vpc_subnet_range", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableReplicationTimeControl")
+    def enable_replication_time_control(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
+        """
+        return pulumi.get(self, "enable_replication_time_control")
+
+    @enable_replication_time_control.setter
+    def enable_replication_time_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_replication_time_control", value)
+
+    @_builtins.property
     @pulumi.getter(name="healthStatus")
     def health_status(self) -> Optional[pulumi.Input['ClusterHealthStatusArgs']]:
         """
@@ -312,6 +480,30 @@ class _ClusterState:
     @health_status.setter
     def health_status(self, value: Optional[pulumi.Input['ClusterHealthStatusArgs']]):
         pulumi.set(self, "health_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDrEnabled")
+    def is_dr_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        """
+        return pulumi.get(self, "is_dr_enabled")
+
+    @is_dr_enabled.setter
+    def is_dr_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_dr_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isFailedOver")
+    def is_failed_over(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+        """
+        return pulumi.get(self, "is_failed_over")
+
+    @is_failed_over.setter
+    def is_failed_over(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_failed_over", value)
 
     @_builtins.property
     @pulumi.getter(name="isLimited")
@@ -510,6 +702,12 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -526,7 +724,13 @@ class Cluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
+        :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
+        :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
@@ -562,6 +766,12 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -583,6 +793,12 @@ class Cluster(pulumi.CustomResource):
             if cloud_provider is None and not opts.urn:
                 raise TypeError("Missing required property 'cloud_provider'")
             __props__.__dict__["cloud_provider"] = cloud_provider
+            __props__.__dict__["dr_region"] = dr_region
+            __props__.__dict__["dr_secondary_vpc_cidr"] = dr_secondary_vpc_cidr
+            __props__.__dict__["dr_vpc_subnet_range"] = dr_vpc_subnet_range
+            __props__.__dict__["enable_replication_time_control"] = enable_replication_time_control
+            __props__.__dict__["is_dr_enabled"] = is_dr_enabled
+            __props__.__dict__["is_failed_over"] = is_failed_over
             __props__.__dict__["name"] = name
             __props__.__dict__["pod_subnet_range"] = pod_subnet_range
             if region is None and not opts.urn:
@@ -623,7 +839,13 @@ class Cluster(pulumi.CustomResource):
             cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             db_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
+            dr_region: Optional[pulumi.Input[_builtins.str]] = None,
+            dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+            dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
             health_status: Optional[pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']]] = None,
+            is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
             is_limited: Optional[pulumi.Input[_builtins.bool]] = None,
             metadata: Optional[pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -647,10 +869,16 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] created_at: Cluster creation timestamp
         :param pulumi.Input[_builtins.str] db_instance_type: Cluster database instance type
+        :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']] health_status: Cluster health status
+        :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.bool] is_limited: Whether the cluster is limited
         :param pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']] metadata: Cluster metadata
         :param pulumi.Input[_builtins.str] name: Cluster name
@@ -674,7 +902,13 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["db_instance_type"] = db_instance_type
+        __props__.__dict__["dr_region"] = dr_region
+        __props__.__dict__["dr_secondary_vpc_cidr"] = dr_secondary_vpc_cidr
+        __props__.__dict__["dr_vpc_subnet_range"] = dr_vpc_subnet_range
+        __props__.__dict__["enable_replication_time_control"] = enable_replication_time_control
         __props__.__dict__["health_status"] = health_status
+        __props__.__dict__["is_dr_enabled"] = is_dr_enabled
+        __props__.__dict__["is_failed_over"] = is_failed_over
         __props__.__dict__["is_limited"] = is_limited
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
@@ -697,7 +931,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[_builtins.str]:
         """
-        Cluster cloud provider - if changed, the cluster will be recreated.
+        Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -718,12 +952,60 @@ class Cluster(pulumi.CustomResource):
         return pulumi.get(self, "db_instance_type")
 
     @_builtins.property
+    @pulumi.getter(name="drRegion")
+    def dr_region(self) -> pulumi.Output[_builtins.str]:
+        """
+        The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_region")
+
+    @_builtins.property
+    @pulumi.getter(name="drSecondaryVpcCidr")
+    def dr_secondary_vpc_cidr(self) -> pulumi.Output[_builtins.str]:
+        """
+        Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="drVpcSubnetRange")
+    def dr_vpc_subnet_range(self) -> pulumi.Output[_builtins.str]:
+        """
+        The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
+        """
+        return pulumi.get(self, "dr_vpc_subnet_range")
+
+    @_builtins.property
+    @pulumi.getter(name="enableReplicationTimeControl")
+    def enable_replication_time_control(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
+        """
+        return pulumi.get(self, "enable_replication_time_control")
+
+    @_builtins.property
     @pulumi.getter(name="healthStatus")
     def health_status(self) -> pulumi.Output['outputs.ClusterHealthStatus']:
         """
         Cluster health status
         """
         return pulumi.get(self, "health_status")
+
+    @_builtins.property
+    @pulumi.getter(name="isDrEnabled")
+    def is_dr_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+        """
+        return pulumi.get(self, "is_dr_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isFailedOver")
+    def is_failed_over(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+        """
+        return pulumi.get(self, "is_failed_over")
 
     @_builtins.property
     @pulumi.getter(name="isLimited")

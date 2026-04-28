@@ -43,7 +43,7 @@ export interface GetClusterArgs {
  */
 export interface GetClusterResult {
     /**
-     * Cluster cloud provider
+     * Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     readonly cloudProvider: string;
     /**
@@ -55,6 +55,22 @@ export interface GetClusterResult {
      */
     readonly dbInstanceType: string;
     /**
+     * The secondary region for Disaster Recovery
+     */
+    readonly drRegion: string;
+    /**
+     * Secondary CIDR for pod networking in the DR region (AWS only)
+     */
+    readonly drSecondaryVpcCidr: string;
+    /**
+     * The VPC subnet range for the Disaster Recovery region
+     */
+    readonly drVpcSubnetRange: string;
+    /**
+     * Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+     */
+    readonly enableReplicationTimeControl: boolean;
+    /**
      * Cluster health status
      */
     readonly healthStatus: outputs.GetClusterHealthStatus;
@@ -62,6 +78,14 @@ export interface GetClusterResult {
      * Cluster identifier
      */
     readonly id: string;
+    /**
+     * Whether Disaster Recovery is enabled on the cluster
+     */
+    readonly isDrEnabled: boolean;
+    /**
+     * Whether the cluster is currently failed over to the DR region
+     */
+    readonly isFailedOver: boolean;
     /**
      * Whether the cluster is limited
      */

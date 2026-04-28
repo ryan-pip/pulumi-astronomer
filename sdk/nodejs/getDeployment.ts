@@ -51,7 +51,7 @@ export interface GetDeploymentResult {
      */
     readonly astroRuntimeVersion: string;
     /**
-     * Deployment cloud provider
+     * Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     readonly cloudProvider: string;
     /**
@@ -95,7 +95,7 @@ export interface GetDeploymentResult {
      */
     readonly environmentVariables: outputs.GetDeploymentEnvironmentVariable[];
     /**
-     * Deployment executor
+     * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
     readonly executor: string;
     /**
@@ -151,6 +151,10 @@ export interface GetDeploymentResult {
      */
     readonly region: string;
     /**
+     * Deployment remote execution configuration
+     */
+    readonly remoteExecution: outputs.GetDeploymentRemoteExecution;
+    /**
      * Deployment resource quota CPU
      */
     readonly resourceQuotaCpu: string;
@@ -183,7 +187,7 @@ export interface GetDeploymentResult {
      */
     readonly schedulerReplicas: number;
     /**
-     * Deployment scheduler size
+     * Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
     readonly schedulerSize: string;
     /**

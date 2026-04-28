@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * User Roles resource
+ * Manages organization, workspace, deployment, and DAG roles for a user. Astro permissions are hierarchical (organization, workspace, deployment, then DAG). Declare roles at each applicable parent scope as well as nested scopes, not only at the leaf, so Terraform state matches the API.
  */
 export class UserRoles extends pulumi.CustomResource {
     /**
@@ -38,7 +38,11 @@ export class UserRoles extends pulumi.CustomResource {
     }
 
     /**
-     * The roles to assign to the deployments
+     * The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+     */
+    declare public readonly dagRoles: pulumi.Output<outputs.UserRolesDagRole[] | undefined>;
+    /**
+     * The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
      */
     declare public readonly deploymentRoles: pulumi.Output<outputs.UserRolesDeploymentRole[] | undefined>;
     /**
@@ -50,7 +54,7 @@ export class UserRoles extends pulumi.CustomResource {
      */
     declare public readonly userId: pulumi.Output<string>;
     /**
-     * The roles to assign to the workspaces
+     * The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
      */
     declare public readonly workspaceRoles: pulumi.Output<outputs.UserRolesWorkspaceRole[] | undefined>;
 
@@ -67,6 +71,7 @@ export class UserRoles extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserRolesState | undefined;
+            resourceInputs["dagRoles"] = state?.dagRoles;
             resourceInputs["deploymentRoles"] = state?.deploymentRoles;
             resourceInputs["organizationRole"] = state?.organizationRole;
             resourceInputs["userId"] = state?.userId;
@@ -79,6 +84,7 @@ export class UserRoles extends pulumi.CustomResource {
             if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
+            resourceInputs["dagRoles"] = args?.dagRoles;
             resourceInputs["deploymentRoles"] = args?.deploymentRoles;
             resourceInputs["organizationRole"] = args?.organizationRole;
             resourceInputs["userId"] = args?.userId;
@@ -94,7 +100,11 @@ export class UserRoles extends pulumi.CustomResource {
  */
 export interface UserRolesState {
     /**
-     * The roles to assign to the deployments
+     * The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+     */
+    dagRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesDagRole>[]>;
+    /**
+     * The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
      */
     deploymentRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesDeploymentRole>[]>;
     /**
@@ -106,7 +116,7 @@ export interface UserRolesState {
      */
     userId?: pulumi.Input<string>;
     /**
-     * The roles to assign to the workspaces
+     * The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
      */
     workspaceRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesWorkspaceRole>[]>;
 }
@@ -116,7 +126,11 @@ export interface UserRolesState {
  */
 export interface UserRolesArgs {
     /**
-     * The roles to assign to the deployments
+     * The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+     */
+    dagRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesDagRole>[]>;
+    /**
+     * The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
      */
     deploymentRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesDeploymentRole>[]>;
     /**
@@ -128,7 +142,7 @@ export interface UserRolesArgs {
      */
     userId: pulumi.Input<string>;
     /**
-     * The roles to assign to the workspaces
+     * The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
      */
     workspaceRoles?: pulumi.Input<pulumi.Input<inputs.UserRolesWorkspaceRole>[]>;
 }

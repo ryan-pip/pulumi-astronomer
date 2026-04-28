@@ -93,7 +93,7 @@ class GetDeploymentOptionsResult:
     @pulumi.getter
     def executor(self) -> Optional[_builtins.str]:
         """
-        Executor
+        Executor. Valid values: CELERY, KUBERNETES, ASTRO.
         """
         return pulumi.get(self, "executor")
 
@@ -208,7 +208,7 @@ def get_deployment_options(cloud_provider: Optional[_builtins.str] = None,
     :param _builtins.str cloud_provider: Cloud provider
     :param _builtins.str deployment_id: Deployment ID
     :param _builtins.str deployment_type: Deployment type
-    :param _builtins.str executor: Executor
+    :param _builtins.str executor: Executor. Valid values: CELERY, KUBERNETES, ASTRO.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
@@ -257,7 +257,7 @@ def get_deployment_options_output(cloud_provider: Optional[pulumi.Input[Optional
     :param _builtins.str cloud_provider: Cloud provider
     :param _builtins.str deployment_id: Deployment ID
     :param _builtins.str deployment_type: Deployment type
-    :param _builtins.str executor: Executor
+    :param _builtins.str executor: Executor. Valid values: CELERY, KUBERNETES, ASTRO.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider

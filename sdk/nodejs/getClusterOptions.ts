@@ -37,6 +37,9 @@ export function getClusterOptions(args: GetClusterOptionsArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getClusterOptions.
  */
 export interface GetClusterOptionsArgs {
+    /**
+     * ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
+     */
     cloudProvider?: string;
     type: string;
 }
@@ -45,6 +48,9 @@ export interface GetClusterOptionsArgs {
  * A collection of values returned by getClusterOptions.
  */
 export interface GetClusterOptionsResult {
+    /**
+     * ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
+     */
     readonly cloudProvider?: string;
     readonly clusterOptions: outputs.GetClusterOptionsClusterOption[];
     /**
@@ -84,6 +90,9 @@ export function getClusterOptionsOutput(args: GetClusterOptionsOutputArgs, opts?
  * A collection of arguments for invoking getClusterOptions.
  */
 export interface GetClusterOptionsOutputArgs {
+    /**
+     * ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
+     */
     cloudProvider?: pulumi.Input<string>;
     type: pulumi.Input<string>;
 }

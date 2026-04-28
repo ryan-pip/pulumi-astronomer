@@ -5,6 +5,185 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AlertCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface AlertNotificationChannel {
+    /**
+     * Notification Channel creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Notification Channel creator
+     */
+    createdBy: outputs.AlertNotificationChannelCreatedBy;
+    /**
+     * The notification channel's definition
+     */
+    definition: outputs.AlertNotificationChannelDefinition;
+    /**
+     * The deployment ID the notification channel is scoped to
+     */
+    deploymentId: string;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: string;
+    /**
+     * The name of the entity the notification channel is scoped to
+     */
+    entityName: string;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: string;
+    /**
+     * The notification channel's ID
+     */
+    id: string;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared: boolean;
+    /**
+     * The notification channel's name
+     */
+    name: string;
+    /**
+     * The notification channel's type
+     */
+    type: string;
+    /**
+     * Notification Channel last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Notification Channel updater
+     */
+    updatedBy: outputs.AlertNotificationChannelUpdatedBy;
+    /**
+     * The workspace ID the notification channel is scoped to
+     */
+    workspaceId: string;
+}
+
+export interface AlertNotificationChannelCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface AlertNotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: string;
+}
+
+export interface AlertNotificationChannelUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface AlertRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: outputs.AlertRulesPatternMatch[];
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: outputs.AlertRulesProperties;
+}
+
+export interface AlertRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: string;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: string;
+    /**
+     * The values to match against
+     */
+    values: string[];
+}
+
+export interface AlertRulesProperties {
+    /**
+     * The deadline for the DAG in HH:MM 24-hour UTC format
+     */
+    dagDeadline?: string;
+    /**
+     * The duration of the DAG in seconds (minimum 60)
+     */
+    dagDurationSeconds?: number;
+    /**
+     * The days of the week for the timeliness rule
+     */
+    daysOfWeeks?: string[];
+    /**
+     * The ID of the deployment for the alert rule
+     */
+    deploymentId: string;
+    /**
+     * The look-back period in seconds (minimum 60)
+     */
+    lookBackPeriodSeconds?: number;
+    /**
+     * The duration of the Task in seconds (minimum 60)
+     */
+    taskDurationSeconds?: number;
+}
+
+export interface AlertUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface ApiTokenCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -16,7 +195,11 @@ export interface ApiTokenCreatedBy {
 
 export interface ApiTokenRole {
     /**
-     * The ID of the entity to assign the role to
+     * The Deployment ID. Required for DAG and TAG entity types.
+     */
+    deploymentId?: string;
+    /**
+     * The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
      */
     entityId: string;
     /**
@@ -81,7 +264,7 @@ export interface ClusterMetadata {
 
 export interface ClusterNodePool {
     /**
-     * Node pool cloud provider
+     * Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider: string;
     /**
@@ -137,6 +320,24 @@ export interface ClusterTimeouts {
     update?: string;
 }
 
+export interface CustomRoleCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface CustomRoleUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface DeploymentCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -163,6 +364,29 @@ export interface DeploymentEnvironmentVariable {
      * Environment variable value
      */
     value?: string;
+}
+
+export interface DeploymentRemoteExecution {
+    /**
+     * The allowed IP address ranges for remote execution
+     */
+    allowedIpAddressRanges?: string[];
+    /**
+     * Whether remote execution is enabled
+     */
+    enabled: boolean;
+    /**
+     * The URL for the remote API
+     */
+    remoteApiUrl: string;
+    /**
+     * The bucket for task logs
+     */
+    taskLogBucket?: string;
+    /**
+     * The URL pattern for task logs
+     */
+    taskLogUrlPattern?: string;
 }
 
 export interface DeploymentScalingSpec {
@@ -218,7 +442,7 @@ export interface DeploymentUpdatedBy {
 
 export interface DeploymentWorkerQueue {
     /**
-     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
      */
     astroMachine?: string;
     /**
@@ -255,6 +479,261 @@ export interface DeploymentWorkerQueue {
     workerConcurrency: number;
 }
 
+export interface GetAlertCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetAlertNotificationChannel {
+    /**
+     * Notification Channel creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Notification Channel creator
+     */
+    createdBy: outputs.GetAlertNotificationChannelCreatedBy;
+    /**
+     * The notification channel's definition
+     */
+    definition: outputs.GetAlertNotificationChannelDefinition;
+    /**
+     * The deployment ID the notification channel is scoped to
+     */
+    deploymentId: string;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: string;
+    /**
+     * The name of the entity the notification channel is scoped to
+     */
+    entityName: string;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: string;
+    /**
+     * The notification channel's ID
+     */
+    id: string;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared: boolean;
+    /**
+     * The notification channel's name
+     */
+    name: string;
+    /**
+     * The notification channel's type
+     */
+    type: string;
+    /**
+     * Notification Channel last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Notification Channel updater
+     */
+    updatedBy: outputs.GetAlertNotificationChannelUpdatedBy;
+    /**
+     * The workspace ID the notification channel is scoped to
+     */
+    workspaceId: string;
+}
+
+export interface GetAlertNotificationChannelCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetAlertNotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl: string;
+}
+
+export interface GetAlertNotificationChannelUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetAlertRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: outputs.GetAlertRulesPatternMatch[];
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: {[key: string]: string};
+}
+
+export interface GetAlertRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: string;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: string;
+    /**
+     * The values to match against
+     */
+    values: string[];
+}
+
+export interface GetAlertUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetAlertsAlert {
+    /**
+     * Alert creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Alert creator
+     */
+    createdBy: outputs.GetAlertsAlertCreatedBy;
+    /**
+     * Deployment identifier associated with the alert
+     */
+    deploymentId: string;
+    /**
+     * Entity identifier associated with the alert
+     */
+    entityId: string;
+    /**
+     * Name of the entity associated with the alert
+     */
+    entityName: string;
+    /**
+     * Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+     */
+    entityType: string;
+    /**
+     * Alert identifier
+     */
+    id: string;
+    /**
+     * Alert name
+     */
+    name: string;
+    /**
+     * Alert rules defining the conditions for triggering the alert
+     */
+    rules: outputs.GetAlertsAlertRules;
+    /**
+     * Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+     */
+    severity: string;
+    /**
+     * Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+     */
+    type: string;
+    /**
+     * Alert last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Alert updater
+     */
+    updatedBy: outputs.GetAlertsAlertUpdatedBy;
+    /**
+     * Workspace identifier associated with the alert
+     */
+    workspaceId: string;
+}
+
+export interface GetAlertsAlertCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetAlertsAlertRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: outputs.GetAlertsAlertRulesPatternMatch[];
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: {[key: string]: string};
+}
+
+export interface GetAlertsAlertRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: string;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: string;
+    /**
+     * The values to match against
+     */
+    values: string[];
+}
+
+export interface GetAlertsAlertUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface GetApiTokenCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -265,6 +744,10 @@ export interface GetApiTokenCreatedBy {
 }
 
 export interface GetApiTokenRole {
+    /**
+     * The Deployment ID for DAG and TAG entity types
+     */
+    deploymentId: string;
     /**
      * The ID of the entity to assign the role to
      */
@@ -358,6 +841,10 @@ export interface GetApiTokensApiTokenCreatedBy {
 
 export interface GetApiTokensApiTokenRole {
     /**
+     * The Deployment ID for DAG and TAG entity types
+     */
+    deploymentId: string;
+    /**
      * The ID of the entity to assign the role to
      */
     entityId: string;
@@ -423,7 +910,7 @@ export interface GetClusterMetadata {
 
 export interface GetClusterNodePool {
     /**
-     * Node pool cloud provider
+     * Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider: string;
     /**
@@ -626,7 +1113,7 @@ export interface GetClusterTag {
 
 export interface GetClustersCluster {
     /**
-     * Cluster cloud provider
+     * Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider: string;
     /**
@@ -638,6 +1125,22 @@ export interface GetClustersCluster {
      */
     dbInstanceType: string;
     /**
+     * The secondary region for Disaster Recovery
+     */
+    drRegion: string;
+    /**
+     * Secondary CIDR for pod networking in the DR region (AWS only)
+     */
+    drSecondaryVpcCidr: string;
+    /**
+     * The VPC subnet range for the Disaster Recovery region
+     */
+    drVpcSubnetRange: string;
+    /**
+     * Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+     */
+    enableReplicationTimeControl: boolean;
+    /**
      * Cluster health status
      */
     healthStatus: outputs.GetClustersClusterHealthStatus;
@@ -645,6 +1148,14 @@ export interface GetClustersCluster {
      * Cluster identifier
      */
     id: string;
+    /**
+     * Whether Disaster Recovery is enabled on the cluster
+     */
+    isDrEnabled: boolean;
+    /**
+     * Whether the cluster is currently failed over to the DR region
+     */
+    isFailedOver: boolean;
     /**
      * Whether the cluster is limited
      */
@@ -754,7 +1265,7 @@ export interface GetClustersClusterMetadata {
 
 export interface GetClustersClusterNodePool {
     /**
-     * Node pool cloud provider
+     * Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider: string;
     /**
@@ -804,6 +1315,24 @@ export interface GetClustersClusterTag {
      * Cluster tag value
      */
     value: string;
+}
+
+export interface GetCustomRoleCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetCustomRoleUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
 }
 
 export interface GetDeploymentCreatedBy {
@@ -1032,6 +1561,29 @@ export interface GetDeploymentOptionsWorkloadIdentityOption {
     role: string;
 }
 
+export interface GetDeploymentRemoteExecution {
+    /**
+     * The allowed IP address ranges for remote execution
+     */
+    allowedIpAddressRanges: string[];
+    /**
+     * Whether remote execution is enabled
+     */
+    enabled: boolean;
+    /**
+     * The URL for the remote API
+     */
+    remoteApiUrl: string;
+    /**
+     * The bucket for task logs
+     */
+    taskLogBucket: string;
+    /**
+     * The URL pattern for task logs
+     */
+    taskLogUrlPattern: string;
+}
+
 export interface GetDeploymentScalingSpec {
     hibernationSpec: outputs.GetDeploymentScalingSpecHibernationSpec;
 }
@@ -1109,7 +1661,7 @@ export interface GetDeploymentUpdatedBy {
 
 export interface GetDeploymentWorkerQueue {
     /**
-     * Worker queue Astro machine value
+     * Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
      */
     astroMachine: string;
     /**
@@ -1160,7 +1712,7 @@ export interface GetDeploymentsDeployment {
      */
     astroRuntimeVersion: string;
     /**
-     * Deployment cloud provider
+     * Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider: string;
     /**
@@ -1204,7 +1756,7 @@ export interface GetDeploymentsDeployment {
      */
     environmentVariables: outputs.GetDeploymentsDeploymentEnvironmentVariable[];
     /**
-     * Deployment executor
+     * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
     executor: string;
     /**
@@ -1260,6 +1812,10 @@ export interface GetDeploymentsDeployment {
      */
     region: string;
     /**
+     * Deployment remote execution configuration
+     */
+    remoteExecution: outputs.GetDeploymentsDeploymentRemoteExecution;
+    /**
      * Deployment resource quota CPU
      */
     resourceQuotaCpu: string;
@@ -1292,7 +1848,7 @@ export interface GetDeploymentsDeployment {
      */
     schedulerReplicas: number;
     /**
-     * Deployment scheduler size
+     * Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
     schedulerSize: string;
     /**
@@ -1373,6 +1929,29 @@ export interface GetDeploymentsDeploymentEnvironmentVariable {
     value: string;
 }
 
+export interface GetDeploymentsDeploymentRemoteExecution {
+    /**
+     * The allowed IP address ranges for remote execution
+     */
+    allowedIpAddressRanges: string[];
+    /**
+     * Whether remote execution is enabled
+     */
+    enabled: boolean;
+    /**
+     * The URL for the remote API
+     */
+    remoteApiUrl: string;
+    /**
+     * The bucket for task logs
+     */
+    taskLogBucket: string;
+    /**
+     * The URL pattern for task logs
+     */
+    taskLogUrlPattern: string;
+}
+
 export interface GetDeploymentsDeploymentScalingSpec {
     hibernationSpec: outputs.GetDeploymentsDeploymentScalingSpecHibernationSpec;
 }
@@ -1450,7 +2029,7 @@ export interface GetDeploymentsDeploymentUpdatedBy {
 
 export interface GetDeploymentsDeploymentWorkerQueue {
     /**
-     * Worker queue Astro machine value
+     * Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
      */
     astroMachine: string;
     /**
@@ -1491,6 +2070,163 @@ export interface GetDeploymentsDeploymentWorkerQueue {
     workerConcurrency: number;
 }
 
+export interface GetNotificationChannelCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetNotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl: string;
+}
+
+export interface GetNotificationChannelUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetNotificationChannelsNotificationChannel {
+    /**
+     * Notification Channel creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Notification Channel creator
+     */
+    createdBy: outputs.GetNotificationChannelsNotificationChannelCreatedBy;
+    /**
+     * The notification channel's definition
+     */
+    definition: outputs.GetNotificationChannelsNotificationChannelDefinition;
+    /**
+     * The deployment ID the notification channel is scoped to
+     */
+    deploymentId: string;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: string;
+    /**
+     * The name of the entity the notification channel is scoped to
+     */
+    entityName: string;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: string;
+    /**
+     * The notification channel's ID
+     */
+    id: string;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared: boolean;
+    /**
+     * The notification channel's name
+     */
+    name: string;
+    /**
+     * The notification channel's type
+     */
+    type: string;
+    /**
+     * Notification Channel last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Notification Channel updater
+     */
+    updatedBy: outputs.GetNotificationChannelsNotificationChannelUpdatedBy;
+    /**
+     * The workspace ID the notification channel is scoped to
+     */
+    workspaceId: string;
+}
+
+export interface GetNotificationChannelsNotificationChannelCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetNotificationChannelsNotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl: string;
+}
+
+export interface GetNotificationChannelsNotificationChannelUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface GetOrganizationCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -1518,6 +2254,25 @@ export interface GetTeamCreatedBy {
     username: string;
 }
 
+export interface GetTeamDagRole {
+    /**
+     * The DAG ID
+     */
+    dagId: string;
+    /**
+     * The Deployment ID containing the DAG
+     */
+    deploymentId: string;
+    /**
+     * The DAG role
+     */
+    role: string;
+    /**
+     * The DAG tag
+     */
+    tag: string;
+}
+
 export interface GetTeamDeploymentRole {
     /**
      * The ID of the deployment the role is assigned to
@@ -1527,6 +2282,29 @@ export interface GetTeamDeploymentRole {
      * The role assigned to the deployment
      */
     role: string;
+}
+
+export interface GetTeamTeamMember {
+    /**
+     * Team member avatar URL
+     */
+    avatarUrl: string;
+    /**
+     * Team member creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Team member full name
+     */
+    fullName: string;
+    /**
+     * The ID of the user in the Team
+     */
+    userId: string;
+    /**
+     * Team member username
+     */
+    username: string;
 }
 
 export interface GetTeamUpdatedBy {
@@ -1559,6 +2337,10 @@ export interface GetTeamsTeam {
      */
     createdBy: outputs.GetTeamsTeamCreatedBy;
     /**
+     * The DAG roles assigned to the team
+     */
+    dagRoles: outputs.GetTeamsTeamDagRole[];
+    /**
      * The roles assigned to the Deployments
      */
     deploymentRoles: outputs.GetTeamsTeamDeploymentRole[];
@@ -1587,6 +2369,10 @@ export interface GetTeamsTeam {
      */
     rolesCount: number;
     /**
+     * The members of the Team
+     */
+    teamMembers: outputs.GetTeamsTeamTeamMember[];
+    /**
      * Team last updated timestamp
      */
     updatedAt: string;
@@ -1609,6 +2395,25 @@ export interface GetTeamsTeamCreatedBy {
     username: string;
 }
 
+export interface GetTeamsTeamDagRole {
+    /**
+     * The DAG ID
+     */
+    dagId: string;
+    /**
+     * The Deployment ID containing the DAG
+     */
+    deploymentId: string;
+    /**
+     * The DAG role
+     */
+    role: string;
+    /**
+     * The DAG tag
+     */
+    tag: string;
+}
+
 export interface GetTeamsTeamDeploymentRole {
     /**
      * The ID of the deployment the role is assigned to
@@ -1618,6 +2423,29 @@ export interface GetTeamsTeamDeploymentRole {
      * The role assigned to the deployment
      */
     role: string;
+}
+
+export interface GetTeamsTeamTeamMember {
+    /**
+     * Team member avatar URL
+     */
+    avatarUrl: string;
+    /**
+     * Team member creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Team member full name
+     */
+    fullName: string;
+    /**
+     * The ID of the user in the Team
+     */
+    userId: string;
+    /**
+     * Team member username
+     */
+    username: string;
 }
 
 export interface GetTeamsTeamUpdatedBy {
@@ -1638,6 +2466,25 @@ export interface GetTeamsTeamWorkspaceRole {
      * The ID of the workspace the role is assigned to
      */
     workspaceId: string;
+}
+
+export interface GetUserDagRole {
+    /**
+     * The DAG ID
+     */
+    dagId: string;
+    /**
+     * The Deployment ID containing the DAG
+     */
+    deploymentId: string;
+    /**
+     * The DAG role
+     */
+    role: string;
+    /**
+     * The DAG tag
+     */
+    tag: string;
 }
 
 export interface GetUserDeploymentRole {
@@ -1672,6 +2519,10 @@ export interface GetUsersUser {
      */
     createdAt: string;
     /**
+     * The DAG roles assigned to the user
+     */
+    dagRoles: outputs.GetUsersUserDagRole[];
+    /**
      * The roles assigned to the deployments
      */
     deploymentRoles: outputs.GetUsersUserDeploymentRole[];
@@ -1703,6 +2554,25 @@ export interface GetUsersUser {
      * The roles assigned to the workspaces
      */
     workspaceRoles: outputs.GetUsersUserWorkspaceRole[];
+}
+
+export interface GetUsersUserDagRole {
+    /**
+     * The DAG ID
+     */
+    dagId: string;
+    /**
+     * The Deployment ID containing the DAG
+     */
+    deploymentId: string;
+    /**
+     * The DAG role
+     */
+    role: string;
+    /**
+     * The DAG tag
+     */
+    tag: string;
 }
 
 export interface GetUsersUserDeploymentRole {
@@ -1798,6 +2668,55 @@ export interface GetWorkspacesWorkspaceUpdatedBy {
     username: string;
 }
 
+export interface NotificationChannelCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface NotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: string;
+}
+
+export interface NotificationChannelUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface TeamCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -1805,6 +2724,25 @@ export interface TeamCreatedBy {
     id: string;
     subjectType: string;
     username: string;
+}
+
+export interface TeamDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: string;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: string;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: string;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: string;
 }
 
 export interface TeamDeploymentRole {
@@ -1816,6 +2754,25 @@ export interface TeamDeploymentRole {
      * The role to assign to the deployment
      */
     role: string;
+}
+
+export interface TeamRolesDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: string;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: string;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: string;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: string;
 }
 
 export interface TeamRolesDeploymentRole {
@@ -1876,6 +2833,25 @@ export interface UserInviteInviter {
     id: string;
     subjectType: string;
     username: string;
+}
+
+export interface UserRolesDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: string;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: string;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: string;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: string;
 }
 
 export interface UserRolesDeploymentRole {

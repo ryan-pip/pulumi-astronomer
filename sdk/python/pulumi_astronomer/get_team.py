@@ -27,13 +27,16 @@ class GetTeamResult:
     """
     A collection of values returned by getTeam.
     """
-    def __init__(__self__, created_at=None, created_by=None, deployment_roles=None, description=None, id=None, is_idp_managed=None, name=None, organization_role=None, roles_count=None, updated_at=None, updated_by=None, workspace_roles=None):
+    def __init__(__self__, created_at=None, created_by=None, dag_roles=None, deployment_roles=None, description=None, id=None, is_idp_managed=None, name=None, organization_role=None, roles_count=None, team_members=None, updated_at=None, updated_by=None, workspace_roles=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
         if created_by and not isinstance(created_by, dict):
             raise TypeError("Expected argument 'created_by' to be a dict")
         pulumi.set(__self__, "created_by", created_by)
+        if dag_roles and not isinstance(dag_roles, list):
+            raise TypeError("Expected argument 'dag_roles' to be a list")
+        pulumi.set(__self__, "dag_roles", dag_roles)
         if deployment_roles and not isinstance(deployment_roles, list):
             raise TypeError("Expected argument 'deployment_roles' to be a list")
         pulumi.set(__self__, "deployment_roles", deployment_roles)
@@ -55,6 +58,9 @@ class GetTeamResult:
         if roles_count and not isinstance(roles_count, int):
             raise TypeError("Expected argument 'roles_count' to be a int")
         pulumi.set(__self__, "roles_count", roles_count)
+        if team_members and not isinstance(team_members, list):
+            raise TypeError("Expected argument 'team_members' to be a list")
+        pulumi.set(__self__, "team_members", team_members)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -80,6 +86,14 @@ class GetTeamResult:
         Team creator
         """
         return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Sequence['outputs.GetTeamDagRoleResult']:
+        """
+        The DAG roles assigned to the team
+        """
+        return pulumi.get(self, "dag_roles")
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
@@ -138,6 +152,14 @@ class GetTeamResult:
         return pulumi.get(self, "roles_count")
 
     @_builtins.property
+    @pulumi.getter(name="teamMembers")
+    def team_members(self) -> Sequence['outputs.GetTeamTeamMemberResult']:
+        """
+        The members of the Team
+        """
+        return pulumi.get(self, "team_members")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
@@ -170,6 +192,7 @@ class AwaitableGetTeamResult(GetTeamResult):
         return GetTeamResult(
             created_at=self.created_at,
             created_by=self.created_by,
+            dag_roles=self.dag_roles,
             deployment_roles=self.deployment_roles,
             description=self.description,
             id=self.id,
@@ -177,6 +200,7 @@ class AwaitableGetTeamResult(GetTeamResult):
             name=self.name,
             organization_role=self.organization_role,
             roles_count=self.roles_count,
+            team_members=self.team_members,
             updated_at=self.updated_at,
             updated_by=self.updated_by,
             workspace_roles=self.workspace_roles)
@@ -208,6 +232,7 @@ def get_team(id: Optional[_builtins.str] = None,
     return AwaitableGetTeamResult(
         created_at=pulumi.get(__ret__, 'created_at'),
         created_by=pulumi.get(__ret__, 'created_by'),
+        dag_roles=pulumi.get(__ret__, 'dag_roles'),
         deployment_roles=pulumi.get(__ret__, 'deployment_roles'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
@@ -215,6 +240,7 @@ def get_team(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         organization_role=pulumi.get(__ret__, 'organization_role'),
         roles_count=pulumi.get(__ret__, 'roles_count'),
+        team_members=pulumi.get(__ret__, 'team_members'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'),
         workspace_roles=pulumi.get(__ret__, 'workspace_roles'))
@@ -243,6 +269,7 @@ def get_team_output(id: Optional[pulumi.Input[_builtins.str]] = None,
     return __ret__.apply(lambda __response__: GetTeamResult(
         created_at=pulumi.get(__response__, 'created_at'),
         created_by=pulumi.get(__response__, 'created_by'),
+        dag_roles=pulumi.get(__response__, 'dag_roles'),
         deployment_roles=pulumi.get(__response__, 'deployment_roles'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
@@ -250,6 +277,7 @@ def get_team_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         name=pulumi.get(__response__, 'name'),
         organization_role=pulumi.get(__response__, 'organization_role'),
         roles_count=pulumi.get(__response__, 'roles_count'),
+        team_members=pulumi.get(__response__, 'team_members'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         updated_by=pulumi.get(__response__, 'updated_by'),
         workspace_roles=pulumi.get(__response__, 'workspace_roles')))

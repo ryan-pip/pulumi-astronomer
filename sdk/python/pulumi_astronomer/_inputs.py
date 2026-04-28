@@ -15,6 +15,24 @@ else:
 from . import _utilities
 
 __all__ = [
+    'AlertCreatedByArgs',
+    'AlertCreatedByArgsDict',
+    'AlertNotificationChannelArgs',
+    'AlertNotificationChannelArgsDict',
+    'AlertNotificationChannelCreatedByArgs',
+    'AlertNotificationChannelCreatedByArgsDict',
+    'AlertNotificationChannelDefinitionArgs',
+    'AlertNotificationChannelDefinitionArgsDict',
+    'AlertNotificationChannelUpdatedByArgs',
+    'AlertNotificationChannelUpdatedByArgsDict',
+    'AlertRulesArgs',
+    'AlertRulesArgsDict',
+    'AlertRulesPatternMatchArgs',
+    'AlertRulesPatternMatchArgsDict',
+    'AlertRulesPropertiesArgs',
+    'AlertRulesPropertiesArgsDict',
+    'AlertUpdatedByArgs',
+    'AlertUpdatedByArgsDict',
     'ApiTokenCreatedByArgs',
     'ApiTokenCreatedByArgsDict',
     'ApiTokenRoleArgs',
@@ -31,10 +49,16 @@ __all__ = [
     'ClusterNodePoolArgsDict',
     'ClusterTimeoutsArgs',
     'ClusterTimeoutsArgsDict',
+    'CustomRoleCreatedByArgs',
+    'CustomRoleCreatedByArgsDict',
+    'CustomRoleUpdatedByArgs',
+    'CustomRoleUpdatedByArgsDict',
     'DeploymentCreatedByArgs',
     'DeploymentCreatedByArgsDict',
     'DeploymentEnvironmentVariableArgs',
     'DeploymentEnvironmentVariableArgsDict',
+    'DeploymentRemoteExecutionArgs',
+    'DeploymentRemoteExecutionArgsDict',
     'DeploymentScalingSpecArgs',
     'DeploymentScalingSpecArgsDict',
     'DeploymentScalingSpecHibernationSpecArgs',
@@ -51,10 +75,20 @@ __all__ = [
     'DeploymentUpdatedByArgsDict',
     'DeploymentWorkerQueueArgs',
     'DeploymentWorkerQueueArgsDict',
+    'NotificationChannelCreatedByArgs',
+    'NotificationChannelCreatedByArgsDict',
+    'NotificationChannelDefinitionArgs',
+    'NotificationChannelDefinitionArgsDict',
+    'NotificationChannelUpdatedByArgs',
+    'NotificationChannelUpdatedByArgsDict',
     'TeamCreatedByArgs',
     'TeamCreatedByArgsDict',
+    'TeamDagRoleArgs',
+    'TeamDagRoleArgsDict',
     'TeamDeploymentRoleArgs',
     'TeamDeploymentRoleArgsDict',
+    'TeamRolesDagRoleArgs',
+    'TeamRolesDagRoleArgsDict',
     'TeamRolesDeploymentRoleArgs',
     'TeamRolesDeploymentRoleArgsDict',
     'TeamRolesWorkspaceRoleArgs',
@@ -67,6 +101,8 @@ __all__ = [
     'UserInviteInviteeArgsDict',
     'UserInviteInviterArgs',
     'UserInviteInviterArgsDict',
+    'UserRolesDagRoleArgs',
+    'UserRolesDagRoleArgsDict',
     'UserRolesDeploymentRoleArgs',
     'UserRolesDeploymentRoleArgsDict',
     'UserRolesWorkspaceRoleArgs',
@@ -76,6 +112,1020 @@ __all__ = [
     'WorkspaceUpdatedByArgs',
     'WorkspaceUpdatedByArgsDict',
 ]
+
+class AlertCreatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class AlertCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class AlertNotificationChannelArgsDict(TypedDict):
+    definition: pulumi.Input['AlertNotificationChannelDefinitionArgsDict']
+    """
+    The notification channel's definition
+    """
+    entity_id: pulumi.Input[_builtins.str]
+    """
+    The entity ID the notification channel is scoped to
+    """
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The notification channel's name
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The notification channel's type
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Notification Channel creation timestamp
+    """
+    created_by: NotRequired[pulumi.Input['AlertNotificationChannelCreatedByArgsDict']]
+    """
+    Notification Channel creator
+    """
+    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment ID the notification channel is scoped to
+    """
+    entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the entity the notification channel is scoped to
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The notification channel's ID
+    """
+    is_shared: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Notification Channel last updated timestamp
+    """
+    updated_by: NotRequired[pulumi.Input['AlertNotificationChannelUpdatedByArgsDict']]
+    """
+    Notification Channel updater
+    """
+    workspace_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The workspace ID the notification channel is scoped to
+    """
+
+@pulumi.input_type
+class AlertNotificationChannelArgs:
+    def __init__(__self__, *,
+                 definition: pulumi.Input['AlertNotificationChannelDefinitionArgs'],
+                 entity_id: pulumi.Input[_builtins.str],
+                 entity_type: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str],
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 created_by: Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']] = None,
+                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 entity_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 updated_by: Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']] = None,
+                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['AlertNotificationChannelDefinitionArgs'] definition: The notification channel's definition
+        :param pulumi.Input[_builtins.str] entity_id: The entity ID the notification channel is scoped to
+        :param pulumi.Input[_builtins.str] entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param pulumi.Input[_builtins.str] name: The notification channel's name
+        :param pulumi.Input[_builtins.str] type: The notification channel's type
+        :param pulumi.Input[_builtins.str] created_at: Notification Channel creation timestamp
+        :param pulumi.Input['AlertNotificationChannelCreatedByArgs'] created_by: Notification Channel creator
+        :param pulumi.Input[_builtins.str] deployment_id: The deployment ID the notification channel is scoped to
+        :param pulumi.Input[_builtins.str] entity_name: The name of the entity the notification channel is scoped to
+        :param pulumi.Input[_builtins.str] id: The notification channel's ID
+        :param pulumi.Input[_builtins.bool] is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        :param pulumi.Input[_builtins.str] updated_at: Notification Channel last updated timestamp
+        :param pulumi.Input['AlertNotificationChannelUpdatedByArgs'] updated_by: Notification Channel updater
+        :param pulumi.Input[_builtins.str] workspace_id: The workspace ID the notification channel is scoped to
+        """
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if entity_name is not None:
+            pulumi.set(__self__, "entity_name", entity_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_shared is not None:
+            pulumi.set(__self__, "is_shared", is_shared)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if updated_by is not None:
+            pulumi.set(__self__, "updated_by", updated_by)
+        if workspace_id is not None:
+            pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> pulumi.Input['AlertNotificationChannelDefinitionArgs']:
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @definition.setter
+    def definition(self, value: pulumi.Input['AlertNotificationChannelDefinitionArgs']):
+        pulumi.set(self, "definition", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Notification Channel creation timestamp
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']]:
+        """
+        Notification Channel creator
+        """
+        return pulumi.get(self, "created_by")
+
+    @created_by.setter
+    def created_by(self, value: Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']]):
+        pulumi.set(self, "created_by", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deployment ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the entity the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_name")
+
+    @entity_name.setter
+    def entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "entity_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+    @is_shared.setter
+    def is_shared(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_shared", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Notification Channel last updated timestamp
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']]:
+        """
+        Notification Channel updater
+        """
+        return pulumi.get(self, "updated_by")
+
+    @updated_by.setter
+    def updated_by(self, value: Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']]):
+        pulumi.set(self, "updated_by", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The workspace ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @workspace_id.setter
+    def workspace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "workspace_id", value)
+
+
+class AlertNotificationChannelCreatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class AlertNotificationChannelCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class AlertNotificationChannelDefinitionArgsDict(TypedDict):
+    api_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The API key for the notification channel
+    """
+    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG ID for the notification channel
+    """
+    deployment_api_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment API token for the notification channel
+    """
+    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment ID for the notification channel
+    """
+    integration_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The integration key for the notification channel
+    """
+    recipients: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The recipients for the notification channel
+    """
+    webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The webhook URL for the notification channel
+    """
+
+@pulumi.input_type
+class AlertNotificationChannelDefinitionArgs:
+    def __init__(__self__, *,
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: The API key for the notification channel
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_api_token: The deployment API token for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_id: The deployment ID for the notification channel
+        :param pulumi.Input[_builtins.str] integration_key: The integration key for the notification channel
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: The recipients for the notification channel
+        :param pulumi.Input[_builtins.str] webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @deployment_api_token.setter
+    def deployment_api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @integration_key.setter
+    def integration_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "integration_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "recipients", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+    @webhook_url.setter
+    def webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "webhook_url", value)
+
+
+class AlertNotificationChannelUpdatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class AlertNotificationChannelUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class AlertRulesArgsDict(TypedDict):
+    pattern_matches: pulumi.Input[Sequence[pulumi.Input['AlertRulesPatternMatchArgsDict']]]
+    """
+    The alert's pattern matches to match against
+    """
+    properties: pulumi.Input['AlertRulesPropertiesArgsDict']
+    """
+    The alert's properties used to define the alert
+    """
+
+@pulumi.input_type
+class AlertRulesArgs:
+    def __init__(__self__, *,
+                 pattern_matches: pulumi.Input[Sequence[pulumi.Input['AlertRulesPatternMatchArgs']]],
+                 properties: pulumi.Input['AlertRulesPropertiesArgs']):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlertRulesPatternMatchArgs']]] pattern_matches: The alert's pattern matches to match against
+        :param pulumi.Input['AlertRulesPropertiesArgs'] properties: The alert's properties used to define the alert
+        """
+        pulumi.set(__self__, "pattern_matches", pattern_matches)
+        pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="patternMatches")
+    def pattern_matches(self) -> pulumi.Input[Sequence[pulumi.Input['AlertRulesPatternMatchArgs']]]:
+        """
+        The alert's pattern matches to match against
+        """
+        return pulumi.get(self, "pattern_matches")
+
+    @pattern_matches.setter
+    def pattern_matches(self, value: pulumi.Input[Sequence[pulumi.Input['AlertRulesPatternMatchArgs']]]):
+        pulumi.set(self, "pattern_matches", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> pulumi.Input['AlertRulesPropertiesArgs']:
+        """
+        The alert's properties used to define the alert
+        """
+        return pulumi.get(self, "properties")
+
+    @properties.setter
+    def properties(self, value: pulumi.Input['AlertRulesPropertiesArgs']):
+        pulumi.set(self, "properties", value)
+
+
+class AlertRulesPatternMatchArgsDict(TypedDict):
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    The type of entity to match against
+    """
+    operator_type: pulumi.Input[_builtins.str]
+    """
+    The type of operator to use for the pattern match
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    The values to match against
+    """
+
+@pulumi.input_type
+class AlertRulesPatternMatchArgs:
+    def __init__(__self__, *,
+                 entity_type: pulumi.Input[_builtins.str],
+                 operator_type: pulumi.Input[_builtins.str],
+                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] entity_type: The type of entity to match against
+        :param pulumi.Input[_builtins.str] operator_type: The type of operator to use for the pattern match
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: The values to match against
+        """
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "operator_type", operator_type)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of entity to match against
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="operatorType")
+    def operator_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of operator to use for the pattern match
+        """
+        return pulumi.get(self, "operator_type")
+
+    @operator_type.setter
+    def operator_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The values to match against
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "values", value)
+
+
+class AlertRulesPropertiesArgsDict(TypedDict):
+    deployment_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the deployment for the alert rule
+    """
+    dag_deadline: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deadline for the DAG in HH:MM 24-hour UTC format
+    """
+    dag_duration_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The duration of the DAG in seconds (minimum 60)
+    """
+    days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The days of the week for the timeliness rule
+    """
+    look_back_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The look-back period in seconds (minimum 60)
+    """
+    task_duration_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The duration of the Task in seconds (minimum 60)
+    """
+
+@pulumi.input_type
+class AlertRulesPropertiesArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[_builtins.str],
+                 dag_deadline: Optional[pulumi.Input[_builtins.str]] = None,
+                 dag_duration_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 days_of_weeks: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 look_back_period_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 task_duration_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] deployment_id: The ID of the deployment for the alert rule
+        :param pulumi.Input[_builtins.str] dag_deadline: The deadline for the DAG in HH:MM 24-hour UTC format
+        :param pulumi.Input[_builtins.int] dag_duration_seconds: The duration of the DAG in seconds (minimum 60)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] days_of_weeks: The days of the week for the timeliness rule
+        :param pulumi.Input[_builtins.int] look_back_period_seconds: The look-back period in seconds (minimum 60)
+        :param pulumi.Input[_builtins.int] task_duration_seconds: The duration of the Task in seconds (minimum 60)
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        if dag_deadline is not None:
+            pulumi.set(__self__, "dag_deadline", dag_deadline)
+        if dag_duration_seconds is not None:
+            pulumi.set(__self__, "dag_duration_seconds", dag_duration_seconds)
+        if days_of_weeks is not None:
+            pulumi.set(__self__, "days_of_weeks", days_of_weeks)
+        if look_back_period_seconds is not None:
+            pulumi.set(__self__, "look_back_period_seconds", look_back_period_seconds)
+        if task_duration_seconds is not None:
+            pulumi.set(__self__, "task_duration_seconds", task_duration_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the deployment for the alert rule
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagDeadline")
+    def dag_deadline(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deadline for the DAG in HH:MM 24-hour UTC format
+        """
+        return pulumi.get(self, "dag_deadline")
+
+    @dag_deadline.setter
+    def dag_deadline(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_deadline", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagDurationSeconds")
+    def dag_duration_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The duration of the DAG in seconds (minimum 60)
+        """
+        return pulumi.get(self, "dag_duration_seconds")
+
+    @dag_duration_seconds.setter
+    def dag_duration_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "dag_duration_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="daysOfWeeks")
+    def days_of_weeks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The days of the week for the timeliness rule
+        """
+        return pulumi.get(self, "days_of_weeks")
+
+    @days_of_weeks.setter
+    def days_of_weeks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "days_of_weeks", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lookBackPeriodSeconds")
+    def look_back_period_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The look-back period in seconds (minimum 60)
+        """
+        return pulumi.get(self, "look_back_period_seconds")
+
+    @look_back_period_seconds.setter
+    def look_back_period_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "look_back_period_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskDurationSeconds")
+    def task_duration_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The duration of the Task in seconds (minimum 60)
+        """
+        return pulumi.get(self, "task_duration_seconds")
+
+    @task_duration_seconds.setter
+    def task_duration_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "task_duration_seconds", value)
+
+
+class AlertUpdatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class AlertUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
 
 class ApiTokenCreatedByArgsDict(TypedDict):
     api_token_name: NotRequired[pulumi.Input[_builtins.str]]
@@ -165,7 +1215,7 @@ class ApiTokenCreatedByArgs:
 class ApiTokenRoleArgsDict(TypedDict):
     entity_id: pulumi.Input[_builtins.str]
     """
-    The ID of the entity to assign the role to
+    The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
     """
     entity_type: pulumi.Input[_builtins.str]
     """
@@ -175,27 +1225,35 @@ class ApiTokenRoleArgsDict(TypedDict):
     """
     The role to assign to the entity
     """
+    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Deployment ID. Required for DAG and TAG entity types.
+    """
 
 @pulumi.input_type
 class ApiTokenRoleArgs:
     def __init__(__self__, *,
                  entity_id: pulumi.Input[_builtins.str],
                  entity_type: pulumi.Input[_builtins.str],
-                 role: pulumi.Input[_builtins.str]):
+                 role: pulumi.Input[_builtins.str],
+                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] entity_id: The ID of the entity to assign the role to
+        :param pulumi.Input[_builtins.str] entity_id: The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
         :param pulumi.Input[_builtins.str] entity_type: The type of entity to assign the role to
         :param pulumi.Input[_builtins.str] role: The role to assign to the entity
+        :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID. Required for DAG and TAG entity types.
         """
         pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "entity_type", entity_type)
         pulumi.set(__self__, "role", role)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the entity to assign the role to
+        The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
         """
         return pulumi.get(self, "entity_id")
 
@@ -226,6 +1284,18 @@ class ApiTokenRoleArgs:
     @role.setter
     def role(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Deployment ID. Required for DAG and TAG entity types.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_id", value)
 
 
 class ApiTokenUpdatedByArgsDict(TypedDict):
@@ -503,7 +1573,7 @@ class ClusterMetadataArgs:
 class ClusterNodePoolArgsDict(TypedDict):
     cloud_provider: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Node pool cloud provider
+    Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
     cluster_id: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -556,7 +1626,7 @@ class ClusterNodePoolArgs:
                  supported_astro_machines: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] cloud_provider: Node pool cloud provider
+        :param pulumi.Input[_builtins.str] cloud_provider: Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Node pool cluster identifier
         :param pulumi.Input[_builtins.str] created_at: Node pool creation timestamp
         :param pulumi.Input[_builtins.str] id: Node pool identifier
@@ -592,7 +1662,7 @@ class ClusterNodePoolArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Node pool cloud provider
+        Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -778,6 +1848,176 @@ class ClusterTimeoutsArgs:
         pulumi.set(self, "update", value)
 
 
+class CustomRoleCreatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class CustomRoleCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class CustomRoleUpdatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class CustomRoleUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
 class DeploymentCreatedByArgsDict(TypedDict):
     api_token_name: NotRequired[pulumi.Input[_builtins.str]]
     avatar_url: NotRequired[pulumi.Input[_builtins.str]]
@@ -948,6 +2188,114 @@ class DeploymentEnvironmentVariableArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "value", value)
+
+
+class DeploymentRemoteExecutionArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Whether remote execution is enabled
+    """
+    allowed_ip_address_ranges: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The allowed IP address ranges for remote execution
+    """
+    remote_api_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL for the remote API
+    """
+    task_log_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bucket for task logs
+    """
+    task_log_url_pattern: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL pattern for task logs
+    """
+
+@pulumi.input_type
+class DeploymentRemoteExecutionArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[_builtins.bool],
+                 allowed_ip_address_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remote_api_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 task_log_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+                 task_log_url_pattern: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Whether remote execution is enabled
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_address_ranges: The allowed IP address ranges for remote execution
+        :param pulumi.Input[_builtins.str] remote_api_url: The URL for the remote API
+        :param pulumi.Input[_builtins.str] task_log_bucket: The bucket for task logs
+        :param pulumi.Input[_builtins.str] task_log_url_pattern: The URL pattern for task logs
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        if allowed_ip_address_ranges is not None:
+            pulumi.set(__self__, "allowed_ip_address_ranges", allowed_ip_address_ranges)
+        if remote_api_url is not None:
+            pulumi.set(__self__, "remote_api_url", remote_api_url)
+        if task_log_bucket is not None:
+            pulumi.set(__self__, "task_log_bucket", task_log_bucket)
+        if task_log_url_pattern is not None:
+            pulumi.set(__self__, "task_log_url_pattern", task_log_url_pattern)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether remote execution is enabled
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpAddressRanges")
+    def allowed_ip_address_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The allowed IP address ranges for remote execution
+        """
+        return pulumi.get(self, "allowed_ip_address_ranges")
+
+    @allowed_ip_address_ranges.setter
+    def allowed_ip_address_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ip_address_ranges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteApiUrl")
+    def remote_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The URL for the remote API
+        """
+        return pulumi.get(self, "remote_api_url")
+
+    @remote_api_url.setter
+    def remote_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_api_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogBucket")
+    def task_log_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The bucket for task logs
+        """
+        return pulumi.get(self, "task_log_bucket")
+
+    @task_log_bucket.setter
+    def task_log_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "task_log_bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskLogUrlPattern")
+    def task_log_url_pattern(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The URL pattern for task logs
+        """
+        return pulumi.get(self, "task_log_url_pattern")
+
+    @task_log_url_pattern.setter
+    def task_log_url_pattern(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "task_log_url_pattern", value)
 
 
 class DeploymentScalingSpecArgsDict(TypedDict):
@@ -1315,7 +2663,7 @@ class DeploymentWorkerQueueArgsDict(TypedDict):
     """
     astro_machine: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+    Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
     """
     node_pool_id: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -1348,7 +2696,7 @@ class DeploymentWorkerQueueArgs:
         :param pulumi.Input[_builtins.int] min_worker_count: Worker queue min worker count
         :param pulumi.Input[_builtins.str] name: Worker queue name
         :param pulumi.Input[_builtins.int] worker_concurrency: Worker queue worker concurrency
-        :param pulumi.Input[_builtins.str] astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param pulumi.Input[_builtins.str] node_pool_id: Worker queue Node pool identifier - required for 'HYBRID' deployments
         :param pulumi.Input[_builtins.str] pod_cpu: Worker queue pod CPU
         :param pulumi.Input[_builtins.str] pod_memory: Worker queue pod memory
@@ -1431,7 +2779,7 @@ class DeploymentWorkerQueueArgs:
     @pulumi.getter(name="astroMachine")
     def astro_machine(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+        Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         """
         return pulumi.get(self, "astro_machine")
 
@@ -1474,6 +2822,325 @@ class DeploymentWorkerQueueArgs:
     @pod_memory.setter
     def pod_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "pod_memory", value)
+
+
+class NotificationChannelCreatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class NotificationChannelCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class NotificationChannelDefinitionArgsDict(TypedDict):
+    api_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The API key for the notification channel
+    """
+    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG ID for the notification channel
+    """
+    deployment_api_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment API token for the notification channel
+    """
+    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment ID for the notification channel
+    """
+    integration_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The integration key for the notification channel
+    """
+    recipients: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The recipients for the notification channel
+    """
+    webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The webhook URL for the notification channel
+    """
+
+@pulumi.input_type
+class NotificationChannelDefinitionArgs:
+    def __init__(__self__, *,
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: The API key for the notification channel
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_api_token: The deployment API token for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_id: The deployment ID for the notification channel
+        :param pulumi.Input[_builtins.str] integration_key: The integration key for the notification channel
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: The recipients for the notification channel
+        :param pulumi.Input[_builtins.str] webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @deployment_api_token.setter
+    def deployment_api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @integration_key.setter
+    def integration_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "integration_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "recipients", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+    @webhook_url.setter
+    def webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "webhook_url", value)
+
+
+class NotificationChannelUpdatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
+    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
+    full_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    subject_type: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class NotificationChannelUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 class TeamCreatedByArgsDict(TypedDict):
@@ -1561,6 +3228,93 @@ class TeamCreatedByArgs:
         pulumi.set(self, "username", value)
 
 
+class TeamDagRoleArgsDict(TypedDict):
+    deployment_id: pulumi.Input[_builtins.str]
+    """
+    The Deployment ID containing the DAG.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+    """
+    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG ID. Required if tag is not specified.
+    """
+    tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG tag. Required if dag_id is not specified.
+    """
+
+@pulumi.input_type
+class TeamDagRoleArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[_builtins.str],
+                 role: pulumi.Input[_builtins.str],
+                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
+        :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID. Required if tag is not specified.
+        :param pulumi.Input[_builtins.str] tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[_builtins.str]:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tag", value)
+
+
 class TeamDeploymentRoleArgsDict(TypedDict):
     deployment_id: pulumi.Input[_builtins.str]
     """
@@ -1606,6 +3360,93 @@ class TeamDeploymentRoleArgs:
     @role.setter
     def role(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "role", value)
+
+
+class TeamRolesDagRoleArgsDict(TypedDict):
+    deployment_id: pulumi.Input[_builtins.str]
+    """
+    The Deployment ID containing the DAG.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+    """
+    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG ID. Required if tag is not specified.
+    """
+    tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG tag. Required if dag_id is not specified.
+    """
+
+@pulumi.input_type
+class TeamRolesDagRoleArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[_builtins.str],
+                 role: pulumi.Input[_builtins.str],
+                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
+        :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID. Required if tag is not specified.
+        :param pulumi.Input[_builtins.str] tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[_builtins.str]:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tag", value)
 
 
 class TeamRolesDeploymentRoleArgsDict(TypedDict):
@@ -2002,6 +3843,93 @@ class UserInviteInviterArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+class UserRolesDagRoleArgsDict(TypedDict):
+    deployment_id: pulumi.Input[_builtins.str]
+    """
+    The Deployment ID containing the DAG.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+    """
+    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG ID. Required if tag is not specified.
+    """
+    tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DAG tag. Required if dag_id is not specified.
+    """
+
+@pulumi.input_type
+class UserRolesDagRoleArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[_builtins.str],
+                 role: pulumi.Input[_builtins.str],
+                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
+        :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID. Required if tag is not specified.
+        :param pulumi.Input[_builtins.str] tag: The DAG tag. Required if dag_id is not specified.
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        pulumi.set(__self__, "role", role)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Deployment ID containing the DAG.
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[_builtins.str]:
+        """
+        The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG ID. Required if tag is not specified.
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The DAG tag. Required if dag_id is not specified.
+        """
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tag", value)
 
 
 class UserRolesDeploymentRoleArgsDict(TypedDict):

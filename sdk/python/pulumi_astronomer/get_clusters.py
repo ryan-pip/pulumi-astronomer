@@ -44,6 +44,9 @@ class GetClustersResult:
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[_builtins.str]:
+        """
+        Clusters cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
+        """
         return pulumi.get(self, "cloud_provider")
 
     @_builtins.property
@@ -94,6 +97,9 @@ def get_clusters(cloud_provider: Optional[_builtins.str] = None,
     example_clusters_filter_by_cloud_provider = astronomer.get_clusters(cloud_provider="AWS")
     pulumi.export("clusters", example_clusters)
     ```
+
+
+    :param _builtins.str cloud_provider: Clusters cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
@@ -123,6 +129,9 @@ def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[_builtins
     example_clusters_filter_by_cloud_provider = astronomer.get_clusters(cloud_provider="AWS")
     pulumi.export("clusters", example_clusters)
     ```
+
+
+    :param _builtins.str cloud_provider: Clusters cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider

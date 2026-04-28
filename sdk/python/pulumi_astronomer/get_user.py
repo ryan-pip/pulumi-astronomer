@@ -27,13 +27,16 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, avatar_url=None, created_at=None, deployment_roles=None, full_name=None, id=None, organization_role=None, status=None, updated_at=None, username=None, workspace_roles=None):
+    def __init__(__self__, avatar_url=None, created_at=None, dag_roles=None, deployment_roles=None, full_name=None, id=None, organization_role=None, status=None, updated_at=None, username=None, workspace_roles=None):
         if avatar_url and not isinstance(avatar_url, str):
             raise TypeError("Expected argument 'avatar_url' to be a str")
         pulumi.set(__self__, "avatar_url", avatar_url)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if dag_roles and not isinstance(dag_roles, list):
+            raise TypeError("Expected argument 'dag_roles' to be a list")
+        pulumi.set(__self__, "dag_roles", dag_roles)
         if deployment_roles and not isinstance(deployment_roles, list):
             raise TypeError("Expected argument 'deployment_roles' to be a list")
         pulumi.set(__self__, "deployment_roles", deployment_roles)
@@ -74,6 +77,14 @@ class GetUserResult:
         User creation timestamp
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Sequence['outputs.GetUserDagRoleResult']:
+        """
+        The DAG roles assigned to the user
+        """
+        return pulumi.get(self, "dag_roles")
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
@@ -148,6 +159,7 @@ class AwaitableGetUserResult(GetUserResult):
         return GetUserResult(
             avatar_url=self.avatar_url,
             created_at=self.created_at,
+            dag_roles=self.dag_roles,
             deployment_roles=self.deployment_roles,
             full_name=self.full_name,
             id=self.id,
@@ -184,6 +196,7 @@ def get_user(id: Optional[_builtins.str] = None,
     return AwaitableGetUserResult(
         avatar_url=pulumi.get(__ret__, 'avatar_url'),
         created_at=pulumi.get(__ret__, 'created_at'),
+        dag_roles=pulumi.get(__ret__, 'dag_roles'),
         deployment_roles=pulumi.get(__ret__, 'deployment_roles'),
         full_name=pulumi.get(__ret__, 'full_name'),
         id=pulumi.get(__ret__, 'id'),
@@ -217,6 +230,7 @@ def get_user_output(id: Optional[pulumi.Input[_builtins.str]] = None,
     return __ret__.apply(lambda __response__: GetUserResult(
         avatar_url=pulumi.get(__response__, 'avatar_url'),
         created_at=pulumi.get(__response__, 'created_at'),
+        dag_roles=pulumi.get(__response__, 'dag_roles'),
         deployment_roles=pulumi.get(__response__, 'deployment_roles'),
         full_name=pulumi.get(__response__, 'full_name'),
         id=pulumi.get(__response__, 'id'),

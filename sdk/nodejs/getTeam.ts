@@ -51,6 +51,10 @@ export interface GetTeamResult {
      */
     readonly createdBy: outputs.GetTeamCreatedBy;
     /**
+     * The DAG roles assigned to the team
+     */
+    readonly dagRoles: outputs.GetTeamDagRole[];
+    /**
      * The roles assigned to the Deployments
      */
     readonly deploymentRoles: outputs.GetTeamDeploymentRole[];
@@ -78,6 +82,10 @@ export interface GetTeamResult {
      * Number of roles assigned to the Team
      */
     readonly rolesCount: number;
+    /**
+     * The members of the Team
+     */
+    readonly teamMembers: outputs.GetTeamTeamMember[];
     /**
      * Team last updated timestamp
      */

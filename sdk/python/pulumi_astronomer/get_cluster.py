@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, health_status=None, id=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -37,12 +37,30 @@ class GetClusterResult:
         if db_instance_type and not isinstance(db_instance_type, str):
             raise TypeError("Expected argument 'db_instance_type' to be a str")
         pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if dr_region and not isinstance(dr_region, str):
+            raise TypeError("Expected argument 'dr_region' to be a str")
+        pulumi.set(__self__, "dr_region", dr_region)
+        if dr_secondary_vpc_cidr and not isinstance(dr_secondary_vpc_cidr, str):
+            raise TypeError("Expected argument 'dr_secondary_vpc_cidr' to be a str")
+        pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_vpc_subnet_range and not isinstance(dr_vpc_subnet_range, str):
+            raise TypeError("Expected argument 'dr_vpc_subnet_range' to be a str")
+        pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
+        if enable_replication_time_control and not isinstance(enable_replication_time_control, bool):
+            raise TypeError("Expected argument 'enable_replication_time_control' to be a bool")
+        pulumi.set(__self__, "enable_replication_time_control", enable_replication_time_control)
         if health_status and not isinstance(health_status, dict):
             raise TypeError("Expected argument 'health_status' to be a dict")
         pulumi.set(__self__, "health_status", health_status)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_dr_enabled and not isinstance(is_dr_enabled, bool):
+            raise TypeError("Expected argument 'is_dr_enabled' to be a bool")
+        pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
+        if is_failed_over and not isinstance(is_failed_over, bool):
+            raise TypeError("Expected argument 'is_failed_over' to be a bool")
+        pulumi.set(__self__, "is_failed_over", is_failed_over)
         if is_limited and not isinstance(is_limited, bool):
             raise TypeError("Expected argument 'is_limited' to be a bool")
         pulumi.set(__self__, "is_limited", is_limited)
@@ -96,7 +114,7 @@ class GetClusterResult:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Cluster cloud provider
+        Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -117,6 +135,38 @@ class GetClusterResult:
         return pulumi.get(self, "db_instance_type")
 
     @_builtins.property
+    @pulumi.getter(name="drRegion")
+    def dr_region(self) -> _builtins.str:
+        """
+        The secondary region for Disaster Recovery
+        """
+        return pulumi.get(self, "dr_region")
+
+    @_builtins.property
+    @pulumi.getter(name="drSecondaryVpcCidr")
+    def dr_secondary_vpc_cidr(self) -> _builtins.str:
+        """
+        Secondary CIDR for pod networking in the DR region (AWS only)
+        """
+        return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="drVpcSubnetRange")
+    def dr_vpc_subnet_range(self) -> _builtins.str:
+        """
+        The VPC subnet range for the Disaster Recovery region
+        """
+        return pulumi.get(self, "dr_vpc_subnet_range")
+
+    @_builtins.property
+    @pulumi.getter(name="enableReplicationTimeControl")
+    def enable_replication_time_control(self) -> _builtins.bool:
+        """
+        Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        """
+        return pulumi.get(self, "enable_replication_time_control")
+
+    @_builtins.property
     @pulumi.getter(name="healthStatus")
     def health_status(self) -> 'outputs.GetClusterHealthStatusResult':
         """
@@ -131,6 +181,22 @@ class GetClusterResult:
         Cluster identifier
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDrEnabled")
+    def is_dr_enabled(self) -> _builtins.bool:
+        """
+        Whether Disaster Recovery is enabled on the cluster
+        """
+        return pulumi.get(self, "is_dr_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isFailedOver")
+    def is_failed_over(self) -> _builtins.bool:
+        """
+        Whether the cluster is currently failed over to the DR region
+        """
+        return pulumi.get(self, "is_failed_over")
 
     @_builtins.property
     @pulumi.getter(name="isLimited")
@@ -270,8 +336,14 @@ class AwaitableGetClusterResult(GetClusterResult):
             cloud_provider=self.cloud_provider,
             created_at=self.created_at,
             db_instance_type=self.db_instance_type,
+            dr_region=self.dr_region,
+            dr_secondary_vpc_cidr=self.dr_secondary_vpc_cidr,
+            dr_vpc_subnet_range=self.dr_vpc_subnet_range,
+            enable_replication_time_control=self.enable_replication_time_control,
             health_status=self.health_status,
             id=self.id,
+            is_dr_enabled=self.is_dr_enabled,
+            is_failed_over=self.is_failed_over,
             is_limited=self.is_limited,
             metadata=self.metadata,
             name=self.name,
@@ -317,8 +389,14 @@ def get_cluster(id: Optional[_builtins.str] = None,
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
         created_at=pulumi.get(__ret__, 'created_at'),
         db_instance_type=pulumi.get(__ret__, 'db_instance_type'),
+        dr_region=pulumi.get(__ret__, 'dr_region'),
+        dr_secondary_vpc_cidr=pulumi.get(__ret__, 'dr_secondary_vpc_cidr'),
+        dr_vpc_subnet_range=pulumi.get(__ret__, 'dr_vpc_subnet_range'),
+        enable_replication_time_control=pulumi.get(__ret__, 'enable_replication_time_control'),
         health_status=pulumi.get(__ret__, 'health_status'),
         id=pulumi.get(__ret__, 'id'),
+        is_dr_enabled=pulumi.get(__ret__, 'is_dr_enabled'),
+        is_failed_over=pulumi.get(__ret__, 'is_failed_over'),
         is_limited=pulumi.get(__ret__, 'is_limited'),
         metadata=pulumi.get(__ret__, 'metadata'),
         name=pulumi.get(__ret__, 'name'),
@@ -361,8 +439,14 @@ def get_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
         created_at=pulumi.get(__response__, 'created_at'),
         db_instance_type=pulumi.get(__response__, 'db_instance_type'),
+        dr_region=pulumi.get(__response__, 'dr_region'),
+        dr_secondary_vpc_cidr=pulumi.get(__response__, 'dr_secondary_vpc_cidr'),
+        dr_vpc_subnet_range=pulumi.get(__response__, 'dr_vpc_subnet_range'),
+        enable_replication_time_control=pulumi.get(__response__, 'enable_replication_time_control'),
         health_status=pulumi.get(__response__, 'health_status'),
         id=pulumi.get(__response__, 'id'),
+        is_dr_enabled=pulumi.get(__response__, 'is_dr_enabled'),
+        is_failed_over=pulumi.get(__response__, 'is_failed_over'),
         is_limited=pulumi.get(__response__, 'is_limited'),
         metadata=pulumi.get(__response__, 'metadata'),
         name=pulumi.get(__response__, 'name'),

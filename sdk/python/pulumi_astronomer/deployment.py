@@ -33,11 +33,13 @@ class DeploymentArgs:
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_execution: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']] = None,
                  resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  scaling_spec: Optional[pulumi.Input['DeploymentScalingSpecArgs']] = None,
@@ -51,27 +53,29 @@ class DeploymentArgs:
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contact_emails: Deployment contact emails
         :param pulumi.Input[_builtins.str] description: Deployment description
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]] environment_variables: Deployment environment variables
-        :param pulumi.Input[_builtins.str] executor: Deployment executor
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]] environment_variables: Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
+        :param pulumi.Input[_builtins.str] executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param pulumi.Input[_builtins.bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[_builtins.bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         :param pulumi.Input[_builtins.str] type: Deployment type - if changing this value, the deployment will be recreated with the new type
         :param pulumi.Input[_builtins.str] workspace_id: Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
-        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         :param pulumi.Input[_builtins.str] default_task_pod_cpu: Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] desired_workload_identity: Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
         :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
+        :param pulumi.Input['DeploymentRemoteExecutionArgs'] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input['DeploymentScalingSpecArgs'] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.int] scheduler_au: Deployment scheduler AU - required for 'HYBRID' deployments
         :param pulumi.Input[_builtins.int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
-        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         :param pulumi.Input[_builtins.str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
@@ -91,6 +95,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "default_task_pod_cpu", default_task_pod_cpu)
         if default_task_pod_memory is not None:
             pulumi.set(__self__, "default_task_pod_memory", default_task_pod_memory)
+        if desired_workload_identity is not None:
+            pulumi.set(__self__, "desired_workload_identity", desired_workload_identity)
         if is_development_mode is not None:
             pulumi.set(__self__, "is_development_mode", is_development_mode)
         if is_high_availability is not None:
@@ -101,6 +107,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "original_astro_runtime_version", original_astro_runtime_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if remote_execution is not None:
+            pulumi.set(__self__, "remote_execution", remote_execution)
         if resource_quota_cpu is not None:
             pulumi.set(__self__, "resource_quota_cpu", resource_quota_cpu)
         if resource_quota_memory is not None:
@@ -146,7 +154,7 @@ class DeploymentArgs:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]:
         """
-        Deployment environment variables
+        Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -158,7 +166,7 @@ class DeploymentArgs:
     @pulumi.getter
     def executor(self) -> pulumi.Input[_builtins.str]:
         """
-        Deployment executor
+        Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
@@ -218,7 +226,7 @@ class DeploymentArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -263,6 +271,18 @@ class DeploymentArgs:
         pulumi.set(self, "default_task_pod_memory", value)
 
     @_builtins.property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        """
+        return pulumi.get(self, "desired_workload_identity")
+
+    @desired_workload_identity.setter
+    def desired_workload_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "desired_workload_identity", value)
+
+    @_builtins.property
     @pulumi.getter(name="isDevelopmentMode")
     def is_development_mode(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -302,7 +322,7 @@ class DeploymentArgs:
     @pulumi.getter(name="originalAstroRuntimeVersion")
     def original_astro_runtime_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -321,6 +341,18 @@ class DeploymentArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteExecution")
+    def remote_execution(self) -> Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]:
+        """
+        Deployment remote execution configuration - only for 'DEDICATED' deployments
+        """
+        return pulumi.get(self, "remote_execution")
+
+    @remote_execution.setter
+    def remote_execution(self, value: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]):
+        pulumi.set(self, "remote_execution", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
@@ -386,7 +418,7 @@ class DeploymentArgs:
     @pulumi.getter(name="schedulerSize")
     def scheduler_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
@@ -434,6 +466,7 @@ class _DeploymentState:
                  default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  desired_dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]] = None,
                  executor: Optional[pulumi.Input[_builtins.str]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -449,6 +482,7 @@ class _DeploymentState:
                  oidc_issuer_url: Optional[pulumi.Input[_builtins.str]] = None,
                  original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_execution: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']] = None,
                  resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  scaling_spec: Optional[pulumi.Input['DeploymentScalingSpecArgs']] = None,
@@ -475,7 +509,7 @@ class _DeploymentState:
 
         :param pulumi.Input[_builtins.str] airflow_version: Deployment Airflow version
         :param pulumi.Input[_builtins.str] astro_runtime_version: Deployment's current Astro Runtime version
-        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contact_emails: Deployment contact emails
         :param pulumi.Input[_builtins.str] created_at: Deployment creation timestamp
@@ -485,8 +519,9 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] description: Deployment description
         :param pulumi.Input[_builtins.str] desired_dag_tarball_version: Deployment desired DAG tarball version
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]] environment_variables: Deployment environment variables
-        :param pulumi.Input[_builtins.str] executor: Deployment executor
+        :param pulumi.Input[_builtins.str] desired_workload_identity: Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]] environment_variables: Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
+        :param pulumi.Input[_builtins.str] executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] external_ips: Deployment external IPs
         :param pulumi.Input[_builtins.str] image_repository: Deployment image repository
         :param pulumi.Input[_builtins.str] image_tag: Deployment image tag
@@ -498,8 +533,9 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
         :param pulumi.Input[_builtins.str] oidc_issuer_url: Deployment OIDC issuer URL
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
+        :param pulumi.Input['DeploymentRemoteExecutionArgs'] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input['DeploymentScalingSpecArgs'] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
@@ -508,7 +544,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] scheduler_cpu: Deployment scheduler CPU
         :param pulumi.Input[_builtins.str] scheduler_memory: Deployment scheduler memory
         :param pulumi.Input[_builtins.int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
-        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         :param pulumi.Input[_builtins.str] status: Deployment status
         :param pulumi.Input[_builtins.str] status_reason: Deployment status reason
         :param pulumi.Input[_builtins.str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
@@ -546,6 +582,8 @@ class _DeploymentState:
             pulumi.set(__self__, "description", description)
         if desired_dag_tarball_version is not None:
             pulumi.set(__self__, "desired_dag_tarball_version", desired_dag_tarball_version)
+        if desired_workload_identity is not None:
+            pulumi.set(__self__, "desired_workload_identity", desired_workload_identity)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if executor is not None:
@@ -576,6 +614,8 @@ class _DeploymentState:
             pulumi.set(__self__, "original_astro_runtime_version", original_astro_runtime_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if remote_execution is not None:
+            pulumi.set(__self__, "remote_execution", remote_execution)
         if resource_quota_cpu is not None:
             pulumi.set(__self__, "resource_quota_cpu", resource_quota_cpu)
         if resource_quota_memory is not None:
@@ -647,7 +687,7 @@ class _DeploymentState:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -764,10 +804,22 @@ class _DeploymentState:
         pulumi.set(self, "desired_dag_tarball_version", value)
 
     @_builtins.property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        """
+        return pulumi.get(self, "desired_workload_identity")
+
+    @desired_workload_identity.setter
+    def desired_workload_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "desired_workload_identity", value)
+
+    @_builtins.property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]]:
         """
-        Deployment environment variables
+        Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -779,7 +831,7 @@ class _DeploymentState:
     @pulumi.getter
     def executor(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment executor
+        Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
@@ -923,7 +975,7 @@ class _DeploymentState:
     @pulumi.getter(name="originalAstroRuntimeVersion")
     def original_astro_runtime_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -942,6 +994,18 @@ class _DeploymentState:
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteExecution")
+    def remote_execution(self) -> Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]:
+        """
+        Deployment remote execution configuration - only for 'DEDICATED' deployments
+        """
+        return pulumi.get(self, "remote_execution")
+
+    @remote_execution.setter
+    def remote_execution(self, value: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]):
+        pulumi.set(self, "remote_execution", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
@@ -1043,7 +1107,7 @@ class _DeploymentState:
     @pulumi.getter(name="schedulerSize")
     def scheduler_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
@@ -1208,6 +1272,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[_builtins.str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1217,6 +1282,7 @@ class Deployment(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
                  resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
@@ -1234,27 +1300,29 @@ class Deployment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contact_emails: Deployment contact emails
         :param pulumi.Input[_builtins.str] default_task_pod_cpu: Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] description: Deployment description
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables
-        :param pulumi.Input[_builtins.str] executor: Deployment executor
+        :param pulumi.Input[_builtins.str] desired_workload_identity: Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
+        :param pulumi.Input[_builtins.str] executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param pulumi.Input[_builtins.bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[_builtins.bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
+        :param pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.int] scheduler_au: Deployment scheduler AU - required for 'HYBRID' deployments
         :param pulumi.Input[_builtins.int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
-        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         :param pulumi.Input[_builtins.str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         :param pulumi.Input[_builtins.str] type: Deployment type - if changing this value, the deployment will be recreated with the new type
         :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]] worker_queues: Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
@@ -1291,6 +1359,7 @@ class Deployment(pulumi.CustomResource):
                  default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
                  executor: Optional[pulumi.Input[_builtins.str]] = None,
                  is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1300,6 +1369,7 @@ class Deployment(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
                  resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
                  scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
@@ -1329,6 +1399,7 @@ class Deployment(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["desired_workload_identity"] = desired_workload_identity
             if environment_variables is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_variables'")
             __props__.__dict__["environment_variables"] = environment_variables
@@ -1346,6 +1417,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["original_astro_runtime_version"] = original_astro_runtime_version
             __props__.__dict__["region"] = region
+            __props__.__dict__["remote_execution"] = remote_execution
             __props__.__dict__["resource_quota_cpu"] = resource_quota_cpu
             __props__.__dict__["resource_quota_memory"] = resource_quota_memory
             __props__.__dict__["scaling_spec"] = scaling_spec
@@ -1405,6 +1477,7 @@ class Deployment(pulumi.CustomResource):
             default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             desired_dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
+            desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
             environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
             executor: Optional[pulumi.Input[_builtins.str]] = None,
             external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1420,6 +1493,7 @@ class Deployment(pulumi.CustomResource):
             oidc_issuer_url: Optional[pulumi.Input[_builtins.str]] = None,
             original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
             resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
             resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
             scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
@@ -1450,7 +1524,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] airflow_version: Deployment Airflow version
         :param pulumi.Input[_builtins.str] astro_runtime_version: Deployment's current Astro Runtime version
-        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        :param pulumi.Input[_builtins.str] cloud_provider: Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contact_emails: Deployment contact emails
         :param pulumi.Input[_builtins.str] created_at: Deployment creation timestamp
@@ -1460,8 +1534,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] description: Deployment description
         :param pulumi.Input[_builtins.str] desired_dag_tarball_version: Deployment desired DAG tarball version
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables
-        :param pulumi.Input[_builtins.str] executor: Deployment executor
+        :param pulumi.Input[_builtins.str] desired_workload_identity: Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]] environment_variables: Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
+        :param pulumi.Input[_builtins.str] executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] external_ips: Deployment external IPs
         :param pulumi.Input[_builtins.str] image_repository: Deployment image repository
         :param pulumi.Input[_builtins.str] image_tag: Deployment image tag
@@ -1473,8 +1548,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
         :param pulumi.Input[_builtins.str] oidc_issuer_url: Deployment OIDC issuer URL
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
+        :param pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_memory: Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']] scaling_spec: Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
@@ -1483,7 +1559,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] scheduler_cpu: Deployment scheduler CPU
         :param pulumi.Input[_builtins.str] scheduler_memory: Deployment scheduler memory
         :param pulumi.Input[_builtins.int] scheduler_replicas: Deployment scheduler replicas - required for 'HYBRID' deployments
-        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        :param pulumi.Input[_builtins.str] scheduler_size: Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         :param pulumi.Input[_builtins.str] status: Deployment status
         :param pulumi.Input[_builtins.str] status_reason: Deployment status reason
         :param pulumi.Input[_builtins.str] task_pod_node_pool_id: Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
@@ -1513,6 +1589,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["default_task_pod_memory"] = default_task_pod_memory
         __props__.__dict__["description"] = description
         __props__.__dict__["desired_dag_tarball_version"] = desired_dag_tarball_version
+        __props__.__dict__["desired_workload_identity"] = desired_workload_identity
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["executor"] = executor
         __props__.__dict__["external_ips"] = external_ips
@@ -1528,6 +1605,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["oidc_issuer_url"] = oidc_issuer_url
         __props__.__dict__["original_astro_runtime_version"] = original_astro_runtime_version
         __props__.__dict__["region"] = region
+        __props__.__dict__["remote_execution"] = remote_execution
         __props__.__dict__["resource_quota_cpu"] = resource_quota_cpu
         __props__.__dict__["resource_quota_memory"] = resource_quota_memory
         __props__.__dict__["scaling_spec"] = scaling_spec
@@ -1571,7 +1649,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[_builtins.str]:
         """
-        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider
+        Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -1648,10 +1726,18 @@ class Deployment(pulumi.CustomResource):
         return pulumi.get(self, "desired_dag_tarball_version")
 
     @_builtins.property
+    @pulumi.getter(name="desiredWorkloadIdentity")
+    def desired_workload_identity(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
+        """
+        return pulumi.get(self, "desired_workload_identity")
+
+    @_builtins.property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> pulumi.Output[Sequence['outputs.DeploymentEnvironmentVariable']]:
         """
-        Deployment environment variables
+        Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -1659,7 +1745,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def executor(self) -> pulumi.Output[_builtins.str]:
         """
-        Deployment executor
+        Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
@@ -1753,9 +1839,9 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="originalAstroRuntimeVersion")
-    def original_astro_runtime_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def original_astro_runtime_version(self) -> pulumi.Output[_builtins.str]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -1766,6 +1852,14 @@ class Deployment(pulumi.CustomResource):
         Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteExecution")
+    def remote_execution(self) -> pulumi.Output[Optional['outputs.DeploymentRemoteExecution']]:
+        """
+        Deployment remote execution configuration - only for 'DEDICATED' deployments
+        """
+        return pulumi.get(self, "remote_execution")
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
@@ -1835,7 +1929,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="schedulerSize")
     def scheduler_size(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments
+        Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 

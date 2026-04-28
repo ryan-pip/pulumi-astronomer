@@ -44,6 +44,9 @@ class GetClusterOptionsResult:
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[_builtins.str]:
+        """
+        ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
+        """
         return pulumi.get(self, "cloud_provider")
 
     @_builtins.property
@@ -94,6 +97,9 @@ def get_cluster_options(cloud_provider: Optional[_builtins.str] = None,
         cloud_provider="AWS")
     pulumi.export("clusterOptions", example_cluster_options)
     ```
+
+
+    :param _builtins.str cloud_provider: ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
@@ -123,6 +129,9 @@ def get_cluster_options_output(cloud_provider: Optional[pulumi.Input[Optional[_b
         cloud_provider="AWS")
     pulumi.export("clusterOptions", example_cluster_options)
     ```
+
+
+    :param _builtins.str cloud_provider: ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider

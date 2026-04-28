@@ -51,6 +51,10 @@ export interface GetUserResult {
      */
     readonly createdAt: string;
     /**
+     * The DAG roles assigned to the user
+     */
+    readonly dagRoles: outputs.GetUserDagRole[];
+    /**
      * The roles assigned to the deployments
      */
     readonly deploymentRoles: outputs.GetUserDeploymentRole[];

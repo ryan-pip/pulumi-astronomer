@@ -5,6 +5,185 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AlertCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface AlertNotificationChannel {
+    /**
+     * Notification Channel creation timestamp
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Notification Channel creator
+     */
+    createdBy?: pulumi.Input<inputs.AlertNotificationChannelCreatedBy>;
+    /**
+     * The notification channel's definition
+     */
+    definition: pulumi.Input<inputs.AlertNotificationChannelDefinition>;
+    /**
+     * The deployment ID the notification channel is scoped to
+     */
+    deploymentId?: pulumi.Input<string>;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: pulumi.Input<string>;
+    /**
+     * The name of the entity the notification channel is scoped to
+     */
+    entityName?: pulumi.Input<string>;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * The notification channel's ID
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared?: pulumi.Input<boolean>;
+    /**
+     * The notification channel's name
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The notification channel's type
+     */
+    type: pulumi.Input<string>;
+    /**
+     * Notification Channel last updated timestamp
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * Notification Channel updater
+     */
+    updatedBy?: pulumi.Input<inputs.AlertNotificationChannelUpdatedBy>;
+    /**
+     * The workspace ID the notification channel is scoped to
+     */
+    workspaceId?: pulumi.Input<string>;
+}
+
+export interface AlertNotificationChannelCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface AlertNotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: pulumi.Input<string>;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: pulumi.Input<string>;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: pulumi.Input<string>;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: pulumi.Input<string>;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: pulumi.Input<string>;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: pulumi.Input<string>;
+}
+
+export interface AlertNotificationChannelUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface AlertRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: pulumi.Input<pulumi.Input<inputs.AlertRulesPatternMatch>[]>;
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: pulumi.Input<inputs.AlertRulesProperties>;
+}
+
+export interface AlertRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: pulumi.Input<string>;
+    /**
+     * The values to match against
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface AlertRulesProperties {
+    /**
+     * The deadline for the DAG in HH:MM 24-hour UTC format
+     */
+    dagDeadline?: pulumi.Input<string>;
+    /**
+     * The duration of the DAG in seconds (minimum 60)
+     */
+    dagDurationSeconds?: pulumi.Input<number>;
+    /**
+     * The days of the week for the timeliness rule
+     */
+    daysOfWeeks?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the deployment for the alert rule
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The look-back period in seconds (minimum 60)
+     */
+    lookBackPeriodSeconds?: pulumi.Input<number>;
+    /**
+     * The duration of the Task in seconds (minimum 60)
+     */
+    taskDurationSeconds?: pulumi.Input<number>;
+}
+
+export interface AlertUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
 export interface ApiTokenCreatedBy {
     apiTokenName?: pulumi.Input<string>;
     avatarUrl?: pulumi.Input<string>;
@@ -16,7 +195,11 @@ export interface ApiTokenCreatedBy {
 
 export interface ApiTokenRole {
     /**
-     * The ID of the entity to assign the role to
+     * The Deployment ID. Required for DAG and TAG entity types.
+     */
+    deploymentId?: pulumi.Input<string>;
+    /**
+     * The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
      */
     entityId: pulumi.Input<string>;
     /**
@@ -81,7 +264,7 @@ export interface ClusterMetadata {
 
 export interface ClusterNodePool {
     /**
-     * Node pool cloud provider
+     * Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -137,6 +320,24 @@ export interface ClusterTimeouts {
     update?: pulumi.Input<string>;
 }
 
+export interface CustomRoleCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface CustomRoleUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
 export interface DeploymentCreatedBy {
     apiTokenName?: pulumi.Input<string>;
     avatarUrl?: pulumi.Input<string>;
@@ -163,6 +364,29 @@ export interface DeploymentEnvironmentVariable {
      * Environment variable value
      */
     value?: pulumi.Input<string>;
+}
+
+export interface DeploymentRemoteExecution {
+    /**
+     * The allowed IP address ranges for remote execution
+     */
+    allowedIpAddressRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether remote execution is enabled
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * The URL for the remote API
+     */
+    remoteApiUrl?: pulumi.Input<string>;
+    /**
+     * The bucket for task logs
+     */
+    taskLogBucket?: pulumi.Input<string>;
+    /**
+     * The URL pattern for task logs
+     */
+    taskLogUrlPattern?: pulumi.Input<string>;
 }
 
 export interface DeploymentScalingSpec {
@@ -218,7 +442,7 @@ export interface DeploymentUpdatedBy {
 
 export interface DeploymentWorkerQueue {
     /**
-     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+     * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
      */
     astroMachine?: pulumi.Input<string>;
     /**
@@ -255,6 +479,55 @@ export interface DeploymentWorkerQueue {
     workerConcurrency: pulumi.Input<number>;
 }
 
+export interface NotificationChannelCreatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface NotificationChannelDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: pulumi.Input<string>;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: pulumi.Input<string>;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: pulumi.Input<string>;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: pulumi.Input<string>;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: pulumi.Input<string>;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: pulumi.Input<string>;
+}
+
+export interface NotificationChannelUpdatedBy {
+    apiTokenName?: pulumi.Input<string>;
+    avatarUrl?: pulumi.Input<string>;
+    fullName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
 export interface TeamCreatedBy {
     apiTokenName?: pulumi.Input<string>;
     avatarUrl?: pulumi.Input<string>;
@@ -262,6 +535,25 @@ export interface TeamCreatedBy {
     id?: pulumi.Input<string>;
     subjectType?: pulumi.Input<string>;
     username?: pulumi.Input<string>;
+}
+
+export interface TeamDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: pulumi.Input<string>;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: pulumi.Input<string>;
 }
 
 export interface TeamDeploymentRole {
@@ -273,6 +565,25 @@ export interface TeamDeploymentRole {
      * The role to assign to the deployment
      */
     role: pulumi.Input<string>;
+}
+
+export interface TeamRolesDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: pulumi.Input<string>;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: pulumi.Input<string>;
 }
 
 export interface TeamRolesDeploymentRole {
@@ -333,6 +644,25 @@ export interface UserInviteInviter {
     id?: pulumi.Input<string>;
     subjectType?: pulumi.Input<string>;
     username?: pulumi.Input<string>;
+}
+
+export interface UserRolesDagRole {
+    /**
+     * The DAG ID. Required if tag is not specified.
+     */
+    dagId?: pulumi.Input<string>;
+    /**
+     * The Deployment ID containing the DAG.
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The DAG tag. Required if dagId is not specified.
+     */
+    tag?: pulumi.Input<string>;
 }
 
 export interface UserRolesDeploymentRole {

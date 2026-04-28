@@ -27,7 +27,7 @@ class GetDeploymentResult:
     """
     A collection of values returned by getDeployment.
     """
-    def __init__(__self__, airflow_version=None, astro_runtime_version=None, cloud_provider=None, cluster_id=None, contact_emails=None, created_at=None, created_by=None, dag_tarball_version=None, default_task_pod_cpu=None, default_task_pod_memory=None, description=None, desired_dag_tarball_version=None, environment_variables=None, executor=None, external_ips=None, id=None, image_repository=None, image_tag=None, image_version=None, is_cicd_enforced=None, is_dag_deploy_enabled=None, is_development_mode=None, is_high_availability=None, name=None, namespace=None, oidc_issuer_url=None, region=None, resource_quota_cpu=None, resource_quota_memory=None, scaling_spec=None, scaling_status=None, scheduler_au=None, scheduler_cpu=None, scheduler_memory=None, scheduler_replicas=None, scheduler_size=None, status=None, status_reason=None, task_pod_node_pool_id=None, type=None, updated_at=None, updated_by=None, webserver_airflow_api_url=None, webserver_ingress_hostname=None, webserver_url=None, worker_queues=None, workload_identity=None, workspace_id=None):
+    def __init__(__self__, airflow_version=None, astro_runtime_version=None, cloud_provider=None, cluster_id=None, contact_emails=None, created_at=None, created_by=None, dag_tarball_version=None, default_task_pod_cpu=None, default_task_pod_memory=None, description=None, desired_dag_tarball_version=None, environment_variables=None, executor=None, external_ips=None, id=None, image_repository=None, image_tag=None, image_version=None, is_cicd_enforced=None, is_dag_deploy_enabled=None, is_development_mode=None, is_high_availability=None, name=None, namespace=None, oidc_issuer_url=None, region=None, remote_execution=None, resource_quota_cpu=None, resource_quota_memory=None, scaling_spec=None, scaling_status=None, scheduler_au=None, scheduler_cpu=None, scheduler_memory=None, scheduler_replicas=None, scheduler_size=None, status=None, status_reason=None, task_pod_node_pool_id=None, type=None, updated_at=None, updated_by=None, webserver_airflow_api_url=None, webserver_ingress_hostname=None, webserver_url=None, worker_queues=None, workload_identity=None, workspace_id=None):
         if airflow_version and not isinstance(airflow_version, str):
             raise TypeError("Expected argument 'airflow_version' to be a str")
         pulumi.set(__self__, "airflow_version", airflow_version)
@@ -109,6 +109,9 @@ class GetDeploymentResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if remote_execution and not isinstance(remote_execution, dict):
+            raise TypeError("Expected argument 'remote_execution' to be a dict")
+        pulumi.set(__self__, "remote_execution", remote_execution)
         if resource_quota_cpu and not isinstance(resource_quota_cpu, str):
             raise TypeError("Expected argument 'resource_quota_cpu' to be a str")
         pulumi.set(__self__, "resource_quota_cpu", resource_quota_cpu)
@@ -193,7 +196,7 @@ class GetDeploymentResult:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> _builtins.str:
         """
-        Deployment cloud provider
+        Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -281,7 +284,7 @@ class GetDeploymentResult:
     @pulumi.getter
     def executor(self) -> _builtins.str:
         """
-        Deployment executor
+        Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
@@ -390,6 +393,14 @@ class GetDeploymentResult:
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="remoteExecution")
+    def remote_execution(self) -> 'outputs.GetDeploymentRemoteExecutionResult':
+        """
+        Deployment remote execution configuration
+        """
+        return pulumi.get(self, "remote_execution")
+
+    @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
     def resource_quota_cpu(self) -> _builtins.str:
         """
@@ -457,7 +468,7 @@ class GetDeploymentResult:
     @pulumi.getter(name="schedulerSize")
     def scheduler_size(self) -> _builtins.str:
         """
-        Deployment scheduler size
+        Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
@@ -591,6 +602,7 @@ class AwaitableGetDeploymentResult(GetDeploymentResult):
             namespace=self.namespace,
             oidc_issuer_url=self.oidc_issuer_url,
             region=self.region,
+            remote_execution=self.remote_execution,
             resource_quota_cpu=self.resource_quota_cpu,
             resource_quota_memory=self.resource_quota_memory,
             scaling_spec=self.scaling_spec,
@@ -665,6 +677,7 @@ def get_deployment(id: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         oidc_issuer_url=pulumi.get(__ret__, 'oidc_issuer_url'),
         region=pulumi.get(__ret__, 'region'),
+        remote_execution=pulumi.get(__ret__, 'remote_execution'),
         resource_quota_cpu=pulumi.get(__ret__, 'resource_quota_cpu'),
         resource_quota_memory=pulumi.get(__ret__, 'resource_quota_memory'),
         scaling_spec=pulumi.get(__ret__, 'scaling_spec'),
@@ -736,6 +749,7 @@ def get_deployment_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         namespace=pulumi.get(__response__, 'namespace'),
         oidc_issuer_url=pulumi.get(__response__, 'oidc_issuer_url'),
         region=pulumi.get(__response__, 'region'),
+        remote_execution=pulumi.get(__response__, 'remote_execution'),
         resource_quota_cpu=pulumi.get(__response__, 'resource_quota_cpu'),
         resource_quota_memory=pulumi.get(__response__, 'resource_quota_memory'),
         scaling_spec=pulumi.get(__response__, 'scaling_spec'),

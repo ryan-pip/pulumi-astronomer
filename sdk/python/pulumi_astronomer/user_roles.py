@@ -23,6 +23,7 @@ class UserRolesArgs:
     def __init__(__self__, *,
                  organization_role: pulumi.Input[_builtins.str],
                  user_id: pulumi.Input[_builtins.str],
+                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]] = None,
                  deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]]] = None,
                  workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]]] = None):
         """
@@ -30,11 +31,14 @@ class UserRolesArgs:
 
         :param pulumi.Input[_builtins.str] organization_role: The role to assign to the organization
         :param pulumi.Input[_builtins.str] user_id: The ID of the user to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]] deployment_roles: The roles to assign to the deployments
-        :param pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]] dag_roles: The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]] deployment_roles: The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]] workspace_roles: The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         pulumi.set(__self__, "organization_role", organization_role)
         pulumi.set(__self__, "user_id", user_id)
+        if dag_roles is not None:
+            pulumi.set(__self__, "dag_roles", dag_roles)
         if deployment_roles is not None:
             pulumi.set(__self__, "deployment_roles", deployment_roles)
         if workspace_roles is not None:
@@ -65,10 +69,22 @@ class UserRolesArgs:
         pulumi.set(self, "user_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]]:
+        """
+        The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        """
+        return pulumi.get(self, "dag_roles")
+
+    @dag_roles.setter
+    def dag_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]]):
+        pulumi.set(self, "dag_roles", value)
+
+    @_builtins.property
     @pulumi.getter(name="deploymentRoles")
     def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]]]:
         """
-        The roles to assign to the deployments
+        The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         """
         return pulumi.get(self, "deployment_roles")
 
@@ -80,7 +96,7 @@ class UserRolesArgs:
     @pulumi.getter(name="workspaceRoles")
     def workspace_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]]]:
         """
-        The roles to assign to the workspaces
+        The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         return pulumi.get(self, "workspace_roles")
 
@@ -92,6 +108,7 @@ class UserRolesArgs:
 @pulumi.input_type
 class _UserRolesState:
     def __init__(__self__, *,
+                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]] = None,
                  deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]]] = None,
                  organization_role: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -99,11 +116,14 @@ class _UserRolesState:
         """
         Input properties used for looking up and filtering UserRoles resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]] deployment_roles: The roles to assign to the deployments
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]] dag_roles: The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]] deployment_roles: The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         :param pulumi.Input[_builtins.str] organization_role: The role to assign to the organization
         :param pulumi.Input[_builtins.str] user_id: The ID of the user to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]] workspace_roles: The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
+        if dag_roles is not None:
+            pulumi.set(__self__, "dag_roles", dag_roles)
         if deployment_roles is not None:
             pulumi.set(__self__, "deployment_roles", deployment_roles)
         if organization_role is not None:
@@ -114,10 +134,22 @@ class _UserRolesState:
             pulumi.set(__self__, "workspace_roles", workspace_roles)
 
     @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]]:
+        """
+        The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        """
+        return pulumi.get(self, "dag_roles")
+
+    @dag_roles.setter
+    def dag_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDagRoleArgs']]]]):
+        pulumi.set(self, "dag_roles", value)
+
+    @_builtins.property
     @pulumi.getter(name="deploymentRoles")
     def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesDeploymentRoleArgs']]]]:
         """
-        The roles to assign to the deployments
+        The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         """
         return pulumi.get(self, "deployment_roles")
 
@@ -153,7 +185,7 @@ class _UserRolesState:
     @pulumi.getter(name="workspaceRoles")
     def workspace_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRolesWorkspaceRoleArgs']]]]:
         """
-        The roles to assign to the workspaces
+        The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         return pulumi.get(self, "workspace_roles")
 
@@ -168,21 +200,23 @@ class UserRoles(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDagRoleArgs', 'UserRolesDagRoleArgsDict']]]]] = None,
                  deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]]] = None,
                  organization_role: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesWorkspaceRoleArgs', 'UserRolesWorkspaceRoleArgsDict']]]]] = None,
                  __props__=None):
         """
-        User Roles resource
+        Manages organization, workspace, deployment, and DAG roles for a user. Astro permissions are hierarchical (organization, workspace, deployment, then DAG). Declare roles at each applicable parent scope as well as nested scopes, not only at the leaf, so Terraform state matches the API.
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDagRoleArgs', 'UserRolesDagRoleArgsDict']]]] dag_roles: The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         :param pulumi.Input[_builtins.str] organization_role: The role to assign to the organization
         :param pulumi.Input[_builtins.str] user_id: The ID of the user to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesWorkspaceRoleArgs', 'UserRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesWorkspaceRoleArgs', 'UserRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         ...
     @overload
@@ -191,7 +225,7 @@ class UserRoles(pulumi.CustomResource):
                  args: UserRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        User Roles resource
+        Manages organization, workspace, deployment, and DAG roles for a user. Astro permissions are hierarchical (organization, workspace, deployment, then DAG). Declare roles at each applicable parent scope as well as nested scopes, not only at the leaf, so Terraform state matches the API.
 
 
         :param str resource_name: The name of the resource.
@@ -209,6 +243,7 @@ class UserRoles(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDagRoleArgs', 'UserRolesDagRoleArgsDict']]]]] = None,
                  deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]]] = None,
                  organization_role: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -222,6 +257,7 @@ class UserRoles(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UserRolesArgs.__new__(UserRolesArgs)
 
+            __props__.__dict__["dag_roles"] = dag_roles
             __props__.__dict__["deployment_roles"] = deployment_roles
             if organization_role is None and not opts.urn:
                 raise TypeError("Missing required property 'organization_role'")
@@ -240,6 +276,7 @@ class UserRoles(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDagRoleArgs', 'UserRolesDagRoleArgsDict']]]]] = None,
             deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]]] = None,
             organization_role: Optional[pulumi.Input[_builtins.str]] = None,
             user_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -251,15 +288,17 @@ class UserRoles(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDagRoleArgs', 'UserRolesDagRoleArgsDict']]]] dag_roles: The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesDeploymentRoleArgs', 'UserRolesDeploymentRoleArgsDict']]]] deployment_roles: The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         :param pulumi.Input[_builtins.str] organization_role: The role to assign to the organization
         :param pulumi.Input[_builtins.str] user_id: The ID of the user to assign the roles to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesWorkspaceRoleArgs', 'UserRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRolesWorkspaceRoleArgs', 'UserRolesWorkspaceRoleArgsDict']]]] workspace_roles: The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _UserRolesState.__new__(_UserRolesState)
 
+        __props__.__dict__["dag_roles"] = dag_roles
         __props__.__dict__["deployment_roles"] = deployment_roles
         __props__.__dict__["organization_role"] = organization_role
         __props__.__dict__["user_id"] = user_id
@@ -267,10 +306,18 @@ class UserRoles(pulumi.CustomResource):
         return UserRoles(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="dagRoles")
+    def dag_roles(self) -> pulumi.Output[Optional[Sequence['outputs.UserRolesDagRole']]]:
+        """
+        The DAG roles to assign to the user. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+        """
+        return pulumi.get(self, "dag_roles")
+
+    @_builtins.property
     @pulumi.getter(name="deploymentRoles")
     def deployment_roles(self) -> pulumi.Output[Optional[Sequence['outputs.UserRolesDeploymentRole']]]:
         """
-        The roles to assign to the deployments
+        The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         """
         return pulumi.get(self, "deployment_roles")
 
@@ -294,7 +341,7 @@ class UserRoles(pulumi.CustomResource):
     @pulumi.getter(name="workspaceRoles")
     def workspace_roles(self) -> pulumi.Output[Optional[Sequence['outputs.UserRolesWorkspaceRole']]]:
         """
-        The roles to assign to the workspaces
+        The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         return pulumi.get(self, "workspace_roles")
 

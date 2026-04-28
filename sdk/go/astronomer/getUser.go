@@ -61,6 +61,8 @@ type GetUserResult struct {
 	AvatarUrl string `pulumi:"avatarUrl"`
 	// User creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
+	// The DAG roles assigned to the user
+	DagRoles []GetUserDagRole `pulumi:"dagRoles"`
 	// The roles assigned to the deployments
 	DeploymentRoles []GetUserDeploymentRole `pulumi:"deploymentRoles"`
 	// User full name
@@ -121,6 +123,11 @@ func (o GetUserResultOutput) AvatarUrl() pulumi.StringOutput {
 // User creation timestamp
 func (o GetUserResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The DAG roles assigned to the user
+func (o GetUserResultOutput) DagRoles() GetUserDagRoleArrayOutput {
+	return o.ApplyT(func(v GetUserResult) []GetUserDagRole { return v.DagRoles }).(GetUserDagRoleArrayOutput)
 }
 
 // The roles assigned to the deployments

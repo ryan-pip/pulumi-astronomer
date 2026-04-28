@@ -12,17 +12,19 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Team Roles resource
+// Manages organization, workspace, deployment, and DAG roles for an existing team. Astro permissions are hierarchical (organization, workspace, deployment, then DAG). Declare roles at each applicable parent scope as well as nested scopes, not only at the leaf, so Terraform state matches the API.
 type TeamRoles struct {
 	pulumi.CustomResourceState
 
-	// The roles to assign to the deployments
+	// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+	DagRoles TeamRolesDagRoleArrayOutput `pulumi:"dagRoles"`
+	// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 	DeploymentRoles TeamRolesDeploymentRoleArrayOutput `pulumi:"deploymentRoles"`
 	// The role to assign to the organization
 	OrganizationRole pulumi.StringOutput `pulumi:"organizationRole"`
 	// The ID of the team to assign the roles to
 	TeamId pulumi.StringOutput `pulumi:"teamId"`
-	// The roles to assign to the workspaces
+	// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 	WorkspaceRoles TeamRolesWorkspaceRoleArrayOutput `pulumi:"workspaceRoles"`
 }
 
@@ -62,24 +64,28 @@ func GetTeamRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TeamRoles resources.
 type teamRolesState struct {
-	// The roles to assign to the deployments
+	// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+	DagRoles []TeamRolesDagRole `pulumi:"dagRoles"`
+	// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 	DeploymentRoles []TeamRolesDeploymentRole `pulumi:"deploymentRoles"`
 	// The role to assign to the organization
 	OrganizationRole *string `pulumi:"organizationRole"`
 	// The ID of the team to assign the roles to
 	TeamId *string `pulumi:"teamId"`
-	// The roles to assign to the workspaces
+	// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 	WorkspaceRoles []TeamRolesWorkspaceRole `pulumi:"workspaceRoles"`
 }
 
 type TeamRolesState struct {
-	// The roles to assign to the deployments
+	// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+	DagRoles TeamRolesDagRoleArrayInput
+	// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 	DeploymentRoles TeamRolesDeploymentRoleArrayInput
 	// The role to assign to the organization
 	OrganizationRole pulumi.StringPtrInput
 	// The ID of the team to assign the roles to
 	TeamId pulumi.StringPtrInput
-	// The roles to assign to the workspaces
+	// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 	WorkspaceRoles TeamRolesWorkspaceRoleArrayInput
 }
 
@@ -88,25 +94,29 @@ func (TeamRolesState) ElementType() reflect.Type {
 }
 
 type teamRolesArgs struct {
-	// The roles to assign to the deployments
+	// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+	DagRoles []TeamRolesDagRole `pulumi:"dagRoles"`
+	// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 	DeploymentRoles []TeamRolesDeploymentRole `pulumi:"deploymentRoles"`
 	// The role to assign to the organization
 	OrganizationRole string `pulumi:"organizationRole"`
 	// The ID of the team to assign the roles to
 	TeamId string `pulumi:"teamId"`
-	// The roles to assign to the workspaces
+	// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 	WorkspaceRoles []TeamRolesWorkspaceRole `pulumi:"workspaceRoles"`
 }
 
 // The set of arguments for constructing a TeamRoles resource.
 type TeamRolesArgs struct {
-	// The roles to assign to the deployments
+	// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+	DagRoles TeamRolesDagRoleArrayInput
+	// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 	DeploymentRoles TeamRolesDeploymentRoleArrayInput
 	// The role to assign to the organization
 	OrganizationRole pulumi.StringInput
 	// The ID of the team to assign the roles to
 	TeamId pulumi.StringInput
-	// The roles to assign to the workspaces
+	// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 	WorkspaceRoles TeamRolesWorkspaceRoleArrayInput
 }
 
@@ -197,7 +207,12 @@ func (o TeamRolesOutput) ToTeamRolesOutputWithContext(ctx context.Context) TeamR
 	return o
 }
 
-// The roles to assign to the deployments
+// The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
+func (o TeamRolesOutput) DagRoles() TeamRolesDagRoleArrayOutput {
+	return o.ApplyT(func(v *TeamRoles) TeamRolesDagRoleArrayOutput { return v.DagRoles }).(TeamRolesDagRoleArrayOutput)
+}
+
+// The roles to assign to the deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
 func (o TeamRolesOutput) DeploymentRoles() TeamRolesDeploymentRoleArrayOutput {
 	return o.ApplyT(func(v *TeamRoles) TeamRolesDeploymentRoleArrayOutput { return v.DeploymentRoles }).(TeamRolesDeploymentRoleArrayOutput)
 }
@@ -212,7 +227,7 @@ func (o TeamRolesOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v *TeamRoles) pulumi.StringOutput { return v.TeamId }).(pulumi.StringOutput)
 }
 
-// The roles to assign to the workspaces
+// The roles to assign to the workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
 func (o TeamRolesOutput) WorkspaceRoles() TeamRolesWorkspaceRoleArrayOutput {
 	return o.ApplyT(func(v *TeamRoles) TeamRolesWorkspaceRoleArrayOutput { return v.WorkspaceRoles }).(TeamRolesWorkspaceRoleArrayOutput)
 }

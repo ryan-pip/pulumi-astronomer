@@ -13,6 +13,1661 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AlertCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// AlertCreatedByInput is an input type that accepts AlertCreatedByArgs and AlertCreatedByOutput values.
+// You can construct a concrete instance of `AlertCreatedByInput` via:
+//
+//	AlertCreatedByArgs{...}
+type AlertCreatedByInput interface {
+	pulumi.Input
+
+	ToAlertCreatedByOutput() AlertCreatedByOutput
+	ToAlertCreatedByOutputWithContext(context.Context) AlertCreatedByOutput
+}
+
+type AlertCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (AlertCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertCreatedBy)(nil)).Elem()
+}
+
+func (i AlertCreatedByArgs) ToAlertCreatedByOutput() AlertCreatedByOutput {
+	return i.ToAlertCreatedByOutputWithContext(context.Background())
+}
+
+func (i AlertCreatedByArgs) ToAlertCreatedByOutputWithContext(ctx context.Context) AlertCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertCreatedByOutput)
+}
+
+func (i AlertCreatedByArgs) ToAlertCreatedByPtrOutput() AlertCreatedByPtrOutput {
+	return i.ToAlertCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i AlertCreatedByArgs) ToAlertCreatedByPtrOutputWithContext(ctx context.Context) AlertCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertCreatedByOutput).ToAlertCreatedByPtrOutputWithContext(ctx)
+}
+
+// AlertCreatedByPtrInput is an input type that accepts AlertCreatedByArgs, AlertCreatedByPtr and AlertCreatedByPtrOutput values.
+// You can construct a concrete instance of `AlertCreatedByPtrInput` via:
+//
+//	        AlertCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToAlertCreatedByPtrOutput() AlertCreatedByPtrOutput
+	ToAlertCreatedByPtrOutputWithContext(context.Context) AlertCreatedByPtrOutput
+}
+
+type alertCreatedByPtrType AlertCreatedByArgs
+
+func AlertCreatedByPtr(v *AlertCreatedByArgs) AlertCreatedByPtrInput {
+	return (*alertCreatedByPtrType)(v)
+}
+
+func (*alertCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertCreatedBy)(nil)).Elem()
+}
+
+func (i *alertCreatedByPtrType) ToAlertCreatedByPtrOutput() AlertCreatedByPtrOutput {
+	return i.ToAlertCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *alertCreatedByPtrType) ToAlertCreatedByPtrOutputWithContext(ctx context.Context) AlertCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertCreatedByPtrOutput)
+}
+
+type AlertCreatedByOutput struct{ *pulumi.OutputState }
+
+func (AlertCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertCreatedBy)(nil)).Elem()
+}
+
+func (o AlertCreatedByOutput) ToAlertCreatedByOutput() AlertCreatedByOutput {
+	return o
+}
+
+func (o AlertCreatedByOutput) ToAlertCreatedByOutputWithContext(ctx context.Context) AlertCreatedByOutput {
+	return o
+}
+
+func (o AlertCreatedByOutput) ToAlertCreatedByPtrOutput() AlertCreatedByPtrOutput {
+	return o.ToAlertCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o AlertCreatedByOutput) ToAlertCreatedByPtrOutputWithContext(ctx context.Context) AlertCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertCreatedBy) *AlertCreatedBy {
+		return &v
+	}).(AlertCreatedByPtrOutput)
+}
+
+func (o AlertCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type AlertCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertCreatedBy)(nil)).Elem()
+}
+
+func (o AlertCreatedByPtrOutput) ToAlertCreatedByPtrOutput() AlertCreatedByPtrOutput {
+	return o
+}
+
+func (o AlertCreatedByPtrOutput) ToAlertCreatedByPtrOutputWithContext(ctx context.Context) AlertCreatedByPtrOutput {
+	return o
+}
+
+func (o AlertCreatedByPtrOutput) Elem() AlertCreatedByOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) AlertCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret AlertCreatedBy
+		return ret
+	}).(AlertCreatedByOutput)
+}
+
+func (o AlertCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannel struct {
+	// Notification Channel creation timestamp
+	CreatedAt *string `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy *AlertNotificationChannelCreatedBy `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition AlertNotificationChannelDefinition `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId *string `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId string `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName *string `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType string `pulumi:"entityType"`
+	// The notification channel's ID
+	Id *string `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared *bool `pulumi:"isShared"`
+	// The notification channel's name
+	Name string `pulumi:"name"`
+	// The notification channel's type
+	Type string `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy *AlertNotificationChannelUpdatedBy `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId *string `pulumi:"workspaceId"`
+}
+
+// AlertNotificationChannelInput is an input type that accepts AlertNotificationChannelArgs and AlertNotificationChannelOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelInput` via:
+//
+//	AlertNotificationChannelArgs{...}
+type AlertNotificationChannelInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelOutput() AlertNotificationChannelOutput
+	ToAlertNotificationChannelOutputWithContext(context.Context) AlertNotificationChannelOutput
+}
+
+type AlertNotificationChannelArgs struct {
+	// Notification Channel creation timestamp
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy AlertNotificationChannelCreatedByPtrInput `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition AlertNotificationChannelDefinitionInput `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName pulumi.StringPtrInput `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The notification channel's ID
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared pulumi.BoolPtrInput `pulumi:"isShared"`
+	// The notification channel's name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The notification channel's type
+	Type pulumi.StringInput `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy AlertNotificationChannelUpdatedByPtrInput `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId pulumi.StringPtrInput `pulumi:"workspaceId"`
+}
+
+func (AlertNotificationChannelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannel)(nil)).Elem()
+}
+
+func (i AlertNotificationChannelArgs) ToAlertNotificationChannelOutput() AlertNotificationChannelOutput {
+	return i.ToAlertNotificationChannelOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelArgs) ToAlertNotificationChannelOutputWithContext(ctx context.Context) AlertNotificationChannelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelOutput)
+}
+
+// AlertNotificationChannelArrayInput is an input type that accepts AlertNotificationChannelArray and AlertNotificationChannelArrayOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelArrayInput` via:
+//
+//	AlertNotificationChannelArray{ AlertNotificationChannelArgs{...} }
+type AlertNotificationChannelArrayInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelArrayOutput() AlertNotificationChannelArrayOutput
+	ToAlertNotificationChannelArrayOutputWithContext(context.Context) AlertNotificationChannelArrayOutput
+}
+
+type AlertNotificationChannelArray []AlertNotificationChannelInput
+
+func (AlertNotificationChannelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertNotificationChannel)(nil)).Elem()
+}
+
+func (i AlertNotificationChannelArray) ToAlertNotificationChannelArrayOutput() AlertNotificationChannelArrayOutput {
+	return i.ToAlertNotificationChannelArrayOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelArray) ToAlertNotificationChannelArrayOutputWithContext(ctx context.Context) AlertNotificationChannelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelArrayOutput)
+}
+
+type AlertNotificationChannelOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannel)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelOutput) ToAlertNotificationChannelOutput() AlertNotificationChannelOutput {
+	return o
+}
+
+func (o AlertNotificationChannelOutput) ToAlertNotificationChannelOutputWithContext(ctx context.Context) AlertNotificationChannelOutput {
+	return o
+}
+
+// Notification Channel creation timestamp
+func (o AlertNotificationChannelOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Notification Channel creator
+func (o AlertNotificationChannelOutput) CreatedBy() AlertNotificationChannelCreatedByPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *AlertNotificationChannelCreatedBy { return v.CreatedBy }).(AlertNotificationChannelCreatedByPtrOutput)
+}
+
+// The notification channel's definition
+func (o AlertNotificationChannelOutput) Definition() AlertNotificationChannelDefinitionOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) AlertNotificationChannelDefinition { return v.Definition }).(AlertNotificationChannelDefinitionOutput)
+}
+
+// The deployment ID the notification channel is scoped to
+func (o AlertNotificationChannelOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
+}
+
+// The entity ID the notification channel is scoped to
+func (o AlertNotificationChannelOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The name of the entity the notification channel is scoped to
+func (o AlertNotificationChannelOutput) EntityName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.EntityName }).(pulumi.StringPtrOutput)
+}
+
+// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+func (o AlertNotificationChannelOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The notification channel's ID
+func (o AlertNotificationChannelOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+func (o AlertNotificationChannelOutput) IsShared() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *bool { return v.IsShared }).(pulumi.BoolPtrOutput)
+}
+
+// The notification channel's name
+func (o AlertNotificationChannelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification channel's type
+func (o AlertNotificationChannelOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Notification Channel last updated timestamp
+func (o AlertNotificationChannelOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Notification Channel updater
+func (o AlertNotificationChannelOutput) UpdatedBy() AlertNotificationChannelUpdatedByPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *AlertNotificationChannelUpdatedBy { return v.UpdatedBy }).(AlertNotificationChannelUpdatedByPtrOutput)
+}
+
+// The workspace ID the notification channel is scoped to
+func (o AlertNotificationChannelOutput) WorkspaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannel) *string { return v.WorkspaceId }).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannelArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertNotificationChannel)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelArrayOutput) ToAlertNotificationChannelArrayOutput() AlertNotificationChannelArrayOutput {
+	return o
+}
+
+func (o AlertNotificationChannelArrayOutput) ToAlertNotificationChannelArrayOutputWithContext(ctx context.Context) AlertNotificationChannelArrayOutput {
+	return o
+}
+
+func (o AlertNotificationChannelArrayOutput) Index(i pulumi.IntInput) AlertNotificationChannelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertNotificationChannel {
+		return vs[0].([]AlertNotificationChannel)[vs[1].(int)]
+	}).(AlertNotificationChannelOutput)
+}
+
+type AlertNotificationChannelCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// AlertNotificationChannelCreatedByInput is an input type that accepts AlertNotificationChannelCreatedByArgs and AlertNotificationChannelCreatedByOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelCreatedByInput` via:
+//
+//	AlertNotificationChannelCreatedByArgs{...}
+type AlertNotificationChannelCreatedByInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelCreatedByOutput() AlertNotificationChannelCreatedByOutput
+	ToAlertNotificationChannelCreatedByOutputWithContext(context.Context) AlertNotificationChannelCreatedByOutput
+}
+
+type AlertNotificationChannelCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (AlertNotificationChannelCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i AlertNotificationChannelCreatedByArgs) ToAlertNotificationChannelCreatedByOutput() AlertNotificationChannelCreatedByOutput {
+	return i.ToAlertNotificationChannelCreatedByOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelCreatedByArgs) ToAlertNotificationChannelCreatedByOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelCreatedByOutput)
+}
+
+func (i AlertNotificationChannelCreatedByArgs) ToAlertNotificationChannelCreatedByPtrOutput() AlertNotificationChannelCreatedByPtrOutput {
+	return i.ToAlertNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelCreatedByArgs) ToAlertNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelCreatedByOutput).ToAlertNotificationChannelCreatedByPtrOutputWithContext(ctx)
+}
+
+// AlertNotificationChannelCreatedByPtrInput is an input type that accepts AlertNotificationChannelCreatedByArgs, AlertNotificationChannelCreatedByPtr and AlertNotificationChannelCreatedByPtrOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelCreatedByPtrInput` via:
+//
+//	        AlertNotificationChannelCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertNotificationChannelCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelCreatedByPtrOutput() AlertNotificationChannelCreatedByPtrOutput
+	ToAlertNotificationChannelCreatedByPtrOutputWithContext(context.Context) AlertNotificationChannelCreatedByPtrOutput
+}
+
+type alertNotificationChannelCreatedByPtrType AlertNotificationChannelCreatedByArgs
+
+func AlertNotificationChannelCreatedByPtr(v *AlertNotificationChannelCreatedByArgs) AlertNotificationChannelCreatedByPtrInput {
+	return (*alertNotificationChannelCreatedByPtrType)(v)
+}
+
+func (*alertNotificationChannelCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i *alertNotificationChannelCreatedByPtrType) ToAlertNotificationChannelCreatedByPtrOutput() AlertNotificationChannelCreatedByPtrOutput {
+	return i.ToAlertNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *alertNotificationChannelCreatedByPtrType) ToAlertNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelCreatedByPtrOutput)
+}
+
+type AlertNotificationChannelCreatedByOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelCreatedByOutput) ToAlertNotificationChannelCreatedByOutput() AlertNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o AlertNotificationChannelCreatedByOutput) ToAlertNotificationChannelCreatedByOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o AlertNotificationChannelCreatedByOutput) ToAlertNotificationChannelCreatedByPtrOutput() AlertNotificationChannelCreatedByPtrOutput {
+	return o.ToAlertNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o AlertNotificationChannelCreatedByOutput) ToAlertNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertNotificationChannelCreatedBy) *AlertNotificationChannelCreatedBy {
+		return &v
+	}).(AlertNotificationChannelCreatedByPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannelCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) ToAlertNotificationChannelCreatedByPtrOutput() AlertNotificationChannelCreatedByPtrOutput {
+	return o
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) ToAlertNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelCreatedByPtrOutput {
+	return o
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) Elem() AlertNotificationChannelCreatedByOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) AlertNotificationChannelCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret AlertNotificationChannelCreatedBy
+		return ret
+	}).(AlertNotificationChannelCreatedByOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannelDefinition struct {
+	// The API key for the notification channel
+	ApiKey *string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId *string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken *string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId *string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey *string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl *string `pulumi:"webhookUrl"`
+}
+
+// AlertNotificationChannelDefinitionInput is an input type that accepts AlertNotificationChannelDefinitionArgs and AlertNotificationChannelDefinitionOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelDefinitionInput` via:
+//
+//	AlertNotificationChannelDefinitionArgs{...}
+type AlertNotificationChannelDefinitionInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelDefinitionOutput() AlertNotificationChannelDefinitionOutput
+	ToAlertNotificationChannelDefinitionOutputWithContext(context.Context) AlertNotificationChannelDefinitionOutput
+}
+
+type AlertNotificationChannelDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringPtrInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringPtrInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringPtrInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
+}
+
+func (AlertNotificationChannelDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i AlertNotificationChannelDefinitionArgs) ToAlertNotificationChannelDefinitionOutput() AlertNotificationChannelDefinitionOutput {
+	return i.ToAlertNotificationChannelDefinitionOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelDefinitionArgs) ToAlertNotificationChannelDefinitionOutputWithContext(ctx context.Context) AlertNotificationChannelDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelDefinitionOutput)
+}
+
+type AlertNotificationChannelDefinitionOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelDefinitionOutput) ToAlertNotificationChannelDefinitionOutput() AlertNotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o AlertNotificationChannelDefinitionOutput) ToAlertNotificationChannelDefinitionOutputWithContext(ctx context.Context) AlertNotificationChannelDefinitionOutput {
+	return o
+}
+
+// The API key for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// The DAG ID for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The deployment API token for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) DeploymentApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.DeploymentApiToken }).(pulumi.StringPtrOutput)
+}
+
+// The deployment ID for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
+}
+
+// The integration key for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) IntegrationKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.IntegrationKey }).(pulumi.StringPtrOutput)
+}
+
+// The recipients for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o AlertNotificationChannelDefinitionOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelDefinition) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannelUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// AlertNotificationChannelUpdatedByInput is an input type that accepts AlertNotificationChannelUpdatedByArgs and AlertNotificationChannelUpdatedByOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelUpdatedByInput` via:
+//
+//	AlertNotificationChannelUpdatedByArgs{...}
+type AlertNotificationChannelUpdatedByInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelUpdatedByOutput() AlertNotificationChannelUpdatedByOutput
+	ToAlertNotificationChannelUpdatedByOutputWithContext(context.Context) AlertNotificationChannelUpdatedByOutput
+}
+
+type AlertNotificationChannelUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (AlertNotificationChannelUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i AlertNotificationChannelUpdatedByArgs) ToAlertNotificationChannelUpdatedByOutput() AlertNotificationChannelUpdatedByOutput {
+	return i.ToAlertNotificationChannelUpdatedByOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelUpdatedByArgs) ToAlertNotificationChannelUpdatedByOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelUpdatedByOutput)
+}
+
+func (i AlertNotificationChannelUpdatedByArgs) ToAlertNotificationChannelUpdatedByPtrOutput() AlertNotificationChannelUpdatedByPtrOutput {
+	return i.ToAlertNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i AlertNotificationChannelUpdatedByArgs) ToAlertNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelUpdatedByOutput).ToAlertNotificationChannelUpdatedByPtrOutputWithContext(ctx)
+}
+
+// AlertNotificationChannelUpdatedByPtrInput is an input type that accepts AlertNotificationChannelUpdatedByArgs, AlertNotificationChannelUpdatedByPtr and AlertNotificationChannelUpdatedByPtrOutput values.
+// You can construct a concrete instance of `AlertNotificationChannelUpdatedByPtrInput` via:
+//
+//	        AlertNotificationChannelUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertNotificationChannelUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToAlertNotificationChannelUpdatedByPtrOutput() AlertNotificationChannelUpdatedByPtrOutput
+	ToAlertNotificationChannelUpdatedByPtrOutputWithContext(context.Context) AlertNotificationChannelUpdatedByPtrOutput
+}
+
+type alertNotificationChannelUpdatedByPtrType AlertNotificationChannelUpdatedByArgs
+
+func AlertNotificationChannelUpdatedByPtr(v *AlertNotificationChannelUpdatedByArgs) AlertNotificationChannelUpdatedByPtrInput {
+	return (*alertNotificationChannelUpdatedByPtrType)(v)
+}
+
+func (*alertNotificationChannelUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i *alertNotificationChannelUpdatedByPtrType) ToAlertNotificationChannelUpdatedByPtrOutput() AlertNotificationChannelUpdatedByPtrOutput {
+	return i.ToAlertNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *alertNotificationChannelUpdatedByPtrType) ToAlertNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertNotificationChannelUpdatedByPtrOutput)
+}
+
+type AlertNotificationChannelUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) ToAlertNotificationChannelUpdatedByOutput() AlertNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) ToAlertNotificationChannelUpdatedByOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) ToAlertNotificationChannelUpdatedByPtrOutput() AlertNotificationChannelUpdatedByPtrOutput {
+	return o.ToAlertNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) ToAlertNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertNotificationChannelUpdatedBy) *AlertNotificationChannelUpdatedBy {
+		return &v
+	}).(AlertNotificationChannelUpdatedByPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertNotificationChannelUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type AlertNotificationChannelUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertNotificationChannelUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) ToAlertNotificationChannelUpdatedByPtrOutput() AlertNotificationChannelUpdatedByPtrOutput {
+	return o
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) ToAlertNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) AlertNotificationChannelUpdatedByPtrOutput {
+	return o
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) Elem() AlertNotificationChannelUpdatedByOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) AlertNotificationChannelUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret AlertNotificationChannelUpdatedBy
+		return ret
+	}).(AlertNotificationChannelUpdatedByOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertNotificationChannelUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertNotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRules struct {
+	// The alert's pattern matches to match against
+	PatternMatches []AlertRulesPatternMatch `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties AlertRulesProperties `pulumi:"properties"`
+}
+
+// AlertRulesInput is an input type that accepts AlertRulesArgs and AlertRulesOutput values.
+// You can construct a concrete instance of `AlertRulesInput` via:
+//
+//	AlertRulesArgs{...}
+type AlertRulesInput interface {
+	pulumi.Input
+
+	ToAlertRulesOutput() AlertRulesOutput
+	ToAlertRulesOutputWithContext(context.Context) AlertRulesOutput
+}
+
+type AlertRulesArgs struct {
+	// The alert's pattern matches to match against
+	PatternMatches AlertRulesPatternMatchArrayInput `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties AlertRulesPropertiesInput `pulumi:"properties"`
+}
+
+func (AlertRulesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRules)(nil)).Elem()
+}
+
+func (i AlertRulesArgs) ToAlertRulesOutput() AlertRulesOutput {
+	return i.ToAlertRulesOutputWithContext(context.Background())
+}
+
+func (i AlertRulesArgs) ToAlertRulesOutputWithContext(ctx context.Context) AlertRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesOutput)
+}
+
+func (i AlertRulesArgs) ToAlertRulesPtrOutput() AlertRulesPtrOutput {
+	return i.ToAlertRulesPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRulesArgs) ToAlertRulesPtrOutputWithContext(ctx context.Context) AlertRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesOutput).ToAlertRulesPtrOutputWithContext(ctx)
+}
+
+// AlertRulesPtrInput is an input type that accepts AlertRulesArgs, AlertRulesPtr and AlertRulesPtrOutput values.
+// You can construct a concrete instance of `AlertRulesPtrInput` via:
+//
+//	        AlertRulesArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRulesPtrInput interface {
+	pulumi.Input
+
+	ToAlertRulesPtrOutput() AlertRulesPtrOutput
+	ToAlertRulesPtrOutputWithContext(context.Context) AlertRulesPtrOutput
+}
+
+type alertRulesPtrType AlertRulesArgs
+
+func AlertRulesPtr(v *AlertRulesArgs) AlertRulesPtrInput {
+	return (*alertRulesPtrType)(v)
+}
+
+func (*alertRulesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRules)(nil)).Elem()
+}
+
+func (i *alertRulesPtrType) ToAlertRulesPtrOutput() AlertRulesPtrOutput {
+	return i.ToAlertRulesPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRulesPtrType) ToAlertRulesPtrOutputWithContext(ctx context.Context) AlertRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPtrOutput)
+}
+
+type AlertRulesOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRules)(nil)).Elem()
+}
+
+func (o AlertRulesOutput) ToAlertRulesOutput() AlertRulesOutput {
+	return o
+}
+
+func (o AlertRulesOutput) ToAlertRulesOutputWithContext(ctx context.Context) AlertRulesOutput {
+	return o
+}
+
+func (o AlertRulesOutput) ToAlertRulesPtrOutput() AlertRulesPtrOutput {
+	return o.ToAlertRulesPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRulesOutput) ToAlertRulesPtrOutputWithContext(ctx context.Context) AlertRulesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRules) *AlertRules {
+		return &v
+	}).(AlertRulesPtrOutput)
+}
+
+// The alert's pattern matches to match against
+func (o AlertRulesOutput) PatternMatches() AlertRulesPatternMatchArrayOutput {
+	return o.ApplyT(func(v AlertRules) []AlertRulesPatternMatch { return v.PatternMatches }).(AlertRulesPatternMatchArrayOutput)
+}
+
+// The alert's properties used to define the alert
+func (o AlertRulesOutput) Properties() AlertRulesPropertiesOutput {
+	return o.ApplyT(func(v AlertRules) AlertRulesProperties { return v.Properties }).(AlertRulesPropertiesOutput)
+}
+
+type AlertRulesPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRules)(nil)).Elem()
+}
+
+func (o AlertRulesPtrOutput) ToAlertRulesPtrOutput() AlertRulesPtrOutput {
+	return o
+}
+
+func (o AlertRulesPtrOutput) ToAlertRulesPtrOutputWithContext(ctx context.Context) AlertRulesPtrOutput {
+	return o
+}
+
+func (o AlertRulesPtrOutput) Elem() AlertRulesOutput {
+	return o.ApplyT(func(v *AlertRules) AlertRules {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRules
+		return ret
+	}).(AlertRulesOutput)
+}
+
+// The alert's pattern matches to match against
+func (o AlertRulesPtrOutput) PatternMatches() AlertRulesPatternMatchArrayOutput {
+	return o.ApplyT(func(v *AlertRules) []AlertRulesPatternMatch {
+		if v == nil {
+			return nil
+		}
+		return v.PatternMatches
+	}).(AlertRulesPatternMatchArrayOutput)
+}
+
+// The alert's properties used to define the alert
+func (o AlertRulesPtrOutput) Properties() AlertRulesPropertiesPtrOutput {
+	return o.ApplyT(func(v *AlertRules) *AlertRulesProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Properties
+	}).(AlertRulesPropertiesPtrOutput)
+}
+
+type AlertRulesPatternMatch struct {
+	// The type of entity to match against
+	EntityType string `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType string `pulumi:"operatorType"`
+	// The values to match against
+	Values []string `pulumi:"values"`
+}
+
+// AlertRulesPatternMatchInput is an input type that accepts AlertRulesPatternMatchArgs and AlertRulesPatternMatchOutput values.
+// You can construct a concrete instance of `AlertRulesPatternMatchInput` via:
+//
+//	AlertRulesPatternMatchArgs{...}
+type AlertRulesPatternMatchInput interface {
+	pulumi.Input
+
+	ToAlertRulesPatternMatchOutput() AlertRulesPatternMatchOutput
+	ToAlertRulesPatternMatchOutputWithContext(context.Context) AlertRulesPatternMatchOutput
+}
+
+type AlertRulesPatternMatchArgs struct {
+	// The type of entity to match against
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType pulumi.StringInput `pulumi:"operatorType"`
+	// The values to match against
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (AlertRulesPatternMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i AlertRulesPatternMatchArgs) ToAlertRulesPatternMatchOutput() AlertRulesPatternMatchOutput {
+	return i.ToAlertRulesPatternMatchOutputWithContext(context.Background())
+}
+
+func (i AlertRulesPatternMatchArgs) ToAlertRulesPatternMatchOutputWithContext(ctx context.Context) AlertRulesPatternMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPatternMatchOutput)
+}
+
+// AlertRulesPatternMatchArrayInput is an input type that accepts AlertRulesPatternMatchArray and AlertRulesPatternMatchArrayOutput values.
+// You can construct a concrete instance of `AlertRulesPatternMatchArrayInput` via:
+//
+//	AlertRulesPatternMatchArray{ AlertRulesPatternMatchArgs{...} }
+type AlertRulesPatternMatchArrayInput interface {
+	pulumi.Input
+
+	ToAlertRulesPatternMatchArrayOutput() AlertRulesPatternMatchArrayOutput
+	ToAlertRulesPatternMatchArrayOutputWithContext(context.Context) AlertRulesPatternMatchArrayOutput
+}
+
+type AlertRulesPatternMatchArray []AlertRulesPatternMatchInput
+
+func (AlertRulesPatternMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i AlertRulesPatternMatchArray) ToAlertRulesPatternMatchArrayOutput() AlertRulesPatternMatchArrayOutput {
+	return i.ToAlertRulesPatternMatchArrayOutputWithContext(context.Background())
+}
+
+func (i AlertRulesPatternMatchArray) ToAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) AlertRulesPatternMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPatternMatchArrayOutput)
+}
+
+type AlertRulesPatternMatchOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesPatternMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o AlertRulesPatternMatchOutput) ToAlertRulesPatternMatchOutput() AlertRulesPatternMatchOutput {
+	return o
+}
+
+func (o AlertRulesPatternMatchOutput) ToAlertRulesPatternMatchOutputWithContext(ctx context.Context) AlertRulesPatternMatchOutput {
+	return o
+}
+
+// The type of entity to match against
+func (o AlertRulesPatternMatchOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRulesPatternMatch) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The type of operator to use for the pattern match
+func (o AlertRulesPatternMatchOutput) OperatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRulesPatternMatch) string { return v.OperatorType }).(pulumi.StringOutput)
+}
+
+// The values to match against
+func (o AlertRulesPatternMatchOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRulesPatternMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type AlertRulesPatternMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesPatternMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o AlertRulesPatternMatchArrayOutput) ToAlertRulesPatternMatchArrayOutput() AlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o AlertRulesPatternMatchArrayOutput) ToAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) AlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o AlertRulesPatternMatchArrayOutput) Index(i pulumi.IntInput) AlertRulesPatternMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertRulesPatternMatch {
+		return vs[0].([]AlertRulesPatternMatch)[vs[1].(int)]
+	}).(AlertRulesPatternMatchOutput)
+}
+
+type AlertRulesProperties struct {
+	// The deadline for the DAG in HH:MM 24-hour UTC format
+	DagDeadline *string `pulumi:"dagDeadline"`
+	// The duration of the DAG in seconds (minimum 60)
+	DagDurationSeconds *int `pulumi:"dagDurationSeconds"`
+	// The days of the week for the timeliness rule
+	DaysOfWeeks []string `pulumi:"daysOfWeeks"`
+	// The ID of the deployment for the alert rule
+	DeploymentId string `pulumi:"deploymentId"`
+	// The look-back period in seconds (minimum 60)
+	LookBackPeriodSeconds *int `pulumi:"lookBackPeriodSeconds"`
+	// The duration of the Task in seconds (minimum 60)
+	TaskDurationSeconds *int `pulumi:"taskDurationSeconds"`
+}
+
+// AlertRulesPropertiesInput is an input type that accepts AlertRulesPropertiesArgs and AlertRulesPropertiesOutput values.
+// You can construct a concrete instance of `AlertRulesPropertiesInput` via:
+//
+//	AlertRulesPropertiesArgs{...}
+type AlertRulesPropertiesInput interface {
+	pulumi.Input
+
+	ToAlertRulesPropertiesOutput() AlertRulesPropertiesOutput
+	ToAlertRulesPropertiesOutputWithContext(context.Context) AlertRulesPropertiesOutput
+}
+
+type AlertRulesPropertiesArgs struct {
+	// The deadline for the DAG in HH:MM 24-hour UTC format
+	DagDeadline pulumi.StringPtrInput `pulumi:"dagDeadline"`
+	// The duration of the DAG in seconds (minimum 60)
+	DagDurationSeconds pulumi.IntPtrInput `pulumi:"dagDurationSeconds"`
+	// The days of the week for the timeliness rule
+	DaysOfWeeks pulumi.StringArrayInput `pulumi:"daysOfWeeks"`
+	// The ID of the deployment for the alert rule
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The look-back period in seconds (minimum 60)
+	LookBackPeriodSeconds pulumi.IntPtrInput `pulumi:"lookBackPeriodSeconds"`
+	// The duration of the Task in seconds (minimum 60)
+	TaskDurationSeconds pulumi.IntPtrInput `pulumi:"taskDurationSeconds"`
+}
+
+func (AlertRulesPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRulesProperties)(nil)).Elem()
+}
+
+func (i AlertRulesPropertiesArgs) ToAlertRulesPropertiesOutput() AlertRulesPropertiesOutput {
+	return i.ToAlertRulesPropertiesOutputWithContext(context.Background())
+}
+
+func (i AlertRulesPropertiesArgs) ToAlertRulesPropertiesOutputWithContext(ctx context.Context) AlertRulesPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPropertiesOutput)
+}
+
+func (i AlertRulesPropertiesArgs) ToAlertRulesPropertiesPtrOutput() AlertRulesPropertiesPtrOutput {
+	return i.ToAlertRulesPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRulesPropertiesArgs) ToAlertRulesPropertiesPtrOutputWithContext(ctx context.Context) AlertRulesPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPropertiesOutput).ToAlertRulesPropertiesPtrOutputWithContext(ctx)
+}
+
+// AlertRulesPropertiesPtrInput is an input type that accepts AlertRulesPropertiesArgs, AlertRulesPropertiesPtr and AlertRulesPropertiesPtrOutput values.
+// You can construct a concrete instance of `AlertRulesPropertiesPtrInput` via:
+//
+//	        AlertRulesPropertiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRulesPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToAlertRulesPropertiesPtrOutput() AlertRulesPropertiesPtrOutput
+	ToAlertRulesPropertiesPtrOutputWithContext(context.Context) AlertRulesPropertiesPtrOutput
+}
+
+type alertRulesPropertiesPtrType AlertRulesPropertiesArgs
+
+func AlertRulesPropertiesPtr(v *AlertRulesPropertiesArgs) AlertRulesPropertiesPtrInput {
+	return (*alertRulesPropertiesPtrType)(v)
+}
+
+func (*alertRulesPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRulesProperties)(nil)).Elem()
+}
+
+func (i *alertRulesPropertiesPtrType) ToAlertRulesPropertiesPtrOutput() AlertRulesPropertiesPtrOutput {
+	return i.ToAlertRulesPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRulesPropertiesPtrType) ToAlertRulesPropertiesPtrOutputWithContext(ctx context.Context) AlertRulesPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRulesPropertiesPtrOutput)
+}
+
+type AlertRulesPropertiesOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRulesProperties)(nil)).Elem()
+}
+
+func (o AlertRulesPropertiesOutput) ToAlertRulesPropertiesOutput() AlertRulesPropertiesOutput {
+	return o
+}
+
+func (o AlertRulesPropertiesOutput) ToAlertRulesPropertiesOutputWithContext(ctx context.Context) AlertRulesPropertiesOutput {
+	return o
+}
+
+func (o AlertRulesPropertiesOutput) ToAlertRulesPropertiesPtrOutput() AlertRulesPropertiesPtrOutput {
+	return o.ToAlertRulesPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRulesPropertiesOutput) ToAlertRulesPropertiesPtrOutputWithContext(ctx context.Context) AlertRulesPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRulesProperties) *AlertRulesProperties {
+		return &v
+	}).(AlertRulesPropertiesPtrOutput)
+}
+
+// The deadline for the DAG in HH:MM 24-hour UTC format
+func (o AlertRulesPropertiesOutput) DagDeadline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRulesProperties) *string { return v.DagDeadline }).(pulumi.StringPtrOutput)
+}
+
+// The duration of the DAG in seconds (minimum 60)
+func (o AlertRulesPropertiesOutput) DagDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRulesProperties) *int { return v.DagDurationSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The days of the week for the timeliness rule
+func (o AlertRulesPropertiesOutput) DaysOfWeeks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRulesProperties) []string { return v.DaysOfWeeks }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the deployment for the alert rule
+func (o AlertRulesPropertiesOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRulesProperties) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The look-back period in seconds (minimum 60)
+func (o AlertRulesPropertiesOutput) LookBackPeriodSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRulesProperties) *int { return v.LookBackPeriodSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The duration of the Task in seconds (minimum 60)
+func (o AlertRulesPropertiesOutput) TaskDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRulesProperties) *int { return v.TaskDurationSeconds }).(pulumi.IntPtrOutput)
+}
+
+type AlertRulesPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRulesPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRulesProperties)(nil)).Elem()
+}
+
+func (o AlertRulesPropertiesPtrOutput) ToAlertRulesPropertiesPtrOutput() AlertRulesPropertiesPtrOutput {
+	return o
+}
+
+func (o AlertRulesPropertiesPtrOutput) ToAlertRulesPropertiesPtrOutputWithContext(ctx context.Context) AlertRulesPropertiesPtrOutput {
+	return o
+}
+
+func (o AlertRulesPropertiesPtrOutput) Elem() AlertRulesPropertiesOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) AlertRulesProperties {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRulesProperties
+		return ret
+	}).(AlertRulesPropertiesOutput)
+}
+
+// The deadline for the DAG in HH:MM 24-hour UTC format
+func (o AlertRulesPropertiesPtrOutput) DagDeadline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DagDeadline
+	}).(pulumi.StringPtrOutput)
+}
+
+// The duration of the DAG in seconds (minimum 60)
+func (o AlertRulesPropertiesPtrOutput) DagDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DagDurationSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// The days of the week for the timeliness rule
+func (o AlertRulesPropertiesPtrOutput) DaysOfWeeks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DaysOfWeeks
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the deployment for the alert rule
+func (o AlertRulesPropertiesPtrOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DeploymentId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The look-back period in seconds (minimum 60)
+func (o AlertRulesPropertiesPtrOutput) LookBackPeriodSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LookBackPeriodSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// The duration of the Task in seconds (minimum 60)
+func (o AlertRulesPropertiesPtrOutput) TaskDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRulesProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TaskDurationSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+type AlertUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// AlertUpdatedByInput is an input type that accepts AlertUpdatedByArgs and AlertUpdatedByOutput values.
+// You can construct a concrete instance of `AlertUpdatedByInput` via:
+//
+//	AlertUpdatedByArgs{...}
+type AlertUpdatedByInput interface {
+	pulumi.Input
+
+	ToAlertUpdatedByOutput() AlertUpdatedByOutput
+	ToAlertUpdatedByOutputWithContext(context.Context) AlertUpdatedByOutput
+}
+
+type AlertUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (AlertUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertUpdatedBy)(nil)).Elem()
+}
+
+func (i AlertUpdatedByArgs) ToAlertUpdatedByOutput() AlertUpdatedByOutput {
+	return i.ToAlertUpdatedByOutputWithContext(context.Background())
+}
+
+func (i AlertUpdatedByArgs) ToAlertUpdatedByOutputWithContext(ctx context.Context) AlertUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertUpdatedByOutput)
+}
+
+func (i AlertUpdatedByArgs) ToAlertUpdatedByPtrOutput() AlertUpdatedByPtrOutput {
+	return i.ToAlertUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i AlertUpdatedByArgs) ToAlertUpdatedByPtrOutputWithContext(ctx context.Context) AlertUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertUpdatedByOutput).ToAlertUpdatedByPtrOutputWithContext(ctx)
+}
+
+// AlertUpdatedByPtrInput is an input type that accepts AlertUpdatedByArgs, AlertUpdatedByPtr and AlertUpdatedByPtrOutput values.
+// You can construct a concrete instance of `AlertUpdatedByPtrInput` via:
+//
+//	        AlertUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToAlertUpdatedByPtrOutput() AlertUpdatedByPtrOutput
+	ToAlertUpdatedByPtrOutputWithContext(context.Context) AlertUpdatedByPtrOutput
+}
+
+type alertUpdatedByPtrType AlertUpdatedByArgs
+
+func AlertUpdatedByPtr(v *AlertUpdatedByArgs) AlertUpdatedByPtrInput {
+	return (*alertUpdatedByPtrType)(v)
+}
+
+func (*alertUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertUpdatedBy)(nil)).Elem()
+}
+
+func (i *alertUpdatedByPtrType) ToAlertUpdatedByPtrOutput() AlertUpdatedByPtrOutput {
+	return i.ToAlertUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *alertUpdatedByPtrType) ToAlertUpdatedByPtrOutputWithContext(ctx context.Context) AlertUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertUpdatedByPtrOutput)
+}
+
+type AlertUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (AlertUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertUpdatedBy)(nil)).Elem()
+}
+
+func (o AlertUpdatedByOutput) ToAlertUpdatedByOutput() AlertUpdatedByOutput {
+	return o
+}
+
+func (o AlertUpdatedByOutput) ToAlertUpdatedByOutputWithContext(ctx context.Context) AlertUpdatedByOutput {
+	return o
+}
+
+func (o AlertUpdatedByOutput) ToAlertUpdatedByPtrOutput() AlertUpdatedByPtrOutput {
+	return o.ToAlertUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o AlertUpdatedByOutput) ToAlertUpdatedByPtrOutputWithContext(ctx context.Context) AlertUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertUpdatedBy) *AlertUpdatedBy {
+		return &v
+	}).(AlertUpdatedByPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type AlertUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertUpdatedBy)(nil)).Elem()
+}
+
+func (o AlertUpdatedByPtrOutput) ToAlertUpdatedByPtrOutput() AlertUpdatedByPtrOutput {
+	return o
+}
+
+func (o AlertUpdatedByPtrOutput) ToAlertUpdatedByPtrOutputWithContext(ctx context.Context) AlertUpdatedByPtrOutput {
+	return o
+}
+
+func (o AlertUpdatedByPtrOutput) Elem() AlertUpdatedByOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) AlertUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret AlertUpdatedBy
+		return ret
+	}).(AlertUpdatedByOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type ApiTokenCreatedBy struct {
 	ApiTokenName *string `pulumi:"apiTokenName"`
 	AvatarUrl    *string `pulumi:"avatarUrl"`
@@ -222,7 +1877,9 @@ func (o ApiTokenCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type ApiTokenRole struct {
-	// The ID of the entity to assign the role to
+	// The Deployment ID. Required for DAG and TAG entity types.
+	DeploymentId *string `pulumi:"deploymentId"`
+	// The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
 	EntityId string `pulumi:"entityId"`
 	// The type of entity to assign the role to
 	EntityType string `pulumi:"entityType"`
@@ -242,7 +1899,9 @@ type ApiTokenRoleInput interface {
 }
 
 type ApiTokenRoleArgs struct {
-	// The ID of the entity to assign the role to
+	// The Deployment ID. Required for DAG and TAG entity types.
+	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
+	// The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
 	EntityId pulumi.StringInput `pulumi:"entityId"`
 	// The type of entity to assign the role to
 	EntityType pulumi.StringInput `pulumi:"entityType"`
@@ -301,7 +1960,12 @@ func (o ApiTokenRoleOutput) ToApiTokenRoleOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The ID of the entity to assign the role to
+// The Deployment ID. Required for DAG and TAG entity types.
+func (o ApiTokenRoleOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ApiTokenRole) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
 func (o ApiTokenRoleOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v ApiTokenRole) string { return v.EntityId }).(pulumi.StringOutput)
 }
@@ -991,7 +2655,7 @@ func (o ClusterMetadataPtrOutput) OidcIssuerUrl() pulumi.StringPtrOutput {
 }
 
 type ClusterNodePool struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId *string `pulumi:"clusterId"`
@@ -1025,7 +2689,7 @@ type ClusterNodePoolInput interface {
 }
 
 type ClusterNodePoolArgs struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
@@ -1098,7 +2762,7 @@ func (o ClusterNodePoolOutput) ToClusterNodePoolOutputWithContext(ctx context.Co
 	return o
 }
 
-// Node pool cloud provider
+// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o ClusterNodePoolOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodePool) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
@@ -1340,6 +3004,422 @@ func (o ClusterTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
+type CustomRoleCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// CustomRoleCreatedByInput is an input type that accepts CustomRoleCreatedByArgs and CustomRoleCreatedByOutput values.
+// You can construct a concrete instance of `CustomRoleCreatedByInput` via:
+//
+//	CustomRoleCreatedByArgs{...}
+type CustomRoleCreatedByInput interface {
+	pulumi.Input
+
+	ToCustomRoleCreatedByOutput() CustomRoleCreatedByOutput
+	ToCustomRoleCreatedByOutputWithContext(context.Context) CustomRoleCreatedByOutput
+}
+
+type CustomRoleCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (CustomRoleCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (i CustomRoleCreatedByArgs) ToCustomRoleCreatedByOutput() CustomRoleCreatedByOutput {
+	return i.ToCustomRoleCreatedByOutputWithContext(context.Background())
+}
+
+func (i CustomRoleCreatedByArgs) ToCustomRoleCreatedByOutputWithContext(ctx context.Context) CustomRoleCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleCreatedByOutput)
+}
+
+func (i CustomRoleCreatedByArgs) ToCustomRoleCreatedByPtrOutput() CustomRoleCreatedByPtrOutput {
+	return i.ToCustomRoleCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i CustomRoleCreatedByArgs) ToCustomRoleCreatedByPtrOutputWithContext(ctx context.Context) CustomRoleCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleCreatedByOutput).ToCustomRoleCreatedByPtrOutputWithContext(ctx)
+}
+
+// CustomRoleCreatedByPtrInput is an input type that accepts CustomRoleCreatedByArgs, CustomRoleCreatedByPtr and CustomRoleCreatedByPtrOutput values.
+// You can construct a concrete instance of `CustomRoleCreatedByPtrInput` via:
+//
+//	        CustomRoleCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomRoleCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToCustomRoleCreatedByPtrOutput() CustomRoleCreatedByPtrOutput
+	ToCustomRoleCreatedByPtrOutputWithContext(context.Context) CustomRoleCreatedByPtrOutput
+}
+
+type customRoleCreatedByPtrType CustomRoleCreatedByArgs
+
+func CustomRoleCreatedByPtr(v *CustomRoleCreatedByArgs) CustomRoleCreatedByPtrInput {
+	return (*customRoleCreatedByPtrType)(v)
+}
+
+func (*customRoleCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (i *customRoleCreatedByPtrType) ToCustomRoleCreatedByPtrOutput() CustomRoleCreatedByPtrOutput {
+	return i.ToCustomRoleCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *customRoleCreatedByPtrType) ToCustomRoleCreatedByPtrOutputWithContext(ctx context.Context) CustomRoleCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleCreatedByPtrOutput)
+}
+
+type CustomRoleCreatedByOutput struct{ *pulumi.OutputState }
+
+func (CustomRoleCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (o CustomRoleCreatedByOutput) ToCustomRoleCreatedByOutput() CustomRoleCreatedByOutput {
+	return o
+}
+
+func (o CustomRoleCreatedByOutput) ToCustomRoleCreatedByOutputWithContext(ctx context.Context) CustomRoleCreatedByOutput {
+	return o
+}
+
+func (o CustomRoleCreatedByOutput) ToCustomRoleCreatedByPtrOutput() CustomRoleCreatedByPtrOutput {
+	return o.ToCustomRoleCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o CustomRoleCreatedByOutput) ToCustomRoleCreatedByPtrOutputWithContext(ctx context.Context) CustomRoleCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomRoleCreatedBy) *CustomRoleCreatedBy {
+		return &v
+	}).(CustomRoleCreatedByPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type CustomRoleCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomRoleCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (o CustomRoleCreatedByPtrOutput) ToCustomRoleCreatedByPtrOutput() CustomRoleCreatedByPtrOutput {
+	return o
+}
+
+func (o CustomRoleCreatedByPtrOutput) ToCustomRoleCreatedByPtrOutputWithContext(ctx context.Context) CustomRoleCreatedByPtrOutput {
+	return o
+}
+
+func (o CustomRoleCreatedByPtrOutput) Elem() CustomRoleCreatedByOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) CustomRoleCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret CustomRoleCreatedBy
+		return ret
+	}).(CustomRoleCreatedByOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type CustomRoleUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// CustomRoleUpdatedByInput is an input type that accepts CustomRoleUpdatedByArgs and CustomRoleUpdatedByOutput values.
+// You can construct a concrete instance of `CustomRoleUpdatedByInput` via:
+//
+//	CustomRoleUpdatedByArgs{...}
+type CustomRoleUpdatedByInput interface {
+	pulumi.Input
+
+	ToCustomRoleUpdatedByOutput() CustomRoleUpdatedByOutput
+	ToCustomRoleUpdatedByOutputWithContext(context.Context) CustomRoleUpdatedByOutput
+}
+
+type CustomRoleUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (CustomRoleUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (i CustomRoleUpdatedByArgs) ToCustomRoleUpdatedByOutput() CustomRoleUpdatedByOutput {
+	return i.ToCustomRoleUpdatedByOutputWithContext(context.Background())
+}
+
+func (i CustomRoleUpdatedByArgs) ToCustomRoleUpdatedByOutputWithContext(ctx context.Context) CustomRoleUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleUpdatedByOutput)
+}
+
+func (i CustomRoleUpdatedByArgs) ToCustomRoleUpdatedByPtrOutput() CustomRoleUpdatedByPtrOutput {
+	return i.ToCustomRoleUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i CustomRoleUpdatedByArgs) ToCustomRoleUpdatedByPtrOutputWithContext(ctx context.Context) CustomRoleUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleUpdatedByOutput).ToCustomRoleUpdatedByPtrOutputWithContext(ctx)
+}
+
+// CustomRoleUpdatedByPtrInput is an input type that accepts CustomRoleUpdatedByArgs, CustomRoleUpdatedByPtr and CustomRoleUpdatedByPtrOutput values.
+// You can construct a concrete instance of `CustomRoleUpdatedByPtrInput` via:
+//
+//	        CustomRoleUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomRoleUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToCustomRoleUpdatedByPtrOutput() CustomRoleUpdatedByPtrOutput
+	ToCustomRoleUpdatedByPtrOutputWithContext(context.Context) CustomRoleUpdatedByPtrOutput
+}
+
+type customRoleUpdatedByPtrType CustomRoleUpdatedByArgs
+
+func CustomRoleUpdatedByPtr(v *CustomRoleUpdatedByArgs) CustomRoleUpdatedByPtrInput {
+	return (*customRoleUpdatedByPtrType)(v)
+}
+
+func (*customRoleUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (i *customRoleUpdatedByPtrType) ToCustomRoleUpdatedByPtrOutput() CustomRoleUpdatedByPtrOutput {
+	return i.ToCustomRoleUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *customRoleUpdatedByPtrType) ToCustomRoleUpdatedByPtrOutputWithContext(ctx context.Context) CustomRoleUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomRoleUpdatedByPtrOutput)
+}
+
+type CustomRoleUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (CustomRoleUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (o CustomRoleUpdatedByOutput) ToCustomRoleUpdatedByOutput() CustomRoleUpdatedByOutput {
+	return o
+}
+
+func (o CustomRoleUpdatedByOutput) ToCustomRoleUpdatedByOutputWithContext(ctx context.Context) CustomRoleUpdatedByOutput {
+	return o
+}
+
+func (o CustomRoleUpdatedByOutput) ToCustomRoleUpdatedByPtrOutput() CustomRoleUpdatedByPtrOutput {
+	return o.ToCustomRoleUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o CustomRoleUpdatedByOutput) ToCustomRoleUpdatedByPtrOutputWithContext(ctx context.Context) CustomRoleUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomRoleUpdatedBy) *CustomRoleUpdatedBy {
+		return &v
+	}).(CustomRoleUpdatedByPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomRoleUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type CustomRoleUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomRoleUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (o CustomRoleUpdatedByPtrOutput) ToCustomRoleUpdatedByPtrOutput() CustomRoleUpdatedByPtrOutput {
+	return o
+}
+
+func (o CustomRoleUpdatedByPtrOutput) ToCustomRoleUpdatedByPtrOutputWithContext(ctx context.Context) CustomRoleUpdatedByPtrOutput {
+	return o
+}
+
+func (o CustomRoleUpdatedByPtrOutput) Elem() CustomRoleUpdatedByOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) CustomRoleUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret CustomRoleUpdatedBy
+		return ret
+	}).(CustomRoleUpdatedByOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomRoleUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomRoleUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1673,6 +3753,219 @@ func (o DeploymentEnvironmentVariableArrayOutput) Index(i pulumi.IntInput) Deplo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentEnvironmentVariable {
 		return vs[0].([]DeploymentEnvironmentVariable)[vs[1].(int)]
 	}).(DeploymentEnvironmentVariableOutput)
+}
+
+type DeploymentRemoteExecution struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges []string `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled bool `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl *string `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket *string `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern *string `pulumi:"taskLogUrlPattern"`
+}
+
+// DeploymentRemoteExecutionInput is an input type that accepts DeploymentRemoteExecutionArgs and DeploymentRemoteExecutionOutput values.
+// You can construct a concrete instance of `DeploymentRemoteExecutionInput` via:
+//
+//	DeploymentRemoteExecutionArgs{...}
+type DeploymentRemoteExecutionInput interface {
+	pulumi.Input
+
+	ToDeploymentRemoteExecutionOutput() DeploymentRemoteExecutionOutput
+	ToDeploymentRemoteExecutionOutputWithContext(context.Context) DeploymentRemoteExecutionOutput
+}
+
+type DeploymentRemoteExecutionArgs struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges pulumi.StringArrayInput `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl pulumi.StringPtrInput `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket pulumi.StringPtrInput `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern pulumi.StringPtrInput `pulumi:"taskLogUrlPattern"`
+}
+
+func (DeploymentRemoteExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (i DeploymentRemoteExecutionArgs) ToDeploymentRemoteExecutionOutput() DeploymentRemoteExecutionOutput {
+	return i.ToDeploymentRemoteExecutionOutputWithContext(context.Background())
+}
+
+func (i DeploymentRemoteExecutionArgs) ToDeploymentRemoteExecutionOutputWithContext(ctx context.Context) DeploymentRemoteExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentRemoteExecutionOutput)
+}
+
+func (i DeploymentRemoteExecutionArgs) ToDeploymentRemoteExecutionPtrOutput() DeploymentRemoteExecutionPtrOutput {
+	return i.ToDeploymentRemoteExecutionPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentRemoteExecutionArgs) ToDeploymentRemoteExecutionPtrOutputWithContext(ctx context.Context) DeploymentRemoteExecutionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentRemoteExecutionOutput).ToDeploymentRemoteExecutionPtrOutputWithContext(ctx)
+}
+
+// DeploymentRemoteExecutionPtrInput is an input type that accepts DeploymentRemoteExecutionArgs, DeploymentRemoteExecutionPtr and DeploymentRemoteExecutionPtrOutput values.
+// You can construct a concrete instance of `DeploymentRemoteExecutionPtrInput` via:
+//
+//	        DeploymentRemoteExecutionArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentRemoteExecutionPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentRemoteExecutionPtrOutput() DeploymentRemoteExecutionPtrOutput
+	ToDeploymentRemoteExecutionPtrOutputWithContext(context.Context) DeploymentRemoteExecutionPtrOutput
+}
+
+type deploymentRemoteExecutionPtrType DeploymentRemoteExecutionArgs
+
+func DeploymentRemoteExecutionPtr(v *DeploymentRemoteExecutionArgs) DeploymentRemoteExecutionPtrInput {
+	return (*deploymentRemoteExecutionPtrType)(v)
+}
+
+func (*deploymentRemoteExecutionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (i *deploymentRemoteExecutionPtrType) ToDeploymentRemoteExecutionPtrOutput() DeploymentRemoteExecutionPtrOutput {
+	return i.ToDeploymentRemoteExecutionPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentRemoteExecutionPtrType) ToDeploymentRemoteExecutionPtrOutputWithContext(ctx context.Context) DeploymentRemoteExecutionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentRemoteExecutionPtrOutput)
+}
+
+type DeploymentRemoteExecutionOutput struct{ *pulumi.OutputState }
+
+func (DeploymentRemoteExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (o DeploymentRemoteExecutionOutput) ToDeploymentRemoteExecutionOutput() DeploymentRemoteExecutionOutput {
+	return o
+}
+
+func (o DeploymentRemoteExecutionOutput) ToDeploymentRemoteExecutionOutputWithContext(ctx context.Context) DeploymentRemoteExecutionOutput {
+	return o
+}
+
+func (o DeploymentRemoteExecutionOutput) ToDeploymentRemoteExecutionPtrOutput() DeploymentRemoteExecutionPtrOutput {
+	return o.ToDeploymentRemoteExecutionPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentRemoteExecutionOutput) ToDeploymentRemoteExecutionPtrOutputWithContext(ctx context.Context) DeploymentRemoteExecutionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentRemoteExecution) *DeploymentRemoteExecution {
+		return &v
+	}).(DeploymentRemoteExecutionPtrOutput)
+}
+
+// The allowed IP address ranges for remote execution
+func (o DeploymentRemoteExecutionOutput) AllowedIpAddressRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentRemoteExecution) []string { return v.AllowedIpAddressRanges }).(pulumi.StringArrayOutput)
+}
+
+// Whether remote execution is enabled
+func (o DeploymentRemoteExecutionOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v DeploymentRemoteExecution) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The URL for the remote API
+func (o DeploymentRemoteExecutionOutput) RemoteApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentRemoteExecution) *string { return v.RemoteApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// The bucket for task logs
+func (o DeploymentRemoteExecutionOutput) TaskLogBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentRemoteExecution) *string { return v.TaskLogBucket }).(pulumi.StringPtrOutput)
+}
+
+// The URL pattern for task logs
+func (o DeploymentRemoteExecutionOutput) TaskLogUrlPattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentRemoteExecution) *string { return v.TaskLogUrlPattern }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentRemoteExecutionPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentRemoteExecutionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (o DeploymentRemoteExecutionPtrOutput) ToDeploymentRemoteExecutionPtrOutput() DeploymentRemoteExecutionPtrOutput {
+	return o
+}
+
+func (o DeploymentRemoteExecutionPtrOutput) ToDeploymentRemoteExecutionPtrOutputWithContext(ctx context.Context) DeploymentRemoteExecutionPtrOutput {
+	return o
+}
+
+func (o DeploymentRemoteExecutionPtrOutput) Elem() DeploymentRemoteExecutionOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) DeploymentRemoteExecution {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentRemoteExecution
+		return ret
+	}).(DeploymentRemoteExecutionOutput)
+}
+
+// The allowed IP address ranges for remote execution
+func (o DeploymentRemoteExecutionPtrOutput) AllowedIpAddressRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedIpAddressRanges
+	}).(pulumi.StringArrayOutput)
+}
+
+// Whether remote execution is enabled
+func (o DeploymentRemoteExecutionPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The URL for the remote API
+func (o DeploymentRemoteExecutionPtrOutput) RemoteApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RemoteApiUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The bucket for task logs
+func (o DeploymentRemoteExecutionPtrOutput) TaskLogBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TaskLogBucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL pattern for task logs
+func (o DeploymentRemoteExecutionPtrOutput) TaskLogUrlPattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentRemoteExecution) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TaskLogUrlPattern
+	}).(pulumi.StringPtrOutput)
 }
 
 type DeploymentScalingSpec struct {
@@ -2767,7 +5060,7 @@ func (o DeploymentUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type DeploymentWorkerQueue struct {
-	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine *string `pulumi:"astroMachine"`
 	// Worker queue default
 	IsDefault bool `pulumi:"isDefault"`
@@ -2799,7 +5092,7 @@ type DeploymentWorkerQueueInput interface {
 }
 
 type DeploymentWorkerQueueArgs struct {
-	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+	// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine pulumi.StringPtrInput `pulumi:"astroMachine"`
 	// Worker queue default
 	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
@@ -2870,7 +5163,7 @@ func (o DeploymentWorkerQueueOutput) ToDeploymentWorkerQueueOutputWithContext(ct
 	return o
 }
 
-// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments
+// Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 func (o DeploymentWorkerQueueOutput) AstroMachine() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.AstroMachine }).(pulumi.StringPtrOutput)
 }
@@ -2933,6 +5226,673 @@ func (o DeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) DeploymentWor
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentWorkerQueue {
 		return vs[0].([]DeploymentWorkerQueue)[vs[1].(int)]
 	}).(DeploymentWorkerQueueOutput)
+}
+
+type NotificationChannelCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// NotificationChannelCreatedByInput is an input type that accepts NotificationChannelCreatedByArgs and NotificationChannelCreatedByOutput values.
+// You can construct a concrete instance of `NotificationChannelCreatedByInput` via:
+//
+//	NotificationChannelCreatedByArgs{...}
+type NotificationChannelCreatedByInput interface {
+	pulumi.Input
+
+	ToNotificationChannelCreatedByOutput() NotificationChannelCreatedByOutput
+	ToNotificationChannelCreatedByOutputWithContext(context.Context) NotificationChannelCreatedByOutput
+}
+
+type NotificationChannelCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (NotificationChannelCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i NotificationChannelCreatedByArgs) ToNotificationChannelCreatedByOutput() NotificationChannelCreatedByOutput {
+	return i.ToNotificationChannelCreatedByOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelCreatedByArgs) ToNotificationChannelCreatedByOutputWithContext(ctx context.Context) NotificationChannelCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelCreatedByOutput)
+}
+
+func (i NotificationChannelCreatedByArgs) ToNotificationChannelCreatedByPtrOutput() NotificationChannelCreatedByPtrOutput {
+	return i.ToNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelCreatedByArgs) ToNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) NotificationChannelCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelCreatedByOutput).ToNotificationChannelCreatedByPtrOutputWithContext(ctx)
+}
+
+// NotificationChannelCreatedByPtrInput is an input type that accepts NotificationChannelCreatedByArgs, NotificationChannelCreatedByPtr and NotificationChannelCreatedByPtrOutput values.
+// You can construct a concrete instance of `NotificationChannelCreatedByPtrInput` via:
+//
+//	        NotificationChannelCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationChannelCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToNotificationChannelCreatedByPtrOutput() NotificationChannelCreatedByPtrOutput
+	ToNotificationChannelCreatedByPtrOutputWithContext(context.Context) NotificationChannelCreatedByPtrOutput
+}
+
+type notificationChannelCreatedByPtrType NotificationChannelCreatedByArgs
+
+func NotificationChannelCreatedByPtr(v *NotificationChannelCreatedByArgs) NotificationChannelCreatedByPtrInput {
+	return (*notificationChannelCreatedByPtrType)(v)
+}
+
+func (*notificationChannelCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i *notificationChannelCreatedByPtrType) ToNotificationChannelCreatedByPtrOutput() NotificationChannelCreatedByPtrOutput {
+	return i.ToNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationChannelCreatedByPtrType) ToNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) NotificationChannelCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelCreatedByPtrOutput)
+}
+
+type NotificationChannelCreatedByOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o NotificationChannelCreatedByOutput) ToNotificationChannelCreatedByOutput() NotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o NotificationChannelCreatedByOutput) ToNotificationChannelCreatedByOutputWithContext(ctx context.Context) NotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o NotificationChannelCreatedByOutput) ToNotificationChannelCreatedByPtrOutput() NotificationChannelCreatedByPtrOutput {
+	return o.ToNotificationChannelCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationChannelCreatedByOutput) ToNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) NotificationChannelCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationChannelCreatedBy) *NotificationChannelCreatedBy {
+		return &v
+	}).(NotificationChannelCreatedByPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o NotificationChannelCreatedByPtrOutput) ToNotificationChannelCreatedByPtrOutput() NotificationChannelCreatedByPtrOutput {
+	return o
+}
+
+func (o NotificationChannelCreatedByPtrOutput) ToNotificationChannelCreatedByPtrOutputWithContext(ctx context.Context) NotificationChannelCreatedByPtrOutput {
+	return o
+}
+
+func (o NotificationChannelCreatedByPtrOutput) Elem() NotificationChannelCreatedByOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) NotificationChannelCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationChannelCreatedBy
+		return ret
+	}).(NotificationChannelCreatedByOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelDefinition struct {
+	// The API key for the notification channel
+	ApiKey *string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId *string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken *string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId *string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey *string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl *string `pulumi:"webhookUrl"`
+}
+
+// NotificationChannelDefinitionInput is an input type that accepts NotificationChannelDefinitionArgs and NotificationChannelDefinitionOutput values.
+// You can construct a concrete instance of `NotificationChannelDefinitionInput` via:
+//
+//	NotificationChannelDefinitionArgs{...}
+type NotificationChannelDefinitionInput interface {
+	pulumi.Input
+
+	ToNotificationChannelDefinitionOutput() NotificationChannelDefinitionOutput
+	ToNotificationChannelDefinitionOutputWithContext(context.Context) NotificationChannelDefinitionOutput
+}
+
+type NotificationChannelDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringPtrInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringPtrInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringPtrInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
+}
+
+func (NotificationChannelDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i NotificationChannelDefinitionArgs) ToNotificationChannelDefinitionOutput() NotificationChannelDefinitionOutput {
+	return i.ToNotificationChannelDefinitionOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelDefinitionArgs) ToNotificationChannelDefinitionOutputWithContext(ctx context.Context) NotificationChannelDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelDefinitionOutput)
+}
+
+func (i NotificationChannelDefinitionArgs) ToNotificationChannelDefinitionPtrOutput() NotificationChannelDefinitionPtrOutput {
+	return i.ToNotificationChannelDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelDefinitionArgs) ToNotificationChannelDefinitionPtrOutputWithContext(ctx context.Context) NotificationChannelDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelDefinitionOutput).ToNotificationChannelDefinitionPtrOutputWithContext(ctx)
+}
+
+// NotificationChannelDefinitionPtrInput is an input type that accepts NotificationChannelDefinitionArgs, NotificationChannelDefinitionPtr and NotificationChannelDefinitionPtrOutput values.
+// You can construct a concrete instance of `NotificationChannelDefinitionPtrInput` via:
+//
+//	        NotificationChannelDefinitionArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationChannelDefinitionPtrInput interface {
+	pulumi.Input
+
+	ToNotificationChannelDefinitionPtrOutput() NotificationChannelDefinitionPtrOutput
+	ToNotificationChannelDefinitionPtrOutputWithContext(context.Context) NotificationChannelDefinitionPtrOutput
+}
+
+type notificationChannelDefinitionPtrType NotificationChannelDefinitionArgs
+
+func NotificationChannelDefinitionPtr(v *NotificationChannelDefinitionArgs) NotificationChannelDefinitionPtrInput {
+	return (*notificationChannelDefinitionPtrType)(v)
+}
+
+func (*notificationChannelDefinitionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i *notificationChannelDefinitionPtrType) ToNotificationChannelDefinitionPtrOutput() NotificationChannelDefinitionPtrOutput {
+	return i.ToNotificationChannelDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationChannelDefinitionPtrType) ToNotificationChannelDefinitionPtrOutputWithContext(ctx context.Context) NotificationChannelDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelDefinitionPtrOutput)
+}
+
+type NotificationChannelDefinitionOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o NotificationChannelDefinitionOutput) ToNotificationChannelDefinitionOutput() NotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o NotificationChannelDefinitionOutput) ToNotificationChannelDefinitionOutputWithContext(ctx context.Context) NotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o NotificationChannelDefinitionOutput) ToNotificationChannelDefinitionPtrOutput() NotificationChannelDefinitionPtrOutput {
+	return o.ToNotificationChannelDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationChannelDefinitionOutput) ToNotificationChannelDefinitionPtrOutputWithContext(ctx context.Context) NotificationChannelDefinitionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationChannelDefinition) *NotificationChannelDefinition {
+		return &v
+	}).(NotificationChannelDefinitionPtrOutput)
+}
+
+// The API key for the notification channel
+func (o NotificationChannelDefinitionOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// The DAG ID for the notification channel
+func (o NotificationChannelDefinitionOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The deployment API token for the notification channel
+func (o NotificationChannelDefinitionOutput) DeploymentApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.DeploymentApiToken }).(pulumi.StringPtrOutput)
+}
+
+// The deployment ID for the notification channel
+func (o NotificationChannelDefinitionOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
+}
+
+// The integration key for the notification channel
+func (o NotificationChannelDefinitionOutput) IntegrationKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.IntegrationKey }).(pulumi.StringPtrOutput)
+}
+
+// The recipients for the notification channel
+func (o NotificationChannelDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o NotificationChannelDefinitionOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelDefinition) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelDefinitionPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelDefinitionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o NotificationChannelDefinitionPtrOutput) ToNotificationChannelDefinitionPtrOutput() NotificationChannelDefinitionPtrOutput {
+	return o
+}
+
+func (o NotificationChannelDefinitionPtrOutput) ToNotificationChannelDefinitionPtrOutputWithContext(ctx context.Context) NotificationChannelDefinitionPtrOutput {
+	return o
+}
+
+func (o NotificationChannelDefinitionPtrOutput) Elem() NotificationChannelDefinitionOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) NotificationChannelDefinition {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationChannelDefinition
+		return ret
+	}).(NotificationChannelDefinitionOutput)
+}
+
+// The API key for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The DAG ID for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DagId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The deployment API token for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) DeploymentApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeploymentApiToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// The deployment ID for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeploymentId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The integration key for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) IntegrationKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IntegrationKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The recipients for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Recipients
+	}).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o NotificationChannelDefinitionPtrOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WebhookUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// NotificationChannelUpdatedByInput is an input type that accepts NotificationChannelUpdatedByArgs and NotificationChannelUpdatedByOutput values.
+// You can construct a concrete instance of `NotificationChannelUpdatedByInput` via:
+//
+//	NotificationChannelUpdatedByArgs{...}
+type NotificationChannelUpdatedByInput interface {
+	pulumi.Input
+
+	ToNotificationChannelUpdatedByOutput() NotificationChannelUpdatedByOutput
+	ToNotificationChannelUpdatedByOutputWithContext(context.Context) NotificationChannelUpdatedByOutput
+}
+
+type NotificationChannelUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (NotificationChannelUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i NotificationChannelUpdatedByArgs) ToNotificationChannelUpdatedByOutput() NotificationChannelUpdatedByOutput {
+	return i.ToNotificationChannelUpdatedByOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelUpdatedByArgs) ToNotificationChannelUpdatedByOutputWithContext(ctx context.Context) NotificationChannelUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelUpdatedByOutput)
+}
+
+func (i NotificationChannelUpdatedByArgs) ToNotificationChannelUpdatedByPtrOutput() NotificationChannelUpdatedByPtrOutput {
+	return i.ToNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelUpdatedByArgs) ToNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) NotificationChannelUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelUpdatedByOutput).ToNotificationChannelUpdatedByPtrOutputWithContext(ctx)
+}
+
+// NotificationChannelUpdatedByPtrInput is an input type that accepts NotificationChannelUpdatedByArgs, NotificationChannelUpdatedByPtr and NotificationChannelUpdatedByPtrOutput values.
+// You can construct a concrete instance of `NotificationChannelUpdatedByPtrInput` via:
+//
+//	        NotificationChannelUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationChannelUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToNotificationChannelUpdatedByPtrOutput() NotificationChannelUpdatedByPtrOutput
+	ToNotificationChannelUpdatedByPtrOutputWithContext(context.Context) NotificationChannelUpdatedByPtrOutput
+}
+
+type notificationChannelUpdatedByPtrType NotificationChannelUpdatedByArgs
+
+func NotificationChannelUpdatedByPtr(v *NotificationChannelUpdatedByArgs) NotificationChannelUpdatedByPtrInput {
+	return (*notificationChannelUpdatedByPtrType)(v)
+}
+
+func (*notificationChannelUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i *notificationChannelUpdatedByPtrType) ToNotificationChannelUpdatedByPtrOutput() NotificationChannelUpdatedByPtrOutput {
+	return i.ToNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationChannelUpdatedByPtrType) ToNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) NotificationChannelUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelUpdatedByPtrOutput)
+}
+
+type NotificationChannelUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o NotificationChannelUpdatedByOutput) ToNotificationChannelUpdatedByOutput() NotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o NotificationChannelUpdatedByOutput) ToNotificationChannelUpdatedByOutputWithContext(ctx context.Context) NotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o NotificationChannelUpdatedByOutput) ToNotificationChannelUpdatedByPtrOutput() NotificationChannelUpdatedByPtrOutput {
+	return o.ToNotificationChannelUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationChannelUpdatedByOutput) ToNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) NotificationChannelUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationChannelUpdatedBy) *NotificationChannelUpdatedBy {
+		return &v
+	}).(NotificationChannelUpdatedByPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) ToNotificationChannelUpdatedByPtrOutput() NotificationChannelUpdatedByPtrOutput {
+	return o
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) ToNotificationChannelUpdatedByPtrOutputWithContext(ctx context.Context) NotificationChannelUpdatedByPtrOutput {
+	return o
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) Elem() NotificationChannelUpdatedByOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) NotificationChannelUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationChannelUpdatedBy
+		return ret
+	}).(NotificationChannelUpdatedByOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NotificationChannelUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationChannelUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type TeamCreatedBy struct {
@@ -3143,6 +6103,130 @@ func (o TeamCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type TeamDagRole struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId *string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role string `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag *string `pulumi:"tag"`
+}
+
+// TeamDagRoleInput is an input type that accepts TeamDagRoleArgs and TeamDagRoleOutput values.
+// You can construct a concrete instance of `TeamDagRoleInput` via:
+//
+//	TeamDagRoleArgs{...}
+type TeamDagRoleInput interface {
+	pulumi.Input
+
+	ToTeamDagRoleOutput() TeamDagRoleOutput
+	ToTeamDagRoleOutputWithContext(context.Context) TeamDagRoleOutput
+}
+
+type TeamDagRoleArgs struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag pulumi.StringPtrInput `pulumi:"tag"`
+}
+
+func (TeamDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamDagRole)(nil)).Elem()
+}
+
+func (i TeamDagRoleArgs) ToTeamDagRoleOutput() TeamDagRoleOutput {
+	return i.ToTeamDagRoleOutputWithContext(context.Background())
+}
+
+func (i TeamDagRoleArgs) ToTeamDagRoleOutputWithContext(ctx context.Context) TeamDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamDagRoleOutput)
+}
+
+// TeamDagRoleArrayInput is an input type that accepts TeamDagRoleArray and TeamDagRoleArrayOutput values.
+// You can construct a concrete instance of `TeamDagRoleArrayInput` via:
+//
+//	TeamDagRoleArray{ TeamDagRoleArgs{...} }
+type TeamDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToTeamDagRoleArrayOutput() TeamDagRoleArrayOutput
+	ToTeamDagRoleArrayOutputWithContext(context.Context) TeamDagRoleArrayOutput
+}
+
+type TeamDagRoleArray []TeamDagRoleInput
+
+func (TeamDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamDagRole)(nil)).Elem()
+}
+
+func (i TeamDagRoleArray) ToTeamDagRoleArrayOutput() TeamDagRoleArrayOutput {
+	return i.ToTeamDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i TeamDagRoleArray) ToTeamDagRoleArrayOutputWithContext(ctx context.Context) TeamDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamDagRoleArrayOutput)
+}
+
+type TeamDagRoleOutput struct{ *pulumi.OutputState }
+
+func (TeamDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamDagRole)(nil)).Elem()
+}
+
+func (o TeamDagRoleOutput) ToTeamDagRoleOutput() TeamDagRoleOutput {
+	return o
+}
+
+func (o TeamDagRoleOutput) ToTeamDagRoleOutputWithContext(ctx context.Context) TeamDagRoleOutput {
+	return o
+}
+
+// The DAG ID. Required if tag is not specified.
+func (o TeamDagRoleOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamDagRole) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The Deployment ID containing the DAG.
+func (o TeamDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+func (o TeamDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag. Required if dagId is not specified.
+func (o TeamDagRoleOutput) Tag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamDagRole) *string { return v.Tag }).(pulumi.StringPtrOutput)
+}
+
+type TeamDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamDagRole)(nil)).Elem()
+}
+
+func (o TeamDagRoleArrayOutput) ToTeamDagRoleArrayOutput() TeamDagRoleArrayOutput {
+	return o
+}
+
+func (o TeamDagRoleArrayOutput) ToTeamDagRoleArrayOutputWithContext(ctx context.Context) TeamDagRoleArrayOutput {
+	return o
+}
+
+func (o TeamDagRoleArrayOutput) Index(i pulumi.IntInput) TeamDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamDagRole {
+		return vs[0].([]TeamDagRole)[vs[1].(int)]
+	}).(TeamDagRoleOutput)
+}
+
 type TeamDeploymentRole struct {
 	// The ID of the deployment to assign the role to
 	DeploymentId string `pulumi:"deploymentId"`
@@ -3247,6 +6331,130 @@ func (o TeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) TeamDeploymentRo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamDeploymentRole {
 		return vs[0].([]TeamDeploymentRole)[vs[1].(int)]
 	}).(TeamDeploymentRoleOutput)
+}
+
+type TeamRolesDagRole struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId *string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role string `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag *string `pulumi:"tag"`
+}
+
+// TeamRolesDagRoleInput is an input type that accepts TeamRolesDagRoleArgs and TeamRolesDagRoleOutput values.
+// You can construct a concrete instance of `TeamRolesDagRoleInput` via:
+//
+//	TeamRolesDagRoleArgs{...}
+type TeamRolesDagRoleInput interface {
+	pulumi.Input
+
+	ToTeamRolesDagRoleOutput() TeamRolesDagRoleOutput
+	ToTeamRolesDagRoleOutputWithContext(context.Context) TeamRolesDagRoleOutput
+}
+
+type TeamRolesDagRoleArgs struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag pulumi.StringPtrInput `pulumi:"tag"`
+}
+
+func (TeamRolesDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesDagRole)(nil)).Elem()
+}
+
+func (i TeamRolesDagRoleArgs) ToTeamRolesDagRoleOutput() TeamRolesDagRoleOutput {
+	return i.ToTeamRolesDagRoleOutputWithContext(context.Background())
+}
+
+func (i TeamRolesDagRoleArgs) ToTeamRolesDagRoleOutputWithContext(ctx context.Context) TeamRolesDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesDagRoleOutput)
+}
+
+// TeamRolesDagRoleArrayInput is an input type that accepts TeamRolesDagRoleArray and TeamRolesDagRoleArrayOutput values.
+// You can construct a concrete instance of `TeamRolesDagRoleArrayInput` via:
+//
+//	TeamRolesDagRoleArray{ TeamRolesDagRoleArgs{...} }
+type TeamRolesDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToTeamRolesDagRoleArrayOutput() TeamRolesDagRoleArrayOutput
+	ToTeamRolesDagRoleArrayOutputWithContext(context.Context) TeamRolesDagRoleArrayOutput
+}
+
+type TeamRolesDagRoleArray []TeamRolesDagRoleInput
+
+func (TeamRolesDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesDagRole)(nil)).Elem()
+}
+
+func (i TeamRolesDagRoleArray) ToTeamRolesDagRoleArrayOutput() TeamRolesDagRoleArrayOutput {
+	return i.ToTeamRolesDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i TeamRolesDagRoleArray) ToTeamRolesDagRoleArrayOutputWithContext(ctx context.Context) TeamRolesDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamRolesDagRoleArrayOutput)
+}
+
+type TeamRolesDagRoleOutput struct{ *pulumi.OutputState }
+
+func (TeamRolesDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamRolesDagRole)(nil)).Elem()
+}
+
+func (o TeamRolesDagRoleOutput) ToTeamRolesDagRoleOutput() TeamRolesDagRoleOutput {
+	return o
+}
+
+func (o TeamRolesDagRoleOutput) ToTeamRolesDagRoleOutputWithContext(ctx context.Context) TeamRolesDagRoleOutput {
+	return o
+}
+
+// The DAG ID. Required if tag is not specified.
+func (o TeamRolesDagRoleOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamRolesDagRole) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The Deployment ID containing the DAG.
+func (o TeamRolesDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+func (o TeamRolesDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamRolesDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag. Required if dagId is not specified.
+func (o TeamRolesDagRoleOutput) Tag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TeamRolesDagRole) *string { return v.Tag }).(pulumi.StringPtrOutput)
+}
+
+type TeamRolesDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamRolesDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamRolesDagRole)(nil)).Elem()
+}
+
+func (o TeamRolesDagRoleArrayOutput) ToTeamRolesDagRoleArrayOutput() TeamRolesDagRoleArrayOutput {
+	return o
+}
+
+func (o TeamRolesDagRoleArrayOutput) ToTeamRolesDagRoleArrayOutputWithContext(ctx context.Context) TeamRolesDagRoleArrayOutput {
+	return o
+}
+
+func (o TeamRolesDagRoleArrayOutput) Index(i pulumi.IntInput) TeamRolesDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamRolesDagRole {
+		return vs[0].([]TeamRolesDagRole)[vs[1].(int)]
+	}).(TeamRolesDagRoleOutput)
 }
 
 type TeamRolesDeploymentRole struct {
@@ -4191,6 +7399,130 @@ func (o UserInviteInviterPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type UserRolesDagRole struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId *string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role string `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag *string `pulumi:"tag"`
+}
+
+// UserRolesDagRoleInput is an input type that accepts UserRolesDagRoleArgs and UserRolesDagRoleOutput values.
+// You can construct a concrete instance of `UserRolesDagRoleInput` via:
+//
+//	UserRolesDagRoleArgs{...}
+type UserRolesDagRoleInput interface {
+	pulumi.Input
+
+	ToUserRolesDagRoleOutput() UserRolesDagRoleOutput
+	ToUserRolesDagRoleOutputWithContext(context.Context) UserRolesDagRoleOutput
+}
+
+type UserRolesDagRoleArgs struct {
+	// The DAG ID. Required if tag is not specified.
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG.
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag. Required if dagId is not specified.
+	Tag pulumi.StringPtrInput `pulumi:"tag"`
+}
+
+func (UserRolesDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesDagRole)(nil)).Elem()
+}
+
+func (i UserRolesDagRoleArgs) ToUserRolesDagRoleOutput() UserRolesDagRoleOutput {
+	return i.ToUserRolesDagRoleOutputWithContext(context.Background())
+}
+
+func (i UserRolesDagRoleArgs) ToUserRolesDagRoleOutputWithContext(ctx context.Context) UserRolesDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesDagRoleOutput)
+}
+
+// UserRolesDagRoleArrayInput is an input type that accepts UserRolesDagRoleArray and UserRolesDagRoleArrayOutput values.
+// You can construct a concrete instance of `UserRolesDagRoleArrayInput` via:
+//
+//	UserRolesDagRoleArray{ UserRolesDagRoleArgs{...} }
+type UserRolesDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToUserRolesDagRoleArrayOutput() UserRolesDagRoleArrayOutput
+	ToUserRolesDagRoleArrayOutputWithContext(context.Context) UserRolesDagRoleArrayOutput
+}
+
+type UserRolesDagRoleArray []UserRolesDagRoleInput
+
+func (UserRolesDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesDagRole)(nil)).Elem()
+}
+
+func (i UserRolesDagRoleArray) ToUserRolesDagRoleArrayOutput() UserRolesDagRoleArrayOutput {
+	return i.ToUserRolesDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i UserRolesDagRoleArray) ToUserRolesDagRoleArrayOutputWithContext(ctx context.Context) UserRolesDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesDagRoleArrayOutput)
+}
+
+type UserRolesDagRoleOutput struct{ *pulumi.OutputState }
+
+func (UserRolesDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesDagRole)(nil)).Elem()
+}
+
+func (o UserRolesDagRoleOutput) ToUserRolesDagRoleOutput() UserRolesDagRoleOutput {
+	return o
+}
+
+func (o UserRolesDagRoleOutput) ToUserRolesDagRoleOutputWithContext(ctx context.Context) UserRolesDagRoleOutput {
+	return o
+}
+
+// The DAG ID. Required if tag is not specified.
+func (o UserRolesDagRoleOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRolesDagRole) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The Deployment ID containing the DAG.
+func (o UserRolesDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
+func (o UserRolesDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRolesDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag. Required if dagId is not specified.
+func (o UserRolesDagRoleOutput) Tag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRolesDagRole) *string { return v.Tag }).(pulumi.StringPtrOutput)
+}
+
+type UserRolesDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRolesDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRolesDagRole)(nil)).Elem()
+}
+
+func (o UserRolesDagRoleArrayOutput) ToUserRolesDagRoleArrayOutput() UserRolesDagRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesDagRoleArrayOutput) ToUserRolesDagRoleArrayOutputWithContext(ctx context.Context) UserRolesDagRoleArrayOutput {
+	return o
+}
+
+func (o UserRolesDagRoleArrayOutput) Index(i pulumi.IntInput) UserRolesDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRolesDagRole {
+		return vs[0].([]UserRolesDagRole)[vs[1].(int)]
+	}).(UserRolesDagRoleOutput)
+}
+
 type UserRolesDeploymentRole struct {
 	// The ID of the deployment to assign the role to
 	DeploymentId string `pulumi:"deploymentId"`
@@ -4819,6 +8151,1366 @@ func (o WorkspaceUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetAlertCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertCreatedByInput is an input type that accepts GetAlertCreatedByArgs and GetAlertCreatedByOutput values.
+// You can construct a concrete instance of `GetAlertCreatedByInput` via:
+//
+//	GetAlertCreatedByArgs{...}
+type GetAlertCreatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertCreatedByOutput() GetAlertCreatedByOutput
+	ToGetAlertCreatedByOutputWithContext(context.Context) GetAlertCreatedByOutput
+}
+
+type GetAlertCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertCreatedBy)(nil)).Elem()
+}
+
+func (i GetAlertCreatedByArgs) ToGetAlertCreatedByOutput() GetAlertCreatedByOutput {
+	return i.ToGetAlertCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertCreatedByArgs) ToGetAlertCreatedByOutputWithContext(ctx context.Context) GetAlertCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertCreatedByOutput)
+}
+
+type GetAlertCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertCreatedBy)(nil)).Elem()
+}
+
+func (o GetAlertCreatedByOutput) ToGetAlertCreatedByOutput() GetAlertCreatedByOutput {
+	return o
+}
+
+func (o GetAlertCreatedByOutput) ToGetAlertCreatedByOutputWithContext(ctx context.Context) GetAlertCreatedByOutput {
+	return o
+}
+
+func (o GetAlertCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAlertNotificationChannel struct {
+	// Notification Channel creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy GetAlertNotificationChannelCreatedBy `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition GetAlertNotificationChannelDefinition `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId string `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName string `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType string `pulumi:"entityType"`
+	// The notification channel's ID
+	Id string `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared bool `pulumi:"isShared"`
+	// The notification channel's name
+	Name string `pulumi:"name"`
+	// The notification channel's type
+	Type string `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy GetAlertNotificationChannelUpdatedBy `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetAlertNotificationChannelInput is an input type that accepts GetAlertNotificationChannelArgs and GetAlertNotificationChannelOutput values.
+// You can construct a concrete instance of `GetAlertNotificationChannelInput` via:
+//
+//	GetAlertNotificationChannelArgs{...}
+type GetAlertNotificationChannelInput interface {
+	pulumi.Input
+
+	ToGetAlertNotificationChannelOutput() GetAlertNotificationChannelOutput
+	ToGetAlertNotificationChannelOutputWithContext(context.Context) GetAlertNotificationChannelOutput
+}
+
+type GetAlertNotificationChannelArgs struct {
+	// Notification Channel creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy GetAlertNotificationChannelCreatedByInput `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition GetAlertNotificationChannelDefinitionInput `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName pulumi.StringInput `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The notification channel's ID
+	Id pulumi.StringInput `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared pulumi.BoolInput `pulumi:"isShared"`
+	// The notification channel's name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The notification channel's type
+	Type pulumi.StringInput `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy GetAlertNotificationChannelUpdatedByInput `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetAlertNotificationChannelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannel)(nil)).Elem()
+}
+
+func (i GetAlertNotificationChannelArgs) ToGetAlertNotificationChannelOutput() GetAlertNotificationChannelOutput {
+	return i.ToGetAlertNotificationChannelOutputWithContext(context.Background())
+}
+
+func (i GetAlertNotificationChannelArgs) ToGetAlertNotificationChannelOutputWithContext(ctx context.Context) GetAlertNotificationChannelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertNotificationChannelOutput)
+}
+
+// GetAlertNotificationChannelArrayInput is an input type that accepts GetAlertNotificationChannelArray and GetAlertNotificationChannelArrayOutput values.
+// You can construct a concrete instance of `GetAlertNotificationChannelArrayInput` via:
+//
+//	GetAlertNotificationChannelArray{ GetAlertNotificationChannelArgs{...} }
+type GetAlertNotificationChannelArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertNotificationChannelArrayOutput() GetAlertNotificationChannelArrayOutput
+	ToGetAlertNotificationChannelArrayOutputWithContext(context.Context) GetAlertNotificationChannelArrayOutput
+}
+
+type GetAlertNotificationChannelArray []GetAlertNotificationChannelInput
+
+func (GetAlertNotificationChannelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertNotificationChannel)(nil)).Elem()
+}
+
+func (i GetAlertNotificationChannelArray) ToGetAlertNotificationChannelArrayOutput() GetAlertNotificationChannelArrayOutput {
+	return i.ToGetAlertNotificationChannelArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertNotificationChannelArray) ToGetAlertNotificationChannelArrayOutputWithContext(ctx context.Context) GetAlertNotificationChannelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertNotificationChannelArrayOutput)
+}
+
+type GetAlertNotificationChannelOutput struct{ *pulumi.OutputState }
+
+func (GetAlertNotificationChannelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannel)(nil)).Elem()
+}
+
+func (o GetAlertNotificationChannelOutput) ToGetAlertNotificationChannelOutput() GetAlertNotificationChannelOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelOutput) ToGetAlertNotificationChannelOutputWithContext(ctx context.Context) GetAlertNotificationChannelOutput {
+	return o
+}
+
+// Notification Channel creation timestamp
+func (o GetAlertNotificationChannelOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Notification Channel creator
+func (o GetAlertNotificationChannelOutput) CreatedBy() GetAlertNotificationChannelCreatedByOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) GetAlertNotificationChannelCreatedBy { return v.CreatedBy }).(GetAlertNotificationChannelCreatedByOutput)
+}
+
+// The notification channel's definition
+func (o GetAlertNotificationChannelOutput) Definition() GetAlertNotificationChannelDefinitionOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) GetAlertNotificationChannelDefinition { return v.Definition }).(GetAlertNotificationChannelDefinitionOutput)
+}
+
+// The deployment ID the notification channel is scoped to
+func (o GetAlertNotificationChannelOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The entity ID the notification channel is scoped to
+func (o GetAlertNotificationChannelOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The name of the entity the notification channel is scoped to
+func (o GetAlertNotificationChannelOutput) EntityName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.EntityName }).(pulumi.StringOutput)
+}
+
+// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+func (o GetAlertNotificationChannelOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The notification channel's ID
+func (o GetAlertNotificationChannelOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+func (o GetAlertNotificationChannelOutput) IsShared() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) bool { return v.IsShared }).(pulumi.BoolOutput)
+}
+
+// The notification channel's name
+func (o GetAlertNotificationChannelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification channel's type
+func (o GetAlertNotificationChannelOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Notification Channel last updated timestamp
+func (o GetAlertNotificationChannelOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Notification Channel updater
+func (o GetAlertNotificationChannelOutput) UpdatedBy() GetAlertNotificationChannelUpdatedByOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) GetAlertNotificationChannelUpdatedBy { return v.UpdatedBy }).(GetAlertNotificationChannelUpdatedByOutput)
+}
+
+// The workspace ID the notification channel is scoped to
+func (o GetAlertNotificationChannelOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannel) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetAlertNotificationChannelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertNotificationChannelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertNotificationChannel)(nil)).Elem()
+}
+
+func (o GetAlertNotificationChannelArrayOutput) ToGetAlertNotificationChannelArrayOutput() GetAlertNotificationChannelArrayOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelArrayOutput) ToGetAlertNotificationChannelArrayOutputWithContext(ctx context.Context) GetAlertNotificationChannelArrayOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelArrayOutput) Index(i pulumi.IntInput) GetAlertNotificationChannelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertNotificationChannel {
+		return vs[0].([]GetAlertNotificationChannel)[vs[1].(int)]
+	}).(GetAlertNotificationChannelOutput)
+}
+
+type GetAlertNotificationChannelCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertNotificationChannelCreatedByInput is an input type that accepts GetAlertNotificationChannelCreatedByArgs and GetAlertNotificationChannelCreatedByOutput values.
+// You can construct a concrete instance of `GetAlertNotificationChannelCreatedByInput` via:
+//
+//	GetAlertNotificationChannelCreatedByArgs{...}
+type GetAlertNotificationChannelCreatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertNotificationChannelCreatedByOutput() GetAlertNotificationChannelCreatedByOutput
+	ToGetAlertNotificationChannelCreatedByOutputWithContext(context.Context) GetAlertNotificationChannelCreatedByOutput
+}
+
+type GetAlertNotificationChannelCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertNotificationChannelCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i GetAlertNotificationChannelCreatedByArgs) ToGetAlertNotificationChannelCreatedByOutput() GetAlertNotificationChannelCreatedByOutput {
+	return i.ToGetAlertNotificationChannelCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertNotificationChannelCreatedByArgs) ToGetAlertNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetAlertNotificationChannelCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertNotificationChannelCreatedByOutput)
+}
+
+type GetAlertNotificationChannelCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertNotificationChannelCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) ToGetAlertNotificationChannelCreatedByOutput() GetAlertNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) ToGetAlertNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetAlertNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAlertNotificationChannelDefinition struct {
+	// The API key for the notification channel
+	ApiKey string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl string `pulumi:"webhookUrl"`
+}
+
+// GetAlertNotificationChannelDefinitionInput is an input type that accepts GetAlertNotificationChannelDefinitionArgs and GetAlertNotificationChannelDefinitionOutput values.
+// You can construct a concrete instance of `GetAlertNotificationChannelDefinitionInput` via:
+//
+//	GetAlertNotificationChannelDefinitionArgs{...}
+type GetAlertNotificationChannelDefinitionInput interface {
+	pulumi.Input
+
+	ToGetAlertNotificationChannelDefinitionOutput() GetAlertNotificationChannelDefinitionOutput
+	ToGetAlertNotificationChannelDefinitionOutputWithContext(context.Context) GetAlertNotificationChannelDefinitionOutput
+}
+
+type GetAlertNotificationChannelDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringInput `pulumi:"webhookUrl"`
+}
+
+func (GetAlertNotificationChannelDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i GetAlertNotificationChannelDefinitionArgs) ToGetAlertNotificationChannelDefinitionOutput() GetAlertNotificationChannelDefinitionOutput {
+	return i.ToGetAlertNotificationChannelDefinitionOutputWithContext(context.Background())
+}
+
+func (i GetAlertNotificationChannelDefinitionArgs) ToGetAlertNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetAlertNotificationChannelDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertNotificationChannelDefinitionOutput)
+}
+
+type GetAlertNotificationChannelDefinitionOutput struct{ *pulumi.OutputState }
+
+func (GetAlertNotificationChannelDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o GetAlertNotificationChannelDefinitionOutput) ToGetAlertNotificationChannelDefinitionOutput() GetAlertNotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelDefinitionOutput) ToGetAlertNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetAlertNotificationChannelDefinitionOutput {
+	return o
+}
+
+// The API key for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// The DAG ID for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The deployment API token for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) DeploymentApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.DeploymentApiToken }).(pulumi.StringOutput)
+}
+
+// The deployment ID for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The integration key for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) IntegrationKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.IntegrationKey }).(pulumi.StringOutput)
+}
+
+// The recipients for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o GetAlertNotificationChannelDefinitionOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelDefinition) string { return v.WebhookUrl }).(pulumi.StringOutput)
+}
+
+type GetAlertNotificationChannelUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertNotificationChannelUpdatedByInput is an input type that accepts GetAlertNotificationChannelUpdatedByArgs and GetAlertNotificationChannelUpdatedByOutput values.
+// You can construct a concrete instance of `GetAlertNotificationChannelUpdatedByInput` via:
+//
+//	GetAlertNotificationChannelUpdatedByArgs{...}
+type GetAlertNotificationChannelUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertNotificationChannelUpdatedByOutput() GetAlertNotificationChannelUpdatedByOutput
+	ToGetAlertNotificationChannelUpdatedByOutputWithContext(context.Context) GetAlertNotificationChannelUpdatedByOutput
+}
+
+type GetAlertNotificationChannelUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertNotificationChannelUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i GetAlertNotificationChannelUpdatedByArgs) ToGetAlertNotificationChannelUpdatedByOutput() GetAlertNotificationChannelUpdatedByOutput {
+	return i.ToGetAlertNotificationChannelUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertNotificationChannelUpdatedByArgs) ToGetAlertNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetAlertNotificationChannelUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertNotificationChannelUpdatedByOutput)
+}
+
+type GetAlertNotificationChannelUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertNotificationChannelUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) ToGetAlertNotificationChannelUpdatedByOutput() GetAlertNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) ToGetAlertNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetAlertNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertNotificationChannelUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertNotificationChannelUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAlertRules struct {
+	// The alert's pattern matches to match against
+	PatternMatches []GetAlertRulesPatternMatch `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties map[string]string `pulumi:"properties"`
+}
+
+// GetAlertRulesInput is an input type that accepts GetAlertRulesArgs and GetAlertRulesOutput values.
+// You can construct a concrete instance of `GetAlertRulesInput` via:
+//
+//	GetAlertRulesArgs{...}
+type GetAlertRulesInput interface {
+	pulumi.Input
+
+	ToGetAlertRulesOutput() GetAlertRulesOutput
+	ToGetAlertRulesOutputWithContext(context.Context) GetAlertRulesOutput
+}
+
+type GetAlertRulesArgs struct {
+	// The alert's pattern matches to match against
+	PatternMatches GetAlertRulesPatternMatchArrayInput `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties pulumi.StringMapInput `pulumi:"properties"`
+}
+
+func (GetAlertRulesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertRules)(nil)).Elem()
+}
+
+func (i GetAlertRulesArgs) ToGetAlertRulesOutput() GetAlertRulesOutput {
+	return i.ToGetAlertRulesOutputWithContext(context.Background())
+}
+
+func (i GetAlertRulesArgs) ToGetAlertRulesOutputWithContext(ctx context.Context) GetAlertRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertRulesOutput)
+}
+
+type GetAlertRulesOutput struct{ *pulumi.OutputState }
+
+func (GetAlertRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertRules)(nil)).Elem()
+}
+
+func (o GetAlertRulesOutput) ToGetAlertRulesOutput() GetAlertRulesOutput {
+	return o
+}
+
+func (o GetAlertRulesOutput) ToGetAlertRulesOutputWithContext(ctx context.Context) GetAlertRulesOutput {
+	return o
+}
+
+// The alert's pattern matches to match against
+func (o GetAlertRulesOutput) PatternMatches() GetAlertRulesPatternMatchArrayOutput {
+	return o.ApplyT(func(v GetAlertRules) []GetAlertRulesPatternMatch { return v.PatternMatches }).(GetAlertRulesPatternMatchArrayOutput)
+}
+
+// The alert's properties used to define the alert
+func (o GetAlertRulesOutput) Properties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetAlertRules) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
+}
+
+type GetAlertRulesPatternMatch struct {
+	// The type of entity to match against
+	EntityType string `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType string `pulumi:"operatorType"`
+	// The values to match against
+	Values []string `pulumi:"values"`
+}
+
+// GetAlertRulesPatternMatchInput is an input type that accepts GetAlertRulesPatternMatchArgs and GetAlertRulesPatternMatchOutput values.
+// You can construct a concrete instance of `GetAlertRulesPatternMatchInput` via:
+//
+//	GetAlertRulesPatternMatchArgs{...}
+type GetAlertRulesPatternMatchInput interface {
+	pulumi.Input
+
+	ToGetAlertRulesPatternMatchOutput() GetAlertRulesPatternMatchOutput
+	ToGetAlertRulesPatternMatchOutputWithContext(context.Context) GetAlertRulesPatternMatchOutput
+}
+
+type GetAlertRulesPatternMatchArgs struct {
+	// The type of entity to match against
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType pulumi.StringInput `pulumi:"operatorType"`
+	// The values to match against
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetAlertRulesPatternMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i GetAlertRulesPatternMatchArgs) ToGetAlertRulesPatternMatchOutput() GetAlertRulesPatternMatchOutput {
+	return i.ToGetAlertRulesPatternMatchOutputWithContext(context.Background())
+}
+
+func (i GetAlertRulesPatternMatchArgs) ToGetAlertRulesPatternMatchOutputWithContext(ctx context.Context) GetAlertRulesPatternMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertRulesPatternMatchOutput)
+}
+
+// GetAlertRulesPatternMatchArrayInput is an input type that accepts GetAlertRulesPatternMatchArray and GetAlertRulesPatternMatchArrayOutput values.
+// You can construct a concrete instance of `GetAlertRulesPatternMatchArrayInput` via:
+//
+//	GetAlertRulesPatternMatchArray{ GetAlertRulesPatternMatchArgs{...} }
+type GetAlertRulesPatternMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertRulesPatternMatchArrayOutput() GetAlertRulesPatternMatchArrayOutput
+	ToGetAlertRulesPatternMatchArrayOutputWithContext(context.Context) GetAlertRulesPatternMatchArrayOutput
+}
+
+type GetAlertRulesPatternMatchArray []GetAlertRulesPatternMatchInput
+
+func (GetAlertRulesPatternMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i GetAlertRulesPatternMatchArray) ToGetAlertRulesPatternMatchArrayOutput() GetAlertRulesPatternMatchArrayOutput {
+	return i.ToGetAlertRulesPatternMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertRulesPatternMatchArray) ToGetAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) GetAlertRulesPatternMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertRulesPatternMatchArrayOutput)
+}
+
+type GetAlertRulesPatternMatchOutput struct{ *pulumi.OutputState }
+
+func (GetAlertRulesPatternMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o GetAlertRulesPatternMatchOutput) ToGetAlertRulesPatternMatchOutput() GetAlertRulesPatternMatchOutput {
+	return o
+}
+
+func (o GetAlertRulesPatternMatchOutput) ToGetAlertRulesPatternMatchOutputWithContext(ctx context.Context) GetAlertRulesPatternMatchOutput {
+	return o
+}
+
+// The type of entity to match against
+func (o GetAlertRulesPatternMatchOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertRulesPatternMatch) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The type of operator to use for the pattern match
+func (o GetAlertRulesPatternMatchOutput) OperatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertRulesPatternMatch) string { return v.OperatorType }).(pulumi.StringOutput)
+}
+
+// The values to match against
+func (o GetAlertRulesPatternMatchOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlertRulesPatternMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetAlertRulesPatternMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertRulesPatternMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o GetAlertRulesPatternMatchArrayOutput) ToGetAlertRulesPatternMatchArrayOutput() GetAlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o GetAlertRulesPatternMatchArrayOutput) ToGetAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) GetAlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o GetAlertRulesPatternMatchArrayOutput) Index(i pulumi.IntInput) GetAlertRulesPatternMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertRulesPatternMatch {
+		return vs[0].([]GetAlertRulesPatternMatch)[vs[1].(int)]
+	}).(GetAlertRulesPatternMatchOutput)
+}
+
+type GetAlertUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertUpdatedByInput is an input type that accepts GetAlertUpdatedByArgs and GetAlertUpdatedByOutput values.
+// You can construct a concrete instance of `GetAlertUpdatedByInput` via:
+//
+//	GetAlertUpdatedByArgs{...}
+type GetAlertUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertUpdatedByOutput() GetAlertUpdatedByOutput
+	ToGetAlertUpdatedByOutputWithContext(context.Context) GetAlertUpdatedByOutput
+}
+
+type GetAlertUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertUpdatedBy)(nil)).Elem()
+}
+
+func (i GetAlertUpdatedByArgs) ToGetAlertUpdatedByOutput() GetAlertUpdatedByOutput {
+	return i.ToGetAlertUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertUpdatedByArgs) ToGetAlertUpdatedByOutputWithContext(ctx context.Context) GetAlertUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertUpdatedByOutput)
+}
+
+type GetAlertUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertUpdatedBy)(nil)).Elem()
+}
+
+func (o GetAlertUpdatedByOutput) ToGetAlertUpdatedByOutput() GetAlertUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertUpdatedByOutput) ToGetAlertUpdatedByOutputWithContext(ctx context.Context) GetAlertUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAlertsAlert struct {
+	// Alert creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Alert creator
+	CreatedBy GetAlertsAlertCreatedBy `pulumi:"createdBy"`
+	// Deployment identifier associated with the alert
+	DeploymentId string `pulumi:"deploymentId"`
+	// Entity identifier associated with the alert
+	EntityId string `pulumi:"entityId"`
+	// Name of the entity associated with the alert
+	EntityName string `pulumi:"entityName"`
+	// Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+	EntityType string `pulumi:"entityType"`
+	// Alert identifier
+	Id string `pulumi:"id"`
+	// Alert name
+	Name string `pulumi:"name"`
+	// Alert rules defining the conditions for triggering the alert
+	Rules GetAlertsAlertRules `pulumi:"rules"`
+	// Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+	Severity string `pulumi:"severity"`
+	// Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+	Type string `pulumi:"type"`
+	// Alert last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Alert updater
+	UpdatedBy GetAlertsAlertUpdatedBy `pulumi:"updatedBy"`
+	// Workspace identifier associated with the alert
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetAlertsAlertInput is an input type that accepts GetAlertsAlertArgs and GetAlertsAlertOutput values.
+// You can construct a concrete instance of `GetAlertsAlertInput` via:
+//
+//	GetAlertsAlertArgs{...}
+type GetAlertsAlertInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertOutput() GetAlertsAlertOutput
+	ToGetAlertsAlertOutputWithContext(context.Context) GetAlertsAlertOutput
+}
+
+type GetAlertsAlertArgs struct {
+	// Alert creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Alert creator
+	CreatedBy GetAlertsAlertCreatedByInput `pulumi:"createdBy"`
+	// Deployment identifier associated with the alert
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// Entity identifier associated with the alert
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// Name of the entity associated with the alert
+	EntityName pulumi.StringInput `pulumi:"entityName"`
+	// Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// Alert identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Alert name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Alert rules defining the conditions for triggering the alert
+	Rules GetAlertsAlertRulesInput `pulumi:"rules"`
+	// Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+	Severity pulumi.StringInput `pulumi:"severity"`
+	// Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+	Type pulumi.StringInput `pulumi:"type"`
+	// Alert last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Alert updater
+	UpdatedBy GetAlertsAlertUpdatedByInput `pulumi:"updatedBy"`
+	// Workspace identifier associated with the alert
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetAlertsAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlert)(nil)).Elem()
+}
+
+func (i GetAlertsAlertArgs) ToGetAlertsAlertOutput() GetAlertsAlertOutput {
+	return i.ToGetAlertsAlertOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertArgs) ToGetAlertsAlertOutputWithContext(ctx context.Context) GetAlertsAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertOutput)
+}
+
+// GetAlertsAlertArrayInput is an input type that accepts GetAlertsAlertArray and GetAlertsAlertArrayOutput values.
+// You can construct a concrete instance of `GetAlertsAlertArrayInput` via:
+//
+//	GetAlertsAlertArray{ GetAlertsAlertArgs{...} }
+type GetAlertsAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertArrayOutput() GetAlertsAlertArrayOutput
+	ToGetAlertsAlertArrayOutputWithContext(context.Context) GetAlertsAlertArrayOutput
+}
+
+type GetAlertsAlertArray []GetAlertsAlertInput
+
+func (GetAlertsAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertsAlert)(nil)).Elem()
+}
+
+func (i GetAlertsAlertArray) ToGetAlertsAlertArrayOutput() GetAlertsAlertArrayOutput {
+	return i.ToGetAlertsAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertArray) ToGetAlertsAlertArrayOutputWithContext(ctx context.Context) GetAlertsAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertArrayOutput)
+}
+
+type GetAlertsAlertOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlert)(nil)).Elem()
+}
+
+func (o GetAlertsAlertOutput) ToGetAlertsAlertOutput() GetAlertsAlertOutput {
+	return o
+}
+
+func (o GetAlertsAlertOutput) ToGetAlertsAlertOutputWithContext(ctx context.Context) GetAlertsAlertOutput {
+	return o
+}
+
+// Alert creation timestamp
+func (o GetAlertsAlertOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Alert creator
+func (o GetAlertsAlertOutput) CreatedBy() GetAlertsAlertCreatedByOutput {
+	return o.ApplyT(func(v GetAlertsAlert) GetAlertsAlertCreatedBy { return v.CreatedBy }).(GetAlertsAlertCreatedByOutput)
+}
+
+// Deployment identifier associated with the alert
+func (o GetAlertsAlertOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// Entity identifier associated with the alert
+func (o GetAlertsAlertOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// Name of the entity associated with the alert
+func (o GetAlertsAlertOutput) EntityName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.EntityName }).(pulumi.StringOutput)
+}
+
+// Type of entity associated with the alert (e.g., 'DEPLOYMENT')
+func (o GetAlertsAlertOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// Alert identifier
+func (o GetAlertsAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Alert name
+func (o GetAlertsAlertOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Alert rules defining the conditions for triggering the alert
+func (o GetAlertsAlertOutput) Rules() GetAlertsAlertRulesOutput {
+	return o.ApplyT(func(v GetAlertsAlert) GetAlertsAlertRules { return v.Rules }).(GetAlertsAlertRulesOutput)
+}
+
+// Severity level of the alert (e.g., 'INFO', 'WARNING', 'CRITICAL')
+func (o GetAlertsAlertOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+// Type of alert (e.g., 'DAG*SUCCESS', 'DAG*FAILURE')
+func (o GetAlertsAlertOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Alert last updated timestamp
+func (o GetAlertsAlertOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Alert updater
+func (o GetAlertsAlertOutput) UpdatedBy() GetAlertsAlertUpdatedByOutput {
+	return o.ApplyT(func(v GetAlertsAlert) GetAlertsAlertUpdatedBy { return v.UpdatedBy }).(GetAlertsAlertUpdatedByOutput)
+}
+
+// Workspace identifier associated with the alert
+func (o GetAlertsAlertOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlert) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetAlertsAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertsAlert)(nil)).Elem()
+}
+
+func (o GetAlertsAlertArrayOutput) ToGetAlertsAlertArrayOutput() GetAlertsAlertArrayOutput {
+	return o
+}
+
+func (o GetAlertsAlertArrayOutput) ToGetAlertsAlertArrayOutputWithContext(ctx context.Context) GetAlertsAlertArrayOutput {
+	return o
+}
+
+func (o GetAlertsAlertArrayOutput) Index(i pulumi.IntInput) GetAlertsAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertsAlert {
+		return vs[0].([]GetAlertsAlert)[vs[1].(int)]
+	}).(GetAlertsAlertOutput)
+}
+
+type GetAlertsAlertCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertsAlertCreatedByInput is an input type that accepts GetAlertsAlertCreatedByArgs and GetAlertsAlertCreatedByOutput values.
+// You can construct a concrete instance of `GetAlertsAlertCreatedByInput` via:
+//
+//	GetAlertsAlertCreatedByArgs{...}
+type GetAlertsAlertCreatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertCreatedByOutput() GetAlertsAlertCreatedByOutput
+	ToGetAlertsAlertCreatedByOutputWithContext(context.Context) GetAlertsAlertCreatedByOutput
+}
+
+type GetAlertsAlertCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertsAlertCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertCreatedBy)(nil)).Elem()
+}
+
+func (i GetAlertsAlertCreatedByArgs) ToGetAlertsAlertCreatedByOutput() GetAlertsAlertCreatedByOutput {
+	return i.ToGetAlertsAlertCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertCreatedByArgs) ToGetAlertsAlertCreatedByOutputWithContext(ctx context.Context) GetAlertsAlertCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertCreatedByOutput)
+}
+
+type GetAlertsAlertCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertCreatedBy)(nil)).Elem()
+}
+
+func (o GetAlertsAlertCreatedByOutput) ToGetAlertsAlertCreatedByOutput() GetAlertsAlertCreatedByOutput {
+	return o
+}
+
+func (o GetAlertsAlertCreatedByOutput) ToGetAlertsAlertCreatedByOutputWithContext(ctx context.Context) GetAlertsAlertCreatedByOutput {
+	return o
+}
+
+func (o GetAlertsAlertCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetAlertsAlertRules struct {
+	// The alert's pattern matches to match against
+	PatternMatches []GetAlertsAlertRulesPatternMatch `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties map[string]string `pulumi:"properties"`
+}
+
+// GetAlertsAlertRulesInput is an input type that accepts GetAlertsAlertRulesArgs and GetAlertsAlertRulesOutput values.
+// You can construct a concrete instance of `GetAlertsAlertRulesInput` via:
+//
+//	GetAlertsAlertRulesArgs{...}
+type GetAlertsAlertRulesInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertRulesOutput() GetAlertsAlertRulesOutput
+	ToGetAlertsAlertRulesOutputWithContext(context.Context) GetAlertsAlertRulesOutput
+}
+
+type GetAlertsAlertRulesArgs struct {
+	// The alert's pattern matches to match against
+	PatternMatches GetAlertsAlertRulesPatternMatchArrayInput `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties pulumi.StringMapInput `pulumi:"properties"`
+}
+
+func (GetAlertsAlertRulesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertRules)(nil)).Elem()
+}
+
+func (i GetAlertsAlertRulesArgs) ToGetAlertsAlertRulesOutput() GetAlertsAlertRulesOutput {
+	return i.ToGetAlertsAlertRulesOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertRulesArgs) ToGetAlertsAlertRulesOutputWithContext(ctx context.Context) GetAlertsAlertRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertRulesOutput)
+}
+
+type GetAlertsAlertRulesOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertRules)(nil)).Elem()
+}
+
+func (o GetAlertsAlertRulesOutput) ToGetAlertsAlertRulesOutput() GetAlertsAlertRulesOutput {
+	return o
+}
+
+func (o GetAlertsAlertRulesOutput) ToGetAlertsAlertRulesOutputWithContext(ctx context.Context) GetAlertsAlertRulesOutput {
+	return o
+}
+
+// The alert's pattern matches to match against
+func (o GetAlertsAlertRulesOutput) PatternMatches() GetAlertsAlertRulesPatternMatchArrayOutput {
+	return o.ApplyT(func(v GetAlertsAlertRules) []GetAlertsAlertRulesPatternMatch { return v.PatternMatches }).(GetAlertsAlertRulesPatternMatchArrayOutput)
+}
+
+// The alert's properties used to define the alert
+func (o GetAlertsAlertRulesOutput) Properties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetAlertsAlertRules) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
+}
+
+type GetAlertsAlertRulesPatternMatch struct {
+	// The type of entity to match against
+	EntityType string `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType string `pulumi:"operatorType"`
+	// The values to match against
+	Values []string `pulumi:"values"`
+}
+
+// GetAlertsAlertRulesPatternMatchInput is an input type that accepts GetAlertsAlertRulesPatternMatchArgs and GetAlertsAlertRulesPatternMatchOutput values.
+// You can construct a concrete instance of `GetAlertsAlertRulesPatternMatchInput` via:
+//
+//	GetAlertsAlertRulesPatternMatchArgs{...}
+type GetAlertsAlertRulesPatternMatchInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertRulesPatternMatchOutput() GetAlertsAlertRulesPatternMatchOutput
+	ToGetAlertsAlertRulesPatternMatchOutputWithContext(context.Context) GetAlertsAlertRulesPatternMatchOutput
+}
+
+type GetAlertsAlertRulesPatternMatchArgs struct {
+	// The type of entity to match against
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType pulumi.StringInput `pulumi:"operatorType"`
+	// The values to match against
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetAlertsAlertRulesPatternMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i GetAlertsAlertRulesPatternMatchArgs) ToGetAlertsAlertRulesPatternMatchOutput() GetAlertsAlertRulesPatternMatchOutput {
+	return i.ToGetAlertsAlertRulesPatternMatchOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertRulesPatternMatchArgs) ToGetAlertsAlertRulesPatternMatchOutputWithContext(ctx context.Context) GetAlertsAlertRulesPatternMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertRulesPatternMatchOutput)
+}
+
+// GetAlertsAlertRulesPatternMatchArrayInput is an input type that accepts GetAlertsAlertRulesPatternMatchArray and GetAlertsAlertRulesPatternMatchArrayOutput values.
+// You can construct a concrete instance of `GetAlertsAlertRulesPatternMatchArrayInput` via:
+//
+//	GetAlertsAlertRulesPatternMatchArray{ GetAlertsAlertRulesPatternMatchArgs{...} }
+type GetAlertsAlertRulesPatternMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertRulesPatternMatchArrayOutput() GetAlertsAlertRulesPatternMatchArrayOutput
+	ToGetAlertsAlertRulesPatternMatchArrayOutputWithContext(context.Context) GetAlertsAlertRulesPatternMatchArrayOutput
+}
+
+type GetAlertsAlertRulesPatternMatchArray []GetAlertsAlertRulesPatternMatchInput
+
+func (GetAlertsAlertRulesPatternMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertsAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (i GetAlertsAlertRulesPatternMatchArray) ToGetAlertsAlertRulesPatternMatchArrayOutput() GetAlertsAlertRulesPatternMatchArrayOutput {
+	return i.ToGetAlertsAlertRulesPatternMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertRulesPatternMatchArray) ToGetAlertsAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) GetAlertsAlertRulesPatternMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertRulesPatternMatchArrayOutput)
+}
+
+type GetAlertsAlertRulesPatternMatchOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertRulesPatternMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o GetAlertsAlertRulesPatternMatchOutput) ToGetAlertsAlertRulesPatternMatchOutput() GetAlertsAlertRulesPatternMatchOutput {
+	return o
+}
+
+func (o GetAlertsAlertRulesPatternMatchOutput) ToGetAlertsAlertRulesPatternMatchOutputWithContext(ctx context.Context) GetAlertsAlertRulesPatternMatchOutput {
+	return o
+}
+
+// The type of entity to match against
+func (o GetAlertsAlertRulesPatternMatchOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertRulesPatternMatch) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The type of operator to use for the pattern match
+func (o GetAlertsAlertRulesPatternMatchOutput) OperatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertRulesPatternMatch) string { return v.OperatorType }).(pulumi.StringOutput)
+}
+
+// The values to match against
+func (o GetAlertsAlertRulesPatternMatchOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlertsAlertRulesPatternMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetAlertsAlertRulesPatternMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertRulesPatternMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertsAlertRulesPatternMatch)(nil)).Elem()
+}
+
+func (o GetAlertsAlertRulesPatternMatchArrayOutput) ToGetAlertsAlertRulesPatternMatchArrayOutput() GetAlertsAlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o GetAlertsAlertRulesPatternMatchArrayOutput) ToGetAlertsAlertRulesPatternMatchArrayOutputWithContext(ctx context.Context) GetAlertsAlertRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o GetAlertsAlertRulesPatternMatchArrayOutput) Index(i pulumi.IntInput) GetAlertsAlertRulesPatternMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertsAlertRulesPatternMatch {
+		return vs[0].([]GetAlertsAlertRulesPatternMatch)[vs[1].(int)]
+	}).(GetAlertsAlertRulesPatternMatchOutput)
+}
+
+type GetAlertsAlertUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetAlertsAlertUpdatedByInput is an input type that accepts GetAlertsAlertUpdatedByArgs and GetAlertsAlertUpdatedByOutput values.
+// You can construct a concrete instance of `GetAlertsAlertUpdatedByInput` via:
+//
+//	GetAlertsAlertUpdatedByArgs{...}
+type GetAlertsAlertUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetAlertsAlertUpdatedByOutput() GetAlertsAlertUpdatedByOutput
+	ToGetAlertsAlertUpdatedByOutputWithContext(context.Context) GetAlertsAlertUpdatedByOutput
+}
+
+type GetAlertsAlertUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetAlertsAlertUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertUpdatedBy)(nil)).Elem()
+}
+
+func (i GetAlertsAlertUpdatedByArgs) ToGetAlertsAlertUpdatedByOutput() GetAlertsAlertUpdatedByOutput {
+	return i.ToGetAlertsAlertUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetAlertsAlertUpdatedByArgs) ToGetAlertsAlertUpdatedByOutputWithContext(ctx context.Context) GetAlertsAlertUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertsAlertUpdatedByOutput)
+}
+
+type GetAlertsAlertUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetAlertsAlertUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertsAlertUpdatedBy)(nil)).Elem()
+}
+
+func (o GetAlertsAlertUpdatedByOutput) ToGetAlertsAlertUpdatedByOutput() GetAlertsAlertUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertsAlertUpdatedByOutput) ToGetAlertsAlertUpdatedByOutputWithContext(ctx context.Context) GetAlertsAlertUpdatedByOutput {
+	return o
+}
+
+func (o GetAlertsAlertUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetAlertsAlertUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertsAlertUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
 type GetApiTokenCreatedBy struct {
 	ApiTokenName string `pulumi:"apiTokenName"`
 	AvatarUrl    string `pulumi:"avatarUrl"`
@@ -4899,6 +9591,8 @@ func (o GetApiTokenCreatedByOutput) Username() pulumi.StringOutput {
 }
 
 type GetApiTokenRole struct {
+	// The Deployment ID for DAG and TAG entity types
+	DeploymentId string `pulumi:"deploymentId"`
 	// The ID of the entity to assign the role to
 	EntityId string `pulumi:"entityId"`
 	// The type of entity to assign the role to
@@ -4919,6 +9613,8 @@ type GetApiTokenRoleInput interface {
 }
 
 type GetApiTokenRoleArgs struct {
+	// The Deployment ID for DAG and TAG entity types
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
 	// The ID of the entity to assign the role to
 	EntityId pulumi.StringInput `pulumi:"entityId"`
 	// The type of entity to assign the role to
@@ -4976,6 +9672,11 @@ func (o GetApiTokenRoleOutput) ToGetApiTokenRoleOutput() GetApiTokenRoleOutput {
 
 func (o GetApiTokenRoleOutput) ToGetApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokenRoleOutput {
 	return o
+}
+
+// The Deployment ID for DAG and TAG entity types
+func (o GetApiTokenRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokenRole) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
 // The ID of the entity to assign the role to
@@ -5386,6 +10087,8 @@ func (o GetApiTokensApiTokenCreatedByOutput) Username() pulumi.StringOutput {
 }
 
 type GetApiTokensApiTokenRole struct {
+	// The Deployment ID for DAG and TAG entity types
+	DeploymentId string `pulumi:"deploymentId"`
 	// The ID of the entity to assign the role to
 	EntityId string `pulumi:"entityId"`
 	// The type of entity to assign the role to
@@ -5406,6 +10109,8 @@ type GetApiTokensApiTokenRoleInput interface {
 }
 
 type GetApiTokensApiTokenRoleArgs struct {
+	// The Deployment ID for DAG and TAG entity types
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
 	// The ID of the entity to assign the role to
 	EntityId pulumi.StringInput `pulumi:"entityId"`
 	// The type of entity to assign the role to
@@ -5463,6 +10168,11 @@ func (o GetApiTokensApiTokenRoleOutput) ToGetApiTokensApiTokenRoleOutput() GetAp
 
 func (o GetApiTokensApiTokenRoleOutput) ToGetApiTokensApiTokenRoleOutputWithContext(ctx context.Context) GetApiTokensApiTokenRoleOutput {
 	return o
+}
+
+// The Deployment ID for DAG and TAG entity types
+func (o GetApiTokensApiTokenRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiTokenRole) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
 // The ID of the entity to assign the role to
@@ -5826,7 +10536,7 @@ func (o GetClusterMetadataOutput) OidcIssuerUrl() pulumi.StringOutput {
 }
 
 type GetClusterNodePool struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId string `pulumi:"clusterId"`
@@ -5860,7 +10570,7 @@ type GetClusterNodePoolInput interface {
 }
 
 type GetClusterNodePoolArgs struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
@@ -5933,7 +10643,7 @@ func (o GetClusterNodePoolOutput) ToGetClusterNodePoolOutputWithContext(ctx cont
 	return o
 }
 
-// Node pool cloud provider
+// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o GetClusterNodePoolOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterNodePool) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -6889,16 +11599,28 @@ func (o GetClusterTagArrayOutput) Index(i pulumi.IntInput) GetClusterTagOutput {
 }
 
 type GetClustersCluster struct {
-	// Cluster cloud provider
+	// Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Cluster creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// The secondary region for Disaster Recovery
+	DrRegion string `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only)
+	DrSecondaryVpcCidr string `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region
+	DrVpcSubnetRange string `pulumi:"drVpcSubnetRange"`
+	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+	EnableReplicationTimeControl bool `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus GetClustersClusterHealthStatus `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id string `pulumi:"id"`
+	// Whether Disaster Recovery is enabled on the cluster
+	IsDrEnabled bool `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region
+	IsFailedOver bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited bool `pulumi:"isLimited"`
 	// Cluster metadata
@@ -6945,16 +11667,28 @@ type GetClustersClusterInput interface {
 }
 
 type GetClustersClusterArgs struct {
-	// Cluster cloud provider
+	// Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Cluster creation timestamp
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringInput `pulumi:"dbInstanceType"`
+	// The secondary region for Disaster Recovery
+	DrRegion pulumi.StringInput `pulumi:"drRegion"`
+	// Secondary CIDR for pod networking in the DR region (AWS only)
+	DrSecondaryVpcCidr pulumi.StringInput `pulumi:"drSecondaryVpcCidr"`
+	// The VPC subnet range for the Disaster Recovery region
+	DrVpcSubnetRange pulumi.StringInput `pulumi:"drVpcSubnetRange"`
+	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+	EnableReplicationTimeControl pulumi.BoolInput `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus GetClustersClusterHealthStatusInput `pulumi:"healthStatus"`
 	// Cluster identifier
 	Id pulumi.StringInput `pulumi:"id"`
+	// Whether Disaster Recovery is enabled on the cluster
+	IsDrEnabled pulumi.BoolInput `pulumi:"isDrEnabled"`
+	// Whether the cluster is currently failed over to the DR region
+	IsFailedOver pulumi.BoolInput `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolInput `pulumi:"isLimited"`
 	// Cluster metadata
@@ -7040,7 +11774,7 @@ func (o GetClustersClusterOutput) ToGetClustersClusterOutputWithContext(ctx cont
 	return o
 }
 
-// Cluster cloud provider
+// Cluster cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o GetClustersClusterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -7055,6 +11789,26 @@ func (o GetClustersClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The secondary region for Disaster Recovery
+func (o GetClustersClusterOutput) DrRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrRegion }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking in the DR region (AWS only)
+func (o GetClustersClusterOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The VPC subnet range for the Disaster Recovery region
+func (o GetClustersClusterOutput) DrVpcSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrVpcSubnetRange }).(pulumi.StringOutput)
+}
+
+// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+func (o GetClustersClusterOutput) EnableReplicationTimeControl() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.EnableReplicationTimeControl }).(pulumi.BoolOutput)
+}
+
 // Cluster health status
 func (o GetClustersClusterOutput) HealthStatus() GetClustersClusterHealthStatusOutput {
 	return o.ApplyT(func(v GetClustersCluster) GetClustersClusterHealthStatus { return v.HealthStatus }).(GetClustersClusterHealthStatusOutput)
@@ -7063,6 +11817,16 @@ func (o GetClustersClusterOutput) HealthStatus() GetClustersClusterHealthStatusO
 // Cluster identifier
 func (o GetClustersClusterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether Disaster Recovery is enabled on the cluster
+func (o GetClustersClusterOutput) IsDrEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.IsDrEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether the cluster is currently failed over to the DR region
+func (o GetClustersClusterOutput) IsFailedOver() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.IsFailedOver }).(pulumi.BoolOutput)
 }
 
 // Whether the cluster is limited
@@ -7412,7 +12176,7 @@ func (o GetClustersClusterMetadataOutput) OidcIssuerUrl() pulumi.StringOutput {
 }
 
 type GetClustersClusterNodePool struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId string `pulumi:"clusterId"`
@@ -7446,7 +12210,7 @@ type GetClustersClusterNodePoolInput interface {
 }
 
 type GetClustersClusterNodePoolArgs struct {
-	// Node pool cloud provider
+	// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Node pool cluster identifier
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
@@ -7519,7 +12283,7 @@ func (o GetClustersClusterNodePoolOutput) ToGetClustersClusterNodePoolOutputWith
 	return o
 }
 
-// Node pool cloud provider
+// Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o GetClustersClusterNodePoolOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersClusterNodePool) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -7693,6 +12457,164 @@ func (o GetClustersClusterTagArrayOutput) Index(i pulumi.IntInput) GetClustersCl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterTag {
 		return vs[0].([]GetClustersClusterTag)[vs[1].(int)]
 	}).(GetClustersClusterTagOutput)
+}
+
+type GetCustomRoleCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetCustomRoleCreatedByInput is an input type that accepts GetCustomRoleCreatedByArgs and GetCustomRoleCreatedByOutput values.
+// You can construct a concrete instance of `GetCustomRoleCreatedByInput` via:
+//
+//	GetCustomRoleCreatedByArgs{...}
+type GetCustomRoleCreatedByInput interface {
+	pulumi.Input
+
+	ToGetCustomRoleCreatedByOutput() GetCustomRoleCreatedByOutput
+	ToGetCustomRoleCreatedByOutputWithContext(context.Context) GetCustomRoleCreatedByOutput
+}
+
+type GetCustomRoleCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetCustomRoleCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (i GetCustomRoleCreatedByArgs) ToGetCustomRoleCreatedByOutput() GetCustomRoleCreatedByOutput {
+	return i.ToGetCustomRoleCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetCustomRoleCreatedByArgs) ToGetCustomRoleCreatedByOutputWithContext(ctx context.Context) GetCustomRoleCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomRoleCreatedByOutput)
+}
+
+type GetCustomRoleCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetCustomRoleCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomRoleCreatedBy)(nil)).Elem()
+}
+
+func (o GetCustomRoleCreatedByOutput) ToGetCustomRoleCreatedByOutput() GetCustomRoleCreatedByOutput {
+	return o
+}
+
+func (o GetCustomRoleCreatedByOutput) ToGetCustomRoleCreatedByOutputWithContext(ctx context.Context) GetCustomRoleCreatedByOutput {
+	return o
+}
+
+func (o GetCustomRoleCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetCustomRoleUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetCustomRoleUpdatedByInput is an input type that accepts GetCustomRoleUpdatedByArgs and GetCustomRoleUpdatedByOutput values.
+// You can construct a concrete instance of `GetCustomRoleUpdatedByInput` via:
+//
+//	GetCustomRoleUpdatedByArgs{...}
+type GetCustomRoleUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetCustomRoleUpdatedByOutput() GetCustomRoleUpdatedByOutput
+	ToGetCustomRoleUpdatedByOutputWithContext(context.Context) GetCustomRoleUpdatedByOutput
+}
+
+type GetCustomRoleUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetCustomRoleUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (i GetCustomRoleUpdatedByArgs) ToGetCustomRoleUpdatedByOutput() GetCustomRoleUpdatedByOutput {
+	return i.ToGetCustomRoleUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetCustomRoleUpdatedByArgs) ToGetCustomRoleUpdatedByOutputWithContext(ctx context.Context) GetCustomRoleUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomRoleUpdatedByOutput)
+}
+
+type GetCustomRoleUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetCustomRoleUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomRoleUpdatedBy)(nil)).Elem()
+}
+
+func (o GetCustomRoleUpdatedByOutput) ToGetCustomRoleUpdatedByOutput() GetCustomRoleUpdatedByOutput {
+	return o
+}
+
+func (o GetCustomRoleUpdatedByOutput) ToGetCustomRoleUpdatedByOutputWithContext(ctx context.Context) GetCustomRoleUpdatedByOutput {
+	return o
+}
+
+func (o GetCustomRoleUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetCustomRoleUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomRoleUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetDeploymentCreatedBy struct {
@@ -9286,6 +14208,94 @@ func (o GetDeploymentOptionsWorkloadIdentityOptionArrayOutput) Index(i pulumi.In
 	}).(GetDeploymentOptionsWorkloadIdentityOptionOutput)
 }
 
+type GetDeploymentRemoteExecution struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges []string `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled bool `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl string `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket string `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern string `pulumi:"taskLogUrlPattern"`
+}
+
+// GetDeploymentRemoteExecutionInput is an input type that accepts GetDeploymentRemoteExecutionArgs and GetDeploymentRemoteExecutionOutput values.
+// You can construct a concrete instance of `GetDeploymentRemoteExecutionInput` via:
+//
+//	GetDeploymentRemoteExecutionArgs{...}
+type GetDeploymentRemoteExecutionInput interface {
+	pulumi.Input
+
+	ToGetDeploymentRemoteExecutionOutput() GetDeploymentRemoteExecutionOutput
+	ToGetDeploymentRemoteExecutionOutputWithContext(context.Context) GetDeploymentRemoteExecutionOutput
+}
+
+type GetDeploymentRemoteExecutionArgs struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges pulumi.StringArrayInput `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl pulumi.StringInput `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket pulumi.StringInput `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern pulumi.StringInput `pulumi:"taskLogUrlPattern"`
+}
+
+func (GetDeploymentRemoteExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (i GetDeploymentRemoteExecutionArgs) ToGetDeploymentRemoteExecutionOutput() GetDeploymentRemoteExecutionOutput {
+	return i.ToGetDeploymentRemoteExecutionOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentRemoteExecutionArgs) ToGetDeploymentRemoteExecutionOutputWithContext(ctx context.Context) GetDeploymentRemoteExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentRemoteExecutionOutput)
+}
+
+type GetDeploymentRemoteExecutionOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentRemoteExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (o GetDeploymentRemoteExecutionOutput) ToGetDeploymentRemoteExecutionOutput() GetDeploymentRemoteExecutionOutput {
+	return o
+}
+
+func (o GetDeploymentRemoteExecutionOutput) ToGetDeploymentRemoteExecutionOutputWithContext(ctx context.Context) GetDeploymentRemoteExecutionOutput {
+	return o
+}
+
+// The allowed IP address ranges for remote execution
+func (o GetDeploymentRemoteExecutionOutput) AllowedIpAddressRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeploymentRemoteExecution) []string { return v.AllowedIpAddressRanges }).(pulumi.StringArrayOutput)
+}
+
+// Whether remote execution is enabled
+func (o GetDeploymentRemoteExecutionOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentRemoteExecution) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The URL for the remote API
+func (o GetDeploymentRemoteExecutionOutput) RemoteApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentRemoteExecution) string { return v.RemoteApiUrl }).(pulumi.StringOutput)
+}
+
+// The bucket for task logs
+func (o GetDeploymentRemoteExecutionOutput) TaskLogBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentRemoteExecution) string { return v.TaskLogBucket }).(pulumi.StringOutput)
+}
+
+// The URL pattern for task logs
+func (o GetDeploymentRemoteExecutionOutput) TaskLogUrlPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentRemoteExecution) string { return v.TaskLogUrlPattern }).(pulumi.StringOutput)
+}
+
 type GetDeploymentScalingSpec struct {
 	HibernationSpec GetDeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
 }
@@ -9798,7 +14808,7 @@ func (o GetDeploymentUpdatedByOutput) Username() pulumi.StringOutput {
 }
 
 type GetDeploymentWorkerQueue struct {
-	// Worker queue Astro machine value
+	// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine string `pulumi:"astroMachine"`
 	// Worker queue identifier
 	Id string `pulumi:"id"`
@@ -9832,7 +14842,7 @@ type GetDeploymentWorkerQueueInput interface {
 }
 
 type GetDeploymentWorkerQueueArgs struct {
-	// Worker queue Astro machine value
+	// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine pulumi.StringInput `pulumi:"astroMachine"`
 	// Worker queue identifier
 	Id pulumi.StringInput `pulumi:"id"`
@@ -9905,7 +14915,7 @@ func (o GetDeploymentWorkerQueueOutput) ToGetDeploymentWorkerQueueOutputWithCont
 	return o
 }
 
-// Worker queue Astro machine value
+// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 func (o GetDeploymentWorkerQueueOutput) AstroMachine() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.AstroMachine }).(pulumi.StringOutput)
 }
@@ -9980,7 +14990,7 @@ type GetDeploymentsDeployment struct {
 	AirflowVersion string `pulumi:"airflowVersion"`
 	// Deployment Astro Runtime version
 	AstroRuntimeVersion string `pulumi:"astroRuntimeVersion"`
-	// Deployment cloud provider
+	// Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Deployment cluster identifier
 	ClusterId string `pulumi:"clusterId"`
@@ -10002,7 +15012,7 @@ type GetDeploymentsDeployment struct {
 	DesiredDagTarballVersion string `pulumi:"desiredDagTarballVersion"`
 	// Deployment environment variables
 	EnvironmentVariables []GetDeploymentsDeploymentEnvironmentVariable `pulumi:"environmentVariables"`
-	// Deployment executor
+	// Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
 	Executor string `pulumi:"executor"`
 	// Deployment external IPs
 	ExternalIps []string `pulumi:"externalIps"`
@@ -10030,6 +15040,8 @@ type GetDeploymentsDeployment struct {
 	OidcIssuerUrl string `pulumi:"oidcIssuerUrl"`
 	// Deployment region
 	Region string `pulumi:"region"`
+	// Deployment remote execution configuration
+	RemoteExecution GetDeploymentsDeploymentRemoteExecution `pulumi:"remoteExecution"`
 	// Deployment resource quota CPU
 	ResourceQuotaCpu string `pulumi:"resourceQuotaCpu"`
 	// Deployment resource quota memory
@@ -10046,7 +15058,7 @@ type GetDeploymentsDeployment struct {
 	SchedulerMemory string `pulumi:"schedulerMemory"`
 	// Deployment scheduler replicas
 	SchedulerReplicas int `pulumi:"schedulerReplicas"`
-	// Deployment scheduler size
+	// Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
 	SchedulerSize string `pulumi:"schedulerSize"`
 	// Deployment status
 	Status string `pulumi:"status"`
@@ -10090,7 +15102,7 @@ type GetDeploymentsDeploymentArgs struct {
 	AirflowVersion pulumi.StringInput `pulumi:"airflowVersion"`
 	// Deployment Astro Runtime version
 	AstroRuntimeVersion pulumi.StringInput `pulumi:"astroRuntimeVersion"`
-	// Deployment cloud provider
+	// Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Deployment cluster identifier
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
@@ -10112,7 +15124,7 @@ type GetDeploymentsDeploymentArgs struct {
 	DesiredDagTarballVersion pulumi.StringInput `pulumi:"desiredDagTarballVersion"`
 	// Deployment environment variables
 	EnvironmentVariables GetDeploymentsDeploymentEnvironmentVariableArrayInput `pulumi:"environmentVariables"`
-	// Deployment executor
+	// Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
 	Executor pulumi.StringInput `pulumi:"executor"`
 	// Deployment external IPs
 	ExternalIps pulumi.StringArrayInput `pulumi:"externalIps"`
@@ -10140,6 +15152,8 @@ type GetDeploymentsDeploymentArgs struct {
 	OidcIssuerUrl pulumi.StringInput `pulumi:"oidcIssuerUrl"`
 	// Deployment region
 	Region pulumi.StringInput `pulumi:"region"`
+	// Deployment remote execution configuration
+	RemoteExecution GetDeploymentsDeploymentRemoteExecutionInput `pulumi:"remoteExecution"`
 	// Deployment resource quota CPU
 	ResourceQuotaCpu pulumi.StringInput `pulumi:"resourceQuotaCpu"`
 	// Deployment resource quota memory
@@ -10156,7 +15170,7 @@ type GetDeploymentsDeploymentArgs struct {
 	SchedulerMemory pulumi.StringInput `pulumi:"schedulerMemory"`
 	// Deployment scheduler replicas
 	SchedulerReplicas pulumi.IntInput `pulumi:"schedulerReplicas"`
-	// Deployment scheduler size
+	// Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
 	SchedulerSize pulumi.StringInput `pulumi:"schedulerSize"`
 	// Deployment status
 	Status pulumi.StringInput `pulumi:"status"`
@@ -10245,7 +15259,7 @@ func (o GetDeploymentsDeploymentOutput) AstroRuntimeVersion() pulumi.StringOutpu
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.AstroRuntimeVersion }).(pulumi.StringOutput)
 }
 
-// Deployment cloud provider
+// Deployment cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 func (o GetDeploymentsDeploymentOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -10302,7 +15316,7 @@ func (o GetDeploymentsDeploymentOutput) EnvironmentVariables() GetDeploymentsDep
 	}).(GetDeploymentsDeploymentEnvironmentVariableArrayOutput)
 }
 
-// Deployment executor
+// Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
 func (o GetDeploymentsDeploymentOutput) Executor() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Executor }).(pulumi.StringOutput)
 }
@@ -10372,6 +15386,11 @@ func (o GetDeploymentsDeploymentOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Deployment remote execution configuration
+func (o GetDeploymentsDeploymentOutput) RemoteExecution() GetDeploymentsDeploymentRemoteExecutionOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) GetDeploymentsDeploymentRemoteExecution { return v.RemoteExecution }).(GetDeploymentsDeploymentRemoteExecutionOutput)
+}
+
 // Deployment resource quota CPU
 func (o GetDeploymentsDeploymentOutput) ResourceQuotaCpu() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ResourceQuotaCpu }).(pulumi.StringOutput)
@@ -10412,7 +15431,7 @@ func (o GetDeploymentsDeploymentOutput) SchedulerReplicas() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) int { return v.SchedulerReplicas }).(pulumi.IntOutput)
 }
 
-// Deployment scheduler size
+// Deployment scheduler size. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
 func (o GetDeploymentsDeploymentOutput) SchedulerSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.SchedulerSize }).(pulumi.StringOutput)
 }
@@ -10698,6 +15717,94 @@ func (o GetDeploymentsDeploymentEnvironmentVariableArrayOutput) Index(i pulumi.I
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeploymentEnvironmentVariable {
 		return vs[0].([]GetDeploymentsDeploymentEnvironmentVariable)[vs[1].(int)]
 	}).(GetDeploymentsDeploymentEnvironmentVariableOutput)
+}
+
+type GetDeploymentsDeploymentRemoteExecution struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges []string `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled bool `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl string `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket string `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern string `pulumi:"taskLogUrlPattern"`
+}
+
+// GetDeploymentsDeploymentRemoteExecutionInput is an input type that accepts GetDeploymentsDeploymentRemoteExecutionArgs and GetDeploymentsDeploymentRemoteExecutionOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentRemoteExecutionInput` via:
+//
+//	GetDeploymentsDeploymentRemoteExecutionArgs{...}
+type GetDeploymentsDeploymentRemoteExecutionInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentRemoteExecutionOutput() GetDeploymentsDeploymentRemoteExecutionOutput
+	ToGetDeploymentsDeploymentRemoteExecutionOutputWithContext(context.Context) GetDeploymentsDeploymentRemoteExecutionOutput
+}
+
+type GetDeploymentsDeploymentRemoteExecutionArgs struct {
+	// The allowed IP address ranges for remote execution
+	AllowedIpAddressRanges pulumi.StringArrayInput `pulumi:"allowedIpAddressRanges"`
+	// Whether remote execution is enabled
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The URL for the remote API
+	RemoteApiUrl pulumi.StringInput `pulumi:"remoteApiUrl"`
+	// The bucket for task logs
+	TaskLogBucket pulumi.StringInput `pulumi:"taskLogBucket"`
+	// The URL pattern for task logs
+	TaskLogUrlPattern pulumi.StringInput `pulumi:"taskLogUrlPattern"`
+}
+
+func (GetDeploymentsDeploymentRemoteExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentRemoteExecutionArgs) ToGetDeploymentsDeploymentRemoteExecutionOutput() GetDeploymentsDeploymentRemoteExecutionOutput {
+	return i.ToGetDeploymentsDeploymentRemoteExecutionOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentRemoteExecutionArgs) ToGetDeploymentsDeploymentRemoteExecutionOutputWithContext(ctx context.Context) GetDeploymentsDeploymentRemoteExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentRemoteExecutionOutput)
+}
+
+type GetDeploymentsDeploymentRemoteExecutionOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentRemoteExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentRemoteExecution)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) ToGetDeploymentsDeploymentRemoteExecutionOutput() GetDeploymentsDeploymentRemoteExecutionOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) ToGetDeploymentsDeploymentRemoteExecutionOutputWithContext(ctx context.Context) GetDeploymentsDeploymentRemoteExecutionOutput {
+	return o
+}
+
+// The allowed IP address ranges for remote execution
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) AllowedIpAddressRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentRemoteExecution) []string { return v.AllowedIpAddressRanges }).(pulumi.StringArrayOutput)
+}
+
+// Whether remote execution is enabled
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentRemoteExecution) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The URL for the remote API
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) RemoteApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentRemoteExecution) string { return v.RemoteApiUrl }).(pulumi.StringOutput)
+}
+
+// The bucket for task logs
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) TaskLogBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentRemoteExecution) string { return v.TaskLogBucket }).(pulumi.StringOutput)
+}
+
+// The URL pattern for task logs
+func (o GetDeploymentsDeploymentRemoteExecutionOutput) TaskLogUrlPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentRemoteExecution) string { return v.TaskLogUrlPattern }).(pulumi.StringOutput)
 }
 
 type GetDeploymentsDeploymentScalingSpec struct {
@@ -11214,7 +16321,7 @@ func (o GetDeploymentsDeploymentUpdatedByOutput) Username() pulumi.StringOutput 
 }
 
 type GetDeploymentsDeploymentWorkerQueue struct {
-	// Worker queue Astro machine value
+	// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine string `pulumi:"astroMachine"`
 	// Worker queue identifier
 	Id string `pulumi:"id"`
@@ -11248,7 +16355,7 @@ type GetDeploymentsDeploymentWorkerQueueInput interface {
 }
 
 type GetDeploymentsDeploymentWorkerQueueArgs struct {
-	// Worker queue Astro machine value
+	// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 	AstroMachine pulumi.StringInput `pulumi:"astroMachine"`
 	// Worker queue identifier
 	Id pulumi.StringInput `pulumi:"id"`
@@ -11321,7 +16428,7 @@ func (o GetDeploymentsDeploymentWorkerQueueOutput) ToGetDeploymentsDeploymentWor
 	return o
 }
 
-// Worker queue Astro machine value
+// Worker queue Astro machine value. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
 func (o GetDeploymentsDeploymentWorkerQueueOutput) AstroMachine() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.AstroMachine }).(pulumi.StringOutput)
 }
@@ -11389,6 +16496,754 @@ func (o GetDeploymentsDeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeploymentWorkerQueue {
 		return vs[0].([]GetDeploymentsDeploymentWorkerQueue)[vs[1].(int)]
 	}).(GetDeploymentsDeploymentWorkerQueueOutput)
+}
+
+type GetNotificationChannelCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetNotificationChannelCreatedByInput is an input type that accepts GetNotificationChannelCreatedByArgs and GetNotificationChannelCreatedByOutput values.
+// You can construct a concrete instance of `GetNotificationChannelCreatedByInput` via:
+//
+//	GetNotificationChannelCreatedByArgs{...}
+type GetNotificationChannelCreatedByInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelCreatedByOutput() GetNotificationChannelCreatedByOutput
+	ToGetNotificationChannelCreatedByOutputWithContext(context.Context) GetNotificationChannelCreatedByOutput
+}
+
+type GetNotificationChannelCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationChannelCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i GetNotificationChannelCreatedByArgs) ToGetNotificationChannelCreatedByOutput() GetNotificationChannelCreatedByOutput {
+	return i.ToGetNotificationChannelCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelCreatedByArgs) ToGetNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetNotificationChannelCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelCreatedByOutput)
+}
+
+type GetNotificationChannelCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o GetNotificationChannelCreatedByOutput) ToGetNotificationChannelCreatedByOutput() GetNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelCreatedByOutput) ToGetNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelDefinition struct {
+	// The API key for the notification channel
+	ApiKey string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl string `pulumi:"webhookUrl"`
+}
+
+// GetNotificationChannelDefinitionInput is an input type that accepts GetNotificationChannelDefinitionArgs and GetNotificationChannelDefinitionOutput values.
+// You can construct a concrete instance of `GetNotificationChannelDefinitionInput` via:
+//
+//	GetNotificationChannelDefinitionArgs{...}
+type GetNotificationChannelDefinitionInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelDefinitionOutput() GetNotificationChannelDefinitionOutput
+	ToGetNotificationChannelDefinitionOutputWithContext(context.Context) GetNotificationChannelDefinitionOutput
+}
+
+type GetNotificationChannelDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringInput `pulumi:"webhookUrl"`
+}
+
+func (GetNotificationChannelDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i GetNotificationChannelDefinitionArgs) ToGetNotificationChannelDefinitionOutput() GetNotificationChannelDefinitionOutput {
+	return i.ToGetNotificationChannelDefinitionOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelDefinitionArgs) ToGetNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetNotificationChannelDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelDefinitionOutput)
+}
+
+type GetNotificationChannelDefinitionOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o GetNotificationChannelDefinitionOutput) ToGetNotificationChannelDefinitionOutput() GetNotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o GetNotificationChannelDefinitionOutput) ToGetNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetNotificationChannelDefinitionOutput {
+	return o
+}
+
+// The API key for the notification channel
+func (o GetNotificationChannelDefinitionOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// The DAG ID for the notification channel
+func (o GetNotificationChannelDefinitionOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The deployment API token for the notification channel
+func (o GetNotificationChannelDefinitionOutput) DeploymentApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.DeploymentApiToken }).(pulumi.StringOutput)
+}
+
+// The deployment ID for the notification channel
+func (o GetNotificationChannelDefinitionOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The integration key for the notification channel
+func (o GetNotificationChannelDefinitionOutput) IntegrationKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.IntegrationKey }).(pulumi.StringOutput)
+}
+
+// The recipients for the notification channel
+func (o GetNotificationChannelDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o GetNotificationChannelDefinitionOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelDefinition) string { return v.WebhookUrl }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetNotificationChannelUpdatedByInput is an input type that accepts GetNotificationChannelUpdatedByArgs and GetNotificationChannelUpdatedByOutput values.
+// You can construct a concrete instance of `GetNotificationChannelUpdatedByInput` via:
+//
+//	GetNotificationChannelUpdatedByArgs{...}
+type GetNotificationChannelUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelUpdatedByOutput() GetNotificationChannelUpdatedByOutput
+	ToGetNotificationChannelUpdatedByOutputWithContext(context.Context) GetNotificationChannelUpdatedByOutput
+}
+
+type GetNotificationChannelUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationChannelUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i GetNotificationChannelUpdatedByArgs) ToGetNotificationChannelUpdatedByOutput() GetNotificationChannelUpdatedByOutput {
+	return i.ToGetNotificationChannelUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelUpdatedByArgs) ToGetNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetNotificationChannelUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelUpdatedByOutput)
+}
+
+type GetNotificationChannelUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o GetNotificationChannelUpdatedByOutput) ToGetNotificationChannelUpdatedByOutput() GetNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelUpdatedByOutput) ToGetNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelsNotificationChannel struct {
+	// Notification Channel creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy GetNotificationChannelsNotificationChannelCreatedBy `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition GetNotificationChannelsNotificationChannelDefinition `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId string `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName string `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType string `pulumi:"entityType"`
+	// The notification channel's ID
+	Id string `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared bool `pulumi:"isShared"`
+	// The notification channel's name
+	Name string `pulumi:"name"`
+	// The notification channel's type
+	Type string `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy GetNotificationChannelsNotificationChannelUpdatedBy `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetNotificationChannelsNotificationChannelInput is an input type that accepts GetNotificationChannelsNotificationChannelArgs and GetNotificationChannelsNotificationChannelOutput values.
+// You can construct a concrete instance of `GetNotificationChannelsNotificationChannelInput` via:
+//
+//	GetNotificationChannelsNotificationChannelArgs{...}
+type GetNotificationChannelsNotificationChannelInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelsNotificationChannelOutput() GetNotificationChannelsNotificationChannelOutput
+	ToGetNotificationChannelsNotificationChannelOutputWithContext(context.Context) GetNotificationChannelsNotificationChannelOutput
+}
+
+type GetNotificationChannelsNotificationChannelArgs struct {
+	// Notification Channel creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Notification Channel creator
+	CreatedBy GetNotificationChannelsNotificationChannelCreatedByInput `pulumi:"createdBy"`
+	// The notification channel's definition
+	Definition GetNotificationChannelsNotificationChannelDefinitionInput `pulumi:"definition"`
+	// The deployment ID the notification channel is scoped to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The entity ID the notification channel is scoped to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The name of the entity the notification channel is scoped to
+	EntityName pulumi.StringInput `pulumi:"entityName"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The notification channel's ID
+	Id pulumi.StringInput `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared pulumi.BoolInput `pulumi:"isShared"`
+	// The notification channel's name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The notification channel's type
+	Type pulumi.StringInput `pulumi:"type"`
+	// Notification Channel last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Notification Channel updater
+	UpdatedBy GetNotificationChannelsNotificationChannelUpdatedByInput `pulumi:"updatedBy"`
+	// The workspace ID the notification channel is scoped to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetNotificationChannelsNotificationChannelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannel)(nil)).Elem()
+}
+
+func (i GetNotificationChannelsNotificationChannelArgs) ToGetNotificationChannelsNotificationChannelOutput() GetNotificationChannelsNotificationChannelOutput {
+	return i.ToGetNotificationChannelsNotificationChannelOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelsNotificationChannelArgs) ToGetNotificationChannelsNotificationChannelOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelsNotificationChannelOutput)
+}
+
+// GetNotificationChannelsNotificationChannelArrayInput is an input type that accepts GetNotificationChannelsNotificationChannelArray and GetNotificationChannelsNotificationChannelArrayOutput values.
+// You can construct a concrete instance of `GetNotificationChannelsNotificationChannelArrayInput` via:
+//
+//	GetNotificationChannelsNotificationChannelArray{ GetNotificationChannelsNotificationChannelArgs{...} }
+type GetNotificationChannelsNotificationChannelArrayInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelsNotificationChannelArrayOutput() GetNotificationChannelsNotificationChannelArrayOutput
+	ToGetNotificationChannelsNotificationChannelArrayOutputWithContext(context.Context) GetNotificationChannelsNotificationChannelArrayOutput
+}
+
+type GetNotificationChannelsNotificationChannelArray []GetNotificationChannelsNotificationChannelInput
+
+func (GetNotificationChannelsNotificationChannelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationChannelsNotificationChannel)(nil)).Elem()
+}
+
+func (i GetNotificationChannelsNotificationChannelArray) ToGetNotificationChannelsNotificationChannelArrayOutput() GetNotificationChannelsNotificationChannelArrayOutput {
+	return i.ToGetNotificationChannelsNotificationChannelArrayOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelsNotificationChannelArray) ToGetNotificationChannelsNotificationChannelArrayOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelsNotificationChannelArrayOutput)
+}
+
+type GetNotificationChannelsNotificationChannelOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelsNotificationChannelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannel)(nil)).Elem()
+}
+
+func (o GetNotificationChannelsNotificationChannelOutput) ToGetNotificationChannelsNotificationChannelOutput() GetNotificationChannelsNotificationChannelOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelOutput) ToGetNotificationChannelsNotificationChannelOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelOutput {
+	return o
+}
+
+// Notification Channel creation timestamp
+func (o GetNotificationChannelsNotificationChannelOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Notification Channel creator
+func (o GetNotificationChannelsNotificationChannelOutput) CreatedBy() GetNotificationChannelsNotificationChannelCreatedByOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) GetNotificationChannelsNotificationChannelCreatedBy {
+		return v.CreatedBy
+	}).(GetNotificationChannelsNotificationChannelCreatedByOutput)
+}
+
+// The notification channel's definition
+func (o GetNotificationChannelsNotificationChannelOutput) Definition() GetNotificationChannelsNotificationChannelDefinitionOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) GetNotificationChannelsNotificationChannelDefinition {
+		return v.Definition
+	}).(GetNotificationChannelsNotificationChannelDefinitionOutput)
+}
+
+// The deployment ID the notification channel is scoped to
+func (o GetNotificationChannelsNotificationChannelOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The entity ID the notification channel is scoped to
+func (o GetNotificationChannelsNotificationChannelOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The name of the entity the notification channel is scoped to
+func (o GetNotificationChannelsNotificationChannelOutput) EntityName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.EntityName }).(pulumi.StringOutput)
+}
+
+// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+func (o GetNotificationChannelsNotificationChannelOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The notification channel's ID
+func (o GetNotificationChannelsNotificationChannelOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+func (o GetNotificationChannelsNotificationChannelOutput) IsShared() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) bool { return v.IsShared }).(pulumi.BoolOutput)
+}
+
+// The notification channel's name
+func (o GetNotificationChannelsNotificationChannelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification channel's type
+func (o GetNotificationChannelsNotificationChannelOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Notification Channel last updated timestamp
+func (o GetNotificationChannelsNotificationChannelOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Notification Channel updater
+func (o GetNotificationChannelsNotificationChannelOutput) UpdatedBy() GetNotificationChannelsNotificationChannelUpdatedByOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) GetNotificationChannelsNotificationChannelUpdatedBy {
+		return v.UpdatedBy
+	}).(GetNotificationChannelsNotificationChannelUpdatedByOutput)
+}
+
+// The workspace ID the notification channel is scoped to
+func (o GetNotificationChannelsNotificationChannelOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannel) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelsNotificationChannelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelsNotificationChannelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationChannelsNotificationChannel)(nil)).Elem()
+}
+
+func (o GetNotificationChannelsNotificationChannelArrayOutput) ToGetNotificationChannelsNotificationChannelArrayOutput() GetNotificationChannelsNotificationChannelArrayOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelArrayOutput) ToGetNotificationChannelsNotificationChannelArrayOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelArrayOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelArrayOutput) Index(i pulumi.IntInput) GetNotificationChannelsNotificationChannelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNotificationChannelsNotificationChannel {
+		return vs[0].([]GetNotificationChannelsNotificationChannel)[vs[1].(int)]
+	}).(GetNotificationChannelsNotificationChannelOutput)
+}
+
+type GetNotificationChannelsNotificationChannelCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetNotificationChannelsNotificationChannelCreatedByInput is an input type that accepts GetNotificationChannelsNotificationChannelCreatedByArgs and GetNotificationChannelsNotificationChannelCreatedByOutput values.
+// You can construct a concrete instance of `GetNotificationChannelsNotificationChannelCreatedByInput` via:
+//
+//	GetNotificationChannelsNotificationChannelCreatedByArgs{...}
+type GetNotificationChannelsNotificationChannelCreatedByInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelsNotificationChannelCreatedByOutput() GetNotificationChannelsNotificationChannelCreatedByOutput
+	ToGetNotificationChannelsNotificationChannelCreatedByOutputWithContext(context.Context) GetNotificationChannelsNotificationChannelCreatedByOutput
+}
+
+type GetNotificationChannelsNotificationChannelCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationChannelsNotificationChannelCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (i GetNotificationChannelsNotificationChannelCreatedByArgs) ToGetNotificationChannelsNotificationChannelCreatedByOutput() GetNotificationChannelsNotificationChannelCreatedByOutput {
+	return i.ToGetNotificationChannelsNotificationChannelCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelsNotificationChannelCreatedByArgs) ToGetNotificationChannelsNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelsNotificationChannelCreatedByOutput)
+}
+
+type GetNotificationChannelsNotificationChannelCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelsNotificationChannelCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelCreatedBy)(nil)).Elem()
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) ToGetNotificationChannelsNotificationChannelCreatedByOutput() GetNotificationChannelsNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) ToGetNotificationChannelsNotificationChannelCreatedByOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelCreatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelsNotificationChannelDefinition struct {
+	// The API key for the notification channel
+	ApiKey string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl string `pulumi:"webhookUrl"`
+}
+
+// GetNotificationChannelsNotificationChannelDefinitionInput is an input type that accepts GetNotificationChannelsNotificationChannelDefinitionArgs and GetNotificationChannelsNotificationChannelDefinitionOutput values.
+// You can construct a concrete instance of `GetNotificationChannelsNotificationChannelDefinitionInput` via:
+//
+//	GetNotificationChannelsNotificationChannelDefinitionArgs{...}
+type GetNotificationChannelsNotificationChannelDefinitionInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelsNotificationChannelDefinitionOutput() GetNotificationChannelsNotificationChannelDefinitionOutput
+	ToGetNotificationChannelsNotificationChannelDefinitionOutputWithContext(context.Context) GetNotificationChannelsNotificationChannelDefinitionOutput
+}
+
+type GetNotificationChannelsNotificationChannelDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringInput `pulumi:"webhookUrl"`
+}
+
+func (GetNotificationChannelsNotificationChannelDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (i GetNotificationChannelsNotificationChannelDefinitionArgs) ToGetNotificationChannelsNotificationChannelDefinitionOutput() GetNotificationChannelsNotificationChannelDefinitionOutput {
+	return i.ToGetNotificationChannelsNotificationChannelDefinitionOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelsNotificationChannelDefinitionArgs) ToGetNotificationChannelsNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelsNotificationChannelDefinitionOutput)
+}
+
+type GetNotificationChannelsNotificationChannelDefinitionOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelsNotificationChannelDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelDefinition)(nil)).Elem()
+}
+
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) ToGetNotificationChannelsNotificationChannelDefinitionOutput() GetNotificationChannelsNotificationChannelDefinitionOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) ToGetNotificationChannelsNotificationChannelDefinitionOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelDefinitionOutput {
+	return o
+}
+
+// The API key for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// The DAG ID for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The deployment API token for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) DeploymentApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.DeploymentApiToken }).(pulumi.StringOutput)
+}
+
+// The deployment ID for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The integration key for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) IntegrationKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.IntegrationKey }).(pulumi.StringOutput)
+}
+
+// The recipients for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o GetNotificationChannelsNotificationChannelDefinitionOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelDefinition) string { return v.WebhookUrl }).(pulumi.StringOutput)
+}
+
+type GetNotificationChannelsNotificationChannelUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetNotificationChannelsNotificationChannelUpdatedByInput is an input type that accepts GetNotificationChannelsNotificationChannelUpdatedByArgs and GetNotificationChannelsNotificationChannelUpdatedByOutput values.
+// You can construct a concrete instance of `GetNotificationChannelsNotificationChannelUpdatedByInput` via:
+//
+//	GetNotificationChannelsNotificationChannelUpdatedByArgs{...}
+type GetNotificationChannelsNotificationChannelUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetNotificationChannelsNotificationChannelUpdatedByOutput() GetNotificationChannelsNotificationChannelUpdatedByOutput
+	ToGetNotificationChannelsNotificationChannelUpdatedByOutputWithContext(context.Context) GetNotificationChannelsNotificationChannelUpdatedByOutput
+}
+
+type GetNotificationChannelsNotificationChannelUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationChannelsNotificationChannelUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (i GetNotificationChannelsNotificationChannelUpdatedByArgs) ToGetNotificationChannelsNotificationChannelUpdatedByOutput() GetNotificationChannelsNotificationChannelUpdatedByOutput {
+	return i.ToGetNotificationChannelsNotificationChannelUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetNotificationChannelsNotificationChannelUpdatedByArgs) ToGetNotificationChannelsNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationChannelsNotificationChannelUpdatedByOutput)
+}
+
+type GetNotificationChannelsNotificationChannelUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationChannelsNotificationChannelUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationChannelsNotificationChannelUpdatedBy)(nil)).Elem()
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) ToGetNotificationChannelsNotificationChannelUpdatedByOutput() GetNotificationChannelsNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) ToGetNotificationChannelsNotificationChannelUpdatedByOutputWithContext(ctx context.Context) GetNotificationChannelsNotificationChannelUpdatedByOutput {
+	return o
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetNotificationChannelsNotificationChannelUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationChannelsNotificationChannelUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetOrganizationCreatedBy struct {
@@ -11628,6 +17483,130 @@ func (o GetTeamCreatedByOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamCreatedBy) string { return v.Username }).(pulumi.StringOutput)
 }
 
+type GetTeamDagRole struct {
+	// The DAG ID
+	DagId string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role
+	Role string `pulumi:"role"`
+	// The DAG tag
+	Tag string `pulumi:"tag"`
+}
+
+// GetTeamDagRoleInput is an input type that accepts GetTeamDagRoleArgs and GetTeamDagRoleOutput values.
+// You can construct a concrete instance of `GetTeamDagRoleInput` via:
+//
+//	GetTeamDagRoleArgs{...}
+type GetTeamDagRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamDagRoleOutput() GetTeamDagRoleOutput
+	ToGetTeamDagRoleOutputWithContext(context.Context) GetTeamDagRoleOutput
+}
+
+type GetTeamDagRoleArgs struct {
+	// The DAG ID
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetTeamDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamDagRole)(nil)).Elem()
+}
+
+func (i GetTeamDagRoleArgs) ToGetTeamDagRoleOutput() GetTeamDagRoleOutput {
+	return i.ToGetTeamDagRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamDagRoleArgs) ToGetTeamDagRoleOutputWithContext(ctx context.Context) GetTeamDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamDagRoleOutput)
+}
+
+// GetTeamDagRoleArrayInput is an input type that accepts GetTeamDagRoleArray and GetTeamDagRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamDagRoleArrayInput` via:
+//
+//	GetTeamDagRoleArray{ GetTeamDagRoleArgs{...} }
+type GetTeamDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamDagRoleArrayOutput() GetTeamDagRoleArrayOutput
+	ToGetTeamDagRoleArrayOutputWithContext(context.Context) GetTeamDagRoleArrayOutput
+}
+
+type GetTeamDagRoleArray []GetTeamDagRoleInput
+
+func (GetTeamDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamDagRole)(nil)).Elem()
+}
+
+func (i GetTeamDagRoleArray) ToGetTeamDagRoleArrayOutput() GetTeamDagRoleArrayOutput {
+	return i.ToGetTeamDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamDagRoleArray) ToGetTeamDagRoleArrayOutputWithContext(ctx context.Context) GetTeamDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamDagRoleArrayOutput)
+}
+
+type GetTeamDagRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamDagRole)(nil)).Elem()
+}
+
+func (o GetTeamDagRoleOutput) ToGetTeamDagRoleOutput() GetTeamDagRoleOutput {
+	return o
+}
+
+func (o GetTeamDagRoleOutput) ToGetTeamDagRoleOutputWithContext(ctx context.Context) GetTeamDagRoleOutput {
+	return o
+}
+
+// The DAG ID
+func (o GetTeamDagRoleOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDagRole) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The Deployment ID containing the DAG
+func (o GetTeamDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role
+func (o GetTeamDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag
+func (o GetTeamDagRoleOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamDagRole) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetTeamDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamDagRole)(nil)).Elem()
+}
+
+func (o GetTeamDagRoleArrayOutput) ToGetTeamDagRoleArrayOutput() GetTeamDagRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamDagRoleArrayOutput) ToGetTeamDagRoleArrayOutputWithContext(ctx context.Context) GetTeamDagRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamDagRoleArrayOutput) Index(i pulumi.IntInput) GetTeamDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamDagRole {
+		return vs[0].([]GetTeamDagRole)[vs[1].(int)]
+	}).(GetTeamDagRoleOutput)
+}
+
 type GetTeamDeploymentRole struct {
 	// The ID of the deployment the role is assigned to
 	DeploymentId string `pulumi:"deploymentId"`
@@ -11732,6 +17711,139 @@ func (o GetTeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetTeamDeploy
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamDeploymentRole {
 		return vs[0].([]GetTeamDeploymentRole)[vs[1].(int)]
 	}).(GetTeamDeploymentRoleOutput)
+}
+
+type GetTeamTeamMember struct {
+	// Team member avatar URL
+	AvatarUrl string `pulumi:"avatarUrl"`
+	// Team member creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Team member full name
+	FullName string `pulumi:"fullName"`
+	// The ID of the user in the Team
+	UserId string `pulumi:"userId"`
+	// Team member username
+	Username string `pulumi:"username"`
+}
+
+// GetTeamTeamMemberInput is an input type that accepts GetTeamTeamMemberArgs and GetTeamTeamMemberOutput values.
+// You can construct a concrete instance of `GetTeamTeamMemberInput` via:
+//
+//	GetTeamTeamMemberArgs{...}
+type GetTeamTeamMemberInput interface {
+	pulumi.Input
+
+	ToGetTeamTeamMemberOutput() GetTeamTeamMemberOutput
+	ToGetTeamTeamMemberOutputWithContext(context.Context) GetTeamTeamMemberOutput
+}
+
+type GetTeamTeamMemberArgs struct {
+	// Team member avatar URL
+	AvatarUrl pulumi.StringInput `pulumi:"avatarUrl"`
+	// Team member creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Team member full name
+	FullName pulumi.StringInput `pulumi:"fullName"`
+	// The ID of the user in the Team
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// Team member username
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamTeamMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamTeamMember)(nil)).Elem()
+}
+
+func (i GetTeamTeamMemberArgs) ToGetTeamTeamMemberOutput() GetTeamTeamMemberOutput {
+	return i.ToGetTeamTeamMemberOutputWithContext(context.Background())
+}
+
+func (i GetTeamTeamMemberArgs) ToGetTeamTeamMemberOutputWithContext(ctx context.Context) GetTeamTeamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamTeamMemberOutput)
+}
+
+// GetTeamTeamMemberArrayInput is an input type that accepts GetTeamTeamMemberArray and GetTeamTeamMemberArrayOutput values.
+// You can construct a concrete instance of `GetTeamTeamMemberArrayInput` via:
+//
+//	GetTeamTeamMemberArray{ GetTeamTeamMemberArgs{...} }
+type GetTeamTeamMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamTeamMemberArrayOutput() GetTeamTeamMemberArrayOutput
+	ToGetTeamTeamMemberArrayOutputWithContext(context.Context) GetTeamTeamMemberArrayOutput
+}
+
+type GetTeamTeamMemberArray []GetTeamTeamMemberInput
+
+func (GetTeamTeamMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamTeamMember)(nil)).Elem()
+}
+
+func (i GetTeamTeamMemberArray) ToGetTeamTeamMemberArrayOutput() GetTeamTeamMemberArrayOutput {
+	return i.ToGetTeamTeamMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamTeamMemberArray) ToGetTeamTeamMemberArrayOutputWithContext(ctx context.Context) GetTeamTeamMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamTeamMemberArrayOutput)
+}
+
+type GetTeamTeamMemberOutput struct{ *pulumi.OutputState }
+
+func (GetTeamTeamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamTeamMember)(nil)).Elem()
+}
+
+func (o GetTeamTeamMemberOutput) ToGetTeamTeamMemberOutput() GetTeamTeamMemberOutput {
+	return o
+}
+
+func (o GetTeamTeamMemberOutput) ToGetTeamTeamMemberOutputWithContext(ctx context.Context) GetTeamTeamMemberOutput {
+	return o
+}
+
+// Team member avatar URL
+func (o GetTeamTeamMemberOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamTeamMember) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+// Team member creation timestamp
+func (o GetTeamTeamMemberOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamTeamMember) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Team member full name
+func (o GetTeamTeamMemberOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamTeamMember) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+// The ID of the user in the Team
+func (o GetTeamTeamMemberOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamTeamMember) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// Team member username
+func (o GetTeamTeamMemberOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamTeamMember) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamTeamMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamTeamMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamTeamMember)(nil)).Elem()
+}
+
+func (o GetTeamTeamMemberArrayOutput) ToGetTeamTeamMemberArrayOutput() GetTeamTeamMemberArrayOutput {
+	return o
+}
+
+func (o GetTeamTeamMemberArrayOutput) ToGetTeamTeamMemberArrayOutputWithContext(ctx context.Context) GetTeamTeamMemberArrayOutput {
+	return o
+}
+
+func (o GetTeamTeamMemberArrayOutput) Index(i pulumi.IntInput) GetTeamTeamMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamTeamMember {
+		return vs[0].([]GetTeamTeamMember)[vs[1].(int)]
+	}).(GetTeamTeamMemberOutput)
 }
 
 type GetTeamUpdatedBy struct {
@@ -11924,6 +18036,8 @@ type GetTeamsTeam struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamsTeamCreatedBy `pulumi:"createdBy"`
+	// The DAG roles assigned to the team
+	DagRoles []GetTeamsTeamDagRole `pulumi:"dagRoles"`
 	// The roles assigned to the Deployments
 	DeploymentRoles []GetTeamsTeamDeploymentRole `pulumi:"deploymentRoles"`
 	// Team description
@@ -11938,6 +18052,8 @@ type GetTeamsTeam struct {
 	OrganizationRole string `pulumi:"organizationRole"`
 	// Number of roles assigned to the Team
 	RolesCount int `pulumi:"rolesCount"`
+	// The members of the Team
+	TeamMembers []GetTeamsTeamTeamMember `pulumi:"teamMembers"`
 	// Team last updated timestamp
 	UpdatedAt string `pulumi:"updatedAt"`
 	// Team updater
@@ -11962,6 +18078,8 @@ type GetTeamsTeamArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Team creator
 	CreatedBy GetTeamsTeamCreatedByInput `pulumi:"createdBy"`
+	// The DAG roles assigned to the team
+	DagRoles GetTeamsTeamDagRoleArrayInput `pulumi:"dagRoles"`
 	// The roles assigned to the Deployments
 	DeploymentRoles GetTeamsTeamDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
 	// Team description
@@ -11976,6 +18094,8 @@ type GetTeamsTeamArgs struct {
 	OrganizationRole pulumi.StringInput `pulumi:"organizationRole"`
 	// Number of roles assigned to the Team
 	RolesCount pulumi.IntInput `pulumi:"rolesCount"`
+	// The members of the Team
+	TeamMembers GetTeamsTeamTeamMemberArrayInput `pulumi:"teamMembers"`
 	// Team last updated timestamp
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Team updater
@@ -12045,6 +18165,11 @@ func (o GetTeamsTeamOutput) CreatedBy() GetTeamsTeamCreatedByOutput {
 	return o.ApplyT(func(v GetTeamsTeam) GetTeamsTeamCreatedBy { return v.CreatedBy }).(GetTeamsTeamCreatedByOutput)
 }
 
+// The DAG roles assigned to the team
+func (o GetTeamsTeamOutput) DagRoles() GetTeamsTeamDagRoleArrayOutput {
+	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamDagRole { return v.DagRoles }).(GetTeamsTeamDagRoleArrayOutput)
+}
+
 // The roles assigned to the Deployments
 func (o GetTeamsTeamOutput) DeploymentRoles() GetTeamsTeamDeploymentRoleArrayOutput {
 	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamDeploymentRole { return v.DeploymentRoles }).(GetTeamsTeamDeploymentRoleArrayOutput)
@@ -12078,6 +18203,11 @@ func (o GetTeamsTeamOutput) OrganizationRole() pulumi.StringOutput {
 // Number of roles assigned to the Team
 func (o GetTeamsTeamOutput) RolesCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetTeamsTeam) int { return v.RolesCount }).(pulumi.IntOutput)
+}
+
+// The members of the Team
+func (o GetTeamsTeamOutput) TeamMembers() GetTeamsTeamTeamMemberArrayOutput {
+	return o.ApplyT(func(v GetTeamsTeam) []GetTeamsTeamTeamMember { return v.TeamMembers }).(GetTeamsTeamTeamMemberArrayOutput)
 }
 
 // Team last updated timestamp
@@ -12194,6 +18324,130 @@ func (o GetTeamsTeamCreatedByOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamsTeamCreatedBy) string { return v.Username }).(pulumi.StringOutput)
 }
 
+type GetTeamsTeamDagRole struct {
+	// The DAG ID
+	DagId string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role
+	Role string `pulumi:"role"`
+	// The DAG tag
+	Tag string `pulumi:"tag"`
+}
+
+// GetTeamsTeamDagRoleInput is an input type that accepts GetTeamsTeamDagRoleArgs and GetTeamsTeamDagRoleOutput values.
+// You can construct a concrete instance of `GetTeamsTeamDagRoleInput` via:
+//
+//	GetTeamsTeamDagRoleArgs{...}
+type GetTeamsTeamDagRoleInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamDagRoleOutput() GetTeamsTeamDagRoleOutput
+	ToGetTeamsTeamDagRoleOutputWithContext(context.Context) GetTeamsTeamDagRoleOutput
+}
+
+type GetTeamsTeamDagRoleArgs struct {
+	// The DAG ID
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetTeamsTeamDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamDagRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamDagRoleArgs) ToGetTeamsTeamDagRoleOutput() GetTeamsTeamDagRoleOutput {
+	return i.ToGetTeamsTeamDagRoleOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamDagRoleArgs) ToGetTeamsTeamDagRoleOutputWithContext(ctx context.Context) GetTeamsTeamDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamDagRoleOutput)
+}
+
+// GetTeamsTeamDagRoleArrayInput is an input type that accepts GetTeamsTeamDagRoleArray and GetTeamsTeamDagRoleArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamDagRoleArrayInput` via:
+//
+//	GetTeamsTeamDagRoleArray{ GetTeamsTeamDagRoleArgs{...} }
+type GetTeamsTeamDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamDagRoleArrayOutput() GetTeamsTeamDagRoleArrayOutput
+	ToGetTeamsTeamDagRoleArrayOutputWithContext(context.Context) GetTeamsTeamDagRoleArrayOutput
+}
+
+type GetTeamsTeamDagRoleArray []GetTeamsTeamDagRoleInput
+
+func (GetTeamsTeamDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamDagRole)(nil)).Elem()
+}
+
+func (i GetTeamsTeamDagRoleArray) ToGetTeamsTeamDagRoleArrayOutput() GetTeamsTeamDagRoleArrayOutput {
+	return i.ToGetTeamsTeamDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamDagRoleArray) ToGetTeamsTeamDagRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamDagRoleArrayOutput)
+}
+
+type GetTeamsTeamDagRoleOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamDagRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamDagRoleOutput) ToGetTeamsTeamDagRoleOutput() GetTeamsTeamDagRoleOutput {
+	return o
+}
+
+func (o GetTeamsTeamDagRoleOutput) ToGetTeamsTeamDagRoleOutputWithContext(ctx context.Context) GetTeamsTeamDagRoleOutput {
+	return o
+}
+
+// The DAG ID
+func (o GetTeamsTeamDagRoleOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDagRole) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The Deployment ID containing the DAG
+func (o GetTeamsTeamDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role
+func (o GetTeamsTeamDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag
+func (o GetTeamsTeamDagRoleOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamDagRole) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamDagRole)(nil)).Elem()
+}
+
+func (o GetTeamsTeamDagRoleArrayOutput) ToGetTeamsTeamDagRoleArrayOutput() GetTeamsTeamDagRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamDagRoleArrayOutput) ToGetTeamsTeamDagRoleArrayOutputWithContext(ctx context.Context) GetTeamsTeamDagRoleArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamDagRoleArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamDagRole {
+		return vs[0].([]GetTeamsTeamDagRole)[vs[1].(int)]
+	}).(GetTeamsTeamDagRoleOutput)
+}
+
 type GetTeamsTeamDeploymentRole struct {
 	// The ID of the deployment the role is assigned to
 	DeploymentId string `pulumi:"deploymentId"`
@@ -12298,6 +18552,139 @@ func (o GetTeamsTeamDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetTeams
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamDeploymentRole {
 		return vs[0].([]GetTeamsTeamDeploymentRole)[vs[1].(int)]
 	}).(GetTeamsTeamDeploymentRoleOutput)
+}
+
+type GetTeamsTeamTeamMember struct {
+	// Team member avatar URL
+	AvatarUrl string `pulumi:"avatarUrl"`
+	// Team member creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Team member full name
+	FullName string `pulumi:"fullName"`
+	// The ID of the user in the Team
+	UserId string `pulumi:"userId"`
+	// Team member username
+	Username string `pulumi:"username"`
+}
+
+// GetTeamsTeamTeamMemberInput is an input type that accepts GetTeamsTeamTeamMemberArgs and GetTeamsTeamTeamMemberOutput values.
+// You can construct a concrete instance of `GetTeamsTeamTeamMemberInput` via:
+//
+//	GetTeamsTeamTeamMemberArgs{...}
+type GetTeamsTeamTeamMemberInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamTeamMemberOutput() GetTeamsTeamTeamMemberOutput
+	ToGetTeamsTeamTeamMemberOutputWithContext(context.Context) GetTeamsTeamTeamMemberOutput
+}
+
+type GetTeamsTeamTeamMemberArgs struct {
+	// Team member avatar URL
+	AvatarUrl pulumi.StringInput `pulumi:"avatarUrl"`
+	// Team member creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Team member full name
+	FullName pulumi.StringInput `pulumi:"fullName"`
+	// The ID of the user in the Team
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// Team member username
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetTeamsTeamTeamMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamTeamMember)(nil)).Elem()
+}
+
+func (i GetTeamsTeamTeamMemberArgs) ToGetTeamsTeamTeamMemberOutput() GetTeamsTeamTeamMemberOutput {
+	return i.ToGetTeamsTeamTeamMemberOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamTeamMemberArgs) ToGetTeamsTeamTeamMemberOutputWithContext(ctx context.Context) GetTeamsTeamTeamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamTeamMemberOutput)
+}
+
+// GetTeamsTeamTeamMemberArrayInput is an input type that accepts GetTeamsTeamTeamMemberArray and GetTeamsTeamTeamMemberArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamTeamMemberArrayInput` via:
+//
+//	GetTeamsTeamTeamMemberArray{ GetTeamsTeamTeamMemberArgs{...} }
+type GetTeamsTeamTeamMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamTeamMemberArrayOutput() GetTeamsTeamTeamMemberArrayOutput
+	ToGetTeamsTeamTeamMemberArrayOutputWithContext(context.Context) GetTeamsTeamTeamMemberArrayOutput
+}
+
+type GetTeamsTeamTeamMemberArray []GetTeamsTeamTeamMemberInput
+
+func (GetTeamsTeamTeamMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamTeamMember)(nil)).Elem()
+}
+
+func (i GetTeamsTeamTeamMemberArray) ToGetTeamsTeamTeamMemberArrayOutput() GetTeamsTeamTeamMemberArrayOutput {
+	return i.ToGetTeamsTeamTeamMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamTeamMemberArray) ToGetTeamsTeamTeamMemberArrayOutputWithContext(ctx context.Context) GetTeamsTeamTeamMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamTeamMemberArrayOutput)
+}
+
+type GetTeamsTeamTeamMemberOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamTeamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeamTeamMember)(nil)).Elem()
+}
+
+func (o GetTeamsTeamTeamMemberOutput) ToGetTeamsTeamTeamMemberOutput() GetTeamsTeamTeamMemberOutput {
+	return o
+}
+
+func (o GetTeamsTeamTeamMemberOutput) ToGetTeamsTeamTeamMemberOutputWithContext(ctx context.Context) GetTeamsTeamTeamMemberOutput {
+	return o
+}
+
+// Team member avatar URL
+func (o GetTeamsTeamTeamMemberOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamTeamMember) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+// Team member creation timestamp
+func (o GetTeamsTeamTeamMemberOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamTeamMember) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Team member full name
+func (o GetTeamsTeamTeamMemberOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamTeamMember) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+// The ID of the user in the Team
+func (o GetTeamsTeamTeamMemberOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamTeamMember) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// Team member username
+func (o GetTeamsTeamTeamMemberOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeamTeamMember) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamTeamMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamTeamMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeamTeamMember)(nil)).Elem()
+}
+
+func (o GetTeamsTeamTeamMemberArrayOutput) ToGetTeamsTeamTeamMemberArrayOutput() GetTeamsTeamTeamMemberArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamTeamMemberArrayOutput) ToGetTeamsTeamTeamMemberArrayOutputWithContext(ctx context.Context) GetTeamsTeamTeamMemberArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamTeamMemberArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamTeamMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamTeamMember {
+		return vs[0].([]GetTeamsTeamTeamMember)[vs[1].(int)]
+	}).(GetTeamsTeamTeamMemberOutput)
 }
 
 type GetTeamsTeamUpdatedBy struct {
@@ -12483,6 +18870,130 @@ func (o GetTeamsTeamWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetTeamsT
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeamWorkspaceRole {
 		return vs[0].([]GetTeamsTeamWorkspaceRole)[vs[1].(int)]
 	}).(GetTeamsTeamWorkspaceRoleOutput)
+}
+
+type GetUserDagRole struct {
+	// The DAG ID
+	DagId string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role
+	Role string `pulumi:"role"`
+	// The DAG tag
+	Tag string `pulumi:"tag"`
+}
+
+// GetUserDagRoleInput is an input type that accepts GetUserDagRoleArgs and GetUserDagRoleOutput values.
+// You can construct a concrete instance of `GetUserDagRoleInput` via:
+//
+//	GetUserDagRoleArgs{...}
+type GetUserDagRoleInput interface {
+	pulumi.Input
+
+	ToGetUserDagRoleOutput() GetUserDagRoleOutput
+	ToGetUserDagRoleOutputWithContext(context.Context) GetUserDagRoleOutput
+}
+
+type GetUserDagRoleArgs struct {
+	// The DAG ID
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetUserDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserDagRole)(nil)).Elem()
+}
+
+func (i GetUserDagRoleArgs) ToGetUserDagRoleOutput() GetUserDagRoleOutput {
+	return i.ToGetUserDagRoleOutputWithContext(context.Background())
+}
+
+func (i GetUserDagRoleArgs) ToGetUserDagRoleOutputWithContext(ctx context.Context) GetUserDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserDagRoleOutput)
+}
+
+// GetUserDagRoleArrayInput is an input type that accepts GetUserDagRoleArray and GetUserDagRoleArrayOutput values.
+// You can construct a concrete instance of `GetUserDagRoleArrayInput` via:
+//
+//	GetUserDagRoleArray{ GetUserDagRoleArgs{...} }
+type GetUserDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUserDagRoleArrayOutput() GetUserDagRoleArrayOutput
+	ToGetUserDagRoleArrayOutputWithContext(context.Context) GetUserDagRoleArrayOutput
+}
+
+type GetUserDagRoleArray []GetUserDagRoleInput
+
+func (GetUserDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserDagRole)(nil)).Elem()
+}
+
+func (i GetUserDagRoleArray) ToGetUserDagRoleArrayOutput() GetUserDagRoleArrayOutput {
+	return i.ToGetUserDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserDagRoleArray) ToGetUserDagRoleArrayOutputWithContext(ctx context.Context) GetUserDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserDagRoleArrayOutput)
+}
+
+type GetUserDagRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUserDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserDagRole)(nil)).Elem()
+}
+
+func (o GetUserDagRoleOutput) ToGetUserDagRoleOutput() GetUserDagRoleOutput {
+	return o
+}
+
+func (o GetUserDagRoleOutput) ToGetUserDagRoleOutputWithContext(ctx context.Context) GetUserDagRoleOutput {
+	return o
+}
+
+// The DAG ID
+func (o GetUserDagRoleOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDagRole) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The Deployment ID containing the DAG
+func (o GetUserDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role
+func (o GetUserDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag
+func (o GetUserDagRoleOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserDagRole) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetUserDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserDagRole)(nil)).Elem()
+}
+
+func (o GetUserDagRoleArrayOutput) ToGetUserDagRoleArrayOutput() GetUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUserDagRoleArrayOutput) ToGetUserDagRoleArrayOutputWithContext(ctx context.Context) GetUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUserDagRoleArrayOutput) Index(i pulumi.IntInput) GetUserDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserDagRole {
+		return vs[0].([]GetUserDagRole)[vs[1].(int)]
+	}).(GetUserDagRoleOutput)
 }
 
 type GetUserDeploymentRole struct {
@@ -12702,6 +19213,8 @@ type GetUsersUser struct {
 	AvatarUrl string `pulumi:"avatarUrl"`
 	// User creation timestamp
 	CreatedAt string `pulumi:"createdAt"`
+	// The DAG roles assigned to the user
+	DagRoles []GetUsersUserDagRole `pulumi:"dagRoles"`
 	// The roles assigned to the deployments
 	DeploymentRoles []GetUsersUserDeploymentRole `pulumi:"deploymentRoles"`
 	// User full name
@@ -12736,6 +19249,8 @@ type GetUsersUserArgs struct {
 	AvatarUrl pulumi.StringInput `pulumi:"avatarUrl"`
 	// User creation timestamp
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The DAG roles assigned to the user
+	DagRoles GetUsersUserDagRoleArrayInput `pulumi:"dagRoles"`
 	// The roles assigned to the deployments
 	DeploymentRoles GetUsersUserDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
 	// User full name
@@ -12815,6 +19330,11 @@ func (o GetUsersUserOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersUser) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The DAG roles assigned to the user
+func (o GetUsersUserOutput) DagRoles() GetUsersUserDagRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersUser) []GetUsersUserDagRole { return v.DagRoles }).(GetUsersUserDagRoleArrayOutput)
+}
+
 // The roles assigned to the deployments
 func (o GetUsersUserOutput) DeploymentRoles() GetUsersUserDeploymentRoleArrayOutput {
 	return o.ApplyT(func(v GetUsersUser) []GetUsersUserDeploymentRole { return v.DeploymentRoles }).(GetUsersUserDeploymentRoleArrayOutput)
@@ -12873,6 +19393,130 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
 		return vs[0].([]GetUsersUser)[vs[1].(int)]
 	}).(GetUsersUserOutput)
+}
+
+type GetUsersUserDagRole struct {
+	// The DAG ID
+	DagId string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role
+	Role string `pulumi:"role"`
+	// The DAG tag
+	Tag string `pulumi:"tag"`
+}
+
+// GetUsersUserDagRoleInput is an input type that accepts GetUsersUserDagRoleArgs and GetUsersUserDagRoleOutput values.
+// You can construct a concrete instance of `GetUsersUserDagRoleInput` via:
+//
+//	GetUsersUserDagRoleArgs{...}
+type GetUsersUserDagRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersUserDagRoleOutput() GetUsersUserDagRoleOutput
+	ToGetUsersUserDagRoleOutputWithContext(context.Context) GetUsersUserDagRoleOutput
+}
+
+type GetUsersUserDagRoleArgs struct {
+	// The DAG ID
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetUsersUserDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserDagRole)(nil)).Elem()
+}
+
+func (i GetUsersUserDagRoleArgs) ToGetUsersUserDagRoleOutput() GetUsersUserDagRoleOutput {
+	return i.ToGetUsersUserDagRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserDagRoleArgs) ToGetUsersUserDagRoleOutputWithContext(ctx context.Context) GetUsersUserDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserDagRoleOutput)
+}
+
+// GetUsersUserDagRoleArrayInput is an input type that accepts GetUsersUserDagRoleArray and GetUsersUserDagRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserDagRoleArrayInput` via:
+//
+//	GetUsersUserDagRoleArray{ GetUsersUserDagRoleArgs{...} }
+type GetUsersUserDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserDagRoleArrayOutput() GetUsersUserDagRoleArrayOutput
+	ToGetUsersUserDagRoleArrayOutputWithContext(context.Context) GetUsersUserDagRoleArrayOutput
+}
+
+type GetUsersUserDagRoleArray []GetUsersUserDagRoleInput
+
+func (GetUsersUserDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserDagRole)(nil)).Elem()
+}
+
+func (i GetUsersUserDagRoleArray) ToGetUsersUserDagRoleArrayOutput() GetUsersUserDagRoleArrayOutput {
+	return i.ToGetUsersUserDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserDagRoleArray) ToGetUsersUserDagRoleArrayOutputWithContext(ctx context.Context) GetUsersUserDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserDagRoleArrayOutput)
+}
+
+type GetUsersUserDagRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserDagRole)(nil)).Elem()
+}
+
+func (o GetUsersUserDagRoleOutput) ToGetUsersUserDagRoleOutput() GetUsersUserDagRoleOutput {
+	return o
+}
+
+func (o GetUsersUserDagRoleOutput) ToGetUsersUserDagRoleOutputWithContext(ctx context.Context) GetUsersUserDagRoleOutput {
+	return o
+}
+
+// The DAG ID
+func (o GetUsersUserDagRoleOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDagRole) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The Deployment ID containing the DAG
+func (o GetUsersUserDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role
+func (o GetUsersUserDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag
+func (o GetUsersUserDagRoleOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserDagRole) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetUsersUserDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserDagRole)(nil)).Elem()
+}
+
+func (o GetUsersUserDagRoleArrayOutput) ToGetUsersUserDagRoleArrayOutput() GetUsersUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserDagRoleArrayOutput) ToGetUsersUserDagRoleArrayOutputWithContext(ctx context.Context) GetUsersUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersUserDagRoleArrayOutput) Index(i pulumi.IntInput) GetUsersUserDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUserDagRole {
+		return vs[0].([]GetUsersUserDagRole)[vs[1].(int)]
+	}).(GetUsersUserDagRoleOutput)
 }
 
 type GetUsersUserDeploymentRole struct {
@@ -13564,6 +20208,23 @@ func (o GetWorkspacesWorkspaceUpdatedByOutput) Username() pulumi.StringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertCreatedByInput)(nil)).Elem(), AlertCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertCreatedByPtrInput)(nil)).Elem(), AlertCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelInput)(nil)).Elem(), AlertNotificationChannelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelArrayInput)(nil)).Elem(), AlertNotificationChannelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelCreatedByInput)(nil)).Elem(), AlertNotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelCreatedByPtrInput)(nil)).Elem(), AlertNotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelDefinitionInput)(nil)).Elem(), AlertNotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelUpdatedByInput)(nil)).Elem(), AlertNotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelUpdatedByPtrInput)(nil)).Elem(), AlertNotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesInput)(nil)).Elem(), AlertRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPtrInput)(nil)).Elem(), AlertRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPatternMatchInput)(nil)).Elem(), AlertRulesPatternMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPatternMatchArrayInput)(nil)).Elem(), AlertRulesPatternMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPropertiesInput)(nil)).Elem(), AlertRulesPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPropertiesPtrInput)(nil)).Elem(), AlertRulesPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertUpdatedByInput)(nil)).Elem(), AlertUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertUpdatedByPtrInput)(nil)).Elem(), AlertUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByPtrInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenRoleInput)(nil)).Elem(), ApiTokenRoleArgs{})
@@ -13580,10 +20241,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterNodePoolArrayInput)(nil)).Elem(), ClusterNodePoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTimeoutsInput)(nil)).Elem(), ClusterTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTimeoutsPtrInput)(nil)).Elem(), ClusterTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomRoleCreatedByInput)(nil)).Elem(), CustomRoleCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomRoleCreatedByPtrInput)(nil)).Elem(), CustomRoleCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomRoleUpdatedByInput)(nil)).Elem(), CustomRoleUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomRoleUpdatedByPtrInput)(nil)).Elem(), CustomRoleUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentCreatedByInput)(nil)).Elem(), DeploymentCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentCreatedByPtrInput)(nil)).Elem(), DeploymentCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnvironmentVariableInput)(nil)).Elem(), DeploymentEnvironmentVariableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnvironmentVariableArrayInput)(nil)).Elem(), DeploymentEnvironmentVariableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentRemoteExecutionInput)(nil)).Elem(), DeploymentRemoteExecutionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentRemoteExecutionPtrInput)(nil)).Elem(), DeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecPtrInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecArgs{})
@@ -13600,10 +20267,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentUpdatedByPtrInput)(nil)).Elem(), DeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueInput)(nil)).Elem(), DeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueArrayInput)(nil)).Elem(), DeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelCreatedByInput)(nil)).Elem(), NotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelCreatedByPtrInput)(nil)).Elem(), NotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelDefinitionInput)(nil)).Elem(), NotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelDefinitionPtrInput)(nil)).Elem(), NotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelUpdatedByInput)(nil)).Elem(), NotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelUpdatedByPtrInput)(nil)).Elem(), NotificationChannelUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByInput)(nil)).Elem(), TeamCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByPtrInput)(nil)).Elem(), TeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamDagRoleInput)(nil)).Elem(), TeamDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamDagRoleArrayInput)(nil)).Elem(), TeamDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamDeploymentRoleInput)(nil)).Elem(), TeamDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamDeploymentRoleArrayInput)(nil)).Elem(), TeamDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDagRoleInput)(nil)).Elem(), TeamRolesDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDagRoleArrayInput)(nil)).Elem(), TeamRolesDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleInput)(nil)).Elem(), TeamRolesDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesDeploymentRoleArrayInput)(nil)).Elem(), TeamRolesDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamRolesWorkspaceRoleInput)(nil)).Elem(), TeamRolesWorkspaceRoleArgs{})
@@ -13616,6 +20293,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviteePtrInput)(nil)).Elem(), UserInviteInviteeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviterInput)(nil)).Elem(), UserInviteInviterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserInviteInviterPtrInput)(nil)).Elem(), UserInviteInviterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDagRoleInput)(nil)).Elem(), UserRolesDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDagRoleArrayInput)(nil)).Elem(), UserRolesDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDeploymentRoleInput)(nil)).Elem(), UserRolesDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesDeploymentRoleArrayInput)(nil)).Elem(), UserRolesDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesWorkspaceRoleInput)(nil)).Elem(), UserRolesWorkspaceRoleArgs{})
@@ -13624,6 +20303,23 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceCreatedByPtrInput)(nil)).Elem(), WorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceUpdatedByPtrInput)(nil)).Elem(), WorkspaceUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertCreatedByInput)(nil)).Elem(), GetAlertCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertNotificationChannelInput)(nil)).Elem(), GetAlertNotificationChannelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertNotificationChannelArrayInput)(nil)).Elem(), GetAlertNotificationChannelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertNotificationChannelCreatedByInput)(nil)).Elem(), GetAlertNotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertNotificationChannelDefinitionInput)(nil)).Elem(), GetAlertNotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertNotificationChannelUpdatedByInput)(nil)).Elem(), GetAlertNotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertRulesInput)(nil)).Elem(), GetAlertRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertRulesPatternMatchInput)(nil)).Elem(), GetAlertRulesPatternMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertRulesPatternMatchArrayInput)(nil)).Elem(), GetAlertRulesPatternMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertUpdatedByInput)(nil)).Elem(), GetAlertUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertInput)(nil)).Elem(), GetAlertsAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertArrayInput)(nil)).Elem(), GetAlertsAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertCreatedByInput)(nil)).Elem(), GetAlertsAlertCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertRulesInput)(nil)).Elem(), GetAlertsAlertRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertRulesPatternMatchInput)(nil)).Elem(), GetAlertsAlertRulesPatternMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertRulesPatternMatchArrayInput)(nil)).Elem(), GetAlertsAlertRulesPatternMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertUpdatedByInput)(nil)).Elem(), GetAlertsAlertUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenCreatedByInput)(nil)).Elem(), GetApiTokenCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenRoleInput)(nil)).Elem(), GetApiTokenRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiTokenRoleArrayInput)(nil)).Elem(), GetApiTokenRoleArray{})
@@ -13663,6 +20359,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterNodePoolArrayInput)(nil)).Elem(), GetClustersClusterNodePoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagInput)(nil)).Elem(), GetClustersClusterTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterTagArrayInput)(nil)).Elem(), GetClustersClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomRoleCreatedByInput)(nil)).Elem(), GetCustomRoleCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomRoleUpdatedByInput)(nil)).Elem(), GetCustomRoleUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentCreatedByInput)(nil)).Elem(), GetDeploymentCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnvironmentVariableInput)(nil)).Elem(), GetDeploymentEnvironmentVariableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnvironmentVariableArrayInput)(nil)).Elem(), GetDeploymentEnvironmentVariableArray{})
@@ -13688,6 +20386,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkerQueuesWorkerConcurrencyInput)(nil)).Elem(), GetDeploymentOptionsWorkerQueuesWorkerConcurrencyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOptionInput)(nil)).Elem(), GetDeploymentOptionsWorkloadIdentityOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOptionArrayInput)(nil)).Elem(), GetDeploymentOptionsWorkloadIdentityOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentRemoteExecutionInput)(nil)).Elem(), GetDeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentScalingSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecOverrideArgs{})
@@ -13703,6 +20402,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentCreatedByInput)(nil)).Elem(), GetDeploymentsDeploymentCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariableInput)(nil)).Elem(), GetDeploymentsDeploymentEnvironmentVariableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariableArrayInput)(nil)).Elem(), GetDeploymentsDeploymentEnvironmentVariableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentRemoteExecutionInput)(nil)).Elem(), GetDeploymentsDeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs{})
@@ -13713,28 +20413,48 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentUpdatedByInput)(nil)).Elem(), GetDeploymentsDeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueArrayInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelCreatedByInput)(nil)).Elem(), GetNotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelDefinitionInput)(nil)).Elem(), GetNotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelUpdatedByInput)(nil)).Elem(), GetNotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelsNotificationChannelInput)(nil)).Elem(), GetNotificationChannelsNotificationChannelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelsNotificationChannelArrayInput)(nil)).Elem(), GetNotificationChannelsNotificationChannelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelsNotificationChannelCreatedByInput)(nil)).Elem(), GetNotificationChannelsNotificationChannelCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelsNotificationChannelDefinitionInput)(nil)).Elem(), GetNotificationChannelsNotificationChannelDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelsNotificationChannelUpdatedByInput)(nil)).Elem(), GetNotificationChannelsNotificationChannelUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCreatedByInput)(nil)).Elem(), GetOrganizationCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationUpdatedByInput)(nil)).Elem(), GetOrganizationUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamCreatedByInput)(nil)).Elem(), GetTeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDagRoleInput)(nil)).Elem(), GetTeamDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDagRoleArrayInput)(nil)).Elem(), GetTeamDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDeploymentRoleInput)(nil)).Elem(), GetTeamDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamDeploymentRoleArrayInput)(nil)).Elem(), GetTeamDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamMemberInput)(nil)).Elem(), GetTeamTeamMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamMemberArrayInput)(nil)).Elem(), GetTeamTeamMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUpdatedByInput)(nil)).Elem(), GetTeamUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamWorkspaceRoleInput)(nil)).Elem(), GetTeamWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamWorkspaceRoleArrayInput)(nil)).Elem(), GetTeamWorkspaceRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamInput)(nil)).Elem(), GetTeamsTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamArrayInput)(nil)).Elem(), GetTeamsTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamCreatedByInput)(nil)).Elem(), GetTeamsTeamCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDagRoleInput)(nil)).Elem(), GetTeamsTeamDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDagRoleArrayInput)(nil)).Elem(), GetTeamsTeamDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDeploymentRoleInput)(nil)).Elem(), GetTeamsTeamDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamDeploymentRoleArrayInput)(nil)).Elem(), GetTeamsTeamDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamTeamMemberInput)(nil)).Elem(), GetTeamsTeamTeamMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamTeamMemberArrayInput)(nil)).Elem(), GetTeamsTeamTeamMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamUpdatedByInput)(nil)).Elem(), GetTeamsTeamUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamWorkspaceRoleArrayInput)(nil)).Elem(), GetTeamsTeamWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDagRoleInput)(nil)).Elem(), GetUserDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDagRoleArrayInput)(nil)).Elem(), GetUserDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDeploymentRoleInput)(nil)).Elem(), GetUserDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDeploymentRoleArrayInput)(nil)).Elem(), GetUserDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleInput)(nil)).Elem(), GetUserWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleArrayInput)(nil)).Elem(), GetUserWorkspaceRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDagRoleInput)(nil)).Elem(), GetUsersUserDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDagRoleArrayInput)(nil)).Elem(), GetUsersUserDagRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDeploymentRoleInput)(nil)).Elem(), GetUsersUserDeploymentRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDeploymentRoleArrayInput)(nil)).Elem(), GetUsersUserDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserWorkspaceRoleInput)(nil)).Elem(), GetUsersUserWorkspaceRoleArgs{})
@@ -13745,6 +20465,23 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceUpdatedByArgs{})
+	pulumi.RegisterOutputType(AlertCreatedByOutput{})
+	pulumi.RegisterOutputType(AlertCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelArrayOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelCreatedByOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelDefinitionOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelUpdatedByOutput{})
+	pulumi.RegisterOutputType(AlertNotificationChannelUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(AlertRulesOutput{})
+	pulumi.RegisterOutputType(AlertRulesPtrOutput{})
+	pulumi.RegisterOutputType(AlertRulesPatternMatchOutput{})
+	pulumi.RegisterOutputType(AlertRulesPatternMatchArrayOutput{})
+	pulumi.RegisterOutputType(AlertRulesPropertiesOutput{})
+	pulumi.RegisterOutputType(AlertRulesPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(AlertUpdatedByOutput{})
+	pulumi.RegisterOutputType(AlertUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(ApiTokenCreatedByOutput{})
 	pulumi.RegisterOutputType(ApiTokenCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(ApiTokenRoleOutput{})
@@ -13761,10 +20498,16 @@ func init() {
 	pulumi.RegisterOutputType(ClusterNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(ClusterTimeoutsOutput{})
 	pulumi.RegisterOutputType(ClusterTimeoutsPtrOutput{})
+	pulumi.RegisterOutputType(CustomRoleCreatedByOutput{})
+	pulumi.RegisterOutputType(CustomRoleCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(CustomRoleUpdatedByOutput{})
+	pulumi.RegisterOutputType(CustomRoleUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentCreatedByOutput{})
 	pulumi.RegisterOutputType(DeploymentCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnvironmentVariableOutput{})
 	pulumi.RegisterOutputType(DeploymentEnvironmentVariableArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentRemoteExecutionOutput{})
+	pulumi.RegisterOutputType(DeploymentRemoteExecutionPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOutput{})
@@ -13781,10 +20524,20 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(NotificationChannelCreatedByOutput{})
+	pulumi.RegisterOutputType(NotificationChannelCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(NotificationChannelDefinitionOutput{})
+	pulumi.RegisterOutputType(NotificationChannelDefinitionPtrOutput{})
+	pulumi.RegisterOutputType(NotificationChannelUpdatedByOutput{})
+	pulumi.RegisterOutputType(NotificationChannelUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(TeamCreatedByOutput{})
 	pulumi.RegisterOutputType(TeamCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(TeamDagRoleOutput{})
+	pulumi.RegisterOutputType(TeamDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(TeamDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(TeamDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(TeamRolesDagRoleOutput{})
+	pulumi.RegisterOutputType(TeamRolesDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(TeamRolesDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(TeamRolesDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(TeamRolesWorkspaceRoleOutput{})
@@ -13797,6 +20550,8 @@ func init() {
 	pulumi.RegisterOutputType(UserInviteInviteePtrOutput{})
 	pulumi.RegisterOutputType(UserInviteInviterOutput{})
 	pulumi.RegisterOutputType(UserInviteInviterPtrOutput{})
+	pulumi.RegisterOutputType(UserRolesDagRoleOutput{})
+	pulumi.RegisterOutputType(UserRolesDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(UserRolesDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(UserRolesDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(UserRolesWorkspaceRoleOutput{})
@@ -13805,6 +20560,23 @@ func init() {
 	pulumi.RegisterOutputType(WorkspaceCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(WorkspaceUpdatedByOutput{})
 	pulumi.RegisterOutputType(WorkspaceUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(GetAlertCreatedByOutput{})
+	pulumi.RegisterOutputType(GetAlertNotificationChannelOutput{})
+	pulumi.RegisterOutputType(GetAlertNotificationChannelArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertNotificationChannelCreatedByOutput{})
+	pulumi.RegisterOutputType(GetAlertNotificationChannelDefinitionOutput{})
+	pulumi.RegisterOutputType(GetAlertNotificationChannelUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetAlertRulesOutput{})
+	pulumi.RegisterOutputType(GetAlertRulesPatternMatchOutput{})
+	pulumi.RegisterOutputType(GetAlertRulesPatternMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertCreatedByOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertRulesOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertRulesPatternMatchOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertRulesPatternMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertsAlertUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetApiTokenCreatedByOutput{})
 	pulumi.RegisterOutputType(GetApiTokenRoleOutput{})
 	pulumi.RegisterOutputType(GetApiTokenRoleArrayOutput{})
@@ -13844,6 +20616,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersClusterNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterTagOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCustomRoleCreatedByOutput{})
+	pulumi.RegisterOutputType(GetCustomRoleUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetDeploymentCreatedByOutput{})
 	pulumi.RegisterOutputType(GetDeploymentEnvironmentVariableOutput{})
 	pulumi.RegisterOutputType(GetDeploymentEnvironmentVariableArrayOutput{})
@@ -13869,6 +20643,7 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentOptionsWorkerQueuesWorkerConcurrencyOutput{})
 	pulumi.RegisterOutputType(GetDeploymentOptionsWorkloadIdentityOptionOutput{})
 	pulumi.RegisterOutputType(GetDeploymentOptionsWorkloadIdentityOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentRemoteExecutionOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOverrideOutput{})
@@ -13884,6 +20659,7 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentCreatedByOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentEnvironmentVariableOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentEnvironmentVariableArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentRemoteExecutionOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput{})
@@ -13894,28 +20670,48 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelCreatedByOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelDefinitionOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelsNotificationChannelOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelsNotificationChannelArrayOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelsNotificationChannelCreatedByOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelsNotificationChannelDefinitionOutput{})
+	pulumi.RegisterOutputType(GetNotificationChannelsNotificationChannelUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetOrganizationCreatedByOutput{})
 	pulumi.RegisterOutputType(GetOrganizationUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetTeamCreatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamDagRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(GetTeamDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamTeamMemberOutput{})
+	pulumi.RegisterOutputType(GetTeamTeamMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetTeamWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(GetTeamWorkspaceRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamCreatedByOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamDagRoleOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamTeamMemberOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamTeamMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(GetTeamsTeamWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUserDagRoleOutput{})
+	pulumi.RegisterOutputType(GetUserDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUserDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(GetUserDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUserWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(GetUserWorkspaceRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserDagRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersUserDagRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserDeploymentRoleOutput{})
 	pulumi.RegisterOutputType(GetUsersUserDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserWorkspaceRoleOutput{})

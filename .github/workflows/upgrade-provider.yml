@@ -37,7 +37,11 @@ jobs:
         shell: bash
 
       - name: Run upgrade-provider
-        run: upgrade-provider "$GITHUB_REPOSITORY" --kind=all --allow-missing-docs=true
+        # --repo-path=. tells the tool to operate on the workspace already
+        # checked out by actions/checkout instead of running `git checkout main
+        # && git pull` itself. This means a workflow_dispatch on a feature
+        # branch tests end-to-end against that branch's Makefile / CI.
+        run: upgrade-provider "$GITHUB_REPOSITORY" --kind=all --allow-missing-docs=true --repo-path=.
         shell: bash
 
       - name: Enable auto-merge on upgrade PRs

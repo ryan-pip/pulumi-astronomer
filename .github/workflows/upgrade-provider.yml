@@ -2,7 +2,7 @@ name: Upgrade provider
 on:
   issues:
     types:
-    - opened
+      - opened
   schedule:
     - cron: '0 5 * * *'
 env:
@@ -27,6 +27,7 @@ jobs:
         # Both filters together prevent ever auto-merging a human PR.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # yamllint disable rule:line-length
         run: |
           set -euo pipefail
           mapfile -t PRS < <(gh pr list \
@@ -38,3 +39,4 @@ jobs:
             echo "Enabling auto-merge on PR #$pr"
             gh pr merge "$pr" --auto --squash --delete-branch
           done
+        # yamllint enable rule:line-length

@@ -22,5 +22,14 @@ golangci-lint = "2"
 "go:github.com/pulumi/upgrade-provider" = "main"
 "go:golang.org/x/tools/gopls" = "latest"
 
+# Development tools for linting, formatting, and other code quality checks.
+hk = "latest"
+pkl = "latest"
+yamllint = "latest"
+taplo = "latest"
+actionlint = "latest"
+
 [env]
 GOTOOLCHAIN = "go1.25.9"
+
+HK_MISE = 1

@@ -20,3 +20,21 @@ jobs:
         uses: pulumi/pulumi-upgrade-provider-action@12996503de2aaddd72c7426efc43331a8970894f # v0.0.19
         with:
           kind: all
+
+      - name: Enable auto-merge on upgrade PRs
+        # Restrict to PRs authored by github-actions[bot] (the action's identity
+        # when GH_TOKEN is GITHUB_TOKEN) on a known upgrade-* branch prefix.
+        # Both filters together prevent ever auto-merging a human PR.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mapfile -t PRS < <(gh pr list \
+            --state open \
+            --author 'app/github-actions' \
+            --json number,headRefName \
+            --jq '.[] | select(.headRefName | test("^upgrade-(pulumi-terraform-bridge|terraform-provider|pulumi-version)-")) | .number')
+          for pr in "${PRS[@]}"; do
+            echo "Enabling auto-merge on PR #$pr"
+            gh pr merge "$pr" --auto --squash --delete-branch
+          done

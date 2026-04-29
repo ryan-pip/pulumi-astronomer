@@ -57,13 +57,26 @@ jobs:
       - name: Upload prerequisites
         uses: ./.github/actions/upload-prerequisites
 
-  # ── publish multi-platform binaries via GoReleaser (parallel) ─────────────
+  # ── matrix-build cross-platform binaries (parallel, needs prerequisites) ───
+  # Splitting the GoReleaser cross-compile into 6 parallel shards (one per
+  # GOOS/GOARCH) drops the build wall-clock from ~8m to ~1.5m. We use
+  # `goreleaser build --single-target` per shard, then publish_release
+  # archives + uploads the assembled binaries.
 
   publish_binary:
-    name: publish-binary
+    name: build-binary
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    needs: prerequisites
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { goos: linux,   goarch: amd64 }
+          - { goos: linux,   goarch: arm64 }
+          - { goos: darwin,  goarch: amd64 }
+          - { goos: darwin,  goarch: arm64 }
+          - { goos: windows, goarch: amd64 }
+          - { goos: windows, goarch: arm64 }
     steps:
       - name: Checkout Repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -78,22 +91,98 @@ jobs:
           cache-dependency-path: |
             provider/go.sum
             provider/shim/go.sum
-            sdk/go.sum
-            examples/go.sum
 
-      - name: Setup mise (CI subset)
-        uses: ./.github/actions/setup-mise
+      - name: Cache Go build cache (per goos/goarch)
+        # setup-go caches GOPATH/pkg/mod and ~/.cache/go-build keyed by go.sum,
+        # but its key is platform-agnostic. Cross-compiles for separate GOOS/
+        # GOARCH thrash that single cache. A per-shard cache keyed by goos/
+        # goarch + go.sum keeps each shard warm across same-go.sum releases.
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: ~/.cache/go-build
+          key: gobuild-${{ runner.os }}-${{ matrix.goos }}-${{ matrix.goarch }}-${{ hashFiles('provider/go.sum') }}
+          restore-keys: |
+            gobuild-${{ runner.os }}-${{ matrix.goos }}-${{ matrix.goarch }}-
 
       - name: Set GoReleaser tag
         # Use the literal pushed tag. pulumictl appends `+<sha>` build metadata to
         # pre-release versions, which fails GoReleaser's tag-equals-ref validation.
         run: echo "GORELEASER_CURRENT_TAG=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
 
-      - name: Run GoReleaser
+      - name: Download prerequisites
+        # Pulls the prebuilt schema-embed.json so we can skip the `make schema`
+        # GoReleaser before-hook (it's already done once in the prerequisites job).
+        uses: ./.github/actions/download-prerequisites
+
+      - name: Build binary (single target)
         uses: goreleaser/goreleaser-action@1a80836c5c9d9e5755a25cb59ec6f45a3b5f41a8 # v7.2.1
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
         with:
-          args: -p 3 release --clean
-          version: latest
+          version: '~> v2'
+          args: build --single-target --clean --skip=before
+
+      - name: Archive binary
+        # Match the existing release-asset naming so consumers (Pulumi plugin
+        # registry, etc.) keep finding the binaries:
+        #   pulumi-resource-astronomer-vX.Y.Z-{os}-{arch}.{tar.gz|zip}
+        run: |
+          set -euo pipefail
+          BIN_DIR=$(find dist -type d -name "*${{ matrix.goos }}_${{ matrix.goarch }}*" | head -n1)
+          if [ -z "$BIN_DIR" ]; then
+            echo "::error::Could not locate built binary directory under dist/"
+            ls -la dist || true
+            exit 1
+          fi
+          cp LICENSE README.md "$BIN_DIR/"
+          ARCHIVE_BASENAME="pulumi-resource-astronomer-${GORELEASER_CURRENT_TAG}-${{ matrix.goos }}-${{ matrix.goarch }}"
+          mkdir -p "${RUNNER_TEMP}/release"
+          cd "$BIN_DIR"
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            zip -r "${RUNNER_TEMP}/release/${ARCHIVE_BASENAME}.zip" .
+          else
+            tar czf "${RUNNER_TEMP}/release/${ARCHIVE_BASENAME}.tar.gz" .
+          fi
+
+      - name: Upload archive
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: archive-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: ${{ runner.temp }}/release/
+          retention-days: 1
+          if-no-files-found: error
+
+  # ── assemble per-platform archives + checksums into a GitHub release ───────
+
+  publish_release:
+    name: publish-release
+    runs-on: ubuntu-latest
+    needs:
+      - prerequisites
+      - publish_binary
+    permissions:
+      contents: write
+    steps:
+      - name: Download all archives
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: release-assets/
+          pattern: archive-*
+          merge-multiple: true
+
+      - name: Generate checksums.txt
+        working-directory: release-assets
+        run: sha256sum * > checksums.txt
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        with:
+          files: release-assets/*
+          fail_on_unmatched_files: true
+          # `prerelease: auto` matches GoReleaser's previous behavior (pre-release
+          # tag like vX.Y.Z-rc1 → prerelease, otherwise stable).
+          prerelease: ${{ contains(github.ref_name, '-') }}
 
   # ── build and publish SDKs (matrix, needs prerequisites + binary) ──────────
 
@@ -102,7 +191,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - prerequisites
-      - publish_binary
+      - publish_release
     permissions:
       id-token: write
     strategy:
@@ -154,19 +243,24 @@ jobs:
         run: make build_${{ matrix.language }}
 
       - name: Check worktree clean
-        uses: pulumi/git-status-check-action@54000b91124a8dd9fd6a872cb41f5dd246a46e7c # v1.1.1
-        with:
-          allowed-changes: |
-            sdk/**/pulumi-plugin.json
-            sdk/nodejs/package.json
-            sdk/python/pyproject.toml
-            sdk/go/**/internal/pulumiUtilities.go
+        # Inline replacement for unmaintained pulumi/git-status-check-action.
+        # Version-bearing files are regenerated per build; everything else must match.
+        run: |
+          set -euo pipefail
+          ALLOWED='^(sdk/.*/pulumi-plugin\.json|sdk/nodejs/package\.json|sdk/python/pyproject\.toml|sdk/go/.*/internal/pulumiUtilities\.go)$'
+          UNEXPECTED=$(git status --porcelain | awk '{print $2}' | grep -vE "$ALLOWED" || true)
+          if [ -n "$UNEXPECTED" ]; then
+            echo "::error::Unexpected worktree changes after SDK build:"
+            printf '%s\n' "$UNEXPECTED"
+            git --no-pager diff --stat
+            exit 1
+          fi
 
       - name: Publish package to PyPI
         if: matrix.language == 'python' && env.PUBLISH_PYPI == 'true'
         uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
         with:
-          packages_dir: ${{ github.workspace }}/sdk/python/bin/dist
+          packages-dir: ${{ github.workspace }}/sdk/python/bin/dist
 
       - name: Publish package to npm
         # OIDC trusted publishing (no token). Requires the npm package to have a

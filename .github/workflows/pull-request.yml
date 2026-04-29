@@ -177,14 +177,18 @@ jobs:
         run: make build_${{ matrix.language }}
 
       - name: Check worktree clean
+        # Inline replacement for unmaintained pulumi/git-status-check-action.
         # Version-bearing files are regenerated per build; everything else must match.
-        uses: pulumi/git-status-check-action@54000b91124a8dd9fd6a872cb41f5dd246a46e7c # v1.1.1
-        with:
-          allowed-changes: |
-            sdk/**/pulumi-plugin.json
-            sdk/nodejs/package.json
-            sdk/python/pyproject.toml
-            sdk/go/**/internal/pulumiUtilities.go
+        run: |
+          set -euo pipefail
+          ALLOWED='^(sdk/.*/pulumi-plugin\.json|sdk/nodejs/package\.json|sdk/python/pyproject\.toml|sdk/go/.*/internal/pulumiUtilities\.go)$'
+          UNEXPECTED=$(git status --porcelain | awk '{print $2}' | grep -vE "$ALLOWED" || true)
+          if [ -n "$UNEXPECTED" ]; then
+            echo "::error::Unexpected worktree changes after SDK build:"
+            printf '%s\n' "$UNEXPECTED"
+            git --no-pager diff --stat
+            exit 1
+          fi
 
       - name: Compress SDK
         if: matrix.language == 'python'

@@ -1,4 +1,3 @@
-
 name: release
 
 on:
@@ -71,10 +70,10 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - { goos: linux,   goarch: amd64 }
-          - { goos: linux,   goarch: arm64 }
-          - { goos: darwin,  goarch: amd64 }
-          - { goos: darwin,  goarch: arm64 }
+          - { goos: linux, goarch: amd64 }
+          - { goos: linux, goarch: arm64 }
+          - { goos: darwin, goarch: amd64 }
+          - { goos: darwin, goarch: arm64 }
           - { goos: windows, goarch: amd64 }
           - { goos: windows, goarch: arm64 }
     steps:
@@ -136,7 +135,8 @@ jobs:
             exit 1
           fi
           cp LICENSE README.md "$BIN_DIR/"
-          ARCHIVE_BASENAME="pulumi-resource-astronomer-${GORELEASER_CURRENT_TAG}-${{ matrix.goos }}-${{ matrix.goarch }}"
+          BIN_NAME="pulumi-resource-astronomer"
+          ARCHIVE_BASENAME="${BIN_NAME}-${GORELEASER_CURRENT_TAG}-${{ matrix.goos }}-${{ matrix.goarch }}"
           mkdir -p "${RUNNER_TEMP}/release"
           cd "$BIN_DIR"
           if [ "${{ matrix.goos }}" = "windows" ]; then
@@ -201,6 +201,7 @@ jobs:
           - nodejs
           - python
           - go
+          - dotnet
 
     steps:
       - name: Checkout Repo

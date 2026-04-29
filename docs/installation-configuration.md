@@ -16,7 +16,7 @@ The Pulumi Astronomer provider is available as a package in all Pulumi languages
 
 ## Configuration
 
-> Note:  
+> Note:
 > Replace the following **sample content**, with the configuration options
 > of the wrapped Terraform provider and remove this note.
 

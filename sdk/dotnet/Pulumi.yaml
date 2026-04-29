@@ -1,0 +1,3 @@
+name: astronomer
+description: A Pulumi resource provider for astronomer.
+language: dotnet

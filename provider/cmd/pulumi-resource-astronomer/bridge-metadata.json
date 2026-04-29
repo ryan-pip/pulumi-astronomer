@@ -1,12 +1,5 @@
 {
     "renames": {
-        "resources": {
-            "astronomer:index/cluster:Cluster": "astro_cluster",
-            "astronomer:index/deployment:Deployment": "astro_deployment",
-            "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization": "astro_hybrid_cluster_workspace_authorization",
-            "astronomer:index/teamRoles:TeamRoles": "astro_team_roles",
-            "astronomer:index/workspace:Workspace": "astro_workspace"
-        },
         "functions": {
             "astronomer:index/getCluster:getCluster": "astro_cluster",
             "astronomer:index/getClusterOptions:getClusterOptions": "astro_cluster_options",
@@ -19,6 +12,9 @@
             "astronomer:index/getTeams:getTeams": "astro_teams",
             "astronomer:index/getWorkspace:getWorkspace": "astro_workspace",
             "astronomer:index/getWorkspaces:getWorkspaces": "astro_workspaces"
+        },
+        "renamedConfigProperties": {
+            "organizationId": "organization_id"
         },
         "renamedProperties": {
             "astronomer:index/ClusterMetadata:ClusterMetadata": {
@@ -600,8 +596,12 @@
                 "organizationId": "organization_id"
             }
         },
-        "renamedConfigProperties": {
-            "organizationId": "organization_id"
+        "resources": {
+            "astronomer:index/cluster:Cluster": "astro_cluster",
+            "astronomer:index/deployment:Deployment": "astro_deployment",
+            "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization": "astro_hybrid_cluster_workspace_authorization",
+            "astronomer:index/teamRoles:TeamRoles": "astro_team_roles",
+            "astronomer:index/workspace:Workspace": "astro_workspace"
         }
     }
 }

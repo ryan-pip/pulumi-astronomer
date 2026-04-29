@@ -43,26 +43,21 @@ jobs:
         run: upgrade-provider "$GITHUB_REPOSITORY" --kind=all --allow-missing-docs=true --repo-path=.
         shell: bash
 
-      - name: Enable auto-merge on upgrade PRs
+      - name: Enable auto-merge on upgrade PR
         # safety filter — both bot author + branch prefix required
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # yamllint disable rule:line-length
         run: |
           set -euo pipefail
-          # retry — the PR API can lag a few seconds behind PR creation
-          for attempt in 1 2 3 4 5; do
-            mapfile -t PRS < <(gh pr list \
-              --state open \
-              --author 'app/github-actions' \
-              --json number,headRefName \
-              --jq '.[] | select(.headRefName | test("^upgrade-(pulumi-terraform-bridge|terraform-provider|pulumi-version)-")) | .number')
-            [ "${#PRS[@]}" -gt 0 ] && break
-            echo "no matching PRs yet (attempt $attempt); sleeping"
-            sleep 5
-          done
-          for pr in "${PRS[@]}"; do
-            echo "Enabling auto-merge on PR #$pr"
-            gh pr merge "$pr" --auto --squash --delete-branch
-          done
-        # yamllint enable rule:line-length
+          BRANCH=$(git branch --show-current)
+          case "$BRANCH" in
+            upgrade-pulumi-terraform-bridge-*|upgrade-terraform-provider-*|upgrade-pulumi-version-*) ;;
+            *) echo "branch $BRANCH not an upgrade branch; skipping"; exit 0 ;;
+          esac
+          AUTHOR=$(gh pr view --json author --jq .author.login)
+          if [ "$AUTHOR" != "app/github-actions" ]; then
+            echo "PR author is $AUTHOR (not app/github-actions); skipping"
+            exit 0
+          fi
+          gh pr merge --auto --squash --delete-branch
+        shell: bash

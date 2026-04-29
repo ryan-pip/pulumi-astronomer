@@ -42,6 +42,9 @@ bin/$(TFGEN): provider/resources.go provider/go.*
 # Sentinel: rebuilt only when tfgen binary is newer.
 schema: .make/schema
 
+# Alias for the upstream upgrade-provider tool, which calls `make tfgen`.
+tfgen: schema
+
 .make/schema: bin/$(TFGEN)
 	$(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	cd provider && VERSION=$(PROVIDER_VERSION) go generate cmd/$(PROVIDER)/main.go

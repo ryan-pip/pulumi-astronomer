@@ -42,6 +42,9 @@ bin/$(TFGEN): provider/resources.go provider/go.*
 # Sentinel: rebuilt only when tfgen binary is newer.
 schema: .make/schema
 
+# upstream upgrade-provider calls this
+tfgen: schema
+
 .make/schema: bin/$(TFGEN)
 	$(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	cd provider && VERSION=$(PROVIDER_VERSION) go generate cmd/$(PROVIDER)/main.go
@@ -68,6 +71,9 @@ prepare_local_workspace: bin/$(TFGEN) .make/schema bin/$(PROVIDER)
 # This lets CI build all SDKs in parallel after downloading the prerequisites.
 
 build_sdks: build_nodejs build_python build_go build_dotnet
+
+# upstream upgrade-provider calls this
+generate_sdks: build_sdks
 
 build_nodejs: .make/build_nodejs
 

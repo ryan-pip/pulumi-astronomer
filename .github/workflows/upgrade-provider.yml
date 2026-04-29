@@ -50,11 +50,17 @@ jobs:
         # yamllint disable rule:line-length
         run: |
           set -euo pipefail
-          mapfile -t PRS < <(gh pr list \
-            --state open \
-            --author 'app/github-actions' \
-            --json number,headRefName \
-            --jq '.[] | select(.headRefName | test("^upgrade-(pulumi-terraform-bridge|terraform-provider|pulumi-version)-")) | .number')
+          # retry — the PR API can lag a few seconds behind PR creation
+          for attempt in 1 2 3 4 5; do
+            mapfile -t PRS < <(gh pr list \
+              --state open \
+              --author 'app/github-actions' \
+              --json number,headRefName \
+              --jq '.[] | select(.headRefName | test("^upgrade-(pulumi-terraform-bridge|terraform-provider|pulumi-version)-")) | .number')
+            [ "${#PRS[@]}" -gt 0 ] && break
+            echo "no matching PRs yet (attempt $attempt); sleeping"
+            sleep 5
+          done
           for pr in "${PRS[@]}"; do
             echo "Enabling auto-merge on PR #$pr"
             gh pr merge "$pr" --auto --squash --delete-branch

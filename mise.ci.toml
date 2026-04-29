@@ -2,9 +2,9 @@
 # the trimmed subset GitHub Actions installs via .github/actions/setup-mise.
 # Keep tool versions in sync with mise.toml for everything listed here.
 #
-# Excluded vs. mise.toml: dotnet, java (no SDK matrix entry), gopls (IDE
-# language server), pulumi/upgrade-provider (only used by upgrade-provider.yml,
-# which calls pulumi-upgrade-provider-action and doesn't go through mise).
+# Excluded vs. mise.toml: java (no SDK matrix entry), gopls (IDE language
+# server), pulumi/upgrade-provider (only used by upgrade-provider.yml, which
+# calls pulumi-upgrade-provider-action and doesn't go through mise).
 
 [settings]
 experimental = true
@@ -17,6 +17,7 @@ github-cli = "latest"
 go = "1.25"
 node = "22"
 python = "3.11"
+dotnet = "8.0"
 
 pulumi = "latest"
 uv = "latest"

@@ -140,6 +140,7 @@ jobs:
           - nodejs
           - python
           - go
+          - dotnet
 
     steps:
       - name: Checkout Repo

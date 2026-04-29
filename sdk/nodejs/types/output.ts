@@ -1185,6 +1185,10 @@ export interface GetClustersCluster {
      */
     region: string;
     /**
+     * Secondary CIDR for pod networking (AWS only)
+     */
+    secondaryVpcCidr: string;
+    /**
      * Cluster service peering range
      */
     servicePeeringRange: string;

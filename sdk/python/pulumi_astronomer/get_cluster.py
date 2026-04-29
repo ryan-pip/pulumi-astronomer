@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, secondary_vpc_cidr=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -82,6 +82,9 @@ class GetClusterResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if secondary_vpc_cidr and not isinstance(secondary_vpc_cidr, str):
+            raise TypeError("Expected argument 'secondary_vpc_cidr' to be a str")
+        pulumi.set(__self__, "secondary_vpc_cidr", secondary_vpc_cidr)
         if service_peering_range and not isinstance(service_peering_range, str):
             raise TypeError("Expected argument 'service_peering_range' to be a str")
         pulumi.set(__self__, "service_peering_range", service_peering_range)
@@ -255,6 +258,14 @@ class GetClusterResult:
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="secondaryVpcCidr")
+    def secondary_vpc_cidr(self) -> _builtins.str:
+        """
+        Secondary CIDR for pod networking (AWS only)
+        """
+        return pulumi.get(self, "secondary_vpc_cidr")
+
+    @_builtins.property
     @pulumi.getter(name="servicePeeringRange")
     def service_peering_range(self) -> _builtins.str:
         """
@@ -351,6 +362,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             pod_subnet_range=self.pod_subnet_range,
             provider_account=self.provider_account,
             region=self.region,
+            secondary_vpc_cidr=self.secondary_vpc_cidr,
             service_peering_range=self.service_peering_range,
             service_subnet_range=self.service_subnet_range,
             status=self.status,
@@ -404,6 +416,7 @@ def get_cluster(id: Optional[_builtins.str] = None,
         pod_subnet_range=pulumi.get(__ret__, 'pod_subnet_range'),
         provider_account=pulumi.get(__ret__, 'provider_account'),
         region=pulumi.get(__ret__, 'region'),
+        secondary_vpc_cidr=pulumi.get(__ret__, 'secondary_vpc_cidr'),
         service_peering_range=pulumi.get(__ret__, 'service_peering_range'),
         service_subnet_range=pulumi.get(__ret__, 'service_subnet_range'),
         status=pulumi.get(__ret__, 'status'),
@@ -454,6 +467,7 @@ def get_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         pod_subnet_range=pulumi.get(__response__, 'pod_subnet_range'),
         provider_account=pulumi.get(__response__, 'provider_account'),
         region=pulumi.get(__response__, 'region'),
+        secondary_vpc_cidr=pulumi.get(__response__, 'secondary_vpc_cidr'),
         service_peering_range=pulumi.get(__response__, 'service_peering_range'),
         service_subnet_range=pulumi.get(__response__, 'service_subnet_range'),
         status=pulumi.get(__response__, 'status'),

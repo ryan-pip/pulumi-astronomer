@@ -11635,6 +11635,8 @@ type GetClustersCluster struct {
 	ProviderAccount string `pulumi:"providerAccount"`
 	// Cluster region
 	Region string `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only)
+	SecondaryVpcCidr string `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range
 	ServicePeeringRange string `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range
@@ -11703,6 +11705,8 @@ type GetClustersClusterArgs struct {
 	ProviderAccount pulumi.StringInput `pulumi:"providerAccount"`
 	// Cluster region
 	Region pulumi.StringInput `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only)
+	SecondaryVpcCidr pulumi.StringInput `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range
 	ServicePeeringRange pulumi.StringInput `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range
@@ -11862,6 +11866,11 @@ func (o GetClustersClusterOutput) ProviderAccount() pulumi.StringOutput {
 // Cluster region
 func (o GetClustersClusterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking (AWS only)
+func (o GetClustersClusterOutput) SecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.SecondaryVpcCidr }).(pulumi.StringOutput)
 }
 
 // Cluster service peering range

@@ -50,6 +50,8 @@ type Cluster struct {
 	ProviderAccount pulumi.StringOutput `pulumi:"providerAccount"`
 	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+	SecondaryVpcCidr pulumi.StringOutput `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrOutput `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -148,6 +150,8 @@ type clusterState struct {
 	ProviderAccount *string `pulumi:"providerAccount"`
 	// Cluster region - if changed, the cluster will be recreated.
 	Region *string `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+	SecondaryVpcCidr *string `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange *string `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -202,6 +206,8 @@ type ClusterState struct {
 	ProviderAccount pulumi.StringPtrInput
 	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringPtrInput
+	// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+	SecondaryVpcCidr pulumi.StringPtrInput
 	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrInput
 	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -246,6 +252,8 @@ type clusterArgs struct {
 	PodSubnetRange *string `pulumi:"podSubnetRange"`
 	// Cluster region - if changed, the cluster will be recreated.
 	Region string `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+	SecondaryVpcCidr *string `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange *string `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -281,6 +289,8 @@ type ClusterArgs struct {
 	PodSubnetRange pulumi.StringPtrInput
 	// Cluster region - if changed, the cluster will be recreated.
 	Region pulumi.StringInput
+	// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+	SecondaryVpcCidr pulumi.StringPtrInput
 	// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
 	ServicePeeringRange pulumi.StringPtrInput
 	// Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -464,6 +474,11 @@ func (o ClusterOutput) ProviderAccount() pulumi.StringOutput {
 // Cluster region - if changed, the cluster will be recreated.
 func (o ClusterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+func (o ClusterOutput) SecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.SecondaryVpcCidr }).(pulumi.StringOutput)
 }
 
 // Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.

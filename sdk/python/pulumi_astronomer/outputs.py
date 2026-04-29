@@ -5618,6 +5618,7 @@ class GetClustersClusterResult(dict):
                  pod_subnet_range: _builtins.str,
                  provider_account: _builtins.str,
                  region: _builtins.str,
+                 secondary_vpc_cidr: _builtins.str,
                  service_peering_range: _builtins.str,
                  service_subnet_range: _builtins.str,
                  status: _builtins.str,
@@ -5646,6 +5647,7 @@ class GetClustersClusterResult(dict):
         :param _builtins.str pod_subnet_range: Cluster pod subnet range
         :param _builtins.str provider_account: Cluster provider account
         :param _builtins.str region: Cluster region
+        :param _builtins.str secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only)
         :param _builtins.str service_peering_range: Cluster service peering range
         :param _builtins.str service_subnet_range: Cluster service subnet range
         :param _builtins.str status: Cluster status
@@ -5674,6 +5676,7 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "pod_subnet_range", pod_subnet_range)
         pulumi.set(__self__, "provider_account", provider_account)
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "secondary_vpc_cidr", secondary_vpc_cidr)
         pulumi.set(__self__, "service_peering_range", service_peering_range)
         pulumi.set(__self__, "service_subnet_range", service_subnet_range)
         pulumi.set(__self__, "status", status)
@@ -5827,6 +5830,14 @@ class GetClustersClusterResult(dict):
         Cluster region
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="secondaryVpcCidr")
+    def secondary_vpc_cidr(self) -> _builtins.str:
+        """
+        Secondary CIDR for pod networking (AWS only)
+        """
+        return pulumi.get(self, "secondary_vpc_cidr")
 
     @_builtins.property
     @pulumi.getter(name="servicePeeringRange")

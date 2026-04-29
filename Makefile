@@ -72,6 +72,9 @@ prepare_local_workspace: bin/$(TFGEN) .make/schema bin/$(PROVIDER)
 
 build_sdks: build_nodejs build_python build_go build_dotnet
 
+# Alias for the upstream upgrade-provider tool, which calls `make generate_sdks`.
+generate_sdks: build_sdks
+
 build_nodejs: .make/build_nodejs
 
 .make/build_nodejs: .make/schema

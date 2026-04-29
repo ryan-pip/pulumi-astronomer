@@ -1,11 +1,13 @@
 amends "package://github.com/jdx/hk/releases/download/v1.36.0/hk@1.36.0#/Config.pkl"
 import "package://github.com/jdx/hk/releases/download/v1.36.0/hk@1.36.0#/Builtins.pkl"
 
-// tfgen overwrites these files on every build with its own formatting; if hk
-// rewrites them they'll show as dirty in the next CI worktree-clean check.
+// tfgen / language-codegen overwrite these files on every build with their
+// own formatting; if hk rewrites them they'll show as dirty in the next CI
+// worktree-clean check.
 local generatedFiles = List(
     "provider/cmd/*/schema.json",
     "provider/cmd/*/bridge-metadata.json",
+    "sdk/*",
 )
 
 local linters = new Mapping<String, Step> {

@@ -19,7 +19,7 @@ node = "22"
 python = "3.11"
 dotnet = "8.0"
 
-pulumi = "latest"
+pulumi = "3.233.0"
 uv = "latest"
 golangci-lint = "2"
 "go:github.com/pulumi/pulumictl/cmd/pulumictl" = "latest"

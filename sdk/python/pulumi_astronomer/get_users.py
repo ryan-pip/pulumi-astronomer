@@ -106,8 +106,8 @@ def get_users(deployment_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_users_output(deployment_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     workspace_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_users_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     workspace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     Users data source

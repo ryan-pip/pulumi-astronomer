@@ -106,6 +106,6 @@ export function getWorkspacesOutput(args?: GetWorkspacesOutputArgs, opts?: pulum
  * A collection of arguments for invoking getWorkspaces.
  */
 export interface GetWorkspacesOutputArgs {
-    names?: pulumi.Input<pulumi.Input<string>[]>;
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    names?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

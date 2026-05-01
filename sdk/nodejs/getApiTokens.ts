@@ -96,7 +96,7 @@ export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getApiTokens.
  */
 export interface GetApiTokensOutputArgs {
-    deploymentId?: pulumi.Input<string>;
-    includeOnlyOrganizationTokens?: pulumi.Input<boolean>;
-    workspaceId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
+    includeOnlyOrganizationTokens?: pulumi.Input<boolean | undefined>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }

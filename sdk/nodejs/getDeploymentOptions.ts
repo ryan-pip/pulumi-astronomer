@@ -160,17 +160,17 @@ export interface GetDeploymentOptionsOutputArgs {
     /**
      * Cloud provider
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Deployment ID
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * Deployment type
      */
-    deploymentType?: pulumi.Input<string>;
+    deploymentType?: pulumi.Input<string | undefined>;
     /**
      * Executor. Valid values: CELERY, KUBERNETES, ASTRO.
      */
-    executor?: pulumi.Input<string>;
+    executor?: pulumi.Input<string | undefined>;
 }

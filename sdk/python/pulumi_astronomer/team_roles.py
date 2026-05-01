@@ -23,9 +23,9 @@ class TeamRolesArgs:
     def __init__(__self__, *,
                  organization_role: pulumi.Input[_builtins.str],
                  team_id: pulumi.Input[_builtins.str],
-                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]] = None):
+                 dag_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]] = None,
+                 deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]] = None,
+                 workspace_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]] = None):
         """
         The set of arguments for constructing a TeamRoles resource.
 
@@ -70,49 +70,49 @@ class TeamRolesArgs:
 
     @_builtins.property
     @pulumi.getter(name="dagRoles")
-    def dag_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]:
+    def dag_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]:
         """
         The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
         """
         return pulumi.get(self, "dag_roles")
 
     @dag_roles.setter
-    def dag_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]):
+    def dag_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]):
         pulumi.set(self, "dag_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
-    def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]:
+    def deployment_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]:
         """
         The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         """
         return pulumi.get(self, "deployment_roles")
 
     @deployment_roles.setter
-    def deployment_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]):
+    def deployment_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]):
         pulumi.set(self, "deployment_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceRoles")
-    def workspace_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]:
+    def workspace_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]:
         """
         The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         return pulumi.get(self, "workspace_roles")
 
     @workspace_roles.setter
-    def workspace_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]):
+    def workspace_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]):
         pulumi.set(self, "workspace_roles", value)
 
 
 @pulumi.input_type
 class _TeamRolesState:
     def __init__(__self__, *,
-                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]] = None,
-                 organization_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]] = None):
+                 dag_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]] = None,
+                 deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]] = None,
+                 organization_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_roles: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering TeamRoles resources.
 
@@ -135,62 +135,62 @@ class _TeamRolesState:
 
     @_builtins.property
     @pulumi.getter(name="dagRoles")
-    def dag_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]:
+    def dag_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]:
         """
         The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dag_roles` must also have a corresponding entry in `deployment_roles` (e.g. with `DEPLOYMENT_ACCESSOR` role).
         """
         return pulumi.get(self, "dag_roles")
 
     @dag_roles.setter
-    def dag_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]):
+    def dag_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDagRoleArgs']]]]):
         pulumi.set(self, "dag_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
-    def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]:
+    def deployment_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]:
         """
         The roles to assign to the deployments. Each `deployment_id` must belong to a workspace that also appears in `workspace_roles`. Required for any deployment referenced in `dag_roles`.
         """
         return pulumi.get(self, "deployment_roles")
 
     @deployment_roles.setter
-    def deployment_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]):
+    def deployment_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesDeploymentRoleArgs']]]]):
         pulumi.set(self, "deployment_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationRole")
-    def organization_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role to assign to the organization
         """
         return pulumi.get(self, "organization_role")
 
     @organization_role.setter
-    def organization_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_role", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the team to assign the roles to
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceRoles")
-    def workspace_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]:
+    def workspace_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]:
         """
         The roles to assign to the workspaces. When you set `deployment_roles` or `dag_roles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
         """
         return pulumi.get(self, "workspace_roles")
 
     @workspace_roles.setter
-    def workspace_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]):
+    def workspace_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TeamRolesWorkspaceRoleArgs']]]]):
         pulumi.set(self, "workspace_roles", value)
 
 
@@ -200,11 +200,11 @@ class TeamRoles(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
-                 organization_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
+                 dag_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
+                 deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
+                 organization_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages organization, workspace, deployment, and DAG roles for an existing team. Astro permissions are hierarchical (organization, workspace, deployment, then DAG). Declare roles at each applicable parent scope as well as nested scopes, not only at the leaf, so Terraform state matches the API.
@@ -243,11 +243,11 @@ class TeamRoles(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
-                 organization_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
+                 dag_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
+                 deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
+                 organization_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -276,11 +276,11 @@ class TeamRoles(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dag_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
-            deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
-            organization_role: Optional[pulumi.Input[_builtins.str]] = None,
-            team_id: Optional[pulumi.Input[_builtins.str]] = None,
-            workspace_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None) -> 'TeamRoles':
+            dag_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDagRoleArgs', 'TeamRolesDagRoleArgsDict']]]]] = None,
+            deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesDeploymentRoleArgs', 'TeamRolesDeploymentRoleArgsDict']]]]] = None,
+            organization_role: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TeamRolesWorkspaceRoleArgs', 'TeamRolesWorkspaceRoleArgsDict']]]]] = None) -> 'TeamRoles':
         """
         Get an existing TeamRoles resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

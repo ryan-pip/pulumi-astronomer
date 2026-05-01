@@ -27,7 +27,7 @@ class AlertArgs:
                  rules: pulumi.Input['AlertRulesArgs'],
                  severity: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alert resource.
 
@@ -122,35 +122,35 @@ class AlertArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alert name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _AlertState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input['AlertCreatedByArgs']] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_channel_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 notification_channels: Optional[pulumi.Input[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]] = None,
-                 rules: Optional[pulumi.Input['AlertRulesArgs']] = None,
-                 severity: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_by: Optional[pulumi.Input['AlertUpdatedByArgs']] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional['AlertCreatedByArgs']] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_channel_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 notification_channels: pulumi.Input[Optional[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]] = None,
+                 rules: pulumi.Input[Optional['AlertRulesArgs']] = None,
+                 severity: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_by: pulumi.Input[Optional['AlertUpdatedByArgs']] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alert resources.
 
@@ -203,182 +203,182 @@ class _AlertState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alert creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input['AlertCreatedByArgs']]:
+    def created_by(self) -> pulumi.Input[Optional['AlertCreatedByArgs']]:
         """
         Alert creator
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input['AlertCreatedByArgs']]):
+    def created_by(self, value: pulumi.Input[Optional['AlertCreatedByArgs']]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Deployment to which the alert is scoped
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The entity ID the alert is associated with
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityName")
-    def entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the entity the alert is associated with
         """
         return pulumi.get(self, "entity_name")
 
     @entity_name.setter
-    def entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_name", value)
 
     @_builtins.property
     @pulumi.getter(name="entityType")
-    def entity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Deployment to which the alert is scoped
         """
         return pulumi.get(self, "entity_type")
 
     @entity_type.setter
-    def entity_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alert name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="notificationChannelIds")
-    def notification_channel_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def notification_channel_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of notification channel identifiers to notify when the alert is triggered
         """
         return pulumi.get(self, "notification_channel_ids")
 
     @notification_channel_ids.setter
-    def notification_channel_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def notification_channel_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "notification_channel_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="notificationChannels")
-    def notification_channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]]:
+    def notification_channels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]]:
         """
         The notification channels to send alerts to
         """
         return pulumi.get(self, "notification_channels")
 
     @notification_channels.setter
-    def notification_channels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]]):
+    def notification_channels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AlertNotificationChannelArgs']]]]):
         pulumi.set(self, "notification_channels", value)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input['AlertRulesArgs']]:
+    def rules(self) -> pulumi.Input[Optional['AlertRulesArgs']]:
         """
         Alert rules defining the conditions for triggering the alert
         """
         return pulumi.get(self, "rules")
 
     @rules.setter
-    def rules(self, value: Optional[pulumi.Input['AlertRulesArgs']]):
+    def rules(self, value: pulumi.Input[Optional['AlertRulesArgs']]):
         pulumi.set(self, "rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def severity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alert's severity
         """
         return pulumi.get(self, "severity")
 
     @severity.setter
-    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def severity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "severity", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alert's type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alert last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedBy")
-    def updated_by(self) -> Optional[pulumi.Input['AlertUpdatedByArgs']]:
+    def updated_by(self) -> pulumi.Input[Optional['AlertUpdatedByArgs']]:
         """
         Alert updater
         """
         return pulumi.get(self, "updated_by")
 
     @updated_by.setter
-    def updated_by(self, value: Optional[pulumi.Input['AlertUpdatedByArgs']]):
+    def updated_by(self, value: pulumi.Input[Optional['AlertUpdatedByArgs']]):
         pulumi.set(self, "updated_by", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")
-    def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Workspace to which the alert is scoped
         """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
-    def workspace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_id", value)
 
 
@@ -388,13 +388,13 @@ class Alert(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_channel_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rules: Optional[pulumi.Input[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
-                 severity: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_channel_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rules: pulumi.Input[Optional[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
+                 severity: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Alert resource
@@ -435,13 +435,13 @@ class Alert(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_channel_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rules: Optional[pulumi.Input[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
-                 severity: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_channel_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rules: pulumi.Input[Optional[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
+                 severity: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -488,21 +488,21 @@ class Alert(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            created_by: Optional[pulumi.Input[Union['AlertCreatedByArgs', 'AlertCreatedByArgsDict']]] = None,
-            deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            notification_channel_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            notification_channels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertNotificationChannelArgs', 'AlertNotificationChannelArgsDict']]]]] = None,
-            rules: Optional[pulumi.Input[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
-            severity: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_by: Optional[pulumi.Input[Union['AlertUpdatedByArgs', 'AlertUpdatedByArgsDict']]] = None,
-            workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Alert':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[Union['AlertCreatedByArgs', 'AlertCreatedByArgsDict']]] = None,
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            notification_channel_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            notification_channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertNotificationChannelArgs', 'AlertNotificationChannelArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Union['AlertRulesArgs', 'AlertRulesArgsDict']]] = None,
+            severity: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_by: pulumi.Input[Optional[Union['AlertUpdatedByArgs', 'AlertUpdatedByArgsDict']]] = None,
+            workspace_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Alert':
         """
         Get an existing Alert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

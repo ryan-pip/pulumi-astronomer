@@ -60,13 +60,13 @@ class UserInviteArgs:
 @pulumi.input_type
 class _UserInviteState:
     def __init__(__self__, *,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 invite_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 invitee: Optional[pulumi.Input['UserInviteInviteeArgs']] = None,
-                 inviter: Optional[pulumi.Input['UserInviteInviterArgs']] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 invite_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 invitee: pulumi.Input[Optional['UserInviteInviteeArgs']] = None,
+                 inviter: pulumi.Input[Optional['UserInviteInviterArgs']] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserInvite resources.
 
@@ -95,86 +95,86 @@ class _UserInviteState:
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The email address of the user being invited
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The expiration date of the invite
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="inviteId")
-    def invite_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def invite_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the invite
         """
         return pulumi.get(self, "invite_id")
 
     @invite_id.setter
-    def invite_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def invite_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "invite_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def invitee(self) -> Optional[pulumi.Input['UserInviteInviteeArgs']]:
+    def invitee(self) -> pulumi.Input[Optional['UserInviteInviteeArgs']]:
         """
         The profile of the invitee
         """
         return pulumi.get(self, "invitee")
 
     @invitee.setter
-    def invitee(self, value: Optional[pulumi.Input['UserInviteInviteeArgs']]):
+    def invitee(self, value: pulumi.Input[Optional['UserInviteInviteeArgs']]):
         pulumi.set(self, "invitee", value)
 
     @_builtins.property
     @pulumi.getter
-    def inviter(self) -> Optional[pulumi.Input['UserInviteInviterArgs']]:
+    def inviter(self) -> pulumi.Input[Optional['UserInviteInviterArgs']]:
         """
         The profile of the inviter
         """
         return pulumi.get(self, "inviter")
 
     @inviter.setter
-    def inviter(self, value: Optional[pulumi.Input['UserInviteInviterArgs']]):
+    def inviter(self, value: pulumi.Input[Optional['UserInviteInviterArgs']]):
         pulumi.set(self, "inviter", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization role to assign to the user
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the user
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -184,8 +184,8 @@ class UserInvite(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         User Invite resource
@@ -243,8 +243,8 @@ class UserInvite(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -275,13 +275,13 @@ class UserInvite(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            email: Optional[pulumi.Input[_builtins.str]] = None,
-            expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            invite_id: Optional[pulumi.Input[_builtins.str]] = None,
-            invitee: Optional[pulumi.Input[Union['UserInviteInviteeArgs', 'UserInviteInviteeArgsDict']]] = None,
-            inviter: Optional[pulumi.Input[Union['UserInviteInviterArgs', 'UserInviteInviterArgsDict']]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'UserInvite':
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            invite_id: pulumi.Input[Optional[_builtins.str]] = None,
+            invitee: pulumi.Input[Optional[Union['UserInviteInviteeArgs', 'UserInviteInviteeArgsDict']]] = None,
+            inviter: pulumi.Input[Optional[Union['UserInviteInviterArgs', 'UserInviteInviterArgsDict']]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserInvite':
         """
         Get an existing UserInvite resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

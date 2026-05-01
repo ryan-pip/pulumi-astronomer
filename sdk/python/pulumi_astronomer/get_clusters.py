@@ -112,8 +112,8 @@ def get_clusters(cloud_provider: Optional[_builtins.str] = None,
         clusters=pulumi.get(__ret__, 'clusters'),
         id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'))
-def get_clusters_output(cloud_provider: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        names: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_clusters_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        names: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
     Clusters data source

@@ -96,7 +96,7 @@ def get_teams(names: Optional[Sequence[_builtins.str]] = None,
         id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'),
         teams=pulumi.get(__ret__, 'teams'))
-def get_teams_output(names: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_teams_output(names: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamsResult]:
     """
     Teams data source

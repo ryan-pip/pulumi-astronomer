@@ -205,7 +205,7 @@ def get_user(id: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'),
         workspace_roles=pulumi.get(__ret__, 'workspace_roles'))
-def get_user_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_user_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     User data source

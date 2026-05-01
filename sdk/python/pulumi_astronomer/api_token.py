@@ -23,9 +23,9 @@ class ApiTokenArgs:
     def __init__(__self__, *,
                  roles: pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]],
                  type: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApiToken resource.
 
@@ -70,58 +70,58 @@ class ApiTokenArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="expiryPeriodInDays")
-    def expiry_period_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry_period_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         API Token expiry period in days
         """
         return pulumi.get(self, "expiry_period_in_days")
 
     @expiry_period_in_days.setter
-    def expiry_period_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry_period_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry_period_in_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ApiTokenState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input['ApiTokenCreatedByArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 end_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]]] = None,
-                 short_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 start_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_by: Optional[pulumi.Input['ApiTokenUpdatedByArgs']] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional['ApiTokenCreatedByArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 end_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input['ApiTokenRoleArgs']]]] = None,
+                 short_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 start_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_by: pulumi.Input[Optional['ApiTokenUpdatedByArgs']] = None):
         """
         Input properties used for looking up and filtering ApiToken resources.
 
@@ -171,170 +171,170 @@ class _ApiTokenState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input['ApiTokenCreatedByArgs']]:
+    def created_by(self) -> pulumi.Input[Optional['ApiTokenCreatedByArgs']]:
         """
         API Token creator
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input['ApiTokenCreatedByArgs']]):
+    def created_by(self, value: pulumi.Input[Optional['ApiTokenCreatedByArgs']]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="endAt")
-    def end_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def end_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         time when the API token will expire in UTC
         """
         return pulumi.get(self, "end_at")
 
     @end_at.setter
-    def end_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def end_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "end_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiryPeriodInDays")
-    def expiry_period_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry_period_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         API Token expiry period in days
         """
         return pulumi.get(self, "expiry_period_in_days")
 
     @expiry_period_in_days.setter
-    def expiry_period_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry_period_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry_period_in_days", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token last used timestamp
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ApiTokenRoleArgs']]]]:
         """
         The roles assigned to the API Token
         """
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ApiTokenRoleArgs']]]]):
         pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter(name="shortToken")
-    def short_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def short_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token short token
         """
         return pulumi.get(self, "short_token")
 
     @short_token.setter
-    def short_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def short_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "short_token", value)
 
     @_builtins.property
     @pulumi.getter(name="startAt")
-    def start_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def start_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         time when the API token will become valid in UTC
         """
         return pulumi.get(self, "start_at")
 
     @start_at.setter
-    def start_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def start_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "start_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token value. Warning: This value will be saved in plaintext in the terraform state file.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token type - if changing this value, the API Token will be recreated with the new type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedBy")
-    def updated_by(self) -> Optional[pulumi.Input['ApiTokenUpdatedByArgs']]:
+    def updated_by(self) -> pulumi.Input[Optional['ApiTokenUpdatedByArgs']]:
         """
         API Token updater
         """
         return pulumi.get(self, "updated_by")
 
     @updated_by.setter
-    def updated_by(self, value: Optional[pulumi.Input['ApiTokenUpdatedByArgs']]):
+    def updated_by(self, value: pulumi.Input[Optional['ApiTokenUpdatedByArgs']]):
         pulumi.set(self, "updated_by", value)
 
 
@@ -344,11 +344,11 @@ class ApiToken(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         API Token resource
@@ -387,11 +387,11 @@ class ApiToken(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -431,20 +431,20 @@ class ApiToken(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            created_by: Optional[pulumi.Input[Union['ApiTokenCreatedByArgs', 'ApiTokenCreatedByArgsDict']]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            end_at: Optional[pulumi.Input[_builtins.str]] = None,
-            expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-            last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
-            short_token: Optional[pulumi.Input[_builtins.str]] = None,
-            start_at: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_by: Optional[pulumi.Input[Union['ApiTokenUpdatedByArgs', 'ApiTokenUpdatedByArgsDict']]] = None) -> 'ApiToken':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[Union['ApiTokenCreatedByArgs', 'ApiTokenCreatedByArgsDict']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            end_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
+            short_token: pulumi.Input[Optional[_builtins.str]] = None,
+            start_at: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_by: pulumi.Input[Optional[Union['ApiTokenUpdatedByArgs', 'ApiTokenUpdatedByArgsDict']]] = None) -> 'ApiToken':
         """
         Get an existing ApiToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

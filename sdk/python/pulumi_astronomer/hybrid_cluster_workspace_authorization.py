@@ -20,7 +20,7 @@ __all__ = ['HybridClusterWorkspaceAuthorizationArgs', 'HybridClusterWorkspaceAut
 class HybridClusterWorkspaceAuthorizationArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[_builtins.str],
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a HybridClusterWorkspaceAuthorization resource.
 
@@ -45,22 +45,22 @@ class HybridClusterWorkspaceAuthorizationArgs:
 
     @_builtins.property
     @pulumi.getter(name="workspaceIds")
-    def workspace_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def workspace_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The IDs of the workspaces to authorize for the hybrid cluster
         """
         return pulumi.get(self, "workspace_ids")
 
     @workspace_ids.setter
-    def workspace_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def workspace_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "workspace_ids", value)
 
 
 @pulumi.input_type
 class _HybridClusterWorkspaceAuthorizationState:
     def __init__(__self__, *,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering HybridClusterWorkspaceAuthorization resources.
 
@@ -74,26 +74,26 @@ class _HybridClusterWorkspaceAuthorizationState:
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the hybrid cluster to set authorizations for
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceIds")
-    def workspace_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def workspace_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The IDs of the workspaces to authorize for the hybrid cluster
         """
         return pulumi.get(self, "workspace_ids")
 
     @workspace_ids.setter
-    def workspace_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def workspace_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "workspace_ids", value)
 
 
@@ -103,8 +103,8 @@ class HybridClusterWorkspaceAuthorization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Hybrid cluster workspace authorization resource
@@ -140,8 +140,8 @@ class HybridClusterWorkspaceAuthorization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -165,8 +165,8 @@ class HybridClusterWorkspaceAuthorization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'HybridClusterWorkspaceAuthorization':
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'HybridClusterWorkspaceAuthorization':
         """
         Get an existing HybridClusterWorkspaceAuthorization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

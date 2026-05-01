@@ -114,22 +114,22 @@ __all__ = [
 ]
 
 class AlertCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -145,56 +145,56 @@ class AlertCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -219,39 +219,39 @@ class AlertNotificationChannelArgsDict(TypedDict):
     """
     The notification channel's type
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Notification Channel creation timestamp
     """
-    created_by: NotRequired[pulumi.Input['AlertNotificationChannelCreatedByArgsDict']]
+    created_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelCreatedByArgs']]]
     """
     Notification Channel creator
     """
-    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deployment ID the notification channel is scoped to
     """
-    entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    entity_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the entity the notification channel is scoped to
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The notification channel's ID
     """
-    is_shared: NotRequired[pulumi.Input[_builtins.bool]]
+    is_shared: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Notification Channel last updated timestamp
     """
-    updated_by: NotRequired[pulumi.Input['AlertNotificationChannelUpdatedByArgsDict']]
+    updated_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgs']]]
     """
     Notification Channel updater
     """
-    workspace_id: NotRequired[pulumi.Input[_builtins.str]]
+    workspace_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The workspace ID the notification channel is scoped to
     """
@@ -264,15 +264,15 @@ class AlertNotificationChannelArgs:
                  entity_type: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_by: Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional['AlertNotificationChannelCreatedByArgs']] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_by: pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgs']] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input['AlertNotificationChannelDefinitionArgs'] definition: The notification channel's definition
         :param pulumi.Input[_builtins.str] entity_id: The entity ID the notification channel is scoped to
@@ -375,130 +375,130 @@ class AlertNotificationChannelArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Notification Channel creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']]:
+    def created_by(self) -> pulumi.Input[Optional['AlertNotificationChannelCreatedByArgs']]:
         """
         Notification Channel creator
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input['AlertNotificationChannelCreatedByArgs']]):
+    def created_by(self, value: pulumi.Input[Optional['AlertNotificationChannelCreatedByArgs']]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment ID the notification channel is scoped to
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityName")
-    def entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the entity the notification channel is scoped to
         """
         return pulumi.get(self, "entity_name")
 
     @entity_name.setter
-    def entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The notification channel's ID
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isShared")
-    def is_shared(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_shared(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
         """
         return pulumi.get(self, "is_shared")
 
     @is_shared.setter
-    def is_shared(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_shared(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_shared", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Notification Channel last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedBy")
-    def updated_by(self) -> Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']]:
+    def updated_by(self) -> pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgs']]:
         """
         Notification Channel updater
         """
         return pulumi.get(self, "updated_by")
 
     @updated_by.setter
-    def updated_by(self, value: Optional[pulumi.Input['AlertNotificationChannelUpdatedByArgs']]):
+    def updated_by(self, value: pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgs']]):
         pulumi.set(self, "updated_by", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")
-    def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The workspace ID the notification channel is scoped to
         """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
-    def workspace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_id", value)
 
 
 class AlertNotificationChannelCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertNotificationChannelCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -514,85 +514,85 @@ class AlertNotificationChannelCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class AlertNotificationChannelDefinitionArgsDict(TypedDict):
-    api_key: NotRequired[pulumi.Input[_builtins.str]]
+    api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The API key for the notification channel
     """
-    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG ID for the notification channel
     """
-    deployment_api_token: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_api_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deployment API token for the notification channel
     """
-    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deployment ID for the notification channel
     """
-    integration_key: NotRequired[pulumi.Input[_builtins.str]]
+    integration_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The integration key for the notification channel
     """
-    recipients: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    recipients: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The recipients for the notification channel
     """
-    webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    webhook_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The webhook URL for the notification channel
     """
@@ -600,13 +600,13 @@ class AlertNotificationChannelDefinitionArgsDict(TypedDict):
 @pulumi.input_type
 class AlertNotificationChannelDefinitionArgs:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 webhook_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: The API key for the notification channel
         :param pulumi.Input[_builtins.str] dag_id: The DAG ID for the notification channel
@@ -633,106 +633,106 @@ class AlertNotificationChannelDefinitionArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the notification channel
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="dagId")
-    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG ID for the notification channel
         """
         return pulumi.get(self, "dag_id")
 
     @dag_id.setter
-    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentApiToken")
-    def deployment_api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment API token for the notification channel
         """
         return pulumi.get(self, "deployment_api_token")
 
     @deployment_api_token.setter
-    def deployment_api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment ID for the notification channel
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationKey")
-    def integration_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integration_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The integration key for the notification channel
         """
         return pulumi.get(self, "integration_key")
 
     @integration_key.setter
-    def integration_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integration_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integration_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def recipients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The recipients for the notification channel
         """
         return pulumi.get(self, "recipients")
 
     @recipients.setter
-    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def recipients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "recipients", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookUrl")
-    def webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The webhook URL for the notification channel
         """
         return pulumi.get(self, "webhook_url")
 
     @webhook_url.setter
-    def webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_url", value)
 
 
 class AlertNotificationChannelUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertNotificationChannelUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -748,56 +748,56 @@ class AlertNotificationChannelUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -919,23 +919,23 @@ class AlertRulesPropertiesArgsDict(TypedDict):
     """
     The ID of the deployment for the alert rule
     """
-    dag_deadline: NotRequired[pulumi.Input[_builtins.str]]
+    dag_deadline: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deadline for the DAG in HH:MM 24-hour UTC format
     """
-    dag_duration_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    dag_duration_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The duration of the DAG in seconds (minimum 60)
     """
-    days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    days_of_weeks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The days of the week for the timeliness rule
     """
-    look_back_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    look_back_period_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The look-back period in seconds (minimum 60)
     """
-    task_duration_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    task_duration_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The duration of the Task in seconds (minimum 60)
     """
@@ -944,11 +944,11 @@ class AlertRulesPropertiesArgsDict(TypedDict):
 class AlertRulesPropertiesArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
-                 dag_deadline: Optional[pulumi.Input[_builtins.str]] = None,
-                 dag_duration_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 days_of_weeks: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 look_back_period_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 task_duration_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 dag_deadline: pulumi.Input[Optional[_builtins.str]] = None,
+                 dag_duration_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 days_of_weeks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 look_back_period_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 task_duration_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] deployment_id: The ID of the deployment for the alert rule
         :param pulumi.Input[_builtins.str] dag_deadline: The deadline for the DAG in HH:MM 24-hour UTC format
@@ -983,82 +983,82 @@ class AlertRulesPropertiesArgs:
 
     @_builtins.property
     @pulumi.getter(name="dagDeadline")
-    def dag_deadline(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_deadline(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deadline for the DAG in HH:MM 24-hour UTC format
         """
         return pulumi.get(self, "dag_deadline")
 
     @dag_deadline.setter
-    def dag_deadline(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_deadline(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_deadline", value)
 
     @_builtins.property
     @pulumi.getter(name="dagDurationSeconds")
-    def dag_duration_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def dag_duration_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration of the DAG in seconds (minimum 60)
         """
         return pulumi.get(self, "dag_duration_seconds")
 
     @dag_duration_seconds.setter
-    def dag_duration_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def dag_duration_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "dag_duration_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="daysOfWeeks")
-    def days_of_weeks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def days_of_weeks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The days of the week for the timeliness rule
         """
         return pulumi.get(self, "days_of_weeks")
 
     @days_of_weeks.setter
-    def days_of_weeks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def days_of_weeks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "days_of_weeks", value)
 
     @_builtins.property
     @pulumi.getter(name="lookBackPeriodSeconds")
-    def look_back_period_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def look_back_period_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The look-back period in seconds (minimum 60)
         """
         return pulumi.get(self, "look_back_period_seconds")
 
     @look_back_period_seconds.setter
-    def look_back_period_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def look_back_period_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "look_back_period_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="taskDurationSeconds")
-    def task_duration_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def task_duration_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration of the Task in seconds (minimum 60)
         """
         return pulumi.get(self, "task_duration_seconds")
 
     @task_duration_seconds.setter
-    def task_duration_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def task_duration_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "task_duration_seconds", value)
 
 
 class AlertUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -1074,76 +1074,76 @@ class AlertUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class ApiTokenCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ApiTokenCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -1159,56 +1159,56 @@ class ApiTokenCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -1225,7 +1225,7 @@ class ApiTokenRoleArgsDict(TypedDict):
     """
     The role to assign to the entity
     """
-    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Deployment ID. Required for DAG and TAG entity types.
     """
@@ -1236,7 +1236,7 @@ class ApiTokenRoleArgs:
                  entity_id: pulumi.Input[_builtins.str],
                  entity_type: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] entity_id: The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
         :param pulumi.Input[_builtins.str] entity_type: The type of entity to assign the role to
@@ -1287,34 +1287,34 @@ class ApiTokenRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Deployment ID. Required for DAG and TAG entity types.
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
 
 class ApiTokenUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ApiTokenUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -1330,65 +1330,65 @@ class ApiTokenUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class ClusterHealthStatusArgsDict(TypedDict):
-    details: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgsDict']]]]
+    details: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]]
     """
     Cluster health status details
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster health status value
     """
@@ -1396,8 +1396,8 @@ class ClusterHealthStatusArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterHealthStatusArgs:
     def __init__(__self__, *,
-                 details: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 details: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]] details: Cluster health status details
         :param pulumi.Input[_builtins.str] value: Cluster health status value
@@ -1409,39 +1409,39 @@ class ClusterHealthStatusArgs:
 
     @_builtins.property
     @pulumi.getter
-    def details(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]:
+    def details(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]:
         """
         Cluster health status details
         """
         return pulumi.get(self, "details")
 
     @details.setter
-    def details(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]):
+    def details(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]):
         pulumi.set(self, "details", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster health status value
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
 class ClusterHealthStatusDetailArgsDict(TypedDict):
-    code: NotRequired[pulumi.Input[_builtins.str]]
+    code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster health status detail code
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster health status detail description
     """
-    severity: NotRequired[pulumi.Input[_builtins.str]]
+    severity: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster health status detail severity
     """
@@ -1449,9 +1449,9 @@ class ClusterHealthStatusDetailArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterHealthStatusDetailArgs:
     def __init__(__self__, *,
-                 code: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 severity: Optional[pulumi.Input[_builtins.str]] = None):
+                 code: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 severity: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] code: Cluster health status detail code
         :param pulumi.Input[_builtins.str] description: Cluster health status detail description
@@ -1466,51 +1466,51 @@ class ClusterHealthStatusDetailArgs:
 
     @_builtins.property
     @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster health status detail code
         """
         return pulumi.get(self, "code")
 
     @code.setter
-    def code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "code", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster health status detail description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def severity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster health status detail severity
         """
         return pulumi.get(self, "severity")
 
     @severity.setter
-    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def severity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "severity", value)
 
 
 class ClusterMetadataArgsDict(TypedDict):
-    external_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    external_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Cluster external IPs
     """
-    kube_dns_ip: NotRequired[pulumi.Input[_builtins.str]]
+    kube_dns_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster kube DNS IP
     """
-    oidc_issuer_url: NotRequired[pulumi.Input[_builtins.str]]
+    oidc_issuer_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cluster OIDC issuer URL
     """
@@ -1518,9 +1518,9 @@ class ClusterMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterMetadataArgs:
     def __init__(__self__, *,
-                 external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 kube_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_issuer_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 kube_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_issuer_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] external_ips: Cluster external IPs
         :param pulumi.Input[_builtins.str] kube_dns_ip: Cluster kube DNS IP
@@ -1535,79 +1535,79 @@ class ClusterMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="externalIps")
-    def external_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def external_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Cluster external IPs
         """
         return pulumi.get(self, "external_ips")
 
     @external_ips.setter
-    def external_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def external_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "external_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="kubeDnsIp")
-    def kube_dns_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kube_dns_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster kube DNS IP
         """
         return pulumi.get(self, "kube_dns_ip")
 
     @kube_dns_ip.setter
-    def kube_dns_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kube_dns_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kube_dns_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcIssuerUrl")
-    def oidc_issuer_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oidc_issuer_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster OIDC issuer URL
         """
         return pulumi.get(self, "oidc_issuer_url")
 
     @oidc_issuer_url.setter
-    def oidc_issuer_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oidc_issuer_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_issuer_url", value)
 
 
 class ClusterNodePoolArgsDict(TypedDict):
-    cloud_provider: NotRequired[pulumi.Input[_builtins.str]]
+    cloud_provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
     """
-    cluster_id: NotRequired[pulumi.Input[_builtins.str]]
+    cluster_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool cluster identifier
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool creation timestamp
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool identifier
     """
-    is_default: NotRequired[pulumi.Input[_builtins.bool]]
+    is_default: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the node pool is the default node pool of the cluster
     """
-    max_node_count: NotRequired[pulumi.Input[_builtins.int]]
+    max_node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Node pool maximum node count
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool name
     """
-    node_instance_type: NotRequired[pulumi.Input[_builtins.str]]
+    node_instance_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool node instance type
     """
-    supported_astro_machines: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    supported_astro_machines: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Node pool supported Astro machines
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Node pool last updated timestamp
     """
@@ -1615,16 +1615,16 @@ class ClusterNodePoolArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterNodePoolArgs:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 supported_astro_machines: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_instance_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 supported_astro_machines: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] cluster_id: Node pool cluster identifier
@@ -1660,135 +1660,135 @@ class ClusterNodePoolArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool cluster identifier
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool identifier
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isDefault")
-    def is_default(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the node pool is the default node pool of the cluster
         """
         return pulumi.get(self, "is_default")
 
     @is_default.setter
-    def is_default(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_default", value)
 
     @_builtins.property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Node pool maximum node count
         """
         return pulumi.get(self, "max_node_count")
 
     @max_node_count.setter
-    def max_node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_node_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeInstanceType")
-    def node_instance_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_instance_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool node instance type
         """
         return pulumi.get(self, "node_instance_type")
 
     @node_instance_type.setter
-    def node_instance_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_instance_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_instance_type", value)
 
     @_builtins.property
     @pulumi.getter(name="supportedAstroMachines")
-    def supported_astro_machines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def supported_astro_machines(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Node pool supported Astro machines
         """
         return pulumi.get(self, "supported_astro_machines")
 
     @supported_astro_machines.setter
-    def supported_astro_machines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def supported_astro_machines(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "supported_astro_machines", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Node pool last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
 class ClusterTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
     """
@@ -1796,9 +1796,9 @@ class ClusterTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
@@ -1813,58 +1813,58 @@ class ClusterTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
 class CustomRoleCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class CustomRoleCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -1880,76 +1880,76 @@ class CustomRoleCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class CustomRoleUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class CustomRoleUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -1965,76 +1965,76 @@ class CustomRoleUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class DeploymentCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -2050,56 +2050,56 @@ class DeploymentCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -2112,11 +2112,11 @@ class DeploymentEnvironmentVariableArgsDict(TypedDict):
     """
     Environment variable key
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Environment variable last updated timestamp
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Environment variable value
     """
@@ -2126,8 +2126,8 @@ class DeploymentEnvironmentVariableArgs:
     def __init__(__self__, *,
                  is_secret: pulumi.Input[_builtins.bool],
                  key: pulumi.Input[_builtins.str],
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] is_secret: Whether Environment variable is a secret
         :param pulumi.Input[_builtins.str] key: Environment variable key
@@ -2167,26 +2167,26 @@ class DeploymentEnvironmentVariableArgs:
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Environment variable last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Environment variable value
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -2195,19 +2195,19 @@ class DeploymentRemoteExecutionArgsDict(TypedDict):
     """
     Whether remote execution is enabled
     """
-    allowed_ip_address_ranges: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_ip_address_ranges: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The allowed IP address ranges for remote execution
     """
-    remote_api_url: NotRequired[pulumi.Input[_builtins.str]]
+    remote_api_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The URL for the remote API
     """
-    task_log_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    task_log_bucket: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The bucket for task logs
     """
-    task_log_url_pattern: NotRequired[pulumi.Input[_builtins.str]]
+    task_log_url_pattern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The URL pattern for task logs
     """
@@ -2216,10 +2216,10 @@ class DeploymentRemoteExecutionArgsDict(TypedDict):
 class DeploymentRemoteExecutionArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
-                 allowed_ip_address_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 remote_api_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_log_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_log_url_pattern: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_ip_address_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remote_api_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_log_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_log_url_pattern: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Whether remote execution is enabled
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_address_ranges: The allowed IP address ranges for remote execution
@@ -2251,50 +2251,50 @@ class DeploymentRemoteExecutionArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedIpAddressRanges")
-    def allowed_ip_address_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ip_address_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The allowed IP address ranges for remote execution
         """
         return pulumi.get(self, "allowed_ip_address_ranges")
 
     @allowed_ip_address_ranges.setter
-    def allowed_ip_address_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ip_address_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ip_address_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteApiUrl")
-    def remote_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def remote_api_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL for the remote API
         """
         return pulumi.get(self, "remote_api_url")
 
     @remote_api_url.setter
-    def remote_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def remote_api_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "remote_api_url", value)
 
     @_builtins.property
     @pulumi.getter(name="taskLogBucket")
-    def task_log_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def task_log_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The bucket for task logs
         """
         return pulumi.get(self, "task_log_bucket")
 
     @task_log_bucket.setter
-    def task_log_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def task_log_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "task_log_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="taskLogUrlPattern")
-    def task_log_url_pattern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def task_log_url_pattern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL pattern for task logs
         """
         return pulumi.get(self, "task_log_url_pattern")
 
     @task_log_url_pattern.setter
-    def task_log_url_pattern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def task_log_url_pattern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "task_log_url_pattern", value)
 
 
@@ -2327,11 +2327,11 @@ class DeploymentScalingSpecArgs:
 
 
 class DeploymentScalingSpecHibernationSpecArgsDict(TypedDict):
-    override: NotRequired[pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgsDict']]
+    override: NotRequired[pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgs']]]
     """
     Hibernation override configuration. Set to null to remove the override.
     """
-    schedules: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgsDict']]]]
+    schedules: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]]
     """
     List of hibernation schedules. Set to null to remove all schedules.
     """
@@ -2339,8 +2339,8 @@ class DeploymentScalingSpecHibernationSpecArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecArgs:
     def __init__(__self__, *,
-                 override: Optional[pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgs']] = None,
-                 schedules: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]] = None):
+                 override: pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgs']] = None,
+                 schedules: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]] = None):
         """
         :param pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgs'] override: Hibernation override configuration. Set to null to remove the override.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]] schedules: List of hibernation schedules. Set to null to remove all schedules.
@@ -2352,40 +2352,40 @@ class DeploymentScalingSpecHibernationSpecArgs:
 
     @_builtins.property
     @pulumi.getter
-    def override(self) -> Optional[pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgs']]:
+    def override(self) -> pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgs']]:
         """
         Hibernation override configuration. Set to null to remove the override.
         """
         return pulumi.get(self, "override")
 
     @override.setter
-    def override(self, value: Optional[pulumi.Input['DeploymentScalingSpecHibernationSpecOverrideArgs']]):
+    def override(self, value: pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgs']]):
         pulumi.set(self, "override", value)
 
     @_builtins.property
     @pulumi.getter
-    def schedules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]:
+    def schedules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]:
         """
         List of hibernation schedules. Set to null to remove all schedules.
         """
         return pulumi.get(self, "schedules")
 
     @schedules.setter
-    def schedules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]):
+    def schedules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]):
         pulumi.set(self, "schedules", value)
 
 
 class DeploymentScalingSpecHibernationSpecOverrideArgsDict(TypedDict):
     is_hibernating: pulumi.Input[_builtins.bool]
-    is_active: NotRequired[pulumi.Input[_builtins.bool]]
-    override_until: NotRequired[pulumi.Input[_builtins.str]]
+    is_active: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    override_until: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecOverrideArgs:
     def __init__(__self__, *,
                  is_hibernating: pulumi.Input[_builtins.bool],
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 override_until: Optional[pulumi.Input[_builtins.str]] = None):
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 override_until: pulumi.Input[Optional[_builtins.str]] = None):
         pulumi.set(__self__, "is_hibernating", is_hibernating)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
@@ -2403,20 +2403,20 @@ class DeploymentScalingSpecHibernationSpecOverrideArgs:
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="overrideUntil")
-    def override_until(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def override_until(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "override_until")
 
     @override_until.setter
-    def override_until(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def override_until(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "override_until", value)
 
 
@@ -2424,7 +2424,7 @@ class DeploymentScalingSpecHibernationSpecScheduleArgsDict(TypedDict):
     hibernate_at_cron: pulumi.Input[_builtins.str]
     is_enabled: pulumi.Input[_builtins.bool]
     wake_at_cron: pulumi.Input[_builtins.str]
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentScalingSpecHibernationSpecScheduleArgs:
@@ -2432,7 +2432,7 @@ class DeploymentScalingSpecHibernationSpecScheduleArgs:
                  hibernate_at_cron: pulumi.Input[_builtins.str],
                  is_enabled: pulumi.Input[_builtins.bool],
                  wake_at_cron: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None):
         pulumi.set(__self__, "hibernate_at_cron", hibernate_at_cron)
         pulumi.set(__self__, "is_enabled", is_enabled)
         pulumi.set(__self__, "wake_at_cron", wake_at_cron)
@@ -2468,47 +2468,47 @@ class DeploymentScalingSpecHibernationSpecScheduleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
 
 class DeploymentScalingStatusArgsDict(TypedDict):
-    hibernation_status: NotRequired[pulumi.Input['DeploymentScalingStatusHibernationStatusArgsDict']]
+    hibernation_status: NotRequired[pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgs']]]
 
 @pulumi.input_type
 class DeploymentScalingStatusArgs:
     def __init__(__self__, *,
-                 hibernation_status: Optional[pulumi.Input['DeploymentScalingStatusHibernationStatusArgs']] = None):
+                 hibernation_status: pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgs']] = None):
         if hibernation_status is not None:
             pulumi.set(__self__, "hibernation_status", hibernation_status)
 
     @_builtins.property
     @pulumi.getter(name="hibernationStatus")
-    def hibernation_status(self) -> Optional[pulumi.Input['DeploymentScalingStatusHibernationStatusArgs']]:
+    def hibernation_status(self) -> pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgs']]:
         return pulumi.get(self, "hibernation_status")
 
     @hibernation_status.setter
-    def hibernation_status(self, value: Optional[pulumi.Input['DeploymentScalingStatusHibernationStatusArgs']]):
+    def hibernation_status(self, value: pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgs']]):
         pulumi.set(self, "hibernation_status", value)
 
 
 class DeploymentScalingStatusHibernationStatusArgsDict(TypedDict):
-    is_hibernating: NotRequired[pulumi.Input[_builtins.bool]]
-    next_event_at: NotRequired[pulumi.Input[_builtins.str]]
-    next_event_type: NotRequired[pulumi.Input[_builtins.str]]
-    reason: NotRequired[pulumi.Input[_builtins.str]]
+    is_hibernating: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    next_event_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    next_event_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    reason: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentScalingStatusHibernationStatusArgs:
     def __init__(__self__, *,
-                 is_hibernating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 next_event_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 next_event_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 reason: Optional[pulumi.Input[_builtins.str]] = None):
+                 is_hibernating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 next_event_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 next_event_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 reason: pulumi.Input[Optional[_builtins.str]] = None):
         if is_hibernating is not None:
             pulumi.set(__self__, "is_hibernating", is_hibernating)
         if next_event_at is not None:
@@ -2520,58 +2520,58 @@ class DeploymentScalingStatusHibernationStatusArgs:
 
     @_builtins.property
     @pulumi.getter(name="isHibernating")
-    def is_hibernating(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_hibernating(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "is_hibernating")
 
     @is_hibernating.setter
-    def is_hibernating(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_hibernating(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_hibernating", value)
 
     @_builtins.property
     @pulumi.getter(name="nextEventAt")
-    def next_event_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def next_event_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "next_event_at")
 
     @next_event_at.setter
-    def next_event_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def next_event_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "next_event_at", value)
 
     @_builtins.property
     @pulumi.getter(name="nextEventType")
-    def next_event_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def next_event_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "next_event_type")
 
     @next_event_type.setter
-    def next_event_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def next_event_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "next_event_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reason(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "reason")
 
     @reason.setter
-    def reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reason(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reason", value)
 
 
 class DeploymentUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -2587,56 +2587,56 @@ class DeploymentUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -2661,19 +2661,19 @@ class DeploymentWorkerQueueArgsDict(TypedDict):
     """
     Worker queue worker concurrency
     """
-    astro_machine: NotRequired[pulumi.Input[_builtins.str]]
+    astro_machine: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
     """
-    node_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    node_pool_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Worker queue Node pool identifier - required for 'HYBRID' deployments
     """
-    pod_cpu: NotRequired[pulumi.Input[_builtins.str]]
+    pod_cpu: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Worker queue pod CPU
     """
-    pod_memory: NotRequired[pulumi.Input[_builtins.str]]
+    pod_memory: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Worker queue pod memory
     """
@@ -2686,10 +2686,10 @@ class DeploymentWorkerQueueArgs:
                  min_worker_count: pulumi.Input[_builtins.int],
                  name: pulumi.Input[_builtins.str],
                  worker_concurrency: pulumi.Input[_builtins.int],
-                 astro_machine: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 pod_memory: Optional[pulumi.Input[_builtins.str]] = None):
+                 astro_machine: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_memory: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] is_default: Worker queue default
         :param pulumi.Input[_builtins.int] max_worker_count: Worker queue max worker count
@@ -2777,70 +2777,70 @@ class DeploymentWorkerQueueArgs:
 
     @_builtins.property
     @pulumi.getter(name="astroMachine")
-    def astro_machine(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def astro_machine(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         """
         return pulumi.get(self, "astro_machine")
 
     @astro_machine.setter
-    def astro_machine(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def astro_machine(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "astro_machine", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePoolId")
-    def node_pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_pool_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Worker queue Node pool identifier - required for 'HYBRID' deployments
         """
         return pulumi.get(self, "node_pool_id")
 
     @node_pool_id.setter
-    def node_pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_pool_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_pool_id", value)
 
     @_builtins.property
     @pulumi.getter(name="podCpu")
-    def pod_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pod_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Worker queue pod CPU
         """
         return pulumi.get(self, "pod_cpu")
 
     @pod_cpu.setter
-    def pod_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pod_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="podMemory")
-    def pod_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pod_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Worker queue pod memory
         """
         return pulumi.get(self, "pod_memory")
 
     @pod_memory.setter
-    def pod_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pod_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_memory", value)
 
 
 class NotificationChannelCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class NotificationChannelCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -2856,85 +2856,85 @@ class NotificationChannelCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class NotificationChannelDefinitionArgsDict(TypedDict):
-    api_key: NotRequired[pulumi.Input[_builtins.str]]
+    api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The API key for the notification channel
     """
-    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG ID for the notification channel
     """
-    deployment_api_token: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_api_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deployment API token for the notification channel
     """
-    deployment_id: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The deployment ID for the notification channel
     """
-    integration_key: NotRequired[pulumi.Input[_builtins.str]]
+    integration_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The integration key for the notification channel
     """
-    recipients: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    recipients: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The recipients for the notification channel
     """
-    webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    webhook_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The webhook URL for the notification channel
     """
@@ -2942,13 +2942,13 @@ class NotificationChannelDefinitionArgsDict(TypedDict):
 @pulumi.input_type
 class NotificationChannelDefinitionArgs:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 webhook_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: The API key for the notification channel
         :param pulumi.Input[_builtins.str] dag_id: The DAG ID for the notification channel
@@ -2975,106 +2975,106 @@ class NotificationChannelDefinitionArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the notification channel
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="dagId")
-    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG ID for the notification channel
         """
         return pulumi.get(self, "dag_id")
 
     @dag_id.setter
-    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentApiToken")
-    def deployment_api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment API token for the notification channel
         """
         return pulumi.get(self, "deployment_api_token")
 
     @deployment_api_token.setter
-    def deployment_api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment ID for the notification channel
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationKey")
-    def integration_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integration_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The integration key for the notification channel
         """
         return pulumi.get(self, "integration_key")
 
     @integration_key.setter
-    def integration_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integration_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integration_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def recipients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The recipients for the notification channel
         """
         return pulumi.get(self, "recipients")
 
     @recipients.setter
-    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def recipients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "recipients", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookUrl")
-    def webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The webhook URL for the notification channel
         """
         return pulumi.get(self, "webhook_url")
 
     @webhook_url.setter
-    def webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_url", value)
 
 
 class NotificationChannelUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class NotificationChannelUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -3090,76 +3090,76 @@ class NotificationChannelUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class TeamCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class TeamCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -3175,56 +3175,56 @@ class TeamCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -3237,11 +3237,11 @@ class TeamDagRoleArgsDict(TypedDict):
     """
     The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
     """
-    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG ID. Required if tag is not specified.
     """
-    tag: NotRequired[pulumi.Input[_builtins.str]]
+    tag: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG tag. Required if dag_id is not specified.
     """
@@ -3251,8 +3251,8 @@ class TeamDagRoleArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
         :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
@@ -3292,26 +3292,26 @@ class TeamDagRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="dagId")
-    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG ID. Required if tag is not specified.
         """
         return pulumi.get(self, "dag_id")
 
     @dag_id.setter
-    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG tag. Required if dag_id is not specified.
         """
         return pulumi.get(self, "tag")
 
     @tag.setter
-    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tag", value)
 
 
@@ -3371,11 +3371,11 @@ class TeamRolesDagRoleArgsDict(TypedDict):
     """
     The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
     """
-    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG ID. Required if tag is not specified.
     """
-    tag: NotRequired[pulumi.Input[_builtins.str]]
+    tag: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG tag. Required if dag_id is not specified.
     """
@@ -3385,8 +3385,8 @@ class TeamRolesDagRoleArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
         :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
@@ -3426,26 +3426,26 @@ class TeamRolesDagRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="dagId")
-    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG ID. Required if tag is not specified.
         """
         return pulumi.get(self, "dag_id")
 
     @dag_id.setter
-    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG tag. Required if dag_id is not specified.
         """
         return pulumi.get(self, "tag")
 
     @tag.setter
-    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tag", value)
 
 
@@ -3544,22 +3544,22 @@ class TeamRolesWorkspaceRoleArgs:
 
 
 class TeamUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class TeamUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -3575,56 +3575,56 @@ class TeamUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -3676,22 +3676,22 @@ class TeamWorkspaceRoleArgs:
 
 
 class UserInviteInviteeArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class UserInviteInviteeArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -3707,76 +3707,76 @@ class UserInviteInviteeArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class UserInviteInviterArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class UserInviteInviterArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -3792,56 +3792,56 @@ class UserInviteInviterArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -3854,11 +3854,11 @@ class UserRolesDagRoleArgsDict(TypedDict):
     """
     The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
     """
-    dag_id: NotRequired[pulumi.Input[_builtins.str]]
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG ID. Required if tag is not specified.
     """
-    tag: NotRequired[pulumi.Input[_builtins.str]]
+    tag: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DAG tag. Required if dag_id is not specified.
     """
@@ -3868,8 +3868,8 @@ class UserRolesDagRoleArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 dag_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag: Optional[pulumi.Input[_builtins.str]] = None):
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] deployment_id: The Deployment ID containing the DAG.
         :param pulumi.Input[_builtins.str] role: The DAG role (DAG*VIEWER, DAG*AUTHOR, or custom DAG role).
@@ -3909,26 +3909,26 @@ class UserRolesDagRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="dagId")
-    def dag_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG ID. Required if tag is not specified.
         """
         return pulumi.get(self, "dag_id")
 
     @dag_id.setter
-    def dag_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DAG tag. Required if dag_id is not specified.
         """
         return pulumi.get(self, "tag")
 
     @tag.setter
-    def tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tag", value)
 
 
@@ -4027,22 +4027,22 @@ class UserRolesWorkspaceRoleArgs:
 
 
 class WorkspaceCreatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class WorkspaceCreatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -4058,76 +4058,76 @@ class WorkspaceCreatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class WorkspaceUpdatedByArgsDict(TypedDict):
-    api_token_name: NotRequired[pulumi.Input[_builtins.str]]
-    avatar_url: NotRequired[pulumi.Input[_builtins.str]]
-    full_name: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
-    subject_type: NotRequired[pulumi.Input[_builtins.str]]
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class WorkspaceUpdatedByArgs:
     def __init__(__self__, *,
-                 api_token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 avatar_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         if api_token_name is not None:
             pulumi.set(__self__, "api_token_name", api_token_name)
         if avatar_url is not None:
@@ -4143,56 +4143,56 @@ class WorkspaceUpdatedByArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiTokenName")
-    def api_token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_token_name")
 
     @api_token_name.setter
-    def api_token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="avatarUrl")
-    def avatar_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "avatar_url")
 
     @avatar_url.setter
-    def avatar_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "avatar_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullName")
-    def full_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "full_name")
 
     @full_name.setter
-    def full_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "full_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="subjectType")
-    def subject_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject_type")
 
     @subject_type.setter
-    def subject_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 

@@ -119,9 +119,9 @@ def get_api_tokens(deployment_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         include_only_organization_tokens=pulumi.get(__ret__, 'include_only_organization_tokens'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_api_tokens_output(deployment_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          include_only_organization_tokens: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                          workspace_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_api_tokens_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          include_only_organization_tokens: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                          workspace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiTokensResult]:
     """
     API Tokens data source

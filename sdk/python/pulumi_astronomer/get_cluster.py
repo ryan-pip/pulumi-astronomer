@@ -413,7 +413,7 @@ def get_cluster(id: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_subnet_range=pulumi.get(__ret__, 'vpc_subnet_range'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
-def get_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cluster_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     Cluster data source

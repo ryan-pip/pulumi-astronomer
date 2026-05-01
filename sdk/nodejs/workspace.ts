@@ -114,31 +114,31 @@ export interface WorkspaceState {
     /**
      * Whether new Deployments enforce CI/CD deploys by default
      */
-    cicdEnforcedDefault?: pulumi.Input<boolean>;
+    cicdEnforcedDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Workspace creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Workspace creator
      */
-    createdBy?: pulumi.Input<inputs.WorkspaceCreatedBy>;
+    createdBy?: pulumi.Input<inputs.WorkspaceCreatedBy | undefined>;
     /**
      * Workspace description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Workspace name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Workspace last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Workspace updater
      */
-    updatedBy?: pulumi.Input<inputs.WorkspaceUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.WorkspaceUpdatedBy | undefined>;
 }
 
 /**
@@ -156,5 +156,5 @@ export interface WorkspaceArgs {
     /**
      * Workspace name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

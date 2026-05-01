@@ -70,9 +70,9 @@ export function getNotificationChannelsOutput(args?: GetNotificationChannelsOutp
  * A collection of arguments for invoking getNotificationChannels.
  */
 export interface GetNotificationChannelsOutputArgs {
-    channelTypes?: pulumi.Input<pulumi.Input<string>[]>;
-    deploymentIds?: pulumi.Input<pulumi.Input<string>[]>;
-    entityType?: pulumi.Input<string>;
-    notificationChannelIds?: pulumi.Input<pulumi.Input<string>[]>;
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    channelTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    deploymentIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    entityType?: pulumi.Input<string | undefined>;
+    notificationChannelIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

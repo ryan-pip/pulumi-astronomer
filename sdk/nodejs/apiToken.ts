@@ -158,59 +158,59 @@ export interface ApiTokenState {
     /**
      * API Token creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * API Token creator
      */
-    createdBy?: pulumi.Input<inputs.ApiTokenCreatedBy>;
+    createdBy?: pulumi.Input<inputs.ApiTokenCreatedBy | undefined>;
     /**
      * API Token description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * time when the API token will expire in UTC
      */
-    endAt?: pulumi.Input<string>;
+    endAt?: pulumi.Input<string | undefined>;
     /**
      * API Token expiry period in days
      */
-    expiryPeriodInDays?: pulumi.Input<number>;
+    expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
      * API Token last used timestamp
      */
-    lastUsedAt?: pulumi.Input<string>;
+    lastUsedAt?: pulumi.Input<string | undefined>;
     /**
      * API Token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The roles assigned to the API Token
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.ApiTokenRole>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.ApiTokenRole>[] | undefined>;
     /**
      * API Token short token
      */
-    shortToken?: pulumi.Input<string>;
+    shortToken?: pulumi.Input<string | undefined>;
     /**
      * time when the API token will become valid in UTC
      */
-    startAt?: pulumi.Input<string>;
+    startAt?: pulumi.Input<string | undefined>;
     /**
      * API Token value. Warning: This value will be saved in plaintext in the terraform state file.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * API Token type - if changing this value, the API Token will be recreated with the new type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * API Token last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * API Token updater
      */
-    updatedBy?: pulumi.Input<inputs.ApiTokenUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.ApiTokenUpdatedBy | undefined>;
 }
 
 /**
@@ -220,15 +220,15 @@ export interface ApiTokenArgs {
     /**
      * API Token description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * API Token expiry period in days
      */
-    expiryPeriodInDays?: pulumi.Input<number>;
+    expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
      * API Token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The roles assigned to the API Token
      */

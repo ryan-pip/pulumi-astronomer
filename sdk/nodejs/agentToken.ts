@@ -99,23 +99,23 @@ export interface AgentTokenState {
     /**
      * ID of the deployment this agent token belongs to
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * Agent Token description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Agent Token expiry period in days. If not set, the token will not expire.
      */
-    expiryPeriodInDays?: pulumi.Input<number>;
+    expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
      * Agent Token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Agent Token value. Warning: This value will be saved in plaintext in the terraform state file.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -129,13 +129,13 @@ export interface AgentTokenArgs {
     /**
      * Agent Token description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Agent Token expiry period in days. If not set, the token will not expire.
      */
-    expiryPeriodInDays?: pulumi.Input<number>;
+    expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
      * Agent Token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

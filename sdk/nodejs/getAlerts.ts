@@ -122,9 +122,9 @@ export function getAlertsOutput(args?: GetAlertsOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getAlerts.
  */
 export interface GetAlertsOutputArgs {
-    alertIds?: pulumi.Input<pulumi.Input<string>[]>;
-    alertTypes?: pulumi.Input<pulumi.Input<string>[]>;
-    deploymentIds?: pulumi.Input<pulumi.Input<string>[]>;
-    entityType?: pulumi.Input<string>;
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    alertIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    alertTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    deploymentIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    entityType?: pulumi.Input<string | undefined>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

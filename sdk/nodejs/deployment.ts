@@ -390,203 +390,203 @@ export interface DeploymentState {
     /**
      * Deployment Airflow version
      */
-    airflowVersion?: pulumi.Input<string>;
+    airflowVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment's current Astro Runtime version
      */
-    astroRuntimeVersion?: pulumi.Input<string>;
+    astroRuntimeVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * Deployment contact emails
      */
-    contactEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    contactEmails?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Deployment creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Deployment creator
      */
-    createdBy?: pulumi.Input<inputs.DeploymentCreatedBy>;
+    createdBy?: pulumi.Input<inputs.DeploymentCreatedBy | undefined>;
     /**
      * Deployment DAG tarball version
      */
-    dagTarballVersion?: pulumi.Input<string>;
+    dagTarballVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    defaultTaskPodCpu?: pulumi.Input<string>;
+    defaultTaskPodCpu?: pulumi.Input<string | undefined>;
     /**
      * Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    defaultTaskPodMemory?: pulumi.Input<string>;
+    defaultTaskPodMemory?: pulumi.Input<string | undefined>;
     /**
      * Deployment description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Deployment desired DAG tarball version
      */
-    desiredDagTarballVersion?: pulumi.Input<string>;
+    desiredDagTarballVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
      */
-    desiredWorkloadIdentity?: pulumi.Input<string>;
+    desiredWorkloadIdentity?: pulumi.Input<string | undefined>;
     /**
      * Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
      */
-    environmentVariables?: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[]>;
+    environmentVariables?: pulumi.Input<pulumi.Input<inputs.DeploymentEnvironmentVariable>[] | undefined>;
     /**
      * Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
      */
-    executor?: pulumi.Input<string>;
+    executor?: pulumi.Input<string | undefined>;
     /**
      * Deployment external IPs
      */
-    externalIps?: pulumi.Input<pulumi.Input<string>[]>;
+    externalIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Deployment image repository
      */
-    imageRepository?: pulumi.Input<string>;
+    imageRepository?: pulumi.Input<string | undefined>;
     /**
      * Deployment image tag
      */
-    imageTag?: pulumi.Input<string>;
+    imageTag?: pulumi.Input<string | undefined>;
     /**
      * Deployment image version
      */
-    imageVersion?: pulumi.Input<string>;
+    imageVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment CI/CD enforced
      */
-    isCicdEnforced?: pulumi.Input<boolean>;
+    isCicdEnforced?: pulumi.Input<boolean | undefined>;
     /**
      * Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
      */
-    isDagDeployEnabled?: pulumi.Input<boolean>;
+    isDagDeployEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
      */
-    isDevelopmentMode?: pulumi.Input<boolean>;
+    isDevelopmentMode?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    isHighAvailability?: pulumi.Input<boolean>;
+    isHighAvailability?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Deployment namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Deployment OIDC issuer URL
      */
-    oidcIssuerUrl?: pulumi.Input<string>;
+    oidcIssuerUrl?: pulumi.Input<string | undefined>;
     /**
      * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
      */
-    originalAstroRuntimeVersion?: pulumi.Input<string>;
+    originalAstroRuntimeVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Deployment remote execution configuration - only for 'DEDICATED' deployments
      */
-    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution>;
+    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution | undefined>;
     /**
      * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaCpu?: pulumi.Input<string>;
+    resourceQuotaCpu?: pulumi.Input<string | undefined>;
     /**
      * Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaMemory?: pulumi.Input<string>;
+    resourceQuotaMemory?: pulumi.Input<string | undefined>;
     /**
      * Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
      */
-    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec>;
+    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec | undefined>;
     /**
      * Deployment scaling status
      */
-    scalingStatus?: pulumi.Input<inputs.DeploymentScalingStatus>;
+    scalingStatus?: pulumi.Input<inputs.DeploymentScalingStatus | undefined>;
     /**
      * Deployment scheduler AU - required for 'HYBRID' deployments
      */
-    schedulerAu?: pulumi.Input<number>;
+    schedulerAu?: pulumi.Input<number | undefined>;
     /**
      * Deployment scheduler CPU
      */
-    schedulerCpu?: pulumi.Input<string>;
+    schedulerCpu?: pulumi.Input<string | undefined>;
     /**
      * Deployment scheduler memory
      */
-    schedulerMemory?: pulumi.Input<string>;
+    schedulerMemory?: pulumi.Input<string | undefined>;
     /**
      * Deployment scheduler replicas - required for 'HYBRID' deployments
      */
-    schedulerReplicas?: pulumi.Input<number>;
+    schedulerReplicas?: pulumi.Input<number | undefined>;
     /**
      * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
-    schedulerSize?: pulumi.Input<string>;
+    schedulerSize?: pulumi.Input<string | undefined>;
     /**
      * Deployment status
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Deployment status reason
      */
-    statusReason?: pulumi.Input<string>;
+    statusReason?: pulumi.Input<string | undefined>;
     /**
      * Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
      */
-    taskPodNodePoolId?: pulumi.Input<string>;
+    taskPodNodePoolId?: pulumi.Input<string | undefined>;
     /**
      * Deployment type - if changing this value, the deployment will be recreated with the new type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Deployment last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Deployment updater
      */
-    updatedBy?: pulumi.Input<inputs.DeploymentUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.DeploymentUpdatedBy | undefined>;
     /**
      * Deployment webserver Airflow API URL
      */
-    webserverAirflowApiUrl?: pulumi.Input<string>;
+    webserverAirflowApiUrl?: pulumi.Input<string | undefined>;
     /**
      * Deployment webserver ingress hostname
      */
-    webserverIngressHostname?: pulumi.Input<string>;
+    webserverIngressHostname?: pulumi.Input<string | undefined>;
     /**
      * Deployment webserver URL
      */
-    webserverUrl?: pulumi.Input<string>;
+    webserverUrl?: pulumi.Input<string | undefined>;
     /**
      * Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
      */
-    workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
+    workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[] | undefined>;
     /**
      * Deployment workload identity. This value can be changed via the Astro API if applicable.
      */
-    workloadIdentity?: pulumi.Input<string>;
+    workloadIdentity?: pulumi.Input<string | undefined>;
     /**
      * Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -596,11 +596,11 @@ export interface DeploymentArgs {
     /**
      * Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * Deployment contact emails
      */
@@ -608,11 +608,11 @@ export interface DeploymentArgs {
     /**
      * Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    defaultTaskPodCpu?: pulumi.Input<string>;
+    defaultTaskPodCpu?: pulumi.Input<string | undefined>;
     /**
      * Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    defaultTaskPodMemory?: pulumi.Input<string>;
+    defaultTaskPodMemory?: pulumi.Input<string | undefined>;
     /**
      * Deployment description
      */
@@ -620,7 +620,7 @@ export interface DeploymentArgs {
     /**
      * Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
      */
-    desiredWorkloadIdentity?: pulumi.Input<string>;
+    desiredWorkloadIdentity?: pulumi.Input<string | undefined>;
     /**
      * Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
      */
@@ -640,55 +640,55 @@ export interface DeploymentArgs {
     /**
      * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
      */
-    isDevelopmentMode?: pulumi.Input<boolean>;
+    isDevelopmentMode?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    isHighAvailability?: pulumi.Input<boolean>;
+    isHighAvailability?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
      */
-    originalAstroRuntimeVersion?: pulumi.Input<string>;
+    originalAstroRuntimeVersion?: pulumi.Input<string | undefined>;
     /**
      * Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Deployment remote execution configuration - only for 'DEDICATED' deployments
      */
-    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution>;
+    remoteExecution?: pulumi.Input<inputs.DeploymentRemoteExecution | undefined>;
     /**
      * Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaCpu?: pulumi.Input<string>;
+    resourceQuotaCpu?: pulumi.Input<string | undefined>;
     /**
      * Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
      */
-    resourceQuotaMemory?: pulumi.Input<string>;
+    resourceQuotaMemory?: pulumi.Input<string | undefined>;
     /**
      * Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
      */
-    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec>;
+    scalingSpec?: pulumi.Input<inputs.DeploymentScalingSpec | undefined>;
     /**
      * Deployment scheduler AU - required for 'HYBRID' deployments
      */
-    schedulerAu?: pulumi.Input<number>;
+    schedulerAu?: pulumi.Input<number | undefined>;
     /**
      * Deployment scheduler replicas - required for 'HYBRID' deployments
      */
-    schedulerReplicas?: pulumi.Input<number>;
+    schedulerReplicas?: pulumi.Input<number | undefined>;
     /**
      * Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
      */
-    schedulerSize?: pulumi.Input<string>;
+    schedulerSize?: pulumi.Input<string | undefined>;
     /**
      * Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
      */
-    taskPodNodePoolId?: pulumi.Input<string>;
+    taskPodNodePoolId?: pulumi.Input<string | undefined>;
     /**
      * Deployment type - if changing this value, the deployment will be recreated with the new type
      */
@@ -696,7 +696,7 @@ export interface DeploymentArgs {
     /**
      * Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
      */
-    workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[]>;
+    workerQueues?: pulumi.Input<pulumi.Input<inputs.DeploymentWorkerQueue>[] | undefined>;
     /**
      * Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
      */

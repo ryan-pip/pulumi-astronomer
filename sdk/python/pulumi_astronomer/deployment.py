@@ -29,25 +29,25 @@ class DeploymentArgs:
                  is_dag_deploy_enabled: pulumi.Input[_builtins.bool],
                  type: pulumi.Input[_builtins.str],
                  workspace_id: pulumi.Input[_builtins.str],
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_execution: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']] = None,
-                 resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_spec: Optional[pulumi.Input['DeploymentScalingSpecArgs']] = None,
-                 scheduler_au: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_pod_node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 desired_workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_development_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 original_astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_execution: pulumi.Input[Optional['DeploymentRemoteExecutionArgs']] = None,
+                 resource_quota_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_quota_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_spec: pulumi.Input[Optional['DeploymentScalingSpecArgs']] = None,
+                 scheduler_au: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_pod_node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 worker_queues: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
 
@@ -224,286 +224,286 @@ class DeploymentArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTaskPodCpu")
-    def default_task_pod_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_task_pod_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "default_task_pod_cpu")
 
     @default_task_pod_cpu.setter
-    def default_task_pod_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_task_pod_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_task_pod_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTaskPodMemory")
-    def default_task_pod_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_task_pod_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "default_task_pod_memory")
 
     @default_task_pod_memory.setter
-    def default_task_pod_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_task_pod_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_task_pod_memory", value)
 
     @_builtins.property
     @pulumi.getter(name="desiredWorkloadIdentity")
-    def desired_workload_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def desired_workload_identity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
         """
         return pulumi.get(self, "desired_workload_identity")
 
     @desired_workload_identity.setter
-    def desired_workload_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def desired_workload_identity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "desired_workload_identity", value)
 
     @_builtins.property
     @pulumi.getter(name="isDevelopmentMode")
-    def is_development_mode(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_development_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         """
         return pulumi.get(self, "is_development_mode")
 
     @is_development_mode.setter
-    def is_development_mode(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_development_mode(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_development_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="isHighAvailability")
-    def is_high_availability(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_high_availability(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "is_high_availability")
 
     @is_high_availability.setter
-    def is_high_availability(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_high_availability(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_high_availability", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="originalAstroRuntimeVersion")
-    def original_astro_runtime_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def original_astro_runtime_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
     @original_astro_runtime_version.setter
-    def original_astro_runtime_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def original_astro_runtime_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "original_astro_runtime_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteExecution")
-    def remote_execution(self) -> Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]:
+    def remote_execution(self) -> pulumi.Input[Optional['DeploymentRemoteExecutionArgs']]:
         """
         Deployment remote execution configuration - only for 'DEDICATED' deployments
         """
         return pulumi.get(self, "remote_execution")
 
     @remote_execution.setter
-    def remote_execution(self, value: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]):
+    def remote_execution(self, value: pulumi.Input[Optional['DeploymentRemoteExecutionArgs']]):
         pulumi.set(self, "remote_execution", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
-    def resource_quota_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_quota_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "resource_quota_cpu")
 
     @resource_quota_cpu.setter
-    def resource_quota_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_quota_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_quota_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaMemory")
-    def resource_quota_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_quota_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "resource_quota_memory")
 
     @resource_quota_memory.setter
-    def resource_quota_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_quota_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_quota_memory", value)
 
     @_builtins.property
     @pulumi.getter(name="scalingSpec")
-    def scaling_spec(self) -> Optional[pulumi.Input['DeploymentScalingSpecArgs']]:
+    def scaling_spec(self) -> pulumi.Input[Optional['DeploymentScalingSpecArgs']]:
         """
         Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "scaling_spec")
 
     @scaling_spec.setter
-    def scaling_spec(self, value: Optional[pulumi.Input['DeploymentScalingSpecArgs']]):
+    def scaling_spec(self, value: pulumi.Input[Optional['DeploymentScalingSpecArgs']]):
         pulumi.set(self, "scaling_spec", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerAu")
-    def scheduler_au(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def scheduler_au(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Deployment scheduler AU - required for 'HYBRID' deployments
         """
         return pulumi.get(self, "scheduler_au")
 
     @scheduler_au.setter
-    def scheduler_au(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def scheduler_au(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "scheduler_au", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerReplicas")
-    def scheduler_replicas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def scheduler_replicas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Deployment scheduler replicas - required for 'HYBRID' deployments
         """
         return pulumi.get(self, "scheduler_replicas")
 
     @scheduler_replicas.setter
-    def scheduler_replicas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def scheduler_replicas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "scheduler_replicas", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerSize")
-    def scheduler_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
     @scheduler_size.setter
-    def scheduler_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_size", value)
 
     @_builtins.property
     @pulumi.getter(name="taskPodNodePoolId")
-    def task_pod_node_pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def task_pod_node_pool_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         """
         return pulumi.get(self, "task_pod_node_pool_id")
 
     @task_pod_node_pool_id.setter
-    def task_pod_node_pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def task_pod_node_pool_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "task_pod_node_pool_id", value)
 
     @_builtins.property
     @pulumi.getter(name="workerQueues")
-    def worker_queues(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
+    def worker_queues(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
         """
         Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         return pulumi.get(self, "worker_queues")
 
     @worker_queues.setter
-    def worker_queues(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]):
+    def worker_queues(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]):
         pulumi.set(self, "worker_queues", value)
 
 
 @pulumi.input_type
 class _DeploymentState:
     def __init__(__self__, *,
-                 airflow_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 contact_emails: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input['DeploymentCreatedByArgs']] = None,
-                 dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 desired_dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]] = None,
-                 executor: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 image_repository: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dag_deploy_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_issuer_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_execution: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']] = None,
-                 resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_spec: Optional[pulumi.Input['DeploymentScalingSpecArgs']] = None,
-                 scaling_status: Optional[pulumi.Input['DeploymentScalingStatusArgs']] = None,
-                 scheduler_au: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 status_reason: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_pod_node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_by: Optional[pulumi.Input['DeploymentUpdatedByArgs']] = None,
-                 webserver_airflow_api_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 webserver_ingress_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 webserver_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]] = None,
-                 workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 airflow_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 contact_emails: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional['DeploymentCreatedByArgs']] = None,
+                 dag_tarball_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 desired_dag_tarball_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 desired_workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]] = None,
+                 executor: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 image_repository: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_cicd_enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dag_deploy_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_development_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_issuer_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 original_astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_execution: pulumi.Input[Optional['DeploymentRemoteExecutionArgs']] = None,
+                 resource_quota_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_quota_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_spec: pulumi.Input[Optional['DeploymentScalingSpecArgs']] = None,
+                 scaling_status: pulumi.Input[Optional['DeploymentScalingStatusArgs']] = None,
+                 scheduler_au: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 status_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_pod_node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_by: pulumi.Input[Optional['DeploymentUpdatedByArgs']] = None,
+                 webserver_airflow_api_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 webserver_ingress_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 webserver_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 worker_queues: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]] = None,
+                 workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
 
@@ -661,602 +661,602 @@ class _DeploymentState:
 
     @_builtins.property
     @pulumi.getter(name="airflowVersion")
-    def airflow_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def airflow_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment Airflow version
         """
         return pulumi.get(self, "airflow_version")
 
     @airflow_version.setter
-    def airflow_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def airflow_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "airflow_version", value)
 
     @_builtins.property
     @pulumi.getter(name="astroRuntimeVersion")
-    def astro_runtime_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def astro_runtime_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment's current Astro Runtime version
         """
         return pulumi.get(self, "astro_runtime_version")
 
     @astro_runtime_version.setter
-    def astro_runtime_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def astro_runtime_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "astro_runtime_version", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment cloud provider - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment cluster identifier - required for 'HYBRID' and 'DEDICATED' deployments. If changing this value, the deployment will be recreated in the new cluster
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="contactEmails")
-    def contact_emails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def contact_emails(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Deployment contact emails
         """
         return pulumi.get(self, "contact_emails")
 
     @contact_emails.setter
-    def contact_emails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def contact_emails(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "contact_emails", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input['DeploymentCreatedByArgs']]:
+    def created_by(self) -> pulumi.Input[Optional['DeploymentCreatedByArgs']]:
         """
         Deployment creator
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input['DeploymentCreatedByArgs']]):
+    def created_by(self, value: pulumi.Input[Optional['DeploymentCreatedByArgs']]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="dagTarballVersion")
-    def dag_tarball_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dag_tarball_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment DAG tarball version
         """
         return pulumi.get(self, "dag_tarball_version")
 
     @dag_tarball_version.setter
-    def dag_tarball_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dag_tarball_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dag_tarball_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTaskPodCpu")
-    def default_task_pod_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_task_pod_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "default_task_pod_cpu")
 
     @default_task_pod_cpu.setter
-    def default_task_pod_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_task_pod_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_task_pod_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTaskPodMemory")
-    def default_task_pod_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_task_pod_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "default_task_pod_memory")
 
     @default_task_pod_memory.setter
-    def default_task_pod_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_task_pod_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_task_pod_memory", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="desiredDagTarballVersion")
-    def desired_dag_tarball_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def desired_dag_tarball_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment desired DAG tarball version
         """
         return pulumi.get(self, "desired_dag_tarball_version")
 
     @desired_dag_tarball_version.setter
-    def desired_dag_tarball_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def desired_dag_tarball_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "desired_dag_tarball_version", value)
 
     @_builtins.property
     @pulumi.getter(name="desiredWorkloadIdentity")
-    def desired_workload_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def desired_workload_identity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
         """
         return pulumi.get(self, "desired_workload_identity")
 
     @desired_workload_identity.setter
-    def desired_workload_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def desired_workload_identity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "desired_workload_identity", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]]:
+    def environment_variables(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]]:
         """
         Deployment environment variables. When importing a deployment, you must include all environment variables in your configuration. Any variables not specified will be deleted on the next apply. Secret values must be re-entered as the API does not return them.
         """
         return pulumi.get(self, "environment_variables")
 
     @environment_variables.setter
-    def environment_variables(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]]):
+    def environment_variables(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEnvironmentVariableArgs']]]]):
         pulumi.set(self, "environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def executor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def executor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         """
         return pulumi.get(self, "executor")
 
     @executor.setter
-    def executor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def executor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "executor", value)
 
     @_builtins.property
     @pulumi.getter(name="externalIps")
-    def external_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def external_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Deployment external IPs
         """
         return pulumi.get(self, "external_ips")
 
     @external_ips.setter
-    def external_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def external_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "external_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="imageRepository")
-    def image_repository(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_repository(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment image repository
         """
         return pulumi.get(self, "image_repository")
 
     @image_repository.setter
-    def image_repository(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_repository(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_repository", value)
 
     @_builtins.property
     @pulumi.getter(name="imageTag")
-    def image_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment image tag
         """
         return pulumi.get(self, "image_tag")
 
     @image_tag.setter
-    def image_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_tag", value)
 
     @_builtins.property
     @pulumi.getter(name="imageVersion")
-    def image_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment image version
         """
         return pulumi.get(self, "image_version")
 
     @image_version.setter
-    def image_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_version", value)
 
     @_builtins.property
     @pulumi.getter(name="isCicdEnforced")
-    def is_cicd_enforced(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_cicd_enforced(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Deployment CI/CD enforced
         """
         return pulumi.get(self, "is_cicd_enforced")
 
     @is_cicd_enforced.setter
-    def is_cicd_enforced(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_cicd_enforced(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_cicd_enforced", value)
 
     @_builtins.property
     @pulumi.getter(name="isDagDeployEnabled")
-    def is_dag_deploy_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_dag_deploy_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
         """
         return pulumi.get(self, "is_dag_deploy_enabled")
 
     @is_dag_deploy_enabled.setter
-    def is_dag_deploy_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_dag_deploy_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_dag_deploy_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isDevelopmentMode")
-    def is_development_mode(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_development_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         """
         return pulumi.get(self, "is_development_mode")
 
     @is_development_mode.setter
-    def is_development_mode(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_development_mode(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_development_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="isHighAvailability")
-    def is_high_availability(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_high_availability(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "is_high_availability")
 
     @is_high_availability.setter
-    def is_high_availability(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_high_availability(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_high_availability", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcIssuerUrl")
-    def oidc_issuer_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oidc_issuer_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment OIDC issuer URL
         """
         return pulumi.get(self, "oidc_issuer_url")
 
     @oidc_issuer_url.setter
-    def oidc_issuer_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oidc_issuer_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_issuer_url", value)
 
     @_builtins.property
     @pulumi.getter(name="originalAstroRuntimeVersion")
-    def original_astro_runtime_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def original_astro_runtime_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
     @original_astro_runtime_version.setter
-    def original_astro_runtime_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def original_astro_runtime_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "original_astro_runtime_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteExecution")
-    def remote_execution(self) -> Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]:
+    def remote_execution(self) -> pulumi.Input[Optional['DeploymentRemoteExecutionArgs']]:
         """
         Deployment remote execution configuration - only for 'DEDICATED' deployments
         """
         return pulumi.get(self, "remote_execution")
 
     @remote_execution.setter
-    def remote_execution(self, value: Optional[pulumi.Input['DeploymentRemoteExecutionArgs']]):
+    def remote_execution(self, value: pulumi.Input[Optional['DeploymentRemoteExecutionArgs']]):
         pulumi.set(self, "remote_execution", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaCpu")
-    def resource_quota_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_quota_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "resource_quota_cpu")
 
     @resource_quota_cpu.setter
-    def resource_quota_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_quota_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_quota_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotaMemory")
-    def resource_quota_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_quota_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment resource quota memory - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "resource_quota_memory")
 
     @resource_quota_memory.setter
-    def resource_quota_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_quota_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_quota_memory", value)
 
     @_builtins.property
     @pulumi.getter(name="scalingSpec")
-    def scaling_spec(self) -> Optional[pulumi.Input['DeploymentScalingSpecArgs']]:
+    def scaling_spec(self) -> pulumi.Input[Optional['DeploymentScalingSpecArgs']]:
         """
         Deployment scaling spec - only for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "scaling_spec")
 
     @scaling_spec.setter
-    def scaling_spec(self, value: Optional[pulumi.Input['DeploymentScalingSpecArgs']]):
+    def scaling_spec(self, value: pulumi.Input[Optional['DeploymentScalingSpecArgs']]):
         pulumi.set(self, "scaling_spec", value)
 
     @_builtins.property
     @pulumi.getter(name="scalingStatus")
-    def scaling_status(self) -> Optional[pulumi.Input['DeploymentScalingStatusArgs']]:
+    def scaling_status(self) -> pulumi.Input[Optional['DeploymentScalingStatusArgs']]:
         """
         Deployment scaling status
         """
         return pulumi.get(self, "scaling_status")
 
     @scaling_status.setter
-    def scaling_status(self, value: Optional[pulumi.Input['DeploymentScalingStatusArgs']]):
+    def scaling_status(self, value: pulumi.Input[Optional['DeploymentScalingStatusArgs']]):
         pulumi.set(self, "scaling_status", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerAu")
-    def scheduler_au(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def scheduler_au(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Deployment scheduler AU - required for 'HYBRID' deployments
         """
         return pulumi.get(self, "scheduler_au")
 
     @scheduler_au.setter
-    def scheduler_au(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def scheduler_au(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "scheduler_au", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerCpu")
-    def scheduler_cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_cpu(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment scheduler CPU
         """
         return pulumi.get(self, "scheduler_cpu")
 
     @scheduler_cpu.setter
-    def scheduler_cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerMemory")
-    def scheduler_memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_memory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment scheduler memory
         """
         return pulumi.get(self, "scheduler_memory")
 
     @scheduler_memory.setter
-    def scheduler_memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_memory", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerReplicas")
-    def scheduler_replicas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def scheduler_replicas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Deployment scheduler replicas - required for 'HYBRID' deployments
         """
         return pulumi.get(self, "scheduler_replicas")
 
     @scheduler_replicas.setter
-    def scheduler_replicas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def scheduler_replicas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "scheduler_replicas", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerSize")
-    def scheduler_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment scheduler size - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `SMALL`, `MEDIUM`, `LARGE`, `EXTRALARGE`.
         """
         return pulumi.get(self, "scheduler_size")
 
     @scheduler_size.setter
-    def scheduler_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment status
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="statusReason")
-    def status_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status_reason(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment status reason
         """
         return pulumi.get(self, "status_reason")
 
     @status_reason.setter
-    def status_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status_reason(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status_reason", value)
 
     @_builtins.property
     @pulumi.getter(name="taskPodNodePoolId")
-    def task_pod_node_pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def task_pod_node_pool_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment task pod node pool identifier - required if executor is 'KUBERNETES' and type is 'HYBRID'
         """
         return pulumi.get(self, "task_pod_node_pool_id")
 
     @task_pod_node_pool_id.setter
-    def task_pod_node_pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def task_pod_node_pool_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "task_pod_node_pool_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment type - if changing this value, the deployment will be recreated with the new type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedBy")
-    def updated_by(self) -> Optional[pulumi.Input['DeploymentUpdatedByArgs']]:
+    def updated_by(self) -> pulumi.Input[Optional['DeploymentUpdatedByArgs']]:
         """
         Deployment updater
         """
         return pulumi.get(self, "updated_by")
 
     @updated_by.setter
-    def updated_by(self, value: Optional[pulumi.Input['DeploymentUpdatedByArgs']]):
+    def updated_by(self, value: pulumi.Input[Optional['DeploymentUpdatedByArgs']]):
         pulumi.set(self, "updated_by", value)
 
     @_builtins.property
     @pulumi.getter(name="webserverAirflowApiUrl")
-    def webserver_airflow_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webserver_airflow_api_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment webserver Airflow API URL
         """
         return pulumi.get(self, "webserver_airflow_api_url")
 
     @webserver_airflow_api_url.setter
-    def webserver_airflow_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webserver_airflow_api_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webserver_airflow_api_url", value)
 
     @_builtins.property
     @pulumi.getter(name="webserverIngressHostname")
-    def webserver_ingress_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webserver_ingress_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment webserver ingress hostname
         """
         return pulumi.get(self, "webserver_ingress_hostname")
 
     @webserver_ingress_hostname.setter
-    def webserver_ingress_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webserver_ingress_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webserver_ingress_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="webserverUrl")
-    def webserver_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webserver_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment webserver URL
         """
         return pulumi.get(self, "webserver_url")
 
     @webserver_url.setter
-    def webserver_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webserver_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webserver_url", value)
 
     @_builtins.property
     @pulumi.getter(name="workerQueues")
-    def worker_queues(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
+    def worker_queues(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]:
         """
         Deployment worker queues - required for deployments with 'CELERY' executor. For 'STANDARD' and 'DEDICATED' deployments, use astro*machine. For 'HYBRID' deployments, use node*pool*id.
         """
         return pulumi.get(self, "worker_queues")
 
     @worker_queues.setter
-    def worker_queues(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]):
+    def worker_queues(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentWorkerQueueArgs']]]]):
         pulumi.set(self, "worker_queues", value)
 
     @_builtins.property
     @pulumi.getter(name="workloadIdentity")
-    def workload_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workload_identity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment workload identity. This value can be changed via the Astro API if applicable.
         """
         return pulumi.get(self, "workload_identity")
 
     @workload_identity.setter
-    def workload_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workload_identity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workload_identity", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")
-    def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace
         """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
-    def workspace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_id", value)
 
 
@@ -1266,33 +1266,33 @@ class Deployment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 contact_emails: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
-                 executor: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dag_deploy_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
-                 resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
-                 scheduler_au: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_pod_node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 contact_emails: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_task_pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 desired_workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
+                 executor: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_cicd_enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dag_deploy_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_development_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 original_astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_execution: pulumi.Input[Optional[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
+                 resource_quota_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_quota_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_spec: pulumi.Input[Optional[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
+                 scheduler_au: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_pod_node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 worker_queues: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Deployment resource
@@ -1353,33 +1353,33 @@ class Deployment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 contact_emails: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
-                 executor: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dag_deploy_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
-                 resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
-                 scheduler_au: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-                 scheduler_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_pod_node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 contact_emails: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_task_pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_task_pod_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 desired_workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
+                 executor: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_cicd_enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dag_deploy_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_development_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 original_astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_execution: pulumi.Input[Optional[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
+                 resource_quota_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_quota_memory: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_spec: pulumi.Input[Optional[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
+                 scheduler_au: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+                 scheduler_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_pod_node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 worker_queues: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1465,56 +1465,56 @@ class Deployment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            airflow_version: Optional[pulumi.Input[_builtins.str]] = None,
-            astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            contact_emails: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            created_by: Optional[pulumi.Input[Union['DeploymentCreatedByArgs', 'DeploymentCreatedByArgsDict']]] = None,
-            dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
-            default_task_pod_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-            default_task_pod_memory: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            desired_dag_tarball_version: Optional[pulumi.Input[_builtins.str]] = None,
-            desired_workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-            environment_variables: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
-            executor: Optional[pulumi.Input[_builtins.str]] = None,
-            external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            image_repository: Optional[pulumi.Input[_builtins.str]] = None,
-            image_tag: Optional[pulumi.Input[_builtins.str]] = None,
-            image_version: Optional[pulumi.Input[_builtins.str]] = None,
-            is_cicd_enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_dag_deploy_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_development_mode: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            oidc_issuer_url: Optional[pulumi.Input[_builtins.str]] = None,
-            original_astro_runtime_version: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            remote_execution: Optional[pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
-            resource_quota_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_quota_memory: Optional[pulumi.Input[_builtins.str]] = None,
-            scaling_spec: Optional[pulumi.Input[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
-            scaling_status: Optional[pulumi.Input[Union['DeploymentScalingStatusArgs', 'DeploymentScalingStatusArgsDict']]] = None,
-            scheduler_au: Optional[pulumi.Input[_builtins.int]] = None,
-            scheduler_cpu: Optional[pulumi.Input[_builtins.str]] = None,
-            scheduler_memory: Optional[pulumi.Input[_builtins.str]] = None,
-            scheduler_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-            scheduler_size: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            status_reason: Optional[pulumi.Input[_builtins.str]] = None,
-            task_pod_node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_by: Optional[pulumi.Input[Union['DeploymentUpdatedByArgs', 'DeploymentUpdatedByArgsDict']]] = None,
-            webserver_airflow_api_url: Optional[pulumi.Input[_builtins.str]] = None,
-            webserver_ingress_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            webserver_url: Optional[pulumi.Input[_builtins.str]] = None,
-            worker_queues: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
-            workload_identity: Optional[pulumi.Input[_builtins.str]] = None,
-            workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Deployment':
+            airflow_version: pulumi.Input[Optional[_builtins.str]] = None,
+            astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            contact_emails: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[Union['DeploymentCreatedByArgs', 'DeploymentCreatedByArgsDict']]] = None,
+            dag_tarball_version: pulumi.Input[Optional[_builtins.str]] = None,
+            default_task_pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+            default_task_pod_memory: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            desired_dag_tarball_version: pulumi.Input[Optional[_builtins.str]] = None,
+            desired_workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_variables: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEnvironmentVariableArgs', 'DeploymentEnvironmentVariableArgsDict']]]]] = None,
+            executor: pulumi.Input[Optional[_builtins.str]] = None,
+            external_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            image_repository: pulumi.Input[Optional[_builtins.str]] = None,
+            image_tag: pulumi.Input[Optional[_builtins.str]] = None,
+            image_version: pulumi.Input[Optional[_builtins.str]] = None,
+            is_cicd_enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_dag_deploy_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_development_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_issuer_url: pulumi.Input[Optional[_builtins.str]] = None,
+            original_astro_runtime_version: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_execution: pulumi.Input[Optional[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']]] = None,
+            resource_quota_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_quota_memory: pulumi.Input[Optional[_builtins.str]] = None,
+            scaling_spec: pulumi.Input[Optional[Union['DeploymentScalingSpecArgs', 'DeploymentScalingSpecArgsDict']]] = None,
+            scaling_status: pulumi.Input[Optional[Union['DeploymentScalingStatusArgs', 'DeploymentScalingStatusArgsDict']]] = None,
+            scheduler_au: pulumi.Input[Optional[_builtins.int]] = None,
+            scheduler_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+            scheduler_memory: pulumi.Input[Optional[_builtins.str]] = None,
+            scheduler_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+            scheduler_size: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            task_pod_node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_by: pulumi.Input[Optional[Union['DeploymentUpdatedByArgs', 'DeploymentUpdatedByArgsDict']]] = None,
+            webserver_airflow_api_url: pulumi.Input[Optional[_builtins.str]] = None,
+            webserver_ingress_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            webserver_url: pulumi.Input[Optional[_builtins.str]] = None,
+            worker_queues: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentWorkerQueueArgs', 'DeploymentWorkerQueueArgsDict']]]]] = None,
+            workload_identity: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

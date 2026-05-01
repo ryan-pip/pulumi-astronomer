@@ -26,17 +26,17 @@ class ClusterArgs:
                  type: pulumi.Input[_builtins.str],
                  vpc_subnet_range: pulumi.Input[_builtins.str],
                  workspace_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['ClusterTimeoutsArgs']] = None):
+                 dr_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['ClusterTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -146,163 +146,163 @@ class ClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="drRegion")
-    def dr_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         """
         return pulumi.get(self, "dr_region")
 
     @dr_region.setter
-    def dr_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_region", value)
 
     @_builtins.property
     @pulumi.getter(name="drSecondaryVpcCidr")
-    def dr_secondary_vpc_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_secondary_vpc_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
         """
         return pulumi.get(self, "dr_secondary_vpc_cidr")
 
     @dr_secondary_vpc_cidr.setter
-    def dr_secondary_vpc_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_secondary_vpc_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")
-    def dr_vpc_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_vpc_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         """
         return pulumi.get(self, "dr_vpc_subnet_range")
 
     @dr_vpc_subnet_range.setter
-    def dr_vpc_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_vpc_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_vpc_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="enableReplicationTimeControl")
-    def enable_replication_time_control(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_replication_time_control(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         """
         return pulumi.get(self, "enable_replication_time_control")
 
     @enable_replication_time_control.setter
-    def enable_replication_time_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_replication_time_control(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_replication_time_control", value)
 
     @_builtins.property
     @pulumi.getter(name="isDrEnabled")
-    def is_dr_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_dr_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
         """
         return pulumi.get(self, "is_dr_enabled")
 
     @is_dr_enabled.setter
-    def is_dr_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_dr_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_dr_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isFailedOver")
-    def is_failed_over(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_failed_over(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         """
         return pulumi.get(self, "is_failed_over")
 
     @is_failed_over.setter
-    def is_failed_over(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_failed_over(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_failed_over", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="podSubnetRange")
-    def pod_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pod_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "pod_subnet_range")
 
     @pod_subnet_range.setter
-    def pod_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pod_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePeeringRange")
-    def service_peering_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "service_peering_range")
 
     @service_peering_range.setter
-    def service_peering_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_peering_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_peering_range", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceSubnetRange")
-    def service_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "service_subnet_range")
 
     @service_subnet_range.setter
-    def service_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['ClusterTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['ClusterTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['ClusterTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['ClusterTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
 class _ClusterState:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
-                 health_status: Optional[pulumi.Input['ClusterHealthStatusArgs']] = None,
-                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_limited: Optional[pulumi.Input[_builtins.bool]] = None,
-                 metadata: Optional[pulumi.Input['ClusterMetadataArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pools: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolArgs']]]] = None,
-                 pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_account: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['ClusterTimeoutsArgs']] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_instance_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
+                 health_status: pulumi.Input[Optional['ClusterHealthStatusArgs']] = None,
+                 is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_limited: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metadata: pulumi.Input[Optional['ClusterMetadataArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pools: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterNodePoolArgs']]]] = None,
+                 pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_account: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['ClusterTimeoutsArgs']] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
 
@@ -387,311 +387,311 @@ class _ClusterState:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="dbInstanceType")
-    def db_instance_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def db_instance_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster database instance type
         """
         return pulumi.get(self, "db_instance_type")
 
     @db_instance_type.setter
-    def db_instance_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def db_instance_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "db_instance_type", value)
 
     @_builtins.property
     @pulumi.getter(name="drRegion")
-    def dr_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         """
         return pulumi.get(self, "dr_region")
 
     @dr_region.setter
-    def dr_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_region", value)
 
     @_builtins.property
     @pulumi.getter(name="drSecondaryVpcCidr")
-    def dr_secondary_vpc_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_secondary_vpc_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
         """
         return pulumi.get(self, "dr_secondary_vpc_cidr")
 
     @dr_secondary_vpc_cidr.setter
-    def dr_secondary_vpc_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_secondary_vpc_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")
-    def dr_vpc_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dr_vpc_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         """
         return pulumi.get(self, "dr_vpc_subnet_range")
 
     @dr_vpc_subnet_range.setter
-    def dr_vpc_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dr_vpc_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_vpc_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="enableReplicationTimeControl")
-    def enable_replication_time_control(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_replication_time_control(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         """
         return pulumi.get(self, "enable_replication_time_control")
 
     @enable_replication_time_control.setter
-    def enable_replication_time_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_replication_time_control(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_replication_time_control", value)
 
     @_builtins.property
     @pulumi.getter(name="healthStatus")
-    def health_status(self) -> Optional[pulumi.Input['ClusterHealthStatusArgs']]:
+    def health_status(self) -> pulumi.Input[Optional['ClusterHealthStatusArgs']]:
         """
         Cluster health status
         """
         return pulumi.get(self, "health_status")
 
     @health_status.setter
-    def health_status(self, value: Optional[pulumi.Input['ClusterHealthStatusArgs']]):
+    def health_status(self, value: pulumi.Input[Optional['ClusterHealthStatusArgs']]):
         pulumi.set(self, "health_status", value)
 
     @_builtins.property
     @pulumi.getter(name="isDrEnabled")
-    def is_dr_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_dr_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
         """
         return pulumi.get(self, "is_dr_enabled")
 
     @is_dr_enabled.setter
-    def is_dr_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_dr_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_dr_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isFailedOver")
-    def is_failed_over(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_failed_over(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         """
         return pulumi.get(self, "is_failed_over")
 
     @is_failed_over.setter
-    def is_failed_over(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_failed_over(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_failed_over", value)
 
     @_builtins.property
     @pulumi.getter(name="isLimited")
-    def is_limited(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_limited(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the cluster is limited
         """
         return pulumi.get(self, "is_limited")
 
     @is_limited.setter
-    def is_limited(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_limited(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_limited", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['ClusterMetadataArgs']]:
+    def metadata(self) -> pulumi.Input[Optional['ClusterMetadataArgs']]:
         """
         Cluster metadata
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['ClusterMetadataArgs']]):
+    def metadata(self, value: pulumi.Input[Optional['ClusterMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePools")
-    def node_pools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolArgs']]]]:
+    def node_pools(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterNodePoolArgs']]]]:
         """
         Cluster node pools
         """
         return pulumi.get(self, "node_pools")
 
     @node_pools.setter
-    def node_pools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolArgs']]]]):
+    def node_pools(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterNodePoolArgs']]]]):
         pulumi.set(self, "node_pools", value)
 
     @_builtins.property
     @pulumi.getter(name="podSubnetRange")
-    def pod_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pod_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "pod_subnet_range")
 
     @pod_subnet_range.setter
-    def pod_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pod_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAccount")
-    def provider_account(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_account(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster provider account
         """
         return pulumi.get(self, "provider_account")
 
     @provider_account.setter
-    def provider_account(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_account(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_account", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster region - if changed, the cluster will be recreated.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePeeringRange")
-    def service_peering_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "service_peering_range")
 
     @service_peering_range.setter
-    def service_peering_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_peering_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_peering_range", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceSubnetRange")
-    def service_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "service_subnet_range")
 
     @service_subnet_range.setter
-    def service_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster status
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster tenant ID
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['ClusterTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['ClusterTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['ClusterTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['ClusterTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcSubnetRange")
-    def vpc_subnet_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster VPC subnet range. If changed, the cluster will be recreated.
         """
         return pulumi.get(self, "vpc_subnet_range")
 
     @vpc_subnet_range.setter
-    def vpc_subnet_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceIds")
-    def workspace_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def workspace_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Cluster workspace IDs
         """
         return pulumi.get(self, "workspace_ids")
 
     @workspace_ids.setter
-    def workspace_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def workspace_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "workspace_ids", value)
 
 
@@ -701,22 +701,22 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Cluster resource. If creating multiple clusters, add a delay between each cluster creation to avoid cluster creation limiting errors.
@@ -765,22 +765,22 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -836,32 +836,32 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            db_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
-            dr_region: Optional[pulumi.Input[_builtins.str]] = None,
-            dr_secondary_vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-            dr_vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_replication_time_control: Optional[pulumi.Input[_builtins.bool]] = None,
-            health_status: Optional[pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']]] = None,
-            is_dr_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_failed_over: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_limited: Optional[pulumi.Input[_builtins.bool]] = None,
-            metadata: Optional[pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_pools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]]] = None,
-            pod_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_account: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            service_peering_range: Optional[pulumi.Input[_builtins.str]] = None,
-            service_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            vpc_subnet_range: Optional[pulumi.Input[_builtins.str]] = None,
-            workspace_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Cluster':
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            db_instance_type: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_region: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
+            health_status: pulumi.Input[Optional[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']]] = None,
+            is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_limited: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_pools: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]]] = None,
+            pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_account: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+            service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

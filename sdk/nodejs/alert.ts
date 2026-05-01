@@ -174,63 +174,63 @@ export interface AlertState {
     /**
      * Alert creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Alert creator
      */
-    createdBy?: pulumi.Input<inputs.AlertCreatedBy>;
+    createdBy?: pulumi.Input<inputs.AlertCreatedBy | undefined>;
     /**
      * The ID of the Deployment to which the alert is scoped
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The entity ID the alert is associated with
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * The name of the entity the alert is associated with
      */
-    entityName?: pulumi.Input<string>;
+    entityName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Deployment to which the alert is scoped
      */
-    entityType?: pulumi.Input<string>;
+    entityType?: pulumi.Input<string | undefined>;
     /**
      * Alert name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Set of notification channel identifiers to notify when the alert is triggered
      */
-    notificationChannelIds?: pulumi.Input<pulumi.Input<string>[]>;
+    notificationChannelIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The notification channels to send alerts to
      */
-    notificationChannels?: pulumi.Input<pulumi.Input<inputs.AlertNotificationChannel>[]>;
+    notificationChannels?: pulumi.Input<pulumi.Input<inputs.AlertNotificationChannel>[] | undefined>;
     /**
      * Alert rules defining the conditions for triggering the alert
      */
-    rules?: pulumi.Input<inputs.AlertRules>;
+    rules?: pulumi.Input<inputs.AlertRules | undefined>;
     /**
      * The alert's severity
      */
-    severity?: pulumi.Input<string>;
+    severity?: pulumi.Input<string | undefined>;
     /**
      * The alert's type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Alert last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Alert updater
      */
-    updatedBy?: pulumi.Input<inputs.AlertUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.AlertUpdatedBy | undefined>;
     /**
      * The ID of the Workspace to which the alert is scoped
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -248,7 +248,7 @@ export interface AlertArgs {
     /**
      * Alert name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Set of notification channel identifiers to notify when the alert is triggered
      */

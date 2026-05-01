@@ -699,7 +699,7 @@ def get_deployment(id: Optional[_builtins.str] = None,
         worker_queues=pulumi.get(__ret__, 'worker_queues'),
         workload_identity=pulumi.get(__ret__, 'workload_identity'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_deployment_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_deployment_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentResult]:
     """
     Deployment data source

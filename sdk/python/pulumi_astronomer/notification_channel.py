@@ -25,8 +25,8 @@ class NotificationChannelArgs:
                  entity_id: pulumi.Input[_builtins.str],
                  entity_type: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationChannel resource.
 
@@ -96,45 +96,45 @@ class NotificationChannelArgs:
 
     @_builtins.property
     @pulumi.getter(name="isShared")
-    def is_shared(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_shared(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
         """
         return pulumi.get(self, "is_shared")
 
     @is_shared.setter
-    def is_shared(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_shared(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_shared", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The notification channel's name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _NotificationChannelState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input['NotificationChannelCreatedByArgs']] = None,
-                 definition: Optional[pulumi.Input['NotificationChannelDefinitionArgs']] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_by: Optional[pulumi.Input['NotificationChannelUpdatedByArgs']] = None,
-                 workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional['NotificationChannelCreatedByArgs']] = None,
+                 definition: pulumi.Input[Optional['NotificationChannelDefinitionArgs']] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_by: pulumi.Input[Optional['NotificationChannelUpdatedByArgs']] = None,
+                 workspace_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NotificationChannel resources.
 
@@ -181,158 +181,158 @@ class _NotificationChannelState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Notification Channel creation timestamp
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input['NotificationChannelCreatedByArgs']]:
+    def created_by(self) -> pulumi.Input[Optional['NotificationChannelCreatedByArgs']]:
         """
         Notification Channel creator
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input['NotificationChannelCreatedByArgs']]):
+    def created_by(self, value: pulumi.Input[Optional['NotificationChannelCreatedByArgs']]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter
-    def definition(self) -> Optional[pulumi.Input['NotificationChannelDefinitionArgs']]:
+    def definition(self) -> pulumi.Input[Optional['NotificationChannelDefinitionArgs']]:
         """
         The notification channel's definition
         """
         return pulumi.get(self, "definition")
 
     @definition.setter
-    def definition(self, value: Optional[pulumi.Input['NotificationChannelDefinitionArgs']]):
+    def definition(self, value: pulumi.Input[Optional['NotificationChannelDefinitionArgs']]):
         pulumi.set(self, "definition", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The deployment ID the notification channel is scoped to
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The entity ID the notification channel is scoped to
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityName")
-    def entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the entity the notification channel is scoped to
         """
         return pulumi.get(self, "entity_name")
 
     @entity_name.setter
-    def entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_name", value)
 
     @_builtins.property
     @pulumi.getter(name="entityType")
-    def entity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
         """
         return pulumi.get(self, "entity_type")
 
     @entity_type.setter
-    def entity_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_type", value)
 
     @_builtins.property
     @pulumi.getter(name="isShared")
-    def is_shared(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_shared(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
         """
         return pulumi.get(self, "is_shared")
 
     @is_shared.setter
-    def is_shared(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_shared(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_shared", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The notification channel's name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The notification channel's type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Notification Channel last updated timestamp
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedBy")
-    def updated_by(self) -> Optional[pulumi.Input['NotificationChannelUpdatedByArgs']]:
+    def updated_by(self) -> pulumi.Input[Optional['NotificationChannelUpdatedByArgs']]:
         """
         Notification Channel updater
         """
         return pulumi.get(self, "updated_by")
 
     @updated_by.setter
-    def updated_by(self, value: Optional[pulumi.Input['NotificationChannelUpdatedByArgs']]):
+    def updated_by(self, value: pulumi.Input[Optional['NotificationChannelUpdatedByArgs']]):
         pulumi.set(self, "updated_by", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")
-    def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The workspace ID the notification channel is scoped to
         """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
-    def workspace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_id", value)
 
 
@@ -342,12 +342,12 @@ class NotificationChannel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: Optional[pulumi.Input[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 definition: pulumi.Input[Optional[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Notification Channel resource
@@ -387,12 +387,12 @@ class NotificationChannel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: Optional[pulumi.Input[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 definition: pulumi.Input[Optional[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -433,19 +433,19 @@ class NotificationChannel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            created_by: Optional[pulumi.Input[Union['NotificationChannelCreatedByArgs', 'NotificationChannelCreatedByArgsDict']]] = None,
-            definition: Optional[pulumi.Input[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
-            deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-            is_shared: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_by: Optional[pulumi.Input[Union['NotificationChannelUpdatedByArgs', 'NotificationChannelUpdatedByArgsDict']]] = None,
-            workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'NotificationChannel':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[Union['NotificationChannelCreatedByArgs', 'NotificationChannelCreatedByArgsDict']]] = None,
+            definition: pulumi.Input[Optional[Union['NotificationChannelDefinitionArgs', 'NotificationChannelDefinitionArgsDict']]] = None,
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+            is_shared: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_by: pulumi.Input[Optional[Union['NotificationChannelUpdatedByArgs', 'NotificationChannelUpdatedByArgsDict']]] = None,
+            workspace_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'NotificationChannel':
         """
         Get an existing NotificationChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

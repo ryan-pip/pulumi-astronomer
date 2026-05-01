@@ -112,8 +112,8 @@ def get_workspaces(names: Optional[Sequence[_builtins.str]] = None,
         names=pulumi.get(__ret__, 'names'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'),
         workspaces=pulumi.get(__ret__, 'workspaces'))
-def get_workspaces_output(names: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                          workspace_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_workspaces_output(names: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                          workspace_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWorkspacesResult]:
     """
     Workspaces data source

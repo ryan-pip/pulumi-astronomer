@@ -20,9 +20,9 @@ __all__ = ['AgentTokenArgs', 'AgentToken']
 class AgentTokenArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AgentToken resource.
 
@@ -53,49 +53,49 @@ class AgentTokenArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Agent Token description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="expiryPeriodInDays")
-    def expiry_period_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry_period_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Agent Token expiry period in days. If not set, the token will not expire.
         """
         return pulumi.get(self, "expiry_period_in_days")
 
     @expiry_period_in_days.setter
-    def expiry_period_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry_period_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry_period_in_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Agent Token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _AgentTokenState:
     def __init__(__self__, *,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AgentToken resources.
 
@@ -118,62 +118,62 @@ class _AgentTokenState:
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the deployment this agent token belongs to
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Agent Token description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="expiryPeriodInDays")
-    def expiry_period_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry_period_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Agent Token expiry period in days. If not set, the token will not expire.
         """
         return pulumi.get(self, "expiry_period_in_days")
 
     @expiry_period_in_days.setter
-    def expiry_period_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry_period_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry_period_in_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Agent Token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Agent Token value. Warning: This value will be saved in plaintext in the terraform state file.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
 
@@ -183,10 +183,10 @@ class AgentToken(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Agent Token resource
@@ -224,10 +224,10 @@ class AgentToken(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -256,11 +256,11 @@ class AgentToken(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            expiry_period_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None) -> 'AgentToken':
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None) -> 'AgentToken':
         """
         Get an existing AgentToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

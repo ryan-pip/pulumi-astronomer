@@ -234,104 +234,104 @@ export interface ClusterState {
     /**
      * Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Cluster creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Cluster database instance type
      */
-    dbInstanceType?: pulumi.Input<string>;
+    dbInstanceType?: pulumi.Input<string | undefined>;
     /**
      * The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
      */
-    drRegion?: pulumi.Input<string>;
+    drRegion?: pulumi.Input<string | undefined>;
     /**
      * Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
      */
-    drSecondaryVpcCidr?: pulumi.Input<string>;
+    drSecondaryVpcCidr?: pulumi.Input<string | undefined>;
     /**
      * The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
      */
-    drVpcSubnetRange?: pulumi.Input<string>;
+    drVpcSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
      */
-    enableReplicationTimeControl?: pulumi.Input<boolean>;
+    enableReplicationTimeControl?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster health status
      */
-    healthStatus?: pulumi.Input<inputs.ClusterHealthStatus>;
+    healthStatus?: pulumi.Input<inputs.ClusterHealthStatus | undefined>;
     /**
      * Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
      */
-    isDrEnabled?: pulumi.Input<boolean>;
+    isDrEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
      */
-    isFailedOver?: pulumi.Input<boolean>;
+    isFailedOver?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the cluster is limited
      */
-    isLimited?: pulumi.Input<boolean>;
+    isLimited?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster metadata
      */
-    metadata?: pulumi.Input<inputs.ClusterMetadata>;
+    metadata?: pulumi.Input<inputs.ClusterMetadata | undefined>;
     /**
      * Cluster name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Cluster node pools
      */
-    nodePools?: pulumi.Input<pulumi.Input<inputs.ClusterNodePool>[]>;
+    nodePools?: pulumi.Input<pulumi.Input<inputs.ClusterNodePool>[] | undefined>;
     /**
      * Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    podSubnetRange?: pulumi.Input<string>;
+    podSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster provider account
      */
-    providerAccount?: pulumi.Input<string>;
+    providerAccount?: pulumi.Input<string | undefined>;
     /**
      * Cluster region - if changed, the cluster will be recreated.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    servicePeeringRange?: pulumi.Input<string>;
+    servicePeeringRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    serviceSubnetRange?: pulumi.Input<string>;
+    serviceSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster status
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Cluster tenant ID
      */
-    tenantId?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.ClusterTimeouts>;
+    tenantId?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.ClusterTimeouts | undefined>;
     /**
      * Cluster type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Cluster last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Cluster VPC subnet range. If changed, the cluster will be recreated.
      */
-    vpcSubnetRange?: pulumi.Input<string>;
+    vpcSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster workspace IDs
      */
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -345,35 +345,35 @@ export interface ClusterArgs {
     /**
      * The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
      */
-    drRegion?: pulumi.Input<string>;
+    drRegion?: pulumi.Input<string | undefined>;
     /**
      * Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
      */
-    drSecondaryVpcCidr?: pulumi.Input<string>;
+    drSecondaryVpcCidr?: pulumi.Input<string | undefined>;
     /**
      * The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
      */
-    drVpcSubnetRange?: pulumi.Input<string>;
+    drVpcSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
      */
-    enableReplicationTimeControl?: pulumi.Input<boolean>;
+    enableReplicationTimeControl?: pulumi.Input<boolean | undefined>;
     /**
      * Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
      */
-    isDrEnabled?: pulumi.Input<boolean>;
+    isDrEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
      */
-    isFailedOver?: pulumi.Input<boolean>;
+    isFailedOver?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    podSubnetRange?: pulumi.Input<string>;
+    podSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster region - if changed, the cluster will be recreated.
      */
@@ -381,12 +381,12 @@ export interface ClusterArgs {
     /**
      * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    servicePeeringRange?: pulumi.Input<string>;
+    servicePeeringRange?: pulumi.Input<string | undefined>;
     /**
      * Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
-    serviceSubnetRange?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.ClusterTimeouts>;
+    serviceSubnetRange?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.ClusterTimeouts | undefined>;
     /**
      * Cluster type
      */

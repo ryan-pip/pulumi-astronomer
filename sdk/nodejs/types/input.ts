@@ -6,23 +6,23 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AlertCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertNotificationChannel {
     /**
      * Notification Channel creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Notification Channel creator
      */
-    createdBy?: pulumi.Input<inputs.AlertNotificationChannelCreatedBy>;
+    createdBy?: pulumi.Input<inputs.AlertNotificationChannelCreatedBy | undefined>;
     /**
      * The notification channel's definition
      */
@@ -30,7 +30,7 @@ export interface AlertNotificationChannel {
     /**
      * The deployment ID the notification channel is scoped to
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The entity ID the notification channel is scoped to
      */
@@ -38,7 +38,7 @@ export interface AlertNotificationChannel {
     /**
      * The name of the entity the notification channel is scoped to
      */
-    entityName?: pulumi.Input<string>;
+    entityName?: pulumi.Input<string | undefined>;
     /**
      * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
      */
@@ -46,11 +46,11 @@ export interface AlertNotificationChannel {
     /**
      * The notification channel's ID
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
      */
-    isShared?: pulumi.Input<boolean>;
+    isShared?: pulumi.Input<boolean | undefined>;
     /**
      * The notification channel's name
      */
@@ -62,64 +62,64 @@ export interface AlertNotificationChannel {
     /**
      * Notification Channel last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Notification Channel updater
      */
-    updatedBy?: pulumi.Input<inputs.AlertNotificationChannelUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.AlertNotificationChannelUpdatedBy | undefined>;
     /**
      * The workspace ID the notification channel is scoped to
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertNotificationChannelCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertNotificationChannelDefinition {
     /**
      * The API key for the notification channel
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The DAG ID for the notification channel
      */
-    dagId?: pulumi.Input<string>;
+    dagId?: pulumi.Input<string | undefined>;
     /**
      * The deployment API token for the notification channel
      */
-    deploymentApiToken?: pulumi.Input<string>;
+    deploymentApiToken?: pulumi.Input<string | undefined>;
     /**
      * The deployment ID for the notification channel
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The integration key for the notification channel
      */
-    integrationKey?: pulumi.Input<string>;
+    integrationKey?: pulumi.Input<string | undefined>;
     /**
      * The recipients for the notification channel
      */
-    recipients?: pulumi.Input<pulumi.Input<string>[]>;
+    recipients?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The webhook URL for the notification channel
      */
-    webhookUrl?: pulumi.Input<string>;
+    webhookUrl?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertNotificationChannelUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertRules {
@@ -152,15 +152,15 @@ export interface AlertRulesProperties {
     /**
      * The deadline for the DAG in HH:MM 24-hour UTC format
      */
-    dagDeadline?: pulumi.Input<string>;
+    dagDeadline?: pulumi.Input<string | undefined>;
     /**
      * The duration of the DAG in seconds (minimum 60)
      */
-    dagDurationSeconds?: pulumi.Input<number>;
+    dagDurationSeconds?: pulumi.Input<number | undefined>;
     /**
      * The days of the week for the timeliness rule
      */
-    daysOfWeeks?: pulumi.Input<pulumi.Input<string>[]>;
+    daysOfWeeks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the deployment for the alert rule
      */
@@ -168,36 +168,36 @@ export interface AlertRulesProperties {
     /**
      * The look-back period in seconds (minimum 60)
      */
-    lookBackPeriodSeconds?: pulumi.Input<number>;
+    lookBackPeriodSeconds?: pulumi.Input<number | undefined>;
     /**
      * The duration of the Task in seconds (minimum 60)
      */
-    taskDurationSeconds?: pulumi.Input<number>;
+    taskDurationSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface AlertUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ApiTokenCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ApiTokenRole {
     /**
      * The Deployment ID. Required for DAG and TAG entity types.
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the entity to assign the role to. For DAG entity type, this is the dag_id. For TAG entity type, this is the tag value.
      */
@@ -213,138 +213,138 @@ export interface ApiTokenRole {
 }
 
 export interface ApiTokenUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterHealthStatus {
     /**
      * Cluster health status details
      */
-    details?: pulumi.Input<pulumi.Input<inputs.ClusterHealthStatusDetail>[]>;
+    details?: pulumi.Input<pulumi.Input<inputs.ClusterHealthStatusDetail>[] | undefined>;
     /**
      * Cluster health status value
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterHealthStatusDetail {
     /**
      * Cluster health status detail code
      */
-    code?: pulumi.Input<string>;
+    code?: pulumi.Input<string | undefined>;
     /**
      * Cluster health status detail description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cluster health status detail severity
      */
-    severity?: pulumi.Input<string>;
+    severity?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterMetadata {
     /**
      * Cluster external IPs
      */
-    externalIps?: pulumi.Input<pulumi.Input<string>[]>;
+    externalIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Cluster kube DNS IP
      */
-    kubeDnsIp?: pulumi.Input<string>;
+    kubeDnsIp?: pulumi.Input<string | undefined>;
     /**
      * Cluster OIDC issuer URL
      */
-    oidcIssuerUrl?: pulumi.Input<string>;
+    oidcIssuerUrl?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterNodePool {
     /**
      * Node pool cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Node pool cluster identifier
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * Node pool creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Node pool identifier
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether the node pool is the default node pool of the cluster
      */
-    isDefault?: pulumi.Input<boolean>;
+    isDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Node pool maximum node count
      */
-    maxNodeCount?: pulumi.Input<number>;
+    maxNodeCount?: pulumi.Input<number | undefined>;
     /**
      * Node pool name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Node pool node instance type
      */
-    nodeInstanceType?: pulumi.Input<string>;
+    nodeInstanceType?: pulumi.Input<string | undefined>;
     /**
      * Node pool supported Astro machines
      */
-    supportedAstroMachines?: pulumi.Input<pulumi.Input<string>[]>;
+    supportedAstroMachines?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Node pool last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface CustomRoleCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface CustomRoleUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentEnvironmentVariable {
@@ -359,18 +359,18 @@ export interface DeploymentEnvironmentVariable {
     /**
      * Environment variable last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Environment variable value
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentRemoteExecution {
     /**
      * The allowed IP address ranges for remote execution
      */
-    allowedIpAddressRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpAddressRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether remote execution is enabled
      */
@@ -378,15 +378,15 @@ export interface DeploymentRemoteExecution {
     /**
      * The URL for the remote API
      */
-    remoteApiUrl?: pulumi.Input<string>;
+    remoteApiUrl?: pulumi.Input<string | undefined>;
     /**
      * The bucket for task logs
      */
-    taskLogBucket?: pulumi.Input<string>;
+    taskLogBucket?: pulumi.Input<string | undefined>;
     /**
      * The URL pattern for task logs
      */
-    taskLogUrlPattern?: pulumi.Input<string>;
+    taskLogUrlPattern?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentScalingSpec {
@@ -400,51 +400,51 @@ export interface DeploymentScalingSpecHibernationSpec {
     /**
      * Hibernation override configuration. Set to null to remove the override.
      */
-    override?: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecOverride>;
+    override?: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecOverride | undefined>;
     /**
      * List of hibernation schedules. Set to null to remove all schedules.
      */
-    schedules?: pulumi.Input<pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecSchedule>[]>;
+    schedules?: pulumi.Input<pulumi.Input<inputs.DeploymentScalingSpecHibernationSpecSchedule>[] | undefined>;
 }
 
 export interface DeploymentScalingSpecHibernationSpecOverride {
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     isHibernating: pulumi.Input<boolean>;
-    overrideUntil?: pulumi.Input<string>;
+    overrideUntil?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentScalingSpecHibernationSpecSchedule {
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     hibernateAtCron: pulumi.Input<string>;
     isEnabled: pulumi.Input<boolean>;
     wakeAtCron: pulumi.Input<string>;
 }
 
 export interface DeploymentScalingStatus {
-    hibernationStatus?: pulumi.Input<inputs.DeploymentScalingStatusHibernationStatus>;
+    hibernationStatus?: pulumi.Input<inputs.DeploymentScalingStatusHibernationStatus | undefined>;
 }
 
 export interface DeploymentScalingStatusHibernationStatus {
-    isHibernating?: pulumi.Input<boolean>;
-    nextEventAt?: pulumi.Input<string>;
-    nextEventType?: pulumi.Input<string>;
-    reason?: pulumi.Input<string>;
+    isHibernating?: pulumi.Input<boolean | undefined>;
+    nextEventAt?: pulumi.Input<string | undefined>;
+    nextEventType?: pulumi.Input<string | undefined>;
+    reason?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentWorkerQueue {
     /**
      * Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
      */
-    astroMachine?: pulumi.Input<string>;
+    astroMachine?: pulumi.Input<string | undefined>;
     /**
      * Worker queue default
      */
@@ -464,15 +464,15 @@ export interface DeploymentWorkerQueue {
     /**
      * Worker queue Node pool identifier - required for 'HYBRID' deployments
      */
-    nodePoolId?: pulumi.Input<string>;
+    nodePoolId?: pulumi.Input<string | undefined>;
     /**
      * Worker queue pod CPU
      */
-    podCpu?: pulumi.Input<string>;
+    podCpu?: pulumi.Input<string | undefined>;
     /**
      * Worker queue pod memory
      */
-    podMemory?: pulumi.Input<string>;
+    podMemory?: pulumi.Input<string | undefined>;
     /**
      * Worker queue worker concurrency
      */
@@ -480,68 +480,68 @@ export interface DeploymentWorkerQueue {
 }
 
 export interface NotificationChannelCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface NotificationChannelDefinition {
     /**
      * The API key for the notification channel
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The DAG ID for the notification channel
      */
-    dagId?: pulumi.Input<string>;
+    dagId?: pulumi.Input<string | undefined>;
     /**
      * The deployment API token for the notification channel
      */
-    deploymentApiToken?: pulumi.Input<string>;
+    deploymentApiToken?: pulumi.Input<string | undefined>;
     /**
      * The deployment ID for the notification channel
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The integration key for the notification channel
      */
-    integrationKey?: pulumi.Input<string>;
+    integrationKey?: pulumi.Input<string | undefined>;
     /**
      * The recipients for the notification channel
      */
-    recipients?: pulumi.Input<pulumi.Input<string>[]>;
+    recipients?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The webhook URL for the notification channel
      */
-    webhookUrl?: pulumi.Input<string>;
+    webhookUrl?: pulumi.Input<string | undefined>;
 }
 
 export interface NotificationChannelUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamDagRole {
     /**
      * The DAG ID. Required if tag is not specified.
      */
-    dagId?: pulumi.Input<string>;
+    dagId?: pulumi.Input<string | undefined>;
     /**
      * The Deployment ID containing the DAG.
      */
@@ -553,7 +553,7 @@ export interface TeamDagRole {
     /**
      * The DAG tag. Required if dagId is not specified.
      */
-    tag?: pulumi.Input<string>;
+    tag?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamDeploymentRole {
@@ -571,7 +571,7 @@ export interface TeamRolesDagRole {
     /**
      * The DAG ID. Required if tag is not specified.
      */
-    dagId?: pulumi.Input<string>;
+    dagId?: pulumi.Input<string | undefined>;
     /**
      * The Deployment ID containing the DAG.
      */
@@ -583,7 +583,7 @@ export interface TeamRolesDagRole {
     /**
      * The DAG tag. Required if dagId is not specified.
      */
-    tag?: pulumi.Input<string>;
+    tag?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamRolesDeploymentRole {
@@ -609,12 +609,12 @@ export interface TeamRolesWorkspaceRole {
 }
 
 export interface TeamUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamWorkspaceRole {
@@ -629,28 +629,28 @@ export interface TeamWorkspaceRole {
 }
 
 export interface UserInviteInvitee {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface UserInviteInviter {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface UserRolesDagRole {
     /**
      * The DAG ID. Required if tag is not specified.
      */
-    dagId?: pulumi.Input<string>;
+    dagId?: pulumi.Input<string | undefined>;
     /**
      * The Deployment ID containing the DAG.
      */
@@ -662,7 +662,7 @@ export interface UserRolesDagRole {
     /**
      * The DAG tag. Required if dagId is not specified.
      */
-    tag?: pulumi.Input<string>;
+    tag?: pulumi.Input<string | undefined>;
 }
 
 export interface UserRolesDeploymentRole {
@@ -688,19 +688,19 @@ export interface UserRolesWorkspaceRole {
 }
 
 export interface WorkspaceCreatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface WorkspaceUpdatedBy {
-    apiTokenName?: pulumi.Input<string>;
-    avatarUrl?: pulumi.Input<string>;
-    fullName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    subjectType?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }

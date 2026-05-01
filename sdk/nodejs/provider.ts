@@ -76,15 +76,15 @@ export interface ProviderArgs {
     /**
      * API host to use for the provider. Default is `https://api.astronomer.io`
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Organization ID this provider will operate on.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Astro API Token. Can be set with an `ASTRO_API_TOKEN` env var.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

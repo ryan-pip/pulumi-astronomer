@@ -126,31 +126,31 @@ export interface UserInviteState {
     /**
      * The email address of the user being invited
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * The expiration date of the invite
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the invite
      */
-    inviteId?: pulumi.Input<string>;
+    inviteId?: pulumi.Input<string | undefined>;
     /**
      * The profile of the invitee
      */
-    invitee?: pulumi.Input<inputs.UserInviteInvitee>;
+    invitee?: pulumi.Input<inputs.UserInviteInvitee | undefined>;
     /**
      * The profile of the inviter
      */
-    inviter?: pulumi.Input<inputs.UserInviteInviter>;
+    inviter?: pulumi.Input<inputs.UserInviteInviter | undefined>;
     /**
      * The Organization role to assign to the user
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**

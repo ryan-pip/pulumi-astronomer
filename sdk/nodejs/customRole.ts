@@ -154,39 +154,39 @@ export interface CustomRoleState {
     /**
      * The time the custom role was created
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The subject who created the custom role
      */
-    createdBy?: pulumi.Input<inputs.CustomRoleCreatedBy>;
+    createdBy?: pulumi.Input<inputs.CustomRoleCreatedBy | undefined>;
     /**
      * The custom role's description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The custom role's name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The custom role's permissions
      */
-    permissions?: pulumi.Input<pulumi.Input<string>[]>;
+    permissions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The IDs of Workspaces that the custom role is restricted to
      */
-    restrictedWorkspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    restrictedWorkspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The custom role's scope (DEPLOYMENT or DAG)
      */
-    scopeType?: pulumi.Input<string>;
+    scopeType?: pulumi.Input<string | undefined>;
     /**
      * The time the custom role was last updated
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The subject who last updated the custom role
      */
-    updatedBy?: pulumi.Input<inputs.CustomRoleUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.CustomRoleUpdatedBy | undefined>;
 }
 
 /**
@@ -196,11 +196,11 @@ export interface CustomRoleArgs {
     /**
      * The custom role's description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The custom role's name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The custom role's permissions
      */
@@ -208,7 +208,7 @@ export interface CustomRoleArgs {
     /**
      * The IDs of Workspaces that the custom role is restricted to
      */
-    restrictedWorkspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    restrictedWorkspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The custom role's scope (DEPLOYMENT or DAG)
      */

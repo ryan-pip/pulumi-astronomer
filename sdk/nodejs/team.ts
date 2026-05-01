@@ -147,55 +147,55 @@ export interface TeamState {
     /**
      * Team creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Team creator
      */
-    createdBy?: pulumi.Input<inputs.TeamCreatedBy>;
+    createdBy?: pulumi.Input<inputs.TeamCreatedBy | undefined>;
     /**
      * The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (for example `DEPLOYMENT_ACCESSOR`).
      */
-    dagRoles?: pulumi.Input<pulumi.Input<inputs.TeamDagRole>[]>;
+    dagRoles?: pulumi.Input<pulumi.Input<inputs.TeamDagRole>[] | undefined>;
     /**
      * The roles to assign to the Deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
      */
-    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.TeamDeploymentRole>[]>;
+    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.TeamDeploymentRole>[] | undefined>;
     /**
      * Team description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the Team is managed by an identity provider
      */
-    isIdpManaged?: pulumi.Input<boolean>;
+    isIdpManaged?: pulumi.Input<boolean | undefined>;
     /**
      * The IDs of the users to add to the Team
      */
-    memberIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Team name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The role to assign to the Organization
      */
-    organizationRole?: pulumi.Input<string>;
+    organizationRole?: pulumi.Input<string | undefined>;
     /**
      * Number of roles assigned to the Team
      */
-    rolesCount?: pulumi.Input<number>;
+    rolesCount?: pulumi.Input<number | undefined>;
     /**
      * Team last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Team updater
      */
-    updatedBy?: pulumi.Input<inputs.TeamUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.TeamUpdatedBy | undefined>;
     /**
      * The roles to assign to the Workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
      */
-    workspaceRoles?: pulumi.Input<pulumi.Input<inputs.TeamWorkspaceRole>[]>;
+    workspaceRoles?: pulumi.Input<pulumi.Input<inputs.TeamWorkspaceRole>[] | undefined>;
 }
 
 /**
@@ -205,23 +205,23 @@ export interface TeamArgs {
     /**
      * The DAG roles to assign to the team. Each role grants permissions to a specific DAG or DAGs with a specific tag within a deployment. Each deployment referenced in `dagRoles` must also have a corresponding entry in `deploymentRoles` (for example `DEPLOYMENT_ACCESSOR`).
      */
-    dagRoles?: pulumi.Input<pulumi.Input<inputs.TeamDagRole>[]>;
+    dagRoles?: pulumi.Input<pulumi.Input<inputs.TeamDagRole>[] | undefined>;
     /**
      * The roles to assign to the Deployments. Each `deploymentId` must belong to a workspace that also appears in `workspaceRoles`. Required for any deployment referenced in `dagRoles`.
      */
-    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.TeamDeploymentRole>[]>;
+    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.TeamDeploymentRole>[] | undefined>;
     /**
      * Team description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The IDs of the users to add to the Team
      */
-    memberIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Team name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The role to assign to the Organization
      */
@@ -229,5 +229,5 @@ export interface TeamArgs {
     /**
      * The roles to assign to the Workspaces. When you set `deploymentRoles` or `dagRoles`, include each deployment's parent workspace here (any workspace role), so Terraform state matches the API.
      */
-    workspaceRoles?: pulumi.Input<pulumi.Input<inputs.TeamWorkspaceRole>[]>;
+    workspaceRoles?: pulumi.Input<pulumi.Input<inputs.TeamWorkspaceRole>[] | undefined>;
 }

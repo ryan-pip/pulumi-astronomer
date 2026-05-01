@@ -257,7 +257,7 @@ def get_alert(id: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         updated_by=pulumi.get(__ret__, 'updated_by'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_alert_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_alert_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertResult]:
     """
     Alert data source

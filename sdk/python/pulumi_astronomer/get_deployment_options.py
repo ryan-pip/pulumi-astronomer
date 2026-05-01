@@ -231,10 +231,10 @@ def get_deployment_options(cloud_provider: Optional[_builtins.str] = None,
         worker_machines=pulumi.get(__ret__, 'worker_machines'),
         worker_queues=pulumi.get(__ret__, 'worker_queues'),
         workload_identity_options=pulumi.get(__ret__, 'workload_identity_options'))
-def get_deployment_options_output(cloud_provider: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  deployment_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  deployment_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  executor: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_deployment_options_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  deployment_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  executor: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentOptionsResult]:
     """
     Deployment options data source

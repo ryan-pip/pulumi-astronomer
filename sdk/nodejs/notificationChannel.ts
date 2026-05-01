@@ -156,55 +156,55 @@ export interface NotificationChannelState {
     /**
      * Notification Channel creation timestamp
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Notification Channel creator
      */
-    createdBy?: pulumi.Input<inputs.NotificationChannelCreatedBy>;
+    createdBy?: pulumi.Input<inputs.NotificationChannelCreatedBy | undefined>;
     /**
      * The notification channel's definition
      */
-    definition?: pulumi.Input<inputs.NotificationChannelDefinition>;
+    definition?: pulumi.Input<inputs.NotificationChannelDefinition | undefined>;
     /**
      * The deployment ID the notification channel is scoped to
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The entity ID the notification channel is scoped to
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * The name of the entity the notification channel is scoped to
      */
-    entityName?: pulumi.Input<string>;
+    entityName?: pulumi.Input<string | undefined>;
     /**
      * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
      */
-    entityType?: pulumi.Input<string>;
+    entityType?: pulumi.Input<string | undefined>;
     /**
      * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
      */
-    isShared?: pulumi.Input<boolean>;
+    isShared?: pulumi.Input<boolean | undefined>;
     /**
      * The notification channel's name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The notification channel's type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Notification Channel last updated timestamp
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Notification Channel updater
      */
-    updatedBy?: pulumi.Input<inputs.NotificationChannelUpdatedBy>;
+    updatedBy?: pulumi.Input<inputs.NotificationChannelUpdatedBy | undefined>;
     /**
      * The workspace ID the notification channel is scoped to
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -226,11 +226,11 @@ export interface NotificationChannelArgs {
     /**
      * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
      */
-    isShared?: pulumi.Input<boolean>;
+    isShared?: pulumi.Input<boolean | undefined>;
     /**
      * The notification channel's name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The notification channel's type
      */

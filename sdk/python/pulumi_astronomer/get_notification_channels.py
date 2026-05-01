@@ -132,11 +132,11 @@ def get_notification_channels(channel_types: Optional[Sequence[_builtins.str]] =
         notification_channel_ids=pulumi.get(__ret__, 'notification_channel_ids'),
         notification_channels=pulumi.get(__ret__, 'notification_channels'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
-def get_notification_channels_output(channel_types: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                     deployment_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                     entity_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                     notification_channel_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                     workspace_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_notification_channels_output(channel_types: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                     deployment_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                     entity_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                     notification_channel_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                     workspace_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationChannelsResult]:
     """
     Notification Channels data source

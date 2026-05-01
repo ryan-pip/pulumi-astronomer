@@ -90,5 +90,5 @@ export function getTeamsOutput(args?: GetTeamsOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getTeams.
  */
 export interface GetTeamsOutputArgs {
-    names?: pulumi.Input<pulumi.Input<string>[]>;
+    names?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

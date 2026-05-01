@@ -94,6 +94,6 @@ export function getUsersOutput(args?: GetUsersOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getUsers.
  */
 export interface GetUsersOutputArgs {
-    deploymentId?: pulumi.Input<string>;
-    workspaceId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }

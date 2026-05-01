@@ -79,11 +79,11 @@ export interface HybridClusterWorkspaceAuthorizationState {
     /**
      * The ID of the hybrid cluster to set authorizations for
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The IDs of the workspaces to authorize for the hybrid cluster
      */
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -97,5 +97,5 @@ export interface HybridClusterWorkspaceAuthorizationArgs {
     /**
      * The IDs of the workspaces to authorize for the hybrid cluster
      */
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

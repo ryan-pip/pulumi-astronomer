@@ -96,7 +96,7 @@ export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pul
  * A collection of arguments for invoking getDeployments.
  */
 export interface GetDeploymentsOutputArgs {
-    deploymentIds?: pulumi.Input<pulumi.Input<string>[]>;
-    names?: pulumi.Input<pulumi.Input<string>[]>;
-    workspaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    deploymentIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    names?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    workspaceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

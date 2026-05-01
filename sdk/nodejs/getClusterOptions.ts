@@ -93,6 +93,6 @@ export interface GetClusterOptionsOutputArgs {
     /**
      * ClusterOptions cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     type: pulumi.Input<string>;
 }

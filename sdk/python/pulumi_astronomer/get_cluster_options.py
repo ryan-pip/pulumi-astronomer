@@ -112,8 +112,8 @@ def get_cluster_options(cloud_provider: Optional[_builtins.str] = None,
         cluster_options=pulumi.get(__ret__, 'cluster_options'),
         id=pulumi.get(__ret__, 'id'),
         type=pulumi.get(__ret__, 'type'))
-def get_cluster_options_output(cloud_provider: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               type: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cluster_options_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               type: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterOptionsResult]:
     """
     ClusterOptions data source

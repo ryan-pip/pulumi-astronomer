@@ -19,7 +19,19 @@ linters:
     - gosec
     # Replaces golint / interfacer (removed in golangci-lint v1.57+)
     - revive
+  settings:
+    goconst:
+      # Tests legitimately repeat resource-name literals across expectedResources
+      # and resourcesWithCustomComputeID; without this each name reaches the
+      # default min-occurrences=3 across files and trips the linter.
+      ignore-tests: true
   exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
     paths:
       - schema.go
       - pulumiManifest.go

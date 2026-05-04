@@ -2933,6 +2933,10 @@
                     "type": "string",
                     "description": "Cluster region\n"
                 },
+                "secondaryVpcCidr": {
+                    "type": "string",
+                    "description": "Secondary CIDR for pod networking (AWS only)\n"
+                },
                 "servicePeeringRange": {
                     "type": "string",
                     "description": "Cluster service peering range\n"
@@ -2996,6 +3000,7 @@
                 "podSubnetRange",
                 "providerAccount",
                 "region",
+                "secondaryVpcCidr",
                 "servicePeeringRange",
                 "serviceSubnetRange",
                 "status",
@@ -6550,6 +6555,10 @@
                     "type": "string",
                     "description": "Cluster region - if changed, the cluster will be recreated.\n"
                 },
+                "secondaryVpcCidr": {
+                    "type": "string",
+                    "description": "Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.\n"
+                },
                 "servicePeeringRange": {
                     "type": "string",
                     "description": "Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.\n"
@@ -6606,6 +6615,7 @@
                 "nodePools",
                 "providerAccount",
                 "region",
+                "secondaryVpcCidr",
                 "status",
                 "tenantId",
                 "type",
@@ -6653,6 +6663,10 @@
                 "region": {
                     "type": "string",
                     "description": "Cluster region - if changed, the cluster will be recreated.\n"
+                },
+                "secondaryVpcCidr": {
+                    "type": "string",
+                    "description": "Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.\n"
                 },
                 "servicePeeringRange": {
                     "type": "string",
@@ -6761,6 +6775,10 @@
                     "region": {
                         "type": "string",
                         "description": "Cluster region - if changed, the cluster will be recreated.\n"
+                    },
+                    "secondaryVpcCidr": {
+                        "type": "string",
+                        "description": "Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.\n"
                     },
                     "servicePeeringRange": {
                         "type": "string",
@@ -8820,6 +8838,10 @@
                         "description": "Cluster region\n",
                         "type": "string"
                     },
+                    "secondaryVpcCidr": {
+                        "description": "Secondary CIDR for pod networking (AWS only)\n",
+                        "type": "string"
+                    },
                     "servicePeeringRange": {
                         "description": "Cluster service peering range\n",
                         "type": "string"
@@ -8882,6 +8904,7 @@
                     "podSubnetRange",
                     "providerAccount",
                     "region",
+                    "secondaryVpcCidr",
                     "servicePeeringRange",
                     "serviceSubnetRange",
                     "status",

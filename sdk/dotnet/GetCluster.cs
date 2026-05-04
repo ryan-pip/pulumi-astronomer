@@ -203,6 +203,10 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string Region;
         /// <summary>
+        /// Secondary CIDR for pod networking (AWS only)
+        /// </summary>
+        public readonly string SecondaryVpcCidr;
+        /// <summary>
         /// Cluster service peering range
         /// </summary>
         public readonly string ServicePeeringRange;
@@ -277,6 +281,8 @@ namespace RyanPip.Astronomer
 
             string region,
 
+            string secondaryVpcCidr,
+
             string servicePeeringRange,
 
             string serviceSubnetRange,
@@ -313,6 +319,7 @@ namespace RyanPip.Astronomer
             PodSubnetRange = podSubnetRange;
             ProviderAccount = providerAccount;
             Region = region;
+            SecondaryVpcCidr = secondaryVpcCidr;
             ServicePeeringRange = servicePeeringRange;
             ServiceSubnetRange = serviceSubnetRange;
             Status = status;

@@ -115,6 +115,10 @@ export interface GetClusterResult {
      */
     readonly region: string;
     /**
+     * Secondary CIDR for pod networking (AWS only)
+     */
+    readonly secondaryVpcCidr: string;
+    /**
      * Cluster service peering range
      */
     readonly servicePeeringRange: string;

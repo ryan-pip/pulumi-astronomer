@@ -106,6 +106,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
+     * Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+     */
+    declare public readonly secondaryVpcCidr: pulumi.Output<string>;
+    /**
      * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     declare public readonly servicePeeringRange: pulumi.Output<string | undefined>;
@@ -169,6 +173,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["podSubnetRange"] = state?.podSubnetRange;
             resourceInputs["providerAccount"] = state?.providerAccount;
             resourceInputs["region"] = state?.region;
+            resourceInputs["secondaryVpcCidr"] = state?.secondaryVpcCidr;
             resourceInputs["servicePeeringRange"] = state?.servicePeeringRange;
             resourceInputs["serviceSubnetRange"] = state?.serviceSubnetRange;
             resourceInputs["status"] = state?.status;
@@ -205,6 +210,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["podSubnetRange"] = args?.podSubnetRange;
             resourceInputs["region"] = args?.region;
+            resourceInputs["secondaryVpcCidr"] = args?.secondaryVpcCidr;
             resourceInputs["servicePeeringRange"] = args?.servicePeeringRange;
             resourceInputs["serviceSubnetRange"] = args?.serviceSubnetRange;
             resourceInputs["timeouts"] = args?.timeouts;
@@ -300,6 +306,10 @@ export interface ClusterState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
+     * Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+     */
+    secondaryVpcCidr?: pulumi.Input<string | undefined>;
+    /**
      * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */
     servicePeeringRange?: pulumi.Input<string | undefined>;
@@ -378,6 +388,10 @@ export interface ClusterArgs {
      * Cluster region - if changed, the cluster will be recreated.
      */
     region: pulumi.Input<string>;
+    /**
+     * Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+     */
+    secondaryVpcCidr?: pulumi.Input<string | undefined>;
     /**
      * Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
      */

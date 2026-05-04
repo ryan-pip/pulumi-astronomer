@@ -119,6 +119,12 @@ namespace RyanPip.Astronomer
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
+        /// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        /// </summary>
+        [Output("secondaryVpcCidr")]
+        public Output<string> SecondaryVpcCidr { get; private set; } = null!;
+
+        /// <summary>
         /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Output("servicePeeringRange")]
@@ -277,6 +283,12 @@ namespace RyanPip.Astronomer
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
+        /// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        /// </summary>
+        [Input("secondaryVpcCidr")]
+        public Input<string>? SecondaryVpcCidr { get; set; }
+
+        /// <summary>
         /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         /// </summary>
         [Input("servicePeeringRange")]
@@ -430,6 +442,12 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        /// </summary>
+        [Input("secondaryVpcCidr")]
+        public Input<string>? SecondaryVpcCidr { get; set; }
 
         /// <summary>
         /// Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.

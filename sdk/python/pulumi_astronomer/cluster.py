@@ -34,6 +34,7 @@ class ClusterArgs:
                  is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
                  service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  timeouts: pulumi.Input[Optional['ClusterTimeoutsArgs']] = None):
@@ -53,6 +54,7 @@ class ClusterArgs:
         :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
         :param pulumi.Input[_builtins.str] service_peering_range: Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] service_subnet_range: Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         """
@@ -77,6 +79,8 @@ class ClusterArgs:
             pulumi.set(__self__, "name", name)
         if pod_subnet_range is not None:
             pulumi.set(__self__, "pod_subnet_range", pod_subnet_range)
+        if secondary_vpc_cidr is not None:
+            pulumi.set(__self__, "secondary_vpc_cidr", secondary_vpc_cidr)
         if service_peering_range is not None:
             pulumi.set(__self__, "service_peering_range", service_peering_range)
         if service_subnet_range is not None:
@@ -241,6 +245,18 @@ class ClusterArgs:
         pulumi.set(self, "pod_subnet_range", value)
 
     @_builtins.property
+    @pulumi.getter(name="secondaryVpcCidr")
+    def secondary_vpc_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        """
+        return pulumi.get(self, "secondary_vpc_cidr")
+
+    @secondary_vpc_cidr.setter
+    def secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "secondary_vpc_cidr", value)
+
+    @_builtins.property
     @pulumi.getter(name="servicePeeringRange")
     def service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -294,6 +310,7 @@ class _ClusterState:
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_account: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
                  service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -323,6 +340,7 @@ class _ClusterState:
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] provider_account: Cluster provider account
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
         :param pulumi.Input[_builtins.str] service_peering_range: Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] service_subnet_range: Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] status: Cluster status
@@ -366,6 +384,8 @@ class _ClusterState:
             pulumi.set(__self__, "provider_account", provider_account)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secondary_vpc_cidr is not None:
+            pulumi.set(__self__, "secondary_vpc_cidr", secondary_vpc_cidr)
         if service_peering_range is not None:
             pulumi.set(__self__, "service_peering_range", service_peering_range)
         if service_subnet_range is not None:
@@ -590,6 +610,18 @@ class _ClusterState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="secondaryVpcCidr")
+    def secondary_vpc_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        """
+        return pulumi.get(self, "secondary_vpc_cidr")
+
+    @secondary_vpc_cidr.setter
+    def secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "secondary_vpc_cidr", value)
+
+    @_builtins.property
     @pulumi.getter(name="servicePeeringRange")
     def service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -711,6 +743,7 @@ class Cluster(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
                  service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  timeouts: pulumi.Input[Optional[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
@@ -734,6 +767,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
         :param pulumi.Input[_builtins.str] service_peering_range: Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] service_subnet_range: Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] type: Cluster type
@@ -775,6 +809,7 @@ class Cluster(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
                  service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  timeouts: pulumi.Input[Optional[Union['ClusterTimeoutsArgs', 'ClusterTimeoutsArgsDict']]] = None,
@@ -804,6 +839,7 @@ class Cluster(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
+            __props__.__dict__["secondary_vpc_cidr"] = secondary_vpc_cidr
             __props__.__dict__["service_peering_range"] = service_peering_range
             __props__.__dict__["service_subnet_range"] = service_subnet_range
             __props__.__dict__["timeouts"] = timeouts
@@ -853,6 +889,7 @@ class Cluster(pulumi.CustomResource):
             pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
             provider_account: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
             service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
             service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -886,6 +923,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] provider_account: Cluster provider account
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
+        :param pulumi.Input[_builtins.str] secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
         :param pulumi.Input[_builtins.str] service_peering_range: Cluster service peering range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] service_subnet_range: Cluster service subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] status: Cluster status
@@ -916,6 +954,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["pod_subnet_range"] = pod_subnet_range
         __props__.__dict__["provider_account"] = provider_account
         __props__.__dict__["region"] = region
+        __props__.__dict__["secondary_vpc_cidr"] = secondary_vpc_cidr
         __props__.__dict__["service_peering_range"] = service_peering_range
         __props__.__dict__["service_subnet_range"] = service_subnet_range
         __props__.__dict__["status"] = status
@@ -1062,6 +1101,14 @@ class Cluster(pulumi.CustomResource):
         Cluster region - if changed, the cluster will be recreated.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="secondaryVpcCidr")
+    def secondary_vpc_cidr(self) -> pulumi.Output[_builtins.str]:
+        """
+        Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
+        """
+        return pulumi.get(self, "secondary_vpc_cidr")
 
     @_builtins.property
     @pulumi.getter(name="servicePeeringRange")

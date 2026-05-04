@@ -93,6 +93,8 @@ type LookupClusterResult struct {
 	ProviderAccount string `pulumi:"providerAccount"`
 	// Cluster region
 	Region string `pulumi:"region"`
+	// Secondary CIDR for pod networking (AWS only)
+	SecondaryVpcCidr string `pulumi:"secondaryVpcCidr"`
 	// Cluster service peering range
 	ServicePeeringRange string `pulumi:"servicePeeringRange"`
 	// Cluster service subnet range
@@ -235,6 +237,11 @@ func (o LookupClusterResultOutput) ProviderAccount() pulumi.StringOutput {
 // Cluster region
 func (o LookupClusterResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Secondary CIDR for pod networking (AWS only)
+func (o LookupClusterResultOutput) SecondaryVpcCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.SecondaryVpcCidr }).(pulumi.StringOutput)
 }
 
 // Cluster service peering range

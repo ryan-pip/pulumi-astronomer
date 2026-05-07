@@ -23,7 +23,7 @@ namespace RyanPip.Astronomer
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Astronomer.Index.CustomRole("example", new()
+    ///     var example = new Astronomer.CustomRole("example", new()
     ///     {
     ///         Name = "Deployment_Viewer",
     ///         Description = "Custom role for viewing deployments",
@@ -36,7 +36,7 @@ namespace RyanPip.Astronomer
     ///     });
     /// 
     ///     // Custom role with restricted workspace access
-    ///     var restrictedExample = new Astronomer.Index.CustomRole("restricted_example", new()
+    ///     var restrictedExample = new Astronomer.CustomRole("restricted_example", new()
     ///     {
     ///         Name = "Limited_Deployment_Viewer",
     ///         Description = "Custom role restricted to specific workspaces",

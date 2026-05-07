@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiToken = Astronomer.Index.GetApiToken.Invoke(new()
+        ///     var exampleApiToken = Astronomer.GetApiToken.Invoke(new()
         ///     {
         ///         Id = "clxm4836f00ql01me3nigmcr6",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiToken = Astronomer.Index.GetApiToken.Invoke(new()
+        ///     var exampleApiToken = Astronomer.GetApiToken.Invoke(new()
         ///     {
         ///         Id = "clxm4836f00ql01me3nigmcr6",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiToken = Astronomer.Index.GetApiToken.Invoke(new()
+        ///     var exampleApiToken = Astronomer.GetApiToken.Invoke(new()
         ///     {
         ///         Id = "clxm4836f00ql01me3nigmcr6",
         ///     });

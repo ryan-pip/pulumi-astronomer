@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleCluster = Astronomer.Index.GetCluster.Invoke(new()
+        ///     var exampleCluster = Astronomer.GetCluster.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleCluster = Astronomer.Index.GetCluster.Invoke(new()
+        ///     var exampleCluster = Astronomer.GetCluster.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleCluster = Astronomer.Index.GetCluster.Invoke(new()
+        ///     var exampleCluster = Astronomer.GetCluster.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });

@@ -25,12 +25,12 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusterOptions = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptions = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///     });
         /// 
-        ///     var exampleClusterOptionsFilterByProvider = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptionsFilterByProvider = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///         CloudProvider = "AWS",
@@ -59,12 +59,12 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusterOptions = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptions = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///     });
         /// 
-        ///     var exampleClusterOptionsFilterByProvider = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptionsFilterByProvider = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///         CloudProvider = "AWS",
@@ -93,12 +93,12 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusterOptions = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptions = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///     });
         /// 
-        ///     var exampleClusterOptionsFilterByProvider = Astronomer.Index.GetClusterOptions.Invoke(new()
+        ///     var exampleClusterOptionsFilterByProvider = Astronomer.GetClusterOptions.Invoke(new()
         ///     {
         ///         Type = "HYBRID",
         ///         CloudProvider = "AWS",

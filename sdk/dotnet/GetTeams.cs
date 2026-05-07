@@ -25,9 +25,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeams = Astronomer.Index.GetTeams.Invoke();
+        ///     var exampleTeams = Astronomer.GetTeams.Invoke();
         /// 
-        ///     var exampleTeamsFilterByNames = Astronomer.Index.GetTeams.Invoke(new()
+        ///     var exampleTeamsFilterByNames = Astronomer.GetTeams.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -59,9 +59,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeams = Astronomer.Index.GetTeams.Invoke();
+        ///     var exampleTeams = Astronomer.GetTeams.Invoke();
         /// 
-        ///     var exampleTeamsFilterByNames = Astronomer.Index.GetTeams.Invoke(new()
+        ///     var exampleTeamsFilterByNames = Astronomer.GetTeams.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -93,9 +93,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeams = Astronomer.Index.GetTeams.Invoke();
+        ///     var exampleTeams = Astronomer.GetTeams.Invoke();
         /// 
-        ///     var exampleTeamsFilterByNames = Astronomer.Index.GetTeams.Invoke(new()
+        ///     var exampleTeamsFilterByNames = Astronomer.GetTeams.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {

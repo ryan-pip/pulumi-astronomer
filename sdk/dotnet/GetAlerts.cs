@@ -25,9 +25,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAlerts = Astronomer.Index.GetAlerts.Invoke();
+        ///     var exampleAlerts = Astronomer.GetAlerts.Invoke();
         /// 
-        ///     var alertIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertIds = new[]
         ///         {
@@ -35,7 +35,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var workspaceIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var workspaceIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -43,7 +43,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var deploymentIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var deploymentIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -51,7 +51,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var alertTypesExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertTypesExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertTypes = new[]
         ///         {
@@ -60,7 +60,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var entityTypeExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var entityTypeExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         EntityType = "DEPLOYMENT",
         ///     });
@@ -88,9 +88,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAlerts = Astronomer.Index.GetAlerts.Invoke();
+        ///     var exampleAlerts = Astronomer.GetAlerts.Invoke();
         /// 
-        ///     var alertIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertIds = new[]
         ///         {
@@ -98,7 +98,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var workspaceIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var workspaceIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -106,7 +106,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var deploymentIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var deploymentIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -114,7 +114,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var alertTypesExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertTypesExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertTypes = new[]
         ///         {
@@ -123,7 +123,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var entityTypeExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var entityTypeExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         EntityType = "DEPLOYMENT",
         ///     });
@@ -151,9 +151,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAlerts = Astronomer.Index.GetAlerts.Invoke();
+        ///     var exampleAlerts = Astronomer.GetAlerts.Invoke();
         /// 
-        ///     var alertIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertIds = new[]
         ///         {
@@ -161,7 +161,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var workspaceIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var workspaceIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -169,7 +169,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var deploymentIdsExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var deploymentIdsExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -177,7 +177,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var alertTypesExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var alertTypesExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         AlertTypes = new[]
         ///         {
@@ -186,7 +186,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var entityTypeExample = Astronomer.Index.GetAlerts.Invoke(new()
+        ///     var entityTypeExample = Astronomer.GetAlerts.Invoke(new()
         ///     {
         ///         EntityType = "DEPLOYMENT",
         ///     });

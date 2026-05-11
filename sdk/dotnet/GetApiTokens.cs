@@ -25,19 +25,19 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiTokens = Astronomer.Index.GetApiTokens.Invoke();
+        ///     var exampleApiTokens = Astronomer.GetApiTokens.Invoke();
         /// 
-        ///     var organizationOnlyExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var organizationOnlyExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         IncludeOnlyOrganizationTokens = true,
         ///     });
         /// 
-        ///     var workspaceExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var workspaceExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var deploymentExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var deploymentExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
@@ -65,19 +65,19 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiTokens = Astronomer.Index.GetApiTokens.Invoke();
+        ///     var exampleApiTokens = Astronomer.GetApiTokens.Invoke();
         /// 
-        ///     var organizationOnlyExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var organizationOnlyExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         IncludeOnlyOrganizationTokens = true,
         ///     });
         /// 
-        ///     var workspaceExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var workspaceExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var deploymentExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var deploymentExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
@@ -105,19 +105,19 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleApiTokens = Astronomer.Index.GetApiTokens.Invoke();
+        ///     var exampleApiTokens = Astronomer.GetApiTokens.Invoke();
         /// 
-        ///     var organizationOnlyExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var organizationOnlyExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         IncludeOnlyOrganizationTokens = true,
         ///     });
         /// 
-        ///     var workspaceExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var workspaceExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var deploymentExample = Astronomer.Index.GetApiTokens.Invoke(new()
+        ///     var deploymentExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });

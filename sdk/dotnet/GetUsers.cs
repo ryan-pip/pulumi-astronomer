@@ -25,14 +25,14 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUsers = Astronomer.Index.GetUsers.Invoke();
+        ///     var exampleUsers = Astronomer.GetUsers.Invoke();
         /// 
-        ///     var exampleUsersFilterByWorkspaceId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByWorkspaceId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var exampleUsersFilterByDeploymentId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByDeploymentId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
@@ -60,14 +60,14 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUsers = Astronomer.Index.GetUsers.Invoke();
+        ///     var exampleUsers = Astronomer.GetUsers.Invoke();
         /// 
-        ///     var exampleUsersFilterByWorkspaceId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByWorkspaceId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var exampleUsersFilterByDeploymentId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByDeploymentId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
@@ -95,14 +95,14 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUsers = Astronomer.Index.GetUsers.Invoke();
+        ///     var exampleUsers = Astronomer.GetUsers.Invoke();
         /// 
-        ///     var exampleUsersFilterByWorkspaceId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByWorkspaceId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         WorkspaceId = "clx42sxw501gl01o0gjenthnh",
         ///     });
         /// 
-        ///     var exampleUsersFilterByDeploymentId = Astronomer.Index.GetUsers.Invoke(new()
+        ///     var exampleUsersFilterByDeploymentId = Astronomer.GetUsers.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });

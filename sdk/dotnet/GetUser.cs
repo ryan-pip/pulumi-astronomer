@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUser = Astronomer.Index.GetUser.Invoke(new()
+        ///     var exampleUser = Astronomer.GetUser.Invoke(new()
         ///     {
         ///         Id = "clhpichn8002m01mqa4ocs7g6",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUser = Astronomer.Index.GetUser.Invoke(new()
+        ///     var exampleUser = Astronomer.GetUser.Invoke(new()
         ///     {
         ///         Id = "clhpichn8002m01mqa4ocs7g6",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleUser = Astronomer.Index.GetUser.Invoke(new()
+        ///     var exampleUser = Astronomer.GetUser.Invoke(new()
         ///     {
         ///         Id = "clhpichn8002m01mqa4ocs7g6",
         ///     });

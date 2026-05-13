@@ -25,9 +25,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspaces = Astronomer.Index.GetWorkspaces.Invoke();
+        ///     var exampleWorkspaces = Astronomer.GetWorkspaces.Invoke();
         /// 
-        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -36,7 +36,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleWorkspacesFilterByNames = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByNames = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -68,9 +68,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspaces = Astronomer.Index.GetWorkspaces.Invoke();
+        ///     var exampleWorkspaces = Astronomer.GetWorkspaces.Invoke();
         /// 
-        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -79,7 +79,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleWorkspacesFilterByNames = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByNames = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -111,9 +111,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspaces = Astronomer.Index.GetWorkspaces.Invoke();
+        ///     var exampleWorkspaces = Astronomer.GetWorkspaces.Invoke();
         /// 
-        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByWorkspaceIds = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -122,7 +122,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleWorkspacesFilterByNames = Astronomer.Index.GetWorkspaces.Invoke(new()
+        ///     var exampleWorkspacesFilterByNames = Astronomer.GetWorkspaces.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {

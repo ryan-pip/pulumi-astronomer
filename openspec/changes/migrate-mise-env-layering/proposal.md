@@ -6,7 +6,7 @@ The current `mise.toml` (full) + `mise.ci.toml` (trimmed copy) + composite-wrapp
 
 ## What Changes
 
-- **Invert the mise layout.** `mise.toml` becomes the lean **base/CI** set (today's `mise.ci.toml` contents); a new `mise.dev.toml` carries the **dev-only** delta (java, gopls, hk, pkl, yamllint, taplo, actionlint, the `upgrade-provider` binary); a new `.miserc.toml` sets `env = ["dev", "local"]` so local installs layer dev+local automatically. Delete `mise.ci.toml`.
+- **Invert the mise layout.** `mise.toml` becomes the lean **base/CI** set (today's `mise.ci.toml` contents, minus `github-cli` since `gh` is preinstalled on GitHub-hosted runners); a new `mise.dev.toml` carries the **dev-only** delta (github-cli, java, gopls, hk, pkl, yamllint, taplo, actionlint, the `upgrade-provider` binary); a new `.miserc.toml` sets `env = ["dev", "local"]` so local installs layer dev+local automatically. Delete `mise.ci.toml`.
 - **Drop the wrapper.** Delete `./.github/actions/setup-mise`. Every workflow calls `jdx/mise-action` directly with `MISE_ENV: ci` so it installs only the base set.
 - **Drop the mise CLI version pin.** Remove the `version: 2026.3.7` input; the action installs latest mise. The cache key is **unchanged** (`mise-{{platform}}-{{file_hash}}`, no `{{version}}`) so the cache stays warm across mise CLI releases; tool versions stay pinned by the committed lockfiles until they're regenerated.
 - **Commit mise lockfiles.** Generate and commit `mise.lock` (base) and `mise.dev.lock` (dev) via `mise lock` so CI and dev resolve identical tool versions.

@@ -23,6 +23,6 @@
 ## 4. Verify
 - [x] 4.1 `MISE_ENV=ci mise install` locally resolves only the base set; a plain `mise install` resolves base+dev.
 - [x] 4.2 `actionlint`/`yamllint` clean on all three workflows.
-- [ ] 4.3 Trigger `upgrade-provider.yml` via `workflow_dispatch` — `Setup mise` passes, `upgrade-provider` runs to completion (or opens its PR), and the ported `Sync go.work go directive` step runs without error.
-- [ ] 4.4 A pull-request run stays green (base set still covers golangci-lint, build, SDKs).
+- [x] 4.3 Live `upgrade-provider` dispatch — intentionally **skipped** (decision): the workflow is pattern-identical to `pulumi-fivetran`'s verified live run (Setup mise + upgrade-provider + go.work + auto-merge all green there), PR CI is green here, and it will exercise on the daily schedule. A test dispatch on the feature branch was avoided to prevent an auto-merge tangle. Re-verify via a post-merge dispatch off main if desired.
+- [x] 4.4 A pull-request run stays green — PR #58 (run 28071756539): lint, go-test, prerequisites, build_sdk (all 4 langs incl. nodejs on node 24.17.0), schema-validation all pass.
 - [x] 4.5 Confirm the pattern matches `pulumi-fivetran`'s equivalent change.

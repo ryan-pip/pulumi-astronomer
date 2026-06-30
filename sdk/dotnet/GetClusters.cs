@@ -25,9 +25,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusters = Astronomer.Index.GetClusters.Invoke();
+        ///     var exampleClusters = Astronomer.GetClusters.Invoke();
         /// 
-        ///     var exampleClustersFilterByNames = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByNames = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -35,7 +35,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleClustersFilterByCloudProvider = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByCloudProvider = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });
@@ -63,9 +63,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusters = Astronomer.Index.GetClusters.Invoke();
+        ///     var exampleClusters = Astronomer.GetClusters.Invoke();
         /// 
-        ///     var exampleClustersFilterByNames = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByNames = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -73,7 +73,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleClustersFilterByCloudProvider = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByCloudProvider = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });
@@ -101,9 +101,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleClusters = Astronomer.Index.GetClusters.Invoke();
+        ///     var exampleClusters = Astronomer.GetClusters.Invoke();
         /// 
-        ///     var exampleClustersFilterByNames = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByNames = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -111,7 +111,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleClustersFilterByCloudProvider = Astronomer.Index.GetClusters.Invoke(new()
+        ///     var exampleClustersFilterByCloudProvider = Astronomer.GetClusters.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });

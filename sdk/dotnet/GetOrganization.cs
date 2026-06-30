@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleOrganization = Astronomer.Index.GetOrganization.Invoke();
+        ///     var exampleOrganization = Astronomer.GetOrganization.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -50,7 +50,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleOrganization = Astronomer.Index.GetOrganization.Invoke();
+        ///     var exampleOrganization = Astronomer.GetOrganization.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -75,7 +75,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleOrganization = Astronomer.Index.GetOrganization.Invoke();
+        ///     var exampleOrganization = Astronomer.GetOrganization.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

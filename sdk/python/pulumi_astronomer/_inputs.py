@@ -223,7 +223,7 @@ class AlertNotificationChannelArgsDict(TypedDict):
     """
     Notification Channel creation timestamp
     """
-    created_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelCreatedByArgs']]]
+    created_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelCreatedByArgsDict']]]
     """
     Notification Channel creator
     """
@@ -247,7 +247,7 @@ class AlertNotificationChannelArgsDict(TypedDict):
     """
     Notification Channel last updated timestamp
     """
-    updated_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgs']]]
+    updated_by: NotRequired[pulumi.Input[Optional['AlertNotificationChannelUpdatedByArgsDict']]]
     """
     Notification Channel updater
     """
@@ -1384,7 +1384,7 @@ class ApiTokenUpdatedByArgs:
 
 
 class ClusterHealthStatusArgsDict(TypedDict):
-    details: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgs']]]]]
+    details: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterHealthStatusDetailArgsDict']]]]]
     """
     Cluster health status details
     """
@@ -2327,11 +2327,11 @@ class DeploymentScalingSpecArgs:
 
 
 class DeploymentScalingSpecHibernationSpecArgsDict(TypedDict):
-    override: NotRequired[pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgs']]]
+    override: NotRequired[pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecOverrideArgsDict']]]
     """
     Hibernation override configuration. Set to null to remove the override.
     """
-    schedules: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgs']]]]]
+    schedules: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentScalingSpecHibernationSpecScheduleArgsDict']]]]]
     """
     List of hibernation schedules. Set to null to remove all schedules.
     """
@@ -2477,7 +2477,7 @@ class DeploymentScalingSpecHibernationSpecScheduleArgs:
 
 
 class DeploymentScalingStatusArgsDict(TypedDict):
-    hibernation_status: NotRequired[pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgs']]]
+    hibernation_status: NotRequired[pulumi.Input[Optional['DeploymentScalingStatusHibernationStatusArgsDict']]]
 
 @pulumi.input_type
 class DeploymentScalingStatusArgs:

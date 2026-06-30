@@ -370,7 +370,7 @@ export interface DeploymentRemoteExecution {
     /**
      * The allowed IP address ranges for remote execution
      */
-    allowedIpAddressRanges?: string[];
+    allowedIpAddressRanges: string[];
     /**
      * Whether remote execution is enabled
      */

@@ -250,3 +250,10 @@ require (
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
+
+// pulumi-terraform-bridge v3.133.0 imports github.com/pulumi/pulumi-java/pkg/codegen/java
+// from the root pulumi-java module (v1.30.0). The obsolete pulumi-java/pkg submodule (v0.9.9)
+// still serves that same import path and is pulled in transitively via the shim's stale
+// self-reference, producing an "ambiguous import" build failure. Exclude the obsolete
+// submodule so the package resolves unambiguously to the root module.
+exclude github.com/pulumi/pulumi-java/pkg v0.9.9

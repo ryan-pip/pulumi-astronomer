@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Astronomer.Index.GetCustomRole.Invoke(new()
+        ///     var example = Astronomer.GetCustomRole.Invoke(new()
         ///     {
         ///         Id = "cmk64yvat027n01q7f9gn5ghg",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Astronomer.Index.GetCustomRole.Invoke(new()
+        ///     var example = Astronomer.GetCustomRole.Invoke(new()
         ///     {
         ///         Id = "cmk64yvat027n01q7f9gn5ghg",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Astronomer.Index.GetCustomRole.Invoke(new()
+        ///     var example = Astronomer.GetCustomRole.Invoke(new()
         ///     {
         ///         Id = "cmk64yvat027n01q7f9gn5ghg",
         ///     });

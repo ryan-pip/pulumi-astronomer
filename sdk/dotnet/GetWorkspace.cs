@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspace = Astronomer.Index.GetWorkspace.Invoke(new()
+        ///     var exampleWorkspace = Astronomer.GetWorkspace.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspace = Astronomer.Index.GetWorkspace.Invoke(new()
+        ///     var exampleWorkspace = Astronomer.GetWorkspace.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleWorkspace = Astronomer.Index.GetWorkspace.Invoke(new()
+        ///     var exampleWorkspace = Astronomer.GetWorkspace.Invoke(new()
         ///     {
         ///         Id = "clozc036j01to01jrlgvueo8t",
         ///     });

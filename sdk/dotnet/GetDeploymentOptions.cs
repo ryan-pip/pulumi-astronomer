@@ -25,24 +25,24 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeploymentOptions = Astronomer.Index.GetDeploymentOptions.Invoke();
+        ///     var exampleDeploymentOptions = Astronomer.GetDeploymentOptions.Invoke();
         /// 
-        ///     var exampleWithDeploymentIdQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentIdQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentId = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
-        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentType = "DEDICATED",
         ///     });
         /// 
-        ///     var exampleWithExecutorQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithExecutorQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         Executor = "CELERY",
         ///     });
         /// 
-        ///     var exampleWithCloudProviderQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithCloudProviderQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });
@@ -70,24 +70,24 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeploymentOptions = Astronomer.Index.GetDeploymentOptions.Invoke();
+        ///     var exampleDeploymentOptions = Astronomer.GetDeploymentOptions.Invoke();
         /// 
-        ///     var exampleWithDeploymentIdQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentIdQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentId = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
-        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentType = "DEDICATED",
         ///     });
         /// 
-        ///     var exampleWithExecutorQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithExecutorQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         Executor = "CELERY",
         ///     });
         /// 
-        ///     var exampleWithCloudProviderQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithCloudProviderQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });
@@ -115,24 +115,24 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeploymentOptions = Astronomer.Index.GetDeploymentOptions.Invoke();
+        ///     var exampleDeploymentOptions = Astronomer.GetDeploymentOptions.Invoke();
         /// 
-        ///     var exampleWithDeploymentIdQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentIdQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentId = "clozc036j01to01jrlgvueo8t",
         ///     });
         /// 
-        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithDeploymentTypeQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         DeploymentType = "DEDICATED",
         ///     });
         /// 
-        ///     var exampleWithExecutorQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithExecutorQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         Executor = "CELERY",
         ///     });
         /// 
-        ///     var exampleWithCloudProviderQueryParam = Astronomer.Index.GetDeploymentOptions.Invoke(new()
+        ///     var exampleWithCloudProviderQueryParam = Astronomer.GetDeploymentOptions.Invoke(new()
         ///     {
         ///         CloudProvider = "AWS",
         ///     });

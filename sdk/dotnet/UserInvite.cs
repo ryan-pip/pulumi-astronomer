@@ -23,7 +23,7 @@ namespace RyanPip.Astronomer
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userInvite = new Astronomer.Index.UserInvite("user_invite", new()
+    ///     var userInvite = new Astronomer.UserInvite("user_invite", new()
     ///     {
     ///         Email = "email@organization.com",
     ///         Role = "ORGANIZATION_MEMBER",

@@ -25,7 +25,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleNotificationChannel = Astronomer.Index.GetNotificationChannel.Invoke(new()
+        ///     var exampleNotificationChannel = Astronomer.GetNotificationChannel.Invoke(new()
         ///     {
         ///         Id = "cm4nwrvyg024h01mk2dn58m5s",
         ///     });
@@ -53,7 +53,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleNotificationChannel = Astronomer.Index.GetNotificationChannel.Invoke(new()
+        ///     var exampleNotificationChannel = Astronomer.GetNotificationChannel.Invoke(new()
         ///     {
         ///         Id = "cm4nwrvyg024h01mk2dn58m5s",
         ///     });
@@ -81,7 +81,7 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleNotificationChannel = Astronomer.Index.GetNotificationChannel.Invoke(new()
+        ///     var exampleNotificationChannel = Astronomer.GetNotificationChannel.Invoke(new()
         ///     {
         ///         Id = "cm4nwrvyg024h01mk2dn58m5s",
         ///     });

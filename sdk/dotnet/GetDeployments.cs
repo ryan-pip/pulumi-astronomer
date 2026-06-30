@@ -25,9 +25,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeployments = Astronomer.Index.GetDeployments.Invoke();
+        ///     var exampleDeployments = Astronomer.GetDeployments.Invoke();
         /// 
-        ///     var exampleDeploymentsFilterByNames = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByNames = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -35,7 +35,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -43,7 +43,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -74,9 +74,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeployments = Astronomer.Index.GetDeployments.Invoke();
+        ///     var exampleDeployments = Astronomer.GetDeployments.Invoke();
         /// 
-        ///     var exampleDeploymentsFilterByNames = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByNames = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -84,7 +84,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -92,7 +92,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {
@@ -123,9 +123,9 @@ namespace RyanPip.Astronomer
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleDeployments = Astronomer.Index.GetDeployments.Invoke();
+        ///     var exampleDeployments = Astronomer.GetDeployments.Invoke();
         /// 
-        ///     var exampleDeploymentsFilterByNames = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByNames = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         Names = new[]
         ///         {
@@ -133,7 +133,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByDeploymentIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         DeploymentIds = new[]
         ///         {
@@ -141,7 +141,7 @@ namespace RyanPip.Astronomer
         ///         },
         ///     });
         /// 
-        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.Index.GetDeployments.Invoke(new()
+        ///     var exampleDeploymentsFilterByWorkspaceIds = Astronomer.GetDeployments.Invoke(new()
         ///     {
         ///         WorkspaceIds = new[]
         ///         {

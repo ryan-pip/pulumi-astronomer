@@ -1,4 +1,22 @@
 {
+    "default-resource-schema-fixups": {
+        "resources": {
+            "astro_agent_token": {},
+            "astro_alert": {},
+            "astro_api_token": {},
+            "astro_cluster": {},
+            "astro_custom_role": {},
+            "astro_deployment": {},
+            "astro_hybrid_cluster_workspace_authorization": {},
+            "astro_notification_channel": {},
+            "astro_team": {},
+            "astro_team_membership": {},
+            "astro_team_roles": {},
+            "astro_user_invite": {},
+            "astro_user_roles": {},
+            "astro_workspace": {}
+        }
+    },
     "renames": {
         "functions": {
             "astronomer:index/getCluster:getCluster": "astro_cluster",

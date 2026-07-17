@@ -3,10 +3,16 @@
         "resources": {
             "astro_agent_token": {},
             "astro_alert": {},
+            "astro_alerts": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "astro_api_token": {},
             "astro_cluster": {},
             "astro_custom_role": {},
             "astro_deployment": {},
+            "astro_environment_object": {},
             "astro_hybrid_cluster_workspace_authorization": {},
             "astro_notification_channel": {},
             "astro_team": {},

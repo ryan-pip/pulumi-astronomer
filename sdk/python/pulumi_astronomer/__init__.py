@@ -8,10 +8,12 @@ import typing
 # Export this package's modules as members:
 from .agent_token import *
 from .alert import *
+from .alerts import *
 from .api_token import *
 from .cluster import *
 from .custom_role import *
 from .deployment import *
+from .environment_object import *
 from .get_alert import *
 from .get_alerts import *
 from .get_api_token import *
@@ -23,6 +25,8 @@ from .get_custom_role import *
 from .get_deployment import *
 from .get_deployment_options import *
 from .get_deployments import *
+from .get_environment_object import *
+from .get_environment_objects import *
 from .get_notification_channel import *
 from .get_notification_channels import *
 from .get_organization import *
@@ -30,6 +34,7 @@ from .get_team import *
 from .get_teams import *
 from .get_user import *
 from .get_users import *
+from .get_users_list import *
 from .get_workspace import *
 from .get_workspaces import *
 from .hybrid_cluster_workspace_authorization import *
@@ -72,6 +77,14 @@ _utilities.register(
  },
  {
   "pkg": "astronomer",
+  "mod": "index/alerts",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/alerts:Alerts": "Alerts"
+  }
+ },
+ {
+  "pkg": "astronomer",
   "mod": "index/apiToken",
   "fqn": "pulumi_astronomer",
   "classes": {
@@ -100,6 +113,14 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/environmentObject",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/environmentObject:EnvironmentObject": "EnvironmentObject"
   }
  },
  {

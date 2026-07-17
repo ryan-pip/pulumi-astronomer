@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AgentToken{}
 	case "astronomer:index/alert:Alert":
 		r = &Alert{}
+	case "astronomer:index/alerts:Alerts":
+		r = &Alerts{}
 	case "astronomer:index/apiToken:ApiToken":
 		r = &ApiToken{}
 	case "astronomer:index/cluster:Cluster":
@@ -33,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomRole{}
 	case "astronomer:index/deployment:Deployment":
 		r = &Deployment{}
+	case "astronomer:index/environmentObject:EnvironmentObject":
+		r = &EnvironmentObject{}
 	case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
 		r = &HybridClusterWorkspaceAuthorization{}
 	case "astronomer:index/notificationChannel:NotificationChannel":
@@ -92,6 +96,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"astronomer",
+		"index/alerts",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
 		"index/apiToken",
 		&module{version},
 	)
@@ -108,6 +117,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"astronomer",
 		"index/deployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/environmentObject",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

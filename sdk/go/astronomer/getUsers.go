@@ -11,7 +11,7 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Users data source
+// Users data source. **Deprecated:** use the `getUsersList` data source instead.
 //
 // ## Example Usage
 //

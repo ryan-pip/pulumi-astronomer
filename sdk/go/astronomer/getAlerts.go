@@ -27,11 +27,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAlerts, err := astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{}, nil)
+//			exampleAlerts, err := astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{
+//			_, err = astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{
 //				AlertIds: []string{
 //					"cm4ntm56001gk01mbhudv1elv",
 //				},
@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{
+//			_, err = astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{
 //				WorkspaceIds: []string{
 //					"clx42sxw501gl01o0gjenthnh",
 //				},
@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{
+//			_, err = astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{
 //				DeploymentIds: []string{
 //					"clx44jyu001m201m5dzsbexqr",
 //				},
@@ -55,7 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{
+//			_, err = astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{
 //				AlertTypes: []string{
 //					"DAG_FAILURE",
 //					"DAG_SUCCESS",
@@ -64,7 +64,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = astronomer.GetAlerts(ctx, &astronomer.GetAlertsArgs{
+//			_, err = astronomer.GetAlerts(ctx, &astronomer.LookupAlertsArgs{
 //				EntityType: pulumi.StringRef("DEPLOYMENT"),
 //			}, nil)
 //			if err != nil {
@@ -76,9 +76,9 @@ import (
 //	}
 //
 // ```
-func GetAlerts(ctx *pulumi.Context, args *GetAlertsArgs, opts ...pulumi.InvokeOption) (*GetAlertsResult, error) {
+func LookupAlerts(ctx *pulumi.Context, args *LookupAlertsArgs, opts ...pulumi.InvokeOption) (*LookupAlertsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetAlertsResult
+	var rv LookupAlertsResult
 	err := ctx.Invoke("astronomer:index/getAlerts:getAlerts", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func GetAlerts(ctx *pulumi.Context, args *GetAlertsArgs, opts ...pulumi.InvokeOp
 }
 
 // A collection of arguments for invoking getAlerts.
-type GetAlertsArgs struct {
+type LookupAlertsArgs struct {
 	AlertIds      []string `pulumi:"alertIds"`
 	AlertTypes    []string `pulumi:"alertTypes"`
 	DeploymentIds []string `pulumi:"deploymentIds"`
@@ -96,7 +96,7 @@ type GetAlertsArgs struct {
 }
 
 // A collection of values returned by getAlerts.
-type GetAlertsResult struct {
+type LookupAlertsResult struct {
 	AlertIds      []string         `pulumi:"alertIds"`
 	AlertTypes    []string         `pulumi:"alertTypes"`
 	Alerts        []GetAlertsAlert `pulumi:"alerts"`
@@ -107,17 +107,17 @@ type GetAlertsResult struct {
 	WorkspaceIds []string `pulumi:"workspaceIds"`
 }
 
-func GetAlertsOutput(ctx *pulumi.Context, args GetAlertsOutputArgs, opts ...pulumi.InvokeOption) GetAlertsResultOutput {
+func LookupAlertsOutput(ctx *pulumi.Context, args LookupAlertsOutputArgs, opts ...pulumi.InvokeOption) LookupAlertsResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAlertsResultOutput, error) {
-			args := v.(GetAlertsArgs)
+		ApplyT(func(v interface{}) (LookupAlertsResultOutput, error) {
+			args := v.(LookupAlertsArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("astronomer:index/getAlerts:getAlerts", args, GetAlertsResultOutput{}, options).(GetAlertsResultOutput), nil
-		}).(GetAlertsResultOutput)
+			return ctx.InvokeOutput("astronomer:index/getAlerts:getAlerts", args, LookupAlertsResultOutput{}, options).(LookupAlertsResultOutput), nil
+		}).(LookupAlertsResultOutput)
 }
 
 // A collection of arguments for invoking getAlerts.
-type GetAlertsOutputArgs struct {
+type LookupAlertsOutputArgs struct {
 	AlertIds      pulumi.StringArrayInput `pulumi:"alertIds"`
 	AlertTypes    pulumi.StringArrayInput `pulumi:"alertTypes"`
 	DeploymentIds pulumi.StringArrayInput `pulumi:"deploymentIds"`
@@ -125,54 +125,54 @@ type GetAlertsOutputArgs struct {
 	WorkspaceIds  pulumi.StringArrayInput `pulumi:"workspaceIds"`
 }
 
-func (GetAlertsOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertsArgs)(nil)).Elem()
+func (LookupAlertsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAlertsArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getAlerts.
-type GetAlertsResultOutput struct{ *pulumi.OutputState }
+type LookupAlertsResultOutput struct{ *pulumi.OutputState }
 
-func (GetAlertsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertsResult)(nil)).Elem()
+func (LookupAlertsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAlertsResult)(nil)).Elem()
 }
 
-func (o GetAlertsResultOutput) ToGetAlertsResultOutput() GetAlertsResultOutput {
+func (o LookupAlertsResultOutput) ToLookupAlertsResultOutput() LookupAlertsResultOutput {
 	return o
 }
 
-func (o GetAlertsResultOutput) ToGetAlertsResultOutputWithContext(ctx context.Context) GetAlertsResultOutput {
+func (o LookupAlertsResultOutput) ToLookupAlertsResultOutputWithContext(ctx context.Context) LookupAlertsResultOutput {
 	return o
 }
 
-func (o GetAlertsResultOutput) AlertIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAlertsResult) []string { return v.AlertIds }).(pulumi.StringArrayOutput)
+func (o LookupAlertsResultOutput) AlertIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAlertsResult) []string { return v.AlertIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetAlertsResultOutput) AlertTypes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAlertsResult) []string { return v.AlertTypes }).(pulumi.StringArrayOutput)
+func (o LookupAlertsResultOutput) AlertTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAlertsResult) []string { return v.AlertTypes }).(pulumi.StringArrayOutput)
 }
 
-func (o GetAlertsResultOutput) Alerts() GetAlertsAlertArrayOutput {
-	return o.ApplyT(func(v GetAlertsResult) []GetAlertsAlert { return v.Alerts }).(GetAlertsAlertArrayOutput)
+func (o LookupAlertsResultOutput) Alerts() GetAlertsAlertArrayOutput {
+	return o.ApplyT(func(v LookupAlertsResult) []GetAlertsAlert { return v.Alerts }).(GetAlertsAlertArrayOutput)
 }
 
-func (o GetAlertsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAlertsResult) []string { return v.DeploymentIds }).(pulumi.StringArrayOutput)
+func (o LookupAlertsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAlertsResult) []string { return v.DeploymentIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetAlertsResultOutput) EntityType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAlertsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
+func (o LookupAlertsResultOutput) EntityType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAlertsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetAlertsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertsResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupAlertsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlertsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetAlertsResultOutput) WorkspaceIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAlertsResult) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
+func (o LookupAlertsResultOutput) WorkspaceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAlertsResult) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetAlertsResultOutput{})
+	pulumi.RegisterOutputType(LookupAlertsResultOutput{})
 }

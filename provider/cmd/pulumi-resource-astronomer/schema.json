@@ -444,6 +444,149 @@
                 }
             }
         },
+        "astronomer:index/AlertsAlerts:AlertsAlerts": {
+            "properties": {
+                "entityId": {
+                    "type": "string",
+                    "description": "The entity ID the alert is associated with\n"
+                },
+                "entityType": {
+                    "type": "string",
+                    "description": "The type of entity the alert is scoped to\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Alert identifier\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Alert name\n"
+                },
+                "notificationChannelIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of notification channel identifiers to notify when the alert is triggered\n"
+                },
+                "rules": {
+                    "$ref": "#/types/astronomer:index/AlertsAlertsRules:AlertsAlertsRules",
+                    "description": "Alert rules defining the conditions for triggering the alert\n"
+                },
+                "severity": {
+                    "type": "string",
+                    "description": "The alert's severity\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The alert's type\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "entityId",
+                "entityType",
+                "name",
+                "notificationChannelIds",
+                "rules",
+                "severity",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "entityId",
+                        "entityType",
+                        "id",
+                        "name",
+                        "notificationChannelIds",
+                        "rules",
+                        "severity",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/AlertsAlertsRules:AlertsAlertsRules": {
+            "properties": {
+                "patternMatches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/AlertsAlertsRulesPatternMatch:AlertsAlertsRulesPatternMatch"
+                    },
+                    "description": "The alert's pattern matches to match against\n"
+                },
+                "properties": {
+                    "$ref": "#/types/astronomer:index/AlertsAlertsRulesProperties:AlertsAlertsRulesProperties",
+                    "description": "The alert's properties used to define the alert\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "patternMatches",
+                "properties"
+            ]
+        },
+        "astronomer:index/AlertsAlertsRulesPatternMatch:AlertsAlertsRulesPatternMatch": {
+            "properties": {
+                "entityType": {
+                    "type": "string",
+                    "description": "The type of entity to match against\n"
+                },
+                "operatorType": {
+                    "type": "string",
+                    "description": "The type of operator to use for the pattern match\n"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The values to match against\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "entityType",
+                "operatorType",
+                "values"
+            ]
+        },
+        "astronomer:index/AlertsAlertsRulesProperties:AlertsAlertsRulesProperties": {
+            "properties": {
+                "dagDeadline": {
+                    "type": "string",
+                    "description": "The deadline for the DAG in HH:MM 24-hour UTC format\n"
+                },
+                "dagDurationSeconds": {
+                    "type": "integer",
+                    "description": "The duration of the DAG in seconds (minimum 60)\n"
+                },
+                "daysOfWeeks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The days of the week for the timeliness rule\n"
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "The ID of the deployment for the alert rule\n"
+                },
+                "lookBackPeriodSeconds": {
+                    "type": "integer",
+                    "description": "The look-back period in seconds (minimum 60)\n"
+                },
+                "taskDurationSeconds": {
+                    "type": "integer",
+                    "description": "The duration of the Task in seconds (minimum 60)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "deploymentId"
+            ]
+        },
         "astronomer:index/ApiTokenCreatedBy:ApiTokenCreatedBy": {
             "properties": {
                 "apiTokenName": {
@@ -1089,6 +1232,303 @@
                         "podCpu",
                         "podMemory",
                         "workerConcurrency"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/EnvironmentObjectConnectionAuthType:EnvironmentObjectConnectionAuthType": {
+            "properties": {
+                "airflowType": {
+                    "type": "string",
+                    "description": "The type of connection in Airflow\n"
+                },
+                "authMethodName": {
+                    "type": "string",
+                    "description": "The name of the auth method used in the connection\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the connection auth type\n"
+                },
+                "guidePath": {
+                    "type": "string",
+                    "description": "The URL to the guide for the connection auth type\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the connection auth type\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the connection auth type\n"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectConnectionAuthTypeParameter:EnvironmentObjectConnectionAuthTypeParameter"
+                    },
+                    "description": "The parameters for the connection auth type\n"
+                },
+                "providerLogo": {
+                    "type": "string",
+                    "description": "The URL of the provider logo\n"
+                },
+                "providerPackageName": {
+                    "type": "string",
+                    "description": "The name of the provider package\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "airflowType",
+                        "authMethodName",
+                        "description",
+                        "guidePath",
+                        "id",
+                        "name",
+                        "parameters",
+                        "providerLogo",
+                        "providerPackageName"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/EnvironmentObjectConnectionAuthTypeParameter:EnvironmentObjectConnectionAuthTypeParameter": {
+            "properties": {
+                "airflowParamName": {
+                    "type": "string",
+                    "description": "The name of the parameter in Airflow\n"
+                },
+                "dataType": {
+                    "type": "string",
+                    "description": "The data type of the parameter\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the parameter\n"
+                },
+                "example": {
+                    "type": "string",
+                    "description": "An example value for the parameter\n"
+                },
+                "friendlyName": {
+                    "type": "string",
+                    "description": "The UI-friendly name for the parameter\n"
+                },
+                "isInExtra": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is included in the extra field\n"
+                },
+                "isRequired": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is required\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is a secret\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "A regex pattern that the parameter value must match\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "airflowParamName",
+                        "dataType",
+                        "description",
+                        "example",
+                        "friendlyName",
+                        "isInExtra",
+                        "isRequired",
+                        "isSecret",
+                        "pattern"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "apiTokenName",
+                        "avatarUrl",
+                        "fullName",
+                        "id",
+                        "subjectType",
+                        "username"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/EnvironmentObjectExcludeLink:EnvironmentObjectExcludeLink": {
+            "properties": {
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the excluded entity (DEPLOYMENT)\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "ID of the excluded entity\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "scope",
+                "scopeEntityId"
+            ]
+        },
+        "astronomer:index/EnvironmentObjectLink:EnvironmentObjectLink": {
+            "properties": {
+                "overrides": {
+                    "$ref": "#/types/astronomer:index/EnvironmentObjectLinkOverrides:EnvironmentObjectLinkOverrides",
+                    "description": "Per-link overrides. Set only the fields matching the parent object_type.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the linked entity (DEPLOYMENT)\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "Linked entity ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "scope",
+                "scopeEntityId"
+            ]
+        },
+        "astronomer:index/EnvironmentObjectLinkOverrides:EnvironmentObjectLinkOverrides": {
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Override auth type (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "Override bearer token (only valid when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "Override exporter type (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Override extra JSON (only valid when object_type=CONNECTION)\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override HTTP request headers (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Override host address (only valid when object_type=CONNECTION)\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override metrics labels (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "Override login (only valid when object_type=CONNECTION)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Override port (only valid when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "Override schema (only valid when object_type=CONNECTION)\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Override connection type (only valid when object_type=CONNECTION)\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Override username (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Override value (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "astronomer:index/EnvironmentObjectUpdatedBy:EnvironmentObjectUpdatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "apiTokenName",
+                        "avatarUrl",
+                        "fullName",
+                        "id",
+                        "subjectType",
+                        "username"
                     ]
                 }
             }
@@ -2871,6 +3311,10 @@
                     "type": "string",
                     "description": "Cluster database instance type\n"
                 },
+                "drPodSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery subnet range for pods (GCP Only).\n"
+                },
                 "drRegion": {
                     "type": "string",
                     "description": "The secondary region for Disaster Recovery\n"
@@ -2878,6 +3322,14 @@
                 "drSecondaryVpcCidr": {
                     "type": "string",
                     "description": "Secondary CIDR for pod networking in the DR region (AWS only)\n"
+                },
+                "drServicePeeringRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service peering range (GCP Only).\n"
+                },
+                "drServiceSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service subnet range (GCP Only).\n"
                 },
                 "drVpcSubnetRange": {
                     "type": "string",
@@ -2986,8 +3438,11 @@
                 "cloudProvider",
                 "createdAt",
                 "dbInstanceType",
+                "drPodSubnetRange",
                 "drRegion",
                 "drSecondaryVpcCidr",
+                "drServicePeeringRange",
+                "drServiceSubnetRange",
                 "drVpcSubnetRange",
                 "enableReplicationTimeControl",
                 "healthStatus",
@@ -4694,6 +5149,861 @@
                 }
             }
         },
+        "astronomer:index/getEnvironmentObjectConnectionAuthType:getEnvironmentObjectConnectionAuthType": {
+            "properties": {
+                "airflowType": {
+                    "type": "string",
+                    "description": "The type of connection in Airflow\n"
+                },
+                "authMethodName": {
+                    "type": "string",
+                    "description": "The name of the auth method used in the connection\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the connection auth type\n"
+                },
+                "guidePath": {
+                    "type": "string",
+                    "description": "The URL to the guide for the connection auth type\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the connection auth type\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the connection auth type\n"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectConnectionAuthTypeParameter:getEnvironmentObjectConnectionAuthTypeParameter"
+                    },
+                    "description": "The parameters for the connection auth type\n"
+                },
+                "providerLogo": {
+                    "type": "string",
+                    "description": "The URL of the provider logo\n"
+                },
+                "providerPackageName": {
+                    "type": "string",
+                    "description": "The name of the provider package\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "airflowType",
+                "authMethodName",
+                "description",
+                "guidePath",
+                "id",
+                "name",
+                "parameters",
+                "providerLogo",
+                "providerPackageName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectConnectionAuthTypeParameter:getEnvironmentObjectConnectionAuthTypeParameter": {
+            "properties": {
+                "airflowParamName": {
+                    "type": "string",
+                    "description": "The name of the parameter in Airflow\n"
+                },
+                "dataType": {
+                    "type": "string",
+                    "description": "The data type of the parameter\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the parameter\n"
+                },
+                "example": {
+                    "type": "string",
+                    "description": "An example value for the parameter\n"
+                },
+                "friendlyName": {
+                    "type": "string",
+                    "description": "The UI-friendly name for the parameter\n"
+                },
+                "isInExtra": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is included in the extra field\n"
+                },
+                "isRequired": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is required\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is a secret\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "A regex pattern that the parameter value must match\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "airflowParamName",
+                "dataType",
+                "description",
+                "example",
+                "friendlyName",
+                "isInExtra",
+                "isRequired",
+                "isSecret",
+                "pattern"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectCreatedBy:getEnvironmentObjectCreatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiTokenName",
+                "avatarUrl",
+                "fullName",
+                "id",
+                "subjectType",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectExcludeLink:getEnvironmentObjectExcludeLink": {
+            "properties": {
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the excluded entity\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "ID of the excluded entity\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "scope",
+                "scopeEntityId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectLink:getEnvironmentObjectLink": {
+            "properties": {
+                "overrides": {
+                    "$ref": "#/types/astronomer:index/getEnvironmentObjectLinkOverrides:getEnvironmentObjectLinkOverrides",
+                    "description": "Per-link overrides. Only the fields matching the parent\u003cspan pulumi-lang-nodejs=\" objectType \" pulumi-lang-dotnet=\" ObjectType \" pulumi-lang-go=\" objectType \" pulumi-lang-python=\" object_type \" pulumi-lang-yaml=\" objectType \" pulumi-lang-java=\" objectType \" pulumi-lang-hcl=\" object_type \"\u003e objectType \u003c/span\u003eare populated\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the linked entity\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "Linked entity ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "overrides",
+                "scope",
+                "scopeEntityId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectLinkOverrides:getEnvironmentObjectLinkOverrides": {
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Override auth type (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "Override bearer token (only used when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "Override exporter type (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Override extra JSON (only used when object_type=CONNECTION)\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override HTTP request headers (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Override host address (only used when object_type=CONNECTION)\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override metrics labels (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "Override login (only used when object_type=CONNECTION)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Override port (only used when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "Override schema (only used when object_type=CONNECTION)\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Override connection type (only used when object_type=CONNECTION)\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Override username (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "basicToken",
+                "endpoint",
+                "exporterType",
+                "extra",
+                "headers",
+                "host",
+                "labels",
+                "login",
+                "password",
+                "port",
+                "schema",
+                "type",
+                "username",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectUpdatedBy:getEnvironmentObjectUpdatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiTokenName",
+                "avatarUrl",
+                "fullName",
+                "id",
+                "subjectType",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObject:getEnvironmentObjectsEnvironmentObject": {
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The type of authentication (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "authTypeId": {
+                    "type": "string",
+                    "description": "The ID for the connection auth type (only used when object_type=CONNECTION)\n"
+                },
+                "autoLinkDeployments": {
+                    "type": "boolean",
+                    "description": "Whether to automatically link Deployments to the environment object\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "connectionAuthType": {
+                    "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectConnectionAuthType:getEnvironmentObjectsEnvironmentObjectConnectionAuthType",
+                    "description": "The resolved auth type of the connection (only used when object*type=CONNECTION)\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Environment Object creation timestamp\n"
+                },
+                "createdBy": {
+                    "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectCreatedBy:getEnvironmentObjectsEnvironmentObjectCreatedBy",
+                    "description": "Environment Object creator\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "excludeLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectExcludeLink:getEnvironmentObjectsEnvironmentObjectExcludeLink"
+                    },
+                    "description": "The excluded links for the environment object\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "The type of exporter (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Extra connection details as JSON string (only used when object_type=CONNECTION)\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host address for the connection (only used when object_type=CONNECTION)\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Environment object identifier\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectLink:getEnvironmentObjectsEnvironmentObjectLink"
+                    },
+                    "description": "The Deployments linked to the environment object\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "The username used for the connection (only used when object_type=CONNECTION)\n"
+                },
+                "objectKey": {
+                    "type": "string",
+                    "description": "The key for the environment object\n"
+                },
+                "objectType": {
+                    "type": "string",
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port for the connection (only used when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema for the connection (only used when object_type=CONNECTION)\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "The scope of the environment object (WORKSPACE, DEPLOYMENT)\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "The ID of the scope entity where the environment object is created\n"
+                },
+                "sourceScope": {
+                    "type": "string",
+                    "description": "The source scope, if resolved from a link\n"
+                },
+                "sourceScopeEntityId": {
+                    "type": "string",
+                    "description": "The source scope entity ID, if resolved from a link\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The connection type (only used when object_type=CONNECTION)\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Environment Object last updated timestamp\n"
+                },
+                "updatedBy": {
+                    "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectUpdatedBy:getEnvironmentObjectsEnvironmentObjectUpdatedBy",
+                    "description": "Environment Object updater\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "authTypeId",
+                "autoLinkDeployments",
+                "basicToken",
+                "connectionAuthType",
+                "createdAt",
+                "createdBy",
+                "endpoint",
+                "excludeLinks",
+                "exporterType",
+                "extra",
+                "headers",
+                "host",
+                "id",
+                "isSecret",
+                "labels",
+                "links",
+                "login",
+                "objectKey",
+                "objectType",
+                "password",
+                "port",
+                "schema",
+                "scope",
+                "scopeEntityId",
+                "sourceScope",
+                "sourceScopeEntityId",
+                "type",
+                "updatedAt",
+                "updatedBy",
+                "username",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectConnectionAuthType:getEnvironmentObjectsEnvironmentObjectConnectionAuthType": {
+            "properties": {
+                "airflowType": {
+                    "type": "string",
+                    "description": "The type of connection in Airflow\n"
+                },
+                "authMethodName": {
+                    "type": "string",
+                    "description": "The name of the auth method used in the connection\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the connection auth type\n"
+                },
+                "guidePath": {
+                    "type": "string",
+                    "description": "The URL to the guide for the connection auth type\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the connection auth type\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the connection auth type\n"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter:getEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter"
+                    },
+                    "description": "The parameters for the connection auth type\n"
+                },
+                "providerLogo": {
+                    "type": "string",
+                    "description": "The URL of the provider logo\n"
+                },
+                "providerPackageName": {
+                    "type": "string",
+                    "description": "The name of the provider package\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "airflowType",
+                "authMethodName",
+                "description",
+                "guidePath",
+                "id",
+                "name",
+                "parameters",
+                "providerLogo",
+                "providerPackageName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter:getEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter": {
+            "properties": {
+                "airflowParamName": {
+                    "type": "string",
+                    "description": "The name of the parameter in Airflow\n"
+                },
+                "dataType": {
+                    "type": "string",
+                    "description": "The data type of the parameter\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the parameter\n"
+                },
+                "example": {
+                    "type": "string",
+                    "description": "An example value for the parameter\n"
+                },
+                "friendlyName": {
+                    "type": "string",
+                    "description": "The UI-friendly name for the parameter\n"
+                },
+                "isInExtra": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is included in the extra field\n"
+                },
+                "isRequired": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is required\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the parameter is a secret\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "A regex pattern that the parameter value must match\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "airflowParamName",
+                "dataType",
+                "description",
+                "example",
+                "friendlyName",
+                "isInExtra",
+                "isRequired",
+                "isSecret",
+                "pattern"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectCreatedBy:getEnvironmentObjectsEnvironmentObjectCreatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiTokenName",
+                "avatarUrl",
+                "fullName",
+                "id",
+                "subjectType",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectExcludeLink:getEnvironmentObjectsEnvironmentObjectExcludeLink": {
+            "properties": {
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the excluded entity\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "ID of the excluded entity\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "scope",
+                "scopeEntityId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectLink:getEnvironmentObjectsEnvironmentObjectLink": {
+            "properties": {
+                "overrides": {
+                    "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectLinkOverrides:getEnvironmentObjectsEnvironmentObjectLinkOverrides",
+                    "description": "Per-link overrides. Only the fields matching the parent object*type are populated\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Scope of the linked entity\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "Linked entity ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "overrides",
+                "scope",
+                "scopeEntityId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectLinkOverrides:getEnvironmentObjectsEnvironmentObjectLinkOverrides": {
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Override auth type (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "Override bearer token (only used when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "Override exporter type (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Override extra JSON (only used when object_type=CONNECTION)\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override HTTP request headers (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Override host address (only used when object_type=CONNECTION)\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Override metrics labels (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "Override login (only used when object_type=CONNECTION)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Override port (only used when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "Override schema (only used when object_type=CONNECTION)\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Override connection type (only used when object_type=CONNECTION)\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Override username (only used when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "basicToken",
+                "endpoint",
+                "exporterType",
+                "extra",
+                "headers",
+                "host",
+                "labels",
+                "login",
+                "password",
+                "port",
+                "schema",
+                "type",
+                "username",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getEnvironmentObjectsEnvironmentObjectUpdatedBy:getEnvironmentObjectsEnvironmentObjectUpdatedBy": {
+            "properties": {
+                "apiTokenName": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiTokenName",
+                "avatarUrl",
+                "fullName",
+                "id",
+                "subjectType",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "astronomer:index/getNotificationChannelCreatedBy:getNotificationChannelCreatedBy": {
             "properties": {
                 "apiTokenName": {
@@ -5632,6 +6942,158 @@
                 }
             }
         },
+        "astronomer:index/getUsersListUser:getUsersListUser": {
+            "properties": {
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "User avatar URL\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "User creation timestamp\n"
+                },
+                "dagRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getUsersListUserDagRole:getUsersListUserDagRole"
+                    },
+                    "description": "The DAG roles assigned to the user\n"
+                },
+                "deploymentRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getUsersListUserDeploymentRole:getUsersListUserDeploymentRole"
+                    },
+                    "description": "The roles assigned to the deployments\n"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "User full name\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "User identifier\n"
+                },
+                "organizationRole": {
+                    "type": "string",
+                    "description": "The role assigned to the organization\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "User status\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "User last updated timestamp\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "User username\n"
+                },
+                "workspaceRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/getUsersListUserWorkspaceRole:getUsersListUserWorkspaceRole"
+                    },
+                    "description": "The roles assigned to the workspaces\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "avatarUrl",
+                "createdAt",
+                "dagRoles",
+                "deploymentRoles",
+                "fullName",
+                "id",
+                "organizationRole",
+                "status",
+                "updatedAt",
+                "username",
+                "workspaceRoles"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getUsersListUserDagRole:getUsersListUserDagRole": {
+            "properties": {
+                "dagId": {
+                    "type": "string",
+                    "description": "The DAG ID\n"
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "The Deployment ID containing the DAG\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The DAG role\n"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "The DAG tag\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dagId",
+                "deploymentId",
+                "role",
+                "tag"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getUsersListUserDeploymentRole:getUsersListUserDeploymentRole": {
+            "properties": {
+                "deploymentId": {
+                    "type": "string",
+                    "description": "The ID of the deployment the role is assigned to\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role assigned to the deployment\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "deploymentId",
+                "role"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getUsersListUserWorkspaceRole:getUsersListUserWorkspaceRole": {
+            "properties": {
+                "role": {
+                    "type": "string",
+                    "description": "The role assigned to the workspace\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The ID of the workspace the role is assigned to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "role",
+                "workspaceId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "astronomer:index/getUsersUser:getUsersUser": {
             "properties": {
                 "avatarUrl": {
@@ -6108,7 +7570,7 @@
             }
         },
         "astronomer:index/alert:Alert": {
-            "description": "Alert resource\n\n",
+            "description": "Manage a single alert.\n\n\u003e **Deprecated** Use the \u003cspan pulumi-lang-nodejs=\"`astronomer.Alerts`\" pulumi-lang-dotnet=\"`astronomer.Alerts`\" pulumi-lang-go=\"`Alerts`\" pulumi-lang-python=\"`Alerts`\" pulumi-lang-yaml=\"`astronomer.Alerts`\" pulumi-lang-java=\"`astronomer.Alerts`\" pulumi-lang-hcl=\"`astro_alerts`\"\u003e`astronomer.Alerts`\u003c/span\u003e resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both \u003cspan pulumi-lang-nodejs=\"`astronomer.Alert`\" pulumi-lang-dotnet=\"`astronomer.Alert`\" pulumi-lang-go=\"`Alert`\" pulumi-lang-python=\"`Alert`\" pulumi-lang-yaml=\"`astronomer.Alert`\" pulumi-lang-java=\"`astronomer.Alert`\" pulumi-lang-hcl=\"`astro_alert`\"\u003e`astronomer.Alert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`astronomer.Alerts`\" pulumi-lang-dotnet=\"`astronomer.Alerts`\" pulumi-lang-go=\"`Alerts`\" pulumi-lang-python=\"`Alerts`\" pulumi-lang-yaml=\"`astronomer.Alerts`\" pulumi-lang-java=\"`astronomer.Alerts`\" pulumi-lang-hcl=\"`astro_alerts`\"\u003e`astronomer.Alerts`\u003c/span\u003e — they conflict on every apply.\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -6308,6 +7770,61 @@
                 "type": "object"
             }
         },
+        "astronomer:index/alerts:Alerts": {
+            "description": "Manage a collection of alerts as a single resource. The resource batches create/update/delete calls and automatically chunks requests that exceed the API's per-request limits (30 for create/update, 20 for delete).\n\n\u003e **Note** Do not manage the same alert with both \u003cspan pulumi-lang-nodejs=\"`astronomer.Alert`\" pulumi-lang-dotnet=\"`astronomer.Alert`\" pulumi-lang-go=\"`Alert`\" pulumi-lang-python=\"`Alert`\" pulumi-lang-yaml=\"`astronomer.Alert`\" pulumi-lang-java=\"`astronomer.Alert`\" pulumi-lang-hcl=\"`astro_alert`\"\u003e`astronomer.Alert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`astronomer.Alerts`\" pulumi-lang-dotnet=\"`astronomer.Alerts`\" pulumi-lang-go=\"`Alerts`\" pulumi-lang-python=\"`Alerts`\" pulumi-lang-yaml=\"`astronomer.Alerts`\" pulumi-lang-java=\"`astronomer.Alerts`\" pulumi-lang-hcl=\"`astro_alerts`\"\u003e`astronomer.Alerts`\u003c/span\u003e. Each resource claims ownership of the alerts it manages, so overlapping definitions conflict and cause churn on every apply. Use one resource or the other for a given alert.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\nimport * as std from \"@pulumi/std\";\n\n// The astro_alerts resource manages many alerts as a single resource. It batches the underlying\n// API calls and automatically chunks requests that exceed the per-request limits (30 for\n// create/update, 20 for delete), so you can declare any number of alerts in one block.\n//\n// Alerts are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n// alert and creating a new one.\nconst teamAlerts = new astronomer.Alerts(\"team_alerts\", {alerts: {\n    etl_dag_failure: {\n        name: \"ETL DAG Failure\",\n        type: \"DAG_FAILURE\",\n        severity: \"CRITICAL\",\n        entityType: \"DEPLOYMENT\",\n        entityId: \"cm1zkps2a0cv301ph39benet6\",\n        notificationChannelIds: [\"cm4nwrvyg024h01mk2dn58m5s\"],\n        rules: {\n            properties: {\n                deploymentId: \"cm1zkps2a0cv301ph39benet6\",\n            },\n            patternMatches: [{\n                entityType: \"DAG_ID\",\n                operatorType: \"IS\",\n                values: [\"etl_dag\"],\n            }],\n        },\n    },\n    reporting_dag_duration: {\n        name: \"Reporting DAG Duration\",\n        type: \"DAG_DURATION\",\n        severity: \"WARNING\",\n        entityType: \"DEPLOYMENT\",\n        entityId: \"cm1zkps2a0cv301ph39benet6\",\n        notificationChannelIds: [\"cm4nwrvyg024h01mk2dn58m5s\"],\n        rules: {\n            properties: {\n                deploymentId: \"cm1zkps2a0cv301ph39benet6\",\n                dagDurationSeconds: 3600,\n            },\n            patternMatches: [{\n                entityType: \"DAG_ID\",\n                operatorType: \"IS\",\n                values: [\"reporting_dag\"],\n            }],\n        },\n    },\n}});\n// Generate many alerts programmatically — the resource chunks them across requests for you.\nconst perDagFailureAlerts = new astronomer.Alerts(\"per_dag_failure_alerts\", {alerts: std.toset({\n    input: [\n        \"a\",\n        \"b\",\n        \"c\",\n    ],\n}).then(invoke =\u003e .reduce((__obj, dag) =\u003e ({ ...__obj, [`${dag}_failure`]: {\n    name: `${dag} DAG Failure`,\n    type: \"DAG_FAILURE\",\n    severity: \"CRITICAL\",\n    entityType: \"DEPLOYMENT\",\n    entityId: \"cm1zkps2a0cv301ph39benet6\",\n    notificationChannelIds: [\"cm4nwrvyg024h01mk2dn58m5s\"],\n    rules: {\n        properties: {\n            deploymentId: \"cm1zkps2a0cv301ph39benet6\",\n        },\n        patternMatches: [{\n            entityType: \"DAG_ID\",\n            operatorType: \"IS\",\n            values: [dag],\n        }],\n    },\n} }), {}))});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\nimport pulumi_std as std\n\n# The astro_alerts resource manages many alerts as a single resource. It batches the underlying\n# API calls and automatically chunks requests that exceed the per-request limits (30 for\n# create/update, 20 for delete), so you can declare any number of alerts in one block.\n#\n# Alerts are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n# alert and creating a new one.\nteam_alerts = astronomer.Alerts(\"team_alerts\", alerts={\n    \"etl_dag_failure\": {\n        \"name\": \"ETL DAG Failure\",\n        \"type\": \"DAG_FAILURE\",\n        \"severity\": \"CRITICAL\",\n        \"entity_type\": \"DEPLOYMENT\",\n        \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n        \"notification_channel_ids\": [\"cm4nwrvyg024h01mk2dn58m5s\"],\n        \"rules\": {\n            \"properties\": {\n                \"deployment_id\": \"cm1zkps2a0cv301ph39benet6\",\n            },\n            \"pattern_matches\": [{\n                \"entity_type\": \"DAG_ID\",\n                \"operator_type\": \"IS\",\n                \"values\": [\"etl_dag\"],\n            }],\n        },\n    },\n    \"reporting_dag_duration\": {\n        \"name\": \"Reporting DAG Duration\",\n        \"type\": \"DAG_DURATION\",\n        \"severity\": \"WARNING\",\n        \"entity_type\": \"DEPLOYMENT\",\n        \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n        \"notification_channel_ids\": [\"cm4nwrvyg024h01mk2dn58m5s\"],\n        \"rules\": {\n            \"properties\": {\n                \"deployment_id\": \"cm1zkps2a0cv301ph39benet6\",\n                \"dag_duration_seconds\": 3600,\n            },\n            \"pattern_matches\": [{\n                \"entity_type\": \"DAG_ID\",\n                \"operator_type\": \"IS\",\n                \"values\": [\"reporting_dag\"],\n            }],\n        },\n    },\n})\n# Generate many alerts programmatically — the resource chunks them across requests for you.\nper_dag_failure_alerts = astronomer.Alerts(\"per_dag_failure_alerts\", alerts={f\"{dag}_failure\": {\n    \"name\": f\"{dag} DAG Failure\",\n    \"type\": \"DAG_FAILURE\",\n    \"severity\": \"CRITICAL\",\n    \"entity_type\": \"DEPLOYMENT\",\n    \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n    \"notification_channel_ids\": [\"cm4nwrvyg024h01mk2dn58m5s\"],\n    \"rules\": {\n        \"properties\": {\n            \"deployment_id\": \"cm1zkps2a0cv301ph39benet6\",\n        },\n        \"pattern_matches\": [{\n            \"entity_type\": \"DAG_ID\",\n            \"operator_type\": \"IS\",\n            \"values\": [dag],\n        }],\n    },\n} for dag in std.toset(input=[\n    \"a\",\n    \"b\",\n    \"c\",\n]).result})\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\nusing Std = Pulumi.Std;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The astro_alerts resource manages many alerts as a single resource. It batches the underlying\n    // API calls and automatically chunks requests that exceed the per-request limits (30 for\n    // create/update, 20 for delete), so you can declare any number of alerts in one block.\n    //\n    // Alerts are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n    // alert and creating a new one.\n    var teamAlerts = new Astronomer.Alerts(\"team_alerts\", new()\n    {\n        AlertsCollection = \n        {\n            { \"etl_dag_failure\", new Astronomer.Inputs.AlertsAlertsArgs\n            {\n                Name = \"ETL DAG Failure\",\n                Type = \"DAG_FAILURE\",\n                Severity = \"CRITICAL\",\n                EntityType = \"DEPLOYMENT\",\n                EntityId = \"cm1zkps2a0cv301ph39benet6\",\n                NotificationChannelIds = new[]\n                {\n                    \"cm4nwrvyg024h01mk2dn58m5s\",\n                },\n                Rules = new Astronomer.Inputs.AlertsAlertsRulesArgs\n                {\n                    Properties = new Astronomer.Inputs.AlertsAlertsRulesPropertiesArgs\n                    {\n                        DeploymentId = \"cm1zkps2a0cv301ph39benet6\",\n                    },\n                    PatternMatches = new[]\n                    {\n                        new Astronomer.Inputs.AlertsAlertsRulesPatternMatchArgs\n                        {\n                            EntityType = \"DAG_ID\",\n                            OperatorType = \"IS\",\n                            Values = new[]\n                            {\n                                \"etl_dag\",\n                            },\n                        },\n                    },\n                },\n            } },\n            { \"reporting_dag_duration\", new Astronomer.Inputs.AlertsAlertsArgs\n            {\n                Name = \"Reporting DAG Duration\",\n                Type = \"DAG_DURATION\",\n                Severity = \"WARNING\",\n                EntityType = \"DEPLOYMENT\",\n                EntityId = \"cm1zkps2a0cv301ph39benet6\",\n                NotificationChannelIds = new[]\n                {\n                    \"cm4nwrvyg024h01mk2dn58m5s\",\n                },\n                Rules = new Astronomer.Inputs.AlertsAlertsRulesArgs\n                {\n                    Properties = new Astronomer.Inputs.AlertsAlertsRulesPropertiesArgs\n                    {\n                        DeploymentId = \"cm1zkps2a0cv301ph39benet6\",\n                        DagDurationSeconds = 3600,\n                    },\n                    PatternMatches = new[]\n                    {\n                        new Astronomer.Inputs.AlertsAlertsRulesPatternMatchArgs\n                        {\n                            EntityType = \"DAG_ID\",\n                            OperatorType = \"IS\",\n                            Values = new[]\n                            {\n                                \"reporting_dag\",\n                            },\n                        },\n                    },\n                },\n            } },\n        },\n    });\n\n    // Generate many alerts programmatically — the resource chunks them across requests for you.\n    var perDagFailureAlerts = new Astronomer.Alerts(\"per_dag_failure_alerts\", new()\n    {\n        AlertsCollection = Std.Toset.Invoke(new()\n        {\n            Input = new[]\n            {\n                \"a\",\n                \"b\",\n                \"c\",\n            },\n        }).Apply(invoke =\u003e .ToDictionary(item =\u003e {\n            var dag = item.Value;\n            return $\"{dag}_failure\";\n        }, item =\u003e {\n            var dag = item.Value;\n            return \n            {\n                { \"name\", $\"{dag} DAG Failure\" },\n                { \"type\", \"DAG_FAILURE\" },\n                { \"severity\", \"CRITICAL\" },\n                { \"entityType\", \"DEPLOYMENT\" },\n                { \"entityId\", \"cm1zkps2a0cv301ph39benet6\" },\n                { \"notificationChannelIds\", new[]\n                {\n                    \"cm4nwrvyg024h01mk2dn58m5s\",\n                } },\n                { \"rules\", \n                {\n                    { \"properties\", \n                    {\n                        { \"deploymentId\", \"cm1zkps2a0cv301ph39benet6\" },\n                    } },\n                    { \"patternMatches\", new[]\n                    {\n                        \n                        {\n                            { \"entityType\", \"DAG_ID\" },\n                            { \"operatorType\", \"IS\" },\n                            { \"values\", new[]\n                            {\n                                dag,\n                            } },\n                        },\n                    } },\n                } },\n            };\n        })),\n    });\n\n});\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n    std = {\n      source = \"pulumi/std\"\n    }\n  }\n}\n\n# The astro_alerts resource manages many alerts as a single resource. It batches the underlying\n# API calls and automatically chunks requests that exceed the per-request limits (30 for\n# create/update, 20 for delete), so you can declare any number of alerts in one block.\n#\n# Alerts are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n# alert and creating a new one.\nresource \"astronomer_alerts\" \"team_alerts\" {\n  alerts = {\n    \"etl_dag_failure\" = {\n      name                     = \"ETL DAG Failure\"\n      type                     = \"DAG_FAILURE\"\n      severity                 = \"CRITICAL\"\n      entity_type              = \"DEPLOYMENT\"\n      entity_id                = \"cm1zkps2a0cv301ph39benet6\"\n      notification_channel_ids = [\"cm4nwrvyg024h01mk2dn58m5s\"]\n      rules = {\n        properties = {\n          deployment_id = \"cm1zkps2a0cv301ph39benet6\"\n        }\n        pattern_matches = [{\n          \"entityType\"   = \"DAG_ID\"\n          \"operatorType\" = \"IS\"\n          \"values\"       = [\"etl_dag\"]\n        }]\n      }\n    }\n    \"reporting_dag_duration\" = {\n      name                     = \"Reporting DAG Duration\"\n      type                     = \"DAG_DURATION\"\n      severity                 = \"WARNING\"\n      entity_type              = \"DEPLOYMENT\"\n      entity_id                = \"cm1zkps2a0cv301ph39benet6\"\n      notification_channel_ids = [\"cm4nwrvyg024h01mk2dn58m5s\"]\n      rules = {\n        properties = {\n          deployment_id        = \"cm1zkps2a0cv301ph39benet6\"\n          dag_duration_seconds = 3600\n        }\n        pattern_matches = [{\n          \"entityType\"   = \"DAG_ID\"\n          \"operatorType\" = \"IS\"\n          \"values\"       = [\"reporting_dag\"]\n        }]\n      }\n    }\n  }\n}\n# Generate many alerts programmatically — the resource chunks them across requests for you.\nresource \"astronomer_alerts\" \"per_dag_failure_alerts\" {\n  alerts = {for dag in toset([\"a\", \"b\", \"c\"]) :\"${dag}_failure\"=\u003e {\n    \"name\"                   =\"${dag} DAG Failure\"\n    \"type\"                   = \"DAG_FAILURE\"\n    \"severity\"               = \"CRITICAL\"\n    \"entityType\"             = \"DEPLOYMENT\"\n    \"entityId\"               = \"cm1zkps2a0cv301ph39benet6\"\n    \"notificationChannelIds\" = [\"cm4nwrvyg024h01mk2dn58m5s\"]\n    \"rules\" = {\n      \"properties\" = {\n        \"deploymentId\" = \"cm1zkps2a0cv301ph39benet6\"\n      }\n      \"patternMatches\" = [{\n        \"entityType\"   = \"DAG_ID\"\n        \"operatorType\" = \"IS\"\n        \"values\"       = [dag]\n      }]\n    }\n  } }\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "alerts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/astronomer:index/AlertsAlerts:AlertsAlerts"
+                    },
+                    "description": "A map of alerts to manage as a single resource, keyed by a stable user-defined string.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AlertsCollection"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "alerts"
+            ],
+            "inputProperties": {
+                "alerts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/astronomer:index/AlertsAlerts:AlertsAlerts"
+                    },
+                    "description": "A map of alerts to manage as a single resource, keyed by a stable user-defined string.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AlertsCollection"
+                        }
+                    }
+                }
+            },
+            "requiredInputs": [
+                "alerts"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Alerts resources.\n",
+                "properties": {
+                    "alerts": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/types/astronomer:index/AlertsAlerts:AlertsAlerts"
+                        },
+                        "description": "A map of alerts to manage as a single resource, keyed by a stable user-defined string.\n",
+                        "language": {
+                            "csharp": {
+                                "name": "AlertsCollection"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
         "astronomer:index/apiToken:ApiToken": {
             "description": "API Token resource\n\n",
             "properties": {
@@ -6497,6 +8014,10 @@
                     "type": "string",
                     "description": "Cluster database instance type\n"
                 },
+                "drPodSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery subnet range for pods (GCP Only).\n"
+                },
                 "drRegion": {
                     "type": "string",
                     "description": "The secondary region for Disaster Recovery. Required when \u003cspan pulumi-lang-nodejs=\"`isDrEnabled`\" pulumi-lang-dotnet=\"`IsDrEnabled`\" pulumi-lang-go=\"`isDrEnabled`\" pulumi-lang-python=\"`is_dr_enabled`\" pulumi-lang-yaml=\"`isDrEnabled`\" pulumi-lang-java=\"`isDrEnabled`\" pulumi-lang-hcl=\"`is_dr_enabled`\"\u003e`isDrEnabled`\u003c/span\u003e is true. Cannot be changed once set.\n"
@@ -6504,6 +8025,14 @@
                 "drSecondaryVpcCidr": {
                     "type": "string",
                     "description": "Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.\n"
+                },
+                "drServicePeeringRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service peering range (GCP Only).\n"
+                },
+                "drServiceSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service subnet range (GCP Only).\n"
                 },
                 "drVpcSubnetRange": {
                     "type": "string",
@@ -6603,8 +8132,11 @@
                 "cloudProvider",
                 "createdAt",
                 "dbInstanceType",
+                "drPodSubnetRange",
                 "drRegion",
                 "drSecondaryVpcCidr",
+                "drServicePeeringRange",
+                "drServiceSubnetRange",
                 "drVpcSubnetRange",
                 "enableReplicationTimeControl",
                 "healthStatus",
@@ -6629,6 +8161,10 @@
                     "type": "string",
                     "description": "Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.\n"
                 },
+                "drPodSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery subnet range for pods (GCP Only).\n"
+                },
                 "drRegion": {
                     "type": "string",
                     "description": "The secondary region for Disaster Recovery. Required when \u003cspan pulumi-lang-nodejs=\"`isDrEnabled`\" pulumi-lang-dotnet=\"`IsDrEnabled`\" pulumi-lang-go=\"`isDrEnabled`\" pulumi-lang-python=\"`is_dr_enabled`\" pulumi-lang-yaml=\"`isDrEnabled`\" pulumi-lang-java=\"`isDrEnabled`\" pulumi-lang-hcl=\"`is_dr_enabled`\"\u003e`isDrEnabled`\u003c/span\u003e is true. Cannot be changed once set.\n"
@@ -6636,6 +8172,14 @@
                 "drSecondaryVpcCidr": {
                     "type": "string",
                     "description": "Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.\n"
+                },
+                "drServicePeeringRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service peering range (GCP Only).\n"
+                },
+                "drServiceSubnetRange": {
+                    "type": "string",
+                    "description": "The disaster recovery service subnet range (GCP Only).\n"
                 },
                 "drVpcSubnetRange": {
                     "type": "string",
@@ -6718,6 +8262,10 @@
                         "type": "string",
                         "description": "Cluster database instance type\n"
                     },
+                    "drPodSubnetRange": {
+                        "type": "string",
+                        "description": "The disaster recovery subnet range for pods (GCP Only).\n"
+                    },
                     "drRegion": {
                         "type": "string",
                         "description": "The secondary region for Disaster Recovery. Required when \u003cspan pulumi-lang-nodejs=\"`isDrEnabled`\" pulumi-lang-dotnet=\"`IsDrEnabled`\" pulumi-lang-go=\"`isDrEnabled`\" pulumi-lang-python=\"`is_dr_enabled`\" pulumi-lang-yaml=\"`isDrEnabled`\" pulumi-lang-java=\"`isDrEnabled`\" pulumi-lang-hcl=\"`is_dr_enabled`\"\u003e`isDrEnabled`\u003c/span\u003e is true. Cannot be changed once set.\n"
@@ -6725,6 +8273,14 @@
                     "drSecondaryVpcCidr": {
                         "type": "string",
                         "description": "Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.\n"
+                    },
+                    "drServicePeeringRange": {
+                        "type": "string",
+                        "description": "The disaster recovery service peering range (GCP Only).\n"
+                    },
+                    "drServiceSubnetRange": {
+                        "type": "string",
+                        "description": "The disaster recovery service subnet range (GCP Only).\n"
                     },
                     "drVpcSubnetRange": {
                         "type": "string",
@@ -7557,6 +9113,443 @@
                     "workspaceId": {
                         "type": "string",
                         "description": "Deployment workspace identifier - if changing this value, the deployment will be recreated in the new workspace\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "astronomer:index/environmentObject:EnvironmentObject": {
+            "description": "Environment Object resource. Manages Airflow connections, variables, and metrics exports scoped to a Workspace or Deployment.\n\n",
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The type of authentication (only valid when object*type=METRICS*EXPORT). Values: AUTH_TOKEN, BASIC\n"
+                },
+                "authTypeId": {
+                    "type": "string",
+                    "description": "The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API\n"
+                },
+                "autoLinkDeployments": {
+                    "type": "boolean",
+                    "description": "Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "connectionAuthType": {
+                    "$ref": "#/types/astronomer:index/EnvironmentObjectConnectionAuthType:EnvironmentObjectConnectionAuthType",
+                    "description": "The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Environment Object creation timestamp\n"
+                },
+                "createdBy": {
+                    "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
+                    "description": "Environment Object creator\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                },
+                "excludeLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectExcludeLink:EnvironmentObjectExcludeLink"
+                    },
+                    "description": "The excluded links for the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host address for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectLink:EnvironmentObjectLink"
+                    },
+                    "description": "The Deployments linked to the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "The username used for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "objectKey": {
+                    "type": "string",
+                    "description": "The key for the environment object\n"
+                },
+                "objectType": {
+                    "type": "string",
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "The scope of the environment object (WORKSPACE, DEPLOYMENT)\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "The ID of the scope entity where the environment object is created\n"
+                },
+                "sourceScope": {
+                    "type": "string",
+                    "description": "The source scope, if resolved from a link\n"
+                },
+                "sourceScopeEntityId": {
+                    "type": "string",
+                    "description": "The source scope entity ID, if resolved from a link\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The connection type (required when object_type=CONNECTION). Immutable on the API; changing it forces resource replacement.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Environment Object last updated timestamp\n"
+                },
+                "updatedBy": {
+                    "$ref": "#/types/astronomer:index/EnvironmentObjectUpdatedBy:EnvironmentObjectUpdatedBy",
+                    "description": "Environment Object updater\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "authType",
+                "autoLinkDeployments",
+                "connectionAuthType",
+                "createdAt",
+                "createdBy",
+                "endpoint",
+                "excludeLinks",
+                "exporterType",
+                "extra",
+                "headers",
+                "host",
+                "isSecret",
+                "labels",
+                "links",
+                "login",
+                "objectKey",
+                "objectType",
+                "port",
+                "schema",
+                "scope",
+                "scopeEntityId",
+                "sourceScope",
+                "sourceScopeEntityId",
+                "type",
+                "updatedAt",
+                "updatedBy",
+                "username"
+            ],
+            "inputProperties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The type of authentication (only valid when object*type=METRICS*EXPORT). Values: AUTH_TOKEN, BASIC\n"
+                },
+                "authTypeId": {
+                    "type": "string",
+                    "description": "The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API\n"
+                },
+                "autoLinkDeployments": {
+                    "type": "boolean",
+                    "description": "Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "basicToken": {
+                    "type": "string",
+                    "description": "The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n",
+                    "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                },
+                "excludeLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectExcludeLink:EnvironmentObjectExcludeLink"
+                    },
+                    "description": "The excluded links for the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "exporterType": {
+                    "type": "string",
+                    "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                },
+                "extra": {
+                    "type": "string",
+                    "description": "Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host address for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "isSecret": {
+                    "type": "boolean",
+                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectLink:EnvironmentObjectLink"
+                    },
+                    "description": "The Deployments linked to the environment object. Only applicable for WORKSPACE scope\n"
+                },
+                "login": {
+                    "type": "string",
+                    "description": "The username used for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "objectKey": {
+                    "type": "string",
+                    "description": "The key for the environment object\n"
+                },
+                "objectType": {
+                    "type": "string",
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema for the connection (only valid when object_type=CONNECTION)\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "The scope of the environment object (WORKSPACE, DEPLOYMENT)\n"
+                },
+                "scopeEntityId": {
+                    "type": "string",
+                    "description": "The ID of the scope entity where the environment object is created\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The connection type (required when object_type=CONNECTION). Immutable on the API; changing it forces resource replacement.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "objectKey",
+                "objectType",
+                "scope",
+                "scopeEntityId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering EnvironmentObject resources.\n",
+                "properties": {
+                    "authType": {
+                        "type": "string",
+                        "description": "The type of authentication (only valid when object*type=METRICS*EXPORT). Values: AUTH_TOKEN, BASIC\n"
+                    },
+                    "authTypeId": {
+                        "type": "string",
+                        "description": "The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API\n"
+                    },
+                    "autoLinkDeployments": {
+                        "type": "boolean",
+                        "description": "Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope\n"
+                    },
+                    "basicToken": {
+                        "type": "string",
+                        "description": "The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n",
+                        "secret": true
+                    },
+                    "connectionAuthType": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectConnectionAuthType:EnvironmentObjectConnectionAuthType",
+                        "description": "The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Environment Object creation timestamp\n"
+                    },
+                    "createdBy": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
+                        "description": "Environment Object creator\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                    },
+                    "excludeLinks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/EnvironmentObjectExcludeLink:EnvironmentObjectExcludeLink"
+                        },
+                        "description": "The excluded links for the environment object. Only applicable for WORKSPACE scope\n"
+                    },
+                    "exporterType": {
+                        "type": "string",
+                        "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                    },
+                    "extra": {
+                        "type": "string",
+                        "description": "Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})\n"
+                    },
+                    "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                    },
+                    "host": {
+                        "type": "string",
+                        "description": "The host address for the connection (only valid when object_type=CONNECTION)\n"
+                    },
+                    "isSecret": {
+                        "type": "boolean",
+                        "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)\n"
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/EnvironmentObjectLink:EnvironmentObjectLink"
+                        },
+                        "description": "The Deployments linked to the environment object. Only applicable for WORKSPACE scope\n"
+                    },
+                    "login": {
+                        "type": "string",
+                        "description": "The username used for the connection (only valid when object_type=CONNECTION)\n"
+                    },
+                    "objectKey": {
+                        "type": "string",
+                        "description": "The key for the environment object\n"
+                    },
+                    "objectType": {
+                        "type": "string",
+                        "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                        "secret": true
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "The port for the connection (only valid when object_type=CONNECTION)\n"
+                    },
+                    "schema": {
+                        "type": "string",
+                        "description": "The schema for the connection (only valid when object_type=CONNECTION)\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "The scope of the environment object (WORKSPACE, DEPLOYMENT)\n"
+                    },
+                    "scopeEntityId": {
+                        "type": "string",
+                        "description": "The ID of the scope entity where the environment object is created\n"
+                    },
+                    "sourceScope": {
+                        "type": "string",
+                        "description": "The source scope, if resolved from a link\n"
+                    },
+                    "sourceScopeEntityId": {
+                        "type": "string",
+                        "description": "The source scope entity ID, if resolved from a link\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The connection type (required when object_type=CONNECTION). Immutable on the API; changing it forces resource replacement.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Environment Object last updated timestamp\n"
+                    },
+                    "updatedBy": {
+                        "$ref": "#/types/astronomer:index/EnvironmentObjectUpdatedBy:EnvironmentObjectUpdatedBy",
+                        "description": "Environment Object updater\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                        "secret": true
                     }
                 },
                 "type": "object"
@@ -8520,7 +10513,7 @@
             }
         },
         "astronomer:index/getAlerts:getAlerts": {
-            "description": "Alerts data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleAlerts = astronomer.getAlerts({});\nconst alertIdsExample = astronomer.getAlerts({\n    alertIds: [\"cm4ntm56001gk01mbhudv1elv\"],\n});\nconst workspaceIdsExample = astronomer.getAlerts({\n    workspaceIds: [\"clx42sxw501gl01o0gjenthnh\"],\n});\nconst deploymentIdsExample = astronomer.getAlerts({\n    deploymentIds: [\"clx44jyu001m201m5dzsbexqr\"],\n});\nconst alertTypesExample = astronomer.getAlerts({\n    alertTypes: [\n        \"DAG_FAILURE\",\n        \"DAG_SUCCESS\",\n    ],\n});\nconst entityTypeExample = astronomer.getAlerts({\n    entityType: \"DEPLOYMENT\",\n});\nexport const alerts = exampleAlerts;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_alerts = astronomer.get_alerts()\nalert_ids_example = astronomer.get_alerts(alert_ids=[\"cm4ntm56001gk01mbhudv1elv\"])\nworkspace_ids_example = astronomer.get_alerts(workspace_ids=[\"clx42sxw501gl01o0gjenthnh\"])\ndeployment_ids_example = astronomer.get_alerts(deployment_ids=[\"clx44jyu001m201m5dzsbexqr\"])\nalert_types_example = astronomer.get_alerts(alert_types=[\n    \"DAG_FAILURE\",\n    \"DAG_SUCCESS\",\n])\nentity_type_example = astronomer.get_alerts(entity_type=\"DEPLOYMENT\")\npulumi.export(\"alerts\", example_alerts)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAlerts = Astronomer.GetAlerts.Invoke();\n\n    var alertIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        AlertIds = new[]\n        {\n            \"cm4ntm56001gk01mbhudv1elv\",\n        },\n    });\n\n    var workspaceIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        WorkspaceIds = new[]\n        {\n            \"clx42sxw501gl01o0gjenthnh\",\n        },\n    });\n\n    var deploymentIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        DeploymentIds = new[]\n        {\n            \"clx44jyu001m201m5dzsbexqr\",\n        },\n    });\n\n    var alertTypesExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        AlertTypes = new[]\n        {\n            \"DAG_FAILURE\",\n            \"DAG_SUCCESS\",\n        },\n    });\n\n    var entityTypeExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        EntityType = \"DEPLOYMENT\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"alerts\"] = exampleAlerts,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAlerts, err := astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{\n\t\t\tAlertIds: []string{\n\t\t\t\t\"cm4ntm56001gk01mbhudv1elv\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{\n\t\t\tWorkspaceIds: []string{\n\t\t\t\t\"clx42sxw501gl01o0gjenthnh\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{\n\t\t\tDeploymentIds: []string{\n\t\t\t\t\"clx44jyu001m201m5dzsbexqr\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{\n\t\t\tAlertTypes: []string{\n\t\t\t\t\"DAG_FAILURE\",\n\t\t\t\t\"DAG_SUCCESS\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.GetAlertsArgs{\n\t\t\tEntityType: pulumi.StringRef(\"DEPLOYMENT\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"alerts\", exampleAlerts)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getalerts\" \"exampleAlerts\" {\n}\ndata \"astronomer_getalerts\" \"alertIdsExample\" {\n  alert_ids = [\"cm4ntm56001gk01mbhudv1elv\"]\n}\ndata \"astronomer_getalerts\" \"workspaceIdsExample\" {\n  workspace_ids = [\"clx42sxw501gl01o0gjenthnh\"]\n}\ndata \"astronomer_getalerts\" \"deploymentIdsExample\" {\n  deployment_ids = [\"clx44jyu001m201m5dzsbexqr\"]\n}\ndata \"astronomer_getalerts\" \"alertTypesExample\" {\n  alert_types = [\"DAG_FAILURE\", \"DAG_SUCCESS\"]\n}\ndata \"astronomer_getalerts\" \"entityTypeExample\" {\n  entity_type = \"DEPLOYMENT\"\n}\n\n# Output the API tokens using pulumi up\noutput \"alerts\" {\n  value = data.astronomer_getalerts.exampleAlerts\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetAlertsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleAlerts = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .build());\n\n        final var alertIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .alertIds(\"cm4ntm56001gk01mbhudv1elv\")\n            .build());\n\n        final var workspaceIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .workspaceIds(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var deploymentIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .deploymentIds(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        final var alertTypesExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .alertTypes(            \n                \"DAG_FAILURE\",\n                \"DAG_SUCCESS\")\n            .build());\n\n        final var entityTypeExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .entityType(\"DEPLOYMENT\")\n            .build());\n\n        ctx.export(\"alerts\", exampleAlerts);\n    }\n}\n```\n```yaml\nvariables:\n  exampleAlerts:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments: {}\n  alertIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        alertIds:\n          - cm4ntm56001gk01mbhudv1elv\n  workspaceIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        workspaceIds:\n          - clx42sxw501gl01o0gjenthnh\n  deploymentIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        deploymentIds:\n          - clx44jyu001m201m5dzsbexqr\n  alertTypesExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        alertTypes:\n          - DAG_FAILURE\n          - DAG_SUCCESS\n  entityTypeExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        entityType: DEPLOYMENT\noutputs:\n  # Output the API tokens using pulumi up\n  alerts: ${exampleAlerts}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Alerts data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleAlerts = astronomer.getAlerts({});\nconst alertIdsExample = astronomer.getAlerts({\n    alertIds: [\"cm4ntm56001gk01mbhudv1elv\"],\n});\nconst workspaceIdsExample = astronomer.getAlerts({\n    workspaceIds: [\"clx42sxw501gl01o0gjenthnh\"],\n});\nconst deploymentIdsExample = astronomer.getAlerts({\n    deploymentIds: [\"clx44jyu001m201m5dzsbexqr\"],\n});\nconst alertTypesExample = astronomer.getAlerts({\n    alertTypes: [\n        \"DAG_FAILURE\",\n        \"DAG_SUCCESS\",\n    ],\n});\nconst entityTypeExample = astronomer.getAlerts({\n    entityType: \"DEPLOYMENT\",\n});\nexport const alerts = exampleAlerts;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_alerts = astronomer.get_alerts()\nalert_ids_example = astronomer.get_alerts(alert_ids=[\"cm4ntm56001gk01mbhudv1elv\"])\nworkspace_ids_example = astronomer.get_alerts(workspace_ids=[\"clx42sxw501gl01o0gjenthnh\"])\ndeployment_ids_example = astronomer.get_alerts(deployment_ids=[\"clx44jyu001m201m5dzsbexqr\"])\nalert_types_example = astronomer.get_alerts(alert_types=[\n    \"DAG_FAILURE\",\n    \"DAG_SUCCESS\",\n])\nentity_type_example = astronomer.get_alerts(entity_type=\"DEPLOYMENT\")\npulumi.export(\"alerts\", example_alerts)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAlerts = Astronomer.GetAlerts.Invoke();\n\n    var alertIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        AlertIds = new[]\n        {\n            \"cm4ntm56001gk01mbhudv1elv\",\n        },\n    });\n\n    var workspaceIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        WorkspaceIds = new[]\n        {\n            \"clx42sxw501gl01o0gjenthnh\",\n        },\n    });\n\n    var deploymentIdsExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        DeploymentIds = new[]\n        {\n            \"clx44jyu001m201m5dzsbexqr\",\n        },\n    });\n\n    var alertTypesExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        AlertTypes = new[]\n        {\n            \"DAG_FAILURE\",\n            \"DAG_SUCCESS\",\n        },\n    });\n\n    var entityTypeExample = Astronomer.GetAlerts.Invoke(new()\n    {\n        EntityType = \"DEPLOYMENT\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"alerts\"] = exampleAlerts,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAlerts, err := astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{\n\t\t\tAlertIds: []string{\n\t\t\t\t\"cm4ntm56001gk01mbhudv1elv\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{\n\t\t\tWorkspaceIds: []string{\n\t\t\t\t\"clx42sxw501gl01o0gjenthnh\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{\n\t\t\tDeploymentIds: []string{\n\t\t\t\t\"clx44jyu001m201m5dzsbexqr\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{\n\t\t\tAlertTypes: []string{\n\t\t\t\t\"DAG_FAILURE\",\n\t\t\t\t\"DAG_SUCCESS\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetAlerts(ctx, \u0026astronomer.LookupAlertsArgs{\n\t\t\tEntityType: pulumi.StringRef(\"DEPLOYMENT\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"alerts\", exampleAlerts)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getalerts\" \"exampleAlerts\" {\n}\ndata \"astronomer_getalerts\" \"alertIdsExample\" {\n  alert_ids = [\"cm4ntm56001gk01mbhudv1elv\"]\n}\ndata \"astronomer_getalerts\" \"workspaceIdsExample\" {\n  workspace_ids = [\"clx42sxw501gl01o0gjenthnh\"]\n}\ndata \"astronomer_getalerts\" \"deploymentIdsExample\" {\n  deployment_ids = [\"clx44jyu001m201m5dzsbexqr\"]\n}\ndata \"astronomer_getalerts\" \"alertTypesExample\" {\n  alert_types = [\"DAG_FAILURE\", \"DAG_SUCCESS\"]\n}\ndata \"astronomer_getalerts\" \"entityTypeExample\" {\n  entity_type = \"DEPLOYMENT\"\n}\n\n# Output the API tokens using pulumi up\noutput \"alerts\" {\n  value = data.astronomer_getalerts.exampleAlerts\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetAlertsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleAlerts = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .build());\n\n        final var alertIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .alertIds(\"cm4ntm56001gk01mbhudv1elv\")\n            .build());\n\n        final var workspaceIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .workspaceIds(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var deploymentIdsExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .deploymentIds(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        final var alertTypesExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .alertTypes(            \n                \"DAG_FAILURE\",\n                \"DAG_SUCCESS\")\n            .build());\n\n        final var entityTypeExample = AstronomerFunctions.getAlerts(GetAlertsArgs.builder()\n            .entityType(\"DEPLOYMENT\")\n            .build());\n\n        ctx.export(\"alerts\", exampleAlerts);\n    }\n}\n```\n```yaml\nvariables:\n  exampleAlerts:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments: {}\n  alertIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        alertIds:\n          - cm4ntm56001gk01mbhudv1elv\n  workspaceIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        workspaceIds:\n          - clx42sxw501gl01o0gjenthnh\n  deploymentIdsExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        deploymentIds:\n          - clx44jyu001m201m5dzsbexqr\n  alertTypesExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        alertTypes:\n          - DAG_FAILURE\n          - DAG_SUCCESS\n  entityTypeExample:\n    fn::invoke:\n      function: astronomer:getAlerts\n      arguments:\n        entityType: DEPLOYMENT\noutputs:\n  # Output the API tokens using pulumi up\n  alerts: ${exampleAlerts}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAlerts.\n",
                 "properties": {
@@ -8776,12 +10769,24 @@
                         "description": "Cluster database instance type\n",
                         "type": "string"
                     },
+                    "drPodSubnetRange": {
+                        "description": "The disaster recovery subnet range for pods (GCP Only).\n",
+                        "type": "string"
+                    },
                     "drRegion": {
                         "description": "The secondary region for Disaster Recovery\n",
                         "type": "string"
                     },
                     "drSecondaryVpcCidr": {
                         "description": "Secondary CIDR for pod networking in the DR region (AWS only)\n",
+                        "type": "string"
+                    },
+                    "drServicePeeringRange": {
+                        "description": "The disaster recovery service peering range (GCP Only).\n",
+                        "type": "string"
+                    },
+                    "drServiceSubnetRange": {
+                        "description": "The disaster recovery service subnet range (GCP Only).\n",
                         "type": "string"
                     },
                     "drVpcSubnetRange": {
@@ -8890,8 +10895,11 @@
                     "cloudProvider",
                     "createdAt",
                     "dbInstanceType",
+                    "drPodSubnetRange",
                     "drRegion",
                     "drSecondaryVpcCidr",
+                    "drServicePeeringRange",
+                    "drServiceSubnetRange",
                     "drVpcSubnetRange",
                     "enableReplicationTimeControl",
                     "healthStatus",
@@ -9545,6 +11553,282 @@
                 "type": "object"
             }
         },
+        "astronomer:index/getEnvironmentObject:getEnvironmentObject": {
+            "description": "Environment Object data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleEnvironmentObject = astronomer.getEnvironmentObject({\n    id: \"cm4ntm56001gk01mbhudv1elv\",\n});\nexport const environmentObject = exampleEnvironmentObject;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_environment_object = astronomer.get_environment_object(id=\"cm4ntm56001gk01mbhudv1elv\")\npulumi.export(\"environmentObject\", example_environment_object)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleEnvironmentObject = Astronomer.GetEnvironmentObject.Invoke(new()\n    {\n        Id = \"cm4ntm56001gk01mbhudv1elv\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"environmentObject\"] = exampleEnvironmentObject,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleEnvironmentObject, err := astronomer.GetEnvironmentObject(ctx, \u0026astronomer.LookupEnvironmentObjectArgs{\n\t\t\tId: \"cm4ntm56001gk01mbhudv1elv\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"environmentObject\", exampleEnvironmentObject)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getenvironmentobject\" \"exampleEnvironmentObject\" {\n  id = \"cm4ntm56001gk01mbhudv1elv\"\n}\n\n# Output the environment object using pulumi up\noutput \"environmentObject\" {\n  value = data.astronomer_getenvironmentobject.exampleEnvironmentObject\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetEnvironmentObjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleEnvironmentObject = AstronomerFunctions.getEnvironmentObject(GetEnvironmentObjectArgs.builder()\n            .id(\"cm4ntm56001gk01mbhudv1elv\")\n            .build());\n\n        ctx.export(\"environmentObject\", exampleEnvironmentObject);\n    }\n}\n```\n```yaml\nvariables:\n  exampleEnvironmentObject:\n    fn::invoke:\n      function: astronomer:getEnvironmentObject\n      arguments:\n        id: cm4ntm56001gk01mbhudv1elv\noutputs:\n  # Output the environment object using pulumi up\n  environmentObject: ${exampleEnvironmentObject}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getEnvironmentObject.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Environment object identifier\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEnvironmentObject.\n",
+                "properties": {
+                    "authType": {
+                        "description": "The type of authentication (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "authTypeId": {
+                        "description": "The ID for the connection auth type (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "autoLinkDeployments": {
+                        "description": "Whether to automatically link Deployments to the environment object\n",
+                        "type": "boolean"
+                    },
+                    "basicToken": {
+                        "description": "The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)\n",
+                        "secret": true,
+                        "type": "string"
+                    },
+                    "connectionAuthType": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectConnectionAuthType:getEnvironmentObjectConnectionAuthType",
+                        "description": "The resolved auth type of the connection (only used when object*type=CONNECTION)\n"
+                    },
+                    "createdAt": {
+                        "description": "Environment Object creation timestamp\n",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectCreatedBy:getEnvironmentObjectCreatedBy",
+                        "description": "Environment Object creator\n"
+                    },
+                    "endpoint": {
+                        "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "excludeLinks": {
+                        "description": "The excluded links for the environment object\n",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getEnvironmentObjectExcludeLink:getEnvironmentObjectExcludeLink"
+                        },
+                        "type": "array"
+                    },
+                    "exporterType": {
+                        "description": "The type of exporter (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "extra": {
+                        "description": "Extra connection details as JSON string (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "object"
+                    },
+                    "host": {
+                        "description": "The host address for the connection (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Environment object identifier\n",
+                        "type": "string"
+                    },
+                    "isSecret": {
+                        "description": "Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)\n",
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "object"
+                    },
+                    "links": {
+                        "description": "The Deployments linked to the environment object\n",
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getEnvironmentObjectLink:getEnvironmentObjectLink"
+                        },
+                        "type": "array"
+                    },
+                    "login": {
+                        "description": "The username used for the connection (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "objectKey": {
+                        "description": "The key for the environment object\n",
+                        "type": "string"
+                    },
+                    "objectType": {
+                        "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT\n",
+                        "secret": true,
+                        "type": "string"
+                    },
+                    "port": {
+                        "description": "The port for the connection (only used when object_type=CONNECTION)\n",
+                        "type": "integer"
+                    },
+                    "schema": {
+                        "description": "The schema for the connection (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "scope": {
+                        "description": "The scope of the environment object (WORKSPACE, DEPLOYMENT)\n",
+                        "type": "string"
+                    },
+                    "scopeEntityId": {
+                        "description": "The ID of the scope entity where the environment object is created\n",
+                        "type": "string"
+                    },
+                    "sourceScope": {
+                        "description": "The source scope, if resolved from a link\n",
+                        "type": "string"
+                    },
+                    "sourceScopeEntityId": {
+                        "description": "The source scope entity ID, if resolved from a link\n",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The connection type (only used when object_type=CONNECTION)\n",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "Environment Object last updated timestamp\n",
+                        "type": "string"
+                    },
+                    "updatedBy": {
+                        "$ref": "#/types/astronomer:index/getEnvironmentObjectUpdatedBy:getEnvironmentObjectUpdatedBy",
+                        "description": "Environment Object updater\n"
+                    },
+                    "username": {
+                        "description": "The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)\n",
+                        "secret": true,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "authType",
+                    "authTypeId",
+                    "autoLinkDeployments",
+                    "basicToken",
+                    "connectionAuthType",
+                    "createdAt",
+                    "createdBy",
+                    "endpoint",
+                    "excludeLinks",
+                    "exporterType",
+                    "extra",
+                    "headers",
+                    "host",
+                    "id",
+                    "isSecret",
+                    "labels",
+                    "links",
+                    "login",
+                    "objectKey",
+                    "objectType",
+                    "password",
+                    "port",
+                    "schema",
+                    "scope",
+                    "scopeEntityId",
+                    "sourceScope",
+                    "sourceScopeEntityId",
+                    "type",
+                    "updatedAt",
+                    "updatedBy",
+                    "username",
+                    "value"
+                ],
+                "type": "object"
+            }
+        },
+        "astronomer:index/getEnvironmentObjects:getEnvironmentObjects": {
+            "description": "Environment Objects data source. Lists environment objects with optional filters.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleEnvironmentObjects = astronomer.getEnvironmentObjects({});\nconst workspaceExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n});\nconst deploymentExample = astronomer.getEnvironmentObjects({\n    deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n    resolveLinked: true,\n});\nconst connectionsExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    objectType: \"CONNECTION\",\n});\nconst variablesExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    objectType: \"AIRFLOW_VARIABLE\",\n});\nconst metricsExportsExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    objectType: \"METRICS_EXPORT\",\n});\nconst objectKeyExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    objectKey: \"warehouse_postgres\",\n});\nconst withSecretsExample = astronomer.getEnvironmentObjects({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    showSecrets: true,\n});\nexport const environmentObjects = exampleEnvironmentObjects;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_environment_objects = astronomer.get_environment_objects()\nworkspace_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\ndeployment_example = astronomer.get_environment_objects(deployment_id=\"clx44jyu001m201m5dzsbexqr\",\n    resolve_linked=True)\nconnections_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\",\n    object_type=\"CONNECTION\")\nvariables_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\",\n    object_type=\"AIRFLOW_VARIABLE\")\nmetrics_exports_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\",\n    object_type=\"METRICS_EXPORT\")\nobject_key_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\",\n    object_key=\"warehouse_postgres\")\nwith_secrets_example = astronomer.get_environment_objects(workspace_id=\"clx42sxw501gl01o0gjenthnh\",\n    show_secrets=True)\npulumi.export(\"environmentObjects\", example_environment_objects)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleEnvironmentObjects = Astronomer.GetEnvironmentObjects.Invoke();\n\n    var workspaceExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var deploymentExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n        ResolveLinked = true,\n    });\n\n    var connectionsExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n        ObjectType = \"CONNECTION\",\n    });\n\n    var variablesExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n        ObjectType = \"AIRFLOW_VARIABLE\",\n    });\n\n    var metricsExportsExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n        ObjectType = \"METRICS_EXPORT\",\n    });\n\n    var objectKeyExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n        ObjectKey = \"warehouse_postgres\",\n    });\n\n    var withSecretsExample = Astronomer.GetEnvironmentObjects.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n        ShowSecrets = true,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"environmentObjects\"] = exampleEnvironmentObjects,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleEnvironmentObjects, err := astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tDeploymentId:  pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t\tResolveLinked: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t\tObjectType:  pulumi.StringRef(\"CONNECTION\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t\tObjectType:  pulumi.StringRef(\"AIRFLOW_VARIABLE\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t\tObjectType:  pulumi.StringRef(\"METRICS_EXPORT\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t\tObjectKey:   pulumi.StringRef(\"warehouse_postgres\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetEnvironmentObjects(ctx, \u0026astronomer.GetEnvironmentObjectsArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t\tShowSecrets: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"environmentObjects\", exampleEnvironmentObjects)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getenvironmentobjects\" \"exampleEnvironmentObjects\" {\n}\ndata \"astronomer_getenvironmentobjects\" \"workspaceExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getenvironmentobjects\" \"deploymentExample\" {\n  deployment_id  = \"clx44jyu001m201m5dzsbexqr\"\n  resolve_linked = true\n}\ndata \"astronomer_getenvironmentobjects\" \"connectionsExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n  object_type  = \"CONNECTION\"\n}\ndata \"astronomer_getenvironmentobjects\" \"variablesExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n  object_type  = \"AIRFLOW_VARIABLE\"\n}\ndata \"astronomer_getenvironmentobjects\" \"metricsExportsExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n  object_type  = \"METRICS_EXPORT\"\n}\ndata \"astronomer_getenvironmentobjects\" \"objectKeyExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n  object_key   = \"warehouse_postgres\"\n}\ndata \"astronomer_getenvironmentobjects\" \"withSecretsExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n  show_secrets = true\n}\n\n# Output the environment objects using pulumi up\noutput \"environmentObjects\" {\n  value = data.astronomer_getenvironmentobjects.exampleEnvironmentObjects\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetEnvironmentObjectsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleEnvironmentObjects = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .build());\n\n        final var workspaceExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var deploymentExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .resolveLinked(true)\n            .build());\n\n        final var connectionsExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .objectType(\"CONNECTION\")\n            .build());\n\n        final var variablesExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .objectType(\"AIRFLOW_VARIABLE\")\n            .build());\n\n        final var metricsExportsExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .objectType(\"METRICS_EXPORT\")\n            .build());\n\n        final var objectKeyExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .objectKey(\"warehouse_postgres\")\n            .build());\n\n        final var withSecretsExample = AstronomerFunctions.getEnvironmentObjects(GetEnvironmentObjectsArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .showSecrets(true)\n            .build());\n\n        ctx.export(\"environmentObjects\", exampleEnvironmentObjects);\n    }\n}\n```\n```yaml\nvariables:\n  exampleEnvironmentObjects:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments: {}\n  workspaceExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  deploymentExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\n        resolveLinked: true\n  connectionsExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n        objectType: CONNECTION\n  variablesExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n        objectType: AIRFLOW_VARIABLE\n  metricsExportsExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n        objectType: METRICS_EXPORT\n  objectKeyExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n        objectKey: warehouse_postgres\n  withSecretsExample:\n    fn::invoke:\n      function: astronomer:getEnvironmentObjects\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n        showSecrets: true\noutputs:\n  # Output the environment objects using pulumi up\n  environmentObjects: ${exampleEnvironmentObjects}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getEnvironmentObjects.\n",
+                "properties": {
+                    "deploymentId": {
+                        "type": "string",
+                        "description": "Filter by Deployment ID\n"
+                    },
+                    "objectKey": {
+                        "type": "string",
+                        "description": "Filter by object key\n"
+                    },
+                    "objectType": {
+                        "type": "string",
+                        "description": "Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n"
+                    },
+                    "resolveLinked": {
+                        "type": "boolean",
+                        "description": "If true, resolves and returns environment objects linked to the specified Deployment or Workspace\n"
+                    },
+                    "showSecrets": {
+                        "type": "boolean",
+                        "description": "If true, returns the actual values of secret fields in the response\n"
+                    },
+                    "workspaceId": {
+                        "type": "string",
+                        "description": "Filter by Workspace ID\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEnvironmentObjects.\n",
+                "properties": {
+                    "deploymentId": {
+                        "description": "Filter by Deployment ID\n",
+                        "type": "string"
+                    },
+                    "environmentObjects": {
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObject:getEnvironmentObjectsEnvironmentObject"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "objectKey": {
+                        "description": "Filter by object key\n",
+                        "type": "string"
+                    },
+                    "objectType": {
+                        "description": "Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n",
+                        "type": "string"
+                    },
+                    "resolveLinked": {
+                        "description": "If true, resolves and returns environment objects linked to the specified Deployment or Workspace\n",
+                        "type": "boolean"
+                    },
+                    "showSecrets": {
+                        "description": "If true, returns the actual values of secret fields in the response\n",
+                        "type": "boolean"
+                    },
+                    "workspaceId": {
+                        "description": "Filter by Workspace ID\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "environmentObjects",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "astronomer:index/getNotificationChannel:getNotificationChannel": {
             "description": "Notification Channel data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleNotificationChannel = astronomer.getNotificationChannel({\n    id: \"cm4nwrvyg024h01mk2dn58m5s\",\n});\nexport const notificationChannel = exampleNotificationChannel;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_notification_channel = astronomer.get_notification_channel(id=\"cm4nwrvyg024h01mk2dn58m5s\")\npulumi.export(\"notificationChannel\", example_notification_channel)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleNotificationChannel = Astronomer.GetNotificationChannel.Invoke(new()\n    {\n        Id = \"cm4nwrvyg024h01mk2dn58m5s\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"notificationChannel\"] = exampleNotificationChannel,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleNotificationChannel, err := astronomer.GetNotificationChannel(ctx, \u0026astronomer.LookupNotificationChannelArgs{\n\t\t\tId: \"cm4nwrvyg024h01mk2dn58m5s\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"notificationChannel\", exampleNotificationChannel)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getnotificationchannel\" \"exampleNotificationChannel\" {\n  id = \"cm4nwrvyg024h01mk2dn58m5s\"\n}\n\n# Output the API token using pulumi up\noutput \"notificationChannel\" {\n  value = data.astronomer_getnotificationchannel.exampleNotificationChannel\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetNotificationChannelArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleNotificationChannel = AstronomerFunctions.getNotificationChannel(GetNotificationChannelArgs.builder()\n            .id(\"cm4nwrvyg024h01mk2dn58m5s\")\n            .build());\n\n        ctx.export(\"notificationChannel\", exampleNotificationChannel);\n    }\n}\n```\n```yaml\nvariables:\n  exampleNotificationChannel:\n    fn::invoke:\n      function: astronomer:getNotificationChannel\n      arguments:\n        id: cm4nwrvyg024h01mk2dn58m5s\noutputs:\n  # Output the API token using pulumi up\n  notificationChannel: ${exampleNotificationChannel}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -10034,7 +12318,7 @@
             }
         },
         "astronomer:index/getUsers:getUsers": {
-            "description": "Users data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nexport = async () =\u003e {\n    const exampleUsers = await astronomer.getUsers({});\n    const exampleUsersFilterByWorkspaceId = await astronomer.getUsers({\n        workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    });\n    const exampleUsersFilterByDeploymentId = await astronomer.getUsers({\n        deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n    });\n    return {\n        exampleUsers: exampleUsers,\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_users = astronomer.get_users()\nexample_users_filter_by_workspace_id = astronomer.get_users(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\nexample_users_filter_by_deployment_id = astronomer.get_users(deployment_id=\"clx44jyu001m201m5dzsbexqr\")\npulumi.export(\"exampleUsers\", example_users)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUsers = Astronomer.GetUsers.Invoke();\n\n    var exampleUsersFilterByWorkspaceId = Astronomer.GetUsers.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var exampleUsersFilterByDeploymentId = Astronomer.GetUsers.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"exampleUsers\"] = exampleUsers,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleUsers, err := astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{\n\t\t\tDeploymentId: pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"exampleUsers\", exampleUsers)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getusers\" \"exampleUsers\" {\n}\ndata \"astronomer_getusers\" \"exampleUsersFilterByWorkspaceId\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getusers\" \"exampleUsersFilterByDeploymentId\" {\n  deployment_id = \"clx44jyu001m201m5dzsbexqr\"\n}\n\n# Output the users value using pulumi up\noutput \"exampleUsers\" {\n  value = data.astronomer_getusers.exampleUsers\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetUsersArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleUsers = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .build());\n\n        final var exampleUsersFilterByWorkspaceId = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var exampleUsersFilterByDeploymentId = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        ctx.export(\"exampleUsers\", exampleUsers);\n    }\n}\n```\n```yaml\nvariables:\n  exampleUsers:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments: {}\n  exampleUsersFilterByWorkspaceId:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  exampleUsersFilterByDeploymentId:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\noutputs:\n  # Output the users value using pulumi up\n  exampleUsers: ${exampleUsers}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Users data source. **Deprecated:** use the \u003cspan pulumi-lang-nodejs=\"`astronomer.getUsersList`\" pulumi-lang-dotnet=\"`astronomer.getUsersList`\" pulumi-lang-go=\"`getUsersList`\" pulumi-lang-python=\"`get_users_list`\" pulumi-lang-yaml=\"`astronomer.getUsersList`\" pulumi-lang-java=\"`astronomer.getUsersList`\" pulumi-lang-hcl=\"`data.astro_users_list`\"\u003e`astronomer.getUsersList`\u003c/span\u003e data source instead.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nexport = async () =\u003e {\n    const exampleUsers = await astronomer.getUsers({});\n    const exampleUsersFilterByWorkspaceId = await astronomer.getUsers({\n        workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n    });\n    const exampleUsersFilterByDeploymentId = await astronomer.getUsers({\n        deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n    });\n    return {\n        exampleUsers: exampleUsers,\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_users = astronomer.get_users()\nexample_users_filter_by_workspace_id = astronomer.get_users(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\nexample_users_filter_by_deployment_id = astronomer.get_users(deployment_id=\"clx44jyu001m201m5dzsbexqr\")\npulumi.export(\"exampleUsers\", example_users)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUsers = Astronomer.GetUsers.Invoke();\n\n    var exampleUsersFilterByWorkspaceId = Astronomer.GetUsers.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var exampleUsersFilterByDeploymentId = Astronomer.GetUsers.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"exampleUsers\"] = exampleUsers,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleUsers, err := astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsers(ctx, \u0026astronomer.GetUsersArgs{\n\t\t\tDeploymentId: pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"exampleUsers\", exampleUsers)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getusers\" \"exampleUsers\" {\n}\ndata \"astronomer_getusers\" \"exampleUsersFilterByWorkspaceId\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getusers\" \"exampleUsersFilterByDeploymentId\" {\n  deployment_id = \"clx44jyu001m201m5dzsbexqr\"\n}\n\n# Output the users value using pulumi up\noutput \"exampleUsers\" {\n  value = data.astronomer_getusers.exampleUsers\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetUsersArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleUsers = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .build());\n\n        final var exampleUsersFilterByWorkspaceId = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var exampleUsersFilterByDeploymentId = AstronomerFunctions.getUsers(GetUsersArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        ctx.export(\"exampleUsers\", exampleUsers);\n    }\n}\n```\n```yaml\nvariables:\n  exampleUsers:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments: {}\n  exampleUsersFilterByWorkspaceId:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  exampleUsersFilterByDeploymentId:\n    fn::invoke:\n      function: astronomer:getUsers\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\noutputs:\n  # Output the users value using pulumi up\n  exampleUsers: ${exampleUsers}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getUsers.\n",
                 "properties": {
@@ -10060,6 +12344,47 @@
                     "users": {
                         "items": {
                             "$ref": "#/types/astronomer:index/getUsersUser:getUsersUser"
+                        },
+                        "type": "array"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "users",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "astronomer:index/getUsersList:getUsersList": {
+            "description": "Users data source (list variant). Identical to \u003cspan pulumi-lang-nodejs=\"`astronomer.getUsers`\" pulumi-lang-dotnet=\"`astronomer.getUsers`\" pulumi-lang-go=\"`getUsers`\" pulumi-lang-python=\"`get_users`\" pulumi-lang-yaml=\"`astronomer.getUsers`\" pulumi-lang-java=\"`astronomer.getUsers`\" pulumi-lang-hcl=\"`data.astro_users`\"\u003e`astronomer.getUsers`\u003c/span\u003e but returns the \u003cspan pulumi-lang-nodejs=\"`users`\" pulumi-lang-dotnet=\"`Users`\" pulumi-lang-go=\"`users`\" pulumi-lang-python=\"`users`\" pulumi-lang-yaml=\"`users`\" pulumi-lang-java=\"`users`\" pulumi-lang-hcl=\"`users`\"\u003e`users`\u003c/span\u003e collection as an ordered list instead of a set, for significantly better `pulumi preview` performance on large organizations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\n// astro_users_list is identical to astro_users but returns the `users`\n// collection as an ordered list instead of a set, for significantly better\n// `pulumi preview` performance on large organizations.\nconst exampleUsers = astronomer.getUsersList({});\nconst exampleUsersFilterByWorkspaceId = astronomer.getUsersList({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n});\nconst exampleUsersFilterByDeploymentId = astronomer.getUsersList({\n    deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n});\nexport const exampleUsersList = exampleUsers;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\n# astro_users_list is identical to astro_users but returns the `users`\n# collection as an ordered list instead of a set, for significantly better\n# `pulumi preview` performance on large organizations.\nexample_users = astronomer.get_users_list()\nexample_users_filter_by_workspace_id = astronomer.get_users_list(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\nexample_users_filter_by_deployment_id = astronomer.get_users_list(deployment_id=\"clx44jyu001m201m5dzsbexqr\")\npulumi.export(\"exampleUsersList\", example_users)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // astro_users_list is identical to astro_users but returns the `users`\n    // collection as an ordered list instead of a set, for significantly better\n    // `pulumi preview` performance on large organizations.\n    var exampleUsers = Astronomer.GetUsersList.Invoke();\n\n    var exampleUsersFilterByWorkspaceId = Astronomer.GetUsersList.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var exampleUsersFilterByDeploymentId = Astronomer.GetUsersList.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"exampleUsersList\"] = exampleUsers,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// astro_users_list is identical to astro_users but returns the `users`\n\t\t// collection as an ordered list instead of a set, for significantly better\n\t\t// `pulumi preview` performance on large organizations.\n\t\texampleUsers, err := astronomer.GetUsersList(ctx, \u0026astronomer.GetUsersListArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsersList(ctx, \u0026astronomer.GetUsersListArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetUsersList(ctx, \u0026astronomer.GetUsersListArgs{\n\t\t\tDeploymentId: pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"exampleUsersList\", exampleUsers)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getuserslist\" \"exampleUsers\" {\n}\ndata \"astronomer_getuserslist\" \"exampleUsersFilterByWorkspaceId\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getuserslist\" \"exampleUsersFilterByDeploymentId\" {\n  deployment_id = \"clx44jyu001m201m5dzsbexqr\"\n}\n\n# astro_users_list is identical to astro_users but returns the `users`\n# collection as an ordered list instead of a set, for significantly better\n# `pulumi preview` performance on large organizations.\n# Output the users value using pulumi up\noutput \"exampleUsersList\" {\n  value = data.astronomer_getuserslist.exampleUsers\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetUsersListArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // astro_users_list is identical to astro_users but returns the `users`\n        // collection as an ordered list instead of a set, for significantly better\n        // `pulumi preview` performance on large organizations.\n        final var exampleUsers = AstronomerFunctions.getUsersList(GetUsersListArgs.builder()\n            .build());\n\n        final var exampleUsersFilterByWorkspaceId = AstronomerFunctions.getUsersList(GetUsersListArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var exampleUsersFilterByDeploymentId = AstronomerFunctions.getUsersList(GetUsersListArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        ctx.export(\"exampleUsersList\", exampleUsers);\n    }\n}\n```\n```yaml\nvariables:\n  # astro_users_list is identical to astro_users but returns the `users`\n  # collection as an ordered list instead of a set, for significantly better\n  # `pulumi preview` performance on large organizations.\n  exampleUsers:\n    fn::invoke:\n      function: astronomer:getUsersList\n      arguments: {}\n  exampleUsersFilterByWorkspaceId:\n    fn::invoke:\n      function: astronomer:getUsersList\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  exampleUsersFilterByDeploymentId:\n    fn::invoke:\n      function: astronomer:getUsersList\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\noutputs:\n  # Output the users value using pulumi up\n  exampleUsersList: ${exampleUsers}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUsersList.\n",
+                "properties": {
+                    "deploymentId": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUsersList.\n",
+                "properties": {
+                    "deploymentId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "users": {
+                        "items": {
+                            "$ref": "#/types/astronomer:index/getUsersListUser:getUsersListUser"
                         },
                         "type": "array"
                     },

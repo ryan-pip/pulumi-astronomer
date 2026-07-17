@@ -50,6 +50,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly dbInstanceType: pulumi.Output<string>;
     /**
+     * The disaster recovery subnet range for pods (GCP Only).
+     */
+    declare public readonly drPodSubnetRange: pulumi.Output<string>;
+    /**
      * The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
      */
     declare public readonly drRegion: pulumi.Output<string>;
@@ -57,6 +61,14 @@ export class Cluster extends pulumi.CustomResource {
      * Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
      */
     declare public readonly drSecondaryVpcCidr: pulumi.Output<string>;
+    /**
+     * The disaster recovery service peering range (GCP Only).
+     */
+    declare public readonly drServicePeeringRange: pulumi.Output<string>;
+    /**
+     * The disaster recovery service subnet range (GCP Only).
+     */
+    declare public readonly drServiceSubnetRange: pulumi.Output<string>;
     /**
      * The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
      */
@@ -159,8 +171,11 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["cloudProvider"] = state?.cloudProvider;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["dbInstanceType"] = state?.dbInstanceType;
+            resourceInputs["drPodSubnetRange"] = state?.drPodSubnetRange;
             resourceInputs["drRegion"] = state?.drRegion;
             resourceInputs["drSecondaryVpcCidr"] = state?.drSecondaryVpcCidr;
+            resourceInputs["drServicePeeringRange"] = state?.drServicePeeringRange;
+            resourceInputs["drServiceSubnetRange"] = state?.drServiceSubnetRange;
             resourceInputs["drVpcSubnetRange"] = state?.drVpcSubnetRange;
             resourceInputs["enableReplicationTimeControl"] = state?.enableReplicationTimeControl;
             resourceInputs["healthStatus"] = state?.healthStatus;
@@ -201,8 +216,11 @@ export class Cluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'workspaceIds'");
             }
             resourceInputs["cloudProvider"] = args?.cloudProvider;
+            resourceInputs["drPodSubnetRange"] = args?.drPodSubnetRange;
             resourceInputs["drRegion"] = args?.drRegion;
             resourceInputs["drSecondaryVpcCidr"] = args?.drSecondaryVpcCidr;
+            resourceInputs["drServicePeeringRange"] = args?.drServicePeeringRange;
+            resourceInputs["drServiceSubnetRange"] = args?.drServiceSubnetRange;
             resourceInputs["drVpcSubnetRange"] = args?.drVpcSubnetRange;
             resourceInputs["enableReplicationTimeControl"] = args?.enableReplicationTimeControl;
             resourceInputs["isDrEnabled"] = args?.isDrEnabled;
@@ -250,6 +268,10 @@ export interface ClusterState {
      */
     dbInstanceType?: pulumi.Input<string | undefined>;
     /**
+     * The disaster recovery subnet range for pods (GCP Only).
+     */
+    drPodSubnetRange?: pulumi.Input<string | undefined>;
+    /**
      * The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
      */
     drRegion?: pulumi.Input<string | undefined>;
@@ -257,6 +279,14 @@ export interface ClusterState {
      * Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
      */
     drSecondaryVpcCidr?: pulumi.Input<string | undefined>;
+    /**
+     * The disaster recovery service peering range (GCP Only).
+     */
+    drServicePeeringRange?: pulumi.Input<string | undefined>;
+    /**
+     * The disaster recovery service subnet range (GCP Only).
+     */
+    drServiceSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
      */
@@ -353,6 +383,10 @@ export interface ClusterArgs {
      */
     cloudProvider: pulumi.Input<string>;
     /**
+     * The disaster recovery subnet range for pods (GCP Only).
+     */
+    drPodSubnetRange?: pulumi.Input<string | undefined>;
+    /**
      * The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
      */
     drRegion?: pulumi.Input<string | undefined>;
@@ -360,6 +394,14 @@ export interface ClusterArgs {
      * Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
      */
     drSecondaryVpcCidr?: pulumi.Input<string | undefined>;
+    /**
+     * The disaster recovery service peering range (GCP Only).
+     */
+    drServicePeeringRange?: pulumi.Input<string | undefined>;
+    /**
+     * The disaster recovery service subnet range (GCP Only).
+     */
+    drServiceSubnetRange?: pulumi.Input<string | undefined>;
     /**
      * The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
      */

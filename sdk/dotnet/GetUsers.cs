@@ -13,7 +13,7 @@ namespace RyanPip.Astronomer
     public static class GetUsers
     {
         /// <summary>
-        /// Users data source
+        /// Users data source. **Deprecated:** use the `astronomer.getUsersList` data source instead.
         /// 
         /// ## Example Usage
         /// 
@@ -48,7 +48,7 @@ namespace RyanPip.Astronomer
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUsersResult>("astronomer:index/getUsers:getUsers", args ?? new GetUsersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Users data source
+        /// Users data source. **Deprecated:** use the `astronomer.getUsersList` data source instead.
         /// 
         /// ## Example Usage
         /// 
@@ -83,7 +83,7 @@ namespace RyanPip.Astronomer
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("astronomer:index/getUsers:getUsers", args ?? new GetUsersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Users data source
+        /// Users data source. **Deprecated:** use the `astronomer.getUsersList` data source instead.
         /// 
         /// ## Example Usage
         /// 

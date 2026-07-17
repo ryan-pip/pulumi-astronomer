@@ -81,7 +81,7 @@ def get_users(deployment_id: Optional[_builtins.str] = None,
               workspace_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
-    Users data source
+    Users data source. **Deprecated:** use the `get_users_list` data source instead.
 
     ## Example Usage
 
@@ -110,7 +110,7 @@ def get_users_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str
                      workspace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
-    Users data source
+    Users data source. **Deprecated:** use the `get_users_list` data source instead.
 
     ## Example Usage
 

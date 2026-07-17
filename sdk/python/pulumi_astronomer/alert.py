@@ -397,7 +397,9 @@ class Alert(pulumi.CustomResource):
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Alert resource
+        Manage a single alert.
+
+        > **Deprecated** Use the `Alerts` resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both `Alert` and `Alerts` — they conflict on every apply.
 
 
         :param str resource_name: The name of the resource.
@@ -417,7 +419,9 @@ class Alert(pulumi.CustomResource):
                  args: AlertArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Alert resource
+        Manage a single alert.
+
+        > **Deprecated** Use the `Alerts` resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both `Alert` and `Alerts` — they conflict on every apply.
 
 
         :param str resource_name: The name of the resource.

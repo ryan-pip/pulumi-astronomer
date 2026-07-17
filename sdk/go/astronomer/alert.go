@@ -12,7 +12,9 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Alert resource
+// Manage a single alert.
+//
+// > **Deprecated** Use the `Alerts` resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both `Alert` and `Alerts` — they conflict on every apply.
 type Alert struct {
 	pulumi.CustomResourceState
 

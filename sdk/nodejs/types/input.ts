@@ -184,6 +184,94 @@ export interface AlertUpdatedBy {
     username?: pulumi.Input<string | undefined>;
 }
 
+export interface AlertsAlerts {
+    /**
+     * The entity ID the alert is associated with
+     */
+    entityId: pulumi.Input<string>;
+    /**
+     * The type of entity the alert is scoped to
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * Alert identifier
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * Alert name
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Set of notification channel identifiers to notify when the alert is triggered
+     */
+    notificationChannelIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Alert rules defining the conditions for triggering the alert
+     */
+    rules: pulumi.Input<inputs.AlertsAlertsRules>;
+    /**
+     * The alert's severity
+     */
+    severity: pulumi.Input<string>;
+    /**
+     * The alert's type
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface AlertsAlertsRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: pulumi.Input<pulumi.Input<inputs.AlertsAlertsRulesPatternMatch>[]>;
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: pulumi.Input<inputs.AlertsAlertsRulesProperties>;
+}
+
+export interface AlertsAlertsRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: pulumi.Input<string>;
+    /**
+     * The values to match against
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface AlertsAlertsRulesProperties {
+    /**
+     * The deadline for the DAG in HH:MM 24-hour UTC format
+     */
+    dagDeadline?: pulumi.Input<string | undefined>;
+    /**
+     * The duration of the DAG in seconds (minimum 60)
+     */
+    dagDurationSeconds?: pulumi.Input<number | undefined>;
+    /**
+     * The days of the week for the timeliness rule
+     */
+    daysOfWeeks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The ID of the deployment for the alert rule
+     */
+    deploymentId: pulumi.Input<string>;
+    /**
+     * The look-back period in seconds (minimum 60)
+     */
+    lookBackPeriodSeconds?: pulumi.Input<number | undefined>;
+    /**
+     * The duration of the Task in seconds (minimum 60)
+     */
+    taskDurationSeconds?: pulumi.Input<number | undefined>;
+}
+
 export interface ApiTokenCreatedBy {
     apiTokenName?: pulumi.Input<string | undefined>;
     avatarUrl?: pulumi.Input<string | undefined>;
@@ -477,6 +565,191 @@ export interface DeploymentWorkerQueue {
      * Worker queue worker concurrency
      */
     workerConcurrency: pulumi.Input<number>;
+}
+
+export interface EnvironmentObjectConnectionAuthType {
+    /**
+     * The type of connection in Airflow
+     */
+    airflowType?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the auth method used in the connection
+     */
+    authMethodName?: pulumi.Input<string | undefined>;
+    /**
+     * A description of the connection auth type
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * The URL to the guide for the connection auth type
+     */
+    guidePath?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the connection auth type
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the connection auth type
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * The parameters for the connection auth type
+     */
+    parameters?: pulumi.Input<pulumi.Input<inputs.EnvironmentObjectConnectionAuthTypeParameter>[] | undefined>;
+    /**
+     * The URL of the provider logo
+     */
+    providerLogo?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the provider package
+     */
+    providerPackageName?: pulumi.Input<string | undefined>;
+}
+
+export interface EnvironmentObjectConnectionAuthTypeParameter {
+    /**
+     * The name of the parameter in Airflow
+     */
+    airflowParamName?: pulumi.Input<string | undefined>;
+    /**
+     * The data type of the parameter
+     */
+    dataType?: pulumi.Input<string | undefined>;
+    /**
+     * A description of the parameter
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * An example value for the parameter
+     */
+    example?: pulumi.Input<string | undefined>;
+    /**
+     * The UI-friendly name for the parameter
+     */
+    friendlyName?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the parameter is included in the extra field
+     */
+    isInExtra?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the parameter is required
+     */
+    isRequired?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the parameter is a secret
+     */
+    isSecret?: pulumi.Input<boolean | undefined>;
+    /**
+     * A regex pattern that the parameter value must match
+     */
+    pattern?: pulumi.Input<string | undefined>;
+}
+
+export interface EnvironmentObjectCreatedBy {
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
+}
+
+export interface EnvironmentObjectExcludeLink {
+    /**
+     * Scope of the excluded entity (DEPLOYMENT)
+     */
+    scope: pulumi.Input<string>;
+    /**
+     * ID of the excluded entity
+     */
+    scopeEntityId: pulumi.Input<string>;
+}
+
+export interface EnvironmentObjectLink {
+    /**
+     * Per-link overrides. Set only the fields matching the parent object_type.
+     */
+    overrides?: pulumi.Input<inputs.EnvironmentObjectLinkOverrides | undefined>;
+    /**
+     * Scope of the linked entity (DEPLOYMENT)
+     */
+    scope: pulumi.Input<string>;
+    /**
+     * Linked entity ID
+     */
+    scopeEntityId: pulumi.Input<string>;
+}
+
+export interface EnvironmentObjectLinkOverrides {
+    /**
+     * Override auth type (only valid when object*type=METRICS*EXPORT)
+     */
+    authType?: pulumi.Input<string | undefined>;
+    /**
+     * Override bearer token (only valid when object*type=METRICS*EXPORT)
+     */
+    basicToken?: pulumi.Input<string | undefined>;
+    /**
+     * Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+     */
+    endpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Override exporter type (only valid when object*type=METRICS*EXPORT)
+     */
+    exporterType?: pulumi.Input<string | undefined>;
+    /**
+     * Override extra JSON (only valid when object_type=CONNECTION)
+     */
+    extra?: pulumi.Input<string | undefined>;
+    /**
+     * Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+     */
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Override host address (only valid when object_type=CONNECTION)
+     */
+    host?: pulumi.Input<string | undefined>;
+    /**
+     * Override metrics labels (only valid when object*type=METRICS*EXPORT)
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Override login (only valid when object_type=CONNECTION)
+     */
+    login?: pulumi.Input<string | undefined>;
+    /**
+     * Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * Override port (only valid when object_type=CONNECTION)
+     */
+    port?: pulumi.Input<number | undefined>;
+    /**
+     * Override schema (only valid when object_type=CONNECTION)
+     */
+    schema?: pulumi.Input<string | undefined>;
+    /**
+     * Override connection type (only valid when object_type=CONNECTION)
+     */
+    type?: pulumi.Input<string | undefined>;
+    /**
+     * Override username (only valid when object*type=METRICS*EXPORT)
+     */
+    username?: pulumi.Input<string | undefined>;
+    /**
+     * Override value (only valid when object*type=AIRFLOW*VARIABLE)
+     */
+    value?: pulumi.Input<string | undefined>;
+}
+
+export interface EnvironmentObjectUpdatedBy {
+    apiTokenName?: pulumi.Input<string | undefined>;
+    avatarUrl?: pulumi.Input<string | undefined>;
+    fullName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    subjectType?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface NotificationChannelCreatedBy {

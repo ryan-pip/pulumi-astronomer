@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Alert resource
+ * Manage a single alert.
+ *
+ * > **Deprecated** Use the `astronomer.Alerts` resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both `astronomer.Alert` and `astronomer.Alerts` — they conflict on every apply.
  */
 export class Alert extends pulumi.CustomResource {
     /**

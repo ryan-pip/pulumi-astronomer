@@ -22,10 +22,16 @@ type Cluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringOutput `pulumi:"dbInstanceType"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange pulumi.StringOutput `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 	DrRegion pulumi.StringOutput `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 	DrSecondaryVpcCidr pulumi.StringOutput `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange pulumi.StringOutput `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange pulumi.StringOutput `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringOutput `pulumi:"drVpcSubnetRange"`
 	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
@@ -122,10 +128,16 @@ type clusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType *string `pulumi:"dbInstanceType"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange *string `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 	DrRegion *string `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 	DrSecondaryVpcCidr *string `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange *string `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange *string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
 	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
@@ -178,10 +190,16 @@ type ClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Cluster database instance type
 	DbInstanceType pulumi.StringPtrInput
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange pulumi.StringPtrInput
 	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 	DrRegion pulumi.StringPtrInput
 	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 	DrSecondaryVpcCidr pulumi.StringPtrInput
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange pulumi.StringPtrInput
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange pulumi.StringPtrInput
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringPtrInput
 	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
@@ -234,10 +252,16 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange *string `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 	DrRegion *string `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 	DrSecondaryVpcCidr *string `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange *string `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange *string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
 	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
@@ -271,10 +295,16 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider pulumi.StringInput
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange pulumi.StringPtrInput
 	// The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 	DrRegion pulumi.StringPtrInput
 	// Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 	DrSecondaryVpcCidr pulumi.StringPtrInput
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange pulumi.StringPtrInput
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange pulumi.StringPtrInput
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringPtrInput
 	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
@@ -406,6 +436,11 @@ func (o ClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The disaster recovery subnet range for pods (GCP Only).
+func (o ClusterOutput) DrPodSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrPodSubnetRange }).(pulumi.StringOutput)
+}
+
 // The secondary region for Disaster Recovery. Required when `isDrEnabled` is true. Cannot be changed once set.
 func (o ClusterOutput) DrRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrRegion }).(pulumi.StringOutput)
@@ -414,6 +449,16 @@ func (o ClusterOutput) DrRegion() pulumi.StringOutput {
 // Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
 func (o ClusterOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service peering range (GCP Only).
+func (o ClusterOutput) DrServicePeeringRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrServicePeeringRange }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service subnet range (GCP Only).
+func (o ClusterOutput) DrServiceSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrServiceSubnetRange }).(pulumi.StringOutput)
 }
 
 // The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.

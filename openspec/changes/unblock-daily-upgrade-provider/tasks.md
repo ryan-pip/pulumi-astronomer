@@ -15,7 +15,7 @@
 
 ## 3. PR + automation verification
 
-- [ ] 3.1 Open the PR (branch + Jira ref per repo conventions); confirm `pull-request.yml` is green across all SDK shards under the new toolchain setting
+- [x] 3.1 Open the PR (branch + Jira ref per repo conventions); confirm `pull-request.yml` is green across all SDK shards under the new toolchain setting
 - [ ] 3.2 After merge, confirm the next scheduled `upgrade-provider` run (05:00 UTC) completes: `gh run list --workflow upgrade-provider.yml --limit 1` shows success, and any PR it opens auto-merges per the auto-merge-safety rule
 - [ ] 3.3 Confirm the run's `go get pulumi-terraform-bridge` step no longer mentions `GOTOOLCHAIN=go1.25.9`
 

@@ -38,10 +38,12 @@ func TestMain(m *testing.M) {
 var expectedResources = []string{
 	"astro_agent_token",
 	"astro_alert",
+	"astro_alerts",
 	"astro_api_token",
 	"astro_cluster",
 	"astro_custom_role",
 	"astro_deployment",
+	"astro_environment_object",
 	"astro_hybrid_cluster_workspace_authorization",
 	"astro_notification_channel",
 	"astro_team",

@@ -90,6 +90,11 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
+			// CS0542: a C# member cannot share its enclosing type's name, so the
+			// Alerts resource's `alerts` property needs a different dotnet name.
+			"astro_alerts": {Fields: map[string]*tfbridge.SchemaInfo{
+				"alerts": {CSharpName: "AlertsCollection"},
+			}},
 			"astro_hybrid_cluster_workspace_authorization": {
 				ComputeID: delegateID("clusterId"),
 			},

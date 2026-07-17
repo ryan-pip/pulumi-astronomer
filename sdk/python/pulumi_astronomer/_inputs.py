@@ -33,6 +33,14 @@ __all__ = [
     'AlertRulesPropertiesArgsDict',
     'AlertUpdatedByArgs',
     'AlertUpdatedByArgsDict',
+    'AlertsAlertsArgs',
+    'AlertsAlertsArgsDict',
+    'AlertsAlertsRulesArgs',
+    'AlertsAlertsRulesArgsDict',
+    'AlertsAlertsRulesPatternMatchArgs',
+    'AlertsAlertsRulesPatternMatchArgsDict',
+    'AlertsAlertsRulesPropertiesArgs',
+    'AlertsAlertsRulesPropertiesArgsDict',
     'ApiTokenCreatedByArgs',
     'ApiTokenCreatedByArgsDict',
     'ApiTokenRoleArgs',
@@ -75,6 +83,20 @@ __all__ = [
     'DeploymentUpdatedByArgsDict',
     'DeploymentWorkerQueueArgs',
     'DeploymentWorkerQueueArgsDict',
+    'EnvironmentObjectConnectionAuthTypeArgs',
+    'EnvironmentObjectConnectionAuthTypeArgsDict',
+    'EnvironmentObjectConnectionAuthTypeParameterArgs',
+    'EnvironmentObjectConnectionAuthTypeParameterArgsDict',
+    'EnvironmentObjectCreatedByArgs',
+    'EnvironmentObjectCreatedByArgsDict',
+    'EnvironmentObjectExcludeLinkArgs',
+    'EnvironmentObjectExcludeLinkArgsDict',
+    'EnvironmentObjectLinkArgs',
+    'EnvironmentObjectLinkArgsDict',
+    'EnvironmentObjectLinkOverridesArgs',
+    'EnvironmentObjectLinkOverridesArgsDict',
+    'EnvironmentObjectUpdatedByArgs',
+    'EnvironmentObjectUpdatedByArgsDict',
     'NotificationChannelCreatedByArgs',
     'NotificationChannelCreatedByArgsDict',
     'NotificationChannelDefinitionArgs',
@@ -1125,6 +1147,409 @@ class AlertUpdatedByArgs:
     @username.setter
     def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+class AlertsAlertsArgsDict(TypedDict):
+    entity_id: pulumi.Input[_builtins.str]
+    """
+    The entity ID the alert is associated with
+    """
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    The type of entity the alert is scoped to
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Alert name
+    """
+    notification_channel_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Set of notification channel identifiers to notify when the alert is triggered
+    """
+    rules: pulumi.Input['AlertsAlertsRulesArgsDict']
+    """
+    Alert rules defining the conditions for triggering the alert
+    """
+    severity: pulumi.Input[_builtins.str]
+    """
+    The alert's severity
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The alert's type
+    """
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Alert identifier
+    """
+
+@pulumi.input_type
+class AlertsAlertsArgs:
+    def __init__(__self__, *,
+                 entity_id: pulumi.Input[_builtins.str],
+                 entity_type: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 notification_channel_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 rules: pulumi.Input['AlertsAlertsRulesArgs'],
+                 severity: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str],
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] entity_id: The entity ID the alert is associated with
+        :param pulumi.Input[_builtins.str] entity_type: The type of entity the alert is scoped to
+        :param pulumi.Input[_builtins.str] name: Alert name
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] notification_channel_ids: Set of notification channel identifiers to notify when the alert is triggered
+        :param pulumi.Input['AlertsAlertsRulesArgs'] rules: Alert rules defining the conditions for triggering the alert
+        :param pulumi.Input[_builtins.str] severity: The alert's severity
+        :param pulumi.Input[_builtins.str] type: The alert's type
+        :param pulumi.Input[_builtins.str] id: Alert identifier
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "notification_channel_ids", notification_channel_ids)
+        pulumi.set(__self__, "rules", rules)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The entity ID the alert is associated with
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of entity the alert is scoped to
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Alert name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationChannelIds")
+    def notification_channel_ids(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Set of notification channel identifiers to notify when the alert is triggered
+        """
+        return pulumi.get(self, "notification_channel_ids")
+
+    @notification_channel_ids.setter
+    def notification_channel_ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "notification_channel_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> pulumi.Input['AlertsAlertsRulesArgs']:
+        """
+        Alert rules defining the conditions for triggering the alert
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: pulumi.Input['AlertsAlertsRulesArgs']):
+        pulumi.set(self, "rules", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> pulumi.Input[_builtins.str]:
+        """
+        The alert's severity
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The alert's type
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Alert identifier
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+
+class AlertsAlertsRulesArgsDict(TypedDict):
+    pattern_matches: pulumi.Input[Sequence[pulumi.Input['AlertsAlertsRulesPatternMatchArgsDict']]]
+    """
+    The alert's pattern matches to match against
+    """
+    properties: pulumi.Input['AlertsAlertsRulesPropertiesArgsDict']
+    """
+    The alert's properties used to define the alert
+    """
+
+@pulumi.input_type
+class AlertsAlertsRulesArgs:
+    def __init__(__self__, *,
+                 pattern_matches: pulumi.Input[Sequence[pulumi.Input['AlertsAlertsRulesPatternMatchArgs']]],
+                 properties: pulumi.Input['AlertsAlertsRulesPropertiesArgs']):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlertsAlertsRulesPatternMatchArgs']]] pattern_matches: The alert's pattern matches to match against
+        :param pulumi.Input['AlertsAlertsRulesPropertiesArgs'] properties: The alert's properties used to define the alert
+        """
+        pulumi.set(__self__, "pattern_matches", pattern_matches)
+        pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="patternMatches")
+    def pattern_matches(self) -> pulumi.Input[Sequence[pulumi.Input['AlertsAlertsRulesPatternMatchArgs']]]:
+        """
+        The alert's pattern matches to match against
+        """
+        return pulumi.get(self, "pattern_matches")
+
+    @pattern_matches.setter
+    def pattern_matches(self, value: pulumi.Input[Sequence[pulumi.Input['AlertsAlertsRulesPatternMatchArgs']]]):
+        pulumi.set(self, "pattern_matches", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> pulumi.Input['AlertsAlertsRulesPropertiesArgs']:
+        """
+        The alert's properties used to define the alert
+        """
+        return pulumi.get(self, "properties")
+
+    @properties.setter
+    def properties(self, value: pulumi.Input['AlertsAlertsRulesPropertiesArgs']):
+        pulumi.set(self, "properties", value)
+
+
+class AlertsAlertsRulesPatternMatchArgsDict(TypedDict):
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    The type of entity to match against
+    """
+    operator_type: pulumi.Input[_builtins.str]
+    """
+    The type of operator to use for the pattern match
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    The values to match against
+    """
+
+@pulumi.input_type
+class AlertsAlertsRulesPatternMatchArgs:
+    def __init__(__self__, *,
+                 entity_type: pulumi.Input[_builtins.str],
+                 operator_type: pulumi.Input[_builtins.str],
+                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] entity_type: The type of entity to match against
+        :param pulumi.Input[_builtins.str] operator_type: The type of operator to use for the pattern match
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: The values to match against
+        """
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "operator_type", operator_type)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of entity to match against
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="operatorType")
+    def operator_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of operator to use for the pattern match
+        """
+        return pulumi.get(self, "operator_type")
+
+    @operator_type.setter
+    def operator_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The values to match against
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "values", value)
+
+
+class AlertsAlertsRulesPropertiesArgsDict(TypedDict):
+    deployment_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the deployment for the alert rule
+    """
+    dag_deadline: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The deadline for the DAG in HH:MM 24-hour UTC format
+    """
+    dag_duration_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The duration of the DAG in seconds (minimum 60)
+    """
+    days_of_weeks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    The days of the week for the timeliness rule
+    """
+    look_back_period_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The look-back period in seconds (minimum 60)
+    """
+    task_duration_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The duration of the Task in seconds (minimum 60)
+    """
+
+@pulumi.input_type
+class AlertsAlertsRulesPropertiesArgs:
+    def __init__(__self__, *,
+                 deployment_id: pulumi.Input[_builtins.str],
+                 dag_deadline: pulumi.Input[Optional[_builtins.str]] = None,
+                 dag_duration_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 days_of_weeks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 look_back_period_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 task_duration_seconds: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] deployment_id: The ID of the deployment for the alert rule
+        :param pulumi.Input[_builtins.str] dag_deadline: The deadline for the DAG in HH:MM 24-hour UTC format
+        :param pulumi.Input[_builtins.int] dag_duration_seconds: The duration of the DAG in seconds (minimum 60)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] days_of_weeks: The days of the week for the timeliness rule
+        :param pulumi.Input[_builtins.int] look_back_period_seconds: The look-back period in seconds (minimum 60)
+        :param pulumi.Input[_builtins.int] task_duration_seconds: The duration of the Task in seconds (minimum 60)
+        """
+        pulumi.set(__self__, "deployment_id", deployment_id)
+        if dag_deadline is not None:
+            pulumi.set(__self__, "dag_deadline", dag_deadline)
+        if dag_duration_seconds is not None:
+            pulumi.set(__self__, "dag_duration_seconds", dag_duration_seconds)
+        if days_of_weeks is not None:
+            pulumi.set(__self__, "days_of_weeks", days_of_weeks)
+        if look_back_period_seconds is not None:
+            pulumi.set(__self__, "look_back_period_seconds", look_back_period_seconds)
+        if task_duration_seconds is not None:
+            pulumi.set(__self__, "task_duration_seconds", task_duration_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the deployment for the alert rule
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagDeadline")
+    def dag_deadline(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The deadline for the DAG in HH:MM 24-hour UTC format
+        """
+        return pulumi.get(self, "dag_deadline")
+
+    @dag_deadline.setter
+    def dag_deadline(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dag_deadline", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagDurationSeconds")
+    def dag_duration_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The duration of the DAG in seconds (minimum 60)
+        """
+        return pulumi.get(self, "dag_duration_seconds")
+
+    @dag_duration_seconds.setter
+    def dag_duration_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "dag_duration_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="daysOfWeeks")
+    def days_of_weeks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The days of the week for the timeliness rule
+        """
+        return pulumi.get(self, "days_of_weeks")
+
+    @days_of_weeks.setter
+    def days_of_weeks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "days_of_weeks", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lookBackPeriodSeconds")
+    def look_back_period_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The look-back period in seconds (minimum 60)
+        """
+        return pulumi.get(self, "look_back_period_seconds")
+
+    @look_back_period_seconds.setter
+    def look_back_period_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "look_back_period_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskDurationSeconds")
+    def task_duration_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The duration of the Task in seconds (minimum 60)
+        """
+        return pulumi.get(self, "task_duration_seconds")
+
+    @task_duration_seconds.setter
+    def task_duration_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "task_duration_seconds", value)
 
 
 class ApiTokenCreatedByArgsDict(TypedDict):
@@ -2822,6 +3247,977 @@ class DeploymentWorkerQueueArgs:
     @pod_memory.setter
     def pod_memory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_memory", value)
+
+
+class EnvironmentObjectConnectionAuthTypeArgsDict(TypedDict):
+    airflow_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The type of connection in Airflow
+    """
+    auth_method_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the auth method used in the connection
+    """
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A description of the connection auth type
+    """
+    guide_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The URL to the guide for the connection auth type
+    """
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The ID of the connection auth type
+    """
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the connection auth type
+    """
+    parameters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectConnectionAuthTypeParameterArgsDict']]]]]
+    """
+    The parameters for the connection auth type
+    """
+    provider_logo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The URL of the provider logo
+    """
+    provider_package_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the provider package
+    """
+
+@pulumi.input_type
+class EnvironmentObjectConnectionAuthTypeArgs:
+    def __init__(__self__, *,
+                 airflow_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_method_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 guide_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectConnectionAuthTypeParameterArgs']]]] = None,
+                 provider_logo: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_package_name: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] airflow_type: The type of connection in Airflow
+        :param pulumi.Input[_builtins.str] auth_method_name: The name of the auth method used in the connection
+        :param pulumi.Input[_builtins.str] description: A description of the connection auth type
+        :param pulumi.Input[_builtins.str] guide_path: The URL to the guide for the connection auth type
+        :param pulumi.Input[_builtins.str] id: The ID of the connection auth type
+        :param pulumi.Input[_builtins.str] name: The name of the connection auth type
+        :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectConnectionAuthTypeParameterArgs']]] parameters: The parameters for the connection auth type
+        :param pulumi.Input[_builtins.str] provider_logo: The URL of the provider logo
+        :param pulumi.Input[_builtins.str] provider_package_name: The name of the provider package
+        """
+        if airflow_type is not None:
+            pulumi.set(__self__, "airflow_type", airflow_type)
+        if auth_method_name is not None:
+            pulumi.set(__self__, "auth_method_name", auth_method_name)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if guide_path is not None:
+            pulumi.set(__self__, "guide_path", guide_path)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if provider_logo is not None:
+            pulumi.set(__self__, "provider_logo", provider_logo)
+        if provider_package_name is not None:
+            pulumi.set(__self__, "provider_package_name", provider_package_name)
+
+    @_builtins.property
+    @pulumi.getter(name="airflowType")
+    def airflow_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The type of connection in Airflow
+        """
+        return pulumi.get(self, "airflow_type")
+
+    @airflow_type.setter
+    def airflow_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "airflow_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authMethodName")
+    def auth_method_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the auth method used in the connection
+        """
+        return pulumi.get(self, "auth_method_name")
+
+    @auth_method_name.setter
+    def auth_method_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_method_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A description of the connection auth type
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="guidePath")
+    def guide_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The URL to the guide for the connection auth type
+        """
+        return pulumi.get(self, "guide_path")
+
+    @guide_path.setter
+    def guide_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "guide_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the connection auth type
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the connection auth type
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectConnectionAuthTypeParameterArgs']]]]:
+        """
+        The parameters for the connection auth type
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectConnectionAuthTypeParameterArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter(name="providerLogo")
+    def provider_logo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The URL of the provider logo
+        """
+        return pulumi.get(self, "provider_logo")
+
+    @provider_logo.setter
+    def provider_logo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "provider_logo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="providerPackageName")
+    def provider_package_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the provider package
+        """
+        return pulumi.get(self, "provider_package_name")
+
+    @provider_package_name.setter
+    def provider_package_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "provider_package_name", value)
+
+
+class EnvironmentObjectConnectionAuthTypeParameterArgsDict(TypedDict):
+    airflow_param_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the parameter in Airflow
+    """
+    data_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The data type of the parameter
+    """
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A description of the parameter
+    """
+    example: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    An example value for the parameter
+    """
+    friendly_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The UI-friendly name for the parameter
+    """
+    is_in_extra: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the parameter is included in the extra field
+    """
+    is_required: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the parameter is required
+    """
+    is_secret: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the parameter is a secret
+    """
+    pattern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A regex pattern that the parameter value must match
+    """
+
+@pulumi.input_type
+class EnvironmentObjectConnectionAuthTypeParameterArgs:
+    def __init__(__self__, *,
+                 airflow_param_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 example: pulumi.Input[Optional[_builtins.str]] = None,
+                 friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_in_extra: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_secret: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pattern: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] airflow_param_name: The name of the parameter in Airflow
+        :param pulumi.Input[_builtins.str] data_type: The data type of the parameter
+        :param pulumi.Input[_builtins.str] description: A description of the parameter
+        :param pulumi.Input[_builtins.str] example: An example value for the parameter
+        :param pulumi.Input[_builtins.str] friendly_name: The UI-friendly name for the parameter
+        :param pulumi.Input[_builtins.bool] is_in_extra: Whether the parameter is included in the extra field
+        :param pulumi.Input[_builtins.bool] is_required: Whether the parameter is required
+        :param pulumi.Input[_builtins.bool] is_secret: Whether the parameter is a secret
+        :param pulumi.Input[_builtins.str] pattern: A regex pattern that the parameter value must match
+        """
+        if airflow_param_name is not None:
+            pulumi.set(__self__, "airflow_param_name", airflow_param_name)
+        if data_type is not None:
+            pulumi.set(__self__, "data_type", data_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if example is not None:
+            pulumi.set(__self__, "example", example)
+        if friendly_name is not None:
+            pulumi.set(__self__, "friendly_name", friendly_name)
+        if is_in_extra is not None:
+            pulumi.set(__self__, "is_in_extra", is_in_extra)
+        if is_required is not None:
+            pulumi.set(__self__, "is_required", is_required)
+        if is_secret is not None:
+            pulumi.set(__self__, "is_secret", is_secret)
+        if pattern is not None:
+            pulumi.set(__self__, "pattern", pattern)
+
+    @_builtins.property
+    @pulumi.getter(name="airflowParamName")
+    def airflow_param_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the parameter in Airflow
+        """
+        return pulumi.get(self, "airflow_param_name")
+
+    @airflow_param_name.setter
+    def airflow_param_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "airflow_param_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The data type of the parameter
+        """
+        return pulumi.get(self, "data_type")
+
+    @data_type.setter
+    def data_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A description of the parameter
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def example(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        An example value for the parameter
+        """
+        return pulumi.get(self, "example")
+
+    @example.setter
+    def example(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "example", value)
+
+    @_builtins.property
+    @pulumi.getter(name="friendlyName")
+    def friendly_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The UI-friendly name for the parameter
+        """
+        return pulumi.get(self, "friendly_name")
+
+    @friendly_name.setter
+    def friendly_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "friendly_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isInExtra")
+    def is_in_extra(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the parameter is included in the extra field
+        """
+        return pulumi.get(self, "is_in_extra")
+
+    @is_in_extra.setter
+    def is_in_extra(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_in_extra", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isRequired")
+    def is_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the parameter is required
+        """
+        return pulumi.get(self, "is_required")
+
+    @is_required.setter
+    def is_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_required", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isSecret")
+    def is_secret(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the parameter is a secret
+        """
+        return pulumi.get(self, "is_secret")
+
+    @is_secret.setter
+    def is_secret(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def pattern(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A regex pattern that the parameter value must match
+        """
+        return pulumi.get(self, "pattern")
+
+    @pattern.setter
+    def pattern(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pattern", value)
+
+
+class EnvironmentObjectCreatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class EnvironmentObjectCreatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+class EnvironmentObjectExcludeLinkArgsDict(TypedDict):
+    scope: pulumi.Input[_builtins.str]
+    """
+    Scope of the excluded entity (DEPLOYMENT)
+    """
+    scope_entity_id: pulumi.Input[_builtins.str]
+    """
+    ID of the excluded entity
+    """
+
+@pulumi.input_type
+class EnvironmentObjectExcludeLinkArgs:
+    def __init__(__self__, *,
+                 scope: pulumi.Input[_builtins.str],
+                 scope_entity_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] scope: Scope of the excluded entity (DEPLOYMENT)
+        :param pulumi.Input[_builtins.str] scope_entity_id: ID of the excluded entity
+        """
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "scope_entity_id", scope_entity_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> pulumi.Input[_builtins.str]:
+        """
+        Scope of the excluded entity (DEPLOYMENT)
+        """
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scopeEntityId")
+    def scope_entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the excluded entity
+        """
+        return pulumi.get(self, "scope_entity_id")
+
+    @scope_entity_id.setter
+    def scope_entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "scope_entity_id", value)
+
+
+class EnvironmentObjectLinkArgsDict(TypedDict):
+    scope: pulumi.Input[_builtins.str]
+    """
+    Scope of the linked entity (DEPLOYMENT)
+    """
+    scope_entity_id: pulumi.Input[_builtins.str]
+    """
+    Linked entity ID
+    """
+    overrides: NotRequired[pulumi.Input[Optional['EnvironmentObjectLinkOverridesArgsDict']]]
+    """
+    Per-link overrides. Set only the fields matching the parent object_type.
+    """
+
+@pulumi.input_type
+class EnvironmentObjectLinkArgs:
+    def __init__(__self__, *,
+                 scope: pulumi.Input[_builtins.str],
+                 scope_entity_id: pulumi.Input[_builtins.str],
+                 overrides: pulumi.Input[Optional['EnvironmentObjectLinkOverridesArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] scope: Scope of the linked entity (DEPLOYMENT)
+        :param pulumi.Input[_builtins.str] scope_entity_id: Linked entity ID
+        :param pulumi.Input['EnvironmentObjectLinkOverridesArgs'] overrides: Per-link overrides. Set only the fields matching the parent object_type.
+        """
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "scope_entity_id", scope_entity_id)
+        if overrides is not None:
+            pulumi.set(__self__, "overrides", overrides)
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> pulumi.Input[_builtins.str]:
+        """
+        Scope of the linked entity (DEPLOYMENT)
+        """
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scopeEntityId")
+    def scope_entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Linked entity ID
+        """
+        return pulumi.get(self, "scope_entity_id")
+
+    @scope_entity_id.setter
+    def scope_entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "scope_entity_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overrides(self) -> pulumi.Input[Optional['EnvironmentObjectLinkOverridesArgs']]:
+        """
+        Per-link overrides. Set only the fields matching the parent object_type.
+        """
+        return pulumi.get(self, "overrides")
+
+    @overrides.setter
+    def overrides(self, value: pulumi.Input[Optional['EnvironmentObjectLinkOverridesArgs']]):
+        pulumi.set(self, "overrides", value)
+
+
+class EnvironmentObjectLinkOverridesArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override auth type (only valid when object*type=METRICS*EXPORT)
+    """
+    basic_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override bearer token (only valid when object*type=METRICS*EXPORT)
+    """
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+    """
+    exporter_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override exporter type (only valid when object*type=METRICS*EXPORT)
+    """
+    extra: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override extra JSON (only valid when object_type=CONNECTION)
+    """
+    headers: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+    """
+    host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override host address (only valid when object_type=CONNECTION)
+    """
+    labels: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Override metrics labels (only valid when object*type=METRICS*EXPORT)
+    """
+    login: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override login (only valid when object_type=CONNECTION)
+    """
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+    """
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Override port (only valid when object_type=CONNECTION)
+    """
+    schema: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override schema (only valid when object_type=CONNECTION)
+    """
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override connection type (only valid when object_type=CONNECTION)
+    """
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override username (only valid when object*type=METRICS*EXPORT)
+    """
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override value (only valid when object*type=AIRFLOW*VARIABLE)
+    """
+
+@pulumi.input_type
+class EnvironmentObjectLinkOverridesArgs:
+    def __init__(__self__, *,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra: pulumi.Input[Optional[_builtins.str]] = None,
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 login: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] auth_type: Override auth type (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] basic_token: Override bearer token (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] endpoint: Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] exporter_type: Override exporter type (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] extra: Override extra JSON (only valid when object_type=CONNECTION)
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] host: Override host address (only valid when object_type=CONNECTION)
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Override metrics labels (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] login: Override login (only valid when object_type=CONNECTION)
+        :param pulumi.Input[_builtins.str] password: Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+        :param pulumi.Input[_builtins.int] port: Override port (only valid when object_type=CONNECTION)
+        :param pulumi.Input[_builtins.str] schema: Override schema (only valid when object_type=CONNECTION)
+        :param pulumi.Input[_builtins.str] type: Override connection type (only valid when object_type=CONNECTION)
+        :param pulumi.Input[_builtins.str] username: Override username (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] value: Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if basic_token is not None:
+            pulumi.set(__self__, "basic_token", basic_token)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if exporter_type is not None:
+            pulumi.set(__self__, "exporter_type", exporter_type)
+        if extra is not None:
+            pulumi.set(__self__, "extra", extra)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if login is not None:
+            pulumi.set(__self__, "login", login)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override auth type (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="basicToken")
+    def basic_token(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override bearer token (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "basic_token")
+
+    @basic_token.setter
+    def basic_token(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "basic_token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="exporterType")
+    def exporter_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override exporter type (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "exporter_type")
+
+    @exporter_type.setter
+    def exporter_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "exporter_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def extra(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override extra JSON (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "extra")
+
+    @extra.setter
+    def extra(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "extra", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override host address (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Override metrics labels (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def login(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override login (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "login")
+
+    @login.setter
+    def login(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "login", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Override port (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override schema (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override connection type (only valid when object_type=CONNECTION)
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override username (only valid when object*type=METRICS*EXPORT)
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class EnvironmentObjectUpdatedByArgsDict(TypedDict):
+    api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    avatar_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    full_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class EnvironmentObjectUpdatedByArgs:
+    def __init__(__self__, *,
+                 api_token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 avatar_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
+        if api_token_name is not None:
+            pulumi.set(__self__, "api_token_name", api_token_name)
+        if avatar_url is not None:
+            pulumi.set(__self__, "avatar_url", avatar_url)
+        if full_name is not None:
+            pulumi.set(__self__, "full_name", full_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subject_type is not None:
+            pulumi.set(__self__, "subject_type", subject_type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenName")
+    def api_token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "api_token_name")
+
+    @api_token_name.setter
+    def api_token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "api_token_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="avatarUrl")
+    def avatar_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "avatar_url")
+
+    @avatar_url.setter
+    def avatar_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "avatar_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fullName")
+    def full_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "full_name")
+
+    @full_name.setter
+    def full_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "full_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subjectType")
+    def subject_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "subject_type")
+
+    @subject_type.setter
+    def subject_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "subject_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 class NotificationChannelCreatedByArgsDict(TypedDict):

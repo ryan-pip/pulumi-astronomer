@@ -55,6 +55,10 @@ export interface GetClusterResult {
      */
     readonly dbInstanceType: string;
     /**
+     * The disaster recovery subnet range for pods (GCP Only).
+     */
+    readonly drPodSubnetRange: string;
+    /**
      * The secondary region for Disaster Recovery
      */
     readonly drRegion: string;
@@ -62,6 +66,14 @@ export interface GetClusterResult {
      * Secondary CIDR for pod networking in the DR region (AWS only)
      */
     readonly drSecondaryVpcCidr: string;
+    /**
+     * The disaster recovery service peering range (GCP Only).
+     */
+    readonly drServicePeeringRange: string;
+    /**
+     * The disaster recovery service subnet range (GCP Only).
+     */
+    readonly drServiceSubnetRange: string;
     /**
      * The VPC subnet range for the Disaster Recovery region
      */

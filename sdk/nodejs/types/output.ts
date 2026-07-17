@@ -184,6 +184,94 @@ export interface AlertUpdatedBy {
     username: string;
 }
 
+export interface AlertsAlerts {
+    /**
+     * The entity ID the alert is associated with
+     */
+    entityId: string;
+    /**
+     * The type of entity the alert is scoped to
+     */
+    entityType: string;
+    /**
+     * Alert identifier
+     */
+    id: string;
+    /**
+     * Alert name
+     */
+    name: string;
+    /**
+     * Set of notification channel identifiers to notify when the alert is triggered
+     */
+    notificationChannelIds: string[];
+    /**
+     * Alert rules defining the conditions for triggering the alert
+     */
+    rules: outputs.AlertsAlertsRules;
+    /**
+     * The alert's severity
+     */
+    severity: string;
+    /**
+     * The alert's type
+     */
+    type: string;
+}
+
+export interface AlertsAlertsRules {
+    /**
+     * The alert's pattern matches to match against
+     */
+    patternMatches: outputs.AlertsAlertsRulesPatternMatch[];
+    /**
+     * The alert's properties used to define the alert
+     */
+    properties: outputs.AlertsAlertsRulesProperties;
+}
+
+export interface AlertsAlertsRulesPatternMatch {
+    /**
+     * The type of entity to match against
+     */
+    entityType: string;
+    /**
+     * The type of operator to use for the pattern match
+     */
+    operatorType: string;
+    /**
+     * The values to match against
+     */
+    values: string[];
+}
+
+export interface AlertsAlertsRulesProperties {
+    /**
+     * The deadline for the DAG in HH:MM 24-hour UTC format
+     */
+    dagDeadline?: string;
+    /**
+     * The duration of the DAG in seconds (minimum 60)
+     */
+    dagDurationSeconds?: number;
+    /**
+     * The days of the week for the timeliness rule
+     */
+    daysOfWeeks?: string[];
+    /**
+     * The ID of the deployment for the alert rule
+     */
+    deploymentId: string;
+    /**
+     * The look-back period in seconds (minimum 60)
+     */
+    lookBackPeriodSeconds?: number;
+    /**
+     * The duration of the Task in seconds (minimum 60)
+     */
+    taskDurationSeconds?: number;
+}
+
 export interface ApiTokenCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -477,6 +565,191 @@ export interface DeploymentWorkerQueue {
      * Worker queue worker concurrency
      */
     workerConcurrency: number;
+}
+
+export interface EnvironmentObjectConnectionAuthType {
+    /**
+     * The type of connection in Airflow
+     */
+    airflowType: string;
+    /**
+     * The name of the auth method used in the connection
+     */
+    authMethodName: string;
+    /**
+     * A description of the connection auth type
+     */
+    description: string;
+    /**
+     * The URL to the guide for the connection auth type
+     */
+    guidePath: string;
+    /**
+     * The ID of the connection auth type
+     */
+    id: string;
+    /**
+     * The name of the connection auth type
+     */
+    name: string;
+    /**
+     * The parameters for the connection auth type
+     */
+    parameters: outputs.EnvironmentObjectConnectionAuthTypeParameter[];
+    /**
+     * The URL of the provider logo
+     */
+    providerLogo: string;
+    /**
+     * The name of the provider package
+     */
+    providerPackageName: string;
+}
+
+export interface EnvironmentObjectConnectionAuthTypeParameter {
+    /**
+     * The name of the parameter in Airflow
+     */
+    airflowParamName: string;
+    /**
+     * The data type of the parameter
+     */
+    dataType: string;
+    /**
+     * A description of the parameter
+     */
+    description: string;
+    /**
+     * An example value for the parameter
+     */
+    example: string;
+    /**
+     * The UI-friendly name for the parameter
+     */
+    friendlyName: string;
+    /**
+     * Whether the parameter is included in the extra field
+     */
+    isInExtra: boolean;
+    /**
+     * Whether the parameter is required
+     */
+    isRequired: boolean;
+    /**
+     * Whether the parameter is a secret
+     */
+    isSecret: boolean;
+    /**
+     * A regex pattern that the parameter value must match
+     */
+    pattern: string;
+}
+
+export interface EnvironmentObjectCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface EnvironmentObjectExcludeLink {
+    /**
+     * Scope of the excluded entity (DEPLOYMENT)
+     */
+    scope: string;
+    /**
+     * ID of the excluded entity
+     */
+    scopeEntityId: string;
+}
+
+export interface EnvironmentObjectLink {
+    /**
+     * Per-link overrides. Set only the fields matching the parent object_type.
+     */
+    overrides?: outputs.EnvironmentObjectLinkOverrides;
+    /**
+     * Scope of the linked entity (DEPLOYMENT)
+     */
+    scope: string;
+    /**
+     * Linked entity ID
+     */
+    scopeEntityId: string;
+}
+
+export interface EnvironmentObjectLinkOverrides {
+    /**
+     * Override auth type (only valid when object*type=METRICS*EXPORT)
+     */
+    authType?: string;
+    /**
+     * Override bearer token (only valid when object*type=METRICS*EXPORT)
+     */
+    basicToken?: string;
+    /**
+     * Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+     */
+    endpoint?: string;
+    /**
+     * Override exporter type (only valid when object*type=METRICS*EXPORT)
+     */
+    exporterType?: string;
+    /**
+     * Override extra JSON (only valid when object_type=CONNECTION)
+     */
+    extra?: string;
+    /**
+     * Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+     */
+    headers?: {[key: string]: string};
+    /**
+     * Override host address (only valid when object_type=CONNECTION)
+     */
+    host?: string;
+    /**
+     * Override metrics labels (only valid when object*type=METRICS*EXPORT)
+     */
+    labels?: {[key: string]: string};
+    /**
+     * Override login (only valid when object_type=CONNECTION)
+     */
+    login?: string;
+    /**
+     * Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+     */
+    password?: string;
+    /**
+     * Override port (only valid when object_type=CONNECTION)
+     */
+    port?: number;
+    /**
+     * Override schema (only valid when object_type=CONNECTION)
+     */
+    schema?: string;
+    /**
+     * Override connection type (only valid when object_type=CONNECTION)
+     */
+    type?: string;
+    /**
+     * Override username (only valid when object*type=METRICS*EXPORT)
+     */
+    username?: string;
+    /**
+     * Override value (only valid when object*type=AIRFLOW*VARIABLE)
+     */
+    value?: string;
+}
+
+export interface EnvironmentObjectUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
 }
 
 export interface GetAlertCreatedBy {
@@ -1125,6 +1398,10 @@ export interface GetClustersCluster {
      */
     dbInstanceType: string;
     /**
+     * The disaster recovery subnet range for pods (GCP Only).
+     */
+    drPodSubnetRange: string;
+    /**
      * The secondary region for Disaster Recovery
      */
     drRegion: string;
@@ -1132,6 +1409,14 @@ export interface GetClustersCluster {
      * Secondary CIDR for pod networking in the DR region (AWS only)
      */
     drSecondaryVpcCidr: string;
+    /**
+     * The disaster recovery service peering range (GCP Only).
+     */
+    drServicePeeringRange: string;
+    /**
+     * The disaster recovery service subnet range (GCP Only).
+     */
+    drServiceSubnetRange: string;
     /**
      * The VPC subnet range for the Disaster Recovery region
      */
@@ -2074,6 +2359,507 @@ export interface GetDeploymentsDeploymentWorkerQueue {
     workerConcurrency: number;
 }
 
+export interface GetEnvironmentObjectConnectionAuthType {
+    /**
+     * The type of connection in Airflow
+     */
+    airflowType: string;
+    /**
+     * The name of the auth method used in the connection
+     */
+    authMethodName: string;
+    /**
+     * A description of the connection auth type
+     */
+    description: string;
+    /**
+     * The URL to the guide for the connection auth type
+     */
+    guidePath: string;
+    /**
+     * The ID of the connection auth type
+     */
+    id: string;
+    /**
+     * The name of the connection auth type
+     */
+    name: string;
+    /**
+     * The parameters for the connection auth type
+     */
+    parameters: outputs.GetEnvironmentObjectConnectionAuthTypeParameter[];
+    /**
+     * The URL of the provider logo
+     */
+    providerLogo: string;
+    /**
+     * The name of the provider package
+     */
+    providerPackageName: string;
+}
+
+export interface GetEnvironmentObjectConnectionAuthTypeParameter {
+    /**
+     * The name of the parameter in Airflow
+     */
+    airflowParamName: string;
+    /**
+     * The data type of the parameter
+     */
+    dataType: string;
+    /**
+     * A description of the parameter
+     */
+    description: string;
+    /**
+     * An example value for the parameter
+     */
+    example: string;
+    /**
+     * The UI-friendly name for the parameter
+     */
+    friendlyName: string;
+    /**
+     * Whether the parameter is included in the extra field
+     */
+    isInExtra: boolean;
+    /**
+     * Whether the parameter is required
+     */
+    isRequired: boolean;
+    /**
+     * Whether the parameter is a secret
+     */
+    isSecret: boolean;
+    /**
+     * A regex pattern that the parameter value must match
+     */
+    pattern: string;
+}
+
+export interface GetEnvironmentObjectCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetEnvironmentObjectExcludeLink {
+    /**
+     * Scope of the excluded entity
+     */
+    scope: string;
+    /**
+     * ID of the excluded entity
+     */
+    scopeEntityId: string;
+}
+
+export interface GetEnvironmentObjectLink {
+    /**
+     * Per-link overrides. Only the fields matching the parent objectType are populated
+     */
+    overrides: outputs.GetEnvironmentObjectLinkOverrides;
+    /**
+     * Scope of the linked entity
+     */
+    scope: string;
+    /**
+     * Linked entity ID
+     */
+    scopeEntityId: string;
+}
+
+export interface GetEnvironmentObjectLinkOverrides {
+    /**
+     * Override auth type (only used when object*type=METRICS*EXPORT)
+     */
+    authType: string;
+    /**
+     * Override bearer token (only used when object*type=METRICS*EXPORT)
+     */
+    basicToken: string;
+    /**
+     * Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+     */
+    endpoint: string;
+    /**
+     * Override exporter type (only used when object*type=METRICS*EXPORT)
+     */
+    exporterType: string;
+    /**
+     * Override extra JSON (only used when object_type=CONNECTION)
+     */
+    extra: string;
+    /**
+     * Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+     */
+    headers: {[key: string]: string};
+    /**
+     * Override host address (only used when object_type=CONNECTION)
+     */
+    host: string;
+    /**
+     * Override metrics labels (only used when object*type=METRICS*EXPORT)
+     */
+    labels: {[key: string]: string};
+    /**
+     * Override login (only used when object_type=CONNECTION)
+     */
+    login: string;
+    /**
+     * Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+     */
+    password: string;
+    /**
+     * Override port (only used when object_type=CONNECTION)
+     */
+    port: number;
+    /**
+     * Override schema (only used when object_type=CONNECTION)
+     */
+    schema: string;
+    /**
+     * Override connection type (only used when object_type=CONNECTION)
+     */
+    type: string;
+    /**
+     * Override username (only used when object*type=METRICS*EXPORT)
+     */
+    username: string;
+    /**
+     * Override value (only used when object*type=AIRFLOW*VARIABLE)
+     */
+    value: string;
+}
+
+export interface GetEnvironmentObjectUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObject {
+    /**
+     * The type of authentication (only used when object*type=METRICS*EXPORT)
+     */
+    authType: string;
+    /**
+     * The ID for the connection auth type (only used when object_type=CONNECTION)
+     */
+    authTypeId: string;
+    /**
+     * Whether to automatically link Deployments to the environment object
+     */
+    autoLinkDeployments: boolean;
+    /**
+     * The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+     */
+    basicToken: string;
+    /**
+     * The resolved auth type of the connection (only used when object*type=CONNECTION)
+     */
+    connectionAuthType: outputs.GetEnvironmentObjectsEnvironmentObjectConnectionAuthType;
+    /**
+     * Environment Object creation timestamp
+     */
+    createdAt: string;
+    /**
+     * Environment Object creator
+     */
+    createdBy: outputs.GetEnvironmentObjectsEnvironmentObjectCreatedBy;
+    /**
+     * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+     */
+    endpoint: string;
+    /**
+     * The excluded links for the environment object
+     */
+    excludeLinks: outputs.GetEnvironmentObjectsEnvironmentObjectExcludeLink[];
+    /**
+     * The type of exporter (only used when object*type=METRICS*EXPORT)
+     */
+    exporterType: string;
+    /**
+     * Extra connection details as JSON string (only used when object_type=CONNECTION)
+     */
+    extra: string;
+    /**
+     * HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)
+     */
+    headers: {[key: string]: string};
+    /**
+     * The host address for the connection (only used when object_type=CONNECTION)
+     */
+    host: string;
+    /**
+     * Environment object identifier
+     */
+    id: string;
+    /**
+     * Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+     */
+    isSecret: boolean;
+    /**
+     * Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
+     */
+    labels: {[key: string]: string};
+    /**
+     * The Deployments linked to the environment object
+     */
+    links: outputs.GetEnvironmentObjectsEnvironmentObjectLink[];
+    /**
+     * The username used for the connection (only used when object_type=CONNECTION)
+     */
+    login: string;
+    /**
+     * The key for the environment object
+     */
+    objectKey: string;
+    /**
+     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     */
+    objectType: string;
+    /**
+     * The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+     */
+    password: string;
+    /**
+     * The port for the connection (only used when object_type=CONNECTION)
+     */
+    port: number;
+    /**
+     * The schema for the connection (only used when object_type=CONNECTION)
+     */
+    schema: string;
+    /**
+     * The scope of the environment object (WORKSPACE, DEPLOYMENT)
+     */
+    scope: string;
+    /**
+     * The ID of the scope entity where the environment object is created
+     */
+    scopeEntityId: string;
+    /**
+     * The source scope, if resolved from a link
+     */
+    sourceScope: string;
+    /**
+     * The source scope entity ID, if resolved from a link
+     */
+    sourceScopeEntityId: string;
+    /**
+     * The connection type (only used when object_type=CONNECTION)
+     */
+    type: string;
+    /**
+     * Environment Object last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * Environment Object updater
+     */
+    updatedBy: outputs.GetEnvironmentObjectsEnvironmentObjectUpdatedBy;
+    /**
+     * The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+     */
+    username: string;
+    /**
+     * The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+     */
+    value: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectConnectionAuthType {
+    /**
+     * The type of connection in Airflow
+     */
+    airflowType: string;
+    /**
+     * The name of the auth method used in the connection
+     */
+    authMethodName: string;
+    /**
+     * A description of the connection auth type
+     */
+    description: string;
+    /**
+     * The URL to the guide for the connection auth type
+     */
+    guidePath: string;
+    /**
+     * The ID of the connection auth type
+     */
+    id: string;
+    /**
+     * The name of the connection auth type
+     */
+    name: string;
+    /**
+     * The parameters for the connection auth type
+     */
+    parameters: outputs.GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter[];
+    /**
+     * The URL of the provider logo
+     */
+    providerLogo: string;
+    /**
+     * The name of the provider package
+     */
+    providerPackageName: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter {
+    /**
+     * The name of the parameter in Airflow
+     */
+    airflowParamName: string;
+    /**
+     * The data type of the parameter
+     */
+    dataType: string;
+    /**
+     * A description of the parameter
+     */
+    description: string;
+    /**
+     * An example value for the parameter
+     */
+    example: string;
+    /**
+     * The UI-friendly name for the parameter
+     */
+    friendlyName: string;
+    /**
+     * Whether the parameter is included in the extra field
+     */
+    isInExtra: boolean;
+    /**
+     * Whether the parameter is required
+     */
+    isRequired: boolean;
+    /**
+     * Whether the parameter is a secret
+     */
+    isSecret: boolean;
+    /**
+     * A regex pattern that the parameter value must match
+     */
+    pattern: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectCreatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectExcludeLink {
+    /**
+     * Scope of the excluded entity
+     */
+    scope: string;
+    /**
+     * ID of the excluded entity
+     */
+    scopeEntityId: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectLink {
+    /**
+     * Per-link overrides. Only the fields matching the parent object*type are populated
+     */
+    overrides: outputs.GetEnvironmentObjectsEnvironmentObjectLinkOverrides;
+    /**
+     * Scope of the linked entity
+     */
+    scope: string;
+    /**
+     * Linked entity ID
+     */
+    scopeEntityId: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectLinkOverrides {
+    /**
+     * Override auth type (only used when object*type=METRICS*EXPORT)
+     */
+    authType: string;
+    /**
+     * Override bearer token (only used when object*type=METRICS*EXPORT)
+     */
+    basicToken: string;
+    /**
+     * Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+     */
+    endpoint: string;
+    /**
+     * Override exporter type (only used when object*type=METRICS*EXPORT)
+     */
+    exporterType: string;
+    /**
+     * Override extra JSON (only used when object_type=CONNECTION)
+     */
+    extra: string;
+    /**
+     * Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+     */
+    headers: {[key: string]: string};
+    /**
+     * Override host address (only used when object_type=CONNECTION)
+     */
+    host: string;
+    /**
+     * Override metrics labels (only used when object*type=METRICS*EXPORT)
+     */
+    labels: {[key: string]: string};
+    /**
+     * Override login (only used when object_type=CONNECTION)
+     */
+    login: string;
+    /**
+     * Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+     */
+    password: string;
+    /**
+     * Override port (only used when object_type=CONNECTION)
+     */
+    port: number;
+    /**
+     * Override schema (only used when object_type=CONNECTION)
+     */
+    schema: string;
+    /**
+     * Override connection type (only used when object_type=CONNECTION)
+     */
+    type: string;
+    /**
+     * Override username (only used when object*type=METRICS*EXPORT)
+     */
+    username: string;
+    /**
+     * Override value (only used when object*type=AIRFLOW*VARIABLE)
+     */
+    value: string;
+}
+
+export interface GetEnvironmentObjectsEnvironmentObjectUpdatedBy {
+    apiTokenName: string;
+    avatarUrl: string;
+    fullName: string;
+    id: string;
+    subjectType: string;
+    username: string;
+}
+
 export interface GetNotificationChannelCreatedBy {
     apiTokenName: string;
     avatarUrl: string;
@@ -2503,6 +3289,94 @@ export interface GetUserDeploymentRole {
 }
 
 export interface GetUserWorkspaceRole {
+    /**
+     * The role assigned to the workspace
+     */
+    role: string;
+    /**
+     * The ID of the workspace the role is assigned to
+     */
+    workspaceId: string;
+}
+
+export interface GetUsersListUser {
+    /**
+     * User avatar URL
+     */
+    avatarUrl: string;
+    /**
+     * User creation timestamp
+     */
+    createdAt: string;
+    /**
+     * The DAG roles assigned to the user
+     */
+    dagRoles: outputs.GetUsersListUserDagRole[];
+    /**
+     * The roles assigned to the deployments
+     */
+    deploymentRoles: outputs.GetUsersListUserDeploymentRole[];
+    /**
+     * User full name
+     */
+    fullName: string;
+    /**
+     * User identifier
+     */
+    id: string;
+    /**
+     * The role assigned to the organization
+     */
+    organizationRole: string;
+    /**
+     * User status
+     */
+    status: string;
+    /**
+     * User last updated timestamp
+     */
+    updatedAt: string;
+    /**
+     * User username
+     */
+    username: string;
+    /**
+     * The roles assigned to the workspaces
+     */
+    workspaceRoles: outputs.GetUsersListUserWorkspaceRole[];
+}
+
+export interface GetUsersListUserDagRole {
+    /**
+     * The DAG ID
+     */
+    dagId: string;
+    /**
+     * The Deployment ID containing the DAG
+     */
+    deploymentId: string;
+    /**
+     * The DAG role
+     */
+    role: string;
+    /**
+     * The DAG tag
+     */
+    tag: string;
+}
+
+export interface GetUsersListUserDeploymentRole {
+    /**
+     * The ID of the deployment the role is assigned to
+     */
+    deploymentId: string;
+    /**
+     * The role assigned to the deployment
+     */
+    role: string;
+}
+
+export interface GetUsersListUserWorkspaceRole {
     /**
      * The role assigned to the workspace
      */

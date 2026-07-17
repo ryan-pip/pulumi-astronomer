@@ -15,6 +15,11 @@ export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
 utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
 
+export { AlertsArgs, AlertsState } from "./alerts";
+export type Alerts = import("./alerts").Alerts;
+export const Alerts: typeof import("./alerts").Alerts = null as any;
+utilities.lazyLoad(exports, ["Alerts"], () => require("./alerts"));
+
 export { ApiTokenArgs, ApiTokenState } from "./apiToken";
 export type ApiToken = import("./apiToken").ApiToken;
 export const ApiToken: typeof import("./apiToken").ApiToken = null as any;
@@ -34,6 +39,11 @@ export { DeploymentArgs, DeploymentState } from "./deployment";
 export type Deployment = import("./deployment").Deployment;
 export const Deployment: typeof import("./deployment").Deployment = null as any;
 utilities.lazyLoad(exports, ["Deployment"], () => require("./deployment"));
+
+export { EnvironmentObjectArgs, EnvironmentObjectState } from "./environmentObject";
+export type EnvironmentObject = import("./environmentObject").EnvironmentObject;
+export const EnvironmentObject: typeof import("./environmentObject").EnvironmentObject = null as any;
+utilities.lazyLoad(exports, ["EnvironmentObject"], () => require("./environmentObject"));
 
 export { GetAlertArgs, GetAlertResult, GetAlertOutputArgs } from "./getAlert";
 export const getAlert: typeof import("./getAlert").getAlert = null as any;
@@ -90,6 +100,16 @@ export const getDeployments: typeof import("./getDeployments").getDeployments = 
 export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
 
+export { GetEnvironmentObjectArgs, GetEnvironmentObjectResult, GetEnvironmentObjectOutputArgs } from "./getEnvironmentObject";
+export const getEnvironmentObject: typeof import("./getEnvironmentObject").getEnvironmentObject = null as any;
+export const getEnvironmentObjectOutput: typeof import("./getEnvironmentObject").getEnvironmentObjectOutput = null as any;
+utilities.lazyLoad(exports, ["getEnvironmentObject","getEnvironmentObjectOutput"], () => require("./getEnvironmentObject"));
+
+export { GetEnvironmentObjectsArgs, GetEnvironmentObjectsResult, GetEnvironmentObjectsOutputArgs } from "./getEnvironmentObjects";
+export const getEnvironmentObjects: typeof import("./getEnvironmentObjects").getEnvironmentObjects = null as any;
+export const getEnvironmentObjectsOutput: typeof import("./getEnvironmentObjects").getEnvironmentObjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getEnvironmentObjects","getEnvironmentObjectsOutput"], () => require("./getEnvironmentObjects"));
+
 export { GetNotificationChannelArgs, GetNotificationChannelResult, GetNotificationChannelOutputArgs } from "./getNotificationChannel";
 export const getNotificationChannel: typeof import("./getNotificationChannel").getNotificationChannel = null as any;
 export const getNotificationChannelOutput: typeof import("./getNotificationChannel").getNotificationChannelOutput = null as any;
@@ -124,6 +144,11 @@ export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
 export const getUsers: typeof import("./getUsers").getUsers = null as any;
 export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
+export { GetUsersListArgs, GetUsersListResult, GetUsersListOutputArgs } from "./getUsersList";
+export const getUsersList: typeof import("./getUsersList").getUsersList = null as any;
+export const getUsersListOutput: typeof import("./getUsersList").getUsersListOutput = null as any;
+utilities.lazyLoad(exports, ["getUsersList","getUsersListOutput"], () => require("./getUsersList"));
 
 export { GetWorkspaceArgs, GetWorkspaceResult, GetWorkspaceOutputArgs } from "./getWorkspace";
 export const getWorkspace: typeof import("./getWorkspace").getWorkspace = null as any;
@@ -196,6 +221,8 @@ const _module = {
                 return new AgentToken(name, <any>undefined, { urn })
             case "astronomer:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
+            case "astronomer:index/alerts:Alerts":
+                return new Alerts(name, <any>undefined, { urn })
             case "astronomer:index/apiToken:ApiToken":
                 return new ApiToken(name, <any>undefined, { urn })
             case "astronomer:index/cluster:Cluster":
@@ -204,6 +231,8 @@ const _module = {
                 return new CustomRole(name, <any>undefined, { urn })
             case "astronomer:index/deployment:Deployment":
                 return new Deployment(name, <any>undefined, { urn })
+            case "astronomer:index/environmentObject:EnvironmentObject":
+                return new EnvironmentObject(name, <any>undefined, { urn })
             case "astronomer:index/hybridClusterWorkspaceAuthorization:HybridClusterWorkspaceAuthorization":
                 return new HybridClusterWorkspaceAuthorization(name, <any>undefined, { urn })
             case "astronomer:index/notificationChannel:NotificationChannel":
@@ -227,10 +256,12 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("astronomer", "index/agentToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/alert", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/alerts", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/apiToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/customRole", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/deployment", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/environmentObject", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/hybridClusterWorkspaceAuthorization", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/notificationChannel", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/team", _module)

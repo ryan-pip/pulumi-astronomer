@@ -11,7 +11,9 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// Alert resource
+    /// Manage a single alert.
+    /// 
+    /// &gt; **Deprecated** Use the `astronomer.Alerts` resource instead, which manages one or many alerts in a single resource. Do not manage the same alert with both `astronomer.Alert` and `astronomer.Alerts` — they conflict on every apply.
     /// </summary>
     [AstronomerResourceType("astronomer:index/alert:Alert")]
     public partial class Alert : global::Pulumi.CustomResource

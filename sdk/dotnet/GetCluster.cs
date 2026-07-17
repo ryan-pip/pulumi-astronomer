@@ -143,6 +143,10 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string DbInstanceType;
         /// <summary>
+        /// The disaster recovery subnet range for pods (GCP Only).
+        /// </summary>
+        public readonly string DrPodSubnetRange;
+        /// <summary>
         /// The secondary region for Disaster Recovery
         /// </summary>
         public readonly string DrRegion;
@@ -150,6 +154,14 @@ namespace RyanPip.Astronomer
         /// Secondary CIDR for pod networking in the DR region (AWS only)
         /// </summary>
         public readonly string DrSecondaryVpcCidr;
+        /// <summary>
+        /// The disaster recovery service peering range (GCP Only).
+        /// </summary>
+        public readonly string DrServicePeeringRange;
+        /// <summary>
+        /// The disaster recovery service subnet range (GCP Only).
+        /// </summary>
+        public readonly string DrServiceSubnetRange;
         /// <summary>
         /// The VPC subnet range for the Disaster Recovery region
         /// </summary>
@@ -251,9 +263,15 @@ namespace RyanPip.Astronomer
 
             string dbInstanceType,
 
+            string drPodSubnetRange,
+
             string drRegion,
 
             string drSecondaryVpcCidr,
+
+            string drServicePeeringRange,
+
+            string drServiceSubnetRange,
 
             string drVpcSubnetRange,
 
@@ -304,8 +322,11 @@ namespace RyanPip.Astronomer
             CloudProvider = cloudProvider;
             CreatedAt = createdAt;
             DbInstanceType = dbInstanceType;
+            DrPodSubnetRange = drPodSubnetRange;
             DrRegion = drRegion;
             DrSecondaryVpcCidr = drSecondaryVpcCidr;
+            DrServicePeeringRange = drServicePeeringRange;
+            DrServiceSubnetRange = drServiceSubnetRange;
             DrVpcSubnetRange = drVpcSubnetRange;
             EnableReplicationTimeControl = enableReplicationTimeControl;
             HealthStatus = healthStatus;

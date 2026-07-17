@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Users data source
+ * Users data source. **Deprecated:** use the `astronomer.getUsersList` data source instead.
  *
  * ## Example Usage
  *
@@ -59,7 +59,7 @@ export interface GetUsersResult {
     readonly workspaceId?: string;
 }
 /**
- * Users data source
+ * Users data source. **Deprecated:** use the `astronomer.getUsersList` data source instead.
  *
  * ## Example Usage
  *

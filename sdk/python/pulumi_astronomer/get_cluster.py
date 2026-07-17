@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, secondary_vpc_cidr=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_pod_subnet_range=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_service_peering_range=None, dr_service_subnet_range=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, secondary_vpc_cidr=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -37,12 +37,21 @@ class GetClusterResult:
         if db_instance_type and not isinstance(db_instance_type, str):
             raise TypeError("Expected argument 'db_instance_type' to be a str")
         pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if dr_pod_subnet_range and not isinstance(dr_pod_subnet_range, str):
+            raise TypeError("Expected argument 'dr_pod_subnet_range' to be a str")
+        pulumi.set(__self__, "dr_pod_subnet_range", dr_pod_subnet_range)
         if dr_region and not isinstance(dr_region, str):
             raise TypeError("Expected argument 'dr_region' to be a str")
         pulumi.set(__self__, "dr_region", dr_region)
         if dr_secondary_vpc_cidr and not isinstance(dr_secondary_vpc_cidr, str):
             raise TypeError("Expected argument 'dr_secondary_vpc_cidr' to be a str")
         pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_service_peering_range and not isinstance(dr_service_peering_range, str):
+            raise TypeError("Expected argument 'dr_service_peering_range' to be a str")
+        pulumi.set(__self__, "dr_service_peering_range", dr_service_peering_range)
+        if dr_service_subnet_range and not isinstance(dr_service_subnet_range, str):
+            raise TypeError("Expected argument 'dr_service_subnet_range' to be a str")
+        pulumi.set(__self__, "dr_service_subnet_range", dr_service_subnet_range)
         if dr_vpc_subnet_range and not isinstance(dr_vpc_subnet_range, str):
             raise TypeError("Expected argument 'dr_vpc_subnet_range' to be a str")
         pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
@@ -138,6 +147,14 @@ class GetClusterResult:
         return pulumi.get(self, "db_instance_type")
 
     @_builtins.property
+    @pulumi.getter(name="drPodSubnetRange")
+    def dr_pod_subnet_range(self) -> _builtins.str:
+        """
+        The disaster recovery subnet range for pods (GCP Only).
+        """
+        return pulumi.get(self, "dr_pod_subnet_range")
+
+    @_builtins.property
     @pulumi.getter(name="drRegion")
     def dr_region(self) -> _builtins.str:
         """
@@ -152,6 +169,22 @@ class GetClusterResult:
         Secondary CIDR for pod networking in the DR region (AWS only)
         """
         return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="drServicePeeringRange")
+    def dr_service_peering_range(self) -> _builtins.str:
+        """
+        The disaster recovery service peering range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_peering_range")
+
+    @_builtins.property
+    @pulumi.getter(name="drServiceSubnetRange")
+    def dr_service_subnet_range(self) -> _builtins.str:
+        """
+        The disaster recovery service subnet range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_subnet_range")
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")
@@ -347,8 +380,11 @@ class AwaitableGetClusterResult(GetClusterResult):
             cloud_provider=self.cloud_provider,
             created_at=self.created_at,
             db_instance_type=self.db_instance_type,
+            dr_pod_subnet_range=self.dr_pod_subnet_range,
             dr_region=self.dr_region,
             dr_secondary_vpc_cidr=self.dr_secondary_vpc_cidr,
+            dr_service_peering_range=self.dr_service_peering_range,
+            dr_service_subnet_range=self.dr_service_subnet_range,
             dr_vpc_subnet_range=self.dr_vpc_subnet_range,
             enable_replication_time_control=self.enable_replication_time_control,
             health_status=self.health_status,
@@ -401,8 +437,11 @@ def get_cluster(id: Optional[_builtins.str] = None,
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
         created_at=pulumi.get(__ret__, 'created_at'),
         db_instance_type=pulumi.get(__ret__, 'db_instance_type'),
+        dr_pod_subnet_range=pulumi.get(__ret__, 'dr_pod_subnet_range'),
         dr_region=pulumi.get(__ret__, 'dr_region'),
         dr_secondary_vpc_cidr=pulumi.get(__ret__, 'dr_secondary_vpc_cidr'),
+        dr_service_peering_range=pulumi.get(__ret__, 'dr_service_peering_range'),
+        dr_service_subnet_range=pulumi.get(__ret__, 'dr_service_subnet_range'),
         dr_vpc_subnet_range=pulumi.get(__ret__, 'dr_vpc_subnet_range'),
         enable_replication_time_control=pulumi.get(__ret__, 'enable_replication_time_control'),
         health_status=pulumi.get(__ret__, 'health_status'),
@@ -452,8 +491,11 @@ def get_cluster_output(id: pulumi.Input[Optional[_builtins.str]] = None,
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
         created_at=pulumi.get(__response__, 'created_at'),
         db_instance_type=pulumi.get(__response__, 'db_instance_type'),
+        dr_pod_subnet_range=pulumi.get(__response__, 'dr_pod_subnet_range'),
         dr_region=pulumi.get(__response__, 'dr_region'),
         dr_secondary_vpc_cidr=pulumi.get(__response__, 'dr_secondary_vpc_cidr'),
+        dr_service_peering_range=pulumi.get(__response__, 'dr_service_peering_range'),
+        dr_service_subnet_range=pulumi.get(__response__, 'dr_service_subnet_range'),
         dr_vpc_subnet_range=pulumi.get(__response__, 'dr_vpc_subnet_range'),
         enable_replication_time_control=pulumi.get(__response__, 'enable_replication_time_control'),
         health_status=pulumi.get(__response__, 'health_status'),

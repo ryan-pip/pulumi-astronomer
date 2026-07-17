@@ -5,7 +5,7 @@ go 1.25
 toolchain go1.25.9
 
 require (
-	github.com/astronomer/terraform-provider-astro v1.2.6
+	github.com/astronomer/terraform-provider-astro v1.4.0
 	github.com/hashicorp/terraform-plugin-framework v1.12.0
 )
 

@@ -1668,6 +1668,439 @@ func (o AlertUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type AlertsAlerts struct {
+	// The entity ID the alert is associated with
+	EntityId string `pulumi:"entityId"`
+	// The type of entity the alert is scoped to
+	EntityType string `pulumi:"entityType"`
+	// Alert identifier
+	Id *string `pulumi:"id"`
+	// Alert name
+	Name string `pulumi:"name"`
+	// Set of notification channel identifiers to notify when the alert is triggered
+	NotificationChannelIds []string `pulumi:"notificationChannelIds"`
+	// Alert rules defining the conditions for triggering the alert
+	Rules AlertsAlertsRules `pulumi:"rules"`
+	// The alert's severity
+	Severity string `pulumi:"severity"`
+	// The alert's type
+	Type string `pulumi:"type"`
+}
+
+// AlertsAlertsInput is an input type that accepts AlertsAlertsArgs and AlertsAlertsOutput values.
+// You can construct a concrete instance of `AlertsAlertsInput` via:
+//
+//	AlertsAlertsArgs{...}
+type AlertsAlertsInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsOutput() AlertsAlertsOutput
+	ToAlertsAlertsOutputWithContext(context.Context) AlertsAlertsOutput
+}
+
+type AlertsAlertsArgs struct {
+	// The entity ID the alert is associated with
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The type of entity the alert is scoped to
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// Alert identifier
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Alert name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Set of notification channel identifiers to notify when the alert is triggered
+	NotificationChannelIds pulumi.StringArrayInput `pulumi:"notificationChannelIds"`
+	// Alert rules defining the conditions for triggering the alert
+	Rules AlertsAlertsRulesInput `pulumi:"rules"`
+	// The alert's severity
+	Severity pulumi.StringInput `pulumi:"severity"`
+	// The alert's type
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (AlertsAlertsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlerts)(nil)).Elem()
+}
+
+func (i AlertsAlertsArgs) ToAlertsAlertsOutput() AlertsAlertsOutput {
+	return i.ToAlertsAlertsOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsArgs) ToAlertsAlertsOutputWithContext(ctx context.Context) AlertsAlertsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsOutput)
+}
+
+// AlertsAlertsMapInput is an input type that accepts AlertsAlertsMap and AlertsAlertsMapOutput values.
+// You can construct a concrete instance of `AlertsAlertsMapInput` via:
+//
+//	AlertsAlertsMap{ "key": AlertsAlertsArgs{...} }
+type AlertsAlertsMapInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsMapOutput() AlertsAlertsMapOutput
+	ToAlertsAlertsMapOutputWithContext(context.Context) AlertsAlertsMapOutput
+}
+
+type AlertsAlertsMap map[string]AlertsAlertsInput
+
+func (AlertsAlertsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AlertsAlerts)(nil)).Elem()
+}
+
+func (i AlertsAlertsMap) ToAlertsAlertsMapOutput() AlertsAlertsMapOutput {
+	return i.ToAlertsAlertsMapOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsMap) ToAlertsAlertsMapOutputWithContext(ctx context.Context) AlertsAlertsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsMapOutput)
+}
+
+type AlertsAlertsOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlerts)(nil)).Elem()
+}
+
+func (o AlertsAlertsOutput) ToAlertsAlertsOutput() AlertsAlertsOutput {
+	return o
+}
+
+func (o AlertsAlertsOutput) ToAlertsAlertsOutputWithContext(ctx context.Context) AlertsAlertsOutput {
+	return o
+}
+
+// The entity ID the alert is associated with
+func (o AlertsAlertsOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlerts) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The type of entity the alert is scoped to
+func (o AlertsAlertsOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlerts) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// Alert identifier
+func (o AlertsAlertsOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertsAlerts) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Alert name
+func (o AlertsAlertsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlerts) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Set of notification channel identifiers to notify when the alert is triggered
+func (o AlertsAlertsOutput) NotificationChannelIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertsAlerts) []string { return v.NotificationChannelIds }).(pulumi.StringArrayOutput)
+}
+
+// Alert rules defining the conditions for triggering the alert
+func (o AlertsAlertsOutput) Rules() AlertsAlertsRulesOutput {
+	return o.ApplyT(func(v AlertsAlerts) AlertsAlertsRules { return v.Rules }).(AlertsAlertsRulesOutput)
+}
+
+// The alert's severity
+func (o AlertsAlertsOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlerts) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+// The alert's type
+func (o AlertsAlertsOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlerts) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type AlertsAlertsMapOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AlertsAlerts)(nil)).Elem()
+}
+
+func (o AlertsAlertsMapOutput) ToAlertsAlertsMapOutput() AlertsAlertsMapOutput {
+	return o
+}
+
+func (o AlertsAlertsMapOutput) ToAlertsAlertsMapOutputWithContext(ctx context.Context) AlertsAlertsMapOutput {
+	return o
+}
+
+func (o AlertsAlertsMapOutput) MapIndex(k pulumi.StringInput) AlertsAlertsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AlertsAlerts {
+		return vs[0].(map[string]AlertsAlerts)[vs[1].(string)]
+	}).(AlertsAlertsOutput)
+}
+
+type AlertsAlertsRules struct {
+	// The alert's pattern matches to match against
+	PatternMatches []AlertsAlertsRulesPatternMatch `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties AlertsAlertsRulesProperties `pulumi:"properties"`
+}
+
+// AlertsAlertsRulesInput is an input type that accepts AlertsAlertsRulesArgs and AlertsAlertsRulesOutput values.
+// You can construct a concrete instance of `AlertsAlertsRulesInput` via:
+//
+//	AlertsAlertsRulesArgs{...}
+type AlertsAlertsRulesInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsRulesOutput() AlertsAlertsRulesOutput
+	ToAlertsAlertsRulesOutputWithContext(context.Context) AlertsAlertsRulesOutput
+}
+
+type AlertsAlertsRulesArgs struct {
+	// The alert's pattern matches to match against
+	PatternMatches AlertsAlertsRulesPatternMatchArrayInput `pulumi:"patternMatches"`
+	// The alert's properties used to define the alert
+	Properties AlertsAlertsRulesPropertiesInput `pulumi:"properties"`
+}
+
+func (AlertsAlertsRulesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRules)(nil)).Elem()
+}
+
+func (i AlertsAlertsRulesArgs) ToAlertsAlertsRulesOutput() AlertsAlertsRulesOutput {
+	return i.ToAlertsAlertsRulesOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsRulesArgs) ToAlertsAlertsRulesOutputWithContext(ctx context.Context) AlertsAlertsRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsRulesOutput)
+}
+
+type AlertsAlertsRulesOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRules)(nil)).Elem()
+}
+
+func (o AlertsAlertsRulesOutput) ToAlertsAlertsRulesOutput() AlertsAlertsRulesOutput {
+	return o
+}
+
+func (o AlertsAlertsRulesOutput) ToAlertsAlertsRulesOutputWithContext(ctx context.Context) AlertsAlertsRulesOutput {
+	return o
+}
+
+// The alert's pattern matches to match against
+func (o AlertsAlertsRulesOutput) PatternMatches() AlertsAlertsRulesPatternMatchArrayOutput {
+	return o.ApplyT(func(v AlertsAlertsRules) []AlertsAlertsRulesPatternMatch { return v.PatternMatches }).(AlertsAlertsRulesPatternMatchArrayOutput)
+}
+
+// The alert's properties used to define the alert
+func (o AlertsAlertsRulesOutput) Properties() AlertsAlertsRulesPropertiesOutput {
+	return o.ApplyT(func(v AlertsAlertsRules) AlertsAlertsRulesProperties { return v.Properties }).(AlertsAlertsRulesPropertiesOutput)
+}
+
+type AlertsAlertsRulesPatternMatch struct {
+	// The type of entity to match against
+	EntityType string `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType string `pulumi:"operatorType"`
+	// The values to match against
+	Values []string `pulumi:"values"`
+}
+
+// AlertsAlertsRulesPatternMatchInput is an input type that accepts AlertsAlertsRulesPatternMatchArgs and AlertsAlertsRulesPatternMatchOutput values.
+// You can construct a concrete instance of `AlertsAlertsRulesPatternMatchInput` via:
+//
+//	AlertsAlertsRulesPatternMatchArgs{...}
+type AlertsAlertsRulesPatternMatchInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsRulesPatternMatchOutput() AlertsAlertsRulesPatternMatchOutput
+	ToAlertsAlertsRulesPatternMatchOutputWithContext(context.Context) AlertsAlertsRulesPatternMatchOutput
+}
+
+type AlertsAlertsRulesPatternMatchArgs struct {
+	// The type of entity to match against
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The type of operator to use for the pattern match
+	OperatorType pulumi.StringInput `pulumi:"operatorType"`
+	// The values to match against
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (AlertsAlertsRulesPatternMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRulesPatternMatch)(nil)).Elem()
+}
+
+func (i AlertsAlertsRulesPatternMatchArgs) ToAlertsAlertsRulesPatternMatchOutput() AlertsAlertsRulesPatternMatchOutput {
+	return i.ToAlertsAlertsRulesPatternMatchOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsRulesPatternMatchArgs) ToAlertsAlertsRulesPatternMatchOutputWithContext(ctx context.Context) AlertsAlertsRulesPatternMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsRulesPatternMatchOutput)
+}
+
+// AlertsAlertsRulesPatternMatchArrayInput is an input type that accepts AlertsAlertsRulesPatternMatchArray and AlertsAlertsRulesPatternMatchArrayOutput values.
+// You can construct a concrete instance of `AlertsAlertsRulesPatternMatchArrayInput` via:
+//
+//	AlertsAlertsRulesPatternMatchArray{ AlertsAlertsRulesPatternMatchArgs{...} }
+type AlertsAlertsRulesPatternMatchArrayInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsRulesPatternMatchArrayOutput() AlertsAlertsRulesPatternMatchArrayOutput
+	ToAlertsAlertsRulesPatternMatchArrayOutputWithContext(context.Context) AlertsAlertsRulesPatternMatchArrayOutput
+}
+
+type AlertsAlertsRulesPatternMatchArray []AlertsAlertsRulesPatternMatchInput
+
+func (AlertsAlertsRulesPatternMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertsAlertsRulesPatternMatch)(nil)).Elem()
+}
+
+func (i AlertsAlertsRulesPatternMatchArray) ToAlertsAlertsRulesPatternMatchArrayOutput() AlertsAlertsRulesPatternMatchArrayOutput {
+	return i.ToAlertsAlertsRulesPatternMatchArrayOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsRulesPatternMatchArray) ToAlertsAlertsRulesPatternMatchArrayOutputWithContext(ctx context.Context) AlertsAlertsRulesPatternMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsRulesPatternMatchArrayOutput)
+}
+
+type AlertsAlertsRulesPatternMatchOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsRulesPatternMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRulesPatternMatch)(nil)).Elem()
+}
+
+func (o AlertsAlertsRulesPatternMatchOutput) ToAlertsAlertsRulesPatternMatchOutput() AlertsAlertsRulesPatternMatchOutput {
+	return o
+}
+
+func (o AlertsAlertsRulesPatternMatchOutput) ToAlertsAlertsRulesPatternMatchOutputWithContext(ctx context.Context) AlertsAlertsRulesPatternMatchOutput {
+	return o
+}
+
+// The type of entity to match against
+func (o AlertsAlertsRulesPatternMatchOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesPatternMatch) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The type of operator to use for the pattern match
+func (o AlertsAlertsRulesPatternMatchOutput) OperatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesPatternMatch) string { return v.OperatorType }).(pulumi.StringOutput)
+}
+
+// The values to match against
+func (o AlertsAlertsRulesPatternMatchOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesPatternMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type AlertsAlertsRulesPatternMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsRulesPatternMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertsAlertsRulesPatternMatch)(nil)).Elem()
+}
+
+func (o AlertsAlertsRulesPatternMatchArrayOutput) ToAlertsAlertsRulesPatternMatchArrayOutput() AlertsAlertsRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o AlertsAlertsRulesPatternMatchArrayOutput) ToAlertsAlertsRulesPatternMatchArrayOutputWithContext(ctx context.Context) AlertsAlertsRulesPatternMatchArrayOutput {
+	return o
+}
+
+func (o AlertsAlertsRulesPatternMatchArrayOutput) Index(i pulumi.IntInput) AlertsAlertsRulesPatternMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertsAlertsRulesPatternMatch {
+		return vs[0].([]AlertsAlertsRulesPatternMatch)[vs[1].(int)]
+	}).(AlertsAlertsRulesPatternMatchOutput)
+}
+
+type AlertsAlertsRulesProperties struct {
+	// The deadline for the DAG in HH:MM 24-hour UTC format
+	DagDeadline *string `pulumi:"dagDeadline"`
+	// The duration of the DAG in seconds (minimum 60)
+	DagDurationSeconds *int `pulumi:"dagDurationSeconds"`
+	// The days of the week for the timeliness rule
+	DaysOfWeeks []string `pulumi:"daysOfWeeks"`
+	// The ID of the deployment for the alert rule
+	DeploymentId string `pulumi:"deploymentId"`
+	// The look-back period in seconds (minimum 60)
+	LookBackPeriodSeconds *int `pulumi:"lookBackPeriodSeconds"`
+	// The duration of the Task in seconds (minimum 60)
+	TaskDurationSeconds *int `pulumi:"taskDurationSeconds"`
+}
+
+// AlertsAlertsRulesPropertiesInput is an input type that accepts AlertsAlertsRulesPropertiesArgs and AlertsAlertsRulesPropertiesOutput values.
+// You can construct a concrete instance of `AlertsAlertsRulesPropertiesInput` via:
+//
+//	AlertsAlertsRulesPropertiesArgs{...}
+type AlertsAlertsRulesPropertiesInput interface {
+	pulumi.Input
+
+	ToAlertsAlertsRulesPropertiesOutput() AlertsAlertsRulesPropertiesOutput
+	ToAlertsAlertsRulesPropertiesOutputWithContext(context.Context) AlertsAlertsRulesPropertiesOutput
+}
+
+type AlertsAlertsRulesPropertiesArgs struct {
+	// The deadline for the DAG in HH:MM 24-hour UTC format
+	DagDeadline pulumi.StringPtrInput `pulumi:"dagDeadline"`
+	// The duration of the DAG in seconds (minimum 60)
+	DagDurationSeconds pulumi.IntPtrInput `pulumi:"dagDurationSeconds"`
+	// The days of the week for the timeliness rule
+	DaysOfWeeks pulumi.StringArrayInput `pulumi:"daysOfWeeks"`
+	// The ID of the deployment for the alert rule
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The look-back period in seconds (minimum 60)
+	LookBackPeriodSeconds pulumi.IntPtrInput `pulumi:"lookBackPeriodSeconds"`
+	// The duration of the Task in seconds (minimum 60)
+	TaskDurationSeconds pulumi.IntPtrInput `pulumi:"taskDurationSeconds"`
+}
+
+func (AlertsAlertsRulesPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRulesProperties)(nil)).Elem()
+}
+
+func (i AlertsAlertsRulesPropertiesArgs) ToAlertsAlertsRulesPropertiesOutput() AlertsAlertsRulesPropertiesOutput {
+	return i.ToAlertsAlertsRulesPropertiesOutputWithContext(context.Background())
+}
+
+func (i AlertsAlertsRulesPropertiesArgs) ToAlertsAlertsRulesPropertiesOutputWithContext(ctx context.Context) AlertsAlertsRulesPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertsAlertsRulesPropertiesOutput)
+}
+
+type AlertsAlertsRulesPropertiesOutput struct{ *pulumi.OutputState }
+
+func (AlertsAlertsRulesPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertsAlertsRulesProperties)(nil)).Elem()
+}
+
+func (o AlertsAlertsRulesPropertiesOutput) ToAlertsAlertsRulesPropertiesOutput() AlertsAlertsRulesPropertiesOutput {
+	return o
+}
+
+func (o AlertsAlertsRulesPropertiesOutput) ToAlertsAlertsRulesPropertiesOutputWithContext(ctx context.Context) AlertsAlertsRulesPropertiesOutput {
+	return o
+}
+
+// The deadline for the DAG in HH:MM 24-hour UTC format
+func (o AlertsAlertsRulesPropertiesOutput) DagDeadline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) *string { return v.DagDeadline }).(pulumi.StringPtrOutput)
+}
+
+// The duration of the DAG in seconds (minimum 60)
+func (o AlertsAlertsRulesPropertiesOutput) DagDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) *int { return v.DagDurationSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The days of the week for the timeliness rule
+func (o AlertsAlertsRulesPropertiesOutput) DaysOfWeeks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) []string { return v.DaysOfWeeks }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the deployment for the alert rule
+func (o AlertsAlertsRulesPropertiesOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The look-back period in seconds (minimum 60)
+func (o AlertsAlertsRulesPropertiesOutput) LookBackPeriodSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) *int { return v.LookBackPeriodSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The duration of the Task in seconds (minimum 60)
+func (o AlertsAlertsRulesPropertiesOutput) TaskDurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertsAlertsRulesProperties) *int { return v.TaskDurationSeconds }).(pulumi.IntPtrOutput)
+}
+
 type ApiTokenCreatedBy struct {
 	ApiTokenName *string `pulumi:"apiTokenName"`
 	AvatarUrl    *string `pulumi:"avatarUrl"`
@@ -5226,6 +5659,1506 @@ func (o DeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput) DeploymentWor
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentWorkerQueue {
 		return vs[0].([]DeploymentWorkerQueue)[vs[1].(int)]
 	}).(DeploymentWorkerQueueOutput)
+}
+
+type EnvironmentObjectConnectionAuthType struct {
+	// The type of connection in Airflow
+	AirflowType *string `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName *string `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description *string `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath *string `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id *string `pulumi:"id"`
+	// The name of the connection auth type
+	Name *string `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters []EnvironmentObjectConnectionAuthTypeParameter `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo *string `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName *string `pulumi:"providerPackageName"`
+}
+
+// EnvironmentObjectConnectionAuthTypeInput is an input type that accepts EnvironmentObjectConnectionAuthTypeArgs and EnvironmentObjectConnectionAuthTypeOutput values.
+// You can construct a concrete instance of `EnvironmentObjectConnectionAuthTypeInput` via:
+//
+//	EnvironmentObjectConnectionAuthTypeArgs{...}
+type EnvironmentObjectConnectionAuthTypeInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectConnectionAuthTypeOutput() EnvironmentObjectConnectionAuthTypeOutput
+	ToEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Context) EnvironmentObjectConnectionAuthTypeOutput
+}
+
+type EnvironmentObjectConnectionAuthTypeArgs struct {
+	// The type of connection in Airflow
+	AirflowType pulumi.StringPtrInput `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName pulumi.StringPtrInput `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath pulumi.StringPtrInput `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the connection auth type
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters EnvironmentObjectConnectionAuthTypeParameterArrayInput `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo pulumi.StringPtrInput `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName pulumi.StringPtrInput `pulumi:"providerPackageName"`
+}
+
+func (EnvironmentObjectConnectionAuthTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (i EnvironmentObjectConnectionAuthTypeArgs) ToEnvironmentObjectConnectionAuthTypeOutput() EnvironmentObjectConnectionAuthTypeOutput {
+	return i.ToEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectConnectionAuthTypeArgs) ToEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectConnectionAuthTypeOutput)
+}
+
+func (i EnvironmentObjectConnectionAuthTypeArgs) ToEnvironmentObjectConnectionAuthTypePtrOutput() EnvironmentObjectConnectionAuthTypePtrOutput {
+	return i.ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectConnectionAuthTypeArgs) ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectConnectionAuthTypeOutput).ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(ctx)
+}
+
+// EnvironmentObjectConnectionAuthTypePtrInput is an input type that accepts EnvironmentObjectConnectionAuthTypeArgs, EnvironmentObjectConnectionAuthTypePtr and EnvironmentObjectConnectionAuthTypePtrOutput values.
+// You can construct a concrete instance of `EnvironmentObjectConnectionAuthTypePtrInput` via:
+//
+//	        EnvironmentObjectConnectionAuthTypeArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentObjectConnectionAuthTypePtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectConnectionAuthTypePtrOutput() EnvironmentObjectConnectionAuthTypePtrOutput
+	ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(context.Context) EnvironmentObjectConnectionAuthTypePtrOutput
+}
+
+type environmentObjectConnectionAuthTypePtrType EnvironmentObjectConnectionAuthTypeArgs
+
+func EnvironmentObjectConnectionAuthTypePtr(v *EnvironmentObjectConnectionAuthTypeArgs) EnvironmentObjectConnectionAuthTypePtrInput {
+	return (*environmentObjectConnectionAuthTypePtrType)(v)
+}
+
+func (*environmentObjectConnectionAuthTypePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (i *environmentObjectConnectionAuthTypePtrType) ToEnvironmentObjectConnectionAuthTypePtrOutput() EnvironmentObjectConnectionAuthTypePtrOutput {
+	return i.ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(context.Background())
+}
+
+func (i *environmentObjectConnectionAuthTypePtrType) ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectConnectionAuthTypePtrOutput)
+}
+
+type EnvironmentObjectConnectionAuthTypeOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectConnectionAuthTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (o EnvironmentObjectConnectionAuthTypeOutput) ToEnvironmentObjectConnectionAuthTypeOutput() EnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypeOutput) ToEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypeOutput) ToEnvironmentObjectConnectionAuthTypePtrOutput() EnvironmentObjectConnectionAuthTypePtrOutput {
+	return o.ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentObjectConnectionAuthTypeOutput) ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentObjectConnectionAuthType) *EnvironmentObjectConnectionAuthType {
+		return &v
+	}).(EnvironmentObjectConnectionAuthTypePtrOutput)
+}
+
+// The type of connection in Airflow
+func (o EnvironmentObjectConnectionAuthTypeOutput) AirflowType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.AirflowType }).(pulumi.StringPtrOutput)
+}
+
+// The name of the auth method used in the connection
+func (o EnvironmentObjectConnectionAuthTypeOutput) AuthMethodName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.AuthMethodName }).(pulumi.StringPtrOutput)
+}
+
+// A description of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The URL to the guide for the connection auth type
+func (o EnvironmentObjectConnectionAuthTypeOutput) GuidePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.GuidePath }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The name of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The parameters for the connection auth type
+func (o EnvironmentObjectConnectionAuthTypeOutput) Parameters() EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) []EnvironmentObjectConnectionAuthTypeParameter {
+		return v.Parameters
+	}).(EnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+// The URL of the provider logo
+func (o EnvironmentObjectConnectionAuthTypeOutput) ProviderLogo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.ProviderLogo }).(pulumi.StringPtrOutput)
+}
+
+// The name of the provider package
+func (o EnvironmentObjectConnectionAuthTypeOutput) ProviderPackageName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthType) *string { return v.ProviderPackageName }).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectConnectionAuthTypePtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectConnectionAuthTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) ToEnvironmentObjectConnectionAuthTypePtrOutput() EnvironmentObjectConnectionAuthTypePtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) ToEnvironmentObjectConnectionAuthTypePtrOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypePtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) Elem() EnvironmentObjectConnectionAuthTypeOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) EnvironmentObjectConnectionAuthType {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentObjectConnectionAuthType
+		return ret
+	}).(EnvironmentObjectConnectionAuthTypeOutput)
+}
+
+// The type of connection in Airflow
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) AirflowType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AirflowType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the auth method used in the connection
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) AuthMethodName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthMethodName
+	}).(pulumi.StringPtrOutput)
+}
+
+// A description of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL to the guide for the connection auth type
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) GuidePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GuidePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the connection auth type
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The parameters for the connection auth type
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) Parameters() EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) []EnvironmentObjectConnectionAuthTypeParameter {
+		if v == nil {
+			return nil
+		}
+		return v.Parameters
+	}).(EnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+// The URL of the provider logo
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) ProviderLogo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProviderLogo
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the provider package
+func (o EnvironmentObjectConnectionAuthTypePtrOutput) ProviderPackageName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectConnectionAuthType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProviderPackageName
+	}).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectConnectionAuthTypeParameter struct {
+	// The name of the parameter in Airflow
+	AirflowParamName *string `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType *string `pulumi:"dataType"`
+	// A description of the parameter
+	Description *string `pulumi:"description"`
+	// An example value for the parameter
+	Example *string `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName *string `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra *bool `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired *bool `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret *bool `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern *string `pulumi:"pattern"`
+}
+
+// EnvironmentObjectConnectionAuthTypeParameterInput is an input type that accepts EnvironmentObjectConnectionAuthTypeParameterArgs and EnvironmentObjectConnectionAuthTypeParameterOutput values.
+// You can construct a concrete instance of `EnvironmentObjectConnectionAuthTypeParameterInput` via:
+//
+//	EnvironmentObjectConnectionAuthTypeParameterArgs{...}
+type EnvironmentObjectConnectionAuthTypeParameterInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectConnectionAuthTypeParameterOutput() EnvironmentObjectConnectionAuthTypeParameterOutput
+	ToEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Context) EnvironmentObjectConnectionAuthTypeParameterOutput
+}
+
+type EnvironmentObjectConnectionAuthTypeParameterArgs struct {
+	// The name of the parameter in Airflow
+	AirflowParamName pulumi.StringPtrInput `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType pulumi.StringPtrInput `pulumi:"dataType"`
+	// A description of the parameter
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// An example value for the parameter
+	Example pulumi.StringPtrInput `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName pulumi.StringPtrInput `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra pulumi.BoolPtrInput `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired pulumi.BoolPtrInput `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret pulumi.BoolPtrInput `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern pulumi.StringPtrInput `pulumi:"pattern"`
+}
+
+func (EnvironmentObjectConnectionAuthTypeParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i EnvironmentObjectConnectionAuthTypeParameterArgs) ToEnvironmentObjectConnectionAuthTypeParameterOutput() EnvironmentObjectConnectionAuthTypeParameterOutput {
+	return i.ToEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectConnectionAuthTypeParameterArgs) ToEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+// EnvironmentObjectConnectionAuthTypeParameterArrayInput is an input type that accepts EnvironmentObjectConnectionAuthTypeParameterArray and EnvironmentObjectConnectionAuthTypeParameterArrayOutput values.
+// You can construct a concrete instance of `EnvironmentObjectConnectionAuthTypeParameterArrayInput` via:
+//
+//	EnvironmentObjectConnectionAuthTypeParameterArray{ EnvironmentObjectConnectionAuthTypeParameterArgs{...} }
+type EnvironmentObjectConnectionAuthTypeParameterArrayInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectConnectionAuthTypeParameterArrayOutput() EnvironmentObjectConnectionAuthTypeParameterArrayOutput
+	ToEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Context) EnvironmentObjectConnectionAuthTypeParameterArrayOutput
+}
+
+type EnvironmentObjectConnectionAuthTypeParameterArray []EnvironmentObjectConnectionAuthTypeParameterInput
+
+func (EnvironmentObjectConnectionAuthTypeParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i EnvironmentObjectConnectionAuthTypeParameterArray) ToEnvironmentObjectConnectionAuthTypeParameterArrayOutput() EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return i.ToEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectConnectionAuthTypeParameterArray) ToEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+type EnvironmentObjectConnectionAuthTypeParameterOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectConnectionAuthTypeParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) ToEnvironmentObjectConnectionAuthTypeParameterOutput() EnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) ToEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+// The name of the parameter in Airflow
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) AirflowParamName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.AirflowParamName }).(pulumi.StringPtrOutput)
+}
+
+// The data type of the parameter
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) DataType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.DataType }).(pulumi.StringPtrOutput)
+}
+
+// A description of the parameter
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// An example value for the parameter
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) Example() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.Example }).(pulumi.StringPtrOutput)
+}
+
+// The UI-friendly name for the parameter
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) FriendlyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.FriendlyName }).(pulumi.StringPtrOutput)
+}
+
+// Whether the parameter is included in the extra field
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) IsInExtra() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *bool { return v.IsInExtra }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the parameter is required
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) IsRequired() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *bool { return v.IsRequired }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the parameter is a secret
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) GetIsSecret() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *bool { return v.IsSecret }).(pulumi.BoolPtrOutput)
+}
+
+// A regex pattern that the parameter value must match
+func (o EnvironmentObjectConnectionAuthTypeParameterOutput) Pattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectConnectionAuthTypeParameter) *string { return v.Pattern }).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectConnectionAuthTypeParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectConnectionAuthTypeParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o EnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToEnvironmentObjectConnectionAuthTypeParameterArrayOutput() EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) EnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectConnectionAuthTypeParameterArrayOutput) Index(i pulumi.IntInput) EnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvironmentObjectConnectionAuthTypeParameter {
+		return vs[0].([]EnvironmentObjectConnectionAuthTypeParameter)[vs[1].(int)]
+	}).(EnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+type EnvironmentObjectCreatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// EnvironmentObjectCreatedByInput is an input type that accepts EnvironmentObjectCreatedByArgs and EnvironmentObjectCreatedByOutput values.
+// You can construct a concrete instance of `EnvironmentObjectCreatedByInput` via:
+//
+//	EnvironmentObjectCreatedByArgs{...}
+type EnvironmentObjectCreatedByInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectCreatedByOutput() EnvironmentObjectCreatedByOutput
+	ToEnvironmentObjectCreatedByOutputWithContext(context.Context) EnvironmentObjectCreatedByOutput
+}
+
+type EnvironmentObjectCreatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (EnvironmentObjectCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (i EnvironmentObjectCreatedByArgs) ToEnvironmentObjectCreatedByOutput() EnvironmentObjectCreatedByOutput {
+	return i.ToEnvironmentObjectCreatedByOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectCreatedByArgs) ToEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectCreatedByOutput)
+}
+
+func (i EnvironmentObjectCreatedByArgs) ToEnvironmentObjectCreatedByPtrOutput() EnvironmentObjectCreatedByPtrOutput {
+	return i.ToEnvironmentObjectCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectCreatedByArgs) ToEnvironmentObjectCreatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectCreatedByOutput).ToEnvironmentObjectCreatedByPtrOutputWithContext(ctx)
+}
+
+// EnvironmentObjectCreatedByPtrInput is an input type that accepts EnvironmentObjectCreatedByArgs, EnvironmentObjectCreatedByPtr and EnvironmentObjectCreatedByPtrOutput values.
+// You can construct a concrete instance of `EnvironmentObjectCreatedByPtrInput` via:
+//
+//	        EnvironmentObjectCreatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentObjectCreatedByPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectCreatedByPtrOutput() EnvironmentObjectCreatedByPtrOutput
+	ToEnvironmentObjectCreatedByPtrOutputWithContext(context.Context) EnvironmentObjectCreatedByPtrOutput
+}
+
+type environmentObjectCreatedByPtrType EnvironmentObjectCreatedByArgs
+
+func EnvironmentObjectCreatedByPtr(v *EnvironmentObjectCreatedByArgs) EnvironmentObjectCreatedByPtrInput {
+	return (*environmentObjectCreatedByPtrType)(v)
+}
+
+func (*environmentObjectCreatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (i *environmentObjectCreatedByPtrType) ToEnvironmentObjectCreatedByPtrOutput() EnvironmentObjectCreatedByPtrOutput {
+	return i.ToEnvironmentObjectCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentObjectCreatedByPtrType) ToEnvironmentObjectCreatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectCreatedByPtrOutput)
+}
+
+type EnvironmentObjectCreatedByOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (o EnvironmentObjectCreatedByOutput) ToEnvironmentObjectCreatedByOutput() EnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o EnvironmentObjectCreatedByOutput) ToEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o EnvironmentObjectCreatedByOutput) ToEnvironmentObjectCreatedByPtrOutput() EnvironmentObjectCreatedByPtrOutput {
+	return o.ToEnvironmentObjectCreatedByPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentObjectCreatedByOutput) ToEnvironmentObjectCreatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentObjectCreatedBy) *EnvironmentObjectCreatedBy {
+		return &v
+	}).(EnvironmentObjectCreatedByPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectCreatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectCreatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectCreatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) ToEnvironmentObjectCreatedByPtrOutput() EnvironmentObjectCreatedByPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) ToEnvironmentObjectCreatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectCreatedByPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) Elem() EnvironmentObjectCreatedByOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) EnvironmentObjectCreatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentObjectCreatedBy
+		return ret
+	}).(EnvironmentObjectCreatedByOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectCreatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectCreatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectExcludeLink struct {
+	// Scope of the excluded entity (DEPLOYMENT)
+	Scope string `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// EnvironmentObjectExcludeLinkInput is an input type that accepts EnvironmentObjectExcludeLinkArgs and EnvironmentObjectExcludeLinkOutput values.
+// You can construct a concrete instance of `EnvironmentObjectExcludeLinkInput` via:
+//
+//	EnvironmentObjectExcludeLinkArgs{...}
+type EnvironmentObjectExcludeLinkInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectExcludeLinkOutput() EnvironmentObjectExcludeLinkOutput
+	ToEnvironmentObjectExcludeLinkOutputWithContext(context.Context) EnvironmentObjectExcludeLinkOutput
+}
+
+type EnvironmentObjectExcludeLinkArgs struct {
+	// Scope of the excluded entity (DEPLOYMENT)
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (EnvironmentObjectExcludeLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i EnvironmentObjectExcludeLinkArgs) ToEnvironmentObjectExcludeLinkOutput() EnvironmentObjectExcludeLinkOutput {
+	return i.ToEnvironmentObjectExcludeLinkOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectExcludeLinkArgs) ToEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) EnvironmentObjectExcludeLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectExcludeLinkOutput)
+}
+
+// EnvironmentObjectExcludeLinkArrayInput is an input type that accepts EnvironmentObjectExcludeLinkArray and EnvironmentObjectExcludeLinkArrayOutput values.
+// You can construct a concrete instance of `EnvironmentObjectExcludeLinkArrayInput` via:
+//
+//	EnvironmentObjectExcludeLinkArray{ EnvironmentObjectExcludeLinkArgs{...} }
+type EnvironmentObjectExcludeLinkArrayInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectExcludeLinkArrayOutput() EnvironmentObjectExcludeLinkArrayOutput
+	ToEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Context) EnvironmentObjectExcludeLinkArrayOutput
+}
+
+type EnvironmentObjectExcludeLinkArray []EnvironmentObjectExcludeLinkInput
+
+func (EnvironmentObjectExcludeLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i EnvironmentObjectExcludeLinkArray) ToEnvironmentObjectExcludeLinkArrayOutput() EnvironmentObjectExcludeLinkArrayOutput {
+	return i.ToEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectExcludeLinkArray) ToEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) EnvironmentObjectExcludeLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectExcludeLinkArrayOutput)
+}
+
+type EnvironmentObjectExcludeLinkOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectExcludeLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o EnvironmentObjectExcludeLinkOutput) ToEnvironmentObjectExcludeLinkOutput() EnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+func (o EnvironmentObjectExcludeLinkOutput) ToEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) EnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+// Scope of the excluded entity (DEPLOYMENT)
+func (o EnvironmentObjectExcludeLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvironmentObjectExcludeLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// ID of the excluded entity
+func (o EnvironmentObjectExcludeLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvironmentObjectExcludeLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type EnvironmentObjectExcludeLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectExcludeLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o EnvironmentObjectExcludeLinkArrayOutput) ToEnvironmentObjectExcludeLinkArrayOutput() EnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectExcludeLinkArrayOutput) ToEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) EnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectExcludeLinkArrayOutput) Index(i pulumi.IntInput) EnvironmentObjectExcludeLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvironmentObjectExcludeLink {
+		return vs[0].([]EnvironmentObjectExcludeLink)[vs[1].(int)]
+	}).(EnvironmentObjectExcludeLinkOutput)
+}
+
+type EnvironmentObjectLink struct {
+	// Per-link overrides. Set only the fields matching the parent object_type.
+	Overrides *EnvironmentObjectLinkOverrides `pulumi:"overrides"`
+	// Scope of the linked entity (DEPLOYMENT)
+	Scope string `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// EnvironmentObjectLinkInput is an input type that accepts EnvironmentObjectLinkArgs and EnvironmentObjectLinkOutput values.
+// You can construct a concrete instance of `EnvironmentObjectLinkInput` via:
+//
+//	EnvironmentObjectLinkArgs{...}
+type EnvironmentObjectLinkInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectLinkOutput() EnvironmentObjectLinkOutput
+	ToEnvironmentObjectLinkOutputWithContext(context.Context) EnvironmentObjectLinkOutput
+}
+
+type EnvironmentObjectLinkArgs struct {
+	// Per-link overrides. Set only the fields matching the parent object_type.
+	Overrides EnvironmentObjectLinkOverridesPtrInput `pulumi:"overrides"`
+	// Scope of the linked entity (DEPLOYMENT)
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (EnvironmentObjectLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i EnvironmentObjectLinkArgs) ToEnvironmentObjectLinkOutput() EnvironmentObjectLinkOutput {
+	return i.ToEnvironmentObjectLinkOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectLinkArgs) ToEnvironmentObjectLinkOutputWithContext(ctx context.Context) EnvironmentObjectLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectLinkOutput)
+}
+
+// EnvironmentObjectLinkArrayInput is an input type that accepts EnvironmentObjectLinkArray and EnvironmentObjectLinkArrayOutput values.
+// You can construct a concrete instance of `EnvironmentObjectLinkArrayInput` via:
+//
+//	EnvironmentObjectLinkArray{ EnvironmentObjectLinkArgs{...} }
+type EnvironmentObjectLinkArrayInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectLinkArrayOutput() EnvironmentObjectLinkArrayOutput
+	ToEnvironmentObjectLinkArrayOutputWithContext(context.Context) EnvironmentObjectLinkArrayOutput
+}
+
+type EnvironmentObjectLinkArray []EnvironmentObjectLinkInput
+
+func (EnvironmentObjectLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i EnvironmentObjectLinkArray) ToEnvironmentObjectLinkArrayOutput() EnvironmentObjectLinkArrayOutput {
+	return i.ToEnvironmentObjectLinkArrayOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectLinkArray) ToEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) EnvironmentObjectLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectLinkArrayOutput)
+}
+
+type EnvironmentObjectLinkOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o EnvironmentObjectLinkOutput) ToEnvironmentObjectLinkOutput() EnvironmentObjectLinkOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkOutput) ToEnvironmentObjectLinkOutputWithContext(ctx context.Context) EnvironmentObjectLinkOutput {
+	return o
+}
+
+// Per-link overrides. Set only the fields matching the parent object_type.
+func (o EnvironmentObjectLinkOutput) Overrides() EnvironmentObjectLinkOverridesPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLink) *EnvironmentObjectLinkOverrides { return v.Overrides }).(EnvironmentObjectLinkOverridesPtrOutput)
+}
+
+// Scope of the linked entity (DEPLOYMENT)
+func (o EnvironmentObjectLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvironmentObjectLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// Linked entity ID
+func (o EnvironmentObjectLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvironmentObjectLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type EnvironmentObjectLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o EnvironmentObjectLinkArrayOutput) ToEnvironmentObjectLinkArrayOutput() EnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkArrayOutput) ToEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) EnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkArrayOutput) Index(i pulumi.IntInput) EnvironmentObjectLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvironmentObjectLink {
+		return vs[0].([]EnvironmentObjectLink)[vs[1].(int)]
+	}).(EnvironmentObjectLinkOutput)
+}
+
+type EnvironmentObjectLinkOverrides struct {
+	// Override auth type (only valid when object*type=METRICS*EXPORT)
+	AuthType *string `pulumi:"authType"`
+	// Override bearer token (only valid when object*type=METRICS*EXPORT)
+	BasicToken *string `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+	Endpoint *string `pulumi:"endpoint"`
+	// Override exporter type (only valid when object*type=METRICS*EXPORT)
+	ExporterType *string `pulumi:"exporterType"`
+	// Override extra JSON (only valid when object_type=CONNECTION)
+	Extra *string `pulumi:"extra"`
+	// Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+	Headers map[string]string `pulumi:"headers"`
+	// Override host address (only valid when object_type=CONNECTION)
+	Host *string `pulumi:"host"`
+	// Override metrics labels (only valid when object*type=METRICS*EXPORT)
+	Labels map[string]string `pulumi:"labels"`
+	// Override login (only valid when object_type=CONNECTION)
+	Login *string `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password *string `pulumi:"password"`
+	// Override port (only valid when object_type=CONNECTION)
+	Port *int `pulumi:"port"`
+	// Override schema (only valid when object_type=CONNECTION)
+	Schema *string `pulumi:"schema"`
+	// Override connection type (only valid when object_type=CONNECTION)
+	Type *string `pulumi:"type"`
+	// Override username (only valid when object*type=METRICS*EXPORT)
+	Username *string `pulumi:"username"`
+	// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+	Value *string `pulumi:"value"`
+}
+
+// EnvironmentObjectLinkOverridesInput is an input type that accepts EnvironmentObjectLinkOverridesArgs and EnvironmentObjectLinkOverridesOutput values.
+// You can construct a concrete instance of `EnvironmentObjectLinkOverridesInput` via:
+//
+//	EnvironmentObjectLinkOverridesArgs{...}
+type EnvironmentObjectLinkOverridesInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectLinkOverridesOutput() EnvironmentObjectLinkOverridesOutput
+	ToEnvironmentObjectLinkOverridesOutputWithContext(context.Context) EnvironmentObjectLinkOverridesOutput
+}
+
+type EnvironmentObjectLinkOverridesArgs struct {
+	// Override auth type (only valid when object*type=METRICS*EXPORT)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
+	// Override bearer token (only valid when object*type=METRICS*EXPORT)
+	BasicToken pulumi.StringPtrInput `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// Override exporter type (only valid when object*type=METRICS*EXPORT)
+	ExporterType pulumi.StringPtrInput `pulumi:"exporterType"`
+	// Override extra JSON (only valid when object_type=CONNECTION)
+	Extra pulumi.StringPtrInput `pulumi:"extra"`
+	// Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// Override host address (only valid when object_type=CONNECTION)
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// Override metrics labels (only valid when object*type=METRICS*EXPORT)
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Override login (only valid when object_type=CONNECTION)
+	Login pulumi.StringPtrInput `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Override port (only valid when object_type=CONNECTION)
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Override schema (only valid when object_type=CONNECTION)
+	Schema pulumi.StringPtrInput `pulumi:"schema"`
+	// Override connection type (only valid when object_type=CONNECTION)
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Override username (only valid when object*type=METRICS*EXPORT)
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (EnvironmentObjectLinkOverridesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (i EnvironmentObjectLinkOverridesArgs) ToEnvironmentObjectLinkOverridesOutput() EnvironmentObjectLinkOverridesOutput {
+	return i.ToEnvironmentObjectLinkOverridesOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectLinkOverridesArgs) ToEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectLinkOverridesOutput)
+}
+
+func (i EnvironmentObjectLinkOverridesArgs) ToEnvironmentObjectLinkOverridesPtrOutput() EnvironmentObjectLinkOverridesPtrOutput {
+	return i.ToEnvironmentObjectLinkOverridesPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectLinkOverridesArgs) ToEnvironmentObjectLinkOverridesPtrOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectLinkOverridesOutput).ToEnvironmentObjectLinkOverridesPtrOutputWithContext(ctx)
+}
+
+// EnvironmentObjectLinkOverridesPtrInput is an input type that accepts EnvironmentObjectLinkOverridesArgs, EnvironmentObjectLinkOverridesPtr and EnvironmentObjectLinkOverridesPtrOutput values.
+// You can construct a concrete instance of `EnvironmentObjectLinkOverridesPtrInput` via:
+//
+//	        EnvironmentObjectLinkOverridesArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentObjectLinkOverridesPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectLinkOverridesPtrOutput() EnvironmentObjectLinkOverridesPtrOutput
+	ToEnvironmentObjectLinkOverridesPtrOutputWithContext(context.Context) EnvironmentObjectLinkOverridesPtrOutput
+}
+
+type environmentObjectLinkOverridesPtrType EnvironmentObjectLinkOverridesArgs
+
+func EnvironmentObjectLinkOverridesPtr(v *EnvironmentObjectLinkOverridesArgs) EnvironmentObjectLinkOverridesPtrInput {
+	return (*environmentObjectLinkOverridesPtrType)(v)
+}
+
+func (*environmentObjectLinkOverridesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (i *environmentObjectLinkOverridesPtrType) ToEnvironmentObjectLinkOverridesPtrOutput() EnvironmentObjectLinkOverridesPtrOutput {
+	return i.ToEnvironmentObjectLinkOverridesPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentObjectLinkOverridesPtrType) ToEnvironmentObjectLinkOverridesPtrOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectLinkOverridesPtrOutput)
+}
+
+type EnvironmentObjectLinkOverridesOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectLinkOverridesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (o EnvironmentObjectLinkOverridesOutput) ToEnvironmentObjectLinkOverridesOutput() EnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkOverridesOutput) ToEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkOverridesOutput) ToEnvironmentObjectLinkOverridesPtrOutput() EnvironmentObjectLinkOverridesPtrOutput {
+	return o.ToEnvironmentObjectLinkOverridesPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentObjectLinkOverridesOutput) ToEnvironmentObjectLinkOverridesPtrOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentObjectLinkOverrides) *EnvironmentObjectLinkOverrides {
+		return &v
+	}).(EnvironmentObjectLinkOverridesPtrOutput)
+}
+
+// Override auth type (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// Override bearer token (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.BasicToken }).(pulumi.StringPtrOutput)
+}
+
+// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Override exporter type (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) ExporterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.ExporterType }).(pulumi.StringPtrOutput)
+}
+
+// Override extra JSON (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Extra() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Extra }).(pulumi.StringPtrOutput)
+}
+
+// Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// Override host address (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Override metrics labels (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Override login (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Login() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Login }).(pulumi.StringPtrOutput)
+}
+
+// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+func (o EnvironmentObjectLinkOverridesOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Override port (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Override schema (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Schema }).(pulumi.StringPtrOutput)
+}
+
+// Override connection type (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Override username (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+func (o EnvironmentObjectLinkOverridesOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectLinkOverridesPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectLinkOverridesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (o EnvironmentObjectLinkOverridesPtrOutput) ToEnvironmentObjectLinkOverridesPtrOutput() EnvironmentObjectLinkOverridesPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkOverridesPtrOutput) ToEnvironmentObjectLinkOverridesPtrOutputWithContext(ctx context.Context) EnvironmentObjectLinkOverridesPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectLinkOverridesPtrOutput) Elem() EnvironmentObjectLinkOverridesOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) EnvironmentObjectLinkOverrides {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentObjectLinkOverrides
+		return ret
+	}).(EnvironmentObjectLinkOverridesOutput)
+}
+
+// Override auth type (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override bearer token (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) BasicToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BasicToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override exporter type (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) ExporterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExporterType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override extra JSON (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Extra() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Extra
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override HTTP request headers (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+// Override host address (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override metrics labels (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+// Override login (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Login() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Login
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+func (o EnvironmentObjectLinkOverridesPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override port (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Override schema (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Schema
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override connection type (only valid when object_type=CONNECTION)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override username (only valid when object*type=METRICS*EXPORT)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+func (o EnvironmentObjectLinkOverridesPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectUpdatedBy struct {
+	ApiTokenName *string `pulumi:"apiTokenName"`
+	AvatarUrl    *string `pulumi:"avatarUrl"`
+	FullName     *string `pulumi:"fullName"`
+	Id           *string `pulumi:"id"`
+	SubjectType  *string `pulumi:"subjectType"`
+	Username     *string `pulumi:"username"`
+}
+
+// EnvironmentObjectUpdatedByInput is an input type that accepts EnvironmentObjectUpdatedByArgs and EnvironmentObjectUpdatedByOutput values.
+// You can construct a concrete instance of `EnvironmentObjectUpdatedByInput` via:
+//
+//	EnvironmentObjectUpdatedByArgs{...}
+type EnvironmentObjectUpdatedByInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectUpdatedByOutput() EnvironmentObjectUpdatedByOutput
+	ToEnvironmentObjectUpdatedByOutputWithContext(context.Context) EnvironmentObjectUpdatedByOutput
+}
+
+type EnvironmentObjectUpdatedByArgs struct {
+	ApiTokenName pulumi.StringPtrInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringPtrInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringPtrInput `pulumi:"fullName"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	SubjectType  pulumi.StringPtrInput `pulumi:"subjectType"`
+	Username     pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (EnvironmentObjectUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (i EnvironmentObjectUpdatedByArgs) ToEnvironmentObjectUpdatedByOutput() EnvironmentObjectUpdatedByOutput {
+	return i.ToEnvironmentObjectUpdatedByOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectUpdatedByArgs) ToEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectUpdatedByOutput)
+}
+
+func (i EnvironmentObjectUpdatedByArgs) ToEnvironmentObjectUpdatedByPtrOutput() EnvironmentObjectUpdatedByPtrOutput {
+	return i.ToEnvironmentObjectUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentObjectUpdatedByArgs) ToEnvironmentObjectUpdatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectUpdatedByOutput).ToEnvironmentObjectUpdatedByPtrOutputWithContext(ctx)
+}
+
+// EnvironmentObjectUpdatedByPtrInput is an input type that accepts EnvironmentObjectUpdatedByArgs, EnvironmentObjectUpdatedByPtr and EnvironmentObjectUpdatedByPtrOutput values.
+// You can construct a concrete instance of `EnvironmentObjectUpdatedByPtrInput` via:
+//
+//	        EnvironmentObjectUpdatedByArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentObjectUpdatedByPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentObjectUpdatedByPtrOutput() EnvironmentObjectUpdatedByPtrOutput
+	ToEnvironmentObjectUpdatedByPtrOutputWithContext(context.Context) EnvironmentObjectUpdatedByPtrOutput
+}
+
+type environmentObjectUpdatedByPtrType EnvironmentObjectUpdatedByArgs
+
+func EnvironmentObjectUpdatedByPtr(v *EnvironmentObjectUpdatedByArgs) EnvironmentObjectUpdatedByPtrInput {
+	return (*environmentObjectUpdatedByPtrType)(v)
+}
+
+func (*environmentObjectUpdatedByPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (i *environmentObjectUpdatedByPtrType) ToEnvironmentObjectUpdatedByPtrOutput() EnvironmentObjectUpdatedByPtrOutput {
+	return i.ToEnvironmentObjectUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentObjectUpdatedByPtrType) ToEnvironmentObjectUpdatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentObjectUpdatedByPtrOutput)
+}
+
+type EnvironmentObjectUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (o EnvironmentObjectUpdatedByOutput) ToEnvironmentObjectUpdatedByOutput() EnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o EnvironmentObjectUpdatedByOutput) ToEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o EnvironmentObjectUpdatedByOutput) ToEnvironmentObjectUpdatedByPtrOutput() EnvironmentObjectUpdatedByPtrOutput {
+	return o.ToEnvironmentObjectUpdatedByPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentObjectUpdatedByOutput) ToEnvironmentObjectUpdatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentObjectUpdatedBy) *EnvironmentObjectUpdatedBy {
+		return &v
+	}).(EnvironmentObjectUpdatedByPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.ApiTokenName }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.AvatarUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.FullName }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.SubjectType }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectUpdatedBy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type EnvironmentObjectUpdatedByPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentObjectUpdatedByPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) ToEnvironmentObjectUpdatedByPtrOutput() EnvironmentObjectUpdatedByPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) ToEnvironmentObjectUpdatedByPtrOutputWithContext(ctx context.Context) EnvironmentObjectUpdatedByPtrOutput {
+	return o
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) Elem() EnvironmentObjectUpdatedByOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) EnvironmentObjectUpdatedBy {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentObjectUpdatedBy
+		return ret
+	}).(EnvironmentObjectUpdatedByOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) ApiTokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) AvatarUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvatarUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) FullName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) SubjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvironmentObjectUpdatedByPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectUpdatedBy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type NotificationChannelCreatedBy struct {
@@ -11605,10 +13538,16 @@ type GetClustersCluster struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange string `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery
 	DrRegion string `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only)
 	DrSecondaryVpcCidr string `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange string `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region
 	DrVpcSubnetRange string `pulumi:"drVpcSubnetRange"`
 	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
@@ -11675,10 +13614,16 @@ type GetClustersClusterArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType pulumi.StringInput `pulumi:"dbInstanceType"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange pulumi.StringInput `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery
 	DrRegion pulumi.StringInput `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only)
 	DrSecondaryVpcCidr pulumi.StringInput `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange pulumi.StringInput `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange pulumi.StringInput `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region
 	DrVpcSubnetRange pulumi.StringInput `pulumi:"drVpcSubnetRange"`
 	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
@@ -11793,6 +13738,11 @@ func (o GetClustersClusterOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The disaster recovery subnet range for pods (GCP Only).
+func (o GetClustersClusterOutput) DrPodSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrPodSubnetRange }).(pulumi.StringOutput)
+}
+
 // The secondary region for Disaster Recovery
 func (o GetClustersClusterOutput) DrRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.DrRegion }).(pulumi.StringOutput)
@@ -11801,6 +13751,16 @@ func (o GetClustersClusterOutput) DrRegion() pulumi.StringOutput {
 // Secondary CIDR for pod networking in the DR region (AWS only)
 func (o GetClustersClusterOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service peering range (GCP Only).
+func (o GetClustersClusterOutput) DrServicePeeringRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrServicePeeringRange }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service subnet range (GCP Only).
+func (o GetClustersClusterOutput) DrServiceSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.DrServiceSubnetRange }).(pulumi.StringOutput)
 }
 
 // The VPC subnet range for the Disaster Recovery region
@@ -16507,6 +18467,2102 @@ func (o GetDeploymentsDeploymentWorkerQueueArrayOutput) Index(i pulumi.IntInput)
 	}).(GetDeploymentsDeploymentWorkerQueueOutput)
 }
 
+type GetEnvironmentObjectConnectionAuthType struct {
+	// The type of connection in Airflow
+	AirflowType string `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName string `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description string `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath string `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id string `pulumi:"id"`
+	// The name of the connection auth type
+	Name string `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters []GetEnvironmentObjectConnectionAuthTypeParameter `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo string `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName string `pulumi:"providerPackageName"`
+}
+
+// GetEnvironmentObjectConnectionAuthTypeInput is an input type that accepts GetEnvironmentObjectConnectionAuthTypeArgs and GetEnvironmentObjectConnectionAuthTypeOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectConnectionAuthTypeInput` via:
+//
+//	GetEnvironmentObjectConnectionAuthTypeArgs{...}
+type GetEnvironmentObjectConnectionAuthTypeInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectConnectionAuthTypeOutput
+	ToGetEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Context) GetEnvironmentObjectConnectionAuthTypeOutput
+}
+
+type GetEnvironmentObjectConnectionAuthTypeArgs struct {
+	// The type of connection in Airflow
+	AirflowType pulumi.StringInput `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName pulumi.StringInput `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description pulumi.StringInput `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath pulumi.StringInput `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the connection auth type
+	Name pulumi.StringInput `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters GetEnvironmentObjectConnectionAuthTypeParameterArrayInput `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo pulumi.StringInput `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName pulumi.StringInput `pulumi:"providerPackageName"`
+}
+
+func (GetEnvironmentObjectConnectionAuthTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeArgs) ToGetEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectConnectionAuthTypeOutput {
+	return i.ToGetEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeArgs) ToGetEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectConnectionAuthTypeOutput)
+}
+
+type GetEnvironmentObjectConnectionAuthTypeOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectConnectionAuthTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) ToGetEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) ToGetEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+// The type of connection in Airflow
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) AirflowType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.AirflowType }).(pulumi.StringOutput)
+}
+
+// The name of the auth method used in the connection
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) AuthMethodName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.AuthMethodName }).(pulumi.StringOutput)
+}
+
+// A description of the connection auth type
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The URL to the guide for the connection auth type
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) GuidePath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.GuidePath }).(pulumi.StringOutput)
+}
+
+// The ID of the connection auth type
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the connection auth type
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The parameters for the connection auth type
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) Parameters() GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) []GetEnvironmentObjectConnectionAuthTypeParameter {
+		return v.Parameters
+	}).(GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+// The URL of the provider logo
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) ProviderLogo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.ProviderLogo }).(pulumi.StringOutput)
+}
+
+// The name of the provider package
+func (o GetEnvironmentObjectConnectionAuthTypeOutput) ProviderPackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthType) string { return v.ProviderPackageName }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectConnectionAuthTypeParameter struct {
+	// The name of the parameter in Airflow
+	AirflowParamName string `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType string `pulumi:"dataType"`
+	// A description of the parameter
+	Description string `pulumi:"description"`
+	// An example value for the parameter
+	Example string `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName string `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra bool `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired bool `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret bool `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern string `pulumi:"pattern"`
+}
+
+// GetEnvironmentObjectConnectionAuthTypeParameterInput is an input type that accepts GetEnvironmentObjectConnectionAuthTypeParameterArgs and GetEnvironmentObjectConnectionAuthTypeParameterOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectConnectionAuthTypeParameterInput` via:
+//
+//	GetEnvironmentObjectConnectionAuthTypeParameterArgs{...}
+type GetEnvironmentObjectConnectionAuthTypeParameterInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectConnectionAuthTypeParameterOutput
+	ToGetEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Context) GetEnvironmentObjectConnectionAuthTypeParameterOutput
+}
+
+type GetEnvironmentObjectConnectionAuthTypeParameterArgs struct {
+	// The name of the parameter in Airflow
+	AirflowParamName pulumi.StringInput `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType pulumi.StringInput `pulumi:"dataType"`
+	// A description of the parameter
+	Description pulumi.StringInput `pulumi:"description"`
+	// An example value for the parameter
+	Example pulumi.StringInput `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName pulumi.StringInput `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra pulumi.BoolInput `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired pulumi.BoolInput `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern pulumi.StringInput `pulumi:"pattern"`
+}
+
+func (GetEnvironmentObjectConnectionAuthTypeParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeParameterArgs) ToGetEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return i.ToGetEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeParameterArgs) ToGetEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+// GetEnvironmentObjectConnectionAuthTypeParameterArrayInput is an input type that accepts GetEnvironmentObjectConnectionAuthTypeParameterArray and GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectConnectionAuthTypeParameterArrayInput` via:
+//
+//	GetEnvironmentObjectConnectionAuthTypeParameterArray{ GetEnvironmentObjectConnectionAuthTypeParameterArgs{...} }
+type GetEnvironmentObjectConnectionAuthTypeParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput
+	ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Context) GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput
+}
+
+type GetEnvironmentObjectConnectionAuthTypeParameterArray []GetEnvironmentObjectConnectionAuthTypeParameterInput
+
+func (GetEnvironmentObjectConnectionAuthTypeParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeParameterArray) ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return i.ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectConnectionAuthTypeParameterArray) ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+type GetEnvironmentObjectConnectionAuthTypeParameterOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectConnectionAuthTypeParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) ToGetEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) ToGetEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+// The name of the parameter in Airflow
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) AirflowParamName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.AirflowParamName }).(pulumi.StringOutput)
+}
+
+// The data type of the parameter
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) DataType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.DataType }).(pulumi.StringOutput)
+}
+
+// A description of the parameter
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// An example value for the parameter
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) Example() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.Example }).(pulumi.StringOutput)
+}
+
+// The UI-friendly name for the parameter
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) FriendlyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.FriendlyName }).(pulumi.StringOutput)
+}
+
+// Whether the parameter is included in the extra field
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) IsInExtra() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsInExtra }).(pulumi.BoolOutput)
+}
+
+// Whether the parameter is required
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) IsRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsRequired }).(pulumi.BoolOutput)
+}
+
+// Whether the parameter is a secret
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) GetIsSecret() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsSecret }).(pulumi.BoolOutput)
+}
+
+// A regex pattern that the parameter value must match
+func (o GetEnvironmentObjectConnectionAuthTypeParameterOutput) Pattern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectConnectionAuthTypeParameter) string { return v.Pattern }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToGetEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectConnectionAuthTypeParameter {
+		return vs[0].([]GetEnvironmentObjectConnectionAuthTypeParameter)[vs[1].(int)]
+	}).(GetEnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+type GetEnvironmentObjectCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetEnvironmentObjectCreatedByInput is an input type that accepts GetEnvironmentObjectCreatedByArgs and GetEnvironmentObjectCreatedByOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectCreatedByInput` via:
+//
+//	GetEnvironmentObjectCreatedByArgs{...}
+type GetEnvironmentObjectCreatedByInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectCreatedByOutput() GetEnvironmentObjectCreatedByOutput
+	ToGetEnvironmentObjectCreatedByOutputWithContext(context.Context) GetEnvironmentObjectCreatedByOutput
+}
+
+type GetEnvironmentObjectCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetEnvironmentObjectCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectCreatedByArgs) ToGetEnvironmentObjectCreatedByOutput() GetEnvironmentObjectCreatedByOutput {
+	return i.ToGetEnvironmentObjectCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectCreatedByArgs) ToGetEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectCreatedByOutput)
+}
+
+type GetEnvironmentObjectCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) ToGetEnvironmentObjectCreatedByOutput() GetEnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) ToGetEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectExcludeLink struct {
+	// Scope of the excluded entity
+	Scope string `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// GetEnvironmentObjectExcludeLinkInput is an input type that accepts GetEnvironmentObjectExcludeLinkArgs and GetEnvironmentObjectExcludeLinkOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectExcludeLinkInput` via:
+//
+//	GetEnvironmentObjectExcludeLinkArgs{...}
+type GetEnvironmentObjectExcludeLinkInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectExcludeLinkOutput
+	ToGetEnvironmentObjectExcludeLinkOutputWithContext(context.Context) GetEnvironmentObjectExcludeLinkOutput
+}
+
+type GetEnvironmentObjectExcludeLinkArgs struct {
+	// Scope of the excluded entity
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (GetEnvironmentObjectExcludeLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectExcludeLinkArgs) ToGetEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectExcludeLinkOutput {
+	return i.ToGetEnvironmentObjectExcludeLinkOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectExcludeLinkArgs) ToGetEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectExcludeLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectExcludeLinkOutput)
+}
+
+// GetEnvironmentObjectExcludeLinkArrayInput is an input type that accepts GetEnvironmentObjectExcludeLinkArray and GetEnvironmentObjectExcludeLinkArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectExcludeLinkArrayInput` via:
+//
+//	GetEnvironmentObjectExcludeLinkArray{ GetEnvironmentObjectExcludeLinkArgs{...} }
+type GetEnvironmentObjectExcludeLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectExcludeLinkArrayOutput
+	ToGetEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Context) GetEnvironmentObjectExcludeLinkArrayOutput
+}
+
+type GetEnvironmentObjectExcludeLinkArray []GetEnvironmentObjectExcludeLinkInput
+
+func (GetEnvironmentObjectExcludeLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectExcludeLinkArray) ToGetEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectExcludeLinkArrayOutput {
+	return i.ToGetEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectExcludeLinkArray) ToGetEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectExcludeLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectExcludeLinkArrayOutput)
+}
+
+type GetEnvironmentObjectExcludeLinkOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectExcludeLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectExcludeLinkOutput) ToGetEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectExcludeLinkOutput) ToGetEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+// Scope of the excluded entity
+func (o GetEnvironmentObjectExcludeLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectExcludeLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// ID of the excluded entity
+func (o GetEnvironmentObjectExcludeLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectExcludeLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectExcludeLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectExcludeLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectExcludeLinkArrayOutput) ToGetEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectExcludeLinkArrayOutput) ToGetEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectExcludeLinkArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectExcludeLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectExcludeLink {
+		return vs[0].([]GetEnvironmentObjectExcludeLink)[vs[1].(int)]
+	}).(GetEnvironmentObjectExcludeLinkOutput)
+}
+
+type GetEnvironmentObjectLink struct {
+	// Per-link overrides. Only the fields matching the parent objectType are populated
+	Overrides GetEnvironmentObjectLinkOverrides `pulumi:"overrides"`
+	// Scope of the linked entity
+	Scope string `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// GetEnvironmentObjectLinkInput is an input type that accepts GetEnvironmentObjectLinkArgs and GetEnvironmentObjectLinkOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectLinkInput` via:
+//
+//	GetEnvironmentObjectLinkArgs{...}
+type GetEnvironmentObjectLinkInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectLinkOutput() GetEnvironmentObjectLinkOutput
+	ToGetEnvironmentObjectLinkOutputWithContext(context.Context) GetEnvironmentObjectLinkOutput
+}
+
+type GetEnvironmentObjectLinkArgs struct {
+	// Per-link overrides. Only the fields matching the parent objectType are populated
+	Overrides GetEnvironmentObjectLinkOverridesInput `pulumi:"overrides"`
+	// Scope of the linked entity
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (GetEnvironmentObjectLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectLinkArgs) ToGetEnvironmentObjectLinkOutput() GetEnvironmentObjectLinkOutput {
+	return i.ToGetEnvironmentObjectLinkOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectLinkArgs) ToGetEnvironmentObjectLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectLinkOutput)
+}
+
+// GetEnvironmentObjectLinkArrayInput is an input type that accepts GetEnvironmentObjectLinkArray and GetEnvironmentObjectLinkArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectLinkArrayInput` via:
+//
+//	GetEnvironmentObjectLinkArray{ GetEnvironmentObjectLinkArgs{...} }
+type GetEnvironmentObjectLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectLinkArrayOutput
+	ToGetEnvironmentObjectLinkArrayOutputWithContext(context.Context) GetEnvironmentObjectLinkArrayOutput
+}
+
+type GetEnvironmentObjectLinkArray []GetEnvironmentObjectLinkInput
+
+func (GetEnvironmentObjectLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectLinkArray) ToGetEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectLinkArrayOutput {
+	return i.ToGetEnvironmentObjectLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectLinkArray) ToGetEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectLinkArrayOutput)
+}
+
+type GetEnvironmentObjectLinkOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectLinkOutput) ToGetEnvironmentObjectLinkOutput() GetEnvironmentObjectLinkOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectLinkOutput) ToGetEnvironmentObjectLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkOutput {
+	return o
+}
+
+// Per-link overrides. Only the fields matching the parent objectType are populated
+func (o GetEnvironmentObjectLinkOutput) Overrides() GetEnvironmentObjectLinkOverridesOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLink) GetEnvironmentObjectLinkOverrides { return v.Overrides }).(GetEnvironmentObjectLinkOverridesOutput)
+}
+
+// Scope of the linked entity
+func (o GetEnvironmentObjectLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// Linked entity ID
+func (o GetEnvironmentObjectLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectLinkArrayOutput) ToGetEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectLinkArrayOutput) ToGetEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectLinkArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectLink {
+		return vs[0].([]GetEnvironmentObjectLink)[vs[1].(int)]
+	}).(GetEnvironmentObjectLinkOutput)
+}
+
+type GetEnvironmentObjectLinkOverrides struct {
+	// Override auth type (only used when object*type=METRICS*EXPORT)
+	AuthType string `pulumi:"authType"`
+	// Override bearer token (only used when object*type=METRICS*EXPORT)
+	BasicToken string `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+	Endpoint string `pulumi:"endpoint"`
+	// Override exporter type (only used when object*type=METRICS*EXPORT)
+	ExporterType string `pulumi:"exporterType"`
+	// Override extra JSON (only used when object_type=CONNECTION)
+	Extra string `pulumi:"extra"`
+	// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+	Headers map[string]string `pulumi:"headers"`
+	// Override host address (only used when object_type=CONNECTION)
+	Host string `pulumi:"host"`
+	// Override metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels map[string]string `pulumi:"labels"`
+	// Override login (only used when object_type=CONNECTION)
+	Login string `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password string `pulumi:"password"`
+	// Override port (only used when object_type=CONNECTION)
+	Port int `pulumi:"port"`
+	// Override schema (only used when object_type=CONNECTION)
+	Schema string `pulumi:"schema"`
+	// Override connection type (only used when object_type=CONNECTION)
+	Type string `pulumi:"type"`
+	// Override username (only used when object*type=METRICS*EXPORT)
+	Username string `pulumi:"username"`
+	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	Value string `pulumi:"value"`
+}
+
+// GetEnvironmentObjectLinkOverridesInput is an input type that accepts GetEnvironmentObjectLinkOverridesArgs and GetEnvironmentObjectLinkOverridesOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectLinkOverridesInput` via:
+//
+//	GetEnvironmentObjectLinkOverridesArgs{...}
+type GetEnvironmentObjectLinkOverridesInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectLinkOverridesOutput
+	ToGetEnvironmentObjectLinkOverridesOutputWithContext(context.Context) GetEnvironmentObjectLinkOverridesOutput
+}
+
+type GetEnvironmentObjectLinkOverridesArgs struct {
+	// Override auth type (only used when object*type=METRICS*EXPORT)
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// Override bearer token (only used when object*type=METRICS*EXPORT)
+	BasicToken pulumi.StringInput `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Override exporter type (only used when object*type=METRICS*EXPORT)
+	ExporterType pulumi.StringInput `pulumi:"exporterType"`
+	// Override extra JSON (only used when object_type=CONNECTION)
+	Extra pulumi.StringInput `pulumi:"extra"`
+	// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// Override host address (only used when object_type=CONNECTION)
+	Host pulumi.StringInput `pulumi:"host"`
+	// Override metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Override login (only used when object_type=CONNECTION)
+	Login pulumi.StringInput `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password pulumi.StringInput `pulumi:"password"`
+	// Override port (only used when object_type=CONNECTION)
+	Port pulumi.IntInput `pulumi:"port"`
+	// Override schema (only used when object_type=CONNECTION)
+	Schema pulumi.StringInput `pulumi:"schema"`
+	// Override connection type (only used when object_type=CONNECTION)
+	Type pulumi.StringInput `pulumi:"type"`
+	// Override username (only used when object*type=METRICS*EXPORT)
+	Username pulumi.StringInput `pulumi:"username"`
+	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetEnvironmentObjectLinkOverridesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectLinkOverridesArgs) ToGetEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectLinkOverridesOutput {
+	return i.ToGetEnvironmentObjectLinkOverridesOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectLinkOverridesArgs) ToGetEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkOverridesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectLinkOverridesOutput)
+}
+
+type GetEnvironmentObjectLinkOverridesOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectLinkOverridesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectLinkOverridesOutput) ToGetEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectLinkOverridesOutput) ToGetEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) GetEnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+// Override auth type (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// Override bearer token (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.BasicToken }).(pulumi.StringOutput)
+}
+
+// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Override exporter type (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) ExporterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.ExporterType }).(pulumi.StringOutput)
+}
+
+// Override extra JSON (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Extra() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Extra }).(pulumi.StringOutput)
+}
+
+// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// Override host address (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Override metrics labels (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Override login (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Login }).(pulumi.StringOutput)
+}
+
+// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+func (o GetEnvironmentObjectLinkOverridesOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Override port (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Override schema (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Schema() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Schema }).(pulumi.StringOutput)
+}
+
+// Override connection type (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectLinkOverridesOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Override username (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectLinkOverridesOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Override value (only used when object*type=AIRFLOW*VARIABLE)
+func (o GetEnvironmentObjectLinkOverridesOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetEnvironmentObjectUpdatedByInput is an input type that accepts GetEnvironmentObjectUpdatedByArgs and GetEnvironmentObjectUpdatedByOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectUpdatedByInput` via:
+//
+//	GetEnvironmentObjectUpdatedByArgs{...}
+type GetEnvironmentObjectUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectUpdatedByOutput
+	ToGetEnvironmentObjectUpdatedByOutputWithContext(context.Context) GetEnvironmentObjectUpdatedByOutput
+}
+
+type GetEnvironmentObjectUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetEnvironmentObjectUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectUpdatedByArgs) ToGetEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectUpdatedByOutput {
+	return i.ToGetEnvironmentObjectUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectUpdatedByArgs) ToGetEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectUpdatedByOutput)
+}
+
+type GetEnvironmentObjectUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) ToGetEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) ToGetEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObject struct {
+	// The type of authentication (only used when object*type=METRICS*EXPORT)
+	AuthType string `pulumi:"authType"`
+	// The ID for the connection auth type (only used when object_type=CONNECTION)
+	AuthTypeId string `pulumi:"authTypeId"`
+	// Whether to automatically link Deployments to the environment object
+	AutoLinkDeployments bool `pulumi:"autoLinkDeployments"`
+	// The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+	BasicToken string `pulumi:"basicToken"`
+	// The resolved auth type of the connection (only used when object*type=CONNECTION)
+	ConnectionAuthType GetEnvironmentObjectsEnvironmentObjectConnectionAuthType `pulumi:"connectionAuthType"`
+	// Environment Object creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// Environment Object creator
+	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+	Endpoint string `pulumi:"endpoint"`
+	// The excluded links for the environment object
+	ExcludeLinks []GetEnvironmentObjectsEnvironmentObjectExcludeLink `pulumi:"excludeLinks"`
+	// The type of exporter (only used when object*type=METRICS*EXPORT)
+	ExporterType string `pulumi:"exporterType"`
+	// Extra connection details as JSON string (only used when object_type=CONNECTION)
+	Extra string `pulumi:"extra"`
+	// HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)
+	Headers map[string]string `pulumi:"headers"`
+	// The host address for the connection (only used when object_type=CONNECTION)
+	Host string `pulumi:"host"`
+	// Environment object identifier
+	Id string `pulumi:"id"`
+	// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+	IsSecret bool `pulumi:"isSecret"`
+	// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels map[string]string `pulumi:"labels"`
+	// The Deployments linked to the environment object
+	Links []GetEnvironmentObjectsEnvironmentObjectLink `pulumi:"links"`
+	// The username used for the connection (only used when object_type=CONNECTION)
+	Login string `pulumi:"login"`
+	// The key for the environment object
+	ObjectKey string `pulumi:"objectKey"`
+	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	ObjectType string `pulumi:"objectType"`
+	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password string `pulumi:"password"`
+	// The port for the connection (only used when object_type=CONNECTION)
+	Port int `pulumi:"port"`
+	// The schema for the connection (only used when object_type=CONNECTION)
+	Schema string `pulumi:"schema"`
+	// The scope of the environment object (WORKSPACE, DEPLOYMENT)
+	Scope string `pulumi:"scope"`
+	// The ID of the scope entity where the environment object is created
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+	// The source scope, if resolved from a link
+	SourceScope string `pulumi:"sourceScope"`
+	// The source scope entity ID, if resolved from a link
+	SourceScopeEntityId string `pulumi:"sourceScopeEntityId"`
+	// The connection type (only used when object_type=CONNECTION)
+	Type string `pulumi:"type"`
+	// Environment Object last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Environment Object updater
+	UpdatedBy GetEnvironmentObjectsEnvironmentObjectUpdatedBy `pulumi:"updatedBy"`
+	// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+	Username string `pulumi:"username"`
+	// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+	Value string `pulumi:"value"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectArgs and GetEnvironmentObjectsEnvironmentObjectOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectOutput() GetEnvironmentObjectsEnvironmentObjectOutput
+	ToGetEnvironmentObjectsEnvironmentObjectOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectArgs struct {
+	// The type of authentication (only used when object*type=METRICS*EXPORT)
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// The ID for the connection auth type (only used when object_type=CONNECTION)
+	AuthTypeId pulumi.StringInput `pulumi:"authTypeId"`
+	// Whether to automatically link Deployments to the environment object
+	AutoLinkDeployments pulumi.BoolInput `pulumi:"autoLinkDeployments"`
+	// The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+	BasicToken pulumi.StringInput `pulumi:"basicToken"`
+	// The resolved auth type of the connection (only used when object*type=CONNECTION)
+	ConnectionAuthType GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeInput `pulumi:"connectionAuthType"`
+	// Environment Object creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Environment Object creator
+	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedByInput `pulumi:"createdBy"`
+	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// The excluded links for the environment object
+	ExcludeLinks GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput `pulumi:"excludeLinks"`
+	// The type of exporter (only used when object*type=METRICS*EXPORT)
+	ExporterType pulumi.StringInput `pulumi:"exporterType"`
+	// Extra connection details as JSON string (only used when object_type=CONNECTION)
+	Extra pulumi.StringInput `pulumi:"extra"`
+	// HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// The host address for the connection (only used when object_type=CONNECTION)
+	Host pulumi.StringInput `pulumi:"host"`
+	// Environment object identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
+	// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The Deployments linked to the environment object
+	Links GetEnvironmentObjectsEnvironmentObjectLinkArrayInput `pulumi:"links"`
+	// The username used for the connection (only used when object_type=CONNECTION)
+	Login pulumi.StringInput `pulumi:"login"`
+	// The key for the environment object
+	ObjectKey pulumi.StringInput `pulumi:"objectKey"`
+	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	ObjectType pulumi.StringInput `pulumi:"objectType"`
+	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password pulumi.StringInput `pulumi:"password"`
+	// The port for the connection (only used when object_type=CONNECTION)
+	Port pulumi.IntInput `pulumi:"port"`
+	// The schema for the connection (only used when object_type=CONNECTION)
+	Schema pulumi.StringInput `pulumi:"schema"`
+	// The scope of the environment object (WORKSPACE, DEPLOYMENT)
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// The ID of the scope entity where the environment object is created
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+	// The source scope, if resolved from a link
+	SourceScope pulumi.StringInput `pulumi:"sourceScope"`
+	// The source scope entity ID, if resolved from a link
+	SourceScopeEntityId pulumi.StringInput `pulumi:"sourceScopeEntityId"`
+	// The connection type (only used when object_type=CONNECTION)
+	Type pulumi.StringInput `pulumi:"type"`
+	// Environment Object last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Environment Object updater
+	UpdatedBy GetEnvironmentObjectsEnvironmentObjectUpdatedByInput `pulumi:"updatedBy"`
+	// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+	Username pulumi.StringInput `pulumi:"username"`
+	// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObject)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectArgs) ToGetEnvironmentObjectsEnvironmentObjectOutput() GetEnvironmentObjectsEnvironmentObjectOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectArgs) ToGetEnvironmentObjectsEnvironmentObjectOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectOutput)
+}
+
+// GetEnvironmentObjectsEnvironmentObjectArrayInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectArray and GetEnvironmentObjectsEnvironmentObjectArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectArrayInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectArray{ GetEnvironmentObjectsEnvironmentObjectArgs{...} }
+type GetEnvironmentObjectsEnvironmentObjectArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectArrayOutput() GetEnvironmentObjectsEnvironmentObjectArrayOutput
+	ToGetEnvironmentObjectsEnvironmentObjectArrayOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectArrayOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectArray []GetEnvironmentObjectsEnvironmentObjectInput
+
+func (GetEnvironmentObjectsEnvironmentObjectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObject)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectArray) ToGetEnvironmentObjectsEnvironmentObjectArrayOutput() GetEnvironmentObjectsEnvironmentObjectArrayOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectArray) ToGetEnvironmentObjectsEnvironmentObjectArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectArrayOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObject)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ToGetEnvironmentObjectsEnvironmentObjectOutput() GetEnvironmentObjectsEnvironmentObjectOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ToGetEnvironmentObjectsEnvironmentObjectOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectOutput {
+	return o
+}
+
+// The type of authentication (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// The ID for the connection auth type (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) AuthTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.AuthTypeId }).(pulumi.StringOutput)
+}
+
+// Whether to automatically link Deployments to the environment object
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) AutoLinkDeployments() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) bool { return v.AutoLinkDeployments }).(pulumi.BoolOutput)
+}
+
+// The bearer token to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) BasicToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.BasicToken }).(pulumi.StringOutput)
+}
+
+// The resolved auth type of the connection (only used when object*type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ConnectionAuthType() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) GetEnvironmentObjectsEnvironmentObjectConnectionAuthType {
+		return v.ConnectionAuthType
+	}).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput)
+}
+
+// Environment Object creation timestamp
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Environment Object creator
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) CreatedBy() GetEnvironmentObjectsEnvironmentObjectCreatedByOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) GetEnvironmentObjectsEnvironmentObjectCreatedBy {
+		return v.CreatedBy
+	}).(GetEnvironmentObjectsEnvironmentObjectCreatedByOutput)
+}
+
+// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// The excluded links for the environment object
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ExcludeLinks() GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) []GetEnvironmentObjectsEnvironmentObjectExcludeLink {
+		return v.ExcludeLinks
+	}).(GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput)
+}
+
+// The type of exporter (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ExporterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ExporterType }).(pulumi.StringOutput)
+}
+
+// Extra connection details as JSON string (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Extra() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Extra }).(pulumi.StringOutput)
+}
+
+// HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// The host address for the connection (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Environment object identifier
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) GetIsSecret() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) bool { return v.IsSecret }).(pulumi.BoolOutput)
+}
+
+// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The Deployments linked to the environment object
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Links() GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) []GetEnvironmentObjectsEnvironmentObjectLink {
+		return v.Links
+	}).(GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput)
+}
+
+// The username used for the connection (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Login }).(pulumi.StringOutput)
+}
+
+// The key for the environment object
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ObjectKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ObjectKey }).(pulumi.StringOutput)
+}
+
+// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ObjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ObjectType }).(pulumi.StringOutput)
+}
+
+// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The port for the connection (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The schema for the connection (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Schema() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Schema }).(pulumi.StringOutput)
+}
+
+// The scope of the environment object (WORKSPACE, DEPLOYMENT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// The ID of the scope entity where the environment object is created
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+// The source scope, if resolved from a link
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) SourceScope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.SourceScope }).(pulumi.StringOutput)
+}
+
+// The source scope entity ID, if resolved from a link
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) SourceScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.SourceScopeEntityId }).(pulumi.StringOutput)
+}
+
+// The connection type (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Environment Object last updated timestamp
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Environment Object updater
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) UpdatedBy() GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) GetEnvironmentObjectsEnvironmentObjectUpdatedBy {
+		return v.UpdatedBy
+	}).(GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput)
+}
+
+// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObject)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectArrayOutput() GetEnvironmentObjectsEnvironmentObjectArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectsEnvironmentObjectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectsEnvironmentObject {
+		return vs[0].([]GetEnvironmentObjectsEnvironmentObject)[vs[1].(int)]
+	}).(GetEnvironmentObjectsEnvironmentObjectOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthType struct {
+	// The type of connection in Airflow
+	AirflowType string `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName string `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description string `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath string `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id string `pulumi:"id"`
+	// The name of the connection auth type
+	Name string `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters []GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo string `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName string `pulumi:"providerPackageName"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs and GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs struct {
+	// The type of connection in Airflow
+	AirflowType pulumi.StringInput `pulumi:"airflowType"`
+	// The name of the auth method used in the connection
+	AuthMethodName pulumi.StringInput `pulumi:"authMethodName"`
+	// A description of the connection auth type
+	Description pulumi.StringInput `pulumi:"description"`
+	// The URL to the guide for the connection auth type
+	GuidePath pulumi.StringInput `pulumi:"guidePath"`
+	// The ID of the connection auth type
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the connection auth type
+	Name pulumi.StringInput `pulumi:"name"`
+	// The parameters for the connection auth type
+	Parameters GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayInput `pulumi:"parameters"`
+	// The URL of the provider logo
+	ProviderLogo pulumi.StringInput `pulumi:"providerLogo"`
+	// The name of the provider package
+	ProviderPackageName pulumi.StringInput `pulumi:"providerPackageName"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthType)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput {
+	return o
+}
+
+// The type of connection in Airflow
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) AirflowType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.AirflowType }).(pulumi.StringOutput)
+}
+
+// The name of the auth method used in the connection
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) AuthMethodName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.AuthMethodName }).(pulumi.StringOutput)
+}
+
+// A description of the connection auth type
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The URL to the guide for the connection auth type
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) GuidePath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.GuidePath }).(pulumi.StringOutput)
+}
+
+// The ID of the connection auth type
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the connection auth type
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The parameters for the connection auth type
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) Parameters() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) []GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter {
+		return v.Parameters
+	}).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+// The URL of the provider logo
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) ProviderLogo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.ProviderLogo }).(pulumi.StringOutput)
+}
+
+// The name of the provider package
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput) ProviderPackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthType) string { return v.ProviderPackageName }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter struct {
+	// The name of the parameter in Airflow
+	AirflowParamName string `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType string `pulumi:"dataType"`
+	// A description of the parameter
+	Description string `pulumi:"description"`
+	// An example value for the parameter
+	Example string `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName string `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra bool `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired bool `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret bool `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern string `pulumi:"pattern"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs and GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs struct {
+	// The name of the parameter in Airflow
+	AirflowParamName pulumi.StringInput `pulumi:"airflowParamName"`
+	// The data type of the parameter
+	DataType pulumi.StringInput `pulumi:"dataType"`
+	// A description of the parameter
+	Description pulumi.StringInput `pulumi:"description"`
+	// An example value for the parameter
+	Example pulumi.StringInput `pulumi:"example"`
+	// The UI-friendly name for the parameter
+	FriendlyName pulumi.StringInput `pulumi:"friendlyName"`
+	// Whether the parameter is included in the extra field
+	IsInExtra pulumi.BoolInput `pulumi:"isInExtra"`
+	// Whether the parameter is required
+	IsRequired pulumi.BoolInput `pulumi:"isRequired"`
+	// Whether the parameter is a secret
+	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
+	// A regex pattern that the parameter value must match
+	Pattern pulumi.StringInput `pulumi:"pattern"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+// GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray and GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray{ GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs{...} }
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput
+	ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray []GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterInput
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return o
+}
+
+// The name of the parameter in Airflow
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) AirflowParamName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string {
+		return v.AirflowParamName
+	}).(pulumi.StringOutput)
+}
+
+// The data type of the parameter
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) DataType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string { return v.DataType }).(pulumi.StringOutput)
+}
+
+// A description of the parameter
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// An example value for the parameter
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) Example() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string { return v.Example }).(pulumi.StringOutput)
+}
+
+// The UI-friendly name for the parameter
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) FriendlyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string {
+		return v.FriendlyName
+	}).(pulumi.StringOutput)
+}
+
+// Whether the parameter is included in the extra field
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) IsInExtra() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsInExtra }).(pulumi.BoolOutput)
+}
+
+// Whether the parameter is required
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) IsRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsRequired }).(pulumi.BoolOutput)
+}
+
+// Whether the parameter is a secret
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) GetIsSecret() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) bool { return v.IsSecret }).(pulumi.BoolOutput)
+}
+
+// A regex pattern that the parameter value must match
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput) Pattern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter) string { return v.Pattern }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput() GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter {
+		return vs[0].([]GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameter)[vs[1].(int)]
+	}).(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectCreatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectCreatedByInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectCreatedByArgs and GetEnvironmentObjectsEnvironmentObjectCreatedByOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectCreatedByInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectCreatedByArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectCreatedByInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutput() GetEnvironmentObjectsEnvironmentObjectCreatedByOutput
+	ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectCreatedByOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectCreatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectCreatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectCreatedByArgs) ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutput() GetEnvironmentObjectsEnvironmentObjectCreatedByOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectCreatedByArgs) ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectCreatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectCreatedByOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectCreatedByOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectCreatedBy)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutput() GetEnvironmentObjectsEnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) ToGetEnvironmentObjectsEnvironmentObjectCreatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectCreatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectCreatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectCreatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectExcludeLink struct {
+	// Scope of the excluded entity
+	Scope string `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectExcludeLinkInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs and GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectExcludeLinkInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput
+	ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs struct {
+	// Scope of the excluded entity
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// ID of the excluded entity
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput)
+}
+
+// GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray and GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray{ GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs{...} }
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput
+	ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray []GetEnvironmentObjectsEnvironmentObjectExcludeLinkInput
+
+func (GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput {
+	return o
+}
+
+// Scope of the excluded entity
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectExcludeLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// ID of the excluded entity
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectExcludeLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectExcludeLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectsEnvironmentObjectExcludeLink {
+		return vs[0].([]GetEnvironmentObjectsEnvironmentObjectExcludeLink)[vs[1].(int)]
+	}).(GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLink struct {
+	// Per-link overrides. Only the fields matching the parent object*type are populated
+	Overrides GetEnvironmentObjectsEnvironmentObjectLinkOverrides `pulumi:"overrides"`
+	// Scope of the linked entity
+	Scope string `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId string `pulumi:"scopeEntityId"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectLinkInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectLinkArgs and GetEnvironmentObjectsEnvironmentObjectLinkOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectLinkInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectLinkArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectLinkInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectLinkOutput() GetEnvironmentObjectsEnvironmentObjectLinkOutput
+	ToGetEnvironmentObjectsEnvironmentObjectLinkOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkArgs struct {
+	// Per-link overrides. Only the fields matching the parent object*type are populated
+	Overrides GetEnvironmentObjectsEnvironmentObjectLinkOverridesInput `pulumi:"overrides"`
+	// Scope of the linked entity
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// Linked entity ID
+	ScopeEntityId pulumi.StringInput `pulumi:"scopeEntityId"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkArgs) ToGetEnvironmentObjectsEnvironmentObjectLinkOutput() GetEnvironmentObjectsEnvironmentObjectLinkOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectLinkOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkArgs) ToGetEnvironmentObjectsEnvironmentObjectLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectLinkOutput)
+}
+
+// GetEnvironmentObjectsEnvironmentObjectLinkArrayInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectLinkArray and GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectLinkArrayInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectLinkArray{ GetEnvironmentObjectsEnvironmentObjectLinkArgs{...} }
+type GetEnvironmentObjectsEnvironmentObjectLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput
+	ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkArray []GetEnvironmentObjectsEnvironmentObjectLinkInput
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkArray) ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkArray) ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkOutput() GetEnvironmentObjectsEnvironmentObjectLinkOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOutput {
+	return o
+}
+
+// Per-link overrides. Only the fields matching the parent object*type are populated
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOutput) Overrides() GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLink) GetEnvironmentObjectsEnvironmentObjectLinkOverrides {
+		return v.Overrides
+	}).(GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput)
+}
+
+// Scope of the linked entity
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLink) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// Linked entity ID
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOutput) ScopeEntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLink) string { return v.ScopeEntityId }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentObjectsEnvironmentObjectLink)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutput() GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkArrayOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput) Index(i pulumi.IntInput) GetEnvironmentObjectsEnvironmentObjectLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentObjectsEnvironmentObjectLink {
+		return vs[0].([]GetEnvironmentObjectsEnvironmentObjectLink)[vs[1].(int)]
+	}).(GetEnvironmentObjectsEnvironmentObjectLinkOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkOverrides struct {
+	// Override auth type (only used when object*type=METRICS*EXPORT)
+	AuthType string `pulumi:"authType"`
+	// Override bearer token (only used when object*type=METRICS*EXPORT)
+	BasicToken string `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+	Endpoint string `pulumi:"endpoint"`
+	// Override exporter type (only used when object*type=METRICS*EXPORT)
+	ExporterType string `pulumi:"exporterType"`
+	// Override extra JSON (only used when object_type=CONNECTION)
+	Extra string `pulumi:"extra"`
+	// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+	Headers map[string]string `pulumi:"headers"`
+	// Override host address (only used when object_type=CONNECTION)
+	Host string `pulumi:"host"`
+	// Override metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels map[string]string `pulumi:"labels"`
+	// Override login (only used when object_type=CONNECTION)
+	Login string `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password string `pulumi:"password"`
+	// Override port (only used when object_type=CONNECTION)
+	Port int `pulumi:"port"`
+	// Override schema (only used when object_type=CONNECTION)
+	Schema string `pulumi:"schema"`
+	// Override connection type (only used when object_type=CONNECTION)
+	Type string `pulumi:"type"`
+	// Override username (only used when object*type=METRICS*EXPORT)
+	Username string `pulumi:"username"`
+	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	Value string `pulumi:"value"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectLinkOverridesInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs and GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectLinkOverridesInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectLinkOverridesInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput
+	ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs struct {
+	// Override auth type (only used when object*type=METRICS*EXPORT)
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// Override bearer token (only used when object*type=METRICS*EXPORT)
+	BasicToken pulumi.StringInput `pulumi:"basicToken"`
+	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Override exporter type (only used when object*type=METRICS*EXPORT)
+	ExporterType pulumi.StringInput `pulumi:"exporterType"`
+	// Override extra JSON (only used when object_type=CONNECTION)
+	Extra pulumi.StringInput `pulumi:"extra"`
+	// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// Override host address (only used when object_type=CONNECTION)
+	Host pulumi.StringInput `pulumi:"host"`
+	// Override metrics labels (only used when object*type=METRICS*EXPORT)
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Override login (only used when object_type=CONNECTION)
+	Login pulumi.StringInput `pulumi:"login"`
+	// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+	Password pulumi.StringInput `pulumi:"password"`
+	// Override port (only used when object_type=CONNECTION)
+	Port pulumi.IntInput `pulumi:"port"`
+	// Override schema (only used when object_type=CONNECTION)
+	Schema pulumi.StringInput `pulumi:"schema"`
+	// Override connection type (only used when object_type=CONNECTION)
+	Type pulumi.StringInput `pulumi:"type"`
+	// Override username (only used when object*type=METRICS*EXPORT)
+	Username pulumi.StringInput `pulumi:"username"`
+	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs) ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs) ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLinkOverrides)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput() GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) ToGetEnvironmentObjectsEnvironmentObjectLinkOverridesOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput {
+	return o
+}
+
+// Override auth type (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// Override bearer token (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.BasicToken }).(pulumi.StringOutput)
+}
+
+// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Override exporter type (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) ExporterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.ExporterType }).(pulumi.StringOutput)
+}
+
+// Override extra JSON (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Extra() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Extra }).(pulumi.StringOutput)
+}
+
+// Override HTTP request headers (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// Override host address (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Override metrics labels (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Override login (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Login }).(pulumi.StringOutput)
+}
+
+// Override password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Override port (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Override schema (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Schema() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Schema }).(pulumi.StringOutput)
+}
+
+// Override connection type (only used when object_type=CONNECTION)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Override username (only used when object*type=METRICS*EXPORT)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Override value (only used when object*type=AIRFLOW*VARIABLE)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectUpdatedBy struct {
+	ApiTokenName string `pulumi:"apiTokenName"`
+	AvatarUrl    string `pulumi:"avatarUrl"`
+	FullName     string `pulumi:"fullName"`
+	Id           string `pulumi:"id"`
+	SubjectType  string `pulumi:"subjectType"`
+	Username     string `pulumi:"username"`
+}
+
+// GetEnvironmentObjectsEnvironmentObjectUpdatedByInput is an input type that accepts GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs and GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput values.
+// You can construct a concrete instance of `GetEnvironmentObjectsEnvironmentObjectUpdatedByInput` via:
+//
+//	GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs{...}
+type GetEnvironmentObjectsEnvironmentObjectUpdatedByInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput
+	ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutputWithContext(context.Context) GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput
+}
+
+type GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs struct {
+	ApiTokenName pulumi.StringInput `pulumi:"apiTokenName"`
+	AvatarUrl    pulumi.StringInput `pulumi:"avatarUrl"`
+	FullName     pulumi.StringInput `pulumi:"fullName"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	SubjectType  pulumi.StringInput `pulumi:"subjectType"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs) ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput {
+	return i.ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs) ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput)
+}
+
+type GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectUpdatedBy)(nil)).Elem()
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutput() GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) ToGetEnvironmentObjectsEnvironmentObjectUpdatedByOutputWithContext(ctx context.Context) GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput {
+	return o
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) ApiTokenName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.ApiTokenName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) SubjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.SubjectType }).(pulumi.StringOutput)
+}
+
+func (o GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectUpdatedBy) string { return v.Username }).(pulumi.StringOutput)
+}
+
 type GetNotificationChannelCreatedBy struct {
 	ApiTokenName string `pulumi:"apiTokenName"`
 	AvatarUrl    string `pulumi:"avatarUrl"`
@@ -19217,6 +23273,529 @@ func (o GetUserWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetUserWorkspa
 	}).(GetUserWorkspaceRoleOutput)
 }
 
+type GetUsersListUser struct {
+	// User avatar URL
+	AvatarUrl string `pulumi:"avatarUrl"`
+	// User creation timestamp
+	CreatedAt string `pulumi:"createdAt"`
+	// The DAG roles assigned to the user
+	DagRoles []GetUsersListUserDagRole `pulumi:"dagRoles"`
+	// The roles assigned to the deployments
+	DeploymentRoles []GetUsersListUserDeploymentRole `pulumi:"deploymentRoles"`
+	// User full name
+	FullName string `pulumi:"fullName"`
+	// User identifier
+	Id string `pulumi:"id"`
+	// The role assigned to the organization
+	OrganizationRole string `pulumi:"organizationRole"`
+	// User status
+	Status string `pulumi:"status"`
+	// User last updated timestamp
+	UpdatedAt string `pulumi:"updatedAt"`
+	// User username
+	Username string `pulumi:"username"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles []GetUsersListUserWorkspaceRole `pulumi:"workspaceRoles"`
+}
+
+// GetUsersListUserInput is an input type that accepts GetUsersListUserArgs and GetUsersListUserOutput values.
+// You can construct a concrete instance of `GetUsersListUserInput` via:
+//
+//	GetUsersListUserArgs{...}
+type GetUsersListUserInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserOutput() GetUsersListUserOutput
+	ToGetUsersListUserOutputWithContext(context.Context) GetUsersListUserOutput
+}
+
+type GetUsersListUserArgs struct {
+	// User avatar URL
+	AvatarUrl pulumi.StringInput `pulumi:"avatarUrl"`
+	// User creation timestamp
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The DAG roles assigned to the user
+	DagRoles GetUsersListUserDagRoleArrayInput `pulumi:"dagRoles"`
+	// The roles assigned to the deployments
+	DeploymentRoles GetUsersListUserDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
+	// User full name
+	FullName pulumi.StringInput `pulumi:"fullName"`
+	// User identifier
+	Id pulumi.StringInput `pulumi:"id"`
+	// The role assigned to the organization
+	OrganizationRole pulumi.StringInput `pulumi:"organizationRole"`
+	// User status
+	Status pulumi.StringInput `pulumi:"status"`
+	// User last updated timestamp
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// User username
+	Username pulumi.StringInput `pulumi:"username"`
+	// The roles assigned to the workspaces
+	WorkspaceRoles GetUsersListUserWorkspaceRoleArrayInput `pulumi:"workspaceRoles"`
+}
+
+func (GetUsersListUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUser)(nil)).Elem()
+}
+
+func (i GetUsersListUserArgs) ToGetUsersListUserOutput() GetUsersListUserOutput {
+	return i.ToGetUsersListUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserArgs) ToGetUsersListUserOutputWithContext(ctx context.Context) GetUsersListUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserOutput)
+}
+
+// GetUsersListUserArrayInput is an input type that accepts GetUsersListUserArray and GetUsersListUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersListUserArrayInput` via:
+//
+//	GetUsersListUserArray{ GetUsersListUserArgs{...} }
+type GetUsersListUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserArrayOutput() GetUsersListUserArrayOutput
+	ToGetUsersListUserArrayOutputWithContext(context.Context) GetUsersListUserArrayOutput
+}
+
+type GetUsersListUserArray []GetUsersListUserInput
+
+func (GetUsersListUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUser)(nil)).Elem()
+}
+
+func (i GetUsersListUserArray) ToGetUsersListUserArrayOutput() GetUsersListUserArrayOutput {
+	return i.ToGetUsersListUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserArray) ToGetUsersListUserArrayOutputWithContext(ctx context.Context) GetUsersListUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserArrayOutput)
+}
+
+type GetUsersListUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUser)(nil)).Elem()
+}
+
+func (o GetUsersListUserOutput) ToGetUsersListUserOutput() GetUsersListUserOutput {
+	return o
+}
+
+func (o GetUsersListUserOutput) ToGetUsersListUserOutputWithContext(ctx context.Context) GetUsersListUserOutput {
+	return o
+}
+
+// User avatar URL
+func (o GetUsersListUserOutput) AvatarUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.AvatarUrl }).(pulumi.StringOutput)
+}
+
+// User creation timestamp
+func (o GetUsersListUserOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The DAG roles assigned to the user
+func (o GetUsersListUserOutput) DagRoles() GetUsersListUserDagRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersListUser) []GetUsersListUserDagRole { return v.DagRoles }).(GetUsersListUserDagRoleArrayOutput)
+}
+
+// The roles assigned to the deployments
+func (o GetUsersListUserOutput) DeploymentRoles() GetUsersListUserDeploymentRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersListUser) []GetUsersListUserDeploymentRole { return v.DeploymentRoles }).(GetUsersListUserDeploymentRoleArrayOutput)
+}
+
+// User full name
+func (o GetUsersListUserOutput) FullName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.FullName }).(pulumi.StringOutput)
+}
+
+// User identifier
+func (o GetUsersListUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The role assigned to the organization
+func (o GetUsersListUserOutput) OrganizationRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.OrganizationRole }).(pulumi.StringOutput)
+}
+
+// User status
+func (o GetUsersListUserOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// User last updated timestamp
+func (o GetUsersListUserOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// User username
+func (o GetUsersListUserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUser) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The roles assigned to the workspaces
+func (o GetUsersListUserOutput) WorkspaceRoles() GetUsersListUserWorkspaceRoleArrayOutput {
+	return o.ApplyT(func(v GetUsersListUser) []GetUsersListUserWorkspaceRole { return v.WorkspaceRoles }).(GetUsersListUserWorkspaceRoleArrayOutput)
+}
+
+type GetUsersListUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUser)(nil)).Elem()
+}
+
+func (o GetUsersListUserArrayOutput) ToGetUsersListUserArrayOutput() GetUsersListUserArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserArrayOutput) ToGetUsersListUserArrayOutputWithContext(ctx context.Context) GetUsersListUserArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserArrayOutput) Index(i pulumi.IntInput) GetUsersListUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersListUser {
+		return vs[0].([]GetUsersListUser)[vs[1].(int)]
+	}).(GetUsersListUserOutput)
+}
+
+type GetUsersListUserDagRole struct {
+	// The DAG ID
+	DagId string `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId string `pulumi:"deploymentId"`
+	// The DAG role
+	Role string `pulumi:"role"`
+	// The DAG tag
+	Tag string `pulumi:"tag"`
+}
+
+// GetUsersListUserDagRoleInput is an input type that accepts GetUsersListUserDagRoleArgs and GetUsersListUserDagRoleOutput values.
+// You can construct a concrete instance of `GetUsersListUserDagRoleInput` via:
+//
+//	GetUsersListUserDagRoleArgs{...}
+type GetUsersListUserDagRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserDagRoleOutput() GetUsersListUserDagRoleOutput
+	ToGetUsersListUserDagRoleOutputWithContext(context.Context) GetUsersListUserDagRoleOutput
+}
+
+type GetUsersListUserDagRoleArgs struct {
+	// The DAG ID
+	DagId pulumi.StringInput `pulumi:"dagId"`
+	// The Deployment ID containing the DAG
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The DAG role
+	Role pulumi.StringInput `pulumi:"role"`
+	// The DAG tag
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetUsersListUserDagRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserDagRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserDagRoleArgs) ToGetUsersListUserDagRoleOutput() GetUsersListUserDagRoleOutput {
+	return i.ToGetUsersListUserDagRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserDagRoleArgs) ToGetUsersListUserDagRoleOutputWithContext(ctx context.Context) GetUsersListUserDagRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserDagRoleOutput)
+}
+
+// GetUsersListUserDagRoleArrayInput is an input type that accepts GetUsersListUserDagRoleArray and GetUsersListUserDagRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersListUserDagRoleArrayInput` via:
+//
+//	GetUsersListUserDagRoleArray{ GetUsersListUserDagRoleArgs{...} }
+type GetUsersListUserDagRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserDagRoleArrayOutput() GetUsersListUserDagRoleArrayOutput
+	ToGetUsersListUserDagRoleArrayOutputWithContext(context.Context) GetUsersListUserDagRoleArrayOutput
+}
+
+type GetUsersListUserDagRoleArray []GetUsersListUserDagRoleInput
+
+func (GetUsersListUserDagRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserDagRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserDagRoleArray) ToGetUsersListUserDagRoleArrayOutput() GetUsersListUserDagRoleArrayOutput {
+	return i.ToGetUsersListUserDagRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserDagRoleArray) ToGetUsersListUserDagRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserDagRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserDagRoleArrayOutput)
+}
+
+type GetUsersListUserDagRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserDagRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserDagRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserDagRoleOutput) ToGetUsersListUserDagRoleOutput() GetUsersListUserDagRoleOutput {
+	return o
+}
+
+func (o GetUsersListUserDagRoleOutput) ToGetUsersListUserDagRoleOutputWithContext(ctx context.Context) GetUsersListUserDagRoleOutput {
+	return o
+}
+
+// The DAG ID
+func (o GetUsersListUserDagRoleOutput) DagId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDagRole) string { return v.DagId }).(pulumi.StringOutput)
+}
+
+// The Deployment ID containing the DAG
+func (o GetUsersListUserDagRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDagRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The DAG role
+func (o GetUsersListUserDagRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDagRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The DAG tag
+func (o GetUsersListUserDagRoleOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDagRole) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetUsersListUserDagRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserDagRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserDagRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserDagRoleArrayOutput) ToGetUsersListUserDagRoleArrayOutput() GetUsersListUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserDagRoleArrayOutput) ToGetUsersListUserDagRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserDagRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserDagRoleArrayOutput) Index(i pulumi.IntInput) GetUsersListUserDagRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersListUserDagRole {
+		return vs[0].([]GetUsersListUserDagRole)[vs[1].(int)]
+	}).(GetUsersListUserDagRoleOutput)
+}
+
+type GetUsersListUserDeploymentRole struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId string `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role string `pulumi:"role"`
+}
+
+// GetUsersListUserDeploymentRoleInput is an input type that accepts GetUsersListUserDeploymentRoleArgs and GetUsersListUserDeploymentRoleOutput values.
+// You can construct a concrete instance of `GetUsersListUserDeploymentRoleInput` via:
+//
+//	GetUsersListUserDeploymentRoleArgs{...}
+type GetUsersListUserDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserDeploymentRoleOutput() GetUsersListUserDeploymentRoleOutput
+	ToGetUsersListUserDeploymentRoleOutputWithContext(context.Context) GetUsersListUserDeploymentRoleOutput
+}
+
+type GetUsersListUserDeploymentRoleArgs struct {
+	// The ID of the deployment the role is assigned to
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The role assigned to the deployment
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetUsersListUserDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserDeploymentRoleArgs) ToGetUsersListUserDeploymentRoleOutput() GetUsersListUserDeploymentRoleOutput {
+	return i.ToGetUsersListUserDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserDeploymentRoleArgs) ToGetUsersListUserDeploymentRoleOutputWithContext(ctx context.Context) GetUsersListUserDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserDeploymentRoleOutput)
+}
+
+// GetUsersListUserDeploymentRoleArrayInput is an input type that accepts GetUsersListUserDeploymentRoleArray and GetUsersListUserDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersListUserDeploymentRoleArrayInput` via:
+//
+//	GetUsersListUserDeploymentRoleArray{ GetUsersListUserDeploymentRoleArgs{...} }
+type GetUsersListUserDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserDeploymentRoleArrayOutput() GetUsersListUserDeploymentRoleArrayOutput
+	ToGetUsersListUserDeploymentRoleArrayOutputWithContext(context.Context) GetUsersListUserDeploymentRoleArrayOutput
+}
+
+type GetUsersListUserDeploymentRoleArray []GetUsersListUserDeploymentRoleInput
+
+func (GetUsersListUserDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserDeploymentRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserDeploymentRoleArray) ToGetUsersListUserDeploymentRoleArrayOutput() GetUsersListUserDeploymentRoleArrayOutput {
+	return i.ToGetUsersListUserDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserDeploymentRoleArray) ToGetUsersListUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserDeploymentRoleArrayOutput)
+}
+
+type GetUsersListUserDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserDeploymentRoleOutput) ToGetUsersListUserDeploymentRoleOutput() GetUsersListUserDeploymentRoleOutput {
+	return o
+}
+
+func (o GetUsersListUserDeploymentRoleOutput) ToGetUsersListUserDeploymentRoleOutputWithContext(ctx context.Context) GetUsersListUserDeploymentRoleOutput {
+	return o
+}
+
+// The ID of the deployment the role is assigned to
+func (o GetUsersListUserDeploymentRoleOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDeploymentRole) string { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// The role assigned to the deployment
+func (o GetUsersListUserDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetUsersListUserDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserDeploymentRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserDeploymentRoleArrayOutput) ToGetUsersListUserDeploymentRoleArrayOutput() GetUsersListUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserDeploymentRoleArrayOutput) ToGetUsersListUserDeploymentRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserDeploymentRoleArrayOutput) Index(i pulumi.IntInput) GetUsersListUserDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersListUserDeploymentRole {
+		return vs[0].([]GetUsersListUserDeploymentRole)[vs[1].(int)]
+	}).(GetUsersListUserDeploymentRoleOutput)
+}
+
+type GetUsersListUserWorkspaceRole struct {
+	// The role assigned to the workspace
+	Role string `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetUsersListUserWorkspaceRoleInput is an input type that accepts GetUsersListUserWorkspaceRoleArgs and GetUsersListUserWorkspaceRoleOutput values.
+// You can construct a concrete instance of `GetUsersListUserWorkspaceRoleInput` via:
+//
+//	GetUsersListUserWorkspaceRoleArgs{...}
+type GetUsersListUserWorkspaceRoleInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserWorkspaceRoleOutput() GetUsersListUserWorkspaceRoleOutput
+	ToGetUsersListUserWorkspaceRoleOutputWithContext(context.Context) GetUsersListUserWorkspaceRoleOutput
+}
+
+type GetUsersListUserWorkspaceRoleArgs struct {
+	// The role assigned to the workspace
+	Role pulumi.StringInput `pulumi:"role"`
+	// The ID of the workspace the role is assigned to
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetUsersListUserWorkspaceRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserWorkspaceRoleArgs) ToGetUsersListUserWorkspaceRoleOutput() GetUsersListUserWorkspaceRoleOutput {
+	return i.ToGetUsersListUserWorkspaceRoleOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserWorkspaceRoleArgs) ToGetUsersListUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUsersListUserWorkspaceRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserWorkspaceRoleOutput)
+}
+
+// GetUsersListUserWorkspaceRoleArrayInput is an input type that accepts GetUsersListUserWorkspaceRoleArray and GetUsersListUserWorkspaceRoleArrayOutput values.
+// You can construct a concrete instance of `GetUsersListUserWorkspaceRoleArrayInput` via:
+//
+//	GetUsersListUserWorkspaceRoleArray{ GetUsersListUserWorkspaceRoleArgs{...} }
+type GetUsersListUserWorkspaceRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersListUserWorkspaceRoleArrayOutput() GetUsersListUserWorkspaceRoleArrayOutput
+	ToGetUsersListUserWorkspaceRoleArrayOutputWithContext(context.Context) GetUsersListUserWorkspaceRoleArrayOutput
+}
+
+type GetUsersListUserWorkspaceRoleArray []GetUsersListUserWorkspaceRoleInput
+
+func (GetUsersListUserWorkspaceRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserWorkspaceRole)(nil)).Elem()
+}
+
+func (i GetUsersListUserWorkspaceRoleArray) ToGetUsersListUserWorkspaceRoleArrayOutput() GetUsersListUserWorkspaceRoleArrayOutput {
+	return i.ToGetUsersListUserWorkspaceRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersListUserWorkspaceRoleArray) ToGetUsersListUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserWorkspaceRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersListUserWorkspaceRoleArrayOutput)
+}
+
+type GetUsersListUserWorkspaceRoleOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserWorkspaceRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersListUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserWorkspaceRoleOutput) ToGetUsersListUserWorkspaceRoleOutput() GetUsersListUserWorkspaceRoleOutput {
+	return o
+}
+
+func (o GetUsersListUserWorkspaceRoleOutput) ToGetUsersListUserWorkspaceRoleOutputWithContext(ctx context.Context) GetUsersListUserWorkspaceRoleOutput {
+	return o
+}
+
+// The role assigned to the workspace
+func (o GetUsersListUserWorkspaceRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserWorkspaceRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The ID of the workspace the role is assigned to
+func (o GetUsersListUserWorkspaceRoleOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersListUserWorkspaceRole) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetUsersListUserWorkspaceRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersListUserWorkspaceRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersListUserWorkspaceRole)(nil)).Elem()
+}
+
+func (o GetUsersListUserWorkspaceRoleArrayOutput) ToGetUsersListUserWorkspaceRoleArrayOutput() GetUsersListUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserWorkspaceRoleArrayOutput) ToGetUsersListUserWorkspaceRoleArrayOutputWithContext(ctx context.Context) GetUsersListUserWorkspaceRoleArrayOutput {
+	return o
+}
+
+func (o GetUsersListUserWorkspaceRoleArrayOutput) Index(i pulumi.IntInput) GetUsersListUserWorkspaceRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersListUserWorkspaceRole {
+		return vs[0].([]GetUsersListUserWorkspaceRole)[vs[1].(int)]
+	}).(GetUsersListUserWorkspaceRoleOutput)
+}
+
 type GetUsersUser struct {
 	// User avatar URL
 	AvatarUrl string `pulumi:"avatarUrl"`
@@ -20234,6 +24813,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRulesPropertiesPtrInput)(nil)).Elem(), AlertRulesPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertUpdatedByInput)(nil)).Elem(), AlertUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertUpdatedByPtrInput)(nil)).Elem(), AlertUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsInput)(nil)).Elem(), AlertsAlertsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsMapInput)(nil)).Elem(), AlertsAlertsMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsRulesInput)(nil)).Elem(), AlertsAlertsRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsRulesPatternMatchInput)(nil)).Elem(), AlertsAlertsRulesPatternMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsRulesPatternMatchArrayInput)(nil)).Elem(), AlertsAlertsRulesPatternMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertsRulesPropertiesInput)(nil)).Elem(), AlertsAlertsRulesPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenCreatedByPtrInput)(nil)).Elem(), ApiTokenCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiTokenRoleInput)(nil)).Elem(), ApiTokenRoleArgs{})
@@ -20276,6 +24861,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentUpdatedByPtrInput)(nil)).Elem(), DeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueInput)(nil)).Elem(), DeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentWorkerQueueArrayInput)(nil)).Elem(), DeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectConnectionAuthTypeInput)(nil)).Elem(), EnvironmentObjectConnectionAuthTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectConnectionAuthTypePtrInput)(nil)).Elem(), EnvironmentObjectConnectionAuthTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectConnectionAuthTypeParameterInput)(nil)).Elem(), EnvironmentObjectConnectionAuthTypeParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectConnectionAuthTypeParameterArrayInput)(nil)).Elem(), EnvironmentObjectConnectionAuthTypeParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectCreatedByInput)(nil)).Elem(), EnvironmentObjectCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectCreatedByPtrInput)(nil)).Elem(), EnvironmentObjectCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectExcludeLinkInput)(nil)).Elem(), EnvironmentObjectExcludeLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectExcludeLinkArrayInput)(nil)).Elem(), EnvironmentObjectExcludeLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectLinkInput)(nil)).Elem(), EnvironmentObjectLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectLinkArrayInput)(nil)).Elem(), EnvironmentObjectLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectLinkOverridesInput)(nil)).Elem(), EnvironmentObjectLinkOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectLinkOverridesPtrInput)(nil)).Elem(), EnvironmentObjectLinkOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectUpdatedByInput)(nil)).Elem(), EnvironmentObjectUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentObjectUpdatedByPtrInput)(nil)).Elem(), EnvironmentObjectUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelCreatedByInput)(nil)).Elem(), NotificationChannelCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelCreatedByPtrInput)(nil)).Elem(), NotificationChannelCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelDefinitionInput)(nil)).Elem(), NotificationChannelDefinitionArgs{})
@@ -20422,6 +25021,28 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentUpdatedByInput)(nil)).Elem(), GetDeploymentsDeploymentUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentWorkerQueueArrayInput)(nil)).Elem(), GetDeploymentsDeploymentWorkerQueueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectConnectionAuthTypeInput)(nil)).Elem(), GetEnvironmentObjectConnectionAuthTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectConnectionAuthTypeParameterInput)(nil)).Elem(), GetEnvironmentObjectConnectionAuthTypeParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectConnectionAuthTypeParameterArrayInput)(nil)).Elem(), GetEnvironmentObjectConnectionAuthTypeParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectCreatedByInput)(nil)).Elem(), GetEnvironmentObjectCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectExcludeLinkInput)(nil)).Elem(), GetEnvironmentObjectExcludeLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectExcludeLinkArrayInput)(nil)).Elem(), GetEnvironmentObjectExcludeLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectLinkInput)(nil)).Elem(), GetEnvironmentObjectLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectLinkArrayInput)(nil)).Elem(), GetEnvironmentObjectLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectLinkOverridesInput)(nil)).Elem(), GetEnvironmentObjectLinkOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectUpdatedByInput)(nil)).Elem(), GetEnvironmentObjectUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectArrayInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectCreatedByInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectCreatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectExcludeLinkInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectExcludeLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLinkInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLinkArrayInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectLinkOverridesInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentObjectsEnvironmentObjectUpdatedByInput)(nil)).Elem(), GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelCreatedByInput)(nil)).Elem(), GetNotificationChannelCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelDefinitionInput)(nil)).Elem(), GetNotificationChannelDefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationChannelUpdatedByInput)(nil)).Elem(), GetNotificationChannelUpdatedByArgs{})
@@ -20460,6 +25081,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserDeploymentRoleArrayInput)(nil)).Elem(), GetUserDeploymentRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleInput)(nil)).Elem(), GetUserWorkspaceRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserWorkspaceRoleArrayInput)(nil)).Elem(), GetUserWorkspaceRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserInput)(nil)).Elem(), GetUsersListUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserArrayInput)(nil)).Elem(), GetUsersListUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserDagRoleInput)(nil)).Elem(), GetUsersListUserDagRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserDagRoleArrayInput)(nil)).Elem(), GetUsersListUserDagRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserDeploymentRoleInput)(nil)).Elem(), GetUsersListUserDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserDeploymentRoleArrayInput)(nil)).Elem(), GetUsersListUserDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserWorkspaceRoleInput)(nil)).Elem(), GetUsersListUserWorkspaceRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersListUserWorkspaceRoleArrayInput)(nil)).Elem(), GetUsersListUserWorkspaceRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserDagRoleInput)(nil)).Elem(), GetUsersUserDagRoleArgs{})
@@ -20491,6 +25120,12 @@ func init() {
 	pulumi.RegisterOutputType(AlertRulesPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(AlertUpdatedByOutput{})
 	pulumi.RegisterOutputType(AlertUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsMapOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsRulesOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsRulesPatternMatchOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsRulesPatternMatchArrayOutput{})
+	pulumi.RegisterOutputType(AlertsAlertsRulesPropertiesOutput{})
 	pulumi.RegisterOutputType(ApiTokenCreatedByOutput{})
 	pulumi.RegisterOutputType(ApiTokenCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(ApiTokenRoleOutput{})
@@ -20533,6 +25168,20 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(DeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectConnectionAuthTypeOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectConnectionAuthTypePtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectConnectionAuthTypeParameterOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectConnectionAuthTypeParameterArrayOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectCreatedByOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectCreatedByPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectExcludeLinkOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectExcludeLinkArrayOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectLinkOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectLinkArrayOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectLinkOverridesOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectLinkOverridesPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectUpdatedByOutput{})
+	pulumi.RegisterOutputType(EnvironmentObjectUpdatedByPtrOutput{})
 	pulumi.RegisterOutputType(NotificationChannelCreatedByOutput{})
 	pulumi.RegisterOutputType(NotificationChannelCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(NotificationChannelDefinitionOutput{})
@@ -20679,6 +25328,28 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentWorkerQueueArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectConnectionAuthTypeOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectConnectionAuthTypeParameterOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectConnectionAuthTypeParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectCreatedByOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectExcludeLinkOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectExcludeLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectLinkOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectLinkOverridesOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectUpdatedByOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectCreatedByOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectExcludeLinkOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectLinkOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentObjectsEnvironmentObjectUpdatedByOutput{})
 	pulumi.RegisterOutputType(GetNotificationChannelCreatedByOutput{})
 	pulumi.RegisterOutputType(GetNotificationChannelDefinitionOutput{})
 	pulumi.RegisterOutputType(GetNotificationChannelUpdatedByOutput{})
@@ -20717,6 +25388,14 @@ func init() {
 	pulumi.RegisterOutputType(GetUserDeploymentRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUserWorkspaceRoleOutput{})
 	pulumi.RegisterOutputType(GetUserWorkspaceRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserDagRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserDagRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserWorkspaceRoleOutput{})
+	pulumi.RegisterOutputType(GetUsersListUserWorkspaceRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserDagRoleOutput{})

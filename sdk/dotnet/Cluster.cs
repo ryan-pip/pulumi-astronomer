@@ -35,6 +35,12 @@ namespace RyanPip.Astronomer
         public Output<string> DbInstanceType { get; private set; } = null!;
 
         /// <summary>
+        /// The disaster recovery subnet range for pods (GCP Only).
+        /// </summary>
+        [Output("drPodSubnetRange")]
+        public Output<string> DrPodSubnetRange { get; private set; } = null!;
+
+        /// <summary>
         /// The secondary region for Disaster Recovery. Required when `IsDrEnabled` is true. Cannot be changed once set.
         /// </summary>
         [Output("drRegion")]
@@ -45,6 +51,18 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Output("drSecondaryVpcCidr")]
         public Output<string> DrSecondaryVpcCidr { get; private set; } = null!;
+
+        /// <summary>
+        /// The disaster recovery service peering range (GCP Only).
+        /// </summary>
+        [Output("drServicePeeringRange")]
+        public Output<string> DrServicePeeringRange { get; private set; } = null!;
+
+        /// <summary>
+        /// The disaster recovery service subnet range (GCP Only).
+        /// </summary>
+        [Output("drServiceSubnetRange")]
+        public Output<string> DrServiceSubnetRange { get; private set; } = null!;
 
         /// <summary>
         /// The VPC subnet range for the Disaster Recovery region. Only valid when `IsDrEnabled` is true. Cannot be changed once set.
@@ -229,6 +247,12 @@ namespace RyanPip.Astronomer
         public Input<string> CloudProvider { get; set; } = null!;
 
         /// <summary>
+        /// The disaster recovery subnet range for pods (GCP Only).
+        /// </summary>
+        [Input("drPodSubnetRange")]
+        public Input<string>? DrPodSubnetRange { get; set; }
+
+        /// <summary>
         /// The secondary region for Disaster Recovery. Required when `IsDrEnabled` is true. Cannot be changed once set.
         /// </summary>
         [Input("drRegion")]
@@ -239,6 +263,18 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Input("drSecondaryVpcCidr")]
         public Input<string>? DrSecondaryVpcCidr { get; set; }
+
+        /// <summary>
+        /// The disaster recovery service peering range (GCP Only).
+        /// </summary>
+        [Input("drServicePeeringRange")]
+        public Input<string>? DrServicePeeringRange { get; set; }
+
+        /// <summary>
+        /// The disaster recovery service subnet range (GCP Only).
+        /// </summary>
+        [Input("drServiceSubnetRange")]
+        public Input<string>? DrServiceSubnetRange { get; set; }
 
         /// <summary>
         /// The VPC subnet range for the Disaster Recovery region. Only valid when `IsDrEnabled` is true. Cannot be changed once set.
@@ -354,6 +390,12 @@ namespace RyanPip.Astronomer
         public Input<string>? DbInstanceType { get; set; }
 
         /// <summary>
+        /// The disaster recovery subnet range for pods (GCP Only).
+        /// </summary>
+        [Input("drPodSubnetRange")]
+        public Input<string>? DrPodSubnetRange { get; set; }
+
+        /// <summary>
         /// The secondary region for Disaster Recovery. Required when `IsDrEnabled` is true. Cannot be changed once set.
         /// </summary>
         [Input("drRegion")]
@@ -364,6 +406,18 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Input("drSecondaryVpcCidr")]
         public Input<string>? DrSecondaryVpcCidr { get; set; }
+
+        /// <summary>
+        /// The disaster recovery service peering range (GCP Only).
+        /// </summary>
+        [Input("drServicePeeringRange")]
+        public Input<string>? DrServicePeeringRange { get; set; }
+
+        /// <summary>
+        /// The disaster recovery service subnet range (GCP Only).
+        /// </summary>
+        [Input("drServiceSubnetRange")]
+        public Input<string>? DrServiceSubnetRange { get; set; }
 
         /// <summary>
         /// The VPC subnet range for the Disaster Recovery region. Only valid when `IsDrEnabled` is true. Cannot be changed once set.

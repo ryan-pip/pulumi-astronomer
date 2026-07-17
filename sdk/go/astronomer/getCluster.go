@@ -63,10 +63,16 @@ type LookupClusterResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Cluster database instance type
 	DbInstanceType string `pulumi:"dbInstanceType"`
+	// The disaster recovery subnet range for pods (GCP Only).
+	DrPodSubnetRange string `pulumi:"drPodSubnetRange"`
 	// The secondary region for Disaster Recovery
 	DrRegion string `pulumi:"drRegion"`
 	// Secondary CIDR for pod networking in the DR region (AWS only)
 	DrSecondaryVpcCidr string `pulumi:"drSecondaryVpcCidr"`
+	// The disaster recovery service peering range (GCP Only).
+	DrServicePeeringRange string `pulumi:"drServicePeeringRange"`
+	// The disaster recovery service subnet range (GCP Only).
+	DrServiceSubnetRange string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region
 	DrVpcSubnetRange string `pulumi:"drVpcSubnetRange"`
 	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
@@ -164,6 +170,11 @@ func (o LookupClusterResultOutput) DbInstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DbInstanceType }).(pulumi.StringOutput)
 }
 
+// The disaster recovery subnet range for pods (GCP Only).
+func (o LookupClusterResultOutput) DrPodSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrPodSubnetRange }).(pulumi.StringOutput)
+}
+
 // The secondary region for Disaster Recovery
 func (o LookupClusterResultOutput) DrRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DrRegion }).(pulumi.StringOutput)
@@ -172,6 +183,16 @@ func (o LookupClusterResultOutput) DrRegion() pulumi.StringOutput {
 // Secondary CIDR for pod networking in the DR region (AWS only)
 func (o LookupClusterResultOutput) DrSecondaryVpcCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DrSecondaryVpcCidr }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service peering range (GCP Only).
+func (o LookupClusterResultOutput) DrServicePeeringRange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrServicePeeringRange }).(pulumi.StringOutput)
+}
+
+// The disaster recovery service subnet range (GCP Only).
+func (o LookupClusterResultOutput) DrServiceSubnetRange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.DrServiceSubnetRange }).(pulumi.StringOutput)
 }
 
 // The VPC subnet range for the Disaster Recovery region

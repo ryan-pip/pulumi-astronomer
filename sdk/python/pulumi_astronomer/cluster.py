@@ -26,8 +26,11 @@ class ClusterArgs:
                  type: pulumi.Input[_builtins.str],
                  vpc_subnet_range: pulumi.Input[_builtins.str],
                  workspace_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 dr_pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_region: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -46,8 +49,11 @@ class ClusterArgs:
         :param pulumi.Input[_builtins.str] type: Cluster type
         :param pulumi.Input[_builtins.str] vpc_subnet_range: Cluster VPC subnet range. If changed, the cluster will be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] workspace_ids: Cluster workspace IDs
+        :param pulumi.Input[_builtins.str] dr_pod_subnet_range: The disaster recovery subnet range for pods (GCP Only).
         :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_service_peering_range: The disaster recovery service peering range (GCP Only).
+        :param pulumi.Input[_builtins.str] dr_service_subnet_range: The disaster recovery service subnet range (GCP Only).
         :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
@@ -63,10 +69,16 @@ class ClusterArgs:
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "vpc_subnet_range", vpc_subnet_range)
         pulumi.set(__self__, "workspace_ids", workspace_ids)
+        if dr_pod_subnet_range is not None:
+            pulumi.set(__self__, "dr_pod_subnet_range", dr_pod_subnet_range)
         if dr_region is not None:
             pulumi.set(__self__, "dr_region", dr_region)
         if dr_secondary_vpc_cidr is not None:
             pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_service_peering_range is not None:
+            pulumi.set(__self__, "dr_service_peering_range", dr_service_peering_range)
+        if dr_service_subnet_range is not None:
+            pulumi.set(__self__, "dr_service_subnet_range", dr_service_subnet_range)
         if dr_vpc_subnet_range is not None:
             pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
         if enable_replication_time_control is not None:
@@ -149,6 +161,18 @@ class ClusterArgs:
         pulumi.set(self, "workspace_ids", value)
 
     @_builtins.property
+    @pulumi.getter(name="drPodSubnetRange")
+    def dr_pod_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery subnet range for pods (GCP Only).
+        """
+        return pulumi.get(self, "dr_pod_subnet_range")
+
+    @dr_pod_subnet_range.setter
+    def dr_pod_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_pod_subnet_range", value)
+
+    @_builtins.property
     @pulumi.getter(name="drRegion")
     def dr_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -171,6 +195,30 @@ class ClusterArgs:
     @dr_secondary_vpc_cidr.setter
     def dr_secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_secondary_vpc_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drServicePeeringRange")
+    def dr_service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery service peering range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_peering_range")
+
+    @dr_service_peering_range.setter
+    def dr_service_peering_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_service_peering_range", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drServiceSubnetRange")
+    def dr_service_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery service subnet range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_subnet_range")
+
+    @dr_service_subnet_range.setter
+    def dr_service_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_service_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")
@@ -296,8 +344,11 @@ class _ClusterState:
                  cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  db_instance_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_region: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  health_status: pulumi.Input[Optional['ClusterHealthStatusArgs']] = None,
@@ -326,8 +377,11 @@ class _ClusterState:
         :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] created_at: Cluster creation timestamp
         :param pulumi.Input[_builtins.str] db_instance_type: Cluster database instance type
+        :param pulumi.Input[_builtins.str] dr_pod_subnet_range: The disaster recovery subnet range for pods (GCP Only).
         :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_service_peering_range: The disaster recovery service peering range (GCP Only).
+        :param pulumi.Input[_builtins.str] dr_service_subnet_range: The disaster recovery service subnet range (GCP Only).
         :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input['ClusterHealthStatusArgs'] health_status: Cluster health status
@@ -356,10 +410,16 @@ class _ClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if db_instance_type is not None:
             pulumi.set(__self__, "db_instance_type", db_instance_type)
+        if dr_pod_subnet_range is not None:
+            pulumi.set(__self__, "dr_pod_subnet_range", dr_pod_subnet_range)
         if dr_region is not None:
             pulumi.set(__self__, "dr_region", dr_region)
         if dr_secondary_vpc_cidr is not None:
             pulumi.set(__self__, "dr_secondary_vpc_cidr", dr_secondary_vpc_cidr)
+        if dr_service_peering_range is not None:
+            pulumi.set(__self__, "dr_service_peering_range", dr_service_peering_range)
+        if dr_service_subnet_range is not None:
+            pulumi.set(__self__, "dr_service_subnet_range", dr_service_subnet_range)
         if dr_vpc_subnet_range is not None:
             pulumi.set(__self__, "dr_vpc_subnet_range", dr_vpc_subnet_range)
         if enable_replication_time_control is not None:
@@ -442,6 +502,18 @@ class _ClusterState:
         pulumi.set(self, "db_instance_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="drPodSubnetRange")
+    def dr_pod_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery subnet range for pods (GCP Only).
+        """
+        return pulumi.get(self, "dr_pod_subnet_range")
+
+    @dr_pod_subnet_range.setter
+    def dr_pod_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_pod_subnet_range", value)
+
+    @_builtins.property
     @pulumi.getter(name="drRegion")
     def dr_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -464,6 +536,30 @@ class _ClusterState:
     @dr_secondary_vpc_cidr.setter
     def dr_secondary_vpc_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dr_secondary_vpc_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drServicePeeringRange")
+    def dr_service_peering_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery service peering range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_peering_range")
+
+    @dr_service_peering_range.setter
+    def dr_service_peering_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_service_peering_range", value)
+
+    @_builtins.property
+    @pulumi.getter(name="drServiceSubnetRange")
+    def dr_service_subnet_range(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The disaster recovery service subnet range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_subnet_range")
+
+    @dr_service_subnet_range.setter
+    def dr_service_subnet_range(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dr_service_subnet_range", value)
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")
@@ -734,8 +830,11 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_region: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -758,8 +857,11 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
+        :param pulumi.Input[_builtins.str] dr_pod_subnet_range: The disaster recovery subnet range for pods (GCP Only).
         :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_service_peering_range: The disaster recovery service peering range (GCP Only).
+        :param pulumi.Input[_builtins.str] dr_service_subnet_range: The disaster recovery service subnet range (GCP Only).
         :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
@@ -800,8 +902,11 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_region: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 dr_service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -828,8 +933,11 @@ class Cluster(pulumi.CustomResource):
             if cloud_provider is None and not opts.urn:
                 raise TypeError("Missing required property 'cloud_provider'")
             __props__.__dict__["cloud_provider"] = cloud_provider
+            __props__.__dict__["dr_pod_subnet_range"] = dr_pod_subnet_range
             __props__.__dict__["dr_region"] = dr_region
             __props__.__dict__["dr_secondary_vpc_cidr"] = dr_secondary_vpc_cidr
+            __props__.__dict__["dr_service_peering_range"] = dr_service_peering_range
+            __props__.__dict__["dr_service_subnet_range"] = dr_service_subnet_range
             __props__.__dict__["dr_vpc_subnet_range"] = dr_vpc_subnet_range
             __props__.__dict__["enable_replication_time_control"] = enable_replication_time_control
             __props__.__dict__["is_dr_enabled"] = is_dr_enabled
@@ -875,8 +983,11 @@ class Cluster(pulumi.CustomResource):
             cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             db_instance_type: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
             dr_region: pulumi.Input[Optional[_builtins.str]] = None,
             dr_secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_service_peering_range: pulumi.Input[Optional[_builtins.str]] = None,
+            dr_service_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
             dr_vpc_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
             enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
             health_status: pulumi.Input[Optional[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']]] = None,
@@ -909,8 +1020,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_provider: Cluster cloud provider - if changed, the cluster will be recreated. Allowed values: `AWS`, `GCP`, `AZURE`.
         :param pulumi.Input[_builtins.str] created_at: Cluster creation timestamp
         :param pulumi.Input[_builtins.str] db_instance_type: Cluster database instance type
+        :param pulumi.Input[_builtins.str] dr_pod_subnet_range: The disaster recovery subnet range for pods (GCP Only).
         :param pulumi.Input[_builtins.str] dr_region: The secondary region for Disaster Recovery. Required when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.str] dr_secondary_vpc_cidr: Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
+        :param pulumi.Input[_builtins.str] dr_service_peering_range: The disaster recovery service peering range (GCP Only).
+        :param pulumi.Input[_builtins.str] dr_service_subnet_range: The disaster recovery service subnet range (GCP Only).
         :param pulumi.Input[_builtins.str] dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region. Only valid when `is_dr_enabled` is true. Cannot be changed once set.
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `is_dr_enabled` is true (AWS only).
         :param pulumi.Input[Union['ClusterHealthStatusArgs', 'ClusterHealthStatusArgsDict']] health_status: Cluster health status
@@ -940,8 +1054,11 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["db_instance_type"] = db_instance_type
+        __props__.__dict__["dr_pod_subnet_range"] = dr_pod_subnet_range
         __props__.__dict__["dr_region"] = dr_region
         __props__.__dict__["dr_secondary_vpc_cidr"] = dr_secondary_vpc_cidr
+        __props__.__dict__["dr_service_peering_range"] = dr_service_peering_range
+        __props__.__dict__["dr_service_subnet_range"] = dr_service_subnet_range
         __props__.__dict__["dr_vpc_subnet_range"] = dr_vpc_subnet_range
         __props__.__dict__["enable_replication_time_control"] = enable_replication_time_control
         __props__.__dict__["health_status"] = health_status
@@ -991,6 +1108,14 @@ class Cluster(pulumi.CustomResource):
         return pulumi.get(self, "db_instance_type")
 
     @_builtins.property
+    @pulumi.getter(name="drPodSubnetRange")
+    def dr_pod_subnet_range(self) -> pulumi.Output[_builtins.str]:
+        """
+        The disaster recovery subnet range for pods (GCP Only).
+        """
+        return pulumi.get(self, "dr_pod_subnet_range")
+
+    @_builtins.property
     @pulumi.getter(name="drRegion")
     def dr_region(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1005,6 +1130,22 @@ class Cluster(pulumi.CustomResource):
         Secondary CIDR for pod networking in the DR region (AWS only). Cannot be changed once set.
         """
         return pulumi.get(self, "dr_secondary_vpc_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="drServicePeeringRange")
+    def dr_service_peering_range(self) -> pulumi.Output[_builtins.str]:
+        """
+        The disaster recovery service peering range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_peering_range")
+
+    @_builtins.property
+    @pulumi.getter(name="drServiceSubnetRange")
+    def dr_service_subnet_range(self) -> pulumi.Output[_builtins.str]:
+        """
+        The disaster recovery service subnet range (GCP Only).
+        """
+        return pulumi.get(self, "dr_service_subnet_range")
 
     @_builtins.property
     @pulumi.getter(name="drVpcSubnetRange")

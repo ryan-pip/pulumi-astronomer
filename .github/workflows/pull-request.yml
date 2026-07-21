@@ -22,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: provider/go.mod
           cache-dependency-path: |
@@ -35,7 +35,7 @@ jobs:
             examples/go.sum
 
       - name: Setup mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Validate schema is valid JSON
         run: |
@@ -71,13 +71,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: provider/go.mod
           cache-dependency-path: |
@@ -87,7 +87,7 @@ jobs:
             examples/go.sum
 
       - name: Setup mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
@@ -107,13 +107,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: provider/go.mod
           cache-dependency-path: |
@@ -123,7 +123,7 @@ jobs:
             examples/go.sum
 
       - name: Setup mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
@@ -156,14 +156,14 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup Go
         if: matrix.language == 'go'
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: provider/go.mod
           cache-dependency-path: |
@@ -173,7 +173,7 @@ jobs:
             examples/go.sum
 
       - name: Setup mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
@@ -237,13 +237,13 @@ jobs:
       ASTRO_ORGANIZATION_ID: ${{ secrets.ASTRO_ORGANIZATION_ID }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Setup mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:

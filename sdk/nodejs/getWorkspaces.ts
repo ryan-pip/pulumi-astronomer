@@ -56,10 +56,6 @@ export interface GetWorkspacesArgs {
  * A collection of values returned by getWorkspaces.
  */
 export interface GetWorkspacesResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly names?: string[];
     readonly workspaceIds?: string[];
     readonly workspaces: outputs.GetWorkspacesWorkspace[];

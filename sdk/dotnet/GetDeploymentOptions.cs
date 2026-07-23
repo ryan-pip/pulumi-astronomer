@@ -238,10 +238,6 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly ImmutableArray<string> Executors;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Resource quota options
         /// </summary>
         public readonly Outputs.GetDeploymentOptionsResourceQuotasResult ResourceQuotas;
@@ -278,8 +274,6 @@ namespace RyanPip.Astronomer
 
             ImmutableArray<string> executors,
 
-            string id,
-
             Outputs.GetDeploymentOptionsResourceQuotasResult resourceQuotas,
 
             ImmutableArray<Outputs.GetDeploymentOptionsRuntimeReleaseResult> runtimeReleases,
@@ -297,7 +291,6 @@ namespace RyanPip.Astronomer
             DeploymentType = deploymentType;
             Executor = executor;
             Executors = executors;
-            Id = id;
             ResourceQuotas = resourceQuotas;
             RuntimeReleases = runtimeReleases;
             SchedulerMachines = schedulerMachines;

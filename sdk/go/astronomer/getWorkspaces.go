@@ -73,8 +73,6 @@ type GetWorkspacesArgs struct {
 
 // A collection of values returned by getWorkspaces.
 type GetWorkspacesResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id           string                   `pulumi:"id"`
 	Names        []string                 `pulumi:"names"`
 	WorkspaceIds []string                 `pulumi:"workspaceIds"`
 	Workspaces   []GetWorkspacesWorkspace `pulumi:"workspaces"`
@@ -112,11 +110,6 @@ func (o GetWorkspacesResultOutput) ToGetWorkspacesResultOutput() GetWorkspacesRe
 
 func (o GetWorkspacesResultOutput) ToGetWorkspacesResultOutputWithContext(ctx context.Context) GetWorkspacesResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetWorkspacesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWorkspacesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetWorkspacesResultOutput) Names() pulumi.StringArrayOutput {

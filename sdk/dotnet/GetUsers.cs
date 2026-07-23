@@ -152,10 +152,6 @@ namespace RyanPip.Astronomer
     public sealed class GetUsersResult
     {
         public readonly string? DeploymentId;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<Outputs.GetUsersUserResult> Users;
         public readonly string? WorkspaceId;
 
@@ -163,14 +159,11 @@ namespace RyanPip.Astronomer
         private GetUsersResult(
             string? deploymentId,
 
-            string id,
-
             ImmutableArray<Outputs.GetUsersUserResult> users,
 
             string? workspaceId)
         {
             DeploymentId = deploymentId;
-            Id = id;
             Users = users;
             WorkspaceId = workspaceId;
         }

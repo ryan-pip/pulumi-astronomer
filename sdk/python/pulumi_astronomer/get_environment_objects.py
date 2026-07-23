@@ -27,16 +27,13 @@ class GetEnvironmentObjectsResult:
     """
     A collection of values returned by getEnvironmentObjects.
     """
-    def __init__(__self__, deployment_id=None, environment_objects=None, id=None, object_key=None, object_type=None, resolve_linked=None, show_secrets=None, workspace_id=None):
+    def __init__(__self__, deployment_id=None, environment_objects=None, object_key=None, object_type=None, resolve_linked=None, show_secrets=None, workspace_id=None):
         if deployment_id and not isinstance(deployment_id, str):
             raise TypeError("Expected argument 'deployment_id' to be a str")
         pulumi.set(__self__, "deployment_id", deployment_id)
         if environment_objects and not isinstance(environment_objects, list):
             raise TypeError("Expected argument 'environment_objects' to be a list")
         pulumi.set(__self__, "environment_objects", environment_objects)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if object_key and not isinstance(object_key, str):
             raise TypeError("Expected argument 'object_key' to be a str")
         pulumi.set(__self__, "object_key", object_key)
@@ -65,14 +62,6 @@ class GetEnvironmentObjectsResult:
     @pulumi.getter(name="environmentObjects")
     def environment_objects(self) -> Sequence['outputs.GetEnvironmentObjectsEnvironmentObjectResult']:
         return pulumi.get(self, "environment_objects")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="objectKey")
@@ -123,7 +112,6 @@ class AwaitableGetEnvironmentObjectsResult(GetEnvironmentObjectsResult):
         return GetEnvironmentObjectsResult(
             deployment_id=self.deployment_id,
             environment_objects=self.environment_objects,
-            id=self.id,
             object_key=self.object_key,
             object_type=self.object_type,
             resolve_linked=self.resolve_linked,
@@ -185,7 +173,6 @@ def get_environment_objects(deployment_id: Optional[_builtins.str] = None,
     return AwaitableGetEnvironmentObjectsResult(
         deployment_id=pulumi.get(__ret__, 'deployment_id'),
         environment_objects=pulumi.get(__ret__, 'environment_objects'),
-        id=pulumi.get(__ret__, 'id'),
         object_key=pulumi.get(__ret__, 'object_key'),
         object_type=pulumi.get(__ret__, 'object_type'),
         resolve_linked=pulumi.get(__ret__, 'resolve_linked'),
@@ -244,7 +231,6 @@ def get_environment_objects_output(deployment_id: pulumi.Input[Optional[Optional
     return __ret__.apply(lambda __response__: GetEnvironmentObjectsResult(
         deployment_id=pulumi.get(__response__, 'deployment_id'),
         environment_objects=pulumi.get(__response__, 'environment_objects'),
-        id=pulumi.get(__response__, 'id'),
         object_key=pulumi.get(__response__, 'object_key'),
         object_type=pulumi.get(__response__, 'object_type'),
         resolve_linked=pulumi.get(__response__, 'resolve_linked'),

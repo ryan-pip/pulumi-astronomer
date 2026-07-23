@@ -27,16 +27,13 @@ class GetDeploymentsResult:
     """
     A collection of values returned by getDeployments.
     """
-    def __init__(__self__, deployment_ids=None, deployments=None, id=None, names=None, workspace_ids=None):
+    def __init__(__self__, deployment_ids=None, deployments=None, names=None, workspace_ids=None):
         if deployment_ids and not isinstance(deployment_ids, list):
             raise TypeError("Expected argument 'deployment_ids' to be a list")
         pulumi.set(__self__, "deployment_ids", deployment_ids)
         if deployments and not isinstance(deployments, list):
             raise TypeError("Expected argument 'deployments' to be a list")
         pulumi.set(__self__, "deployments", deployments)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
         pulumi.set(__self__, "names", names)
@@ -53,14 +50,6 @@ class GetDeploymentsResult:
     @pulumi.getter
     def deployments(self) -> Sequence['outputs.GetDeploymentsDeploymentResult']:
         return pulumi.get(self, "deployments")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -81,7 +70,6 @@ class AwaitableGetDeploymentsResult(GetDeploymentsResult):
         return GetDeploymentsResult(
             deployment_ids=self.deployment_ids,
             deployments=self.deployments,
-            id=self.id,
             names=self.names,
             workspace_ids=self.workspace_ids)
 
@@ -116,7 +104,6 @@ def get_deployments(deployment_ids: Optional[Sequence[_builtins.str]] = None,
     return AwaitableGetDeploymentsResult(
         deployment_ids=pulumi.get(__ret__, 'deployment_ids'),
         deployments=pulumi.get(__ret__, 'deployments'),
-        id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
 def get_deployments_output(deployment_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
@@ -148,6 +135,5 @@ def get_deployments_output(deployment_ids: pulumi.Input[Optional[Optional[Sequen
     return __ret__.apply(lambda __response__: GetDeploymentsResult(
         deployment_ids=pulumi.get(__response__, 'deployment_ids'),
         deployments=pulumi.get(__response__, 'deployments'),
-        id=pulumi.get(__response__, 'id'),
         names=pulumi.get(__response__, 'names'),
         workspace_ids=pulumi.get(__response__, 'workspace_ids')))

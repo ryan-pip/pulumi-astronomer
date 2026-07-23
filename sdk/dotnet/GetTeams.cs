@@ -152,22 +152,15 @@ namespace RyanPip.Astronomer
     [OutputType]
     public sealed class GetTeamsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> Names;
         public readonly ImmutableArray<Outputs.GetTeamsTeamResult> Teams;
 
         [OutputConstructor]
         private GetTeamsResult(
-            string id,
-
             ImmutableArray<string> names,
 
             ImmutableArray<Outputs.GetTeamsTeamResult> teams)
         {
-            Id = id;
             Names = names;
             Teams = teams;
         }

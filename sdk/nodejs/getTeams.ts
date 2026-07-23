@@ -48,10 +48,6 @@ export interface GetTeamsArgs {
  * A collection of values returned by getTeams.
  */
 export interface GetTeamsResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly names?: string[];
     readonly teams: outputs.GetTeamsTeam[];
 }

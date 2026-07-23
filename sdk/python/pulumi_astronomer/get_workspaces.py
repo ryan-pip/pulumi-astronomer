@@ -27,10 +27,7 @@ class GetWorkspacesResult:
     """
     A collection of values returned by getWorkspaces.
     """
-    def __init__(__self__, id=None, names=None, workspace_ids=None, workspaces=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, names=None, workspace_ids=None, workspaces=None):
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
         pulumi.set(__self__, "names", names)
@@ -40,14 +37,6 @@ class GetWorkspacesResult:
         if workspaces and not isinstance(workspaces, list):
             raise TypeError("Expected argument 'workspaces' to be a list")
         pulumi.set(__self__, "workspaces", workspaces)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -71,7 +60,6 @@ class AwaitableGetWorkspacesResult(GetWorkspacesResult):
         if False:
             yield self
         return GetWorkspacesResult(
-            id=self.id,
             names=self.names,
             workspace_ids=self.workspace_ids,
             workspaces=self.workspaces)
@@ -108,7 +96,6 @@ def get_workspaces(names: Optional[Sequence[_builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke('astronomer:index/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult).value
 
     return AwaitableGetWorkspacesResult(
-        id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'),
         workspaces=pulumi.get(__ret__, 'workspaces'))
@@ -142,7 +129,6 @@ def get_workspaces_output(names: pulumi.Input[Optional[Optional[Sequence[_builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult)
     return __ret__.apply(lambda __response__: GetWorkspacesResult(
-        id=pulumi.get(__response__, 'id'),
         names=pulumi.get(__response__, 'names'),
         workspace_ids=pulumi.get(__response__, 'workspace_ids'),
         workspaces=pulumi.get(__response__, 'workspaces')))

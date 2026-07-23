@@ -27,13 +27,10 @@ class GetUsersResult:
     """
     A collection of values returned by getUsers.
     """
-    def __init__(__self__, deployment_id=None, id=None, users=None, workspace_id=None):
+    def __init__(__self__, deployment_id=None, users=None, workspace_id=None):
         if deployment_id and not isinstance(deployment_id, str):
             raise TypeError("Expected argument 'deployment_id' to be a str")
         pulumi.set(__self__, "deployment_id", deployment_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if users and not isinstance(users, list):
             raise TypeError("Expected argument 'users' to be a list")
         pulumi.set(__self__, "users", users)
@@ -45,14 +42,6 @@ class GetUsersResult:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "deployment_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -72,7 +61,6 @@ class AwaitableGetUsersResult(GetUsersResult):
             yield self
         return GetUsersResult(
             deployment_id=self.deployment_id,
-            id=self.id,
             users=self.users,
             workspace_id=self.workspace_id)
 
@@ -103,7 +91,6 @@ def get_users(deployment_id: Optional[_builtins.str] = None,
 
     return AwaitableGetUsersResult(
         deployment_id=pulumi.get(__ret__, 'deployment_id'),
-        id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
 def get_users_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -131,6 +118,5 @@ def get_users_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         deployment_id=pulumi.get(__response__, 'deployment_id'),
-        id=pulumi.get(__response__, 'id'),
         users=pulumi.get(__response__, 'users'),
         workspace_id=pulumi.get(__response__, 'workspace_id')))

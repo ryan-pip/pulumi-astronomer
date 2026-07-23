@@ -50,10 +50,6 @@ export interface GetUsersListArgs {
  */
 export interface GetUsersListResult {
     readonly deploymentId?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly users: outputs.GetUsersListUser[];
     readonly workspaceId?: string;
 }

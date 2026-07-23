@@ -53,10 +53,6 @@ export interface GetClusterOptionsResult {
      */
     readonly cloudProvider?: string;
     readonly clusterOptions: outputs.GetClusterOptionsClusterOption[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly type: string;
 }
 /**

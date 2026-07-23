@@ -131,10 +131,6 @@ namespace RyanPip.Astronomer
         public readonly ImmutableArray<string> ChannelTypes;
         public readonly ImmutableArray<string> DeploymentIds;
         public readonly string? EntityType;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> NotificationChannelIds;
         public readonly ImmutableArray<Outputs.GetNotificationChannelsNotificationChannelResult> NotificationChannels;
         public readonly ImmutableArray<string> WorkspaceIds;
@@ -147,8 +143,6 @@ namespace RyanPip.Astronomer
 
             string? entityType,
 
-            string id,
-
             ImmutableArray<string> notificationChannelIds,
 
             ImmutableArray<Outputs.GetNotificationChannelsNotificationChannelResult> notificationChannels,
@@ -158,7 +152,6 @@ namespace RyanPip.Astronomer
             ChannelTypes = channelTypes;
             DeploymentIds = deploymentIds;
             EntityType = entityType;
-            Id = id;
             NotificationChannelIds = notificationChannelIds;
             NotificationChannels = notificationChannels;
             WorkspaceIds = workspaceIds;

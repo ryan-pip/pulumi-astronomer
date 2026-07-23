@@ -27,24 +27,13 @@ class GetTeamsResult:
     """
     A collection of values returned by getTeams.
     """
-    def __init__(__self__, id=None, names=None, teams=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, names=None, teams=None):
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
         pulumi.set(__self__, "names", names)
         if teams and not isinstance(teams, list):
             raise TypeError("Expected argument 'teams' to be a list")
         pulumi.set(__self__, "teams", teams)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -63,7 +52,6 @@ class AwaitableGetTeamsResult(GetTeamsResult):
         if False:
             yield self
         return GetTeamsResult(
-            id=self.id,
             names=self.names,
             teams=self.teams)
 
@@ -93,7 +81,6 @@ def get_teams(names: Optional[Sequence[_builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke('astronomer:index/getTeams:getTeams', __args__, opts=opts, typ=GetTeamsResult).value
 
     return AwaitableGetTeamsResult(
-        id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'),
         teams=pulumi.get(__ret__, 'teams'))
 def get_teams_output(names: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
@@ -120,6 +107,5 @@ def get_teams_output(names: pulumi.Input[Optional[Optional[Sequence[_builtins.st
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getTeams:getTeams', __args__, opts=opts, typ=GetTeamsResult)
     return __ret__.apply(lambda __response__: GetTeamsResult(
-        id=pulumi.get(__response__, 'id'),
         names=pulumi.get(__response__, 'names'),
         teams=pulumi.get(__response__, 'teams')))

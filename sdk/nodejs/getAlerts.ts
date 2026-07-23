@@ -69,10 +69,6 @@ export interface GetAlertsResult {
     readonly alerts: outputs.GetAlertsAlert[];
     readonly deploymentIds?: string[];
     readonly entityType?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly workspaceIds?: string[];
 }
 /**

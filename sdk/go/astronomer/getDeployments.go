@@ -82,10 +82,8 @@ type GetDeploymentsArgs struct {
 type GetDeploymentsResult struct {
 	DeploymentIds []string                   `pulumi:"deploymentIds"`
 	Deployments   []GetDeploymentsDeployment `pulumi:"deployments"`
-	// The provider-assigned unique ID for this managed resource.
-	Id           string   `pulumi:"id"`
-	Names        []string `pulumi:"names"`
-	WorkspaceIds []string `pulumi:"workspaceIds"`
+	Names         []string                   `pulumi:"names"`
+	WorkspaceIds  []string                   `pulumi:"workspaceIds"`
 }
 
 func GetDeploymentsOutput(ctx *pulumi.Context, args GetDeploymentsOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
@@ -129,11 +127,6 @@ func (o GetDeploymentsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
 
 func (o GetDeploymentsResultOutput) Deployments() GetDeploymentsDeploymentArrayOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsDeployment { return v.Deployments }).(GetDeploymentsDeploymentArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetDeploymentsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetDeploymentsResultOutput) Names() pulumi.StringArrayOutput {

@@ -27,7 +27,7 @@ class GetDeploymentOptionsResult:
     """
     A collection of values returned by getDeploymentOptions.
     """
-    def __init__(__self__, cloud_provider=None, deployment_id=None, deployment_type=None, executor=None, executors=None, id=None, resource_quotas=None, runtime_releases=None, scheduler_machines=None, worker_machines=None, worker_queues=None, workload_identity_options=None):
+    def __init__(__self__, cloud_provider=None, deployment_id=None, deployment_type=None, executor=None, executors=None, resource_quotas=None, runtime_releases=None, scheduler_machines=None, worker_machines=None, worker_queues=None, workload_identity_options=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -43,9 +43,6 @@ class GetDeploymentOptionsResult:
         if executors and not isinstance(executors, list):
             raise TypeError("Expected argument 'executors' to be a list")
         pulumi.set(__self__, "executors", executors)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if resource_quotas and not isinstance(resource_quotas, dict):
             raise TypeError("Expected argument 'resource_quotas' to be a dict")
         pulumi.set(__self__, "resource_quotas", resource_quotas)
@@ -104,14 +101,6 @@ class GetDeploymentOptionsResult:
         Available executors
         """
         return pulumi.get(self, "executors")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="resourceQuotas")
@@ -173,7 +162,6 @@ class AwaitableGetDeploymentOptionsResult(GetDeploymentOptionsResult):
             deployment_type=self.deployment_type,
             executor=self.executor,
             executors=self.executors,
-            id=self.id,
             resource_quotas=self.resource_quotas,
             runtime_releases=self.runtime_releases,
             scheduler_machines=self.scheduler_machines,
@@ -224,7 +212,6 @@ def get_deployment_options(cloud_provider: Optional[_builtins.str] = None,
         deployment_type=pulumi.get(__ret__, 'deployment_type'),
         executor=pulumi.get(__ret__, 'executor'),
         executors=pulumi.get(__ret__, 'executors'),
-        id=pulumi.get(__ret__, 'id'),
         resource_quotas=pulumi.get(__ret__, 'resource_quotas'),
         runtime_releases=pulumi.get(__ret__, 'runtime_releases'),
         scheduler_machines=pulumi.get(__ret__, 'scheduler_machines'),
@@ -272,7 +259,6 @@ def get_deployment_options_output(cloud_provider: pulumi.Input[Optional[Optional
         deployment_type=pulumi.get(__response__, 'deployment_type'),
         executor=pulumi.get(__response__, 'executor'),
         executors=pulumi.get(__response__, 'executors'),
-        id=pulumi.get(__response__, 'id'),
         resource_quotas=pulumi.get(__response__, 'resource_quotas'),
         runtime_releases=pulumi.get(__response__, 'runtime_releases'),
         scheduler_machines=pulumi.get(__response__, 'scheduler_machines'),

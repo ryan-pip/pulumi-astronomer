@@ -53,10 +53,6 @@ export interface GetApiTokensArgs {
 export interface GetApiTokensResult {
     readonly apiTokens: outputs.GetApiTokensApiToken[];
     readonly deploymentId?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly includeOnlyOrganizationTokens?: boolean;
     readonly workspaceId?: string;
 }

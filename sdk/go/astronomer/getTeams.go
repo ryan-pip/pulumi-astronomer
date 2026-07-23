@@ -63,8 +63,6 @@ type GetTeamsArgs struct {
 
 // A collection of values returned by getTeams.
 type GetTeamsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id    string         `pulumi:"id"`
 	Names []string       `pulumi:"names"`
 	Teams []GetTeamsTeam `pulumi:"teams"`
 }
@@ -100,11 +98,6 @@ func (o GetTeamsResultOutput) ToGetTeamsResultOutput() GetTeamsResultOutput {
 
 func (o GetTeamsResultOutput) ToGetTeamsResultOutputWithContext(ctx context.Context) GetTeamsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetTeamsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetTeamsResultOutput) Names() pulumi.StringArrayOutput {

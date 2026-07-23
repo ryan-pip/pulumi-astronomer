@@ -27,7 +27,7 @@ class GetNotificationChannelsResult:
     """
     A collection of values returned by getNotificationChannels.
     """
-    def __init__(__self__, channel_types=None, deployment_ids=None, entity_type=None, id=None, notification_channel_ids=None, notification_channels=None, workspace_ids=None):
+    def __init__(__self__, channel_types=None, deployment_ids=None, entity_type=None, notification_channel_ids=None, notification_channels=None, workspace_ids=None):
         if channel_types and not isinstance(channel_types, list):
             raise TypeError("Expected argument 'channel_types' to be a list")
         pulumi.set(__self__, "channel_types", channel_types)
@@ -37,9 +37,6 @@ class GetNotificationChannelsResult:
         if entity_type and not isinstance(entity_type, str):
             raise TypeError("Expected argument 'entity_type' to be a str")
         pulumi.set(__self__, "entity_type", entity_type)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if notification_channel_ids and not isinstance(notification_channel_ids, list):
             raise TypeError("Expected argument 'notification_channel_ids' to be a list")
         pulumi.set(__self__, "notification_channel_ids", notification_channel_ids)
@@ -66,14 +63,6 @@ class GetNotificationChannelsResult:
         return pulumi.get(self, "entity_type")
 
     @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
     @pulumi.getter(name="notificationChannelIds")
     def notification_channel_ids(self) -> Optional[Sequence[_builtins.str]]:
         return pulumi.get(self, "notification_channel_ids")
@@ -98,7 +87,6 @@ class AwaitableGetNotificationChannelsResult(GetNotificationChannelsResult):
             channel_types=self.channel_types,
             deployment_ids=self.deployment_ids,
             entity_type=self.entity_type,
-            id=self.id,
             notification_channel_ids=self.notification_channel_ids,
             notification_channels=self.notification_channels,
             workspace_ids=self.workspace_ids)
@@ -128,7 +116,6 @@ def get_notification_channels(channel_types: Optional[Sequence[_builtins.str]] =
         channel_types=pulumi.get(__ret__, 'channel_types'),
         deployment_ids=pulumi.get(__ret__, 'deployment_ids'),
         entity_type=pulumi.get(__ret__, 'entity_type'),
-        id=pulumi.get(__ret__, 'id'),
         notification_channel_ids=pulumi.get(__ret__, 'notification_channel_ids'),
         notification_channels=pulumi.get(__ret__, 'notification_channels'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
@@ -155,7 +142,6 @@ def get_notification_channels_output(channel_types: pulumi.Input[Optional[Option
         channel_types=pulumi.get(__response__, 'channel_types'),
         deployment_ids=pulumi.get(__response__, 'deployment_ids'),
         entity_type=pulumi.get(__response__, 'entity_type'),
-        id=pulumi.get(__response__, 'id'),
         notification_channel_ids=pulumi.get(__response__, 'notification_channel_ids'),
         notification_channels=pulumi.get(__response__, 'notification_channels'),
         workspace_ids=pulumi.get(__response__, 'workspace_ids')))

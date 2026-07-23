@@ -195,25 +195,18 @@ namespace RyanPip.Astronomer
     [OutputType]
     public sealed class GetWorkspacesResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> Names;
         public readonly ImmutableArray<string> WorkspaceIds;
         public readonly ImmutableArray<Outputs.GetWorkspacesWorkspaceResult> Workspaces;
 
         [OutputConstructor]
         private GetWorkspacesResult(
-            string id,
-
             ImmutableArray<string> names,
 
             ImmutableArray<string> workspaceIds,
 
             ImmutableArray<Outputs.GetWorkspacesWorkspaceResult> workspaces)
         {
-            Id = id;
             Names = names;
             WorkspaceIds = workspaceIds;
             Workspaces = workspaces;

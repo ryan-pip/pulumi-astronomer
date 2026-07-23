@@ -70,11 +70,9 @@ type GetUsersListArgs struct {
 
 // A collection of values returned by getUsersList.
 type GetUsersListResult struct {
-	DeploymentId *string `pulumi:"deploymentId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id          string             `pulumi:"id"`
-	Users       []GetUsersListUser `pulumi:"users"`
-	WorkspaceId *string            `pulumi:"workspaceId"`
+	DeploymentId *string            `pulumi:"deploymentId"`
+	Users        []GetUsersListUser `pulumi:"users"`
+	WorkspaceId  *string            `pulumi:"workspaceId"`
 }
 
 func GetUsersListOutput(ctx *pulumi.Context, args GetUsersListOutputArgs, opts ...pulumi.InvokeOption) GetUsersListResultOutput {
@@ -113,11 +111,6 @@ func (o GetUsersListResultOutput) ToGetUsersListResultOutputWithContext(ctx cont
 
 func (o GetUsersListResultOutput) DeploymentId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetUsersListResult) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetUsersListResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetUsersListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetUsersListResultOutput) Users() GetUsersListUserArrayOutput {

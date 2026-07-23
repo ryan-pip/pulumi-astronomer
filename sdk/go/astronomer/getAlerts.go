@@ -102,9 +102,7 @@ type LookupAlertsResult struct {
 	Alerts        []GetAlertsAlert `pulumi:"alerts"`
 	DeploymentIds []string         `pulumi:"deploymentIds"`
 	EntityType    *string          `pulumi:"entityType"`
-	// The provider-assigned unique ID for this managed resource.
-	Id           string   `pulumi:"id"`
-	WorkspaceIds []string `pulumi:"workspaceIds"`
+	WorkspaceIds  []string         `pulumi:"workspaceIds"`
 }
 
 func LookupAlertsOutput(ctx *pulumi.Context, args LookupAlertsOutputArgs, opts ...pulumi.InvokeOption) LookupAlertsResultOutput {
@@ -162,11 +160,6 @@ func (o LookupAlertsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
 
 func (o LookupAlertsResultOutput) EntityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAlertsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupAlertsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAlertsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupAlertsResultOutput) WorkspaceIds() pulumi.StringArrayOutput {

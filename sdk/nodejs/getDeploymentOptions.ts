@@ -89,10 +89,6 @@ export interface GetDeploymentOptionsResult {
      */
     readonly executors: string[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Resource quota options
      */
     readonly resourceQuotas: outputs.GetDeploymentOptionsResourceQuotas;

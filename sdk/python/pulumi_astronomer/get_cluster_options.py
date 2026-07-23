@@ -27,16 +27,13 @@ class GetClusterOptionsResult:
     """
     A collection of values returned by getClusterOptions.
     """
-    def __init__(__self__, cloud_provider=None, cluster_options=None, id=None, type=None):
+    def __init__(__self__, cloud_provider=None, cluster_options=None, type=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         if cluster_options and not isinstance(cluster_options, list):
             raise TypeError("Expected argument 'cluster_options' to be a list")
         pulumi.set(__self__, "cluster_options", cluster_options)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -56,14 +53,6 @@ class GetClusterOptionsResult:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter
     def type(self) -> _builtins.str:
         return pulumi.get(self, "type")
 
@@ -76,7 +65,6 @@ class AwaitableGetClusterOptionsResult(GetClusterOptionsResult):
         return GetClusterOptionsResult(
             cloud_provider=self.cloud_provider,
             cluster_options=self.cluster_options,
-            id=self.id,
             type=self.type)
 
 
@@ -110,7 +98,6 @@ def get_cluster_options(cloud_provider: Optional[_builtins.str] = None,
     return AwaitableGetClusterOptionsResult(
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
         cluster_options=pulumi.get(__ret__, 'cluster_options'),
-        id=pulumi.get(__ret__, 'id'),
         type=pulumi.get(__ret__, 'type'))
 def get_cluster_options_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -141,5 +128,4 @@ def get_cluster_options_output(cloud_provider: pulumi.Input[Optional[Optional[_b
     return __ret__.apply(lambda __response__: GetClusterOptionsResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
         cluster_options=pulumi.get(__response__, 'cluster_options'),
-        id=pulumi.get(__response__, 'id'),
         type=pulumi.get(__response__, 'type')))

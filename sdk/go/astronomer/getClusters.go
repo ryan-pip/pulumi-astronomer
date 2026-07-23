@@ -73,9 +73,7 @@ type GetClustersResult struct {
 	// Clusters cloud provider. Allowed values: `AWS`, `GCP`, `AZURE`.
 	CloudProvider *string              `pulumi:"cloudProvider"`
 	Clusters      []GetClustersCluster `pulumi:"clusters"`
-	// The provider-assigned unique ID for this managed resource.
-	Id    string   `pulumi:"id"`
-	Names []string `pulumi:"names"`
+	Names         []string             `pulumi:"names"`
 }
 
 func GetClustersOutput(ctx *pulumi.Context, args GetClustersOutputArgs, opts ...pulumi.InvokeOption) GetClustersResultOutput {
@@ -120,11 +118,6 @@ func (o GetClustersResultOutput) CloudProvider() pulumi.StringPtrOutput {
 
 func (o GetClustersResultOutput) Clusters() GetClustersClusterArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersCluster { return v.Clusters }).(GetClustersClusterArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetClustersResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetClustersResultOutput) Names() pulumi.StringArrayOutput {

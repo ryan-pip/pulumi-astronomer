@@ -298,10 +298,6 @@ namespace RyanPip.Astronomer
         public readonly ImmutableArray<Outputs.GetAlertsAlertResult> Alerts;
         public readonly ImmutableArray<string> DeploymentIds;
         public readonly string? EntityType;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> WorkspaceIds;
 
         [OutputConstructor]
@@ -316,8 +312,6 @@ namespace RyanPip.Astronomer
 
             string? entityType,
 
-            string id,
-
             ImmutableArray<string> workspaceIds)
         {
             AlertIds = alertIds;
@@ -325,7 +319,6 @@ namespace RyanPip.Astronomer
             Alerts = alerts;
             DeploymentIds = deploymentIds;
             EntityType = entityType;
-            Id = id;
             WorkspaceIds = workspaceIds;
         }
     }

@@ -231,10 +231,6 @@ namespace RyanPip.Astronomer
     {
         public readonly ImmutableArray<string> DeploymentIds;
         public readonly ImmutableArray<Outputs.GetDeploymentsDeploymentResult> Deployments;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> Names;
         public readonly ImmutableArray<string> WorkspaceIds;
 
@@ -244,15 +240,12 @@ namespace RyanPip.Astronomer
 
             ImmutableArray<Outputs.GetDeploymentsDeploymentResult> deployments,
 
-            string id,
-
             ImmutableArray<string> names,
 
             ImmutableArray<string> workspaceIds)
         {
             DeploymentIds = deploymentIds;
             Deployments = deployments;
-            Id = id;
             Names = names;
             WorkspaceIds = workspaceIds;
         }

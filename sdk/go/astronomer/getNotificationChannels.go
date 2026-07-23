@@ -35,11 +35,9 @@ type GetNotificationChannelsArgs struct {
 
 // A collection of values returned by getNotificationChannels.
 type GetNotificationChannelsResult struct {
-	ChannelTypes  []string `pulumi:"channelTypes"`
-	DeploymentIds []string `pulumi:"deploymentIds"`
-	EntityType    *string  `pulumi:"entityType"`
-	// The provider-assigned unique ID for this managed resource.
-	Id                     string                                       `pulumi:"id"`
+	ChannelTypes           []string                                     `pulumi:"channelTypes"`
+	DeploymentIds          []string                                     `pulumi:"deploymentIds"`
+	EntityType             *string                                      `pulumi:"entityType"`
 	NotificationChannelIds []string                                     `pulumi:"notificationChannelIds"`
 	NotificationChannels   []GetNotificationChannelsNotificationChannel `pulumi:"notificationChannels"`
 	WorkspaceIds           []string                                     `pulumi:"workspaceIds"`
@@ -92,11 +90,6 @@ func (o GetNotificationChannelsResultOutput) DeploymentIds() pulumi.StringArrayO
 
 func (o GetNotificationChannelsResultOutput) EntityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetNotificationChannelsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetNotificationChannelsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetNotificationChannelsResultOutput) NotificationChannelIds() pulumi.StringArrayOutput {

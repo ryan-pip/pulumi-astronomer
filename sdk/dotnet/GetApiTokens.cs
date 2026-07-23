@@ -174,10 +174,6 @@ namespace RyanPip.Astronomer
     {
         public readonly ImmutableArray<Outputs.GetApiTokensApiTokenResult> ApiTokens;
         public readonly string? DeploymentId;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly bool? IncludeOnlyOrganizationTokens;
         public readonly string? WorkspaceId;
 
@@ -187,15 +183,12 @@ namespace RyanPip.Astronomer
 
             string? deploymentId,
 
-            string id,
-
             bool? includeOnlyOrganizationTokens,
 
             string? workspaceId)
         {
             ApiTokens = apiTokens;
             DeploymentId = deploymentId;
-            Id = id;
             IncludeOnlyOrganizationTokens = includeOnlyOrganizationTokens;
             WorkspaceId = workspaceId;
         }

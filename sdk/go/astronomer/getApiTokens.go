@@ -74,12 +74,10 @@ type GetApiTokensArgs struct {
 
 // A collection of values returned by getApiTokens.
 type GetApiTokensResult struct {
-	ApiTokens    []GetApiTokensApiToken `pulumi:"apiTokens"`
-	DeploymentId *string                `pulumi:"deploymentId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id                            string  `pulumi:"id"`
-	IncludeOnlyOrganizationTokens *bool   `pulumi:"includeOnlyOrganizationTokens"`
-	WorkspaceId                   *string `pulumi:"workspaceId"`
+	ApiTokens                     []GetApiTokensApiToken `pulumi:"apiTokens"`
+	DeploymentId                  *string                `pulumi:"deploymentId"`
+	IncludeOnlyOrganizationTokens *bool                  `pulumi:"includeOnlyOrganizationTokens"`
+	WorkspaceId                   *string                `pulumi:"workspaceId"`
 }
 
 func GetApiTokensOutput(ctx *pulumi.Context, args GetApiTokensOutputArgs, opts ...pulumi.InvokeOption) GetApiTokensResultOutput {
@@ -123,11 +121,6 @@ func (o GetApiTokensResultOutput) ApiTokens() GetApiTokensApiTokenArrayOutput {
 
 func (o GetApiTokensResultOutput) DeploymentId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetApiTokensResult) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetApiTokensResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApiTokensResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetApiTokensResultOutput) IncludeOnlyOrganizationTokens() pulumi.BoolPtrOutput {

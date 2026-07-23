@@ -99,10 +99,6 @@ export interface GetEnvironmentObjectsResult {
     readonly deploymentId?: string;
     readonly environmentObjects: outputs.GetEnvironmentObjectsEnvironmentObject[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Filter by object key
      */
     readonly objectKey?: string;

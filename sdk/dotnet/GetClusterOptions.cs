@@ -159,10 +159,6 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string? CloudProvider;
         public readonly ImmutableArray<Outputs.GetClusterOptionsClusterOptionResult> ClusterOptions;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string Type;
 
         [OutputConstructor]
@@ -171,13 +167,10 @@ namespace RyanPip.Astronomer
 
             ImmutableArray<Outputs.GetClusterOptionsClusterOptionResult> clusterOptions,
 
-            string id,
-
             string type)
         {
             CloudProvider = cloudProvider;
             ClusterOptions = clusterOptions;
-            Id = id;
             Type = type;
         }
     }

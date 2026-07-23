@@ -27,7 +27,7 @@ class GetAlertsResult:
     """
     A collection of values returned by getAlerts.
     """
-    def __init__(__self__, alert_ids=None, alert_types=None, alerts=None, deployment_ids=None, entity_type=None, id=None, workspace_ids=None):
+    def __init__(__self__, alert_ids=None, alert_types=None, alerts=None, deployment_ids=None, entity_type=None, workspace_ids=None):
         if alert_ids and not isinstance(alert_ids, list):
             raise TypeError("Expected argument 'alert_ids' to be a list")
         pulumi.set(__self__, "alert_ids", alert_ids)
@@ -43,9 +43,6 @@ class GetAlertsResult:
         if entity_type and not isinstance(entity_type, str):
             raise TypeError("Expected argument 'entity_type' to be a str")
         pulumi.set(__self__, "entity_type", entity_type)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if workspace_ids and not isinstance(workspace_ids, list):
             raise TypeError("Expected argument 'workspace_ids' to be a list")
         pulumi.set(__self__, "workspace_ids", workspace_ids)
@@ -76,14 +73,6 @@ class GetAlertsResult:
         return pulumi.get(self, "entity_type")
 
     @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
     @pulumi.getter(name="workspaceIds")
     def workspace_ids(self) -> Optional[Sequence[_builtins.str]]:
         return pulumi.get(self, "workspace_ids")
@@ -100,7 +89,6 @@ class AwaitableGetAlertsResult(GetAlertsResult):
             alerts=self.alerts,
             deployment_ids=self.deployment_ids,
             entity_type=self.entity_type,
-            id=self.id,
             workspace_ids=self.workspace_ids)
 
 
@@ -146,7 +134,6 @@ def get_alerts(alert_ids: Optional[Sequence[_builtins.str]] = None,
         alerts=pulumi.get(__ret__, 'alerts'),
         deployment_ids=pulumi.get(__ret__, 'deployment_ids'),
         entity_type=pulumi.get(__ret__, 'entity_type'),
-        id=pulumi.get(__ret__, 'id'),
         workspace_ids=pulumi.get(__ret__, 'workspace_ids'))
 def get_alerts_output(alert_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                       alert_types: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
@@ -189,5 +176,4 @@ def get_alerts_output(alert_ids: pulumi.Input[Optional[Optional[Sequence[_builti
         alerts=pulumi.get(__response__, 'alerts'),
         deployment_ids=pulumi.get(__response__, 'deployment_ids'),
         entity_type=pulumi.get(__response__, 'entity_type'),
-        id=pulumi.get(__response__, 'id'),
         workspace_ids=pulumi.get(__response__, 'workspace_ids')))

@@ -10577,10 +10577,6 @@
                     "entityType": {
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "workspaceIds": {
                         "items": {
                             "type": "string"
@@ -10589,8 +10585,7 @@
                     }
                 },
                 "required": [
-                    "alerts",
-                    "id"
+                    "alerts"
                 ],
                 "type": "object"
             }
@@ -10721,10 +10716,6 @@
                     "deploymentId": {
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "includeOnlyOrganizationTokens": {
                         "type": "boolean"
                     },
@@ -10733,8 +10724,7 @@
                     }
                 },
                 "required": [
-                    "apiTokens",
-                    "id"
+                    "apiTokens"
                 ],
                 "type": "object"
             }
@@ -10958,18 +10948,13 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "type": {
                         "type": "string"
                     }
                 },
                 "required": [
                     "clusterOptions",
-                    "type",
-                    "id"
+                    "type"
                 ],
                 "type": "object"
             }
@@ -11005,10 +10990,6 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "names": {
                         "items": {
                             "type": "string"
@@ -11017,8 +10998,7 @@
                     }
                 },
                 "required": [
-                    "clusters",
-                    "id"
+                    "clusters"
                 ],
                 "type": "object"
             }
@@ -11434,10 +11414,6 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "resourceQuotas": {
                         "$ref": "#/types/astronomer:index/getDeploymentOptionsResourceQuotas:getDeploymentOptionsResourceQuotas",
                         "description": "Resource quota options\n"
@@ -11482,8 +11458,7 @@
                     "schedulerMachines",
                     "workerMachines",
                     "workerQueues",
-                    "workloadIdentityOptions",
-                    "id"
+                    "workloadIdentityOptions"
                 ],
                 "type": "object"
             }
@@ -11529,10 +11504,6 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "names": {
                         "items": {
                             "type": "string"
@@ -11547,8 +11518,7 @@
                     }
                 },
                 "required": [
-                    "deployments",
-                    "id"
+                    "deployments"
                 ],
                 "type": "object"
             }
@@ -11797,10 +11767,6 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "objectKey": {
                         "description": "Filter by object key\n",
                         "type": "string"
@@ -11823,8 +11789,7 @@
                     }
                 },
                 "required": [
-                    "environmentObjects",
-                    "id"
+                    "environmentObjects"
                 ],
                 "type": "object"
             }
@@ -11976,10 +11941,6 @@
                     "entityType": {
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "notificationChannelIds": {
                         "items": {
                             "type": "string"
@@ -12000,8 +11961,7 @@
                     }
                 },
                 "required": [
-                    "notificationChannels",
-                    "id"
+                    "notificationChannels"
                 ],
                 "type": "object"
             }
@@ -12205,10 +12165,6 @@
             "outputs": {
                 "description": "A collection of values returned by getTeams.\n",
                 "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "names": {
                         "items": {
                             "type": "string"
@@ -12223,8 +12179,7 @@
                     }
                 },
                 "required": [
-                    "teams",
-                    "id"
+                    "teams"
                 ],
                 "type": "object"
             }
@@ -12337,10 +12292,6 @@
                     "deploymentId": {
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "users": {
                         "items": {
                             "$ref": "#/types/astronomer:index/getUsersUser:getUsersUser"
@@ -12352,8 +12303,7 @@
                     }
                 },
                 "required": [
-                    "users",
-                    "id"
+                    "users"
                 ],
                 "type": "object"
             }
@@ -12378,10 +12328,6 @@
                     "deploymentId": {
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "users": {
                         "items": {
                             "$ref": "#/types/astronomer:index/getUsersListUser:getUsersListUser"
@@ -12393,8 +12339,7 @@
                     }
                 },
                 "required": [
-                    "users",
-                    "id"
+                    "users"
                 ],
                 "type": "object"
             }
@@ -12486,10 +12431,6 @@
             "outputs": {
                 "description": "A collection of values returned by getWorkspaces.\n",
                 "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "names": {
                         "items": {
                             "type": "string"
@@ -12510,8 +12451,7 @@
                     }
                 },
                 "required": [
-                    "workspaces",
-                    "id"
+                    "workspaces"
                 ],
                 "type": "object"
             }

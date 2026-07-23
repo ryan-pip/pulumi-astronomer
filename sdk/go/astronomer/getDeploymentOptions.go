@@ -95,8 +95,6 @@ type GetDeploymentOptionsResult struct {
 	Executor *string `pulumi:"executor"`
 	// Available executors
 	Executors []string `pulumi:"executors"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Resource quota options
 	ResourceQuotas GetDeploymentOptionsResourceQuotas `pulumi:"resourceQuotas"`
 	// Available Astro Runtime versions
@@ -174,11 +172,6 @@ func (o GetDeploymentOptionsResultOutput) Executor() pulumi.StringPtrOutput {
 // Available executors
 func (o GetDeploymentOptionsResultOutput) Executors() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeploymentOptionsResult) []string { return v.Executors }).(pulumi.StringArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetDeploymentOptionsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDeploymentOptionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Resource quota options

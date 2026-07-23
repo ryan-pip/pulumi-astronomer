@@ -27,16 +27,13 @@ class GetClustersResult:
     """
     A collection of values returned by getClusters.
     """
-    def __init__(__self__, cloud_provider=None, clusters=None, id=None, names=None):
+    def __init__(__self__, cloud_provider=None, clusters=None, names=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         if clusters and not isinstance(clusters, list):
             raise TypeError("Expected argument 'clusters' to be a list")
         pulumi.set(__self__, "clusters", clusters)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
         pulumi.set(__self__, "names", names)
@@ -56,14 +53,6 @@ class GetClustersResult:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter
     def names(self) -> Optional[Sequence[_builtins.str]]:
         return pulumi.get(self, "names")
 
@@ -76,7 +65,6 @@ class AwaitableGetClustersResult(GetClustersResult):
         return GetClustersResult(
             cloud_provider=self.cloud_provider,
             clusters=self.clusters,
-            id=self.id,
             names=self.names)
 
 
@@ -110,7 +98,6 @@ def get_clusters(cloud_provider: Optional[_builtins.str] = None,
     return AwaitableGetClustersResult(
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
         clusters=pulumi.get(__ret__, 'clusters'),
-        id=pulumi.get(__ret__, 'id'),
         names=pulumi.get(__ret__, 'names'))
 def get_clusters_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         names: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
@@ -141,5 +128,4 @@ def get_clusters_output(cloud_provider: pulumi.Input[Optional[Optional[_builtins
     return __ret__.apply(lambda __response__: GetClustersResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
         clusters=pulumi.get(__response__, 'clusters'),
-        id=pulumi.get(__response__, 'id'),
         names=pulumi.get(__response__, 'names')))

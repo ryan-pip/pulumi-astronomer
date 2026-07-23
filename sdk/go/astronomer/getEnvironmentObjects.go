@@ -116,8 +116,6 @@ type GetEnvironmentObjectsResult struct {
 	// Filter by Deployment ID
 	DeploymentId       *string                                  `pulumi:"deploymentId"`
 	EnvironmentObjects []GetEnvironmentObjectsEnvironmentObject `pulumi:"environmentObjects"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Filter by object key
 	ObjectKey *string `pulumi:"objectKey"`
 	// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
@@ -183,11 +181,6 @@ func (o GetEnvironmentObjectsResultOutput) EnvironmentObjects() GetEnvironmentOb
 	return o.ApplyT(func(v GetEnvironmentObjectsResult) []GetEnvironmentObjectsEnvironmentObject {
 		return v.EnvironmentObjects
 	}).(GetEnvironmentObjectsEnvironmentObjectArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetEnvironmentObjectsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvironmentObjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Filter by object key

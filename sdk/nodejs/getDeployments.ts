@@ -53,10 +53,6 @@ export interface GetDeploymentsArgs {
 export interface GetDeploymentsResult {
     readonly deploymentIds?: string[];
     readonly deployments: outputs.GetDeploymentsDeployment[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly names?: string[];
     readonly workspaceIds?: string[];
 }

@@ -41,10 +41,6 @@ export interface GetNotificationChannelsResult {
     readonly channelTypes?: string[];
     readonly deploymentIds?: string[];
     readonly entityType?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly notificationChannelIds?: string[];
     readonly notificationChannels: outputs.GetNotificationChannelsNotificationChannel[];
     readonly workspaceIds?: string[];

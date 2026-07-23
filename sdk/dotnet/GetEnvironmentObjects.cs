@@ -310,10 +310,6 @@ namespace RyanPip.Astronomer
         public readonly string? DeploymentId;
         public readonly ImmutableArray<Outputs.GetEnvironmentObjectsEnvironmentObjectResult> EnvironmentObjects;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Filter by object key
         /// </summary>
         public readonly string? ObjectKey;
@@ -340,8 +336,6 @@ namespace RyanPip.Astronomer
 
             ImmutableArray<Outputs.GetEnvironmentObjectsEnvironmentObjectResult> environmentObjects,
 
-            string id,
-
             string? objectKey,
 
             string? objectType,
@@ -354,7 +348,6 @@ namespace RyanPip.Astronomer
         {
             DeploymentId = deploymentId;
             EnvironmentObjects = environmentObjects;
-            Id = id;
             ObjectKey = objectKey;
             ObjectType = objectType;
             ResolveLinked = resolveLinked;

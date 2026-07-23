@@ -51,10 +51,6 @@ export interface GetUsersArgs {
  */
 export interface GetUsersResult {
     readonly deploymentId?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly users: outputs.GetUsersUser[];
     readonly workspaceId?: string;
 }

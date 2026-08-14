@@ -75,7 +75,7 @@ class GetEnvironmentObjectsResult:
     @pulumi.getter(name="objectType")
     def object_type(self) -> Optional[_builtins.str]:
         """
-        Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         """
         return pulumi.get(self, "object_type")
 
@@ -155,7 +155,7 @@ def get_environment_objects(deployment_id: Optional[_builtins.str] = None,
 
     :param _builtins.str deployment_id: Filter by Deployment ID
     :param _builtins.str object_key: Filter by object key
-    :param _builtins.str object_type: Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+    :param _builtins.str object_type: Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
     :param _builtins.bool resolve_linked: If true, resolves and returns environment objects linked to the specified Deployment or Workspace
     :param _builtins.bool show_secrets: If true, returns the actual values of secret fields in the response
     :param _builtins.str workspace_id: Filter by Workspace ID
@@ -214,7 +214,7 @@ def get_environment_objects_output(deployment_id: pulumi.Input[Optional[Optional
 
     :param _builtins.str deployment_id: Filter by Deployment ID
     :param _builtins.str object_key: Filter by object key
-    :param _builtins.str object_type: Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+    :param _builtins.str object_type: Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
     :param _builtins.bool resolve_linked: If true, resolves and returns environment objects linked to the specified Deployment or Workspace
     :param _builtins.bool show_secrets: If true, returns the actual values of secret fields in the response
     :param _builtins.str workspace_id: Filter by Workspace ID

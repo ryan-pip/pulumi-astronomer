@@ -29,6 +29,7 @@ class EnvironmentObjectArgs:
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]]] = None,
                  exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -49,20 +50,21 @@ class EnvironmentObjectArgs:
         The set of arguments for constructing a EnvironmentObject resource.
 
         :param pulumi.Input[_builtins.str] object_key: The key for the environment object
-        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         :param pulumi.Input[_builtins.str] scope: The scope of the environment object (WORKSPACE, DEPLOYMENT)
         :param pulumi.Input[_builtins.str] scope_entity_id: The ID of the scope entity where the environment object is created
         :param pulumi.Input[_builtins.str] auth_type: The type of authentication (only valid when object*type=METRICS*EXPORT). Values: AUTH_TOKEN, BASIC
         :param pulumi.Input[_builtins.str] auth_type_id: The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API
         :param pulumi.Input[_builtins.bool] auto_link_deployments: Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] basic_token: The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] description: The description of the environment object
         :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
-        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectLinkArgs']]] links: The Deployments linked to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] login: The username used for the connection (only valid when object_type=CONNECTION)
@@ -71,7 +73,7 @@ class EnvironmentObjectArgs:
         :param pulumi.Input[_builtins.str] schema: The schema for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] type: The connection type (required when object_type=CONNECTION). Immutable on the API; changing it forces resource replacement.
         :param pulumi.Input[_builtins.str] username: The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
-        :param pulumi.Input[_builtins.str] value: The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        :param pulumi.Input[_builtins.str] value: The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         pulumi.set(__self__, "object_key", object_key)
         pulumi.set(__self__, "object_type", object_type)
@@ -85,6 +87,8 @@ class EnvironmentObjectArgs:
             pulumi.set(__self__, "auto_link_deployments", auto_link_deployments)
         if basic_token is not None:
             pulumi.set(__self__, "basic_token", basic_token)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
         if exclude_links is not None:
@@ -134,7 +138,7 @@ class EnvironmentObjectArgs:
     @pulumi.getter(name="objectType")
     def object_type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         """
         return pulumi.get(self, "object_type")
 
@@ -216,6 +220,18 @@ class EnvironmentObjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The description of the environment object
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
     def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
@@ -290,7 +306,7 @@ class EnvironmentObjectArgs:
     @pulumi.getter(name="isSecret")
     def is_secret(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         """
         return pulumi.get(self, "is_secret")
 
@@ -398,7 +414,7 @@ class EnvironmentObjectArgs:
     @pulumi.getter
     def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -417,6 +433,7 @@ class _EnvironmentObjectState:
                  connection_auth_type: pulumi.Input[Optional['EnvironmentObjectConnectionAuthTypeArgs']] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  created_by: pulumi.Input[Optional['EnvironmentObjectCreatedByArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]]] = None,
                  exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -451,18 +468,19 @@ class _EnvironmentObjectState:
         :param pulumi.Input['EnvironmentObjectConnectionAuthTypeArgs'] connection_auth_type: The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)
         :param pulumi.Input[_builtins.str] created_at: Environment Object creation timestamp
         :param pulumi.Input['EnvironmentObjectCreatedByArgs'] created_by: Environment Object creator
+        :param pulumi.Input[_builtins.str] description: The description of the environment object
         :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
-        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectLinkArgs']]] links: The Deployments linked to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] login: The username used for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] object_key: The key for the environment object
-        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         :param pulumi.Input[_builtins.str] password: The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
         :param pulumi.Input[_builtins.int] port: The port for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] schema: The schema for the connection (only valid when object_type=CONNECTION)
@@ -474,7 +492,7 @@ class _EnvironmentObjectState:
         :param pulumi.Input[_builtins.str] updated_at: Environment Object last updated timestamp
         :param pulumi.Input['EnvironmentObjectUpdatedByArgs'] updated_by: Environment Object updater
         :param pulumi.Input[_builtins.str] username: The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
-        :param pulumi.Input[_builtins.str] value: The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        :param pulumi.Input[_builtins.str] value: The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -490,6 +508,8 @@ class _EnvironmentObjectState:
             pulumi.set(__self__, "created_at", created_at)
         if created_by is not None:
             pulumi.set(__self__, "created_by", created_by)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
         if exclude_links is not None:
@@ -625,6 +645,18 @@ class _EnvironmentObjectState:
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The description of the environment object
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
     def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
@@ -699,7 +731,7 @@ class _EnvironmentObjectState:
     @pulumi.getter(name="isSecret")
     def is_secret(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         """
         return pulumi.get(self, "is_secret")
 
@@ -759,7 +791,7 @@ class _EnvironmentObjectState:
     @pulumi.getter(name="objectType")
     def object_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         """
         return pulumi.get(self, "object_type")
 
@@ -903,7 +935,7 @@ class _EnvironmentObjectState:
     @pulumi.getter
     def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -922,6 +954,7 @@ class EnvironmentObject(pulumi.CustomResource):
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
                  exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -953,18 +986,19 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] auth_type_id: The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API
         :param pulumi.Input[_builtins.bool] auto_link_deployments: Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] basic_token: The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] description: The description of the environment object
         :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
-        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectLinkArgs', 'EnvironmentObjectLinkArgsDict']]]] links: The Deployments linked to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] login: The username used for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] object_key: The key for the environment object
-        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         :param pulumi.Input[_builtins.str] password: The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
         :param pulumi.Input[_builtins.int] port: The port for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] schema: The schema for the connection (only valid when object_type=CONNECTION)
@@ -972,7 +1006,7 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] scope_entity_id: The ID of the scope entity where the environment object is created
         :param pulumi.Input[_builtins.str] type: The connection type (required when object_type=CONNECTION). Immutable on the API; changing it forces resource replacement.
         :param pulumi.Input[_builtins.str] username: The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
-        :param pulumi.Input[_builtins.str] value: The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        :param pulumi.Input[_builtins.str] value: The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         ...
     @overload
@@ -1003,6 +1037,7 @@ class EnvironmentObject(pulumi.CustomResource):
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
                  exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1036,6 +1071,7 @@ class EnvironmentObject(pulumi.CustomResource):
             __props__.__dict__["auth_type_id"] = auth_type_id
             __props__.__dict__["auto_link_deployments"] = auto_link_deployments
             __props__.__dict__["basic_token"] = None if basic_token is None else pulumi.Output.secret(basic_token)
+            __props__.__dict__["description"] = description
             __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["exclude_links"] = exclude_links
             __props__.__dict__["exporter_type"] = exporter_type
@@ -1090,6 +1126,7 @@ class EnvironmentObject(pulumi.CustomResource):
             connection_auth_type: pulumi.Input[Optional[Union['EnvironmentObjectConnectionAuthTypeArgs', 'EnvironmentObjectConnectionAuthTypeArgsDict']]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             created_by: pulumi.Input[Optional[Union['EnvironmentObjectCreatedByArgs', 'EnvironmentObjectCreatedByArgsDict']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
             endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
             exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1128,18 +1165,19 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[Union['EnvironmentObjectConnectionAuthTypeArgs', 'EnvironmentObjectConnectionAuthTypeArgsDict']] connection_auth_type: The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)
         :param pulumi.Input[_builtins.str] created_at: Environment Object creation timestamp
         :param pulumi.Input[Union['EnvironmentObjectCreatedByArgs', 'EnvironmentObjectCreatedByArgsDict']] created_by: Environment Object creator
+        :param pulumi.Input[_builtins.str] description: The description of the environment object
         :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
-        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        :param pulumi.Input[_builtins.bool] is_secret: Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectLinkArgs', 'EnvironmentObjectLinkArgsDict']]]] links: The Deployments linked to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] login: The username used for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] object_key: The key for the environment object
-        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        :param pulumi.Input[_builtins.str] object_type: The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         :param pulumi.Input[_builtins.str] password: The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
         :param pulumi.Input[_builtins.int] port: The port for the connection (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] schema: The schema for the connection (only valid when object_type=CONNECTION)
@@ -1151,7 +1189,7 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] updated_at: Environment Object last updated timestamp
         :param pulumi.Input[Union['EnvironmentObjectUpdatedByArgs', 'EnvironmentObjectUpdatedByArgsDict']] updated_by: Environment Object updater
         :param pulumi.Input[_builtins.str] username: The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
-        :param pulumi.Input[_builtins.str] value: The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        :param pulumi.Input[_builtins.str] value: The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1164,6 +1202,7 @@ class EnvironmentObject(pulumi.CustomResource):
         __props__.__dict__["connection_auth_type"] = connection_auth_type
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["created_by"] = created_by
+        __props__.__dict__["description"] = description
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["exclude_links"] = exclude_links
         __props__.__dict__["exporter_type"] = exporter_type
@@ -1248,6 +1287,14 @@ class EnvironmentObject(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> pulumi.Output[_builtins.str]:
+        """
+        The description of the environment object
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
     def endpoint(self) -> pulumi.Output[_builtins.str]:
         """
         The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
@@ -1298,7 +1345,7 @@ class EnvironmentObject(pulumi.CustomResource):
     @pulumi.getter(name="isSecret")
     def is_secret(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         """
         return pulumi.get(self, "is_secret")
 
@@ -1338,7 +1385,7 @@ class EnvironmentObject(pulumi.CustomResource):
     @pulumi.getter(name="objectType")
     def object_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         """
         return pulumi.get(self, "object_type")
 
@@ -1434,7 +1481,7 @@ class EnvironmentObject(pulumi.CustomResource):
     @pulumi.getter
     def value(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 

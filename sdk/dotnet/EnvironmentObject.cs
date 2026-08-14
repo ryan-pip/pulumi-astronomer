@@ -59,6 +59,12 @@ namespace RyanPip.Astronomer
         public Output<Outputs.EnvironmentObjectCreatedBy> CreatedBy { get; private set; } = null!;
 
         /// <summary>
+        /// The description of the environment object
+        /// </summary>
+        [Output("description")]
+        public Output<string> Description { get; private set; } = null!;
+
+        /// <summary>
         /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         /// </summary>
         [Output("endpoint")]
@@ -95,7 +101,7 @@ namespace RyanPip.Astronomer
         public Output<string> Host { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         /// </summary>
         [Output("isSecret")]
         public Output<bool> IsSecret { get; private set; } = null!;
@@ -125,7 +131,7 @@ namespace RyanPip.Astronomer
         public Output<string> ObjectKey { get; private set; } = null!;
 
         /// <summary>
-        /// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        /// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         /// </summary>
         [Output("objectType")]
         public Output<string> ObjectType { get; private set; } = null!;
@@ -197,7 +203,7 @@ namespace RyanPip.Astronomer
         public Output<string> Username { get; private set; } = null!;
 
         /// <summary>
-        /// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        /// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         [Output("value")]
         public Output<string?> Value { get; private set; } = null!;
@@ -290,6 +296,12 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
+        /// The description of the environment object
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         /// </summary>
         [Input("endpoint")]
@@ -338,7 +350,7 @@ namespace RyanPip.Astronomer
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         /// </summary>
         [Input("isSecret")]
         public Input<bool>? IsSecret { get; set; }
@@ -380,7 +392,7 @@ namespace RyanPip.Astronomer
         public Input<string> ObjectKey { get; set; } = null!;
 
         /// <summary>
-        /// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        /// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         /// </summary>
         [Input("objectType", required: true)]
         public Input<string> ObjectType { get; set; } = null!;
@@ -441,7 +453,7 @@ namespace RyanPip.Astronomer
         private Input<string>? _value;
 
         /// <summary>
-        /// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        /// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public Input<string>? Value
         {
@@ -514,6 +526,12 @@ namespace RyanPip.Astronomer
         public Input<Inputs.EnvironmentObjectCreatedByGetArgs>? CreatedBy { get; set; }
 
         /// <summary>
+        /// The description of the environment object
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
         /// </summary>
         [Input("endpoint")]
@@ -562,7 +580,7 @@ namespace RyanPip.Astronomer
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+        /// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
         /// </summary>
         [Input("isSecret")]
         public Input<bool>? IsSecret { get; set; }
@@ -604,7 +622,7 @@ namespace RyanPip.Astronomer
         public Input<string>? ObjectKey { get; set; }
 
         /// <summary>
-        /// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+        /// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
         /// </summary>
         [Input("objectType")]
         public Input<string>? ObjectType { get; set; }
@@ -689,7 +707,7 @@ namespace RyanPip.Astronomer
         private Input<string>? _value;
 
         /// <summary>
-        /// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+        /// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public Input<string>? Value
         {

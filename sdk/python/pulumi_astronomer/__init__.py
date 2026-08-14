@@ -9,6 +9,7 @@ import typing
 from .agent_token import *
 from .alert import *
 from .alerts import *
+from .allowed_ip_address_ranges import *
 from .api_token import *
 from .cluster import *
 from .custom_role import *
@@ -81,6 +82,14 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/alerts:Alerts": "Alerts"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/allowedIpAddressRanges",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/allowedIpAddressRanges:AllowedIpAddressRanges": "AllowedIpAddressRanges"
   }
  },
  {

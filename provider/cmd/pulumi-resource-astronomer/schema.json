@@ -1492,7 +1492,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "Override value (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -5419,7 +5419,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -5514,6 +5514,10 @@
                     "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectCreatedBy:getEnvironmentObjectsEnvironmentObjectCreatedBy",
                     "description": "Environment Object creator\n"
                 },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the environment object\n"
+                },
                 "endpoint": {
                     "type": "string",
                     "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n"
@@ -5550,7 +5554,7 @@
                 },
                 "isSecret": {
                     "type": "boolean",
-                    "description": "Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)\n"
+                    "description": "Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n"
                 },
                 "labels": {
                     "type": "object",
@@ -5576,7 +5580,7 @@
                 },
                 "objectType": {
                     "type": "string",
-                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n"
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)\n"
                 },
                 "password": {
                     "type": "string",
@@ -5625,7 +5629,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -5638,6 +5642,7 @@
                 "connectionAuthType",
                 "createdAt",
                 "createdBy",
+                "description",
                 "endpoint",
                 "excludeLinks",
                 "exporterType",
@@ -5940,7 +5945,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -7825,6 +7830,46 @@
                 "type": "object"
             }
         },
+        "astronomer:index/allowedIpAddressRanges:AllowedIpAddressRanges": {
+            "description": "Manage an organization's IP access list as a single resource. This resource is authoritative: any allowed IP address ranges not present in \u003cspan pulumi-lang-nodejs=\"`ipAddressRanges`\" pulumi-lang-dotnet=\"`IpAddressRanges`\" pulumi-lang-go=\"`ipAddressRanges`\" pulumi-lang-python=\"`ip_address_ranges`\" pulumi-lang-yaml=\"`ipAddressRanges`\" pulumi-lang-java=\"`ipAddressRanges`\" pulumi-lang-hcl=\"`ip_address_ranges`\"\u003e`ipAddressRanges`\u003c/span\u003e are removed on apply.\n\n\u003e **Warning: risk of lockout.** While the access list is empty, access is unrestricted. Adding the first range turns enforcement on, and the API will reject that first apply with a \u003cspan pulumi-lang-nodejs=\"`400`\" pulumi-lang-dotnet=\"`400`\" pulumi-lang-go=\"`400`\" pulumi-lang-python=\"`400`\" pulumi-lang-yaml=\"`400`\" pulumi-lang-java=\"`400`\" pulumi-lang-hcl=\"`400`\"\u003e`400`\u003c/span\u003e unless the submitted ranges include the public IP address of the machine running Terraform (for example, a CI runner's egress IP). Once enforcement is on, the API does **not** protect you from removing the range that covers your own IP: doing so - or narrowing/replacing it so your IP is no longer covered - locks you (and this provider) out and will fail the apply mid-way. Always keep a range covering the machine that runs Terraform.\n\n\u003e **Note** Do not manage the IP access list with more than one \u003cspan pulumi-lang-nodejs=\"`astronomer.AllowedIpAddressRanges`\" pulumi-lang-dotnet=\"`astronomer.AllowedIpAddressRanges`\" pulumi-lang-go=\"`AllowedIpAddressRanges`\" pulumi-lang-python=\"`AllowedIpAddressRanges`\" pulumi-lang-yaml=\"`astronomer.AllowedIpAddressRanges`\" pulumi-lang-java=\"`astronomer.AllowedIpAddressRanges`\" pulumi-lang-hcl=\"`astro_allowed_ip_address_ranges`\"\u003e`astronomer.AllowedIpAddressRanges`\u003c/span\u003e resource. To adopt an access list that already exists, import it first (see below) rather than re-declaring it, otherwise the first apply will conflict with the existing ranges.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\n// The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n// single resource. It is authoritative: any ranges not listed here are removed on apply.\n//\n// The resource batches the underlying create/delete calls and automatically chunks requests that\n// exceed the API's per-request limit (1000 CIDRs).\nconst orgAllowList = new astronomer.AllowedIpAddressRanges(\"org_allow_list\", {ipAddressRanges: [\n    \"203.0.113.0/24\",\n    \"198.51.100.5/32\",\n]});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\n# The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n# single resource. It is authoritative: any ranges not listed here are removed on apply.\n#\n# The resource batches the underlying create/delete calls and automatically chunks requests that\n# exceed the API's per-request limit (1000 CIDRs).\norg_allow_list = astronomer.AllowedIpAddressRanges(\"org_allow_list\", ip_address_ranges=[\n    \"203.0.113.0/24\",\n    \"198.51.100.5/32\",\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n    // single resource. It is authoritative: any ranges not listed here are removed on apply.\n    //\n    // The resource batches the underlying create/delete calls and automatically chunks requests that\n    // exceed the API's per-request limit (1000 CIDRs).\n    var orgAllowList = new Astronomer.AllowedIpAddressRanges(\"org_allow_list\", new()\n    {\n        IpAddressRanges = new[]\n        {\n            \"203.0.113.0/24\",\n            \"198.51.100.5/32\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n\t\t// single resource. It is authoritative: any ranges not listed here are removed on apply.\n\t\t//\n\t\t// The resource batches the underlying create/delete calls and automatically chunks requests that\n\t\t// exceed the API's per-request limit (1000 CIDRs).\n\t\t_, err := astronomer.NewAllowedIpAddressRanges(ctx, \"org_allow_list\", \u0026astronomer.AllowedIpAddressRangesArgs{\n\t\t\tIpAddressRanges: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"203.0.113.0/24\"),\n\t\t\t\tpulumi.String(\"198.51.100.5/32\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\n# The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n# single resource. It is authoritative: any ranges not listed here are removed on apply.\n#\n# The resource batches the underlying create/delete calls and automatically chunks requests that\n# exceed the API's per-request limit (1000 CIDRs).\nresource \"astronomer_allowedipaddressranges\" \"org_allow_list\" {\n  ip_address_ranges = [\"203.0.113.0/24\", \"198.51.100.5/32\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ryan-pip.astronomer.AllowedIpAddressRanges;\nimport com.ryan-pip.astronomer.AllowedIpAddressRangesArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n        // single resource. It is authoritative: any ranges not listed here are removed on apply.\n        //\n        // The resource batches the underlying create/delete calls and automatically chunks requests that\n        // exceed the API's per-request limit (1000 CIDRs).\n        var orgAllowList = new AllowedIpAddressRanges(\"orgAllowList\", AllowedIpAddressRangesArgs.builder()\n            .ipAddressRanges(            \n                \"203.0.113.0/24\",\n                \"198.51.100.5/32\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The astro_allowed_ip_address_ranges resource manages an organization's full IP access list as a\n  # single resource. It is authoritative: any ranges not listed here are removed on apply.\n  #\n  # The resource batches the underlying create/delete calls and automatically chunks requests that\n  # exceed the API's per-request limit (1000 CIDRs).\n  orgAllowList:\n    type: astronomer:AllowedIpAddressRanges\n    name: org_allow_list\n    properties:\n      ipAddressRanges:\n        - 203.0.113.0/24\n        - 198.51.100.5/32\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe IP access list is a singleton per organization. Import it using the organization ID; the\nprovider reads the current set of ranges into ip_address_ranges. Import (rather than re-declaring)\nto adopt an access list that already exists, otherwise the first apply conflicts with the existing\nranges.\n\n```sh\n$ pulumi import astronomer:index/allowedIpAddressRanges:AllowedIpAddressRanges org_allow_list \u003corganization_id\u003e\n```\n\n",
+            "properties": {
+                "ipAddressRanges": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The organization's allowed IP address ranges, in CIDR format (e.g. `203.0.113.0/24`). This resource authoritatively manages the organization's full IP access list - ranges not included here are removed on apply. An empty set removes all restrictions.\n"
+                }
+            },
+            "required": [
+                "ipAddressRanges"
+            ],
+            "inputProperties": {
+                "ipAddressRanges": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The organization's allowed IP address ranges, in CIDR format (e.g. `203.0.113.0/24`). This resource authoritatively manages the organization's full IP access list - ranges not included here are removed on apply. An empty set removes all restrictions.\n"
+                }
+            },
+            "requiredInputs": [
+                "ipAddressRanges"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AllowedIpAddressRanges resources.\n",
+                "properties": {
+                    "ipAddressRanges": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The organization's allowed IP address ranges, in CIDR format (e.g. `203.0.113.0/24`). This resource authoritatively manages the organization's full IP access list - ranges not included here are removed on apply. An empty set removes all restrictions.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "astronomer:index/apiToken:ApiToken": {
             "description": "API Token resource\n\n",
             "properties": {
@@ -8633,7 +8678,7 @@
                 },
                 "originalAstroRuntimeVersion": {
                     "type": "string",
-                    "description": "Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.\n"
+                    "description": "Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.\n"
                 },
                 "region": {
                     "type": "string",
@@ -8756,6 +8801,7 @@
                 "originalAstroRuntimeVersion",
                 "region",
                 "scalingStatus",
+                "schedulerAu",
                 "schedulerCpu",
                 "schedulerMemory",
                 "schedulerReplicas",
@@ -8835,7 +8881,7 @@
                 },
                 "originalAstroRuntimeVersion": {
                     "type": "string",
-                    "description": "Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.\n"
+                    "description": "Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.\n"
                 },
                 "region": {
                     "type": "string",
@@ -9017,7 +9063,7 @@
                     },
                     "originalAstroRuntimeVersion": {
                         "type": "string",
-                        "description": "Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.\n"
+                        "description": "Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.\n"
                     },
                     "region": {
                         "type": "string",
@@ -9150,6 +9196,10 @@
                     "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
                     "description": "Environment Object creator\n"
                 },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the environment object\n"
+                },
                 "endpoint": {
                     "type": "string",
                     "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
@@ -9182,7 +9232,7 @@
                 },
                 "isSecret": {
                     "type": "boolean",
-                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
                 },
                 "labels": {
                     "type": "object",
@@ -9208,7 +9258,7 @@
                 },
                 "objectType": {
                     "type": "string",
-                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.\n"
                 },
                 "password": {
                     "type": "string",
@@ -9257,7 +9307,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -9267,6 +9317,7 @@
                 "connectionAuthType",
                 "createdAt",
                 "createdBy",
+                "description",
                 "endpoint",
                 "excludeLinks",
                 "exporterType",
@@ -9308,6 +9359,10 @@
                     "description": "The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n",
                     "secret": true
                 },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the environment object\n"
+                },
                 "endpoint": {
                     "type": "string",
                     "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
@@ -9340,7 +9395,7 @@
                 },
                 "isSecret": {
                     "type": "boolean",
-                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                    "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
                 },
                 "labels": {
                     "type": "object",
@@ -9366,7 +9421,7 @@
                 },
                 "objectType": {
                     "type": "string",
-                    "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                    "description": "The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.\n"
                 },
                 "password": {
                     "type": "string",
@@ -9399,7 +9454,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                    "description": "The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                     "secret": true
                 }
             },
@@ -9441,6 +9496,10 @@
                         "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
                         "description": "Environment Object creator\n"
                     },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the environment object\n"
+                    },
                     "endpoint": {
                         "type": "string",
                         "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
@@ -9473,7 +9532,7 @@
                     },
                     "isSecret": {
                         "type": "boolean",
-                        "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
+                        "description": "Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.\n"
                     },
                     "labels": {
                         "type": "object",
@@ -9499,7 +9558,7 @@
                     },
                     "objectType": {
                         "type": "string",
-                        "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.\n"
+                        "description": "The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.\n"
                     },
                     "password": {
                         "type": "string",
@@ -9548,7 +9607,7 @@
                     },
                     "value": {
                         "type": "string",
-                        "description": "The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)\n",
+                        "description": "The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                         "secret": true
                     }
                 },
@@ -11570,6 +11629,10 @@
                         "$ref": "#/types/astronomer:index/getEnvironmentObjectCreatedBy:getEnvironmentObjectCreatedBy",
                         "description": "Environment Object creator\n"
                     },
+                    "description": {
+                        "description": "The description of the environment object\n",
+                        "type": "string"
+                    },
                     "endpoint": {
                         "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n",
                         "type": "string"
@@ -11605,7 +11668,7 @@
                         "type": "string"
                     },
                     "isSecret": {
-                        "description": "Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)\n",
+                        "description": "Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                         "type": "boolean"
                     },
                     "labels": {
@@ -11631,7 +11694,7 @@
                         "type": "string"
                     },
                     "objectType": {
-                        "description": "The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n",
+                        "description": "The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)\n",
                         "type": "string"
                     },
                     "password": {
@@ -11680,7 +11743,7 @@
                         "type": "string"
                     },
                     "value": {
-                        "description": "The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)\n",
+                        "description": "The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)\n",
                         "secret": true,
                         "type": "string"
                     }
@@ -11693,6 +11756,7 @@
                     "connectionAuthType",
                     "createdAt",
                     "createdBy",
+                    "description",
                     "endpoint",
                     "excludeLinks",
                     "exporterType",
@@ -11737,7 +11801,7 @@
                     },
                     "objectType": {
                         "type": "string",
-                        "description": "Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n"
+                        "description": "Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)\n"
                     },
                     "resolveLinked": {
                         "type": "boolean",
@@ -11772,7 +11836,7 @@
                         "type": "string"
                     },
                     "objectType": {
-                        "description": "Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)\n",
+                        "description": "Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)\n",
                         "type": "string"
                     },
                     "resolveLinked": {

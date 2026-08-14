@@ -738,7 +738,7 @@ export interface EnvironmentObjectLinkOverrides {
      */
     username?: pulumi.Input<string | undefined>;
     /**
-     * Override value (only valid when object*type=AIRFLOW*VARIABLE)
+     * Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value?: pulumi.Input<string | undefined>;
 }

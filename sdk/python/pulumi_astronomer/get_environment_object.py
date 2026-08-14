@@ -27,7 +27,7 @@ class GetEnvironmentObjectResult:
     """
     A collection of values returned by getEnvironmentObject.
     """
-    def __init__(__self__, auth_type=None, auth_type_id=None, auto_link_deployments=None, basic_token=None, connection_auth_type=None, created_at=None, created_by=None, endpoint=None, exclude_links=None, exporter_type=None, extra=None, headers=None, host=None, id=None, is_secret=None, labels=None, links=None, login=None, object_key=None, object_type=None, password=None, port=None, schema=None, scope=None, scope_entity_id=None, source_scope=None, source_scope_entity_id=None, type=None, updated_at=None, updated_by=None, username=None, value=None):
+    def __init__(__self__, auth_type=None, auth_type_id=None, auto_link_deployments=None, basic_token=None, connection_auth_type=None, created_at=None, created_by=None, description=None, endpoint=None, exclude_links=None, exporter_type=None, extra=None, headers=None, host=None, id=None, is_secret=None, labels=None, links=None, login=None, object_key=None, object_type=None, password=None, port=None, schema=None, scope=None, scope_entity_id=None, source_scope=None, source_scope_entity_id=None, type=None, updated_at=None, updated_by=None, username=None, value=None):
         if auth_type and not isinstance(auth_type, str):
             raise TypeError("Expected argument 'auth_type' to be a str")
         pulumi.set(__self__, "auth_type", auth_type)
@@ -49,6 +49,9 @@ class GetEnvironmentObjectResult:
         if created_by and not isinstance(created_by, dict):
             raise TypeError("Expected argument 'created_by' to be a dict")
         pulumi.set(__self__, "created_by", created_by)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if endpoint and not isinstance(endpoint, str):
             raise TypeError("Expected argument 'endpoint' to be a str")
         pulumi.set(__self__, "endpoint", endpoint)
@@ -183,6 +186,14 @@ class GetEnvironmentObjectResult:
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the environment object
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
     def endpoint(self) -> _builtins.str:
         """
         The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
@@ -241,7 +252,7 @@ class GetEnvironmentObjectResult:
     @pulumi.getter(name="isSecret")
     def is_secret(self) -> _builtins.bool:
         """
-        Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+        Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "is_secret")
 
@@ -281,7 +292,7 @@ class GetEnvironmentObjectResult:
     @pulumi.getter(name="objectType")
     def object_type(self) -> _builtins.str:
         """
-        The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         """
         return pulumi.get(self, "object_type")
 
@@ -377,7 +388,7 @@ class GetEnvironmentObjectResult:
     @pulumi.getter
     def value(self) -> _builtins.str:
         """
-        The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+        The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -395,6 +406,7 @@ class AwaitableGetEnvironmentObjectResult(GetEnvironmentObjectResult):
             connection_auth_type=self.connection_auth_type,
             created_at=self.created_at,
             created_by=self.created_by,
+            description=self.description,
             endpoint=self.endpoint,
             exclude_links=self.exclude_links,
             exporter_type=self.exporter_type,
@@ -453,6 +465,7 @@ def get_environment_object(id: Optional[_builtins.str] = None,
         connection_auth_type=pulumi.get(__ret__, 'connection_auth_type'),
         created_at=pulumi.get(__ret__, 'created_at'),
         created_by=pulumi.get(__ret__, 'created_by'),
+        description=pulumi.get(__ret__, 'description'),
         endpoint=pulumi.get(__ret__, 'endpoint'),
         exclude_links=pulumi.get(__ret__, 'exclude_links'),
         exporter_type=pulumi.get(__ret__, 'exporter_type'),
@@ -508,6 +521,7 @@ def get_environment_object_output(id: pulumi.Input[Optional[_builtins.str]] = No
         connection_auth_type=pulumi.get(__response__, 'connection_auth_type'),
         created_at=pulumi.get(__response__, 'created_at'),
         created_by=pulumi.get(__response__, 'created_by'),
+        description=pulumi.get(__response__, 'description'),
         endpoint=pulumi.get(__response__, 'endpoint'),
         exclude_links=pulumi.get(__response__, 'exclude_links'),
         exporter_type=pulumi.get(__response__, 'exporter_type'),

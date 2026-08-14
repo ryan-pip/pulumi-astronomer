@@ -72,7 +72,7 @@ export interface GetEnvironmentObjectsArgs {
      */
     objectKey?: string;
     /**
-     * Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     * Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
      */
     objectType?: string;
     /**
@@ -103,7 +103,7 @@ export interface GetEnvironmentObjectsResult {
      */
     readonly objectKey?: string;
     /**
-     * Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     * Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
      */
     readonly objectType?: string;
     /**
@@ -185,7 +185,7 @@ export interface GetEnvironmentObjectsOutputArgs {
      */
     objectKey?: pulumi.Input<string | undefined>;
     /**
-     * Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     * Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
      */
     objectType?: pulumi.Input<string | undefined>;
     /**

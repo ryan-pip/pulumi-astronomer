@@ -71,6 +71,8 @@ type LookupEnvironmentObjectResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The description of the environment object
+	Description string `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
 	Endpoint string `pulumi:"endpoint"`
 	// The excluded links for the environment object
@@ -85,7 +87,7 @@ type LookupEnvironmentObjectResult struct {
 	Host string `pulumi:"host"`
 	// Environment object identifier
 	Id string `pulumi:"id"`
-	// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+	// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	IsSecret bool `pulumi:"isSecret"`
 	// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
 	Labels map[string]string `pulumi:"labels"`
@@ -95,7 +97,7 @@ type LookupEnvironmentObjectResult struct {
 	Login string `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey string `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType string `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password string `pulumi:"password"`
@@ -119,7 +121,7 @@ type LookupEnvironmentObjectResult struct {
 	UpdatedBy GetEnvironmentObjectUpdatedBy `pulumi:"updatedBy"`
 	// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
 	Username string `pulumi:"username"`
-	// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value string `pulumi:"value"`
 }
 
@@ -194,6 +196,11 @@ func (o LookupEnvironmentObjectResultOutput) CreatedBy() GetEnvironmentObjectCre
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) GetEnvironmentObjectCreatedBy { return v.CreatedBy }).(GetEnvironmentObjectCreatedByOutput)
 }
 
+// The description of the environment object
+func (o LookupEnvironmentObjectResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
 func (o LookupEnvironmentObjectResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Endpoint }).(pulumi.StringOutput)
@@ -229,7 +236,7 @@ func (o LookupEnvironmentObjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o LookupEnvironmentObjectResultOutput) GetIsSecret() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) bool { return v.IsSecret }).(pulumi.BoolOutput)
 }
@@ -254,7 +261,7 @@ func (o LookupEnvironmentObjectResultOutput) ObjectKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.ObjectKey }).(pulumi.StringOutput)
 }
 
-// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 func (o LookupEnvironmentObjectResultOutput) ObjectType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.ObjectType }).(pulumi.StringOutput)
 }
@@ -314,7 +321,7 @@ func (o LookupEnvironmentObjectResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o LookupEnvironmentObjectResultOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Value }).(pulumi.StringOutput)
 }

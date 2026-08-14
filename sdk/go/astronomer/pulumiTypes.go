@@ -6579,7 +6579,7 @@ type EnvironmentObjectLinkOverrides struct {
 	Type *string `pulumi:"type"`
 	// Override username (only valid when object*type=METRICS*EXPORT)
 	Username *string `pulumi:"username"`
-	// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+	// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value *string `pulumi:"value"`
 }
 
@@ -6623,7 +6623,7 @@ type EnvironmentObjectLinkOverridesArgs struct {
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Override username (only valid when object*type=METRICS*EXPORT)
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+	// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -6774,7 +6774,7 @@ func (o EnvironmentObjectLinkOverridesOutput) Username() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o EnvironmentObjectLinkOverridesOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -6943,7 +6943,7 @@ func (o EnvironmentObjectLinkOverridesPtrOutput) Username() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o EnvironmentObjectLinkOverridesPtrOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
 		if v == nil {
@@ -19091,7 +19091,7 @@ type GetEnvironmentObjectLinkOverrides struct {
 	Type string `pulumi:"type"`
 	// Override username (only used when object*type=METRICS*EXPORT)
 	Username string `pulumi:"username"`
-	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value string `pulumi:"value"`
 }
 
@@ -19135,7 +19135,7 @@ type GetEnvironmentObjectLinkOverridesArgs struct {
 	Type pulumi.StringInput `pulumi:"type"`
 	// Override username (only used when object*type=METRICS*EXPORT)
 	Username pulumi.StringInput `pulumi:"username"`
-	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19235,7 +19235,7 @@ func (o GetEnvironmentObjectLinkOverridesOutput) Username() pulumi.StringOutput 
 	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// Override value (only used when object*type=AIRFLOW*VARIABLE)
+// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o GetEnvironmentObjectLinkOverridesOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -19334,6 +19334,8 @@ type GetEnvironmentObjectsEnvironmentObject struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The description of the environment object
+	Description string `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
 	Endpoint string `pulumi:"endpoint"`
 	// The excluded links for the environment object
@@ -19348,7 +19350,7 @@ type GetEnvironmentObjectsEnvironmentObject struct {
 	Host string `pulumi:"host"`
 	// Environment object identifier
 	Id string `pulumi:"id"`
-	// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+	// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	IsSecret bool `pulumi:"isSecret"`
 	// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
 	Labels map[string]string `pulumi:"labels"`
@@ -19358,7 +19360,7 @@ type GetEnvironmentObjectsEnvironmentObject struct {
 	Login string `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey string `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType string `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password string `pulumi:"password"`
@@ -19382,7 +19384,7 @@ type GetEnvironmentObjectsEnvironmentObject struct {
 	UpdatedBy GetEnvironmentObjectsEnvironmentObjectUpdatedBy `pulumi:"updatedBy"`
 	// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
 	Username string `pulumi:"username"`
-	// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value string `pulumi:"value"`
 }
 
@@ -19412,6 +19414,8 @@ type GetEnvironmentObjectsEnvironmentObjectArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedByInput `pulumi:"createdBy"`
+	// The description of the environment object
+	Description pulumi.StringInput `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The excluded links for the environment object
@@ -19426,7 +19430,7 @@ type GetEnvironmentObjectsEnvironmentObjectArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// Environment object identifier
 	Id pulumi.StringInput `pulumi:"id"`
-	// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+	// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	IsSecret pulumi.BoolInput `pulumi:"isSecret"`
 	// Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
 	Labels pulumi.StringMapInput `pulumi:"labels"`
@@ -19436,7 +19440,7 @@ type GetEnvironmentObjectsEnvironmentObjectArgs struct {
 	Login pulumi.StringInput `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey pulumi.StringInput `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType pulumi.StringInput `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password pulumi.StringInput `pulumi:"password"`
@@ -19460,7 +19464,7 @@ type GetEnvironmentObjectsEnvironmentObjectArgs struct {
 	UpdatedBy GetEnvironmentObjectsEnvironmentObjectUpdatedByInput `pulumi:"updatedBy"`
 	// The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
 	Username pulumi.StringInput `pulumi:"username"`
-	// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19554,6 +19558,11 @@ func (o GetEnvironmentObjectsEnvironmentObjectOutput) CreatedBy() GetEnvironment
 	}).(GetEnvironmentObjectsEnvironmentObjectCreatedByOutput)
 }
 
+// The description of the environment object
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Endpoint }).(pulumi.StringOutput)
@@ -19591,7 +19600,7 @@ func (o GetEnvironmentObjectsEnvironmentObjectOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) GetIsSecret() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) bool { return v.IsSecret }).(pulumi.BoolOutput)
 }
@@ -19618,7 +19627,7 @@ func (o GetEnvironmentObjectsEnvironmentObjectOutput) ObjectKey() pulumi.StringO
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ObjectKey }).(pulumi.StringOutput)
 }
 
-// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) ObjectType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.ObjectType }).(pulumi.StringOutput)
 }
@@ -19680,7 +19689,7 @@ func (o GetEnvironmentObjectsEnvironmentObjectOutput) Username() pulumi.StringOu
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20335,7 +20344,7 @@ type GetEnvironmentObjectsEnvironmentObjectLinkOverrides struct {
 	Type string `pulumi:"type"`
 	// Override username (only used when object*type=METRICS*EXPORT)
 	Username string `pulumi:"username"`
-	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value string `pulumi:"value"`
 }
 
@@ -20379,7 +20388,7 @@ type GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs struct {
 	Type pulumi.StringInput `pulumi:"type"`
 	// Override username (only used when object*type=METRICS*EXPORT)
 	Username pulumi.StringInput `pulumi:"username"`
-	// Override value (only used when object*type=AIRFLOW*VARIABLE)
+	// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20479,7 +20488,7 @@ func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Username() pu
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// Override value (only used when object*type=AIRFLOW*VARIABLE)
+// Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.Value }).(pulumi.StringOutput)
 }

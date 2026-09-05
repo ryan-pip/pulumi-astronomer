@@ -3319,7 +3319,7 @@ class EnvironmentObjectLinkOverrides(dict):
         :param _builtins.str schema: Override schema (only valid when object_type=CONNECTION)
         :param _builtins.str type: Override connection type (only valid when object_type=CONNECTION)
         :param _builtins.str username: Override username (only valid when object*type=METRICS*EXPORT)
-        :param _builtins.str value: Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        :param _builtins.str value: Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -3468,7 +3468,7 @@ class EnvironmentObjectLinkOverrides(dict):
     @pulumi.getter
     def value(self) -> Optional[_builtins.str]:
         """
-        Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -6744,7 +6744,7 @@ class GetClustersClusterResult(dict):
         :param _builtins.str dr_service_peering_range: The disaster recovery service peering range (GCP Only).
         :param _builtins.str dr_service_subnet_range: The disaster recovery service subnet range (GCP Only).
         :param _builtins.str dr_vpc_subnet_range: The VPC subnet range for the Disaster Recovery region
-        :param _builtins.bool enable_replication_time_control: Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        :param _builtins.bool enable_replication_time_control: Whether Replication Time Control is enabled for Disaster Recovery task log replication
         :param 'GetClustersClusterHealthStatusArgs' health_status: Cluster health status
         :param _builtins.str id: Cluster identifier
         :param _builtins.bool is_dr_enabled: Whether Disaster Recovery is enabled on the cluster
@@ -6875,7 +6875,7 @@ class GetClustersClusterResult(dict):
     @pulumi.getter(name="enableReplicationTimeControl")
     def enable_replication_time_control(self) -> _builtins.bool:
         """
-        Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        Whether Replication Time Control is enabled for Disaster Recovery task log replication
         """
         return pulumi.get(self, "enable_replication_time_control")
 
@@ -9932,7 +9932,7 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
         :param _builtins.str schema: Override schema (only used when object_type=CONNECTION)
         :param _builtins.str type: Override connection type (only used when object_type=CONNECTION)
         :param _builtins.str username: Override username (only used when object*type=METRICS*EXPORT)
-        :param _builtins.str value: Override value (only used when object*type=AIRFLOW*VARIABLE)
+        :param _builtins.str value: Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "basic_token", basic_token)
@@ -10066,7 +10066,7 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
     @pulumi.getter
     def value(self) -> _builtins.str:
         """
-        Override value (only used when object*type=AIRFLOW*VARIABLE)
+        Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -10128,6 +10128,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
                  connection_auth_type: 'outputs.GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeResult',
                  created_at: _builtins.str,
                  created_by: 'outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult',
+                 description: _builtins.str,
                  endpoint: _builtins.str,
                  exclude_links: Sequence['outputs.GetEnvironmentObjectsEnvironmentObjectExcludeLinkResult'],
                  exporter_type: _builtins.str,
@@ -10161,6 +10162,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         :param 'GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs' connection_auth_type: The resolved auth type of the connection (only used when object*type=CONNECTION)
         :param _builtins.str created_at: Environment Object creation timestamp
         :param 'GetEnvironmentObjectsEnvironmentObjectCreatedByArgs' created_by: Environment Object creator
+        :param _builtins.str description: The description of the environment object
         :param _builtins.str endpoint: The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
         :param Sequence['GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs'] exclude_links: The excluded links for the environment object
         :param _builtins.str exporter_type: The type of exporter (only used when object*type=METRICS*EXPORT)
@@ -10168,12 +10170,12 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         :param Mapping[str, _builtins.str] headers: HTTP request headers for the remote endpoint (only used when object*type=METRICS*EXPORT)
         :param _builtins.str host: The host address for the connection (only used when object_type=CONNECTION)
         :param _builtins.str id: Environment object identifier
-        :param _builtins.bool is_secret: Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+        :param _builtins.bool is_secret: Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         :param Mapping[str, _builtins.str] labels: Key-value pair metrics labels (only used when object*type=METRICS*EXPORT)
         :param Sequence['GetEnvironmentObjectsEnvironmentObjectLinkArgs'] links: The Deployments linked to the environment object
         :param _builtins.str login: The username used for the connection (only used when object_type=CONNECTION)
         :param _builtins.str object_key: The key for the environment object
-        :param _builtins.str object_type: The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        :param _builtins.str object_type: The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         :param _builtins.str password: The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
         :param _builtins.int port: The port for the connection (only used when object_type=CONNECTION)
         :param _builtins.str schema: The schema for the connection (only used when object_type=CONNECTION)
@@ -10185,7 +10187,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         :param _builtins.str updated_at: Environment Object last updated timestamp
         :param 'GetEnvironmentObjectsEnvironmentObjectUpdatedByArgs' updated_by: Environment Object updater
         :param _builtins.str username: The username to connect to the remote endpoint (only used when object*type=METRICS*EXPORT)
-        :param _builtins.str value: The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+        :param _builtins.str value: The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "auth_type_id", auth_type_id)
@@ -10194,6 +10196,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         pulumi.set(__self__, "connection_auth_type", connection_auth_type)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "endpoint", endpoint)
         pulumi.set(__self__, "exclude_links", exclude_links)
         pulumi.set(__self__, "exporter_type", exporter_type)
@@ -10278,6 +10281,14 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the environment object
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
     def endpoint(self) -> _builtins.str:
         """
         The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
@@ -10336,7 +10347,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
     @pulumi.getter(name="isSecret")
     def is_secret(self) -> _builtins.bool:
         """
-        Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+        Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "is_secret")
 
@@ -10376,7 +10387,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
     @pulumi.getter(name="objectType")
     def object_type(self) -> _builtins.str:
         """
-        The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         """
         return pulumi.get(self, "object_type")
 
@@ -10472,7 +10483,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
     @pulumi.getter
     def value(self) -> _builtins.str:
         """
-        The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+        The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 
@@ -10838,7 +10849,7 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
         :param _builtins.str schema: Override schema (only used when object_type=CONNECTION)
         :param _builtins.str type: Override connection type (only used when object_type=CONNECTION)
         :param _builtins.str username: Override username (only used when object*type=METRICS*EXPORT)
-        :param _builtins.str value: Override value (only used when object*type=AIRFLOW*VARIABLE)
+        :param _builtins.str value: Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "basic_token", basic_token)
@@ -10972,7 +10983,7 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
     @pulumi.getter
     def value(self) -> _builtins.str:
         """
-        Override value (only used when object*type=AIRFLOW*VARIABLE)
+        Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 

@@ -75,7 +75,7 @@ type LookupClusterResult struct {
 	DrServiceSubnetRange string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region
 	DrVpcSubnetRange string `pulumi:"drVpcSubnetRange"`
-	// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+	// Whether Replication Time Control is enabled for Disaster Recovery task log replication
 	EnableReplicationTimeControl bool `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus GetClusterHealthStatus `pulumi:"healthStatus"`
@@ -200,7 +200,7 @@ func (o LookupClusterResultOutput) DrVpcSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.DrVpcSubnetRange }).(pulumi.StringOutput)
 }
 
-// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+// Whether Replication Time Control is enabled for Disaster Recovery task log replication
 func (o LookupClusterResultOutput) EnableReplicationTimeControl() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.EnableReplicationTimeControl }).(pulumi.BoolOutput)
 }

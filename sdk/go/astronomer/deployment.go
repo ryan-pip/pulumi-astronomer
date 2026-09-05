@@ -68,7 +68,7 @@ type Deployment struct {
 	Namespace pulumi.StringOutput `pulumi:"namespace"`
 	// Deployment OIDC issuer URL
 	OidcIssuerUrl pulumi.StringOutput `pulumi:"oidcIssuerUrl"`
-	// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+	// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 	OriginalAstroRuntimeVersion pulumi.StringOutput `pulumi:"originalAstroRuntimeVersion"`
 	// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -83,7 +83,7 @@ type Deployment struct {
 	// Deployment scaling status
 	ScalingStatus DeploymentScalingStatusOutput `pulumi:"scalingStatus"`
 	// Deployment scheduler AU - required for 'HYBRID' deployments
-	SchedulerAu pulumi.IntPtrOutput `pulumi:"schedulerAu"`
+	SchedulerAu pulumi.IntOutput `pulumi:"schedulerAu"`
 	// Deployment scheduler CPU
 	SchedulerCpu pulumi.StringOutput `pulumi:"schedulerCpu"`
 	// Deployment scheduler memory
@@ -224,7 +224,7 @@ type deploymentState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Deployment OIDC issuer URL
 	OidcIssuerUrl *string `pulumi:"oidcIssuerUrl"`
-	// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+	// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 	OriginalAstroRuntimeVersion *string `pulumi:"originalAstroRuntimeVersion"`
 	// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
 	Region *string `pulumi:"region"`
@@ -327,7 +327,7 @@ type DeploymentState struct {
 	Namespace pulumi.StringPtrInput
 	// Deployment OIDC issuer URL
 	OidcIssuerUrl pulumi.StringPtrInput
-	// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+	// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 	OriginalAstroRuntimeVersion pulumi.StringPtrInput
 	// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
 	Region pulumi.StringPtrInput
@@ -410,7 +410,7 @@ type deploymentArgs struct {
 	IsHighAvailability *bool `pulumi:"isHighAvailability"`
 	// Deployment name
 	Name *string `pulumi:"name"`
-	// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+	// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 	OriginalAstroRuntimeVersion *string `pulumi:"originalAstroRuntimeVersion"`
 	// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
 	Region *string `pulumi:"region"`
@@ -468,7 +468,7 @@ type DeploymentArgs struct {
 	IsHighAvailability pulumi.BoolPtrInput
 	// Deployment name
 	Name pulumi.StringPtrInput
-	// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+	// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 	OriginalAstroRuntimeVersion pulumi.StringPtrInput
 	// Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
 	Region pulumi.StringPtrInput
@@ -713,7 +713,7 @@ func (o DeploymentOutput) OidcIssuerUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.OidcIssuerUrl }).(pulumi.StringOutput)
 }
 
-// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
 func (o DeploymentOutput) OriginalAstroRuntimeVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.OriginalAstroRuntimeVersion }).(pulumi.StringOutput)
 }
@@ -749,8 +749,8 @@ func (o DeploymentOutput) ScalingStatus() DeploymentScalingStatusOutput {
 }
 
 // Deployment scheduler AU - required for 'HYBRID' deployments
-func (o DeploymentOutput) SchedulerAu() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.SchedulerAu }).(pulumi.IntPtrOutput)
+func (o DeploymentOutput) SchedulerAu() pulumi.IntOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.SchedulerAu }).(pulumi.IntOutput)
 }
 
 // Deployment scheduler CPU

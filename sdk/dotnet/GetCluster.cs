@@ -167,7 +167,7 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string DrVpcSubnetRange;
         /// <summary>
-        /// Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        /// Whether Replication Time Control is enabled for Disaster Recovery task log replication
         /// </summary>
         public readonly bool EnableReplicationTimeControl;
         /// <summary>

@@ -227,7 +227,7 @@ namespace RyanPip.Astronomer
         public string? ObjectKey { get; set; }
 
         /// <summary>
-        /// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        /// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         /// </summary>
         [Input("objectType")]
         public string? ObjectType { get; set; }
@@ -271,7 +271,7 @@ namespace RyanPip.Astronomer
         public Input<string>? ObjectKey { get; set; }
 
         /// <summary>
-        /// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        /// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         /// </summary>
         [Input("objectType")]
         public Input<string>? ObjectType { get; set; }
@@ -314,7 +314,7 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string? ObjectKey;
         /// <summary>
-        /// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        /// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         /// </summary>
         public readonly string? ObjectType;
         /// <summary>

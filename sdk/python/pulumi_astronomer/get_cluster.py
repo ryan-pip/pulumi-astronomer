@@ -198,7 +198,7 @@ class GetClusterResult:
     @pulumi.getter(name="enableReplicationTimeControl")
     def enable_replication_time_control(self) -> _builtins.bool:
         """
-        Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+        Whether Replication Time Control is enabled for Disaster Recovery task log replication
         """
         return pulumi.get(self, "enable_replication_time_control")
 

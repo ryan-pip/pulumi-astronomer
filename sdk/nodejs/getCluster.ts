@@ -79,7 +79,7 @@ export interface GetClusterResult {
      */
     readonly drVpcSubnetRange: string;
     /**
-     * Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+     * Whether Replication Time Control is enabled for Disaster Recovery task log replication
      */
     readonly enableReplicationTimeControl: boolean;
     /**

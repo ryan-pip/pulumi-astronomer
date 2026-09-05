@@ -71,7 +71,7 @@ namespace RyanPip.Astronomer
         public Output<string> DrVpcSubnetRange { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `IsDrEnabled` is true (AWS only).
+        /// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `IsDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `Region` and `DrRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `True` when `Region` and `DrRegion` are on different continents will fail at plan time. You may always explicitly set this to `False`, regardless of the region pair.
         /// </summary>
         [Output("enableReplicationTimeControl")]
         public Output<bool> EnableReplicationTimeControl { get; private set; } = null!;
@@ -83,7 +83,7 @@ namespace RyanPip.Astronomer
         public Output<Outputs.ClusterHealthStatus> HealthStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `False` to disable DR on an existing cluster.
+        /// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `False` to disable DR on an existing cluster for any provider.
         /// </summary>
         [Output("isDrEnabled")]
         public Output<bool> IsDrEnabled { get; private set; } = null!;
@@ -283,13 +283,13 @@ namespace RyanPip.Astronomer
         public Input<string>? DrVpcSubnetRange { get; set; }
 
         /// <summary>
-        /// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `IsDrEnabled` is true (AWS only).
+        /// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `IsDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `Region` and `DrRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `True` when `Region` and `DrRegion` are on different continents will fail at plan time. You may always explicitly set this to `False`, regardless of the region pair.
         /// </summary>
         [Input("enableReplicationTimeControl")]
         public Input<bool>? EnableReplicationTimeControl { get; set; }
 
         /// <summary>
-        /// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `False` to disable DR on an existing cluster.
+        /// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `False` to disable DR on an existing cluster for any provider.
         /// </summary>
         [Input("isDrEnabled")]
         public Input<bool>? IsDrEnabled { get; set; }
@@ -426,7 +426,7 @@ namespace RyanPip.Astronomer
         public Input<string>? DrVpcSubnetRange { get; set; }
 
         /// <summary>
-        /// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `IsDrEnabled` is true (AWS only).
+        /// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `IsDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `Region` and `DrRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `True` when `Region` and `DrRegion` are on different continents will fail at plan time. You may always explicitly set this to `False`, regardless of the region pair.
         /// </summary>
         [Input("enableReplicationTimeControl")]
         public Input<bool>? EnableReplicationTimeControl { get; set; }
@@ -438,7 +438,7 @@ namespace RyanPip.Astronomer
         public Input<Inputs.ClusterHealthStatusGetArgs>? HealthStatus { get; set; }
 
         /// <summary>
-        /// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `False` to disable DR on an existing cluster.
+        /// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `False` to disable DR on an existing cluster for any provider.
         /// </summary>
         [Input("isDrEnabled")]
         public Input<bool>? IsDrEnabled { get; set; }

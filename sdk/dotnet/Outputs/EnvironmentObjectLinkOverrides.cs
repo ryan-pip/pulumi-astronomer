@@ -71,7 +71,7 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        /// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public readonly string? Value;
 

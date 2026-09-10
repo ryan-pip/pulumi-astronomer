@@ -173,7 +173,7 @@ namespace RyanPip.Astronomer
         public Output<string> OidcIssuerUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        /// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         /// </summary>
         [Output("originalAstroRuntimeVersion")]
         public Output<string> OriginalAstroRuntimeVersion { get; private set; } = null!;
@@ -218,7 +218,7 @@ namespace RyanPip.Astronomer
         /// Deployment scheduler AU - required for 'HYBRID' deployments
         /// </summary>
         [Output("schedulerAu")]
-        public Output<int?> SchedulerAu { get; private set; } = null!;
+        public Output<int> SchedulerAu { get; private set; } = null!;
 
         /// <summary>
         /// Deployment scheduler CPU
@@ -460,7 +460,7 @@ namespace RyanPip.Astronomer
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        /// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         /// </summary>
         [Input("originalAstroRuntimeVersion")]
         public Input<string>? OriginalAstroRuntimeVersion { get; set; }
@@ -726,7 +726,7 @@ namespace RyanPip.Astronomer
         public Input<string>? OidcIssuerUrl { get; set; }
 
         /// <summary>
-        /// Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        /// Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         /// </summary>
         [Input("originalAstroRuntimeVersion")]
         public Input<string>? OriginalAstroRuntimeVersion { get; set; }

@@ -30,6 +30,8 @@ type EnvironmentObject struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy EnvironmentObjectCreatedByOutput `pulumi:"createdBy"`
+	// The description of the environment object
+	Description pulumi.StringOutput `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
@@ -42,7 +44,7 @@ type EnvironmentObject struct {
 	Headers pulumi.StringMapOutput `pulumi:"headers"`
 	// The host address for the connection (only valid when object_type=CONNECTION)
 	Host pulumi.StringOutput `pulumi:"host"`
-	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 	IsSecret pulumi.BoolOutput `pulumi:"isSecret"`
 	// Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
@@ -52,7 +54,7 @@ type EnvironmentObject struct {
 	Login pulumi.StringOutput `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey pulumi.StringOutput `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 	ObjectType pulumi.StringOutput `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password pulumi.StringPtrOutput `pulumi:"password"`
@@ -76,7 +78,7 @@ type EnvironmentObject struct {
 	UpdatedBy EnvironmentObjectUpdatedByOutput `pulumi:"updatedBy"`
 	// The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	Username pulumi.StringOutput `pulumi:"username"`
-	// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringPtrOutput `pulumi:"value"`
 }
 
@@ -151,6 +153,8 @@ type environmentObjectState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy *EnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The description of the environment object
+	Description *string `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 	Endpoint *string `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
@@ -163,7 +167,7 @@ type environmentObjectState struct {
 	Headers map[string]string `pulumi:"headers"`
 	// The host address for the connection (only valid when object_type=CONNECTION)
 	Host *string `pulumi:"host"`
-	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 	IsSecret *bool `pulumi:"isSecret"`
 	// Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
 	Labels map[string]string `pulumi:"labels"`
@@ -173,7 +177,7 @@ type environmentObjectState struct {
 	Login *string `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey *string `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 	ObjectType *string `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password *string `pulumi:"password"`
@@ -197,7 +201,7 @@ type environmentObjectState struct {
 	UpdatedBy *EnvironmentObjectUpdatedBy `pulumi:"updatedBy"`
 	// The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	Username *string `pulumi:"username"`
-	// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value *string `pulumi:"value"`
 }
 
@@ -216,6 +220,8 @@ type EnvironmentObjectState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Environment Object creator
 	CreatedBy EnvironmentObjectCreatedByPtrInput
+	// The description of the environment object
+	Description pulumi.StringPtrInput
 	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringPtrInput
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
@@ -228,7 +234,7 @@ type EnvironmentObjectState struct {
 	Headers pulumi.StringMapInput
 	// The host address for the connection (only valid when object_type=CONNECTION)
 	Host pulumi.StringPtrInput
-	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 	IsSecret pulumi.BoolPtrInput
 	// Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
 	Labels pulumi.StringMapInput
@@ -238,7 +244,7 @@ type EnvironmentObjectState struct {
 	Login pulumi.StringPtrInput
 	// The key for the environment object
 	ObjectKey pulumi.StringPtrInput
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 	ObjectType pulumi.StringPtrInput
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password pulumi.StringPtrInput
@@ -262,7 +268,7 @@ type EnvironmentObjectState struct {
 	UpdatedBy EnvironmentObjectUpdatedByPtrInput
 	// The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	Username pulumi.StringPtrInput
-	// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringPtrInput
 }
 
@@ -279,6 +285,8 @@ type environmentObjectArgs struct {
 	AutoLinkDeployments *bool `pulumi:"autoLinkDeployments"`
 	// The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	BasicToken *string `pulumi:"basicToken"`
+	// The description of the environment object
+	Description *string `pulumi:"description"`
 	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 	Endpoint *string `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
@@ -291,7 +299,7 @@ type environmentObjectArgs struct {
 	Headers map[string]string `pulumi:"headers"`
 	// The host address for the connection (only valid when object_type=CONNECTION)
 	Host *string `pulumi:"host"`
-	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 	IsSecret *bool `pulumi:"isSecret"`
 	// Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
 	Labels map[string]string `pulumi:"labels"`
@@ -301,7 +309,7 @@ type environmentObjectArgs struct {
 	Login *string `pulumi:"login"`
 	// The key for the environment object
 	ObjectKey string `pulumi:"objectKey"`
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 	ObjectType string `pulumi:"objectType"`
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password *string `pulumi:"password"`
@@ -317,7 +325,7 @@ type environmentObjectArgs struct {
 	Type *string `pulumi:"type"`
 	// The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	Username *string `pulumi:"username"`
-	// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value *string `pulumi:"value"`
 }
 
@@ -331,6 +339,8 @@ type EnvironmentObjectArgs struct {
 	AutoLinkDeployments pulumi.BoolPtrInput
 	// The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	BasicToken pulumi.StringPtrInput
+	// The description of the environment object
+	Description pulumi.StringPtrInput
 	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringPtrInput
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
@@ -343,7 +353,7 @@ type EnvironmentObjectArgs struct {
 	Headers pulumi.StringMapInput
 	// The host address for the connection (only valid when object_type=CONNECTION)
 	Host pulumi.StringPtrInput
-	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+	// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 	IsSecret pulumi.BoolPtrInput
 	// Key-value pair metrics labels for your export (only valid when object*type=METRICS*EXPORT)
 	Labels pulumi.StringMapInput
@@ -353,7 +363,7 @@ type EnvironmentObjectArgs struct {
 	Login pulumi.StringPtrInput
 	// The key for the environment object
 	ObjectKey pulumi.StringInput
-	// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+	// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 	ObjectType pulumi.StringInput
 	// The password — the connection password when object*type=CONNECTION, the HTTP Basic-auth password when object*type=METRICS_EXPORT
 	Password pulumi.StringPtrInput
@@ -369,7 +379,7 @@ type EnvironmentObjectArgs struct {
 	Type pulumi.StringPtrInput
 	// The username to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	Username pulumi.StringPtrInput
-	// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+	// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 	Value pulumi.StringPtrInput
 }
 
@@ -495,6 +505,11 @@ func (o EnvironmentObjectOutput) CreatedBy() EnvironmentObjectCreatedByOutput {
 	return o.ApplyT(func(v *EnvironmentObject) EnvironmentObjectCreatedByOutput { return v.CreatedBy }).(EnvironmentObjectCreatedByOutput)
 }
 
+// The description of the environment object
+func (o EnvironmentObjectOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
 // The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
 func (o EnvironmentObjectOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
@@ -525,7 +540,7 @@ func (o EnvironmentObjectOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+// Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
 func (o EnvironmentObjectOutput) GetIsSecret() pulumi.BoolOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.BoolOutput { return v.IsSecret }).(pulumi.BoolOutput)
 }
@@ -550,7 +565,7 @@ func (o EnvironmentObjectOutput) ObjectKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.ObjectKey }).(pulumi.StringOutput)
 }
 
-// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
 func (o EnvironmentObjectOutput) ObjectType() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.ObjectType }).(pulumi.StringOutput)
 }
@@ -610,7 +625,7 @@ func (o EnvironmentObjectOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
-// The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+// The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
 func (o EnvironmentObjectOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringPtrOutput { return v.Value }).(pulumi.StringPtrOutput)
 }

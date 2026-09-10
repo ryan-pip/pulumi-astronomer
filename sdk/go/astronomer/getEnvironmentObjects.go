@@ -101,7 +101,7 @@ type GetEnvironmentObjectsArgs struct {
 	DeploymentId *string `pulumi:"deploymentId"`
 	// Filter by object key
 	ObjectKey *string `pulumi:"objectKey"`
-	// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType *string `pulumi:"objectType"`
 	// If true, resolves and returns environment objects linked to the specified Deployment or Workspace
 	ResolveLinked *bool `pulumi:"resolveLinked"`
@@ -118,7 +118,7 @@ type GetEnvironmentObjectsResult struct {
 	EnvironmentObjects []GetEnvironmentObjectsEnvironmentObject `pulumi:"environmentObjects"`
 	// Filter by object key
 	ObjectKey *string `pulumi:"objectKey"`
-	// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType *string `pulumi:"objectType"`
 	// If true, resolves and returns environment objects linked to the specified Deployment or Workspace
 	ResolveLinked *bool `pulumi:"resolveLinked"`
@@ -143,7 +143,7 @@ type GetEnvironmentObjectsOutputArgs struct {
 	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
 	// Filter by object key
 	ObjectKey pulumi.StringPtrInput `pulumi:"objectKey"`
-	// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+	// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 	ObjectType pulumi.StringPtrInput `pulumi:"objectType"`
 	// If true, resolves and returns environment objects linked to the specified Deployment or Workspace
 	ResolveLinked pulumi.BoolPtrInput `pulumi:"resolveLinked"`
@@ -188,7 +188,7 @@ func (o GetEnvironmentObjectsResultOutput) ObjectKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsResult) *string { return v.ObjectKey }).(pulumi.StringPtrOutput)
 }
 
-// Filter by object type (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+// Filter by object type (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
 func (o GetEnvironmentObjectsResultOutput) ObjectType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsResult) *string { return v.ObjectType }).(pulumi.StringPtrOutput)
 }

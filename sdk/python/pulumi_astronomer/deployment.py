@@ -67,7 +67,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input['DeploymentRemoteExecutionArgs'] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
@@ -322,7 +322,7 @@ class DeploymentArgs:
     @pulumi.getter(name="originalAstroRuntimeVersion")
     def original_astro_runtime_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -533,7 +533,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
         :param pulumi.Input[_builtins.str] oidc_issuer_url: Deployment OIDC issuer URL
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input['DeploymentRemoteExecutionArgs'] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
@@ -975,7 +975,7 @@ class _DeploymentState:
     @pulumi.getter(name="originalAstroRuntimeVersion")
     def original_astro_runtime_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -1314,7 +1314,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
@@ -1548,7 +1548,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
         :param pulumi.Input[_builtins.str] oidc_issuer_url: Deployment OIDC issuer URL
-        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         :param pulumi.Input[_builtins.str] region: Deployment region - required for 'STANDARD' deployments. If changing this value, the deployment will be recreated in the new region
         :param pulumi.Input[Union['DeploymentRemoteExecutionArgs', 'DeploymentRemoteExecutionArgsDict']] remote_execution: Deployment remote execution configuration - only for 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] resource_quota_cpu: Deployment resource quota CPU - required for 'STANDARD' and 'DEDICATED' deployments
@@ -1841,7 +1841,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="originalAstroRuntimeVersion")
     def original_astro_runtime_version(self) -> pulumi.Output[_builtins.str]:
         """
-        Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+        Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
         """
         return pulumi.get(self, "original_astro_runtime_version")
 
@@ -1895,7 +1895,7 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="schedulerAu")
-    def scheduler_au(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def scheduler_au(self) -> pulumi.Output[_builtins.int]:
         """
         Deployment scheduler AU - required for 'HYBRID' deployments
         """

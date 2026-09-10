@@ -738,7 +738,7 @@ export interface EnvironmentObjectLinkOverrides {
      */
     username?: string;
     /**
-     * Override value (only valid when object*type=AIRFLOW*VARIABLE)
+     * Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value?: string;
 }
@@ -1422,7 +1422,7 @@ export interface GetClustersCluster {
      */
     drVpcSubnetRange: string;
     /**
-     * Whether S3 Replication Time Control is enabled for Disaster Recovery (AWS only)
+     * Whether Replication Time Control is enabled for Disaster Recovery task log replication
      */
     enableReplicationTimeControl: boolean;
     /**
@@ -2530,7 +2530,7 @@ export interface GetEnvironmentObjectLinkOverrides {
      */
     username: string;
     /**
-     * Override value (only used when object*type=AIRFLOW*VARIABLE)
+     * Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value: string;
 }
@@ -2574,6 +2574,10 @@ export interface GetEnvironmentObjectsEnvironmentObject {
      */
     createdBy: outputs.GetEnvironmentObjectsEnvironmentObjectCreatedBy;
     /**
+     * The description of the environment object
+     */
+    description: string;
+    /**
      * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
      */
     endpoint: string;
@@ -2602,7 +2606,7 @@ export interface GetEnvironmentObjectsEnvironmentObject {
      */
     id: string;
     /**
-     * Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+     * Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     isSecret: boolean;
     /**
@@ -2622,7 +2626,7 @@ export interface GetEnvironmentObjectsEnvironmentObject {
      */
     objectKey: string;
     /**
-     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     * The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
      */
     objectType: string;
     /**
@@ -2670,7 +2674,7 @@ export interface GetEnvironmentObjectsEnvironmentObject {
      */
     username: string;
     /**
-     * The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+     * The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value: string;
 }
@@ -2846,7 +2850,7 @@ export interface GetEnvironmentObjectsEnvironmentObjectLinkOverrides {
      */
     username: string;
     /**
-     * Override value (only used when object*type=AIRFLOW*VARIABLE)
+     * Override value (only used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value: string;
 }

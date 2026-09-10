@@ -71,6 +71,10 @@ export interface GetEnvironmentObjectResult {
      */
     readonly createdBy: outputs.GetEnvironmentObjectCreatedBy;
     /**
+     * The description of the environment object
+     */
+    readonly description: string;
+    /**
      * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
      */
     readonly endpoint: string;
@@ -99,7 +103,7 @@ export interface GetEnvironmentObjectResult {
      */
     readonly id: string;
     /**
-     * Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+     * Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     readonly isSecret: boolean;
     /**
@@ -119,7 +123,7 @@ export interface GetEnvironmentObjectResult {
      */
     readonly objectKey: string;
     /**
-     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+     * The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
      */
     readonly objectType: string;
     /**
@@ -167,7 +171,7 @@ export interface GetEnvironmentObjectResult {
      */
     readonly username: string;
     /**
-     * The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+     * The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     readonly value: string;
 }

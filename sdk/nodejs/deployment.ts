@@ -142,7 +142,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly oidcIssuerUrl: pulumi.Output<string>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
      */
     declare public readonly originalAstroRuntimeVersion: pulumi.Output<string>;
     /**
@@ -172,7 +172,7 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * Deployment scheduler AU - required for 'HYBRID' deployments
      */
-    declare public readonly schedulerAu: pulumi.Output<number | undefined>;
+    declare public readonly schedulerAu: pulumi.Output<number>;
     /**
      * Deployment scheduler CPU
      */
@@ -492,7 +492,7 @@ export interface DeploymentState {
      */
     oidcIssuerUrl?: pulumi.Input<string | undefined>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
      */
     originalAstroRuntimeVersion?: pulumi.Input<string | undefined>;
     /**
@@ -650,7 +650,7 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Deployment's original Astro Runtime version. The Terraform provider will use this provided Astro runtime version to create the Deployment. If not provided, defaults to the current Astro runtime version. The Astro runtime version can be updated with your Astro project Dockerfile, but if this value is changed, the Deployment will be recreated with this new Astro runtime version.
+     * Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
      */
     originalAstroRuntimeVersion?: pulumi.Input<string | undefined>;
     /**

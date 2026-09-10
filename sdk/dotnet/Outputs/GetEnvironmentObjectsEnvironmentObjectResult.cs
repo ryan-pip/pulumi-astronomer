@@ -43,6 +43,10 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly Outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult CreatedBy;
         /// <summary>
+        /// The description of the environment object
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
         /// </summary>
         public readonly string Endpoint;
@@ -71,7 +75,7 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether the value is a secret (only used when object*type=AIRFLOW*VARIABLE)
+        /// Whether the value is a secret (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public readonly bool IsSecret;
         /// <summary>
@@ -91,7 +95,7 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string ObjectKey;
         /// <summary>
-        /// The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT)
+        /// The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT)
         /// </summary>
         public readonly string ObjectType;
         /// <summary>
@@ -139,7 +143,7 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string Username;
         /// <summary>
-        /// The value of the Airflow variable (only used when object*type=AIRFLOW*VARIABLE)
+        /// The value of the variable (used when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public readonly string Value;
 
@@ -158,6 +162,8 @@ namespace RyanPip.Astronomer.Outputs
             string createdAt,
 
             Outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult createdBy,
+
+            string description,
 
             string endpoint,
 
@@ -216,6 +222,7 @@ namespace RyanPip.Astronomer.Outputs
             ConnectionAuthType = connectionAuthType;
             CreatedAt = createdAt;
             CreatedBy = createdBy;
+            Description = description;
             Endpoint = endpoint;
             ExcludeLinks = excludeLinks;
             ExporterType = exporterType;

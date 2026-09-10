@@ -133,7 +133,7 @@ namespace RyanPip.Astronomer.Inputs
         private Input<string>? _value;
 
         /// <summary>
-        /// Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        /// Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         /// </summary>
         public Input<string>? Value
         {

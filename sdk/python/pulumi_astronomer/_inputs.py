@@ -3885,7 +3885,7 @@ class EnvironmentObjectLinkOverridesArgsDict(TypedDict):
     """
     value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Override value (only valid when object*type=AIRFLOW*VARIABLE)
+    Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
     """
 
 @pulumi.input_type
@@ -3921,7 +3921,7 @@ class EnvironmentObjectLinkOverridesArgs:
         :param pulumi.Input[_builtins.str] schema: Override schema (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] type: Override connection type (only valid when object_type=CONNECTION)
         :param pulumi.Input[_builtins.str] username: Override username (only valid when object*type=METRICS*EXPORT)
-        :param pulumi.Input[_builtins.str] value: Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        :param pulumi.Input[_builtins.str] value: Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -4126,7 +4126,7 @@ class EnvironmentObjectLinkOverridesArgs:
     @pulumi.getter
     def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Override value (only valid when object*type=AIRFLOW*VARIABLE)
+        Override value (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
         """
         return pulumi.get(self, "value")
 

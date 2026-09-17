@@ -20,6 +20,11 @@ export type Alerts = import("./alerts").Alerts;
 export const Alerts: typeof import("./alerts").Alerts = null as any;
 utilities.lazyLoad(exports, ["Alerts"], () => require("./alerts"));
 
+export { AllowedIpAddressRangesArgs, AllowedIpAddressRangesState } from "./allowedIpAddressRanges";
+export type AllowedIpAddressRanges = import("./allowedIpAddressRanges").AllowedIpAddressRanges;
+export const AllowedIpAddressRanges: typeof import("./allowedIpAddressRanges").AllowedIpAddressRanges = null as any;
+utilities.lazyLoad(exports, ["AllowedIpAddressRanges"], () => require("./allowedIpAddressRanges"));
+
 export { ApiTokenArgs, ApiTokenState } from "./apiToken";
 export type ApiToken = import("./apiToken").ApiToken;
 export const ApiToken: typeof import("./apiToken").ApiToken = null as any;
@@ -223,6 +228,8 @@ const _module = {
                 return new Alert(name, <any>undefined, { urn })
             case "astronomer:index/alerts:Alerts":
                 return new Alerts(name, <any>undefined, { urn })
+            case "astronomer:index/allowedIpAddressRanges:AllowedIpAddressRanges":
+                return new AllowedIpAddressRanges(name, <any>undefined, { urn })
             case "astronomer:index/apiToken:ApiToken":
                 return new ApiToken(name, <any>undefined, { urn })
             case "astronomer:index/cluster:Cluster":
@@ -257,6 +264,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("astronomer", "index/agentToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/alert", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/alerts", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/allowedIpAddressRanges", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/apiToken", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/customRole", _module)

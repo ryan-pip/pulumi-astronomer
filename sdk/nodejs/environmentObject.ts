@@ -66,6 +66,10 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdBy: pulumi.Output<outputs.EnvironmentObjectCreatedBy>;
     /**
+     * The description of the environment object
+     */
+    declare public readonly description: pulumi.Output<string>;
+    /**
      * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
      */
     declare public readonly endpoint: pulumi.Output<string>;
@@ -90,7 +94,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public readonly host: pulumi.Output<string>;
     /**
-     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
      */
     declare public readonly isSecret: pulumi.Output<boolean>;
     /**
@@ -110,7 +114,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public readonly objectKey: pulumi.Output<string>;
     /**
-     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+     * The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
      */
     declare public readonly objectType: pulumi.Output<string>;
     /**
@@ -158,7 +162,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public readonly username: pulumi.Output<string>;
     /**
-     * The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+     * The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     declare public readonly value: pulumi.Output<string | undefined>;
 
@@ -182,6 +186,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
             resourceInputs["connectionAuthType"] = state?.connectionAuthType;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["createdBy"] = state?.createdBy;
+            resourceInputs["description"] = state?.description;
             resourceInputs["endpoint"] = state?.endpoint;
             resourceInputs["excludeLinks"] = state?.excludeLinks;
             resourceInputs["exporterType"] = state?.exporterType;
@@ -224,6 +229,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
             resourceInputs["authTypeId"] = args?.authTypeId;
             resourceInputs["autoLinkDeployments"] = args?.autoLinkDeployments;
             resourceInputs["basicToken"] = args?.basicToken ? pulumi.secret(args.basicToken) : undefined;
+            resourceInputs["description"] = args?.description;
             resourceInputs["endpoint"] = args?.endpoint;
             resourceInputs["excludeLinks"] = args?.excludeLinks;
             resourceInputs["exporterType"] = args?.exporterType;
@@ -292,6 +298,10 @@ export interface EnvironmentObjectState {
      */
     createdBy?: pulumi.Input<inputs.EnvironmentObjectCreatedBy | undefined>;
     /**
+     * The description of the environment object
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
      * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
      */
     endpoint?: pulumi.Input<string | undefined>;
@@ -316,7 +326,7 @@ export interface EnvironmentObjectState {
      */
     host?: pulumi.Input<string | undefined>;
     /**
-     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
      */
     isSecret?: pulumi.Input<boolean | undefined>;
     /**
@@ -336,7 +346,7 @@ export interface EnvironmentObjectState {
      */
     objectKey?: pulumi.Input<string | undefined>;
     /**
-     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+     * The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
      */
     objectType?: pulumi.Input<string | undefined>;
     /**
@@ -384,7 +394,7 @@ export interface EnvironmentObjectState {
      */
     username?: pulumi.Input<string | undefined>;
     /**
-     * The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+     * The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value?: pulumi.Input<string | undefined>;
 }
@@ -410,6 +420,10 @@ export interface EnvironmentObjectArgs {
      */
     basicToken?: pulumi.Input<string | undefined>;
     /**
+     * The description of the environment object
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
      * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
      */
     endpoint?: pulumi.Input<string | undefined>;
@@ -434,7 +448,7 @@ export interface EnvironmentObjectArgs {
      */
     host?: pulumi.Input<string | undefined>;
     /**
-     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE). Immutable on the API; toggling forces resource replacement.
+     * Whether the value is a secret (only valid when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE). Immutable on the API; toggling forces resource replacement.
      */
     isSecret?: pulumi.Input<boolean | undefined>;
     /**
@@ -454,7 +468,7 @@ export interface EnvironmentObjectArgs {
      */
     objectKey: pulumi.Input<string>;
     /**
-     * The type of environment object (AIRFLOW*VARIABLE, CONNECTION, METRICS*EXPORT). Determines which type-specific fields are required.
+     * The type of environment object (AIRFLOW*VARIABLE, ENVIRONMENT*VARIABLE, CONNECTION, METRICS_EXPORT). Determines which type-specific fields are required.
      */
     objectType: pulumi.Input<string>;
     /**
@@ -486,7 +500,7 @@ export interface EnvironmentObjectArgs {
      */
     username?: pulumi.Input<string | undefined>;
     /**
-     * The value of the Airflow variable (only valid when object*type=AIRFLOW*VARIABLE)
+     * The value of the variable (required when object*type=AIRFLOW*VARIABLE or ENVIRONMENT_VARIABLE)
      */
     value?: pulumi.Input<string | undefined>;
 }

@@ -34,11 +34,11 @@ type Cluster struct {
 	DrServiceSubnetRange pulumi.StringOutput `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringOutput `pulumi:"drVpcSubnetRange"`
-	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 	EnableReplicationTimeControl pulumi.BoolOutput `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus ClusterHealthStatusOutput `pulumi:"healthStatus"`
-	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 	IsDrEnabled pulumi.BoolOutput `pulumi:"isDrEnabled"`
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver pulumi.BoolOutput `pulumi:"isFailedOver"`
@@ -140,11 +140,11 @@ type clusterState struct {
 	DrServiceSubnetRange *string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
-	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 	EnableReplicationTimeControl *bool `pulumi:"enableReplicationTimeControl"`
 	// Cluster health status
 	HealthStatus *ClusterHealthStatus `pulumi:"healthStatus"`
-	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 	IsDrEnabled *bool `pulumi:"isDrEnabled"`
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver *bool `pulumi:"isFailedOver"`
@@ -202,11 +202,11 @@ type ClusterState struct {
 	DrServiceSubnetRange pulumi.StringPtrInput
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringPtrInput
-	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 	EnableReplicationTimeControl pulumi.BoolPtrInput
 	// Cluster health status
 	HealthStatus ClusterHealthStatusPtrInput
-	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 	IsDrEnabled pulumi.BoolPtrInput
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver pulumi.BoolPtrInput
@@ -264,9 +264,9 @@ type clusterArgs struct {
 	DrServiceSubnetRange *string `pulumi:"drServiceSubnetRange"`
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange *string `pulumi:"drVpcSubnetRange"`
-	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 	EnableReplicationTimeControl *bool `pulumi:"enableReplicationTimeControl"`
-	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 	IsDrEnabled *bool `pulumi:"isDrEnabled"`
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver *bool `pulumi:"isFailedOver"`
@@ -307,9 +307,9 @@ type ClusterArgs struct {
 	DrServiceSubnetRange pulumi.StringPtrInput
 	// The VPC subnet range for the Disaster Recovery region. Only valid when `isDrEnabled` is true. Cannot be changed once set.
 	DrVpcSubnetRange pulumi.StringPtrInput
-	// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+	// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 	EnableReplicationTimeControl pulumi.BoolPtrInput
-	// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+	// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 	IsDrEnabled pulumi.BoolPtrInput
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver pulumi.BoolPtrInput
@@ -466,7 +466,7 @@ func (o ClusterOutput) DrVpcSubnetRange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DrVpcSubnetRange }).(pulumi.StringOutput)
 }
 
-// Whether to enable S3 Replication Time Control for Disaster Recovery. Only valid when `isDrEnabled` is true (AWS only).
+// Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `isDrEnabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `drRegion` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `drRegion` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
 func (o ClusterOutput) EnableReplicationTimeControl() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.EnableReplicationTimeControl }).(pulumi.BoolOutput)
 }
@@ -476,7 +476,7 @@ func (o ClusterOutput) HealthStatus() ClusterHealthStatusOutput {
 	return o.ApplyT(func(v *Cluster) ClusterHealthStatusOutput { return v.HealthStatus }).(ClusterHealthStatusOutput)
 }
 
-// Whether Disaster Recovery is enabled on the cluster. Only supported for AWS clusters. Can only be enabled at cluster creation time. Can be set to `false` to disable DR on an existing cluster.
+// Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
 func (o ClusterOutput) IsDrEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsDrEnabled }).(pulumi.BoolOutput)
 }

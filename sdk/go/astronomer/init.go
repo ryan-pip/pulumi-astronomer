@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Alert{}
 	case "astronomer:index/alerts:Alerts":
 		r = &Alerts{}
+	case "astronomer:index/allowedIpAddressRanges:AllowedIpAddressRanges":
+		r = &AllowedIpAddressRanges{}
 	case "astronomer:index/apiToken:ApiToken":
 		r = &ApiToken{}
 	case "astronomer:index/cluster:Cluster":
@@ -97,6 +99,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"astronomer",
 		"index/alerts",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/allowedIpAddressRanges",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

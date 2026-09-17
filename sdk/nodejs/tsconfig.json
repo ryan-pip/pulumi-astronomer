@@ -22,6 +22,7 @@
         "agentToken.ts",
         "alert.ts",
         "alerts.ts",
+        "allowedIpAddressRanges.ts",
         "apiToken.ts",
         "cluster.ts",
         "config/index.ts",

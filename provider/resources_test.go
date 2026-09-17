@@ -39,6 +39,7 @@ var expectedResources = []string{
 	"astro_agent_token",
 	"astro_alert",
 	"astro_alerts",
+	"astro_allowed_ip_address_ranges",
 	"astro_api_token",
 	"astro_cluster",
 	"astro_custom_role",

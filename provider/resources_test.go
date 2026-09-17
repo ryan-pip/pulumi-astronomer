@@ -17,6 +17,7 @@ package astronomer
 import (
 	"context"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -32,29 +33,6 @@ func TestMain(m *testing.M) {
 		version.Version = "1.0.0"
 	}
 	os.Exit(m.Run())
-}
-
-// expectedResources is a floor, not an inventory: every name here must stay
-// mapped. New upstream resources are covered by TestEveryResourceHasAUsableID
-// instead, so an addition never has to be listed here.
-var expectedResources = []string{
-	"astro_agent_token",
-	"astro_alert",
-	"astro_alerts",
-	"astro_allowed_ip_address_ranges",
-	"astro_api_token",
-	"astro_cluster",
-	"astro_custom_role",
-	"astro_deployment",
-	"astro_environment_object",
-	"astro_hybrid_cluster_workspace_authorization",
-	"astro_notification_channel",
-	"astro_team",
-	"astro_team_membership",
-	"astro_team_roles",
-	"astro_user_invite",
-	"astro_user_roles",
-	"astro_workspace",
 }
 
 // resourcesWithoutStableID have no upstream "id" and nothing scalar to delegate
@@ -73,10 +51,38 @@ func TestProviderInfo(t *testing.T) {
 		t.Errorf("Version is empty; expected a non-empty version")
 	}
 
-	for _, k := range expectedResources {
-		if _, ok := info.Resources[k]; !ok {
-			t.Errorf("missing expected resource mapping: %s", k)
+}
+
+// TestTokensAreWellFormed guards the surface user code is written against. The
+// maps in ProviderInfo are keyed by Terraform name, so a bridge upgrade that
+// changed tokenization would rename every Pulumi type without disturbing a
+// single key.
+func TestTokensAreWellFormed(t *testing.T) {
+	info := Provider()
+	prefix := mainPkg + ":" + mainMod + "/"
+
+	check := func(kind, tfName, tok string) {
+		t.Helper()
+		switch {
+		case tok == "":
+			t.Errorf("%s %s: empty token, so MustComputeTokens left it unmapped", kind, tfName)
+		case !strings.HasPrefix(tok, prefix):
+			t.Errorf("%s %s: token %q, want prefix %q", kind, tfName, tok, prefix)
 		}
+	}
+
+	if len(info.Resources) == 0 {
+		t.Fatal("no resources mapped")
+	}
+	for name, r := range info.Resources {
+		check("resource", name, string(r.Tok))
+	}
+
+	if len(info.DataSources) == 0 {
+		t.Fatal("no data sources mapped")
+	}
+	for name, d := range info.DataSources {
+		check("data source", name, string(d.Tok))
 	}
 }
 

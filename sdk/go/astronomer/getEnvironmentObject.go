@@ -71,9 +71,13 @@ type LookupEnvironmentObjectResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey string `pulumi:"dataDogApiKey"`
+	// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite string `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description string `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
 	Endpoint string `pulumi:"endpoint"`
 	// The excluded links for the environment object
 	ExcludeLinks []GetEnvironmentObjectExcludeLink `pulumi:"excludeLinks"`
@@ -196,12 +200,22 @@ func (o LookupEnvironmentObjectResultOutput) CreatedBy() GetEnvironmentObjectCre
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) GetEnvironmentObjectCreatedBy { return v.CreatedBy }).(GetEnvironmentObjectCreatedByOutput)
 }
 
+// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+func (o LookupEnvironmentObjectResultOutput) DataDogApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.DataDogApiKey }).(pulumi.StringOutput)
+}
+
+// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o LookupEnvironmentObjectResultOutput) DataDogSite() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.DataDogSite }).(pulumi.StringOutput)
+}
+
 // The description of the environment object
 func (o LookupEnvironmentObjectResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
 func (o LookupEnvironmentObjectResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentObjectResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }

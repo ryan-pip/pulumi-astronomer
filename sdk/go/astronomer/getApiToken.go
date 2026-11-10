@@ -69,6 +69,8 @@ type LookupApiTokenResult struct {
 	ExpiryPeriodInDays int `pulumi:"expiryPeriodInDays"`
 	// API Token identifier
 	Id string `pulumi:"id"`
+	// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind string `pulumi:"kind"`
 	// API Token last used timestamp
 	LastUsedAt string `pulumi:"lastUsedAt"`
 	// API Token name
@@ -149,6 +151,11 @@ func (o LookupApiTokenResultOutput) ExpiryPeriodInDays() pulumi.IntOutput {
 // API Token identifier
 func (o LookupApiTokenResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+func (o LookupApiTokenResultOutput) Kind() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupApiTokenResult) string { return v.Kind }).(pulumi.StringOutput)
 }
 
 // API Token last used timestamp

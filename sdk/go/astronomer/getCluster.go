@@ -87,6 +87,8 @@ type LookupClusterResult struct {
 	IsFailedOver bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited bool `pulumi:"isLimited"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+	IsPrivateNetworkEgressEnabled bool `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster metadata
 	Metadata GetClusterMetadata `pulumi:"metadata"`
 	// Cluster name
@@ -228,6 +230,11 @@ func (o LookupClusterResultOutput) IsFailedOver() pulumi.BoolOutput {
 // Whether the cluster is limited
 func (o LookupClusterResultOutput) IsLimited() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.IsLimited }).(pulumi.BoolOutput)
+}
+
+// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+func (o LookupClusterResultOutput) IsPrivateNetworkEgressEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.IsPrivateNetworkEgressEnabled }).(pulumi.BoolOutput)
 }
 
 // Cluster metadata

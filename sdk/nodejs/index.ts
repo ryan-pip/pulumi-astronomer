@@ -175,6 +175,11 @@ export type NotificationChannel = import("./notificationChannel").NotificationCh
 export const NotificationChannel: typeof import("./notificationChannel").NotificationChannel = null as any;
 utilities.lazyLoad(exports, ["NotificationChannel"], () => require("./notificationChannel"));
 
+export { NotificationChannelsArgs, NotificationChannelsState } from "./notificationChannels";
+export type NotificationChannels = import("./notificationChannels").NotificationChannels;
+export const NotificationChannels: typeof import("./notificationChannels").NotificationChannels = null as any;
+utilities.lazyLoad(exports, ["NotificationChannels"], () => require("./notificationChannels"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -244,6 +249,8 @@ const _module = {
                 return new HybridClusterWorkspaceAuthorization(name, <any>undefined, { urn })
             case "astronomer:index/notificationChannel:NotificationChannel":
                 return new NotificationChannel(name, <any>undefined, { urn })
+            case "astronomer:index/notificationChannels:NotificationChannels":
+                return new NotificationChannels(name, <any>undefined, { urn })
             case "astronomer:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "astronomer:index/teamMembership:TeamMembership":
@@ -272,6 +279,7 @@ pulumi.runtime.registerResourceModule("astronomer", "index/deployment", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/environmentObject", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/hybridClusterWorkspaceAuthorization", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/notificationChannel", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/notificationChannels", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/team", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/teamMembership", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/teamRoles", _module)

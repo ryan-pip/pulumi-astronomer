@@ -47,6 +47,10 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string PodCpu;
         /// <summary>
+        /// Worker queue pod ephemeral storage
+        /// </summary>
+        public readonly string PodEphemeralStorage;
+        /// <summary>
         /// Worker queue pod memory
         /// </summary>
         public readonly string PodMemory;
@@ -73,6 +77,8 @@ namespace RyanPip.Astronomer.Outputs
 
             string podCpu,
 
+            string podEphemeralStorage,
+
             string podMemory,
 
             int workerConcurrency)
@@ -85,6 +91,7 @@ namespace RyanPip.Astronomer.Outputs
             Name = name;
             NodePoolId = nodePoolId;
             PodCpu = podCpu;
+            PodEphemeralStorage = podEphemeralStorage;
             PodMemory = podMemory;
             WorkerConcurrency = workerConcurrency;
         }

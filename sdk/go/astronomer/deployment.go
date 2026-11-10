@@ -58,7 +58,7 @@ type Deployment struct {
 	IsCicdEnforced pulumi.BoolOutput `pulumi:"isCicdEnforced"`
 	// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
 	IsDagDeployEnabled pulumi.BoolOutput `pulumi:"isDagDeployEnabled"`
-	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 	IsDevelopmentMode pulumi.BoolPtrOutput `pulumi:"isDevelopmentMode"`
 	// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
 	IsHighAvailability pulumi.BoolPtrOutput `pulumi:"isHighAvailability"`
@@ -214,7 +214,7 @@ type deploymentState struct {
 	IsCicdEnforced *bool `pulumi:"isCicdEnforced"`
 	// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
 	IsDagDeployEnabled *bool `pulumi:"isDagDeployEnabled"`
-	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 	IsDevelopmentMode *bool `pulumi:"isDevelopmentMode"`
 	// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
 	IsHighAvailability *bool `pulumi:"isHighAvailability"`
@@ -317,7 +317,7 @@ type DeploymentState struct {
 	IsCicdEnforced pulumi.BoolPtrInput
 	// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
 	IsDagDeployEnabled pulumi.BoolPtrInput
-	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 	IsDevelopmentMode pulumi.BoolPtrInput
 	// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
 	IsHighAvailability pulumi.BoolPtrInput
@@ -404,7 +404,7 @@ type deploymentArgs struct {
 	IsCicdEnforced bool `pulumi:"isCicdEnforced"`
 	// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
 	IsDagDeployEnabled bool `pulumi:"isDagDeployEnabled"`
-	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 	IsDevelopmentMode *bool `pulumi:"isDevelopmentMode"`
 	// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
 	IsHighAvailability *bool `pulumi:"isHighAvailability"`
@@ -462,7 +462,7 @@ type DeploymentArgs struct {
 	IsCicdEnforced pulumi.BoolInput
 	// Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
 	IsDagDeployEnabled pulumi.BoolInput
-	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+	// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 	IsDevelopmentMode pulumi.BoolPtrInput
 	// Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
 	IsHighAvailability pulumi.BoolPtrInput
@@ -688,7 +688,7 @@ func (o DeploymentOutput) IsDagDeployEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.BoolOutput { return v.IsDagDeployEnabled }).(pulumi.BoolOutput)
 }
 
-// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
 func (o DeploymentOutput) IsDevelopmentMode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.BoolPtrOutput { return v.IsDevelopmentMode }).(pulumi.BoolPtrOutput)
 }

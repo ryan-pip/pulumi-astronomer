@@ -14,9 +14,9 @@ import (
 // Notification Channels data source
 //
 // ## Example Usage
-func GetNotificationChannels(ctx *pulumi.Context, args *GetNotificationChannelsArgs, opts ...pulumi.InvokeOption) (*GetNotificationChannelsResult, error) {
+func LookupNotificationChannels(ctx *pulumi.Context, args *LookupNotificationChannelsArgs, opts ...pulumi.InvokeOption) (*LookupNotificationChannelsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetNotificationChannelsResult
+	var rv LookupNotificationChannelsResult
 	err := ctx.Invoke("astronomer:index/getNotificationChannels:getNotificationChannels", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -25,7 +25,7 @@ func GetNotificationChannels(ctx *pulumi.Context, args *GetNotificationChannelsA
 }
 
 // A collection of arguments for invoking getNotificationChannels.
-type GetNotificationChannelsArgs struct {
+type LookupNotificationChannelsArgs struct {
 	ChannelTypes           []string `pulumi:"channelTypes"`
 	DeploymentIds          []string `pulumi:"deploymentIds"`
 	EntityType             *string  `pulumi:"entityType"`
@@ -34,7 +34,7 @@ type GetNotificationChannelsArgs struct {
 }
 
 // A collection of values returned by getNotificationChannels.
-type GetNotificationChannelsResult struct {
+type LookupNotificationChannelsResult struct {
 	ChannelTypes           []string                                     `pulumi:"channelTypes"`
 	DeploymentIds          []string                                     `pulumi:"deploymentIds"`
 	EntityType             *string                                      `pulumi:"entityType"`
@@ -43,17 +43,17 @@ type GetNotificationChannelsResult struct {
 	WorkspaceIds           []string                                     `pulumi:"workspaceIds"`
 }
 
-func GetNotificationChannelsOutput(ctx *pulumi.Context, args GetNotificationChannelsOutputArgs, opts ...pulumi.InvokeOption) GetNotificationChannelsResultOutput {
+func LookupNotificationChannelsOutput(ctx *pulumi.Context, args LookupNotificationChannelsOutputArgs, opts ...pulumi.InvokeOption) LookupNotificationChannelsResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNotificationChannelsResultOutput, error) {
-			args := v.(GetNotificationChannelsArgs)
+		ApplyT(func(v interface{}) (LookupNotificationChannelsResultOutput, error) {
+			args := v.(LookupNotificationChannelsArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("astronomer:index/getNotificationChannels:getNotificationChannels", args, GetNotificationChannelsResultOutput{}, options).(GetNotificationChannelsResultOutput), nil
-		}).(GetNotificationChannelsResultOutput)
+			return ctx.InvokeOutput("astronomer:index/getNotificationChannels:getNotificationChannels", args, LookupNotificationChannelsResultOutput{}, options).(LookupNotificationChannelsResultOutput), nil
+		}).(LookupNotificationChannelsResultOutput)
 }
 
 // A collection of arguments for invoking getNotificationChannels.
-type GetNotificationChannelsOutputArgs struct {
+type LookupNotificationChannelsOutputArgs struct {
 	ChannelTypes           pulumi.StringArrayInput `pulumi:"channelTypes"`
 	DeploymentIds          pulumi.StringArrayInput `pulumi:"deploymentIds"`
 	EntityType             pulumi.StringPtrInput   `pulumi:"entityType"`
@@ -61,51 +61,51 @@ type GetNotificationChannelsOutputArgs struct {
 	WorkspaceIds           pulumi.StringArrayInput `pulumi:"workspaceIds"`
 }
 
-func (GetNotificationChannelsOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNotificationChannelsArgs)(nil)).Elem()
+func (LookupNotificationChannelsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNotificationChannelsArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNotificationChannels.
-type GetNotificationChannelsResultOutput struct{ *pulumi.OutputState }
+type LookupNotificationChannelsResultOutput struct{ *pulumi.OutputState }
 
-func (GetNotificationChannelsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNotificationChannelsResult)(nil)).Elem()
+func (LookupNotificationChannelsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNotificationChannelsResult)(nil)).Elem()
 }
 
-func (o GetNotificationChannelsResultOutput) ToGetNotificationChannelsResultOutput() GetNotificationChannelsResultOutput {
+func (o LookupNotificationChannelsResultOutput) ToLookupNotificationChannelsResultOutput() LookupNotificationChannelsResultOutput {
 	return o
 }
 
-func (o GetNotificationChannelsResultOutput) ToGetNotificationChannelsResultOutputWithContext(ctx context.Context) GetNotificationChannelsResultOutput {
+func (o LookupNotificationChannelsResultOutput) ToLookupNotificationChannelsResultOutputWithContext(ctx context.Context) LookupNotificationChannelsResultOutput {
 	return o
 }
 
-func (o GetNotificationChannelsResultOutput) ChannelTypes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) []string { return v.ChannelTypes }).(pulumi.StringArrayOutput)
+func (o LookupNotificationChannelsResultOutput) ChannelTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) []string { return v.ChannelTypes }).(pulumi.StringArrayOutput)
 }
 
-func (o GetNotificationChannelsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) []string { return v.DeploymentIds }).(pulumi.StringArrayOutput)
+func (o LookupNotificationChannelsResultOutput) DeploymentIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) []string { return v.DeploymentIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetNotificationChannelsResultOutput) EntityType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
+func (o LookupNotificationChannelsResultOutput) EntityType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) *string { return v.EntityType }).(pulumi.StringPtrOutput)
 }
 
-func (o GetNotificationChannelsResultOutput) NotificationChannelIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) []string { return v.NotificationChannelIds }).(pulumi.StringArrayOutput)
+func (o LookupNotificationChannelsResultOutput) NotificationChannelIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) []string { return v.NotificationChannelIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetNotificationChannelsResultOutput) NotificationChannels() GetNotificationChannelsNotificationChannelArrayOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) []GetNotificationChannelsNotificationChannel {
+func (o LookupNotificationChannelsResultOutput) NotificationChannels() GetNotificationChannelsNotificationChannelArrayOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) []GetNotificationChannelsNotificationChannel {
 		return v.NotificationChannels
 	}).(GetNotificationChannelsNotificationChannelArrayOutput)
 }
 
-func (o GetNotificationChannelsResultOutput) WorkspaceIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNotificationChannelsResult) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
+func (o LookupNotificationChannelsResultOutput) WorkspaceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNotificationChannelsResult) []string { return v.WorkspaceIds }).(pulumi.StringArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetNotificationChannelsResultOutput{})
+	pulumi.RegisterOutputType(LookupNotificationChannelsResultOutput{})
 }

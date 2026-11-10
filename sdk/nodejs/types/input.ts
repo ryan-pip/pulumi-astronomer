@@ -479,9 +479,35 @@ export interface DeploymentRemoteExecution {
 
 export interface DeploymentScalingSpec {
     /**
+     * Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+     */
+    autoscaling?: pulumi.Input<inputs.DeploymentScalingSpecAutoscaling | undefined>;
+    /**
      * Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
      */
-    hibernationSpec: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpec>;
+    hibernationSpec?: pulumi.Input<inputs.DeploymentScalingSpecHibernationSpec | undefined>;
+}
+
+export interface DeploymentScalingSpecAutoscaling {
+    /**
+     * Autoscaling configuration for the API server.
+     */
+    apiServer: pulumi.Input<inputs.DeploymentScalingSpecAutoscalingApiServer>;
+}
+
+export interface DeploymentScalingSpecAutoscalingApiServer {
+    /**
+     * Whether autoscaling is enabled
+     */
+    isEnabled: pulumi.Input<boolean>;
+    /**
+     * Maximum number of replicas
+     */
+    maxReplicas: pulumi.Input<number>;
+    /**
+     * Minimum number of replicas
+     */
+    minReplicas: pulumi.Input<number>;
 }
 
 export interface DeploymentScalingSpecHibernationSpec {
@@ -557,6 +583,10 @@ export interface DeploymentWorkerQueue {
      * Worker queue pod CPU
      */
     podCpu?: pulumi.Input<string | undefined>;
+    /**
+     * Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+     */
+    podEphemeralStorage?: pulumi.Input<string | undefined>;
     /**
      * Worker queue pod memory
      */
@@ -690,6 +720,14 @@ export interface EnvironmentObjectLinkOverrides {
      */
     basicToken?: pulumi.Input<string | undefined>;
     /**
+     * Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogApiKey?: pulumi.Input<string | undefined>;
+    /**
+     * Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogSite?: pulumi.Input<string | undefined>;
+    /**
      * Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
      */
     endpoint?: pulumi.Input<string | undefined>;
@@ -799,6 +837,68 @@ export interface NotificationChannelUpdatedBy {
     id?: pulumi.Input<string | undefined>;
     subjectType?: pulumi.Input<string | undefined>;
     username?: pulumi.Input<string | undefined>;
+}
+
+export interface NotificationChannelsNotificationChannels {
+    /**
+     * The notification channel's definition
+     */
+    definition: pulumi.Input<inputs.NotificationChannelsNotificationChannelsDefinition>;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: pulumi.Input<string>;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: pulumi.Input<string>;
+    /**
+     * The notification channel's ID
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared?: pulumi.Input<boolean | undefined>;
+    /**
+     * The notification channel's name
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The notification channel's type
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface NotificationChannelsNotificationChannelsDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: pulumi.Input<string | undefined>;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: pulumi.Input<string | undefined>;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: pulumi.Input<string | undefined>;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: pulumi.Input<string | undefined>;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: pulumi.Input<string | undefined>;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: pulumi.Input<string | undefined>;
 }
 
 export interface TeamCreatedBy {

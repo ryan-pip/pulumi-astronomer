@@ -27,7 +27,7 @@ class GetApiTokenResult:
     """
     A collection of values returned by getApiToken.
     """
-    def __init__(__self__, created_at=None, created_by=None, description=None, end_at=None, expiry_period_in_days=None, id=None, last_used_at=None, name=None, roles=None, short_token=None, start_at=None, type=None, updated_at=None, updated_by=None):
+    def __init__(__self__, created_at=None, created_by=None, description=None, end_at=None, expiry_period_in_days=None, id=None, kind=None, last_used_at=None, name=None, roles=None, short_token=None, start_at=None, type=None, updated_at=None, updated_by=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -46,6 +46,9 @@ class GetApiTokenResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if kind and not isinstance(kind, str):
+            raise TypeError("Expected argument 'kind' to be a str")
+        pulumi.set(__self__, "kind", kind)
         if last_used_at and not isinstance(last_used_at, str):
             raise TypeError("Expected argument 'last_used_at' to be a str")
         pulumi.set(__self__, "last_used_at", last_used_at)
@@ -118,6 +121,14 @@ class GetApiTokenResult:
         API Token identifier
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        """
+        API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+        """
+        return pulumi.get(self, "kind")
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
@@ -196,6 +207,7 @@ class AwaitableGetApiTokenResult(GetApiTokenResult):
             end_at=self.end_at,
             expiry_period_in_days=self.expiry_period_in_days,
             id=self.id,
+            kind=self.kind,
             last_used_at=self.last_used_at,
             name=self.name,
             roles=self.roles,
@@ -236,6 +248,7 @@ def get_api_token(id: Optional[_builtins.str] = None,
         end_at=pulumi.get(__ret__, 'end_at'),
         expiry_period_in_days=pulumi.get(__ret__, 'expiry_period_in_days'),
         id=pulumi.get(__ret__, 'id'),
+        kind=pulumi.get(__ret__, 'kind'),
         last_used_at=pulumi.get(__ret__, 'last_used_at'),
         name=pulumi.get(__ret__, 'name'),
         roles=pulumi.get(__ret__, 'roles'),
@@ -273,6 +286,7 @@ def get_api_token_output(id: pulumi.Input[Optional[_builtins.str]] = None,
         end_at=pulumi.get(__response__, 'end_at'),
         expiry_period_in_days=pulumi.get(__response__, 'expiry_period_in_days'),
         id=pulumi.get(__response__, 'id'),
+        kind=pulumi.get(__response__, 'kind'),
         last_used_at=pulumi.get(__response__, 'last_used_at'),
         name=pulumi.get(__response__, 'name'),
         roles=pulumi.get(__response__, 'roles'),

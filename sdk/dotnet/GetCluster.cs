@@ -191,6 +191,10 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly bool IsLimited;
         /// <summary>
+        /// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+        /// </summary>
+        public readonly bool IsPrivateNetworkEgressEnabled;
+        /// <summary>
         /// Cluster metadata
         /// </summary>
         public readonly Outputs.GetClusterMetadataResult Metadata;
@@ -287,6 +291,8 @@ namespace RyanPip.Astronomer
 
             bool isLimited,
 
+            bool isPrivateNetworkEgressEnabled,
+
             Outputs.GetClusterMetadataResult metadata,
 
             string name,
@@ -334,6 +340,7 @@ namespace RyanPip.Astronomer
             IsDrEnabled = isDrEnabled;
             IsFailedOver = isFailedOver;
             IsLimited = isLimited;
+            IsPrivateNetworkEgressEnabled = isPrivateNetworkEgressEnabled;
             Metadata = metadata;
             Name = name;
             NodePools = nodePools;

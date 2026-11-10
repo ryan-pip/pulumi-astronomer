@@ -27,7 +27,7 @@ class GetApiTokensResult:
     """
     A collection of values returned by getApiTokens.
     """
-    def __init__(__self__, api_tokens=None, deployment_id=None, include_only_organization_tokens=None, workspace_id=None):
+    def __init__(__self__, api_tokens=None, deployment_id=None, include_only_organization_tokens=None, kind=None, workspace_id=None):
         if api_tokens and not isinstance(api_tokens, list):
             raise TypeError("Expected argument 'api_tokens' to be a list")
         pulumi.set(__self__, "api_tokens", api_tokens)
@@ -37,6 +37,9 @@ class GetApiTokensResult:
         if include_only_organization_tokens and not isinstance(include_only_organization_tokens, bool):
             raise TypeError("Expected argument 'include_only_organization_tokens' to be a bool")
         pulumi.set(__self__, "include_only_organization_tokens", include_only_organization_tokens)
+        if kind and not isinstance(kind, str):
+            raise TypeError("Expected argument 'kind' to be a str")
+        pulumi.set(__self__, "kind", kind)
         if workspace_id and not isinstance(workspace_id, str):
             raise TypeError("Expected argument 'workspace_id' to be a str")
         pulumi.set(__self__, "workspace_id", workspace_id)
@@ -57,6 +60,14 @@ class GetApiTokensResult:
         return pulumi.get(self, "include_only_organization_tokens")
 
     @_builtins.property
+    @pulumi.getter
+    def kind(self) -> Optional[_builtins.str]:
+        """
+        Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+        """
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "workspace_id")
@@ -71,11 +82,13 @@ class AwaitableGetApiTokensResult(GetApiTokensResult):
             api_tokens=self.api_tokens,
             deployment_id=self.deployment_id,
             include_only_organization_tokens=self.include_only_organization_tokens,
+            kind=self.kind,
             workspace_id=self.workspace_id)
 
 
 def get_api_tokens(deployment_id: Optional[_builtins.str] = None,
                    include_only_organization_tokens: Optional[_builtins.bool] = None,
+                   kind: Optional[_builtins.str] = None,
                    workspace_id: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiTokensResult:
     """
@@ -91,12 +104,17 @@ def get_api_tokens(deployment_id: Optional[_builtins.str] = None,
     organization_only_example = astronomer.get_api_tokens(include_only_organization_tokens=True)
     workspace_example = astronomer.get_api_tokens(workspace_id="clx42sxw501gl01o0gjenthnh")
     deployment_example = astronomer.get_api_tokens(deployment_id="clx44jyu001m201m5dzsbexqr")
+    direct_access_example = astronomer.get_api_tokens(kind="DIRECT_ACCESS")
     pulumi.export("apiTokens", example_api_tokens)
     ```
+
+
+    :param _builtins.str kind: Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
     """
     __args__ = dict()
     __args__['deploymentId'] = deployment_id
     __args__['includeOnlyOrganizationTokens'] = include_only_organization_tokens
+    __args__['kind'] = kind
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('astronomer:index/getApiTokens:getApiTokens', __args__, opts=opts, typ=GetApiTokensResult).value
@@ -105,9 +123,11 @@ def get_api_tokens(deployment_id: Optional[_builtins.str] = None,
         api_tokens=pulumi.get(__ret__, 'api_tokens'),
         deployment_id=pulumi.get(__ret__, 'deployment_id'),
         include_only_organization_tokens=pulumi.get(__ret__, 'include_only_organization_tokens'),
+        kind=pulumi.get(__ret__, 'kind'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
 def get_api_tokens_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           include_only_organization_tokens: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                          kind: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           workspace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiTokensResult]:
     """
@@ -123,12 +143,17 @@ def get_api_tokens_output(deployment_id: pulumi.Input[Optional[Optional[_builtin
     organization_only_example = astronomer.get_api_tokens(include_only_organization_tokens=True)
     workspace_example = astronomer.get_api_tokens(workspace_id="clx42sxw501gl01o0gjenthnh")
     deployment_example = astronomer.get_api_tokens(deployment_id="clx44jyu001m201m5dzsbexqr")
+    direct_access_example = astronomer.get_api_tokens(kind="DIRECT_ACCESS")
     pulumi.export("apiTokens", example_api_tokens)
     ```
+
+
+    :param _builtins.str kind: Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
     """
     __args__ = dict()
     __args__['deploymentId'] = deployment_id
     __args__['includeOnlyOrganizationTokens'] = include_only_organization_tokens
+    __args__['kind'] = kind
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('astronomer:index/getApiTokens:getApiTokens', __args__, opts=opts, typ=GetApiTokensResult)
@@ -136,4 +161,5 @@ def get_api_tokens_output(deployment_id: pulumi.Input[Optional[Optional[_builtin
         api_tokens=pulumi.get(__response__, 'api_tokens'),
         deployment_id=pulumi.get(__response__, 'deployment_id'),
         include_only_organization_tokens=pulumi.get(__response__, 'include_only_organization_tokens'),
+        kind=pulumi.get(__response__, 'kind'),
         workspace_id=pulumi.get(__response__, 'workspace_id')))

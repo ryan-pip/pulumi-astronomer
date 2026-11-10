@@ -49,6 +49,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = astronomer.GetApiTokens(ctx, &astronomer.GetApiTokensArgs{
+//				Kind: pulumi.StringRef("DIRECT_ACCESS"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			ctx.Export("apiTokens", exampleApiTokens)
 //			return nil
 //		})
@@ -69,7 +75,9 @@ func GetApiTokens(ctx *pulumi.Context, args *GetApiTokensArgs, opts ...pulumi.In
 type GetApiTokensArgs struct {
 	DeploymentId                  *string `pulumi:"deploymentId"`
 	IncludeOnlyOrganizationTokens *bool   `pulumi:"includeOnlyOrganizationTokens"`
-	WorkspaceId                   *string `pulumi:"workspaceId"`
+	// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind        *string `pulumi:"kind"`
+	WorkspaceId *string `pulumi:"workspaceId"`
 }
 
 // A collection of values returned by getApiTokens.
@@ -77,7 +85,9 @@ type GetApiTokensResult struct {
 	ApiTokens                     []GetApiTokensApiToken `pulumi:"apiTokens"`
 	DeploymentId                  *string                `pulumi:"deploymentId"`
 	IncludeOnlyOrganizationTokens *bool                  `pulumi:"includeOnlyOrganizationTokens"`
-	WorkspaceId                   *string                `pulumi:"workspaceId"`
+	// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind        *string `pulumi:"kind"`
+	WorkspaceId *string `pulumi:"workspaceId"`
 }
 
 func GetApiTokensOutput(ctx *pulumi.Context, args GetApiTokensOutputArgs, opts ...pulumi.InvokeOption) GetApiTokensResultOutput {
@@ -93,7 +103,9 @@ func GetApiTokensOutput(ctx *pulumi.Context, args GetApiTokensOutputArgs, opts .
 type GetApiTokensOutputArgs struct {
 	DeploymentId                  pulumi.StringPtrInput `pulumi:"deploymentId"`
 	IncludeOnlyOrganizationTokens pulumi.BoolPtrInput   `pulumi:"includeOnlyOrganizationTokens"`
-	WorkspaceId                   pulumi.StringPtrInput `pulumi:"workspaceId"`
+	// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind        pulumi.StringPtrInput `pulumi:"kind"`
+	WorkspaceId pulumi.StringPtrInput `pulumi:"workspaceId"`
 }
 
 func (GetApiTokensOutputArgs) ElementType() reflect.Type {
@@ -125,6 +137,11 @@ func (o GetApiTokensResultOutput) DeploymentId() pulumi.StringPtrOutput {
 
 func (o GetApiTokensResultOutput) IncludeOnlyOrganizationTokens() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetApiTokensResult) *bool { return v.IncludeOnlyOrganizationTokens }).(pulumi.BoolPtrOutput)
+}
+
+// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+func (o GetApiTokensResultOutput) Kind() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetApiTokensResult) *string { return v.Kind }).(pulumi.StringPtrOutput)
 }
 
 func (o GetApiTokensResultOutput) WorkspaceId() pulumi.StringPtrOutput {

@@ -30,13 +30,17 @@ type EnvironmentObject struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy EnvironmentObjectCreatedByOutput `pulumi:"createdBy"`
+	// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+	DataDogApiKey pulumi.StringPtrOutput `pulumi:"dataDogApiKey"`
+	// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+	DataDogSite pulumi.StringPtrOutput `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description pulumi.StringOutput `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
 	ExcludeLinks EnvironmentObjectExcludeLinkArrayOutput `pulumi:"excludeLinks"`
-	// The type of exporter (required when object*type=METRICS*EXPORT)
+	// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 	ExporterType pulumi.StringOutput `pulumi:"exporterType"`
 	// Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
 	Extra pulumi.StringOutput `pulumi:"extra"`
@@ -104,6 +108,9 @@ func NewEnvironmentObject(ctx *pulumi.Context,
 	if args.BasicToken != nil {
 		args.BasicToken = pulumi.ToSecret(args.BasicToken).(pulumi.StringPtrInput)
 	}
+	if args.DataDogApiKey != nil {
+		args.DataDogApiKey = pulumi.ToSecret(args.DataDogApiKey).(pulumi.StringPtrInput)
+	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
@@ -112,6 +119,7 @@ func NewEnvironmentObject(ctx *pulumi.Context,
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"basicToken",
+		"dataDogApiKey",
 		"password",
 		"value",
 	})
@@ -153,13 +161,17 @@ type environmentObjectState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy *EnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+	DataDogApiKey *string `pulumi:"dataDogApiKey"`
+	// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+	DataDogSite *string `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description *string `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 	Endpoint *string `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
 	ExcludeLinks []EnvironmentObjectExcludeLink `pulumi:"excludeLinks"`
-	// The type of exporter (required when object*type=METRICS*EXPORT)
+	// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 	ExporterType *string `pulumi:"exporterType"`
 	// Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
 	Extra *string `pulumi:"extra"`
@@ -220,13 +232,17 @@ type EnvironmentObjectState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Environment Object creator
 	CreatedBy EnvironmentObjectCreatedByPtrInput
+	// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+	DataDogApiKey pulumi.StringPtrInput
+	// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+	DataDogSite pulumi.StringPtrInput
 	// The description of the environment object
 	Description pulumi.StringPtrInput
-	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 	Endpoint pulumi.StringPtrInput
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
 	ExcludeLinks EnvironmentObjectExcludeLinkArrayInput
-	// The type of exporter (required when object*type=METRICS*EXPORT)
+	// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 	ExporterType pulumi.StringPtrInput
 	// Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
 	Extra pulumi.StringPtrInput
@@ -285,13 +301,17 @@ type environmentObjectArgs struct {
 	AutoLinkDeployments *bool `pulumi:"autoLinkDeployments"`
 	// The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	BasicToken *string `pulumi:"basicToken"`
+	// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+	DataDogApiKey *string `pulumi:"dataDogApiKey"`
+	// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+	DataDogSite *string `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description *string `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 	Endpoint *string `pulumi:"endpoint"`
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
 	ExcludeLinks []EnvironmentObjectExcludeLink `pulumi:"excludeLinks"`
-	// The type of exporter (required when object*type=METRICS*EXPORT)
+	// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 	ExporterType *string `pulumi:"exporterType"`
 	// Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
 	Extra *string `pulumi:"extra"`
@@ -339,13 +359,17 @@ type EnvironmentObjectArgs struct {
 	AutoLinkDeployments pulumi.BoolPtrInput
 	// The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
 	BasicToken pulumi.StringPtrInput
+	// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+	DataDogApiKey pulumi.StringPtrInput
+	// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+	DataDogSite pulumi.StringPtrInput
 	// The description of the environment object
 	Description pulumi.StringPtrInput
-	// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 	Endpoint pulumi.StringPtrInput
 	// The excluded links for the environment object. Only applicable for WORKSPACE scope
 	ExcludeLinks EnvironmentObjectExcludeLinkArrayInput
-	// The type of exporter (required when object*type=METRICS*EXPORT)
+	// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 	ExporterType pulumi.StringPtrInput
 	// Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
 	Extra pulumi.StringPtrInput
@@ -505,12 +529,22 @@ func (o EnvironmentObjectOutput) CreatedBy() EnvironmentObjectCreatedByOutput {
 	return o.ApplyT(func(v *EnvironmentObject) EnvironmentObjectCreatedByOutput { return v.CreatedBy }).(EnvironmentObjectCreatedByOutput)
 }
 
+// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+func (o EnvironmentObjectOutput) DataDogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringPtrOutput { return v.DataDogApiKey }).(pulumi.StringPtrOutput)
+}
+
+// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+func (o EnvironmentObjectOutput) DataDogSite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringPtrOutput { return v.DataDogSite }).(pulumi.StringPtrOutput)
+}
+
 // The description of the environment object
 func (o EnvironmentObjectOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
 func (o EnvironmentObjectOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -520,7 +554,7 @@ func (o EnvironmentObjectOutput) ExcludeLinks() EnvironmentObjectExcludeLinkArra
 	return o.ApplyT(func(v *EnvironmentObject) EnvironmentObjectExcludeLinkArrayOutput { return v.ExcludeLinks }).(EnvironmentObjectExcludeLinkArrayOutput)
 }
 
-// The type of exporter (required when object*type=METRICS*EXPORT)
+// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
 func (o EnvironmentObjectOutput) ExporterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentObject) pulumi.StringOutput { return v.ExporterType }).(pulumi.StringOutput)
 }

@@ -43,6 +43,10 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string? PodCpu;
         /// <summary>
+        /// Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+        /// </summary>
+        public readonly string? PodEphemeralStorage;
+        /// <summary>
         /// Worker queue pod memory
         /// </summary>
         public readonly string? PodMemory;
@@ -67,6 +71,8 @@ namespace RyanPip.Astronomer.Outputs
 
             string? podCpu,
 
+            string? podEphemeralStorage,
+
             string? podMemory,
 
             int workerConcurrency)
@@ -78,6 +84,7 @@ namespace RyanPip.Astronomer.Outputs
             Name = name;
             NodePoolId = nodePoolId;
             PodCpu = podCpu;
+            PodEphemeralStorage = podEphemeralStorage;
             PodMemory = podMemory;
             WorkerConcurrency = workerConcurrency;
         }

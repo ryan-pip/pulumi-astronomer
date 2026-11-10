@@ -58,6 +58,10 @@ export class ApiToken extends pulumi.CustomResource {
      */
     declare public readonly expiryPeriodInDays: pulumi.Output<number | undefined>;
     /**
+     * API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+     */
+    declare public readonly kind: pulumi.Output<string>;
+    /**
      * API Token last used timestamp
      */
     declare public /*out*/ readonly lastUsedAt: pulumi.Output<string>;
@@ -66,7 +70,7 @@ export class ApiToken extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The roles assigned to the API Token
+     * The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
      */
     declare public readonly roles: pulumi.Output<outputs.ApiTokenRole[]>;
     /**
@@ -112,6 +116,7 @@ export class ApiToken extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["endAt"] = state?.endAt;
             resourceInputs["expiryPeriodInDays"] = state?.expiryPeriodInDays;
+            resourceInputs["kind"] = state?.kind;
             resourceInputs["lastUsedAt"] = state?.lastUsedAt;
             resourceInputs["name"] = state?.name;
             resourceInputs["roles"] = state?.roles;
@@ -131,6 +136,7 @@ export class ApiToken extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args?.description;
             resourceInputs["expiryPeriodInDays"] = args?.expiryPeriodInDays;
+            resourceInputs["kind"] = args?.kind;
             resourceInputs["name"] = args?.name;
             resourceInputs["roles"] = args?.roles;
             resourceInputs["type"] = args?.type;
@@ -176,6 +182,10 @@ export interface ApiTokenState {
      */
     expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
+     * API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+     */
+    kind?: pulumi.Input<string | undefined>;
+    /**
      * API Token last used timestamp
      */
     lastUsedAt?: pulumi.Input<string | undefined>;
@@ -184,7 +194,7 @@ export interface ApiTokenState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The roles assigned to the API Token
+     * The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
      */
     roles?: pulumi.Input<pulumi.Input<inputs.ApiTokenRole>[] | undefined>;
     /**
@@ -226,11 +236,15 @@ export interface ApiTokenArgs {
      */
     expiryPeriodInDays?: pulumi.Input<number | undefined>;
     /**
+     * API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+     */
+    kind?: pulumi.Input<string | undefined>;
+    /**
      * API Token name
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The roles assigned to the API Token
+     * The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
      */
     roles: pulumi.Input<pulumi.Input<inputs.ApiTokenRole>[]>;
     /**

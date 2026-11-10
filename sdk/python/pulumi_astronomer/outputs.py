@@ -43,6 +43,8 @@ __all__ = [
     'DeploymentEnvironmentVariable',
     'DeploymentRemoteExecution',
     'DeploymentScalingSpec',
+    'DeploymentScalingSpecAutoscaling',
+    'DeploymentScalingSpecAutoscalingApiServer',
     'DeploymentScalingSpecHibernationSpec',
     'DeploymentScalingSpecHibernationSpecOverride',
     'DeploymentScalingSpecHibernationSpecSchedule',
@@ -60,6 +62,8 @@ __all__ = [
     'NotificationChannelCreatedBy',
     'NotificationChannelDefinition',
     'NotificationChannelUpdatedBy',
+    'NotificationChannelsNotificationChannels',
+    'NotificationChannelsNotificationChannelsDefinition',
     'TeamCreatedBy',
     'TeamDagRole',
     'TeamDeploymentRole',
@@ -137,6 +141,8 @@ __all__ = [
     'GetDeploymentOptionsWorkloadIdentityOptionResult',
     'GetDeploymentRemoteExecutionResult',
     'GetDeploymentScalingSpecResult',
+    'GetDeploymentScalingSpecAutoscalingResult',
+    'GetDeploymentScalingSpecAutoscalingApiServerResult',
     'GetDeploymentScalingSpecHibernationSpecResult',
     'GetDeploymentScalingSpecHibernationSpecOverrideResult',
     'GetDeploymentScalingSpecHibernationSpecScheduleResult',
@@ -149,6 +155,8 @@ __all__ = [
     'GetDeploymentsDeploymentEnvironmentVariableResult',
     'GetDeploymentsDeploymentRemoteExecutionResult',
     'GetDeploymentsDeploymentScalingSpecResult',
+    'GetDeploymentsDeploymentScalingSpecAutoscalingResult',
+    'GetDeploymentsDeploymentScalingSpecAutoscalingApiServerResult',
     'GetDeploymentsDeploymentScalingSpecHibernationSpecResult',
     'GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideResult',
     'GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleResult',
@@ -2348,19 +2356,128 @@ class DeploymentScalingSpec(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 hibernation_spec: 'outputs.DeploymentScalingSpecHibernationSpec'):
+                 autoscaling: Optional['outputs.DeploymentScalingSpecAutoscaling'] = None,
+                 hibernation_spec: Optional['outputs.DeploymentScalingSpecHibernationSpec'] = None):
         """
+        :param 'DeploymentScalingSpecAutoscalingArgs' autoscaling: Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `is_enabled` to false; the replica bounds are kept.
         :param 'DeploymentScalingSpecHibernationSpecArgs' hibernation_spec: Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         """
-        pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if hibernation_spec is not None:
+            pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> Optional['outputs.DeploymentScalingSpecAutoscaling']:
+        """
+        Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `is_enabled` to false; the replica bounds are kept.
+        """
+        return pulumi.get(self, "autoscaling")
 
     @_builtins.property
     @pulumi.getter(name="hibernationSpec")
-    def hibernation_spec(self) -> 'outputs.DeploymentScalingSpecHibernationSpec':
+    def hibernation_spec(self) -> Optional['outputs.DeploymentScalingSpecHibernationSpec']:
         """
         Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         """
         return pulumi.get(self, "hibernation_spec")
+
+
+@pulumi.output_type
+class DeploymentScalingSpecAutoscaling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiServer":
+            suggest = "api_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DeploymentScalingSpecAutoscaling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DeploymentScalingSpecAutoscaling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DeploymentScalingSpecAutoscaling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_server: 'outputs.DeploymentScalingSpecAutoscalingApiServer'):
+        """
+        :param 'DeploymentScalingSpecAutoscalingApiServerArgs' api_server: Autoscaling configuration for the API server.
+        """
+        pulumi.set(__self__, "api_server", api_server)
+
+    @_builtins.property
+    @pulumi.getter(name="apiServer")
+    def api_server(self) -> 'outputs.DeploymentScalingSpecAutoscalingApiServer':
+        """
+        Autoscaling configuration for the API server.
+        """
+        return pulumi.get(self, "api_server")
+
+
+@pulumi.output_type
+class DeploymentScalingSpecAutoscalingApiServer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isEnabled":
+            suggest = "is_enabled"
+        elif key == "maxReplicas":
+            suggest = "max_replicas"
+        elif key == "minReplicas":
+            suggest = "min_replicas"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DeploymentScalingSpecAutoscalingApiServer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DeploymentScalingSpecAutoscalingApiServer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DeploymentScalingSpecAutoscalingApiServer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_enabled: _builtins.bool,
+                 max_replicas: _builtins.int,
+                 min_replicas: _builtins.int):
+        """
+        :param _builtins.bool is_enabled: Whether autoscaling is enabled
+        :param _builtins.int max_replicas: Maximum number of replicas
+        :param _builtins.int min_replicas: Minimum number of replicas
+        """
+        pulumi.set(__self__, "is_enabled", is_enabled)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @_builtins.property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> _builtins.bool:
+        """
+        Whether autoscaling is enabled
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> _builtins.int:
+        """
+        Maximum number of replicas
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @_builtins.property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> _builtins.int:
+        """
+        Minimum number of replicas
+        """
+        return pulumi.get(self, "min_replicas")
 
 
 @pulumi.output_type
@@ -2681,6 +2798,8 @@ class DeploymentWorkerQueue(dict):
             suggest = "node_pool_id"
         elif key == "podCpu":
             suggest = "pod_cpu"
+        elif key == "podEphemeralStorage":
+            suggest = "pod_ephemeral_storage"
         elif key == "podMemory":
             suggest = "pod_memory"
 
@@ -2704,6 +2823,7 @@ class DeploymentWorkerQueue(dict):
                  astro_machine: Optional[_builtins.str] = None,
                  node_pool_id: Optional[_builtins.str] = None,
                  pod_cpu: Optional[_builtins.str] = None,
+                 pod_ephemeral_storage: Optional[_builtins.str] = None,
                  pod_memory: Optional[_builtins.str] = None):
         """
         :param _builtins.bool is_default: Worker queue default
@@ -2714,6 +2834,7 @@ class DeploymentWorkerQueue(dict):
         :param _builtins.str astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param _builtins.str node_pool_id: Worker queue Node pool identifier - required for 'HYBRID' deployments
         :param _builtins.str pod_cpu: Worker queue pod CPU
+        :param _builtins.str pod_ephemeral_storage: Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
         :param _builtins.str pod_memory: Worker queue pod memory
         """
         pulumi.set(__self__, "is_default", is_default)
@@ -2727,6 +2848,8 @@ class DeploymentWorkerQueue(dict):
             pulumi.set(__self__, "node_pool_id", node_pool_id)
         if pod_cpu is not None:
             pulumi.set(__self__, "pod_cpu", pod_cpu)
+        if pod_ephemeral_storage is not None:
+            pulumi.set(__self__, "pod_ephemeral_storage", pod_ephemeral_storage)
         if pod_memory is not None:
             pulumi.set(__self__, "pod_memory", pod_memory)
 
@@ -2793,6 +2916,14 @@ class DeploymentWorkerQueue(dict):
         Worker queue pod CPU
         """
         return pulumi.get(self, "pod_cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="podEphemeralStorage")
+    def pod_ephemeral_storage(self) -> Optional[_builtins.str]:
+        """
+        Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+        """
+        return pulumi.get(self, "pod_ephemeral_storage")
 
     @_builtins.property
     @pulumi.getter(name="podMemory")
@@ -3274,6 +3405,10 @@ class EnvironmentObjectLinkOverrides(dict):
             suggest = "auth_type"
         elif key == "basicToken":
             suggest = "basic_token"
+        elif key == "dataDogApiKey":
+            suggest = "data_dog_api_key"
+        elif key == "dataDogSite":
+            suggest = "data_dog_site"
         elif key == "exporterType":
             suggest = "exporter_type"
 
@@ -3291,6 +3426,8 @@ class EnvironmentObjectLinkOverrides(dict):
     def __init__(__self__, *,
                  auth_type: Optional[_builtins.str] = None,
                  basic_token: Optional[_builtins.str] = None,
+                 data_dog_api_key: Optional[_builtins.str] = None,
+                 data_dog_site: Optional[_builtins.str] = None,
                  endpoint: Optional[_builtins.str] = None,
                  exporter_type: Optional[_builtins.str] = None,
                  extra: Optional[_builtins.str] = None,
@@ -3307,6 +3444,8 @@ class EnvironmentObjectLinkOverrides(dict):
         """
         :param _builtins.str auth_type: Override auth type (only valid when object*type=METRICS*EXPORT)
         :param _builtins.str basic_token: Override bearer token (only valid when object*type=METRICS*EXPORT)
+        :param _builtins.str data_dog_api_key: Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        :param _builtins.str data_dog_site: Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
         :param _builtins.str endpoint: Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
         :param _builtins.str exporter_type: Override exporter type (only valid when object*type=METRICS*EXPORT)
         :param _builtins.str extra: Override extra JSON (only valid when object_type=CONNECTION)
@@ -3325,6 +3464,10 @@ class EnvironmentObjectLinkOverrides(dict):
             pulumi.set(__self__, "auth_type", auth_type)
         if basic_token is not None:
             pulumi.set(__self__, "basic_token", basic_token)
+        if data_dog_api_key is not None:
+            pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        if data_dog_site is not None:
+            pulumi.set(__self__, "data_dog_site", data_dog_site)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
         if exporter_type is not None:
@@ -3367,6 +3510,22 @@ class EnvironmentObjectLinkOverrides(dict):
         Override bearer token (only valid when object*type=METRICS*EXPORT)
         """
         return pulumi.get(self, "basic_token")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> Optional[_builtins.str]:
+        """
+        Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> Optional[_builtins.str]:
+        """
+        Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
 
     @_builtins.property
     @pulumi.getter
@@ -3817,6 +3976,231 @@ class NotificationChannelUpdatedBy(dict):
     @pulumi.getter
     def username(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class NotificationChannelsNotificationChannels(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entityId":
+            suggest = "entity_id"
+        elif key == "entityType":
+            suggest = "entity_type"
+        elif key == "isShared":
+            suggest = "is_shared"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationChannelsNotificationChannels. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationChannelsNotificationChannels.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationChannelsNotificationChannels.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 definition: 'outputs.NotificationChannelsNotificationChannelsDefinition',
+                 entity_id: _builtins.str,
+                 entity_type: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 id: Optional[_builtins.str] = None,
+                 is_shared: Optional[_builtins.bool] = None):
+        """
+        :param 'NotificationChannelsNotificationChannelsDefinitionArgs' definition: The notification channel's definition
+        :param _builtins.str entity_id: The entity ID the notification channel is scoped to
+        :param _builtins.str entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param _builtins.str name: The notification channel's name
+        :param _builtins.str type: The notification channel's type
+        :param _builtins.str id: The notification channel's ID
+        :param _builtins.bool is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_shared is not None:
+            pulumi.set(__self__, "is_shared", is_shared)
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> 'outputs.NotificationChannelsNotificationChannelsDefinition':
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> Optional[_builtins.bool]:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+
+@pulumi.output_type
+class NotificationChannelsNotificationChannelsDefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+        elif key == "dagId":
+            suggest = "dag_id"
+        elif key == "deploymentApiToken":
+            suggest = "deployment_api_token"
+        elif key == "deploymentId":
+            suggest = "deployment_id"
+        elif key == "integrationKey":
+            suggest = "integration_key"
+        elif key == "webhookUrl":
+            suggest = "webhook_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationChannelsNotificationChannelsDefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationChannelsNotificationChannelsDefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationChannelsNotificationChannelsDefinition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: Optional[_builtins.str] = None,
+                 dag_id: Optional[_builtins.str] = None,
+                 deployment_api_token: Optional[_builtins.str] = None,
+                 deployment_id: Optional[_builtins.str] = None,
+                 integration_key: Optional[_builtins.str] = None,
+                 recipients: Optional[Sequence[_builtins.str]] = None,
+                 webhook_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: The API key for the notification channel
+        :param _builtins.str dag_id: The DAG ID for the notification channel
+        :param _builtins.str deployment_api_token: The deployment API token for the notification channel
+        :param _builtins.str deployment_id: The deployment ID for the notification channel
+        :param _builtins.str integration_key: The integration key for the notification channel
+        :param Sequence[_builtins.str] recipients: The recipients for the notification channel
+        :param _builtins.str webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[_builtins.str]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> Optional[_builtins.str]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> Optional[_builtins.str]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[_builtins.str]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> Optional[_builtins.str]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[_builtins.str]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
 
 
 @pulumi.output_type
@@ -5747,6 +6131,7 @@ class GetApiTokensApiTokenResult(dict):
                  end_at: _builtins.str,
                  expiry_period_in_days: _builtins.int,
                  id: _builtins.str,
+                 kind: _builtins.str,
                  last_used_at: _builtins.str,
                  name: _builtins.str,
                  roles: Sequence['outputs.GetApiTokensApiTokenRoleResult'],
@@ -5762,6 +6147,7 @@ class GetApiTokensApiTokenResult(dict):
         :param _builtins.str end_at: time when the API token will expire in UTC
         :param _builtins.int expiry_period_in_days: API Token expiry period in days
         :param _builtins.str id: API Token identifier
+        :param _builtins.str kind: API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
         :param _builtins.str last_used_at: API Token last used timestamp
         :param _builtins.str name: API Token name
         :param Sequence['GetApiTokensApiTokenRoleArgs'] roles: The roles assigned to the API Token
@@ -5777,6 +6163,7 @@ class GetApiTokensApiTokenResult(dict):
         pulumi.set(__self__, "end_at", end_at)
         pulumi.set(__self__, "expiry_period_in_days", expiry_period_in_days)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "last_used_at", last_used_at)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "roles", roles)
@@ -5833,6 +6220,14 @@ class GetApiTokensApiTokenResult(dict):
         API Token identifier
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        """
+        API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+        """
+        return pulumi.get(self, "kind")
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
@@ -6718,6 +7113,7 @@ class GetClustersClusterResult(dict):
                  is_dr_enabled: _builtins.bool,
                  is_failed_over: _builtins.bool,
                  is_limited: _builtins.bool,
+                 is_private_network_egress_enabled: _builtins.bool,
                  metadata: 'outputs.GetClustersClusterMetadataResult',
                  name: _builtins.str,
                  node_pools: Sequence['outputs.GetClustersClusterNodePoolResult'],
@@ -6750,6 +7146,7 @@ class GetClustersClusterResult(dict):
         :param _builtins.bool is_dr_enabled: Whether Disaster Recovery is enabled on the cluster
         :param _builtins.bool is_failed_over: Whether the cluster is currently failed over to the DR region
         :param _builtins.bool is_limited: Whether the cluster is limited
+        :param _builtins.bool is_private_network_egress_enabled: Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
         :param 'GetClustersClusterMetadataArgs' metadata: Cluster metadata
         :param _builtins.str name: Cluster name
         :param Sequence['GetClustersClusterNodePoolArgs'] node_pools: Cluster node pools
@@ -6782,6 +7179,7 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
         pulumi.set(__self__, "is_failed_over", is_failed_over)
         pulumi.set(__self__, "is_limited", is_limited)
+        pulumi.set(__self__, "is_private_network_egress_enabled", is_private_network_egress_enabled)
         pulumi.set(__self__, "metadata", metadata)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_pools", node_pools)
@@ -6918,6 +7316,14 @@ class GetClustersClusterResult(dict):
         Whether the cluster is limited
         """
         return pulumi.get(self, "is_limited")
+
+    @_builtins.property
+    @pulumi.getter(name="isPrivateNetworkEgressEnabled")
+    def is_private_network_egress_enabled(self) -> _builtins.bool:
+        """
+        Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+        """
+        return pulumi.get(self, "is_private_network_egress_enabled")
 
     @_builtins.property
     @pulumi.getter
@@ -8170,13 +8576,72 @@ class GetDeploymentRemoteExecutionResult(dict):
 @pulumi.output_type
 class GetDeploymentScalingSpecResult(dict):
     def __init__(__self__, *,
+                 autoscaling: 'outputs.GetDeploymentScalingSpecAutoscalingResult',
                  hibernation_spec: 'outputs.GetDeploymentScalingSpecHibernationSpecResult'):
+        pulumi.set(__self__, "autoscaling", autoscaling)
         pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> 'outputs.GetDeploymentScalingSpecAutoscalingResult':
+        return pulumi.get(self, "autoscaling")
 
     @_builtins.property
     @pulumi.getter(name="hibernationSpec")
     def hibernation_spec(self) -> 'outputs.GetDeploymentScalingSpecHibernationSpecResult':
         return pulumi.get(self, "hibernation_spec")
+
+
+@pulumi.output_type
+class GetDeploymentScalingSpecAutoscalingResult(dict):
+    def __init__(__self__, *,
+                 api_server: 'outputs.GetDeploymentScalingSpecAutoscalingApiServerResult'):
+        pulumi.set(__self__, "api_server", api_server)
+
+    @_builtins.property
+    @pulumi.getter(name="apiServer")
+    def api_server(self) -> 'outputs.GetDeploymentScalingSpecAutoscalingApiServerResult':
+        return pulumi.get(self, "api_server")
+
+
+@pulumi.output_type
+class GetDeploymentScalingSpecAutoscalingApiServerResult(dict):
+    def __init__(__self__, *,
+                 is_enabled: _builtins.bool,
+                 max_replicas: _builtins.int,
+                 min_replicas: _builtins.int):
+        """
+        :param _builtins.bool is_enabled: Whether autoscaling is enabled
+        :param _builtins.int max_replicas: Maximum number of replicas
+        :param _builtins.int min_replicas: Minimum number of replicas
+        """
+        pulumi.set(__self__, "is_enabled", is_enabled)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @_builtins.property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> _builtins.bool:
+        """
+        Whether autoscaling is enabled
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> _builtins.int:
+        """
+        Maximum number of replicas
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @_builtins.property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> _builtins.int:
+        """
+        Minimum number of replicas
+        """
+        return pulumi.get(self, "min_replicas")
 
 
 @pulumi.output_type
@@ -8410,6 +8875,7 @@ class GetDeploymentWorkerQueueResult(dict):
                  name: _builtins.str,
                  node_pool_id: _builtins.str,
                  pod_cpu: _builtins.str,
+                 pod_ephemeral_storage: _builtins.str,
                  pod_memory: _builtins.str,
                  worker_concurrency: _builtins.int):
         """
@@ -8421,6 +8887,7 @@ class GetDeploymentWorkerQueueResult(dict):
         :param _builtins.str name: Worker queue name
         :param _builtins.str node_pool_id: Worker queue node pool identifier
         :param _builtins.str pod_cpu: Worker queue pod CPU
+        :param _builtins.str pod_ephemeral_storage: Worker queue pod ephemeral storage
         :param _builtins.str pod_memory: Worker queue pod memory
         :param _builtins.int worker_concurrency: Worker queue worker concurrency
         """
@@ -8432,6 +8899,7 @@ class GetDeploymentWorkerQueueResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_pool_id", node_pool_id)
         pulumi.set(__self__, "pod_cpu", pod_cpu)
+        pulumi.set(__self__, "pod_ephemeral_storage", pod_ephemeral_storage)
         pulumi.set(__self__, "pod_memory", pod_memory)
         pulumi.set(__self__, "worker_concurrency", worker_concurrency)
 
@@ -8498,6 +8966,14 @@ class GetDeploymentWorkerQueueResult(dict):
         Worker queue pod CPU
         """
         return pulumi.get(self, "pod_cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="podEphemeralStorage")
+    def pod_ephemeral_storage(self) -> _builtins.str:
+        """
+        Worker queue pod ephemeral storage
+        """
+        return pulumi.get(self, "pod_ephemeral_storage")
 
     @_builtins.property
     @pulumi.getter(name="podMemory")
@@ -9225,13 +9701,72 @@ class GetDeploymentsDeploymentRemoteExecutionResult(dict):
 @pulumi.output_type
 class GetDeploymentsDeploymentScalingSpecResult(dict):
     def __init__(__self__, *,
+                 autoscaling: 'outputs.GetDeploymentsDeploymentScalingSpecAutoscalingResult',
                  hibernation_spec: 'outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecResult'):
+        pulumi.set(__self__, "autoscaling", autoscaling)
         pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> 'outputs.GetDeploymentsDeploymentScalingSpecAutoscalingResult':
+        return pulumi.get(self, "autoscaling")
 
     @_builtins.property
     @pulumi.getter(name="hibernationSpec")
     def hibernation_spec(self) -> 'outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecResult':
         return pulumi.get(self, "hibernation_spec")
+
+
+@pulumi.output_type
+class GetDeploymentsDeploymentScalingSpecAutoscalingResult(dict):
+    def __init__(__self__, *,
+                 api_server: 'outputs.GetDeploymentsDeploymentScalingSpecAutoscalingApiServerResult'):
+        pulumi.set(__self__, "api_server", api_server)
+
+    @_builtins.property
+    @pulumi.getter(name="apiServer")
+    def api_server(self) -> 'outputs.GetDeploymentsDeploymentScalingSpecAutoscalingApiServerResult':
+        return pulumi.get(self, "api_server")
+
+
+@pulumi.output_type
+class GetDeploymentsDeploymentScalingSpecAutoscalingApiServerResult(dict):
+    def __init__(__self__, *,
+                 is_enabled: _builtins.bool,
+                 max_replicas: _builtins.int,
+                 min_replicas: _builtins.int):
+        """
+        :param _builtins.bool is_enabled: Whether autoscaling is enabled
+        :param _builtins.int max_replicas: Maximum number of replicas
+        :param _builtins.int min_replicas: Minimum number of replicas
+        """
+        pulumi.set(__self__, "is_enabled", is_enabled)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @_builtins.property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> _builtins.bool:
+        """
+        Whether autoscaling is enabled
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> _builtins.int:
+        """
+        Maximum number of replicas
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @_builtins.property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> _builtins.int:
+        """
+        Minimum number of replicas
+        """
+        return pulumi.get(self, "min_replicas")
 
 
 @pulumi.output_type
@@ -9465,6 +10000,7 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
                  name: _builtins.str,
                  node_pool_id: _builtins.str,
                  pod_cpu: _builtins.str,
+                 pod_ephemeral_storage: _builtins.str,
                  pod_memory: _builtins.str,
                  worker_concurrency: _builtins.int):
         """
@@ -9476,6 +10012,7 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
         :param _builtins.str name: Worker queue name
         :param _builtins.str node_pool_id: Worker queue node pool identifier
         :param _builtins.str pod_cpu: Worker queue pod CPU
+        :param _builtins.str pod_ephemeral_storage: Worker queue pod ephemeral storage
         :param _builtins.str pod_memory: Worker queue pod memory
         :param _builtins.int worker_concurrency: Worker queue worker concurrency
         """
@@ -9487,6 +10024,7 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_pool_id", node_pool_id)
         pulumi.set(__self__, "pod_cpu", pod_cpu)
+        pulumi.set(__self__, "pod_ephemeral_storage", pod_ephemeral_storage)
         pulumi.set(__self__, "pod_memory", pod_memory)
         pulumi.set(__self__, "worker_concurrency", worker_concurrency)
 
@@ -9553,6 +10091,14 @@ class GetDeploymentsDeploymentWorkerQueueResult(dict):
         Worker queue pod CPU
         """
         return pulumi.get(self, "pod_cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="podEphemeralStorage")
+    def pod_ephemeral_storage(self) -> _builtins.str:
+        """
+        Worker queue pod ephemeral storage
+        """
+        return pulumi.get(self, "pod_ephemeral_storage")
 
     @_builtins.property
     @pulumi.getter(name="podMemory")
@@ -9904,6 +10450,8 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
     def __init__(__self__, *,
                  auth_type: _builtins.str,
                  basic_token: _builtins.str,
+                 data_dog_api_key: _builtins.str,
+                 data_dog_site: _builtins.str,
                  endpoint: _builtins.str,
                  exporter_type: _builtins.str,
                  extra: _builtins.str,
@@ -9920,6 +10468,8 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
         """
         :param _builtins.str auth_type: Override auth type (only used when object*type=METRICS*EXPORT)
         :param _builtins.str basic_token: Override bearer token (only used when object*type=METRICS*EXPORT)
+        :param _builtins.str data_dog_api_key: Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        :param _builtins.str data_dog_site: Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
         :param _builtins.str endpoint: Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
         :param _builtins.str exporter_type: Override exporter type (only used when object*type=METRICS*EXPORT)
         :param _builtins.str extra: Override extra JSON (only used when object_type=CONNECTION)
@@ -9936,6 +10486,8 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "basic_token", basic_token)
+        pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        pulumi.set(__self__, "data_dog_site", data_dog_site)
         pulumi.set(__self__, "endpoint", endpoint)
         pulumi.set(__self__, "exporter_type", exporter_type)
         pulumi.set(__self__, "extra", extra)
@@ -9965,6 +10517,22 @@ class GetEnvironmentObjectLinkOverridesResult(dict):
         Override bearer token (only used when object*type=METRICS*EXPORT)
         """
         return pulumi.get(self, "basic_token")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> _builtins.str:
+        """
+        Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> _builtins.str:
+        """
+        Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
 
     @_builtins.property
     @pulumi.getter
@@ -10128,6 +10696,8 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
                  connection_auth_type: 'outputs.GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeResult',
                  created_at: _builtins.str,
                  created_by: 'outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult',
+                 data_dog_api_key: _builtins.str,
+                 data_dog_site: _builtins.str,
                  description: _builtins.str,
                  endpoint: _builtins.str,
                  exclude_links: Sequence['outputs.GetEnvironmentObjectsEnvironmentObjectExcludeLinkResult'],
@@ -10162,8 +10732,10 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         :param 'GetEnvironmentObjectsEnvironmentObjectConnectionAuthTypeArgs' connection_auth_type: The resolved auth type of the connection (only used when object*type=CONNECTION)
         :param _builtins.str created_at: Environment Object creation timestamp
         :param 'GetEnvironmentObjectsEnvironmentObjectCreatedByArgs' created_by: Environment Object creator
+        :param _builtins.str data_dog_api_key: The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        :param _builtins.str data_dog_site: The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
         :param _builtins.str description: The description of the environment object
-        :param _builtins.str endpoint: The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+        :param _builtins.str endpoint: The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
         :param Sequence['GetEnvironmentObjectsEnvironmentObjectExcludeLinkArgs'] exclude_links: The excluded links for the environment object
         :param _builtins.str exporter_type: The type of exporter (only used when object*type=METRICS*EXPORT)
         :param _builtins.str extra: Extra connection details as JSON string (only used when object_type=CONNECTION)
@@ -10196,6 +10768,8 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         pulumi.set(__self__, "connection_auth_type", connection_auth_type)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        pulumi.set(__self__, "data_dog_site", data_dog_site)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "endpoint", endpoint)
         pulumi.set(__self__, "exclude_links", exclude_links)
@@ -10280,6 +10854,22 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
         return pulumi.get(self, "created_by")
 
     @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> _builtins.str:
+        """
+        The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> _builtins.str:
+        """
+        The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> _builtins.str:
         """
@@ -10291,7 +10881,7 @@ class GetEnvironmentObjectsEnvironmentObjectResult(dict):
     @pulumi.getter
     def endpoint(self) -> _builtins.str:
         """
-        The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+        The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
         """
         return pulumi.get(self, "endpoint")
 
@@ -10821,6 +11411,8 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
     def __init__(__self__, *,
                  auth_type: _builtins.str,
                  basic_token: _builtins.str,
+                 data_dog_api_key: _builtins.str,
+                 data_dog_site: _builtins.str,
                  endpoint: _builtins.str,
                  exporter_type: _builtins.str,
                  extra: _builtins.str,
@@ -10837,6 +11429,8 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
         """
         :param _builtins.str auth_type: Override auth type (only used when object*type=METRICS*EXPORT)
         :param _builtins.str basic_token: Override bearer token (only used when object*type=METRICS*EXPORT)
+        :param _builtins.str data_dog_api_key: Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        :param _builtins.str data_dog_site: Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
         :param _builtins.str endpoint: Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
         :param _builtins.str exporter_type: Override exporter type (only used when object*type=METRICS*EXPORT)
         :param _builtins.str extra: Override extra JSON (only used when object_type=CONNECTION)
@@ -10853,6 +11447,8 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "basic_token", basic_token)
+        pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        pulumi.set(__self__, "data_dog_site", data_dog_site)
         pulumi.set(__self__, "endpoint", endpoint)
         pulumi.set(__self__, "exporter_type", exporter_type)
         pulumi.set(__self__, "extra", extra)
@@ -10882,6 +11478,22 @@ class GetEnvironmentObjectsEnvironmentObjectLinkOverridesResult(dict):
         Override bearer token (only used when object*type=METRICS*EXPORT)
         """
         return pulumi.get(self, "basic_token")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> _builtins.str:
+        """
+        Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> _builtins.str:
+        """
+        Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
 
     @_builtins.property
     @pulumi.getter

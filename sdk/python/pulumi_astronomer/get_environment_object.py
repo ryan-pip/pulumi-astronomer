@@ -27,7 +27,7 @@ class GetEnvironmentObjectResult:
     """
     A collection of values returned by getEnvironmentObject.
     """
-    def __init__(__self__, auth_type=None, auth_type_id=None, auto_link_deployments=None, basic_token=None, connection_auth_type=None, created_at=None, created_by=None, description=None, endpoint=None, exclude_links=None, exporter_type=None, extra=None, headers=None, host=None, id=None, is_secret=None, labels=None, links=None, login=None, object_key=None, object_type=None, password=None, port=None, schema=None, scope=None, scope_entity_id=None, source_scope=None, source_scope_entity_id=None, type=None, updated_at=None, updated_by=None, username=None, value=None):
+    def __init__(__self__, auth_type=None, auth_type_id=None, auto_link_deployments=None, basic_token=None, connection_auth_type=None, created_at=None, created_by=None, data_dog_api_key=None, data_dog_site=None, description=None, endpoint=None, exclude_links=None, exporter_type=None, extra=None, headers=None, host=None, id=None, is_secret=None, labels=None, links=None, login=None, object_key=None, object_type=None, password=None, port=None, schema=None, scope=None, scope_entity_id=None, source_scope=None, source_scope_entity_id=None, type=None, updated_at=None, updated_by=None, username=None, value=None):
         if auth_type and not isinstance(auth_type, str):
             raise TypeError("Expected argument 'auth_type' to be a str")
         pulumi.set(__self__, "auth_type", auth_type)
@@ -49,6 +49,12 @@ class GetEnvironmentObjectResult:
         if created_by and not isinstance(created_by, dict):
             raise TypeError("Expected argument 'created_by' to be a dict")
         pulumi.set(__self__, "created_by", created_by)
+        if data_dog_api_key and not isinstance(data_dog_api_key, str):
+            raise TypeError("Expected argument 'data_dog_api_key' to be a str")
+        pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        if data_dog_site and not isinstance(data_dog_site, str):
+            raise TypeError("Expected argument 'data_dog_site' to be a str")
+        pulumi.set(__self__, "data_dog_site", data_dog_site)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -185,6 +191,22 @@ class GetEnvironmentObjectResult:
         return pulumi.get(self, "created_by")
 
     @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> _builtins.str:
+        """
+        The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> _builtins.str:
+        """
+        The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> _builtins.str:
         """
@@ -196,7 +218,7 @@ class GetEnvironmentObjectResult:
     @pulumi.getter
     def endpoint(self) -> _builtins.str:
         """
-        The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+        The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
         """
         return pulumi.get(self, "endpoint")
 
@@ -406,6 +428,8 @@ class AwaitableGetEnvironmentObjectResult(GetEnvironmentObjectResult):
             connection_auth_type=self.connection_auth_type,
             created_at=self.created_at,
             created_by=self.created_by,
+            data_dog_api_key=self.data_dog_api_key,
+            data_dog_site=self.data_dog_site,
             description=self.description,
             endpoint=self.endpoint,
             exclude_links=self.exclude_links,
@@ -465,6 +489,8 @@ def get_environment_object(id: Optional[_builtins.str] = None,
         connection_auth_type=pulumi.get(__ret__, 'connection_auth_type'),
         created_at=pulumi.get(__ret__, 'created_at'),
         created_by=pulumi.get(__ret__, 'created_by'),
+        data_dog_api_key=pulumi.get(__ret__, 'data_dog_api_key'),
+        data_dog_site=pulumi.get(__ret__, 'data_dog_site'),
         description=pulumi.get(__ret__, 'description'),
         endpoint=pulumi.get(__ret__, 'endpoint'),
         exclude_links=pulumi.get(__ret__, 'exclude_links'),
@@ -521,6 +547,8 @@ def get_environment_object_output(id: pulumi.Input[Optional[_builtins.str]] = No
         connection_auth_type=pulumi.get(__response__, 'connection_auth_type'),
         created_at=pulumi.get(__response__, 'created_at'),
         created_by=pulumi.get(__response__, 'created_by'),
+        data_dog_api_key=pulumi.get(__response__, 'data_dog_api_key'),
+        data_dog_site=pulumi.get(__response__, 'data_dog_site'),
         description=pulumi.get(__response__, 'description'),
         endpoint=pulumi.get(__response__, 'endpoint'),
         exclude_links=pulumi.get(__response__, 'exclude_links'),

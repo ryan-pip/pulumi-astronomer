@@ -14,11 +14,16 @@ namespace RyanPip.Astronomer.Outputs
     [OutputType]
     public sealed class GetDeploymentsDeploymentScalingSpecResult
     {
+        public readonly Outputs.GetDeploymentsDeploymentScalingSpecAutoscalingResult Autoscaling;
         public readonly Outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecResult HibernationSpec;
 
         [OutputConstructor]
-        private GetDeploymentsDeploymentScalingSpecResult(Outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecResult hibernationSpec)
+        private GetDeploymentsDeploymentScalingSpecResult(
+            Outputs.GetDeploymentsDeploymentScalingSpecAutoscalingResult autoscaling,
+
+            Outputs.GetDeploymentsDeploymentScalingSpecHibernationSpecResult hibernationSpec)
         {
+            Autoscaling = autoscaling;
             HibernationSpec = hibernationSpec;
         }
     }

@@ -143,7 +143,7 @@ namespace RyanPip.Astronomer
         public Output<bool> IsDagDeployEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Output("isDevelopmentMode")]
         public Output<bool?> IsDevelopmentMode { get; private set; } = null!;
@@ -442,7 +442,7 @@ namespace RyanPip.Astronomer
         public Input<bool> IsDagDeployEnabled { get; set; } = null!;
 
         /// <summary>
-        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("isDevelopmentMode")]
         public Input<bool>? IsDevelopmentMode { get; set; }
@@ -696,7 +696,7 @@ namespace RyanPip.Astronomer
         public Input<bool>? IsDagDeployEnabled { get; set; }
 
         /// <summary>
-        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        /// Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         /// </summary>
         [Input("isDevelopmentMode")]
         public Input<bool>? IsDevelopmentMode { get; set; }

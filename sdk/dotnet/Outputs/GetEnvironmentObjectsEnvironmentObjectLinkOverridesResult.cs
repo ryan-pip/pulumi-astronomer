@@ -23,6 +23,14 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly string BasicToken;
         /// <summary>
+        /// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        /// </summary>
+        public readonly string DataDogApiKey;
+        /// <summary>
+        /// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        /// </summary>
+        public readonly string DataDogSite;
+        /// <summary>
         /// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
         /// </summary>
         public readonly string Endpoint;
@@ -81,6 +89,10 @@ namespace RyanPip.Astronomer.Outputs
 
             string basicToken,
 
+            string dataDogApiKey,
+
+            string dataDogSite,
+
             string endpoint,
 
             string exporterType,
@@ -109,6 +121,8 @@ namespace RyanPip.Astronomer.Outputs
         {
             AuthType = authType;
             BasicToken = basicToken;
+            DataDogApiKey = dataDogApiKey;
+            DataDogSite = dataDogSite;
             Endpoint = endpoint;
             ExporterType = exporterType;
             Extra = extra;

@@ -26,11 +26,13 @@ type ApiToken struct {
 	EndAt pulumi.StringOutput `pulumi:"endAt"`
 	// API Token expiry period in days
 	ExpiryPeriodInDays pulumi.IntPtrOutput `pulumi:"expiryPeriodInDays"`
+	// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+	Kind pulumi.StringOutput `pulumi:"kind"`
 	// API Token last used timestamp
 	LastUsedAt pulumi.StringOutput `pulumi:"lastUsedAt"`
 	// API Token name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The roles assigned to the API Token
+	// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 	Roles ApiTokenRoleArrayOutput `pulumi:"roles"`
 	// API Token short token
 	ShortToken pulumi.StringOutput `pulumi:"shortToken"`
@@ -96,11 +98,13 @@ type apiTokenState struct {
 	EndAt *string `pulumi:"endAt"`
 	// API Token expiry period in days
 	ExpiryPeriodInDays *int `pulumi:"expiryPeriodInDays"`
+	// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+	Kind *string `pulumi:"kind"`
 	// API Token last used timestamp
 	LastUsedAt *string `pulumi:"lastUsedAt"`
 	// API Token name
 	Name *string `pulumi:"name"`
-	// The roles assigned to the API Token
+	// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 	Roles []ApiTokenRole `pulumi:"roles"`
 	// API Token short token
 	ShortToken *string `pulumi:"shortToken"`
@@ -127,11 +131,13 @@ type ApiTokenState struct {
 	EndAt pulumi.StringPtrInput
 	// API Token expiry period in days
 	ExpiryPeriodInDays pulumi.IntPtrInput
+	// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+	Kind pulumi.StringPtrInput
 	// API Token last used timestamp
 	LastUsedAt pulumi.StringPtrInput
 	// API Token name
 	Name pulumi.StringPtrInput
-	// The roles assigned to the API Token
+	// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 	Roles ApiTokenRoleArrayInput
 	// API Token short token
 	ShortToken pulumi.StringPtrInput
@@ -156,9 +162,11 @@ type apiTokenArgs struct {
 	Description *string `pulumi:"description"`
 	// API Token expiry period in days
 	ExpiryPeriodInDays *int `pulumi:"expiryPeriodInDays"`
+	// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+	Kind *string `pulumi:"kind"`
 	// API Token name
 	Name *string `pulumi:"name"`
-	// The roles assigned to the API Token
+	// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 	Roles []ApiTokenRole `pulumi:"roles"`
 	// API Token type - if changing this value, the API Token will be recreated with the new type
 	Type string `pulumi:"type"`
@@ -170,9 +178,11 @@ type ApiTokenArgs struct {
 	Description pulumi.StringPtrInput
 	// API Token expiry period in days
 	ExpiryPeriodInDays pulumi.IntPtrInput
+	// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+	Kind pulumi.StringPtrInput
 	// API Token name
 	Name pulumi.StringPtrInput
-	// The roles assigned to the API Token
+	// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 	Roles ApiTokenRoleArrayInput
 	// API Token type - if changing this value, the API Token will be recreated with the new type
 	Type pulumi.StringInput
@@ -290,6 +300,11 @@ func (o ApiTokenOutput) ExpiryPeriodInDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ApiToken) pulumi.IntPtrOutput { return v.ExpiryPeriodInDays }).(pulumi.IntPtrOutput)
 }
 
+// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+func (o ApiTokenOutput) Kind() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApiToken) pulumi.StringOutput { return v.Kind }).(pulumi.StringOutput)
+}
+
 // API Token last used timestamp
 func (o ApiTokenOutput) LastUsedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiToken) pulumi.StringOutput { return v.LastUsedAt }).(pulumi.StringOutput)
@@ -300,7 +315,7 @@ func (o ApiTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The roles assigned to the API Token
+// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
 func (o ApiTokenOutput) Roles() ApiTokenRoleArrayOutput {
 	return o.ApplyT(func(v *ApiToken) ApiTokenRoleArrayOutput { return v.Roles }).(ApiTokenRoleArrayOutput)
 }

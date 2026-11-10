@@ -155,6 +155,10 @@ namespace RyanPip.Astronomer
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+        /// </summary>
+        public readonly string Kind;
+        /// <summary>
         /// API Token last used timestamp
         /// </summary>
         public readonly string LastUsedAt;
@@ -201,6 +205,8 @@ namespace RyanPip.Astronomer
 
             string id,
 
+            string kind,
+
             string lastUsedAt,
 
             string name,
@@ -223,6 +229,7 @@ namespace RyanPip.Astronomer
             EndAt = endAt;
             ExpiryPeriodInDays = expiryPeriodInDays;
             Id = id;
+            Kind = kind;
             LastUsedAt = lastUsedAt;
             Name = name;
             Roles = roles;

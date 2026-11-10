@@ -15,13 +15,21 @@ namespace RyanPip.Astronomer.Outputs
     public sealed class DeploymentScalingSpec
     {
         /// <summary>
+        /// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `IsEnabled` to false; the replica bounds are kept.
+        /// </summary>
+        public readonly Outputs.DeploymentScalingSpecAutoscaling? Autoscaling;
+        /// <summary>
         /// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         /// </summary>
-        public readonly Outputs.DeploymentScalingSpecHibernationSpec HibernationSpec;
+        public readonly Outputs.DeploymentScalingSpecHibernationSpec? HibernationSpec;
 
         [OutputConstructor]
-        private DeploymentScalingSpec(Outputs.DeploymentScalingSpecHibernationSpec hibernationSpec)
+        private DeploymentScalingSpec(
+            Outputs.DeploymentScalingSpecAutoscaling? autoscaling,
+
+            Outputs.DeploymentScalingSpecHibernationSpec? hibernationSpec)
         {
+            Autoscaling = autoscaling;
             HibernationSpec = hibernationSpec;
         }
     }

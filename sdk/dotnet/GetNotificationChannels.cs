@@ -16,6 +16,61 @@ namespace RyanPip.Astronomer
         /// Notification Channels data source
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Astronomer = RyanPip.Astronomer;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleNotificationChannels = Astronomer.GetNotificationChannels.Invoke();
+        /// 
+        ///     var notificationChannelIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelIds = new[]
+        ///         {
+        ///             "cm7dz31ye00cz01n1en2xilut",
+        ///         },
+        ///     });
+        /// 
+        ///     var workspaceIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         WorkspaceIds = new[]
+        ///         {
+        ///             "clx42sxw501gl01o0gjenthnh",
+        ///         },
+        ///     });
+        /// 
+        ///     var deploymentIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         DeploymentIds = new[]
+        ///         {
+        ///             "clx44jyu001m201m5dzsbexqr",
+        ///         },
+        ///     });
+        /// 
+        ///     var notificationChannelTypesExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelTypes = new[]
+        ///         {
+        ///             "SLACK",
+        ///             "EMAIL",
+        ///         },
+        ///     });
+        /// 
+        ///     var entityTypeExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         EntityType = "DEPLOYMENT",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["notificationChannels"] = exampleNotificationChannels,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetNotificationChannelsResult> InvokeAsync(GetNotificationChannelsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNotificationChannelsResult>("astronomer:index/getNotificationChannels:getNotificationChannels", args ?? new GetNotificationChannelsArgs(), options.WithDefaults());
@@ -24,6 +79,61 @@ namespace RyanPip.Astronomer
         /// Notification Channels data source
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Astronomer = RyanPip.Astronomer;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleNotificationChannels = Astronomer.GetNotificationChannels.Invoke();
+        /// 
+        ///     var notificationChannelIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelIds = new[]
+        ///         {
+        ///             "cm7dz31ye00cz01n1en2xilut",
+        ///         },
+        ///     });
+        /// 
+        ///     var workspaceIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         WorkspaceIds = new[]
+        ///         {
+        ///             "clx42sxw501gl01o0gjenthnh",
+        ///         },
+        ///     });
+        /// 
+        ///     var deploymentIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         DeploymentIds = new[]
+        ///         {
+        ///             "clx44jyu001m201m5dzsbexqr",
+        ///         },
+        ///     });
+        /// 
+        ///     var notificationChannelTypesExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelTypes = new[]
+        ///         {
+        ///             "SLACK",
+        ///             "EMAIL",
+        ///         },
+        ///     });
+        /// 
+        ///     var entityTypeExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         EntityType = "DEPLOYMENT",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["notificationChannels"] = exampleNotificationChannels,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetNotificationChannelsResult> Invoke(GetNotificationChannelsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationChannelsResult>("astronomer:index/getNotificationChannels:getNotificationChannels", args ?? new GetNotificationChannelsInvokeArgs(), options.WithDefaults());
@@ -32,6 +142,61 @@ namespace RyanPip.Astronomer
         /// Notification Channels data source
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Astronomer = RyanPip.Astronomer;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleNotificationChannels = Astronomer.GetNotificationChannels.Invoke();
+        /// 
+        ///     var notificationChannelIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelIds = new[]
+        ///         {
+        ///             "cm7dz31ye00cz01n1en2xilut",
+        ///         },
+        ///     });
+        /// 
+        ///     var workspaceIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         WorkspaceIds = new[]
+        ///         {
+        ///             "clx42sxw501gl01o0gjenthnh",
+        ///         },
+        ///     });
+        /// 
+        ///     var deploymentIdsExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         DeploymentIds = new[]
+        ///         {
+        ///             "clx44jyu001m201m5dzsbexqr",
+        ///         },
+        ///     });
+        /// 
+        ///     var notificationChannelTypesExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         NotificationChannelTypes = new[]
+        ///         {
+        ///             "SLACK",
+        ///             "EMAIL",
+        ///         },
+        ///     });
+        /// 
+        ///     var entityTypeExample = Astronomer.GetNotificationChannels.Invoke(new()
+        ///     {
+        ///         EntityType = "DEPLOYMENT",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["notificationChannels"] = exampleNotificationChannels,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetNotificationChannelsResult> Invoke(GetNotificationChannelsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationChannelsResult>("astronomer:index/getNotificationChannels:getNotificationChannels", args ?? new GetNotificationChannelsInvokeArgs(), options.WithDefaults());

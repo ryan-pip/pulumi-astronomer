@@ -10,6 +10,32 @@ import * as utilities from "./utilities";
  * Notification Channels data source
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as astronomer from "@ryan-pip/pulumi_astronomer";
+ *
+ * const exampleNotificationChannels = astronomer.getNotificationChannels({});
+ * const notificationChannelIdsExample = astronomer.getNotificationChannels({
+ *     notificationChannelIds: ["cm7dz31ye00cz01n1en2xilut"],
+ * });
+ * const workspaceIdsExample = astronomer.getNotificationChannels({
+ *     workspaceIds: ["clx42sxw501gl01o0gjenthnh"],
+ * });
+ * const deploymentIdsExample = astronomer.getNotificationChannels({
+ *     deploymentIds: ["clx44jyu001m201m5dzsbexqr"],
+ * });
+ * const notificationChannelTypesExample = astronomer.getNotificationChannels({
+ *     notificationChannelTypes: [
+ *         "SLACK",
+ *         "EMAIL",
+ *     ],
+ * });
+ * const entityTypeExample = astronomer.getNotificationChannels({
+ *     entityType: "DEPLOYMENT",
+ * });
+ * export const notificationChannels = exampleNotificationChannels;
+ * ```
  */
 export function getNotificationChannels(args?: GetNotificationChannelsArgs, opts?: pulumi.InvokeOptions): Promise<GetNotificationChannelsResult> {
     args = args || {};
@@ -49,6 +75,32 @@ export interface GetNotificationChannelsResult {
  * Notification Channels data source
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as astronomer from "@ryan-pip/pulumi_astronomer";
+ *
+ * const exampleNotificationChannels = astronomer.getNotificationChannels({});
+ * const notificationChannelIdsExample = astronomer.getNotificationChannels({
+ *     notificationChannelIds: ["cm7dz31ye00cz01n1en2xilut"],
+ * });
+ * const workspaceIdsExample = astronomer.getNotificationChannels({
+ *     workspaceIds: ["clx42sxw501gl01o0gjenthnh"],
+ * });
+ * const deploymentIdsExample = astronomer.getNotificationChannels({
+ *     deploymentIds: ["clx44jyu001m201m5dzsbexqr"],
+ * });
+ * const notificationChannelTypesExample = astronomer.getNotificationChannels({
+ *     notificationChannelTypes: [
+ *         "SLACK",
+ *         "EMAIL",
+ *     ],
+ * });
+ * const entityTypeExample = astronomer.getNotificationChannels({
+ *     entityType: "DEPLOYMENT",
+ * });
+ * export const notificationChannels = exampleNotificationChannels;
+ * ```
  */
 export function getNotificationChannelsOutput(args?: GetNotificationChannelsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNotificationChannelsResult> {
     args = args || {};

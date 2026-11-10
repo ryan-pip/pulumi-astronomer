@@ -14,6 +14,68 @@ import (
 // Notification Channels data source
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleNotificationChannels, err := astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{
+//				NotificationChannelIds: []string{
+//					"cm7dz31ye00cz01n1en2xilut",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{
+//				WorkspaceIds: []string{
+//					"clx42sxw501gl01o0gjenthnh",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{
+//				DeploymentIds: []string{
+//					"clx44jyu001m201m5dzsbexqr",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{
+//				NotificationChannelTypes: []string{
+//					"SLACK",
+//					"EMAIL",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = astronomer.GetNotificationChannels(ctx, &astronomer.LookupNotificationChannelsArgs{
+//				EntityType: pulumi.StringRef("DEPLOYMENT"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("notificationChannels", exampleNotificationChannels)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNotificationChannels(ctx *pulumi.Context, args *LookupNotificationChannelsArgs, opts ...pulumi.InvokeOption) (*LookupNotificationChannelsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNotificationChannelsResult

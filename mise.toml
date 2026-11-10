@@ -5,7 +5,7 @@ http_retries = 3
 lockfile = true
 
 [tools]
-go = "1.25"
+go = "1.26"
 node = "24.17.0" # Exact pin: keeps upgrade-provider's `mise upgrade` from reinstalling node (gpg verify fails on CI runners).
 python = "3.11"
 dotnet = "8.0"

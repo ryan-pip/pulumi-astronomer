@@ -38,7 +38,8 @@ func TestMain(m *testing.M) {
 // resourcesWithoutStableID have no upstream "id" and nothing scalar to delegate
 // to, so tfbridge.MissingIDPlaceholder stands. Value is the reason.
 var resourcesWithoutStableID = map[string]string{
-	"astro_alerts": "upstream exposes only a required `alerts` map",
+	"astro_alerts":                "upstream exposes only a required `alerts` map",
+	"astro_notification_channels": "upstream exposes only a required `notification_channels` map",
 }
 
 func TestProviderInfo(t *testing.T) {
@@ -133,6 +134,12 @@ func TestResourcesWithoutStableIDAreStillBroken(t *testing.T) {
 			t.Errorf("%s: now resolves a real ID (%q) - drop it from resourcesWithoutStableID (was: %s)",
 				name, id, reason)
 		}
+	}
+}
+
+func TestAlertsKeepsItsPublishedCSharpName(t *testing.T) {
+	if got := Provider().Resources["astro_alerts"].Fields["alerts"].CSharpName; got != "AlertsCollection" {
+		t.Errorf("astro_alerts.alerts CSharpName = %q, want AlertsCollection (breaking for .NET users)", got)
 	}
 }
 

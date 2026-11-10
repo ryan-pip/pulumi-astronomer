@@ -19,6 +19,7 @@ import (
 	_ "embed"
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	shimprovider "github.com/astronomer/terraform-provider-astro/shim"
 	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
@@ -90,11 +91,6 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// CS0542: a C# member cannot share its enclosing type's name, so the
-			// Alerts resource's `alerts` property needs a different dotnet name.
-			"astro_alerts": {Fields: map[string]*tfbridge.SchemaInfo{
-				"alerts": {CSharpName: "AlertsCollection"},
-			}},
 			"astro_hybrid_cluster_workspace_authorization": {
 				ComputeID: delegateID("clusterId"),
 			},
@@ -152,6 +148,38 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustComputeTokens(tokens.SingleModule("astro_", mainMod,
 		tokens.MakeStandard(mainPkg)))
 	prov.SetAutonaming(255, "-")
+	renameSelfNamedCSharpFields(&prov)
 
 	return prov
+}
+
+// CS0542: upstream bulk resources (astro_alerts.alerts) name a field after the resource.
+func renameSelfNamedCSharpFields(prov *tfbridge.ProviderInfo) {
+	prov.P.ResourcesMap().Range(func(tfName string, res shim.Resource) bool {
+		info := prov.Resources[tfName]
+		className := string(info.Tok.Name())
+		res.Schema().Range(func(field string, _ shim.Schema) bool {
+			if upperFirst(tfbridge.TerraformToPulumiNameV2(field, res.Schema(), info.Fields)) != className {
+				return true
+			}
+			if info.Fields == nil {
+				info.Fields = map[string]*tfbridge.SchemaInfo{}
+			}
+			if info.Fields[field] == nil {
+				info.Fields[field] = &tfbridge.SchemaInfo{}
+			}
+			if info.Fields[field].CSharpName == "" {
+				info.Fields[field].CSharpName = className + "Collection"
+			}
+			return true
+		})
+		return true
+	})
+}
+
+func upperFirst(s string) string {
+	if s == "" {
+		return s
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
 }

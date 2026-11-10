@@ -29,6 +29,8 @@ class EnvironmentObjectArgs:
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]]] = None,
@@ -57,10 +59,12 @@ class EnvironmentObjectArgs:
         :param pulumi.Input[_builtins.str] auth_type_id: The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API
         :param pulumi.Input[_builtins.bool] auto_link_deployments: Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] basic_token: The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] data_dog_api_key: The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        :param pulumi.Input[_builtins.str] data_dog_site: The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
         :param pulumi.Input[_builtins.str] description: The description of the environment object
-        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
-        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
@@ -87,6 +91,10 @@ class EnvironmentObjectArgs:
             pulumi.set(__self__, "auto_link_deployments", auto_link_deployments)
         if basic_token is not None:
             pulumi.set(__self__, "basic_token", basic_token)
+        if data_dog_api_key is not None:
+            pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        if data_dog_site is not None:
+            pulumi.set(__self__, "data_dog_site", data_dog_site)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if endpoint is not None:
@@ -219,6 +227,30 @@ class EnvironmentObjectArgs:
         pulumi.set(self, "basic_token", value)
 
     @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @data_dog_api_key.setter
+    def data_dog_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @data_dog_site.setter
+    def data_dog_site(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_site", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -234,7 +266,7 @@ class EnvironmentObjectArgs:
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         """
         return pulumi.get(self, "endpoint")
 
@@ -258,7 +290,7 @@ class EnvironmentObjectArgs:
     @pulumi.getter(name="exporterType")
     def exporter_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of exporter (required when object*type=METRICS*EXPORT)
+        The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         """
         return pulumi.get(self, "exporter_type")
 
@@ -433,6 +465,8 @@ class _EnvironmentObjectState:
                  connection_auth_type: pulumi.Input[Optional['EnvironmentObjectConnectionAuthTypeArgs']] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  created_by: pulumi.Input[Optional['EnvironmentObjectCreatedByArgs']] = None,
+                 data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]]] = None,
@@ -468,10 +502,12 @@ class _EnvironmentObjectState:
         :param pulumi.Input['EnvironmentObjectConnectionAuthTypeArgs'] connection_auth_type: The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)
         :param pulumi.Input[_builtins.str] created_at: Environment Object creation timestamp
         :param pulumi.Input['EnvironmentObjectCreatedByArgs'] created_by: Environment Object creator
+        :param pulumi.Input[_builtins.str] data_dog_api_key: The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        :param pulumi.Input[_builtins.str] data_dog_site: The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
         :param pulumi.Input[_builtins.str] description: The description of the environment object
-        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentObjectExcludeLinkArgs']]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
-        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
@@ -508,6 +544,10 @@ class _EnvironmentObjectState:
             pulumi.set(__self__, "created_at", created_at)
         if created_by is not None:
             pulumi.set(__self__, "created_by", created_by)
+        if data_dog_api_key is not None:
+            pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        if data_dog_site is not None:
+            pulumi.set(__self__, "data_dog_site", data_dog_site)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if endpoint is not None:
@@ -644,6 +684,30 @@ class _EnvironmentObjectState:
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @data_dog_api_key.setter
+    def data_dog_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @data_dog_site.setter
+    def data_dog_site(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_site", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -659,7 +723,7 @@ class _EnvironmentObjectState:
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         """
         return pulumi.get(self, "endpoint")
 
@@ -683,7 +747,7 @@ class _EnvironmentObjectState:
     @pulumi.getter(name="exporterType")
     def exporter_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of exporter (required when object*type=METRICS*EXPORT)
+        The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         """
         return pulumi.get(self, "exporter_type")
 
@@ -954,6 +1018,8 @@ class EnvironmentObject(pulumi.CustomResource):
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
@@ -986,10 +1052,12 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] auth_type_id: The ID for the connection auth type (only valid when object_type=CONNECTION). Provided on create/update; not returned by the API
         :param pulumi.Input[_builtins.bool] auto_link_deployments: Whether to automatically link Deployments to the environment object. Only applicable for WORKSPACE scope
         :param pulumi.Input[_builtins.str] basic_token: The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] data_dog_api_key: The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        :param pulumi.Input[_builtins.str] data_dog_site: The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
         :param pulumi.Input[_builtins.str] description: The description of the environment object
-        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
-        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
@@ -1037,6 +1105,8 @@ class EnvironmentObject(pulumi.CustomResource):
                  auth_type_id: pulumi.Input[Optional[_builtins.str]] = None,
                  auto_link_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
@@ -1071,6 +1141,8 @@ class EnvironmentObject(pulumi.CustomResource):
             __props__.__dict__["auth_type_id"] = auth_type_id
             __props__.__dict__["auto_link_deployments"] = auto_link_deployments
             __props__.__dict__["basic_token"] = None if basic_token is None else pulumi.Output.secret(basic_token)
+            __props__.__dict__["data_dog_api_key"] = None if data_dog_api_key is None else pulumi.Output.secret(data_dog_api_key)
+            __props__.__dict__["data_dog_site"] = data_dog_site
             __props__.__dict__["description"] = description
             __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["exclude_links"] = exclude_links
@@ -1107,7 +1179,7 @@ class EnvironmentObject(pulumi.CustomResource):
             __props__.__dict__["source_scope_entity_id"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["updated_by"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["basicToken", "password", "value"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["basicToken", "dataDogApiKey", "password", "value"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(EnvironmentObject, __self__).__init__(
             'astronomer:index/environmentObject:EnvironmentObject',
@@ -1126,6 +1198,8 @@ class EnvironmentObject(pulumi.CustomResource):
             connection_auth_type: pulumi.Input[Optional[Union['EnvironmentObjectConnectionAuthTypeArgs', 'EnvironmentObjectConnectionAuthTypeArgsDict']]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             created_by: pulumi.Input[Optional[Union['EnvironmentObjectCreatedByArgs', 'EnvironmentObjectCreatedByArgsDict']]] = None,
+            data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             exclude_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]]] = None,
@@ -1165,10 +1239,12 @@ class EnvironmentObject(pulumi.CustomResource):
         :param pulumi.Input[Union['EnvironmentObjectConnectionAuthTypeArgs', 'EnvironmentObjectConnectionAuthTypeArgsDict']] connection_auth_type: The resolved auth type of the connection, populated from auth*type*id (only set when object*type=CONNECTION)
         :param pulumi.Input[_builtins.str] created_at: Environment Object creation timestamp
         :param pulumi.Input[Union['EnvironmentObjectCreatedByArgs', 'EnvironmentObjectCreatedByArgsDict']] created_by: Environment Object creator
+        :param pulumi.Input[_builtins.str] data_dog_api_key: The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        :param pulumi.Input[_builtins.str] data_dog_site: The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
         :param pulumi.Input[_builtins.str] description: The description of the environment object
-        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] endpoint: The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentObjectExcludeLinkArgs', 'EnvironmentObjectExcludeLinkArgsDict']]]] exclude_links: The excluded links for the environment object. Only applicable for WORKSPACE scope
-        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] exporter_type: The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         :param pulumi.Input[_builtins.str] extra: Extra connection details as JSON string (only valid when object_type=CONNECTION). Use jsonencode({...})
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP request headers for the remote endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] host: The host address for the connection (only valid when object_type=CONNECTION)
@@ -1202,6 +1278,8 @@ class EnvironmentObject(pulumi.CustomResource):
         __props__.__dict__["connection_auth_type"] = connection_auth_type
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["created_by"] = created_by
+        __props__.__dict__["data_dog_api_key"] = data_dog_api_key
+        __props__.__dict__["data_dog_site"] = data_dog_site
         __props__.__dict__["description"] = description
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["exclude_links"] = exclude_links
@@ -1286,6 +1364,22 @@ class EnvironmentObject(pulumi.CustomResource):
         return pulumi.get(self, "created_by")
 
     @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1297,7 +1391,7 @@ class EnvironmentObject(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[_builtins.str]:
         """
-        The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         """
         return pulumi.get(self, "endpoint")
 
@@ -1313,7 +1407,7 @@ class EnvironmentObject(pulumi.CustomResource):
     @pulumi.getter(name="exporterType")
     def exporter_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of exporter (required when object*type=METRICS*EXPORT)
+        The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         """
         return pulumi.get(self, "exporter_type")
 

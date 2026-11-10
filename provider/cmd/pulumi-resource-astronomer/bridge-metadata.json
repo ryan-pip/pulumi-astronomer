@@ -16,6 +16,11 @@
             "astro_environment_object": {},
             "astro_hybrid_cluster_workspace_authorization": {},
             "astro_notification_channel": {},
+            "astro_notification_channels": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "astro_team": {},
             "astro_team_membership": {},
             "astro_team_roles": {},

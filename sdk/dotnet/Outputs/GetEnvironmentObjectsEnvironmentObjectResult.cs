@@ -43,11 +43,19 @@ namespace RyanPip.Astronomer.Outputs
         /// </summary>
         public readonly Outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult CreatedBy;
         /// <summary>
+        /// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+        /// </summary>
+        public readonly string DataDogApiKey;
+        /// <summary>
+        /// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        /// </summary>
+        public readonly string DataDogSite;
+        /// <summary>
         /// The description of the environment object
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+        /// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
         /// </summary>
         public readonly string Endpoint;
         /// <summary>
@@ -163,6 +171,10 @@ namespace RyanPip.Astronomer.Outputs
 
             Outputs.GetEnvironmentObjectsEnvironmentObjectCreatedByResult createdBy,
 
+            string dataDogApiKey,
+
+            string dataDogSite,
+
             string description,
 
             string endpoint,
@@ -222,6 +234,8 @@ namespace RyanPip.Astronomer.Outputs
             ConnectionAuthType = connectionAuthType;
             CreatedAt = createdAt;
             CreatedBy = createdBy;
+            DataDogApiKey = dataDogApiKey;
+            DataDogSite = dataDogSite;
             Description = description;
             Endpoint = endpoint;
             ExcludeLinks = excludeLinks;

@@ -25,6 +25,9 @@ import * as utilities from "./utilities";
  * const deploymentExample = astronomer.getApiTokens({
  *     deploymentId: "clx44jyu001m201m5dzsbexqr",
  * });
+ * const directAccessExample = astronomer.getApiTokens({
+ *     kind: "DIRECT_ACCESS",
+ * });
  * export const apiTokens = exampleApiTokens;
  * ```
  */
@@ -34,6 +37,7 @@ export function getApiTokens(args?: GetApiTokensArgs, opts?: pulumi.InvokeOption
     return pulumi.runtime.invoke("astronomer:index/getApiTokens:getApiTokens", {
         "deploymentId": args.deploymentId,
         "includeOnlyOrganizationTokens": args.includeOnlyOrganizationTokens,
+        "kind": args.kind,
         "workspaceId": args.workspaceId,
     }, opts);
 }
@@ -44,6 +48,10 @@ export function getApiTokens(args?: GetApiTokensArgs, opts?: pulumi.InvokeOption
 export interface GetApiTokensArgs {
     deploymentId?: string;
     includeOnlyOrganizationTokens?: boolean;
+    /**
+     * Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+     */
+    kind?: string;
     workspaceId?: string;
 }
 
@@ -54,6 +62,10 @@ export interface GetApiTokensResult {
     readonly apiTokens: outputs.GetApiTokensApiToken[];
     readonly deploymentId?: string;
     readonly includeOnlyOrganizationTokens?: boolean;
+    /**
+     * Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+     */
+    readonly kind?: string;
     readonly workspaceId?: string;
 }
 /**
@@ -75,6 +87,9 @@ export interface GetApiTokensResult {
  * const deploymentExample = astronomer.getApiTokens({
  *     deploymentId: "clx44jyu001m201m5dzsbexqr",
  * });
+ * const directAccessExample = astronomer.getApiTokens({
+ *     kind: "DIRECT_ACCESS",
+ * });
  * export const apiTokens = exampleApiTokens;
  * ```
  */
@@ -84,6 +99,7 @@ export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.
     return pulumi.runtime.invokeOutput("astronomer:index/getApiTokens:getApiTokens", {
         "deploymentId": args.deploymentId,
         "includeOnlyOrganizationTokens": args.includeOnlyOrganizationTokens,
+        "kind": args.kind,
         "workspaceId": args.workspaceId,
     }, opts);
 }
@@ -94,5 +110,9 @@ export function getApiTokensOutput(args?: GetApiTokensOutputArgs, opts?: pulumi.
 export interface GetApiTokensOutputArgs {
     deploymentId?: pulumi.Input<string | undefined>;
     includeOnlyOrganizationTokens?: pulumi.Input<boolean | undefined>;
+    /**
+     * Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+     */
+    kind?: pulumi.Input<string | undefined>;
     workspaceId?: pulumi.Input<string | undefined>;
 }

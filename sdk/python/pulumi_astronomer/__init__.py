@@ -40,6 +40,7 @@ from .get_workspace import *
 from .get_workspaces import *
 from .hybrid_cluster_workspace_authorization import *
 from .notification_channel import *
+from .notification_channels import *
 from .provider import *
 from .team import *
 from .team_membership import *
@@ -146,6 +147,14 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/notificationChannel:NotificationChannel": "NotificationChannel"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/notificationChannels",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/notificationChannels:NotificationChannels": "NotificationChannels"
   }
  },
  {

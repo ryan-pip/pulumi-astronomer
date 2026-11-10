@@ -59,13 +59,25 @@ namespace RyanPip.Astronomer
         public Output<Outputs.EnvironmentObjectCreatedBy> CreatedBy { get; private set; } = null!;
 
         /// <summary>
+        /// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        /// </summary>
+        [Output("dataDogApiKey")]
+        public Output<string?> DataDogApiKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        /// </summary>
+        [Output("dataDogSite")]
+        public Output<string?> DataDogSite { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the environment object
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        /// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
@@ -77,7 +89,7 @@ namespace RyanPip.Astronomer
         public Output<ImmutableArray<Outputs.EnvironmentObjectExcludeLink>> ExcludeLinks { get; private set; } = null!;
 
         /// <summary>
-        /// The type of exporter (required when object*type=METRICS*EXPORT)
+        /// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         /// </summary>
         [Output("exporterType")]
         public Output<string> ExporterType { get; private set; } = null!;
@@ -235,6 +247,7 @@ namespace RyanPip.Astronomer
                 AdditionalSecretOutputs =
                 {
                     "basicToken",
+                    "dataDogApiKey",
                     "password",
                     "value",
                 },
@@ -295,6 +308,28 @@ namespace RyanPip.Astronomer
             }
         }
 
+        [Input("dataDogApiKey")]
+        private Input<string>? _dataDogApiKey;
+
+        /// <summary>
+        /// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        /// </summary>
+        public Input<string>? DataDogApiKey
+        {
+            get => _dataDogApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataDogApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        /// </summary>
+        [Input("dataDogSite")]
+        public Input<string>? DataDogSite { get; set; }
+
         /// <summary>
         /// The description of the environment object
         /// </summary>
@@ -302,7 +337,7 @@ namespace RyanPip.Astronomer
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        /// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -320,7 +355,7 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The type of exporter (required when object*type=METRICS*EXPORT)
+        /// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         /// </summary>
         [Input("exporterType")]
         public Input<string>? ExporterType { get; set; }
@@ -525,6 +560,28 @@ namespace RyanPip.Astronomer
         [Input("createdBy")]
         public Input<Inputs.EnvironmentObjectCreatedByGetArgs>? CreatedBy { get; set; }
 
+        [Input("dataDogApiKey")]
+        private Input<string>? _dataDogApiKey;
+
+        /// <summary>
+        /// The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+        /// </summary>
+        public Input<string>? DataDogApiKey
+        {
+            get => _dataDogApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataDogApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+        /// </summary>
+        [Input("dataDogSite")]
+        public Input<string>? DataDogSite { get; set; }
+
         /// <summary>
         /// The description of the environment object
         /// </summary>
@@ -532,7 +589,7 @@ namespace RyanPip.Astronomer
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+        /// The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -550,7 +607,7 @@ namespace RyanPip.Astronomer
         }
 
         /// <summary>
-        /// The type of exporter (required when object*type=METRICS*EXPORT)
+        /// The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
         /// </summary>
         [Input("exporterType")]
         public Input<string>? ExporterType { get; set; }

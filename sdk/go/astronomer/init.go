@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &HybridClusterWorkspaceAuthorization{}
 	case "astronomer:index/notificationChannel:NotificationChannel":
 		r = &NotificationChannel{}
+	case "astronomer:index/notificationChannels:NotificationChannels":
+		r = &NotificationChannels{}
 	case "astronomer:index/team:Team":
 		r = &Team{}
 	case "astronomer:index/teamMembership:TeamMembership":
@@ -139,6 +141,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"astronomer",
 		"index/notificationChannel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/notificationChannels",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

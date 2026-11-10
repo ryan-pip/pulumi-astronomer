@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Notification Channel resource
+ * Manage a single notification channel.
+ *
+ * > **Deprecated** Use the `astronomer.NotificationChannels` resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both `astronomer.NotificationChannel` and `astronomer.NotificationChannels` — they conflict on every apply.
  */
 export class NotificationChannel extends pulumi.CustomResource {
     /**

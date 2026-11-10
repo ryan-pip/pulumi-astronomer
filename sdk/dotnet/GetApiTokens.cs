@@ -42,6 +42,11 @@ namespace RyanPip.Astronomer
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
         /// 
+        ///     var directAccessExample = Astronomer.GetApiTokens.Invoke(new()
+        ///     {
+        ///         Kind = "DIRECT_ACCESS",
+        ///     });
+        /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["apiTokens"] = exampleApiTokens,
@@ -80,6 +85,11 @@ namespace RyanPip.Astronomer
         ///     var deploymentExample = Astronomer.GetApiTokens.Invoke(new()
         ///     {
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
+        ///     });
+        /// 
+        ///     var directAccessExample = Astronomer.GetApiTokens.Invoke(new()
+        ///     {
+        ///         Kind = "DIRECT_ACCESS",
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
@@ -122,6 +132,11 @@ namespace RyanPip.Astronomer
         ///         DeploymentId = "clx44jyu001m201m5dzsbexqr",
         ///     });
         /// 
+        ///     var directAccessExample = Astronomer.GetApiTokens.Invoke(new()
+        ///     {
+        ///         Kind = "DIRECT_ACCESS",
+        ///     });
+        /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["apiTokens"] = exampleApiTokens,
@@ -142,6 +157,12 @@ namespace RyanPip.Astronomer
         [Input("includeOnlyOrganizationTokens")]
         public bool? IncludeOnlyOrganizationTokens { get; set; }
 
+        /// <summary>
+        /// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+        /// </summary>
+        [Input("kind")]
+        public string? Kind { get; set; }
+
         [Input("workspaceId")]
         public string? WorkspaceId { get; set; }
 
@@ -159,6 +180,12 @@ namespace RyanPip.Astronomer
         [Input("includeOnlyOrganizationTokens")]
         public Input<bool>? IncludeOnlyOrganizationTokens { get; set; }
 
+        /// <summary>
+        /// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+        /// </summary>
+        [Input("kind")]
+        public Input<string>? Kind { get; set; }
+
         [Input("workspaceId")]
         public Input<string>? WorkspaceId { get; set; }
 
@@ -175,6 +202,10 @@ namespace RyanPip.Astronomer
         public readonly ImmutableArray<Outputs.GetApiTokensApiTokenResult> ApiTokens;
         public readonly string? DeploymentId;
         public readonly bool? IncludeOnlyOrganizationTokens;
+        /// <summary>
+        /// Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'
+        /// </summary>
+        public readonly string? Kind;
         public readonly string? WorkspaceId;
 
         [OutputConstructor]
@@ -185,11 +216,14 @@ namespace RyanPip.Astronomer
 
             bool? includeOnlyOrganizationTokens,
 
+            string? kind,
+
             string? workspaceId)
         {
             ApiTokens = apiTokens;
             DeploymentId = deploymentId;
             IncludeOnlyOrganizationTokens = includeOnlyOrganizationTokens;
+            Kind = kind;
             WorkspaceId = workspaceId;
         }
     }

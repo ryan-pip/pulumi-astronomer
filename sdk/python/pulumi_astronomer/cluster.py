@@ -35,6 +35,7 @@ class ClusterArgs:
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_private_network_egress_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  secondary_vpc_cidr: pulumi.Input[Optional[_builtins.str]] = None,
@@ -58,6 +59,7 @@ class ClusterArgs:
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `is_dr_enabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `dr_region` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `dr_region` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
         :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+        :param pulumi.Input[_builtins.bool] is_private_network_egress_enabled: Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] secondary_vpc_cidr: Secondary CIDR for pod networking (AWS only, /16 to /20). Cannot be changed once set.
@@ -87,6 +89,8 @@ class ClusterArgs:
             pulumi.set(__self__, "is_dr_enabled", is_dr_enabled)
         if is_failed_over is not None:
             pulumi.set(__self__, "is_failed_over", is_failed_over)
+        if is_private_network_egress_enabled is not None:
+            pulumi.set(__self__, "is_private_network_egress_enabled", is_private_network_egress_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pod_subnet_range is not None:
@@ -269,6 +273,18 @@ class ClusterArgs:
         pulumi.set(self, "is_failed_over", value)
 
     @_builtins.property
+    @pulumi.getter(name="isPrivateNetworkEgressEnabled")
+    def is_private_network_egress_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        """
+        return pulumi.get(self, "is_private_network_egress_enabled")
+
+    @is_private_network_egress_enabled.setter
+    def is_private_network_egress_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_private_network_egress_enabled", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -355,6 +371,7 @@ class _ClusterState:
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_limited: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_private_network_egress_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  metadata: pulumi.Input[Optional['ClusterMetadataArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_pools: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterNodePoolArgs']]]] = None,
@@ -388,6 +405,7 @@ class _ClusterState:
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
         :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.bool] is_limited: Whether the cluster is limited
+        :param pulumi.Input[_builtins.bool] is_private_network_egress_enabled: Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
         :param pulumi.Input['ClusterMetadataArgs'] metadata: Cluster metadata
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolArgs']]] node_pools: Cluster node pools
@@ -432,6 +450,8 @@ class _ClusterState:
             pulumi.set(__self__, "is_failed_over", is_failed_over)
         if is_limited is not None:
             pulumi.set(__self__, "is_limited", is_limited)
+        if is_private_network_egress_enabled is not None:
+            pulumi.set(__self__, "is_private_network_egress_enabled", is_private_network_egress_enabled)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
@@ -632,6 +652,18 @@ class _ClusterState:
     @is_limited.setter
     def is_limited(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_limited", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isPrivateNetworkEgressEnabled")
+    def is_private_network_egress_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        """
+        return pulumi.get(self, "is_private_network_egress_enabled")
+
+    @is_private_network_egress_enabled.setter
+    def is_private_network_egress_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_private_network_egress_enabled", value)
 
     @_builtins.property
     @pulumi.getter
@@ -839,6 +871,7 @@ class Cluster(pulumi.CustomResource):
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_private_network_egress_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -866,6 +899,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_replication_time_control: Whether to enable Replication Time Control for Disaster Recovery task log replication. Only valid when `is_dr_enabled` is true. For `AZURE` clusters: if left unset, this is automatically enabled when `region` and `dr_region` are on the same continent, and left disabled otherwise. Explicitly setting this to `true` when `region` and `dr_region` are on different continents will fail at plan time. You may always explicitly set this to `false`, regardless of the region pair.
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
         :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
+        :param pulumi.Input[_builtins.bool] is_private_network_egress_enabled: Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[_builtins.str] pod_subnet_range: Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
         :param pulumi.Input[_builtins.str] region: Cluster region - if changed, the cluster will be recreated.
@@ -911,6 +945,7 @@ class Cluster(pulumi.CustomResource):
                  enable_replication_time_control: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_private_network_egress_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_subnet_range: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -942,6 +977,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["enable_replication_time_control"] = enable_replication_time_control
             __props__.__dict__["is_dr_enabled"] = is_dr_enabled
             __props__.__dict__["is_failed_over"] = is_failed_over
+            __props__.__dict__["is_private_network_egress_enabled"] = is_private_network_egress_enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["pod_subnet_range"] = pod_subnet_range
             if region is None and not opts.urn:
@@ -994,6 +1030,7 @@ class Cluster(pulumi.CustomResource):
             is_dr_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_failed_over: pulumi.Input[Optional[_builtins.bool]] = None,
             is_limited: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_private_network_egress_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_pools: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]]] = None,
@@ -1031,6 +1068,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_dr_enabled: Whether Disaster Recovery is enabled on the cluster. Supported for `AWS`, `GCP`, and `AZURE` clusters. For `AWS` and `GCP`, DR can only be enabled at cluster creation time; enabling DR on an existing `AWS` or `GCP` cluster requires the admin API. For `AZURE`, DR can be enabled or disabled on an existing cluster via this resource. Can be set to `false` to disable DR on an existing cluster for any provider.
         :param pulumi.Input[_builtins.bool] is_failed_over: Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
         :param pulumi.Input[_builtins.bool] is_limited: Whether the cluster is limited
+        :param pulumi.Input[_builtins.bool] is_private_network_egress_enabled: Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
         :param pulumi.Input[Union['ClusterMetadataArgs', 'ClusterMetadataArgsDict']] metadata: Cluster metadata
         :param pulumi.Input[_builtins.str] name: Cluster name
         :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterNodePoolArgs', 'ClusterNodePoolArgsDict']]]] node_pools: Cluster node pools
@@ -1065,6 +1103,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["is_dr_enabled"] = is_dr_enabled
         __props__.__dict__["is_failed_over"] = is_failed_over
         __props__.__dict__["is_limited"] = is_limited
+        __props__.__dict__["is_private_network_egress_enabled"] = is_private_network_egress_enabled
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
         __props__.__dict__["node_pools"] = node_pools
@@ -1194,6 +1233,14 @@ class Cluster(pulumi.CustomResource):
         Whether the cluster is limited
         """
         return pulumi.get(self, "is_limited")
+
+    @_builtins.property
+    @pulumi.getter(name="isPrivateNetworkEgressEnabled")
+    def is_private_network_egress_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        """
+        return pulumi.get(self, "is_private_network_egress_enabled")
 
     @_builtins.property
     @pulumi.getter

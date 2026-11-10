@@ -12,7 +12,9 @@ import (
 	"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer/internal"
 )
 
-// Notification Channel resource
+// Manage a single notification channel.
+//
+// > **Deprecated** Use the `NotificationChannels` resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both `NotificationChannel` and `NotificationChannels` — they conflict on every apply.
 type NotificationChannel struct {
 	pulumi.CustomResourceState
 

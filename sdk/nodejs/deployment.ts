@@ -122,7 +122,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly isDagDeployEnabled: pulumi.Output<boolean>;
     /**
-     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
      */
     declare public readonly isDevelopmentMode: pulumi.Output<boolean | undefined>;
     /**
@@ -472,7 +472,7 @@ export interface DeploymentState {
      */
     isDagDeployEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
      */
     isDevelopmentMode?: pulumi.Input<boolean | undefined>;
     /**
@@ -638,7 +638,7 @@ export interface DeploymentArgs {
      */
     isDagDeployEnabled: pulumi.Input<boolean>;
     /**
-     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+     * Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
      */
     isDevelopmentMode?: pulumi.Input<boolean | undefined>;
     /**

@@ -103,6 +103,10 @@ export interface GetClusterResult {
      */
     readonly isLimited: boolean;
     /**
+     * Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+     */
+    readonly isPrivateNetworkEgressEnabled: boolean;
+    /**
      * Cluster metadata
      */
     readonly metadata: outputs.GetClusterMetadata;

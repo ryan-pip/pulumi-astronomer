@@ -66,11 +66,19 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdBy: pulumi.Output<outputs.EnvironmentObjectCreatedBy>;
     /**
+     * The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+     */
+    declare public readonly dataDogApiKey: pulumi.Output<string | undefined>;
+    /**
+     * The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+     */
+    declare public readonly dataDogSite: pulumi.Output<string | undefined>;
+    /**
      * The description of the environment object
      */
     declare public readonly description: pulumi.Output<string>;
     /**
-     * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+     * The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
      */
     declare public readonly endpoint: pulumi.Output<string>;
     /**
@@ -78,7 +86,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
      */
     declare public readonly excludeLinks: pulumi.Output<outputs.EnvironmentObjectExcludeLink[]>;
     /**
-     * The type of exporter (required when object*type=METRICS*EXPORT)
+     * The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
      */
     declare public readonly exporterType: pulumi.Output<string>;
     /**
@@ -186,6 +194,8 @@ export class EnvironmentObject extends pulumi.CustomResource {
             resourceInputs["connectionAuthType"] = state?.connectionAuthType;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["createdBy"] = state?.createdBy;
+            resourceInputs["dataDogApiKey"] = state?.dataDogApiKey;
+            resourceInputs["dataDogSite"] = state?.dataDogSite;
             resourceInputs["description"] = state?.description;
             resourceInputs["endpoint"] = state?.endpoint;
             resourceInputs["excludeLinks"] = state?.excludeLinks;
@@ -229,6 +239,8 @@ export class EnvironmentObject extends pulumi.CustomResource {
             resourceInputs["authTypeId"] = args?.authTypeId;
             resourceInputs["autoLinkDeployments"] = args?.autoLinkDeployments;
             resourceInputs["basicToken"] = args?.basicToken ? pulumi.secret(args.basicToken) : undefined;
+            resourceInputs["dataDogApiKey"] = args?.dataDogApiKey ? pulumi.secret(args.dataDogApiKey) : undefined;
+            resourceInputs["dataDogSite"] = args?.dataDogSite;
             resourceInputs["description"] = args?.description;
             resourceInputs["endpoint"] = args?.endpoint;
             resourceInputs["excludeLinks"] = args?.excludeLinks;
@@ -259,7 +271,7 @@ export class EnvironmentObject extends pulumi.CustomResource {
             resourceInputs["updatedBy"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["basicToken", "password", "value"] };
+        const secretOpts = { additionalSecretOutputs: ["basicToken", "dataDogApiKey", "password", "value"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(EnvironmentObject.__pulumiType, name, resourceInputs, opts);
     }
@@ -298,11 +310,19 @@ export interface EnvironmentObjectState {
      */
     createdBy?: pulumi.Input<inputs.EnvironmentObjectCreatedBy | undefined>;
     /**
+     * The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+     */
+    dataDogApiKey?: pulumi.Input<string | undefined>;
+    /**
+     * The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+     */
+    dataDogSite?: pulumi.Input<string | undefined>;
+    /**
      * The description of the environment object
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+     * The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
      */
     endpoint?: pulumi.Input<string | undefined>;
     /**
@@ -310,7 +330,7 @@ export interface EnvironmentObjectState {
      */
     excludeLinks?: pulumi.Input<pulumi.Input<inputs.EnvironmentObjectExcludeLink>[] | undefined>;
     /**
-     * The type of exporter (required when object*type=METRICS*EXPORT)
+     * The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
      */
     exporterType?: pulumi.Input<string | undefined>;
     /**
@@ -420,11 +440,19 @@ export interface EnvironmentObjectArgs {
      */
     basicToken?: pulumi.Input<string | undefined>;
     /**
+     * The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration
+     */
+    dataDogApiKey?: pulumi.Input<string | undefined>;
+    /**
+     * The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com
+     */
+    dataDogSite?: pulumi.Input<string | undefined>;
+    /**
      * The description of the environment object
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)
+     * The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)
      */
     endpoint?: pulumi.Input<string | undefined>;
     /**
@@ -432,7 +460,7 @@ export interface EnvironmentObjectArgs {
      */
     excludeLinks?: pulumi.Input<pulumi.Input<inputs.EnvironmentObjectExcludeLink>[] | undefined>;
     /**
-     * The type of exporter (required when object*type=METRICS*EXPORT)
+     * The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG
      */
     exporterType?: pulumi.Input<string | undefined>;
     /**

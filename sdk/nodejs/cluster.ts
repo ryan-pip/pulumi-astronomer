@@ -94,6 +94,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly isLimited: pulumi.Output<boolean>;
     /**
+     * Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+     */
+    declare public readonly isPrivateNetworkEgressEnabled: pulumi.Output<boolean>;
+    /**
      * Cluster metadata
      */
     declare public /*out*/ readonly metadata: pulumi.Output<outputs.ClusterMetadata>;
@@ -182,6 +186,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["isDrEnabled"] = state?.isDrEnabled;
             resourceInputs["isFailedOver"] = state?.isFailedOver;
             resourceInputs["isLimited"] = state?.isLimited;
+            resourceInputs["isPrivateNetworkEgressEnabled"] = state?.isPrivateNetworkEgressEnabled;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodePools"] = state?.nodePools;
@@ -225,6 +230,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["enableReplicationTimeControl"] = args?.enableReplicationTimeControl;
             resourceInputs["isDrEnabled"] = args?.isDrEnabled;
             resourceInputs["isFailedOver"] = args?.isFailedOver;
+            resourceInputs["isPrivateNetworkEgressEnabled"] = args?.isPrivateNetworkEgressEnabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["podSubnetRange"] = args?.podSubnetRange;
             resourceInputs["region"] = args?.region;
@@ -311,6 +317,10 @@ export interface ClusterState {
      * Whether the cluster is limited
      */
     isLimited?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+     */
+    isPrivateNetworkEgressEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster metadata
      */
@@ -418,6 +428,10 @@ export interface ClusterArgs {
      * Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
      */
     isFailedOver?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+     */
+    isPrivateNetworkEgressEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster name
      */

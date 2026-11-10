@@ -25,14 +25,16 @@ class ApiTokenArgs:
                  type: pulumi.Input[_builtins.str],
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 kind: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApiToken resource.
 
-        :param pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]] roles: The roles assigned to the API Token
+        :param pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]] roles: The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         :param pulumi.Input[_builtins.str] type: API Token type - if changing this value, the API Token will be recreated with the new type
         :param pulumi.Input[_builtins.str] description: API Token description
         :param pulumi.Input[_builtins.int] expiry_period_in_days: API Token expiry period in days
+        :param pulumi.Input[_builtins.str] kind: API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
         :param pulumi.Input[_builtins.str] name: API Token name
         """
         pulumi.set(__self__, "roles", roles)
@@ -41,6 +43,8 @@ class ApiTokenArgs:
             pulumi.set(__self__, "description", description)
         if expiry_period_in_days is not None:
             pulumi.set(__self__, "expiry_period_in_days", expiry_period_in_days)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -48,7 +52,7 @@ class ApiTokenArgs:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]]:
         """
-        The roles assigned to the API Token
+        The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         """
         return pulumi.get(self, "roles")
 
@@ -94,6 +98,18 @@ class ApiTokenArgs:
 
     @_builtins.property
     @pulumi.getter
+    def kind(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kind", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Token name
@@ -113,6 +129,7 @@ class _ApiTokenState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  end_at: pulumi.Input[Optional[_builtins.str]] = None,
                  expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 kind: pulumi.Input[Optional[_builtins.str]] = None,
                  last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input['ApiTokenRoleArgs']]]] = None,
@@ -130,9 +147,10 @@ class _ApiTokenState:
         :param pulumi.Input[_builtins.str] description: API Token description
         :param pulumi.Input[_builtins.str] end_at: time when the API token will expire in UTC
         :param pulumi.Input[_builtins.int] expiry_period_in_days: API Token expiry period in days
+        :param pulumi.Input[_builtins.str] kind: API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
         :param pulumi.Input[_builtins.str] last_used_at: API Token last used timestamp
         :param pulumi.Input[_builtins.str] name: API Token name
-        :param pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]] roles: The roles assigned to the API Token
+        :param pulumi.Input[Sequence[pulumi.Input['ApiTokenRoleArgs']]] roles: The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         :param pulumi.Input[_builtins.str] short_token: API Token short token
         :param pulumi.Input[_builtins.str] start_at: time when the API token will become valid in UTC
         :param pulumi.Input[_builtins.str] token: API Token value. Warning: This value will be saved in plaintext in the terraform state file.
@@ -150,6 +168,8 @@ class _ApiTokenState:
             pulumi.set(__self__, "end_at", end_at)
         if expiry_period_in_days is not None:
             pulumi.set(__self__, "expiry_period_in_days", expiry_period_in_days)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
         if last_used_at is not None:
             pulumi.set(__self__, "last_used_at", last_used_at)
         if name is not None:
@@ -230,6 +250,18 @@ class _ApiTokenState:
         pulumi.set(self, "expiry_period_in_days", value)
 
     @_builtins.property
+    @pulumi.getter
+    def kind(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kind", value)
+
+    @_builtins.property
     @pulumi.getter(name="lastUsedAt")
     def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -257,7 +289,7 @@ class _ApiTokenState:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ApiTokenRoleArgs']]]]:
         """
-        The roles assigned to the API Token
+        The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         """
         return pulumi.get(self, "roles")
 
@@ -346,6 +378,7 @@ class ApiToken(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 kind: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -358,8 +391,9 @@ class ApiToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: API Token description
         :param pulumi.Input[_builtins.int] expiry_period_in_days: API Token expiry period in days
+        :param pulumi.Input[_builtins.str] kind: API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
         :param pulumi.Input[_builtins.str] name: API Token name
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]] roles: The roles assigned to the API Token
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]] roles: The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         :param pulumi.Input[_builtins.str] type: API Token type - if changing this value, the API Token will be recreated with the new type
         """
         ...
@@ -389,6 +423,7 @@ class ApiToken(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 kind: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -403,6 +438,7 @@ class ApiToken(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["expiry_period_in_days"] = expiry_period_in_days
+            __props__.__dict__["kind"] = kind
             __props__.__dict__["name"] = name
             if roles is None and not opts.urn:
                 raise TypeError("Missing required property 'roles'")
@@ -436,6 +472,7 @@ class ApiToken(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             end_at: pulumi.Input[Optional[_builtins.str]] = None,
             expiry_period_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+            kind: pulumi.Input[Optional[_builtins.str]] = None,
             last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]]] = None,
@@ -457,9 +494,10 @@ class ApiToken(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: API Token description
         :param pulumi.Input[_builtins.str] end_at: time when the API token will expire in UTC
         :param pulumi.Input[_builtins.int] expiry_period_in_days: API Token expiry period in days
+        :param pulumi.Input[_builtins.str] kind: API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
         :param pulumi.Input[_builtins.str] last_used_at: API Token last used timestamp
         :param pulumi.Input[_builtins.str] name: API Token name
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]] roles: The roles assigned to the API Token
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiTokenRoleArgs', 'ApiTokenRoleArgsDict']]]] roles: The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         :param pulumi.Input[_builtins.str] short_token: API Token short token
         :param pulumi.Input[_builtins.str] start_at: time when the API token will become valid in UTC
         :param pulumi.Input[_builtins.str] token: API Token value. Warning: This value will be saved in plaintext in the terraform state file.
@@ -476,6 +514,7 @@ class ApiToken(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["end_at"] = end_at
         __props__.__dict__["expiry_period_in_days"] = expiry_period_in_days
+        __props__.__dict__["kind"] = kind
         __props__.__dict__["last_used_at"] = last_used_at
         __props__.__dict__["name"] = name
         __props__.__dict__["roles"] = roles
@@ -528,6 +567,14 @@ class ApiToken(pulumi.CustomResource):
         return pulumi.get(self, "expiry_period_in_days")
 
     @_builtins.property
+    @pulumi.getter
+    def kind(self) -> pulumi.Output[_builtins.str]:
+        """
+        API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        """
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
     @pulumi.getter(name="lastUsedAt")
     def last_used_at(self) -> pulumi.Output[_builtins.str]:
         """
@@ -547,7 +594,7 @@ class ApiToken(pulumi.CustomResource):
     @pulumi.getter
     def roles(self) -> pulumi.Output[Sequence['outputs.ApiTokenRole']]:
         """
-        The roles assigned to the API Token
+        The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         """
         return pulumi.get(self, "roles")
 

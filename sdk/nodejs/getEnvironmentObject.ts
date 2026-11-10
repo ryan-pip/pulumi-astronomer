@@ -71,11 +71,19 @@ export interface GetEnvironmentObjectResult {
      */
     readonly createdBy: outputs.GetEnvironmentObjectCreatedBy;
     /**
+     * The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+     */
+    readonly dataDogApiKey: string;
+    /**
+     * The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    readonly dataDogSite: string;
+    /**
      * The description of the environment object
      */
     readonly description: string;
     /**
-     * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+     * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
      */
     readonly endpoint: string;
     /**

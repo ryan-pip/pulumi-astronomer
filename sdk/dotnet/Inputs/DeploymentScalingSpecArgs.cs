@@ -14,10 +14,16 @@ namespace RyanPip.Astronomer.Inputs
     public sealed class DeploymentScalingSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `IsEnabled` to false; the replica bounds are kept.
+        /// </summary>
+        [Input("autoscaling")]
+        public Input<Inputs.DeploymentScalingSpecAutoscalingArgs>? Autoscaling { get; set; }
+
+        /// <summary>
         /// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         /// </summary>
-        [Input("hibernationSpec", required: true)]
-        public Input<Inputs.DeploymentScalingSpecHibernationSpecArgs> HibernationSpec { get; set; } = null!;
+        [Input("hibernationSpec")]
+        public Input<Inputs.DeploymentScalingSpecHibernationSpecArgs>? HibernationSpec { get; set; }
 
         public DeploymentScalingSpecArgs()
         {

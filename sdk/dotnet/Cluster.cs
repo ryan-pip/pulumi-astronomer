@@ -101,6 +101,12 @@ namespace RyanPip.Astronomer
         public Output<bool> IsLimited { get; private set; } = null!;
 
         /// <summary>
+        /// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        /// </summary>
+        [Output("isPrivateNetworkEgressEnabled")]
+        public Output<bool> IsPrivateNetworkEgressEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Cluster metadata
         /// </summary>
         [Output("metadata")]
@@ -301,6 +307,12 @@ namespace RyanPip.Astronomer
         public Input<bool>? IsFailedOver { get; set; }
 
         /// <summary>
+        /// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        /// </summary>
+        [Input("isPrivateNetworkEgressEnabled")]
+        public Input<bool>? IsPrivateNetworkEgressEnabled { get; set; }
+
+        /// <summary>
         /// Cluster name
         /// </summary>
         [Input("name")]
@@ -454,6 +466,12 @@ namespace RyanPip.Astronomer
         /// </summary>
         [Input("isLimited")]
         public Input<bool>? IsLimited { get; set; }
+
+        /// <summary>
+        /// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+        /// </summary>
+        [Input("isPrivateNetworkEgressEnabled")]
+        public Input<bool>? IsPrivateNetworkEgressEnabled { get; set; }
 
         /// <summary>
         /// Cluster metadata

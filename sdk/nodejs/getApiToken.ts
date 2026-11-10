@@ -67,6 +67,10 @@ export interface GetApiTokenResult {
      */
     readonly id: string;
     /**
+     * API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+     */
+    readonly kind: string;
+    /**
      * API Token last used timestamp
      */
     readonly lastUsedAt: string;

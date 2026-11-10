@@ -35,6 +35,28 @@ namespace RyanPip.Astronomer.Inputs
             }
         }
 
+        [Input("dataDogApiKey")]
+        private Input<string>? _dataDogApiKey;
+
+        /// <summary>
+        /// Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        /// </summary>
+        public Input<string>? DataDogApiKey
+        {
+            get => _dataDogApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataDogApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        /// </summary>
+        [Input("dataDogSite")]
+        public Input<string>? DataDogSite { get; set; }
+
         /// <summary>
         /// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
         /// </summary>

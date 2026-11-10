@@ -11,7 +11,9 @@ using Pulumi;
 namespace RyanPip.Astronomer
 {
     /// <summary>
-    /// Notification Channel resource
+    /// Manage a single notification channel.
+    /// 
+    /// &gt; **Deprecated** Use the `astronomer.NotificationChannels` resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both `astronomer.NotificationChannel` and `astronomer.NotificationChannels` — they conflict on every apply.
     /// </summary>
     [AstronomerResourceType("astronomer:index/notificationChannel:NotificationChannel")]
     public partial class NotificationChannel : global::Pulumi.CustomResource

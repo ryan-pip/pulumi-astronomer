@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_pod_subnet_range=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_service_peering_range=None, dr_service_subnet_range=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, secondary_vpc_cidr=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
+    def __init__(__self__, cloud_provider=None, created_at=None, db_instance_type=None, dr_pod_subnet_range=None, dr_region=None, dr_secondary_vpc_cidr=None, dr_service_peering_range=None, dr_service_subnet_range=None, dr_vpc_subnet_range=None, enable_replication_time_control=None, health_status=None, id=None, is_dr_enabled=None, is_failed_over=None, is_limited=None, is_private_network_egress_enabled=None, metadata=None, name=None, node_pools=None, pod_subnet_range=None, provider_account=None, region=None, secondary_vpc_cidr=None, service_peering_range=None, service_subnet_range=None, status=None, tags=None, tenant_id=None, type=None, updated_at=None, vpc_subnet_range=None, workspace_ids=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -73,6 +73,9 @@ class GetClusterResult:
         if is_limited and not isinstance(is_limited, bool):
             raise TypeError("Expected argument 'is_limited' to be a bool")
         pulumi.set(__self__, "is_limited", is_limited)
+        if is_private_network_egress_enabled and not isinstance(is_private_network_egress_enabled, bool):
+            raise TypeError("Expected argument 'is_private_network_egress_enabled' to be a bool")
+        pulumi.set(__self__, "is_private_network_egress_enabled", is_private_network_egress_enabled)
         if metadata and not isinstance(metadata, dict):
             raise TypeError("Expected argument 'metadata' to be a dict")
         pulumi.set(__self__, "metadata", metadata)
@@ -243,6 +246,14 @@ class GetClusterResult:
         return pulumi.get(self, "is_limited")
 
     @_builtins.property
+    @pulumi.getter(name="isPrivateNetworkEgressEnabled")
+    def is_private_network_egress_enabled(self) -> _builtins.bool:
+        """
+        Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+        """
+        return pulumi.get(self, "is_private_network_egress_enabled")
+
+    @_builtins.property
     @pulumi.getter
     def metadata(self) -> 'outputs.GetClusterMetadataResult':
         """
@@ -392,6 +403,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             is_dr_enabled=self.is_dr_enabled,
             is_failed_over=self.is_failed_over,
             is_limited=self.is_limited,
+            is_private_network_egress_enabled=self.is_private_network_egress_enabled,
             metadata=self.metadata,
             name=self.name,
             node_pools=self.node_pools,
@@ -449,6 +461,7 @@ def get_cluster(id: Optional[_builtins.str] = None,
         is_dr_enabled=pulumi.get(__ret__, 'is_dr_enabled'),
         is_failed_over=pulumi.get(__ret__, 'is_failed_over'),
         is_limited=pulumi.get(__ret__, 'is_limited'),
+        is_private_network_egress_enabled=pulumi.get(__ret__, 'is_private_network_egress_enabled'),
         metadata=pulumi.get(__ret__, 'metadata'),
         name=pulumi.get(__ret__, 'name'),
         node_pools=pulumi.get(__ret__, 'node_pools'),
@@ -503,6 +516,7 @@ def get_cluster_output(id: pulumi.Input[Optional[_builtins.str]] = None,
         is_dr_enabled=pulumi.get(__response__, 'is_dr_enabled'),
         is_failed_over=pulumi.get(__response__, 'is_failed_over'),
         is_limited=pulumi.get(__response__, 'is_limited'),
+        is_private_network_egress_enabled=pulumi.get(__response__, 'is_private_network_egress_enabled'),
         metadata=pulumi.get(__response__, 'metadata'),
         name=pulumi.get(__response__, 'name'),
         node_pools=pulumi.get(__response__, 'node_pools'),

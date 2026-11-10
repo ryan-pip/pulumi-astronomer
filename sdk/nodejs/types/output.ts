@@ -479,9 +479,35 @@ export interface DeploymentRemoteExecution {
 
 export interface DeploymentScalingSpec {
     /**
+     * Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+     */
+    autoscaling?: outputs.DeploymentScalingSpecAutoscaling;
+    /**
      * Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
      */
-    hibernationSpec: outputs.DeploymentScalingSpecHibernationSpec;
+    hibernationSpec?: outputs.DeploymentScalingSpecHibernationSpec;
+}
+
+export interface DeploymentScalingSpecAutoscaling {
+    /**
+     * Autoscaling configuration for the API server.
+     */
+    apiServer: outputs.DeploymentScalingSpecAutoscalingApiServer;
+}
+
+export interface DeploymentScalingSpecAutoscalingApiServer {
+    /**
+     * Whether autoscaling is enabled
+     */
+    isEnabled: boolean;
+    /**
+     * Maximum number of replicas
+     */
+    maxReplicas: number;
+    /**
+     * Minimum number of replicas
+     */
+    minReplicas: number;
 }
 
 export interface DeploymentScalingSpecHibernationSpec {
@@ -557,6 +583,10 @@ export interface DeploymentWorkerQueue {
      * Worker queue pod CPU
      */
     podCpu: string;
+    /**
+     * Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+     */
+    podEphemeralStorage: string;
     /**
      * Worker queue pod memory
      */
@@ -689,6 +719,14 @@ export interface EnvironmentObjectLinkOverrides {
      * Override bearer token (only valid when object*type=METRICS*EXPORT)
      */
     basicToken?: string;
+    /**
+     * Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogApiKey?: string;
+    /**
+     * Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogSite?: string;
     /**
      * Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
      */
@@ -1070,6 +1108,10 @@ export interface GetApiTokensApiToken {
      */
     id: string;
     /**
+     * API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+     */
+    kind: string;
+    /**
      * API Token last used timestamp
      */
     lastUsedAt: string;
@@ -1445,6 +1487,10 @@ export interface GetClustersCluster {
      * Whether the cluster is limited
      */
     isLimited: boolean;
+    /**
+     * Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+     */
+    isPrivateNetworkEgressEnabled: boolean;
     /**
      * Cluster metadata
      */
@@ -1874,7 +1920,27 @@ export interface GetDeploymentRemoteExecution {
 }
 
 export interface GetDeploymentScalingSpec {
+    autoscaling: outputs.GetDeploymentScalingSpecAutoscaling;
     hibernationSpec: outputs.GetDeploymentScalingSpecHibernationSpec;
+}
+
+export interface GetDeploymentScalingSpecAutoscaling {
+    apiServer: outputs.GetDeploymentScalingSpecAutoscalingApiServer;
+}
+
+export interface GetDeploymentScalingSpecAutoscalingApiServer {
+    /**
+     * Whether autoscaling is enabled
+     */
+    isEnabled: boolean;
+    /**
+     * Maximum number of replicas
+     */
+    maxReplicas: number;
+    /**
+     * Minimum number of replicas
+     */
+    minReplicas: number;
 }
 
 export interface GetDeploymentScalingSpecHibernationSpec {
@@ -1981,6 +2047,10 @@ export interface GetDeploymentWorkerQueue {
      * Worker queue pod CPU
      */
     podCpu: string;
+    /**
+     * Worker queue pod ephemeral storage
+     */
+    podEphemeralStorage: string;
     /**
      * Worker queue pod memory
      */
@@ -2242,7 +2312,27 @@ export interface GetDeploymentsDeploymentRemoteExecution {
 }
 
 export interface GetDeploymentsDeploymentScalingSpec {
+    autoscaling: outputs.GetDeploymentsDeploymentScalingSpecAutoscaling;
     hibernationSpec: outputs.GetDeploymentsDeploymentScalingSpecHibernationSpec;
+}
+
+export interface GetDeploymentsDeploymentScalingSpecAutoscaling {
+    apiServer: outputs.GetDeploymentsDeploymentScalingSpecAutoscalingApiServer;
+}
+
+export interface GetDeploymentsDeploymentScalingSpecAutoscalingApiServer {
+    /**
+     * Whether autoscaling is enabled
+     */
+    isEnabled: boolean;
+    /**
+     * Maximum number of replicas
+     */
+    maxReplicas: number;
+    /**
+     * Minimum number of replicas
+     */
+    minReplicas: number;
 }
 
 export interface GetDeploymentsDeploymentScalingSpecHibernationSpec {
@@ -2349,6 +2439,10 @@ export interface GetDeploymentsDeploymentWorkerQueue {
      * Worker queue pod CPU
      */
     podCpu: string;
+    /**
+     * Worker queue pod ephemeral storage
+     */
+    podEphemeralStorage: string;
     /**
      * Worker queue pod memory
      */
@@ -2482,6 +2576,14 @@ export interface GetEnvironmentObjectLinkOverrides {
      */
     basicToken: string;
     /**
+     * Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+     */
+    dataDogApiKey: string;
+    /**
+     * Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogSite: string;
+    /**
      * Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
      */
     endpoint: string;
@@ -2574,11 +2676,19 @@ export interface GetEnvironmentObjectsEnvironmentObject {
      */
     createdBy: outputs.GetEnvironmentObjectsEnvironmentObjectCreatedBy;
     /**
+     * The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+     */
+    dataDogApiKey: string;
+    /**
+     * The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogSite: string;
+    /**
      * The description of the environment object
      */
     description: string;
     /**
-     * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+     * The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
      */
     endpoint: string;
     /**
@@ -2801,6 +2911,14 @@ export interface GetEnvironmentObjectsEnvironmentObjectLinkOverrides {
      * Override bearer token (only used when object*type=METRICS*EXPORT)
      */
     basicToken: string;
+    /**
+     * Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+     */
+    dataDogApiKey: string;
+    /**
+     * Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+     */
+    dataDogSite: string;
     /**
      * Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
      */
@@ -3597,6 +3715,68 @@ export interface NotificationChannelUpdatedBy {
     id: string;
     subjectType: string;
     username: string;
+}
+
+export interface NotificationChannelsNotificationChannels {
+    /**
+     * The notification channel's definition
+     */
+    definition: outputs.NotificationChannelsNotificationChannelsDefinition;
+    /**
+     * The entity ID the notification channel is scoped to
+     */
+    entityId: string;
+    /**
+     * The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+     */
+    entityType: string;
+    /**
+     * The notification channel's ID
+     */
+    id: string;
+    /**
+     * When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+     */
+    isShared: boolean;
+    /**
+     * The notification channel's name
+     */
+    name: string;
+    /**
+     * The notification channel's type
+     */
+    type: string;
+}
+
+export interface NotificationChannelsNotificationChannelsDefinition {
+    /**
+     * The API key for the notification channel
+     */
+    apiKey?: string;
+    /**
+     * The DAG ID for the notification channel
+     */
+    dagId?: string;
+    /**
+     * The deployment API token for the notification channel
+     */
+    deploymentApiToken?: string;
+    /**
+     * The deployment ID for the notification channel
+     */
+    deploymentId?: string;
+    /**
+     * The integration key for the notification channel
+     */
+    integrationKey?: string;
+    /**
+     * The recipients for the notification channel
+     */
+    recipients?: string[];
+    /**
+     * The webhook URL for the notification channel
+     */
+    webhookUrl?: string;
 }
 
 export interface TeamCreatedBy {

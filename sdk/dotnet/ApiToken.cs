@@ -47,6 +47,12 @@ namespace RyanPip.Astronomer
         public Output<int?> ExpiryPeriodInDays { get; private set; } = null!;
 
         /// <summary>
+        /// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        /// </summary>
+        [Output("kind")]
+        public Output<string> Kind { get; private set; } = null!;
+
+        /// <summary>
         /// API Token last used timestamp
         /// </summary>
         [Output("lastUsedAt")]
@@ -59,7 +65,7 @@ namespace RyanPip.Astronomer
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The roles assigned to the API Token
+        /// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<Outputs.ApiTokenRole>> Roles { get; private set; } = null!;
@@ -164,6 +170,12 @@ namespace RyanPip.Astronomer
         public Input<int>? ExpiryPeriodInDays { get; set; }
 
         /// <summary>
+        /// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        /// </summary>
+        [Input("kind")]
+        public Input<string>? Kind { get; set; }
+
+        /// <summary>
         /// API Token name
         /// </summary>
         [Input("name")]
@@ -173,7 +185,7 @@ namespace RyanPip.Astronomer
         private InputList<Inputs.ApiTokenRoleArgs>? _roles;
 
         /// <summary>
-        /// The roles assigned to the API Token
+        /// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         /// </summary>
         public InputList<Inputs.ApiTokenRoleArgs> Roles
         {
@@ -226,6 +238,12 @@ namespace RyanPip.Astronomer
         public Input<int>? ExpiryPeriodInDays { get; set; }
 
         /// <summary>
+        /// API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind
+        /// </summary>
+        [Input("kind")]
+        public Input<string>? Kind { get; set; }
+
+        /// <summary>
         /// API Token last used timestamp
         /// </summary>
         [Input("lastUsedAt")]
@@ -241,7 +259,7 @@ namespace RyanPip.Astronomer
         private InputList<Inputs.ApiTokenRoleGetArgs>? _roles;
 
         /// <summary>
-        /// The roles assigned to the API Token
+        /// The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value
         /// </summary>
         public InputList<Inputs.ApiTokenRoleGetArgs> Roles
         {

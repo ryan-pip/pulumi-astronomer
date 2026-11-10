@@ -44,6 +44,8 @@ type Cluster struct {
 	IsFailedOver pulumi.BoolOutput `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolOutput `pulumi:"isLimited"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+	IsPrivateNetworkEgressEnabled pulumi.BoolOutput `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster metadata
 	Metadata ClusterMetadataOutput `pulumi:"metadata"`
 	// Cluster name
@@ -150,6 +152,8 @@ type clusterState struct {
 	IsFailedOver *bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited *bool `pulumi:"isLimited"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+	IsPrivateNetworkEgressEnabled *bool `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster metadata
 	Metadata *ClusterMetadata `pulumi:"metadata"`
 	// Cluster name
@@ -212,6 +216,8 @@ type ClusterState struct {
 	IsFailedOver pulumi.BoolPtrInput
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolPtrInput
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+	IsPrivateNetworkEgressEnabled pulumi.BoolPtrInput
 	// Cluster metadata
 	Metadata ClusterMetadataPtrInput
 	// Cluster name
@@ -270,6 +276,8 @@ type clusterArgs struct {
 	IsDrEnabled *bool `pulumi:"isDrEnabled"`
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver *bool `pulumi:"isFailedOver"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+	IsPrivateNetworkEgressEnabled *bool `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster name
 	Name *string `pulumi:"name"`
 	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -313,6 +321,8 @@ type ClusterArgs struct {
 	IsDrEnabled pulumi.BoolPtrInput
 	// Whether the cluster is currently failed over to the DR region. Set to `true` to trigger failover; set to `false` to fail back.
 	IsFailedOver pulumi.BoolPtrInput
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+	IsPrivateNetworkEgressEnabled pulumi.BoolPtrInput
 	// Cluster name
 	Name pulumi.StringPtrInput
 	// Cluster pod subnet range - required for 'GCP' clusters. If changed, the cluster will be recreated.
@@ -489,6 +499,11 @@ func (o ClusterOutput) IsFailedOver() pulumi.BoolOutput {
 // Whether the cluster is limited
 func (o ClusterOutput) IsLimited() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsLimited }).(pulumi.BoolOutput)
+}
+
+// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.
+func (o ClusterOutput) IsPrivateNetworkEgressEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.IsPrivateNetworkEgressEnabled }).(pulumi.BoolOutput)
 }
 
 // Cluster metadata

@@ -350,7 +350,9 @@ class NotificationChannel(pulumi.CustomResource):
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Notification Channel resource
+        Manage a single notification channel.
+
+        > **Deprecated** Use the `NotificationChannels` resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both `NotificationChannel` and `NotificationChannels` — they conflict on every apply.
 
 
         :param str resource_name: The name of the resource.
@@ -369,7 +371,9 @@ class NotificationChannel(pulumi.CustomResource):
                  args: NotificationChannelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Notification Channel resource
+        Manage a single notification channel.
+
+        > **Deprecated** Use the `NotificationChannels` resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both `NotificationChannel` and `NotificationChannels` — they conflict on every apply.
 
 
         :param str resource_name: The name of the resource.

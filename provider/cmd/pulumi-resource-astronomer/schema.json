@@ -1025,14 +1025,49 @@
         },
         "astronomer:index/DeploymentScalingSpec:DeploymentScalingSpec": {
             "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/astronomer:index/DeploymentScalingSpecAutoscaling:DeploymentScalingSpecAutoscaling",
+                    "description": "Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set \u003cspan pulumi-lang-nodejs=\"`isEnabled`\" pulumi-lang-dotnet=\"`IsEnabled`\" pulumi-lang-go=\"`isEnabled`\" pulumi-lang-python=\"`is_enabled`\" pulumi-lang-yaml=\"`isEnabled`\" pulumi-lang-java=\"`isEnabled`\" pulumi-lang-hcl=\"`is_enabled`\"\u003e`isEnabled`\u003c/span\u003e to false; the replica bounds are kept.\n"
+                },
                 "hibernationSpec": {
                     "$ref": "#/types/astronomer:index/DeploymentScalingSpecHibernationSpec:DeploymentScalingSpecHibernationSpec",
                     "description": "Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.\n"
                 }
             },
+            "type": "object"
+        },
+        "astronomer:index/DeploymentScalingSpecAutoscaling:DeploymentScalingSpecAutoscaling": {
+            "properties": {
+                "apiServer": {
+                    "$ref": "#/types/astronomer:index/DeploymentScalingSpecAutoscalingApiServer:DeploymentScalingSpecAutoscalingApiServer",
+                    "description": "Autoscaling configuration for the API server.\n"
+                }
+            },
             "type": "object",
             "required": [
-                "hibernationSpec"
+                "apiServer"
+            ]
+        },
+        "astronomer:index/DeploymentScalingSpecAutoscalingApiServer:DeploymentScalingSpecAutoscalingApiServer": {
+            "properties": {
+                "isEnabled": {
+                    "type": "boolean",
+                    "description": "Whether autoscaling is enabled\n"
+                },
+                "maxReplicas": {
+                    "type": "integer",
+                    "description": "Maximum number of replicas\n"
+                },
+                "minReplicas": {
+                    "type": "integer",
+                    "description": "Minimum number of replicas\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "isEnabled",
+                "maxReplicas",
+                "minReplicas"
             ]
         },
         "astronomer:index/DeploymentScalingSpecHibernationSpec:DeploymentScalingSpecHibernationSpec": {
@@ -1205,6 +1240,10 @@
                     "type": "string",
                     "description": "Worker queue pod CPU\n"
                 },
+                "podEphemeralStorage": {
+                    "type": "string",
+                    "description": "Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.\n"
+                },
                 "podMemory": {
                     "type": "string",
                     "description": "Worker queue pod memory\n"
@@ -1230,6 +1269,7 @@
                         "minWorkerCount",
                         "name",
                         "podCpu",
+                        "podEphemeralStorage",
                         "podMemory",
                         "workerConcurrency"
                     ]
@@ -1434,6 +1474,15 @@
                     "type": "string",
                     "description": "Override bearer token (only valid when object*type=METRICS*EXPORT)\n",
                     "secret": true
+                },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n"
                 },
                 "endpoint": {
                     "type": "string",
@@ -1642,6 +1691,99 @@
                     ]
                 }
             }
+        },
+        "astronomer:index/NotificationChannelsNotificationChannels:NotificationChannelsNotificationChannels": {
+            "properties": {
+                "definition": {
+                    "$ref": "#/types/astronomer:index/NotificationChannelsNotificationChannelsDefinition:NotificationChannelsNotificationChannelsDefinition",
+                    "description": "The notification channel's definition\n"
+                },
+                "entityId": {
+                    "type": "string",
+                    "description": "The entity ID the notification channel is scoped to\n"
+                },
+                "entityType": {
+                    "type": "string",
+                    "description": "The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The notification channel's ID\n"
+                },
+                "isShared": {
+                    "type": "boolean",
+                    "description": "When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The notification channel's name\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The notification channel's type\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "definition",
+                "entityId",
+                "entityType",
+                "name",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "definition",
+                        "entityId",
+                        "entityType",
+                        "id",
+                        "isShared",
+                        "name",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "astronomer:index/NotificationChannelsNotificationChannelsDefinition:NotificationChannelsNotificationChannelsDefinition": {
+            "properties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "The API key for the notification channel\n",
+                    "secret": true
+                },
+                "dagId": {
+                    "type": "string",
+                    "description": "The DAG ID for the notification channel\n"
+                },
+                "deploymentApiToken": {
+                    "type": "string",
+                    "description": "The deployment API token for the notification channel\n",
+                    "secret": true
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "The deployment ID for the notification channel\n"
+                },
+                "integrationKey": {
+                    "type": "string",
+                    "description": "The integration key for the notification channel\n",
+                    "secret": true
+                },
+                "recipients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The recipients for the notification channel\n"
+                },
+                "webhookUrl": {
+                    "type": "string",
+                    "description": "The webhook URL for the notification channel\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
         },
         "astronomer:index/TeamCreatedBy:TeamCreatedBy": {
             "properties": {
@@ -2706,6 +2848,10 @@
                     "type": "string",
                     "description": "API Token identifier\n"
                 },
+                "kind": {
+                    "type": "string",
+                    "description": "API Token kind - 'STANDARD' or 'DIRECT_ACCESS'\n"
+                },
                 "lastUsedAt": {
                     "type": "string",
                     "description": "API Token last used timestamp\n"
@@ -2750,6 +2896,7 @@
                 "endAt",
                 "expiryPeriodInDays",
                 "id",
+                "kind",
                 "lastUsedAt",
                 "name",
                 "roles",
@@ -3359,6 +3506,10 @@
                     "type": "boolean",
                     "description": "Whether the cluster is limited\n"
                 },
+                "isPrivateNetworkEgressEnabled": {
+                    "type": "boolean",
+                    "description": "Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)\n"
+                },
                 "metadata": {
                     "$ref": "#/types/astronomer:index/getClustersClusterMetadata:getClustersClusterMetadata",
                     "description": "Cluster metadata\n"
@@ -3450,6 +3601,7 @@
                 "isDrEnabled",
                 "isFailedOver",
                 "isLimited",
+                "isPrivateNetworkEgressEnabled",
                 "metadata",
                 "name",
                 "nodePools",
@@ -4286,13 +4438,60 @@
         },
         "astronomer:index/getDeploymentScalingSpec:getDeploymentScalingSpec": {
             "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/astronomer:index/getDeploymentScalingSpecAutoscaling:getDeploymentScalingSpecAutoscaling"
+                },
                 "hibernationSpec": {
                     "$ref": "#/types/astronomer:index/getDeploymentScalingSpecHibernationSpec:getDeploymentScalingSpecHibernationSpec"
                 }
             },
             "type": "object",
             "required": [
+                "autoscaling",
                 "hibernationSpec"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getDeploymentScalingSpecAutoscaling:getDeploymentScalingSpecAutoscaling": {
+            "properties": {
+                "apiServer": {
+                    "$ref": "#/types/astronomer:index/getDeploymentScalingSpecAutoscalingApiServer:getDeploymentScalingSpecAutoscalingApiServer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiServer"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getDeploymentScalingSpecAutoscalingApiServer:getDeploymentScalingSpecAutoscalingApiServer": {
+            "properties": {
+                "isEnabled": {
+                    "type": "boolean",
+                    "description": "Whether autoscaling is enabled\n"
+                },
+                "maxReplicas": {
+                    "type": "integer",
+                    "description": "Maximum number of replicas\n"
+                },
+                "minReplicas": {
+                    "type": "integer",
+                    "description": "Minimum number of replicas\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "isEnabled",
+                "maxReplicas",
+                "minReplicas"
             ],
             "language": {
                 "nodejs": {
@@ -4500,6 +4699,10 @@
                     "type": "string",
                     "description": "Worker queue pod CPU\n"
                 },
+                "podEphemeralStorage": {
+                    "type": "string",
+                    "description": "Worker queue pod ephemeral storage\n"
+                },
                 "podMemory": {
                     "type": "string",
                     "description": "Worker queue pod memory\n"
@@ -4519,6 +4722,7 @@
                 "name",
                 "nodePoolId",
                 "podCpu",
+                "podEphemeralStorage",
                 "podMemory",
                 "workerConcurrency"
             ],
@@ -4907,13 +5111,60 @@
         },
         "astronomer:index/getDeploymentsDeploymentScalingSpec:getDeploymentsDeploymentScalingSpec": {
             "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/astronomer:index/getDeploymentsDeploymentScalingSpecAutoscaling:getDeploymentsDeploymentScalingSpecAutoscaling"
+                },
                 "hibernationSpec": {
                     "$ref": "#/types/astronomer:index/getDeploymentsDeploymentScalingSpecHibernationSpec:getDeploymentsDeploymentScalingSpecHibernationSpec"
                 }
             },
             "type": "object",
             "required": [
+                "autoscaling",
                 "hibernationSpec"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getDeploymentsDeploymentScalingSpecAutoscaling:getDeploymentsDeploymentScalingSpecAutoscaling": {
+            "properties": {
+                "apiServer": {
+                    "$ref": "#/types/astronomer:index/getDeploymentsDeploymentScalingSpecAutoscalingApiServer:getDeploymentsDeploymentScalingSpecAutoscalingApiServer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiServer"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "astronomer:index/getDeploymentsDeploymentScalingSpecAutoscalingApiServer:getDeploymentsDeploymentScalingSpecAutoscalingApiServer": {
+            "properties": {
+                "isEnabled": {
+                    "type": "boolean",
+                    "description": "Whether autoscaling is enabled\n"
+                },
+                "maxReplicas": {
+                    "type": "integer",
+                    "description": "Maximum number of replicas\n"
+                },
+                "minReplicas": {
+                    "type": "integer",
+                    "description": "Minimum number of replicas\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "isEnabled",
+                "maxReplicas",
+                "minReplicas"
             ],
             "language": {
                 "nodejs": {
@@ -5121,6 +5372,10 @@
                     "type": "string",
                     "description": "Worker queue pod CPU\n"
                 },
+                "podEphemeralStorage": {
+                    "type": "string",
+                    "description": "Worker queue pod ephemeral storage\n"
+                },
                 "podMemory": {
                     "type": "string",
                     "description": "Worker queue pod memory\n"
@@ -5140,6 +5395,7 @@
                 "name",
                 "nodePoolId",
                 "podCpu",
+                "podEphemeralStorage",
                 "podMemory",
                 "workerConcurrency"
             ],
@@ -5362,6 +5618,15 @@
                     "description": "Override bearer token (only used when object*type=METRICS*EXPORT)\n",
                     "secret": true
                 },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n"
+                },
                 "endpoint": {
                     "type": "string",
                     "description": "Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)\n"
@@ -5427,6 +5692,8 @@
             "required": [
                 "authType",
                 "basicToken",
+                "dataDogApiKey",
+                "dataDogSite",
                 "endpoint",
                 "exporterType",
                 "extra",
@@ -5514,13 +5781,22 @@
                     "$ref": "#/types/astronomer:index/getEnvironmentObjectsEnvironmentObjectCreatedBy:getEnvironmentObjectsEnvironmentObjectCreatedBy",
                     "description": "Environment Object creator\n"
                 },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "The description of the environment object\n"
                 },
                 "endpoint": {
                     "type": "string",
-                    "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n"
+                    "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)\n"
                 },
                 "excludeLinks": {
                     "type": "array",
@@ -5642,6 +5918,8 @@
                 "connectionAuthType",
                 "createdAt",
                 "createdBy",
+                "dataDogApiKey",
+                "dataDogSite",
                 "description",
                 "endpoint",
                 "excludeLinks",
@@ -5888,6 +6166,15 @@
                     "description": "Override bearer token (only used when object*type=METRICS*EXPORT)\n",
                     "secret": true
                 },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n"
+                },
                 "endpoint": {
                     "type": "string",
                     "description": "Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)\n"
@@ -5953,6 +6240,8 @@
             "required": [
                 "authType",
                 "basicToken",
+                "dataDogApiKey",
+                "dataDogSite",
                 "endpoint",
                 "exporterType",
                 "extra",
@@ -7893,6 +8182,10 @@
                     "type": "integer",
                     "description": "API Token expiry period in days\n"
                 },
+                "kind": {
+                    "type": "string",
+                    "description": "API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind\n"
+                },
                 "lastUsedAt": {
                     "type": "string",
                     "description": "API Token last used timestamp\n"
@@ -7906,7 +8199,7 @@
                     "items": {
                         "$ref": "#/types/astronomer:index/ApiTokenRole:ApiTokenRole"
                     },
-                    "description": "The roles assigned to the API Token\n"
+                    "description": "The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value\n"
                 },
                 "shortToken": {
                     "type": "string",
@@ -7938,6 +8231,7 @@
                 "createdAt",
                 "createdBy",
                 "endAt",
+                "kind",
                 "lastUsedAt",
                 "name",
                 "roles",
@@ -7957,6 +8251,10 @@
                     "type": "integer",
                     "description": "API Token expiry period in days\n"
                 },
+                "kind": {
+                    "type": "string",
+                    "description": "API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "API Token name\n"
@@ -7966,7 +8264,7 @@
                     "items": {
                         "$ref": "#/types/astronomer:index/ApiTokenRole:ApiTokenRole"
                     },
-                    "description": "The roles assigned to the API Token\n"
+                    "description": "The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value\n"
                 },
                 "type": {
                     "type": "string",
@@ -8000,6 +8298,10 @@
                         "type": "integer",
                         "description": "API Token expiry period in days\n"
                     },
+                    "kind": {
+                        "type": "string",
+                        "description": "API Token kind - 'STANDARD' (default) or 'DIRECT*ACCESS'. 'DIRECT*ACCESS' tokens embed their Airflow permissions in the token itself, so they can call the Airflow API directly without going through the Astro IP access list. The kind cannot be changed after creation - if changing this value, the API Token will be recreated with the new kind\n"
+                    },
                     "lastUsedAt": {
                         "type": "string",
                         "description": "API Token last used timestamp\n"
@@ -8013,7 +8315,7 @@
                         "items": {
                             "$ref": "#/types/astronomer:index/ApiTokenRole:ApiTokenRole"
                         },
-                        "description": "The roles assigned to the API Token\n"
+                        "description": "The roles assigned to the API Token. A 'DIRECT_ACCESS' API Token must have exactly one role, and changing it recreates the token since its permissions are baked into the token value\n"
                     },
                     "shortToken": {
                         "type": "string",
@@ -8103,6 +8405,10 @@
                     "type": "boolean",
                     "description": "Whether the cluster is limited\n"
                 },
+                "isPrivateNetworkEgressEnabled": {
+                    "type": "boolean",
+                    "description": "Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.\n"
+                },
                 "metadata": {
                     "$ref": "#/types/astronomer:index/ClusterMetadata:ClusterMetadata",
                     "description": "Cluster metadata\n"
@@ -8188,6 +8494,7 @@
                 "isDrEnabled",
                 "isFailedOver",
                 "isLimited",
+                "isPrivateNetworkEgressEnabled",
                 "metadata",
                 "name",
                 "nodePools",
@@ -8241,6 +8548,10 @@
                 "isFailedOver": {
                     "type": "boolean",
                     "description": "Whether the cluster is currently failed over to the DR region. Set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e to trigger failover; set to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e to fail back.\n"
+                },
+                "isPrivateNetworkEgressEnabled": {
+                    "type": "boolean",
+                    "description": "Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.\n"
                 },
                 "name": {
                     "type": "string",
@@ -8350,6 +8661,10 @@
                     "isLimited": {
                         "type": "boolean",
                         "description": "Whether the cluster is limited\n"
+                    },
+                    "isPrivateNetworkEgressEnabled": {
+                        "type": "boolean",
+                        "description": "Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports. For `AWS` clusters only.\n"
                     },
                     "metadata": {
                         "$ref": "#/types/astronomer:index/ClusterMetadata:ClusterMetadata",
@@ -8658,7 +8973,7 @@
                 },
                 "isDevelopmentMode": {
                     "type": "boolean",
-                    "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated\n"
+                    "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments\n"
                 },
                 "isHighAvailability": {
                     "type": "boolean",
@@ -8869,7 +9184,7 @@
                 },
                 "isDevelopmentMode": {
                     "type": "boolean",
-                    "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated\n"
+                    "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments\n"
                 },
                 "isHighAvailability": {
                     "type": "boolean",
@@ -9043,7 +9358,7 @@
                     },
                     "isDevelopmentMode": {
                         "type": "boolean",
-                        "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated\n"
+                        "description": "Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments\n"
                     },
                     "isHighAvailability": {
                         "type": "boolean",
@@ -9196,13 +9511,22 @@
                     "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
                     "description": "Environment Object creator\n"
                 },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "The description of the environment object\n"
                 },
                 "endpoint": {
                     "type": "string",
-                    "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                    "description": "The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)\n"
                 },
                 "excludeLinks": {
                     "type": "array",
@@ -9213,7 +9537,7 @@
                 },
                 "exporterType": {
                     "type": "string",
-                    "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                    "description": "The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG\n"
                 },
                 "extra": {
                     "type": "string",
@@ -9359,13 +9683,22 @@
                     "description": "The bearer token to connect to the remote endpoint (only valid when object*type=METRICS*EXPORT)\n",
                     "secret": true
                 },
+                "dataDogApiKey": {
+                    "type": "string",
+                    "description": "The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration\n",
+                    "secret": true
+                },
+                "dataDogSite": {
+                    "type": "string",
+                    "description": "The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "The description of the environment object\n"
                 },
                 "endpoint": {
                     "type": "string",
-                    "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                    "description": "The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)\n"
                 },
                 "excludeLinks": {
                     "type": "array",
@@ -9376,7 +9709,7 @@
                 },
                 "exporterType": {
                     "type": "string",
-                    "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                    "description": "The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG\n"
                 },
                 "extra": {
                     "type": "string",
@@ -9496,13 +9829,22 @@
                         "$ref": "#/types/astronomer:index/EnvironmentObjectCreatedBy:EnvironmentObjectCreatedBy",
                         "description": "Environment Object creator\n"
                     },
+                    "dataDogApiKey": {
+                        "type": "string",
+                        "description": "The Datadog API key used to authenticate the export (required when exporter_type=DATADOG). The API never returns it, so the value is kept from configuration\n",
+                        "secret": true
+                    },
+                    "dataDogSite": {
+                        "type": "string",
+                        "description": "The Datadog site to send metrics to (required when exporter_type=DATADOG). Values: datadoghq.com, us3.datadoghq.com, us5.datadoghq.com, datadoghq.eu, ap1.datadoghq.com, ap2.datadoghq.com, ddog-gov.com\n"
+                    },
                     "description": {
                         "type": "string",
                         "description": "The description of the environment object\n"
                     },
                     "endpoint": {
                         "type": "string",
-                        "description": "The Prometheus endpoint where the metrics are exported (required when object*type=METRICS*EXPORT)\n"
+                        "description": "The Prometheus endpoint where the metrics are exported (required when exporter*type=PROMETHEUS, not allowed when exporter*type=DATADOG)\n"
                     },
                     "excludeLinks": {
                         "type": "array",
@@ -9513,7 +9855,7 @@
                     },
                     "exporterType": {
                         "type": "string",
-                        "description": "The type of exporter (required when object*type=METRICS*EXPORT)\n"
+                        "description": "The type of exporter (required when object*type=METRICS*EXPORT). Values: PROMETHEUS, DATADOG\n"
                     },
                     "extra": {
                         "type": "string",
@@ -9667,7 +10009,7 @@
             }
         },
         "astronomer:index/notificationChannel:NotificationChannel": {
-            "description": "Notification Channel resource\n\n",
+            "description": "Manage a single notification channel.\n\n\u003e **Deprecated** Use the \u003cspan pulumi-lang-nodejs=\"`astronomer.NotificationChannels`\" pulumi-lang-dotnet=\"`astronomer.NotificationChannels`\" pulumi-lang-go=\"`NotificationChannels`\" pulumi-lang-python=\"`NotificationChannels`\" pulumi-lang-yaml=\"`astronomer.NotificationChannels`\" pulumi-lang-java=\"`astronomer.NotificationChannels`\" pulumi-lang-hcl=\"`astro_notification_channels`\"\u003e`astronomer.NotificationChannels`\u003c/span\u003e resource instead, which manages one or many notification channels in a single resource. Do not manage the same channel with both \u003cspan pulumi-lang-nodejs=\"`astronomer.NotificationChannel`\" pulumi-lang-dotnet=\"`astronomer.NotificationChannel`\" pulumi-lang-go=\"`NotificationChannel`\" pulumi-lang-python=\"`NotificationChannel`\" pulumi-lang-yaml=\"`astronomer.NotificationChannel`\" pulumi-lang-java=\"`astronomer.NotificationChannel`\" pulumi-lang-hcl=\"`astro_notification_channel`\"\u003e`astronomer.NotificationChannel`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`astronomer.NotificationChannels`\" pulumi-lang-dotnet=\"`astronomer.NotificationChannels`\" pulumi-lang-go=\"`NotificationChannels`\" pulumi-lang-python=\"`NotificationChannels`\" pulumi-lang-yaml=\"`astronomer.NotificationChannels`\" pulumi-lang-java=\"`astronomer.NotificationChannels`\" pulumi-lang-hcl=\"`astro_notification_channels`\"\u003e`astronomer.NotificationChannels`\u003c/span\u003e — they conflict on every apply.\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -9823,6 +10165,61 @@
                     "workspaceId": {
                         "type": "string",
                         "description": "The workspace ID the notification channel is scoped to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "astronomer:index/notificationChannels:NotificationChannels": {
+            "description": "Manage a collection of notification channels as a single resource. The resource batches create/delete calls and automatically chunks requests that exceed the API's per-request limit (30). Updates are applied one channel at a time via the single-channel endpoint.\n\n\u003e **Note** Do not manage the same notification channel with both \u003cspan pulumi-lang-nodejs=\"`astronomer.NotificationChannel`\" pulumi-lang-dotnet=\"`astronomer.NotificationChannel`\" pulumi-lang-go=\"`NotificationChannel`\" pulumi-lang-python=\"`NotificationChannel`\" pulumi-lang-yaml=\"`astronomer.NotificationChannel`\" pulumi-lang-java=\"`astronomer.NotificationChannel`\" pulumi-lang-hcl=\"`astro_notification_channel`\"\u003e`astronomer.NotificationChannel`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`astronomer.NotificationChannels`\" pulumi-lang-dotnet=\"`astronomer.NotificationChannels`\" pulumi-lang-go=\"`NotificationChannels`\" pulumi-lang-python=\"`NotificationChannels`\" pulumi-lang-yaml=\"`astronomer.NotificationChannels`\" pulumi-lang-java=\"`astronomer.NotificationChannels`\" pulumi-lang-hcl=\"`astro_notification_channels`\"\u003e`astronomer.NotificationChannels`\u003c/span\u003e. Each resource claims ownership of the channels it manages, so overlapping definitions conflict and cause churn on every apply. Use one resource or the other for a given channel.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\nimport * as std from \"@pulumi/std\";\n\n// The astro_notification_channels resource manages many notification channels as a single resource.\n// It batches the underlying API calls and automatically chunks requests that exceed the per-request\n// limit (30), so you can declare any number of channels in one block. This avoids the rate limiting\n// that large applies hit when creating channels one at a time.\n//\n// Channels are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n// channel and creating a new one.\nconst teamChannels = new astronomer.NotificationChannels(\"team_channels\", {notificationChannels: {\n    oncall_email: {\n        name: \"On-call Email\",\n        type: \"EMAIL\",\n        entityType: \"DEPLOYMENT\",\n        entityId: \"cm1zkps2a0cv301ph39benet6\",\n        definition: {\n            recipients: [\"oncall@example.com\"],\n        },\n        isShared: true,\n    },\n    alerts_slack: {\n        name: \"Alerts Slack\",\n        type: \"SLACK\",\n        entityType: \"DEPLOYMENT\",\n        entityId: \"cm1zkps2a0cv301ph39benet6\",\n        definition: {\n            webhookUrl: \"SLACK_WEBHOOK_URL\",\n        },\n    },\n    pagerduty: {\n        name: \"PagerDuty\",\n        type: \"PAGERDUTY\",\n        entityType: \"DEPLOYMENT\",\n        entityId: \"cm1zkps2a0cv301ph39benet6\",\n        definition: {\n            integrationKey: \"PAGERDUTY_INTEGRATION_KEY\",\n        },\n    },\n}});\n// Generate many channels programmatically — the resource chunks them across requests for you.\nconst perTeamEmailChannels = new astronomer.NotificationChannels(\"per_team_email_channels\", {notificationChannels: std.toset({\n    input: [\n        \"data\",\n        \"platform\",\n        \"ml\",\n    ],\n}).then(invoke =\u003e .reduce((__obj, team) =\u003e ({ ...__obj, [`${team}_email`]: {\n    name: `${team} Email`,\n    type: \"EMAIL\",\n    entityType: \"DEPLOYMENT\",\n    entityId: \"cm1zkps2a0cv301ph39benet6\",\n    definition: {\n        recipients: [`${team}@example.com`],\n    },\n} }), {}))});\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\nimport pulumi_std as std\n\n# The astro_notification_channels resource manages many notification channels as a single resource.\n# It batches the underlying API calls and automatically chunks requests that exceed the per-request\n# limit (30), so you can declare any number of channels in one block. This avoids the rate limiting\n# that large applies hit when creating channels one at a time.\n#\n# Channels are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n# channel and creating a new one.\nteam_channels = astronomer.NotificationChannels(\"team_channels\", notification_channels={\n    \"oncall_email\": {\n        \"name\": \"On-call Email\",\n        \"type\": \"EMAIL\",\n        \"entity_type\": \"DEPLOYMENT\",\n        \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n        \"definition\": {\n            \"recipients\": [\"oncall@example.com\"],\n        },\n        \"is_shared\": True,\n    },\n    \"alerts_slack\": {\n        \"name\": \"Alerts Slack\",\n        \"type\": \"SLACK\",\n        \"entity_type\": \"DEPLOYMENT\",\n        \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n        \"definition\": {\n            \"webhook_url\": \"SLACK_WEBHOOK_URL\",\n        },\n    },\n    \"pagerduty\": {\n        \"name\": \"PagerDuty\",\n        \"type\": \"PAGERDUTY\",\n        \"entity_type\": \"DEPLOYMENT\",\n        \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n        \"definition\": {\n            \"integration_key\": \"PAGERDUTY_INTEGRATION_KEY\",\n        },\n    },\n})\n# Generate many channels programmatically — the resource chunks them across requests for you.\nper_team_email_channels = astronomer.NotificationChannels(\"per_team_email_channels\", notification_channels={f\"{team}_email\": {\n    \"name\": f\"{team} Email\",\n    \"type\": \"EMAIL\",\n    \"entity_type\": \"DEPLOYMENT\",\n    \"entity_id\": \"cm1zkps2a0cv301ph39benet6\",\n    \"definition\": {\n        \"recipients\": [f\"{team}@example.com\"],\n    },\n} for team in std.toset(input=[\n    \"data\",\n    \"platform\",\n    \"ml\",\n]).result})\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\nusing Std = Pulumi.Std;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The astro_notification_channels resource manages many notification channels as a single resource.\n    // It batches the underlying API calls and automatically chunks requests that exceed the per-request\n    // limit (30), so you can declare any number of channels in one block. This avoids the rate limiting\n    // that large applies hit when creating channels one at a time.\n    //\n    // Channels are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n    // channel and creating a new one.\n    var teamChannels = new Astronomer.NotificationChannels(\"team_channels\", new()\n    {\n        NotificationChannelsCollection = \n        {\n            { \"oncall_email\", new Astronomer.Inputs.NotificationChannelsNotificationChannelsArgs\n            {\n                Name = \"On-call Email\",\n                Type = \"EMAIL\",\n                EntityType = \"DEPLOYMENT\",\n                EntityId = \"cm1zkps2a0cv301ph39benet6\",\n                Definition = new Astronomer.Inputs.NotificationChannelsNotificationChannelsDefinitionArgs\n                {\n                    Recipients = new[]\n                    {\n                        \"oncall@example.com\",\n                    },\n                },\n                IsShared = true,\n            } },\n            { \"alerts_slack\", new Astronomer.Inputs.NotificationChannelsNotificationChannelsArgs\n            {\n                Name = \"Alerts Slack\",\n                Type = \"SLACK\",\n                EntityType = \"DEPLOYMENT\",\n                EntityId = \"cm1zkps2a0cv301ph39benet6\",\n                Definition = new Astronomer.Inputs.NotificationChannelsNotificationChannelsDefinitionArgs\n                {\n                    WebhookUrl = \"SLACK_WEBHOOK_URL\",\n                },\n            } },\n            { \"pagerduty\", new Astronomer.Inputs.NotificationChannelsNotificationChannelsArgs\n            {\n                Name = \"PagerDuty\",\n                Type = \"PAGERDUTY\",\n                EntityType = \"DEPLOYMENT\",\n                EntityId = \"cm1zkps2a0cv301ph39benet6\",\n                Definition = new Astronomer.Inputs.NotificationChannelsNotificationChannelsDefinitionArgs\n                {\n                    IntegrationKey = \"PAGERDUTY_INTEGRATION_KEY\",\n                },\n            } },\n        },\n    });\n\n    // Generate many channels programmatically — the resource chunks them across requests for you.\n    var perTeamEmailChannels = new Astronomer.NotificationChannels(\"per_team_email_channels\", new()\n    {\n        NotificationChannelsCollection = Std.Toset.Invoke(new()\n        {\n            Input = new[]\n            {\n                \"data\",\n                \"platform\",\n                \"ml\",\n            },\n        }).Apply(invoke =\u003e .ToDictionary(item =\u003e {\n            var team = item.Value;\n            return $\"{team}_email\";\n        }, item =\u003e {\n            var team = item.Value;\n            return \n            {\n                { \"name\", $\"{team} Email\" },\n                { \"type\", \"EMAIL\" },\n                { \"entityType\", \"DEPLOYMENT\" },\n                { \"entityId\", \"cm1zkps2a0cv301ph39benet6\" },\n                { \"definition\", \n                {\n                    { \"recipients\", new[]\n                    {\n                        $\"{team}@example.com\",\n                    } },\n                } },\n            };\n        })),\n    });\n\n});\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n    std = {\n      source = \"pulumi/std\"\n    }\n  }\n}\n\n# The astro_notification_channels resource manages many notification channels as a single resource.\n# It batches the underlying API calls and automatically chunks requests that exceed the per-request\n# limit (30), so you can declare any number of channels in one block. This avoids the rate limiting\n# that large applies hit when creating channels one at a time.\n#\n# Channels are keyed by a stable, user-defined string. Changing a key is treated as deleting the old\n# channel and creating a new one.\nresource \"astronomer_notificationchannels\" \"team_channels\" {\n  notification_channels = {\n    \"oncall_email\" = {\n      name        = \"On-call Email\"\n      type        = \"EMAIL\"\n      entity_type = \"DEPLOYMENT\"\n      entity_id   = \"cm1zkps2a0cv301ph39benet6\"\n      definition = {\n        recipients = [\"oncall@example.com\"]\n      }\n      is_shared = true\n    }\n    \"alerts_slack\" = {\n      name        = \"Alerts Slack\"\n      type        = \"SLACK\"\n      entity_type = \"DEPLOYMENT\"\n      entity_id   = \"cm1zkps2a0cv301ph39benet6\"\n      definition = {\n        webhook_url = \"SLACK_WEBHOOK_URL\"\n      }\n    }\n    \"pagerduty\" = {\n      name        = \"PagerDuty\"\n      type        = \"PAGERDUTY\"\n      entity_type = \"DEPLOYMENT\"\n      entity_id   = \"cm1zkps2a0cv301ph39benet6\"\n      definition = {\n        integration_key = \"PAGERDUTY_INTEGRATION_KEY\"\n      }\n    }\n  }\n}\n# Generate many channels programmatically — the resource chunks them across requests for you.\nresource \"astronomer_notificationchannels\" \"per_team_email_channels\" {\n  notification_channels = {for team in toset([\"data\", \"platform\", \"ml\"]) :\"${team}_email\"=\u003e {\n    \"name\"       =\"${team} Email\"\n    \"type\"       = \"EMAIL\"\n    \"entityType\" = \"DEPLOYMENT\"\n    \"entityId\"   = \"cm1zkps2a0cv301ph39benet6\"\n    \"definition\" = {\n      \"recipients\" = [\"${team}@example.com\"]\n    }\n  } }\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "notificationChannels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/astronomer:index/NotificationChannelsNotificationChannels:NotificationChannelsNotificationChannels"
+                    },
+                    "description": "A map of notification channels to manage as a single resource, keyed by a stable user-defined string.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "NotificationChannelsCollection"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "notificationChannels"
+            ],
+            "inputProperties": {
+                "notificationChannels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/astronomer:index/NotificationChannelsNotificationChannels:NotificationChannelsNotificationChannels"
+                    },
+                    "description": "A map of notification channels to manage as a single resource, keyed by a stable user-defined string.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "NotificationChannelsCollection"
+                        }
+                    }
+                }
+            },
+            "requiredInputs": [
+                "notificationChannels"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NotificationChannels resources.\n",
+                "properties": {
+                    "notificationChannels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/types/astronomer:index/NotificationChannelsNotificationChannels:NotificationChannelsNotificationChannels"
+                        },
+                        "description": "A map of notification channels to manage as a single resource, keyed by a stable user-defined string.\n",
+                        "language": {
+                            "csharp": {
+                                "name": "NotificationChannelsCollection"
+                            }
+                        }
                     }
                 },
                 "type": "object"
@@ -10691,6 +11088,10 @@
                         "description": "API Token identifier\n",
                         "type": "string"
                     },
+                    "kind": {
+                        "description": "API Token kind - 'STANDARD' or 'DIRECT_ACCESS'\n",
+                        "type": "string"
+                    },
                     "lastUsedAt": {
                         "description": "API Token last used timestamp\n",
                         "type": "string"
@@ -10734,6 +11135,7 @@
                     "endAt",
                     "expiryPeriodInDays",
                     "id",
+                    "kind",
                     "lastUsedAt",
                     "name",
                     "roles",
@@ -10747,7 +11149,7 @@
             }
         },
         "astronomer:index/getApiTokens:getApiTokens": {
-            "description": "API Tokens data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleApiTokens = astronomer.getApiTokens({});\nconst organizationOnlyExample = astronomer.getApiTokens({\n    includeOnlyOrganizationTokens: true,\n});\nconst workspaceExample = astronomer.getApiTokens({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n});\nconst deploymentExample = astronomer.getApiTokens({\n    deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n});\nexport const apiTokens = exampleApiTokens;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_api_tokens = astronomer.get_api_tokens()\norganization_only_example = astronomer.get_api_tokens(include_only_organization_tokens=True)\nworkspace_example = astronomer.get_api_tokens(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\ndeployment_example = astronomer.get_api_tokens(deployment_id=\"clx44jyu001m201m5dzsbexqr\")\npulumi.export(\"apiTokens\", example_api_tokens)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleApiTokens = Astronomer.GetApiTokens.Invoke();\n\n    var organizationOnlyExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        IncludeOnlyOrganizationTokens = true,\n    });\n\n    var workspaceExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var deploymentExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiTokens\"] = exampleApiTokens,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleApiTokens, err := astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tIncludeOnlyOrganizationTokens: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tDeploymentId: pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"apiTokens\", exampleApiTokens)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getapitokens\" \"exampleApiTokens\" {\n}\ndata \"astronomer_getapitokens\" \"organizationOnlyExample\" {\n  include_only_organization_tokens = true\n}\ndata \"astronomer_getapitokens\" \"workspaceExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getapitokens\" \"deploymentExample\" {\n  deployment_id = \"clx44jyu001m201m5dzsbexqr\"\n}\n\n# Output the API tokens using pulumi up\noutput \"apiTokens\" {\n  value = data.astronomer_getapitokens.exampleApiTokens\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetApiTokensArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleApiTokens = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .build());\n\n        final var organizationOnlyExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .includeOnlyOrganizationTokens(true)\n            .build());\n\n        final var workspaceExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var deploymentExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        ctx.export(\"apiTokens\", exampleApiTokens);\n    }\n}\n```\n```yaml\nvariables:\n  exampleApiTokens:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments: {}\n  organizationOnlyExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        includeOnlyOrganizationTokens: true\n  workspaceExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  deploymentExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\noutputs:\n  # Output the API tokens using pulumi up\n  apiTokens: ${exampleApiTokens}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "API Tokens data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as astronomer from \"@ryan-pip/pulumi_astronomer\";\n\nconst exampleApiTokens = astronomer.getApiTokens({});\nconst organizationOnlyExample = astronomer.getApiTokens({\n    includeOnlyOrganizationTokens: true,\n});\nconst workspaceExample = astronomer.getApiTokens({\n    workspaceId: \"clx42sxw501gl01o0gjenthnh\",\n});\nconst deploymentExample = astronomer.getApiTokens({\n    deploymentId: \"clx44jyu001m201m5dzsbexqr\",\n});\nconst directAccessExample = astronomer.getApiTokens({\n    kind: \"DIRECT_ACCESS\",\n});\nexport const apiTokens = exampleApiTokens;\n```\n```python\nimport pulumi\nimport pulumi_astronomer as astronomer\n\nexample_api_tokens = astronomer.get_api_tokens()\norganization_only_example = astronomer.get_api_tokens(include_only_organization_tokens=True)\nworkspace_example = astronomer.get_api_tokens(workspace_id=\"clx42sxw501gl01o0gjenthnh\")\ndeployment_example = astronomer.get_api_tokens(deployment_id=\"clx44jyu001m201m5dzsbexqr\")\ndirect_access_example = astronomer.get_api_tokens(kind=\"DIRECT_ACCESS\")\npulumi.export(\"apiTokens\", example_api_tokens)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Astronomer = RyanPip.Astronomer;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleApiTokens = Astronomer.GetApiTokens.Invoke();\n\n    var organizationOnlyExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        IncludeOnlyOrganizationTokens = true,\n    });\n\n    var workspaceExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        WorkspaceId = \"clx42sxw501gl01o0gjenthnh\",\n    });\n\n    var deploymentExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        DeploymentId = \"clx44jyu001m201m5dzsbexqr\",\n    });\n\n    var directAccessExample = Astronomer.GetApiTokens.Invoke(new()\n    {\n        Kind = \"DIRECT_ACCESS\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiTokens\"] = exampleApiTokens,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/ryan-pip/pulumi-astronomer/sdk/go/astronomer\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleApiTokens, err := astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tIncludeOnlyOrganizationTokens: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tWorkspaceId: pulumi.StringRef(\"clx42sxw501gl01o0gjenthnh\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tDeploymentId: pulumi.StringRef(\"clx44jyu001m201m5dzsbexqr\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = astronomer.GetApiTokens(ctx, \u0026astronomer.GetApiTokensArgs{\n\t\t\tKind: pulumi.StringRef(\"DIRECT_ACCESS\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"apiTokens\", exampleApiTokens)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    astronomer = {\n      source = \"pulumi/astronomer\"\n    }\n  }\n}\n\ndata \"astronomer_getapitokens\" \"exampleApiTokens\" {\n}\ndata \"astronomer_getapitokens\" \"organizationOnlyExample\" {\n  include_only_organization_tokens = true\n}\ndata \"astronomer_getapitokens\" \"workspaceExample\" {\n  workspace_id = \"clx42sxw501gl01o0gjenthnh\"\n}\ndata \"astronomer_getapitokens\" \"deploymentExample\" {\n  deployment_id = \"clx44jyu001m201m5dzsbexqr\"\n}\ndata \"astronomer_getapitokens\" \"directAccessExample\" {\n  kind = \"DIRECT_ACCESS\"\n}\n\n# Output the API tokens using pulumi up\noutput \"apiTokens\" {\n  value = data.astronomer_getapitokens.exampleApiTokens\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.astronomer.AstronomerFunctions;\nimport com.pulumi.astronomer.inputs.GetApiTokensArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleApiTokens = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .build());\n\n        final var organizationOnlyExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .includeOnlyOrganizationTokens(true)\n            .build());\n\n        final var workspaceExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .workspaceId(\"clx42sxw501gl01o0gjenthnh\")\n            .build());\n\n        final var deploymentExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .deploymentId(\"clx44jyu001m201m5dzsbexqr\")\n            .build());\n\n        final var directAccessExample = AstronomerFunctions.getApiTokens(GetApiTokensArgs.builder()\n            .kind(\"DIRECT_ACCESS\")\n            .build());\n\n        ctx.export(\"apiTokens\", exampleApiTokens);\n    }\n}\n```\n```yaml\nvariables:\n  exampleApiTokens:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments: {}\n  organizationOnlyExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        includeOnlyOrganizationTokens: true\n  workspaceExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        workspaceId: clx42sxw501gl01o0gjenthnh\n  deploymentExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        deploymentId: clx44jyu001m201m5dzsbexqr\n  directAccessExample:\n    fn::invoke:\n      function: astronomer:getApiTokens\n      arguments:\n        kind: DIRECT_ACCESS\noutputs:\n  # Output the API tokens using pulumi up\n  apiTokens: ${exampleApiTokens}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getApiTokens.\n",
                 "properties": {
@@ -10756,6 +11158,10 @@
                     },
                     "includeOnlyOrganizationTokens": {
                         "type": "boolean"
+                    },
+                    "kind": {
+                        "type": "string",
+                        "description": "Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'\n"
                     },
                     "workspaceId": {
                         "type": "string"
@@ -10777,6 +11183,10 @@
                     },
                     "includeOnlyOrganizationTokens": {
                         "type": "boolean"
+                    },
+                    "kind": {
+                        "description": "Only list API tokens of this kind - 'STANDARD' or 'DIRECT_ACCESS'\n",
+                        "type": "string"
                     },
                     "workspaceId": {
                         "type": "string"
@@ -10864,6 +11274,10 @@
                     },
                     "isLimited": {
                         "description": "Whether the cluster is limited\n",
+                        "type": "boolean"
+                    },
+                    "isPrivateNetworkEgressEnabled": {
+                        "description": "Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)\n",
                         "type": "boolean"
                     },
                     "metadata": {
@@ -10956,6 +11370,7 @@
                     "isDrEnabled",
                     "isFailedOver",
                     "isLimited",
+                    "isPrivateNetworkEgressEnabled",
                     "metadata",
                     "name",
                     "nodePools",
@@ -11629,12 +12044,21 @@
                         "$ref": "#/types/astronomer:index/getEnvironmentObjectCreatedBy:getEnvironmentObjectCreatedBy",
                         "description": "Environment Object creator\n"
                     },
+                    "dataDogApiKey": {
+                        "description": "The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise\n",
+                        "secret": true,
+                        "type": "string"
+                    },
+                    "dataDogSite": {
+                        "description": "The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)\n",
+                        "type": "string"
+                    },
                     "description": {
                         "description": "The description of the environment object\n",
                         "type": "string"
                     },
                     "endpoint": {
-                        "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)\n",
+                        "description": "The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)\n",
                         "type": "string"
                     },
                     "excludeLinks": {
@@ -11756,6 +12180,8 @@
                     "connectionAuthType",
                     "createdAt",
                     "createdBy",
+                    "dataDogApiKey",
+                    "dataDogSite",
                     "description",
                     "endpoint",
                     "excludeLinks",

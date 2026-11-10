@@ -56,6 +56,7 @@
         "hybridClusterWorkspaceAuthorization.ts",
         "index.ts",
         "notificationChannel.ts",
+        "notificationChannels.ts",
         "provider.ts",
         "team.ts",
         "teamMembership.ts",

@@ -69,6 +69,10 @@ __all__ = [
     'DeploymentRemoteExecutionArgsDict',
     'DeploymentScalingSpecArgs',
     'DeploymentScalingSpecArgsDict',
+    'DeploymentScalingSpecAutoscalingArgs',
+    'DeploymentScalingSpecAutoscalingArgsDict',
+    'DeploymentScalingSpecAutoscalingApiServerArgs',
+    'DeploymentScalingSpecAutoscalingApiServerArgsDict',
     'DeploymentScalingSpecHibernationSpecArgs',
     'DeploymentScalingSpecHibernationSpecArgsDict',
     'DeploymentScalingSpecHibernationSpecOverrideArgs',
@@ -103,6 +107,10 @@ __all__ = [
     'NotificationChannelDefinitionArgsDict',
     'NotificationChannelUpdatedByArgs',
     'NotificationChannelUpdatedByArgsDict',
+    'NotificationChannelsNotificationChannelsArgs',
+    'NotificationChannelsNotificationChannelsArgsDict',
+    'NotificationChannelsNotificationChannelsDefinitionArgs',
+    'NotificationChannelsNotificationChannelsDefinitionArgsDict',
     'TeamCreatedByArgs',
     'TeamCreatedByArgsDict',
     'TeamDagRoleArgs',
@@ -2724,7 +2732,11 @@ class DeploymentRemoteExecutionArgs:
 
 
 class DeploymentScalingSpecArgsDict(TypedDict):
-    hibernation_spec: pulumi.Input['DeploymentScalingSpecHibernationSpecArgsDict']
+    autoscaling: NotRequired[pulumi.Input[Optional['DeploymentScalingSpecAutoscalingArgsDict']]]
+    """
+    Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `is_enabled` to false; the replica bounds are kept.
+    """
+    hibernation_spec: NotRequired[pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecArgsDict']]]
     """
     Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
     """
@@ -2732,23 +2744,134 @@ class DeploymentScalingSpecArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentScalingSpecArgs:
     def __init__(__self__, *,
-                 hibernation_spec: pulumi.Input['DeploymentScalingSpecHibernationSpecArgs']):
+                 autoscaling: pulumi.Input[Optional['DeploymentScalingSpecAutoscalingArgs']] = None,
+                 hibernation_spec: pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecArgs']] = None):
         """
+        :param pulumi.Input['DeploymentScalingSpecAutoscalingArgs'] autoscaling: Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `is_enabled` to false; the replica bounds are kept.
         :param pulumi.Input['DeploymentScalingSpecHibernationSpecArgs'] hibernation_spec: Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         """
-        pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if hibernation_spec is not None:
+            pulumi.set(__self__, "hibernation_spec", hibernation_spec)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> pulumi.Input[Optional['DeploymentScalingSpecAutoscalingArgs']]:
+        """
+        Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `is_enabled` to false; the replica bounds are kept.
+        """
+        return pulumi.get(self, "autoscaling")
+
+    @autoscaling.setter
+    def autoscaling(self, value: pulumi.Input[Optional['DeploymentScalingSpecAutoscalingArgs']]):
+        pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter(name="hibernationSpec")
-    def hibernation_spec(self) -> pulumi.Input['DeploymentScalingSpecHibernationSpecArgs']:
+    def hibernation_spec(self) -> pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecArgs']]:
         """
         Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
         """
         return pulumi.get(self, "hibernation_spec")
 
     @hibernation_spec.setter
-    def hibernation_spec(self, value: pulumi.Input['DeploymentScalingSpecHibernationSpecArgs']):
+    def hibernation_spec(self, value: pulumi.Input[Optional['DeploymentScalingSpecHibernationSpecArgs']]):
         pulumi.set(self, "hibernation_spec", value)
+
+
+class DeploymentScalingSpecAutoscalingArgsDict(TypedDict):
+    api_server: pulumi.Input['DeploymentScalingSpecAutoscalingApiServerArgsDict']
+    """
+    Autoscaling configuration for the API server.
+    """
+
+@pulumi.input_type
+class DeploymentScalingSpecAutoscalingArgs:
+    def __init__(__self__, *,
+                 api_server: pulumi.Input['DeploymentScalingSpecAutoscalingApiServerArgs']):
+        """
+        :param pulumi.Input['DeploymentScalingSpecAutoscalingApiServerArgs'] api_server: Autoscaling configuration for the API server.
+        """
+        pulumi.set(__self__, "api_server", api_server)
+
+    @_builtins.property
+    @pulumi.getter(name="apiServer")
+    def api_server(self) -> pulumi.Input['DeploymentScalingSpecAutoscalingApiServerArgs']:
+        """
+        Autoscaling configuration for the API server.
+        """
+        return pulumi.get(self, "api_server")
+
+    @api_server.setter
+    def api_server(self, value: pulumi.Input['DeploymentScalingSpecAutoscalingApiServerArgs']):
+        pulumi.set(self, "api_server", value)
+
+
+class DeploymentScalingSpecAutoscalingApiServerArgsDict(TypedDict):
+    is_enabled: pulumi.Input[_builtins.bool]
+    """
+    Whether autoscaling is enabled
+    """
+    max_replicas: pulumi.Input[_builtins.int]
+    """
+    Maximum number of replicas
+    """
+    min_replicas: pulumi.Input[_builtins.int]
+    """
+    Minimum number of replicas
+    """
+
+@pulumi.input_type
+class DeploymentScalingSpecAutoscalingApiServerArgs:
+    def __init__(__self__, *,
+                 is_enabled: pulumi.Input[_builtins.bool],
+                 max_replicas: pulumi.Input[_builtins.int],
+                 min_replicas: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.bool] is_enabled: Whether autoscaling is enabled
+        :param pulumi.Input[_builtins.int] max_replicas: Maximum number of replicas
+        :param pulumi.Input[_builtins.int] min_replicas: Minimum number of replicas
+        """
+        pulumi.set(__self__, "is_enabled", is_enabled)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @_builtins.property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether autoscaling is enabled
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @is_enabled.setter
+    def is_enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "is_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> pulumi.Input[_builtins.int]:
+        """
+        Maximum number of replicas
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @max_replicas.setter
+    def max_replicas(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "max_replicas", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> pulumi.Input[_builtins.int]:
+        """
+        Minimum number of replicas
+        """
+        return pulumi.get(self, "min_replicas")
+
+    @min_replicas.setter
+    def min_replicas(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "min_replicas", value)
 
 
 class DeploymentScalingSpecHibernationSpecArgsDict(TypedDict):
@@ -3098,6 +3221,10 @@ class DeploymentWorkerQueueArgsDict(TypedDict):
     """
     Worker queue pod CPU
     """
+    pod_ephemeral_storage: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+    """
     pod_memory: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Worker queue pod memory
@@ -3114,6 +3241,7 @@ class DeploymentWorkerQueueArgs:
                  astro_machine: pulumi.Input[Optional[_builtins.str]] = None,
                  node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_cpu: pulumi.Input[Optional[_builtins.str]] = None,
+                 pod_ephemeral_storage: pulumi.Input[Optional[_builtins.str]] = None,
                  pod_memory: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] is_default: Worker queue default
@@ -3124,6 +3252,7 @@ class DeploymentWorkerQueueArgs:
         :param pulumi.Input[_builtins.str] astro_machine: Worker queue Astro machine value - required for 'STANDARD' and 'DEDICATED' deployments. Allowed values: `A5`, `A10`, `A20`, `A40`, `A60`, `A120`, `A160`.
         :param pulumi.Input[_builtins.str] node_pool_id: Worker queue Node pool identifier - required for 'HYBRID' deployments
         :param pulumi.Input[_builtins.str] pod_cpu: Worker queue pod CPU
+        :param pulumi.Input[_builtins.str] pod_ephemeral_storage: Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
         :param pulumi.Input[_builtins.str] pod_memory: Worker queue pod memory
         """
         pulumi.set(__self__, "is_default", is_default)
@@ -3137,6 +3266,8 @@ class DeploymentWorkerQueueArgs:
             pulumi.set(__self__, "node_pool_id", node_pool_id)
         if pod_cpu is not None:
             pulumi.set(__self__, "pod_cpu", pod_cpu)
+        if pod_ephemeral_storage is not None:
+            pulumi.set(__self__, "pod_ephemeral_storage", pod_ephemeral_storage)
         if pod_memory is not None:
             pulumi.set(__self__, "pod_memory", pod_memory)
 
@@ -3235,6 +3366,18 @@ class DeploymentWorkerQueueArgs:
     @pod_cpu.setter
     def pod_cpu(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pod_cpu", value)
+
+    @_builtins.property
+    @pulumi.getter(name="podEphemeralStorage")
+    def pod_ephemeral_storage(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+        """
+        return pulumi.get(self, "pod_ephemeral_storage")
+
+    @pod_ephemeral_storage.setter
+    def pod_ephemeral_storage(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pod_ephemeral_storage", value)
 
     @_builtins.property
     @pulumi.getter(name="podMemory")
@@ -3835,6 +3978,14 @@ class EnvironmentObjectLinkOverridesArgsDict(TypedDict):
     """
     Override bearer token (only valid when object*type=METRICS*EXPORT)
     """
+    data_dog_api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+    """
+    data_dog_site: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+    """
     endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
@@ -3893,6 +4044,8 @@ class EnvironmentObjectLinkOverridesArgs:
     def __init__(__self__, *,
                  auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  basic_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_dog_site: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  exporter_type: pulumi.Input[Optional[_builtins.str]] = None,
                  extra: pulumi.Input[Optional[_builtins.str]] = None,
@@ -3909,6 +4062,8 @@ class EnvironmentObjectLinkOverridesArgs:
         """
         :param pulumi.Input[_builtins.str] auth_type: Override auth type (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] basic_token: Override bearer token (only valid when object*type=METRICS*EXPORT)
+        :param pulumi.Input[_builtins.str] data_dog_api_key: Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        :param pulumi.Input[_builtins.str] data_dog_site: Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
         :param pulumi.Input[_builtins.str] endpoint: Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] exporter_type: Override exporter type (only valid when object*type=METRICS*EXPORT)
         :param pulumi.Input[_builtins.str] extra: Override extra JSON (only valid when object_type=CONNECTION)
@@ -3927,6 +4082,10 @@ class EnvironmentObjectLinkOverridesArgs:
             pulumi.set(__self__, "auth_type", auth_type)
         if basic_token is not None:
             pulumi.set(__self__, "basic_token", basic_token)
+        if data_dog_api_key is not None:
+            pulumi.set(__self__, "data_dog_api_key", data_dog_api_key)
+        if data_dog_site is not None:
+            pulumi.set(__self__, "data_dog_site", data_dog_site)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
         if exporter_type is not None:
@@ -3977,6 +4136,30 @@ class EnvironmentObjectLinkOverridesArgs:
     @basic_token.setter
     def basic_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "basic_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogApiKey")
+    def data_dog_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_api_key")
+
+    @data_dog_api_key.setter
+    def data_dog_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataDogSite")
+    def data_dog_site(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+        """
+        return pulumi.get(self, "data_dog_site")
+
+    @data_dog_site.setter
+    def data_dog_site(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "data_dog_site", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4537,6 +4720,299 @@ class NotificationChannelUpdatedByArgs:
     @username.setter
     def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+class NotificationChannelsNotificationChannelsArgsDict(TypedDict):
+    definition: pulumi.Input['NotificationChannelsNotificationChannelsDefinitionArgsDict']
+    """
+    The notification channel's definition
+    """
+    entity_id: pulumi.Input[_builtins.str]
+    """
+    The entity ID the notification channel is scoped to
+    """
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The notification channel's name
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The notification channel's type
+    """
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The notification channel's ID
+    """
+    is_shared: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+    """
+
+@pulumi.input_type
+class NotificationChannelsNotificationChannelsArgs:
+    def __init__(__self__, *,
+                 definition: pulumi.Input['NotificationChannelsNotificationChannelsDefinitionArgs'],
+                 entity_id: pulumi.Input[_builtins.str],
+                 entity_type: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str],
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_shared: pulumi.Input[Optional[_builtins.bool]] = None):
+        """
+        :param pulumi.Input['NotificationChannelsNotificationChannelsDefinitionArgs'] definition: The notification channel's definition
+        :param pulumi.Input[_builtins.str] entity_id: The entity ID the notification channel is scoped to
+        :param pulumi.Input[_builtins.str] entity_type: The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        :param pulumi.Input[_builtins.str] name: The notification channel's name
+        :param pulumi.Input[_builtins.str] type: The notification channel's type
+        :param pulumi.Input[_builtins.str] id: The notification channel's ID
+        :param pulumi.Input[_builtins.bool] is_shared: When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        pulumi.set(__self__, "definition", definition)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_shared is not None:
+            pulumi.set(__self__, "is_shared", is_shared)
+
+    @_builtins.property
+    @pulumi.getter
+    def definition(self) -> pulumi.Input['NotificationChannelsNotificationChannelsDefinitionArgs']:
+        """
+        The notification channel's definition
+        """
+        return pulumi.get(self, "definition")
+
+    @definition.setter
+    def definition(self, value: pulumi.Input['NotificationChannelsNotificationChannelsDefinitionArgs']):
+        pulumi.set(self, "definition", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The entity ID the notification channel is scoped to
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The notification channel's name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The notification channel's type
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The notification channel's ID
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isShared")
+    def is_shared(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+        """
+        return pulumi.get(self, "is_shared")
+
+    @is_shared.setter
+    def is_shared(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_shared", value)
+
+
+class NotificationChannelsNotificationChannelsDefinitionArgsDict(TypedDict):
+    api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The API key for the notification channel
+    """
+    dag_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The DAG ID for the notification channel
+    """
+    deployment_api_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The deployment API token for the notification channel
+    """
+    deployment_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The deployment ID for the notification channel
+    """
+    integration_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The integration key for the notification channel
+    """
+    recipients: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    The recipients for the notification channel
+    """
+    webhook_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The webhook URL for the notification channel
+    """
+
+@pulumi.input_type
+class NotificationChannelsNotificationChannelsDefinitionArgs:
+    def __init__(__self__, *,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 dag_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 webhook_url: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: The API key for the notification channel
+        :param pulumi.Input[_builtins.str] dag_id: The DAG ID for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_api_token: The deployment API token for the notification channel
+        :param pulumi.Input[_builtins.str] deployment_id: The deployment ID for the notification channel
+        :param pulumi.Input[_builtins.str] integration_key: The integration key for the notification channel
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: The recipients for the notification channel
+        :param pulumi.Input[_builtins.str] webhook_url: The webhook URL for the notification channel
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if dag_id is not None:
+            pulumi.set(__self__, "dag_id", dag_id)
+        if deployment_api_token is not None:
+            pulumi.set(__self__, "deployment_api_token", deployment_api_token)
+        if deployment_id is not None:
+            pulumi.set(__self__, "deployment_id", deployment_id)
+        if integration_key is not None:
+            pulumi.set(__self__, "integration_key", integration_key)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The API key for the notification channel
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dagId")
+    def dag_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The DAG ID for the notification channel
+        """
+        return pulumi.get(self, "dag_id")
+
+    @dag_id.setter
+    def dag_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dag_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentApiToken")
+    def deployment_api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The deployment API token for the notification channel
+        """
+        return pulumi.get(self, "deployment_api_token")
+
+    @deployment_api_token.setter
+    def deployment_api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "deployment_api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The deployment ID for the notification channel
+        """
+        return pulumi.get(self, "deployment_id")
+
+    @deployment_id.setter
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "deployment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="integrationKey")
+    def integration_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The integration key for the notification channel
+        """
+        return pulumi.get(self, "integration_key")
+
+    @integration_key.setter
+    def integration_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "integration_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The recipients for the notification channel
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "recipients", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The webhook URL for the notification channel
+        """
+        return pulumi.get(self, "webhook_url")
+
+    @webhook_url.setter
+    def webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "webhook_url", value)
 
 
 class TeamCreatedByArgsDict(TypedDict):

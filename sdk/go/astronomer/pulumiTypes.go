@@ -4402,8 +4402,10 @@ func (o DeploymentRemoteExecutionPtrOutput) TaskLogUrlPattern() pulumi.StringPtr
 }
 
 type DeploymentScalingSpec struct {
+	// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+	Autoscaling *DeploymentScalingSpecAutoscaling `pulumi:"autoscaling"`
 	// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
-	HibernationSpec DeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
+	HibernationSpec *DeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
 }
 
 // DeploymentScalingSpecInput is an input type that accepts DeploymentScalingSpecArgs and DeploymentScalingSpecOutput values.
@@ -4418,8 +4420,10 @@ type DeploymentScalingSpecInput interface {
 }
 
 type DeploymentScalingSpecArgs struct {
+	// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+	Autoscaling DeploymentScalingSpecAutoscalingPtrInput `pulumi:"autoscaling"`
 	// Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
-	HibernationSpec DeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
+	HibernationSpec DeploymentScalingSpecHibernationSpecPtrInput `pulumi:"hibernationSpec"`
 }
 
 func (DeploymentScalingSpecArgs) ElementType() reflect.Type {
@@ -4499,9 +4503,14 @@ func (o DeploymentScalingSpecOutput) ToDeploymentScalingSpecPtrOutputWithContext
 	}).(DeploymentScalingSpecPtrOutput)
 }
 
+// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+func (o DeploymentScalingSpecOutput) Autoscaling() DeploymentScalingSpecAutoscalingPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpec) *DeploymentScalingSpecAutoscaling { return v.Autoscaling }).(DeploymentScalingSpecAutoscalingPtrOutput)
+}
+
 // Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
-func (o DeploymentScalingSpecOutput) HibernationSpec() DeploymentScalingSpecHibernationSpecOutput {
-	return o.ApplyT(func(v DeploymentScalingSpec) DeploymentScalingSpecHibernationSpec { return v.HibernationSpec }).(DeploymentScalingSpecHibernationSpecOutput)
+func (o DeploymentScalingSpecOutput) HibernationSpec() DeploymentScalingSpecHibernationSpecPtrOutput {
+	return o.ApplyT(func(v DeploymentScalingSpec) *DeploymentScalingSpecHibernationSpec { return v.HibernationSpec }).(DeploymentScalingSpecHibernationSpecPtrOutput)
 }
 
 type DeploymentScalingSpecPtrOutput struct{ *pulumi.OutputState }
@@ -4528,14 +4537,336 @@ func (o DeploymentScalingSpecPtrOutput) Elem() DeploymentScalingSpecOutput {
 	}).(DeploymentScalingSpecOutput)
 }
 
+// Autoscaling configuration for the deployment's components. Removing this block stops Terraform managing autoscaling and leaves the deployment's current setting unchanged. To turn autoscaling off, set `isEnabled` to false; the replica bounds are kept.
+func (o DeploymentScalingSpecPtrOutput) Autoscaling() DeploymentScalingSpecAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpec) *DeploymentScalingSpecAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(DeploymentScalingSpecAutoscalingPtrOutput)
+}
+
 // Hibernation configuration for the deployment. The deployment will hibernate according to the schedules defined in this configuration. To remove the hibernation configuration, set scaling*spec to null.
 func (o DeploymentScalingSpecPtrOutput) HibernationSpec() DeploymentScalingSpecHibernationSpecPtrOutput {
 	return o.ApplyT(func(v *DeploymentScalingSpec) *DeploymentScalingSpecHibernationSpec {
 		if v == nil {
 			return nil
 		}
-		return &v.HibernationSpec
+		return v.HibernationSpec
 	}).(DeploymentScalingSpecHibernationSpecPtrOutput)
+}
+
+type DeploymentScalingSpecAutoscaling struct {
+	// Autoscaling configuration for the API server.
+	ApiServer DeploymentScalingSpecAutoscalingApiServer `pulumi:"apiServer"`
+}
+
+// DeploymentScalingSpecAutoscalingInput is an input type that accepts DeploymentScalingSpecAutoscalingArgs and DeploymentScalingSpecAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecAutoscalingInput` via:
+//
+//	DeploymentScalingSpecAutoscalingArgs{...}
+type DeploymentScalingSpecAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecAutoscalingOutput() DeploymentScalingSpecAutoscalingOutput
+	ToDeploymentScalingSpecAutoscalingOutputWithContext(context.Context) DeploymentScalingSpecAutoscalingOutput
+}
+
+type DeploymentScalingSpecAutoscalingArgs struct {
+	// Autoscaling configuration for the API server.
+	ApiServer DeploymentScalingSpecAutoscalingApiServerInput `pulumi:"apiServer"`
+}
+
+func (DeploymentScalingSpecAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecAutoscalingArgs) ToDeploymentScalingSpecAutoscalingOutput() DeploymentScalingSpecAutoscalingOutput {
+	return i.ToDeploymentScalingSpecAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecAutoscalingArgs) ToDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingOutput)
+}
+
+func (i DeploymentScalingSpecAutoscalingArgs) ToDeploymentScalingSpecAutoscalingPtrOutput() DeploymentScalingSpecAutoscalingPtrOutput {
+	return i.ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecAutoscalingArgs) ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingOutput).ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingSpecAutoscalingPtrInput is an input type that accepts DeploymentScalingSpecAutoscalingArgs, DeploymentScalingSpecAutoscalingPtr and DeploymentScalingSpecAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecAutoscalingPtrInput` via:
+//
+//	        DeploymentScalingSpecAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingSpecAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecAutoscalingPtrOutput() DeploymentScalingSpecAutoscalingPtrOutput
+	ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(context.Context) DeploymentScalingSpecAutoscalingPtrOutput
+}
+
+type deploymentScalingSpecAutoscalingPtrType DeploymentScalingSpecAutoscalingArgs
+
+func DeploymentScalingSpecAutoscalingPtr(v *DeploymentScalingSpecAutoscalingArgs) DeploymentScalingSpecAutoscalingPtrInput {
+	return (*deploymentScalingSpecAutoscalingPtrType)(v)
+}
+
+func (*deploymentScalingSpecAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentScalingSpecAutoscalingPtrType) ToDeploymentScalingSpecAutoscalingPtrOutput() DeploymentScalingSpecAutoscalingPtrOutput {
+	return i.ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingSpecAutoscalingPtrType) ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingPtrOutput)
+}
+
+type DeploymentScalingSpecAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecAutoscalingOutput) ToDeploymentScalingSpecAutoscalingOutput() DeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingOutput) ToDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingOutput) ToDeploymentScalingSpecAutoscalingPtrOutput() DeploymentScalingSpecAutoscalingPtrOutput {
+	return o.ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingSpecAutoscalingOutput) ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingSpecAutoscaling) *DeploymentScalingSpecAutoscaling {
+		return &v
+	}).(DeploymentScalingSpecAutoscalingPtrOutput)
+}
+
+// Autoscaling configuration for the API server.
+func (o DeploymentScalingSpecAutoscalingOutput) ApiServer() DeploymentScalingSpecAutoscalingApiServerOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecAutoscaling) DeploymentScalingSpecAutoscalingApiServer { return v.ApiServer }).(DeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+type DeploymentScalingSpecAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecAutoscalingPtrOutput) ToDeploymentScalingSpecAutoscalingPtrOutput() DeploymentScalingSpecAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingPtrOutput) ToDeploymentScalingSpecAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingPtrOutput) Elem() DeploymentScalingSpecAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscaling) DeploymentScalingSpecAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingSpecAutoscaling
+		return ret
+	}).(DeploymentScalingSpecAutoscalingOutput)
+}
+
+// Autoscaling configuration for the API server.
+func (o DeploymentScalingSpecAutoscalingPtrOutput) ApiServer() DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscaling) *DeploymentScalingSpecAutoscalingApiServer {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiServer
+	}).(DeploymentScalingSpecAutoscalingApiServerPtrOutput)
+}
+
+type DeploymentScalingSpecAutoscalingApiServer struct {
+	// Whether autoscaling is enabled
+	IsEnabled bool `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas int `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas int `pulumi:"minReplicas"`
+}
+
+// DeploymentScalingSpecAutoscalingApiServerInput is an input type that accepts DeploymentScalingSpecAutoscalingApiServerArgs and DeploymentScalingSpecAutoscalingApiServerOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecAutoscalingApiServerInput` via:
+//
+//	DeploymentScalingSpecAutoscalingApiServerArgs{...}
+type DeploymentScalingSpecAutoscalingApiServerInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecAutoscalingApiServerOutput() DeploymentScalingSpecAutoscalingApiServerOutput
+	ToDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Context) DeploymentScalingSpecAutoscalingApiServerOutput
+}
+
+type DeploymentScalingSpecAutoscalingApiServerArgs struct {
+	// Whether autoscaling is enabled
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
+}
+
+func (DeploymentScalingSpecAutoscalingApiServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (i DeploymentScalingSpecAutoscalingApiServerArgs) ToDeploymentScalingSpecAutoscalingApiServerOutput() DeploymentScalingSpecAutoscalingApiServerOutput {
+	return i.ToDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecAutoscalingApiServerArgs) ToDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+func (i DeploymentScalingSpecAutoscalingApiServerArgs) ToDeploymentScalingSpecAutoscalingApiServerPtrOutput() DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return i.ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentScalingSpecAutoscalingApiServerArgs) ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingApiServerOutput).ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(ctx)
+}
+
+// DeploymentScalingSpecAutoscalingApiServerPtrInput is an input type that accepts DeploymentScalingSpecAutoscalingApiServerArgs, DeploymentScalingSpecAutoscalingApiServerPtr and DeploymentScalingSpecAutoscalingApiServerPtrOutput values.
+// You can construct a concrete instance of `DeploymentScalingSpecAutoscalingApiServerPtrInput` via:
+//
+//	        DeploymentScalingSpecAutoscalingApiServerArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentScalingSpecAutoscalingApiServerPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentScalingSpecAutoscalingApiServerPtrOutput() DeploymentScalingSpecAutoscalingApiServerPtrOutput
+	ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(context.Context) DeploymentScalingSpecAutoscalingApiServerPtrOutput
+}
+
+type deploymentScalingSpecAutoscalingApiServerPtrType DeploymentScalingSpecAutoscalingApiServerArgs
+
+func DeploymentScalingSpecAutoscalingApiServerPtr(v *DeploymentScalingSpecAutoscalingApiServerArgs) DeploymentScalingSpecAutoscalingApiServerPtrInput {
+	return (*deploymentScalingSpecAutoscalingApiServerPtrType)(v)
+}
+
+func (*deploymentScalingSpecAutoscalingApiServerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (i *deploymentScalingSpecAutoscalingApiServerPtrType) ToDeploymentScalingSpecAutoscalingApiServerPtrOutput() DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return i.ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentScalingSpecAutoscalingApiServerPtrType) ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentScalingSpecAutoscalingApiServerPtrOutput)
+}
+
+type DeploymentScalingSpecAutoscalingApiServerOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecAutoscalingApiServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) ToDeploymentScalingSpecAutoscalingApiServerOutput() DeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) ToDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) ToDeploymentScalingSpecAutoscalingApiServerPtrOutput() DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return o.ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentScalingSpecAutoscalingApiServer) *DeploymentScalingSpecAutoscalingApiServer {
+		return &v
+	}).(DeploymentScalingSpecAutoscalingApiServerPtrOutput)
+}
+
+// Whether autoscaling is enabled
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecAutoscalingApiServer) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// Maximum number of replicas
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) MaxReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecAutoscalingApiServer) int { return v.MaxReplicas }).(pulumi.IntOutput)
+}
+
+// Minimum number of replicas
+func (o DeploymentScalingSpecAutoscalingApiServerOutput) MinReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v DeploymentScalingSpecAutoscalingApiServer) int { return v.MinReplicas }).(pulumi.IntOutput)
+}
+
+type DeploymentScalingSpecAutoscalingApiServerPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentScalingSpecAutoscalingApiServerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) ToDeploymentScalingSpecAutoscalingApiServerPtrOutput() DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) ToDeploymentScalingSpecAutoscalingApiServerPtrOutputWithContext(ctx context.Context) DeploymentScalingSpecAutoscalingApiServerPtrOutput {
+	return o
+}
+
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) Elem() DeploymentScalingSpecAutoscalingApiServerOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscalingApiServer) DeploymentScalingSpecAutoscalingApiServer {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentScalingSpecAutoscalingApiServer
+		return ret
+	}).(DeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+// Whether autoscaling is enabled
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) IsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscalingApiServer) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.IsEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Maximum number of replicas
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) MaxReplicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscalingApiServer) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxReplicas
+	}).(pulumi.IntPtrOutput)
+}
+
+// Minimum number of replicas
+func (o DeploymentScalingSpecAutoscalingApiServerPtrOutput) MinReplicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentScalingSpecAutoscalingApiServer) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MinReplicas
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentScalingSpecHibernationSpec struct {
@@ -5507,6 +5838,8 @@ type DeploymentWorkerQueue struct {
 	NodePoolId *string `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu *string `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+	PodEphemeralStorage *string `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory *string `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -5539,6 +5872,8 @@ type DeploymentWorkerQueueArgs struct {
 	NodePoolId pulumi.StringPtrInput `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu pulumi.StringPtrInput `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+	PodEphemeralStorage pulumi.StringPtrInput `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory pulumi.StringPtrInput `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -5629,6 +5964,11 @@ func (o DeploymentWorkerQueueOutput) NodePoolId() pulumi.StringPtrOutput {
 // Worker queue pod CPU
 func (o DeploymentWorkerQueueOutput) PodCpu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.PodCpu }).(pulumi.StringPtrOutput)
+}
+
+// Worker queue pod ephemeral storage limit, as a Kubernetes resource string (for example `20Gi`). Supported for the `CELERY` and `ASTRO` executors on 'STANDARD' and 'DEDICATED' deployments. Must be between `10Gi` and `100Gi`; if omitted, the platform default of `10Gi` is used. Note that once a value has been applied, removing this attribute from your configuration does not revert the worker queue to the default: the API has no way to unset it, so Terraform keeps the last applied value and plans no change. To return to the default, set this to `10Gi` explicitly.
+func (o DeploymentWorkerQueueOutput) PodEphemeralStorage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentWorkerQueue) *string { return v.PodEphemeralStorage }).(pulumi.StringPtrOutput)
 }
 
 // Worker queue pod memory
@@ -6555,6 +6895,10 @@ type EnvironmentObjectLinkOverrides struct {
 	AuthType *string `pulumi:"authType"`
 	// Override bearer token (only valid when object*type=METRICS*EXPORT)
 	BasicToken *string `pulumi:"basicToken"`
+	// Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogApiKey *string `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite *string `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
 	Endpoint *string `pulumi:"endpoint"`
 	// Override exporter type (only valid when object*type=METRICS*EXPORT)
@@ -6599,6 +6943,10 @@ type EnvironmentObjectLinkOverridesArgs struct {
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Override bearer token (only valid when object*type=METRICS*EXPORT)
 	BasicToken pulumi.StringPtrInput `pulumi:"basicToken"`
+	// Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogApiKey pulumi.StringPtrInput `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite pulumi.StringPtrInput `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
 	// Override exporter type (only valid when object*type=METRICS*EXPORT)
@@ -6714,6 +7062,16 @@ func (o EnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.BasicToken }).(pulumi.StringPtrOutput)
 }
 
+// Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o EnvironmentObjectLinkOverridesOutput) DataDogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.DataDogApiKey }).(pulumi.StringPtrOutput)
+}
+
+// Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o EnvironmentObjectLinkOverridesOutput) DataDogSite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.DataDogSite }).(pulumi.StringPtrOutput)
+}
+
 // Override Prometheus endpoint (only valid when object*type=METRICS*EXPORT)
 func (o EnvironmentObjectLinkOverridesOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EnvironmentObjectLinkOverrides) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
@@ -6820,6 +7178,26 @@ func (o EnvironmentObjectLinkOverridesPtrOutput) BasicToken() pulumi.StringPtrOu
 			return nil
 		}
 		return v.BasicToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override Datadog API key (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o EnvironmentObjectLinkOverridesPtrOutput) DataDogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataDogApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Override Datadog site (only valid when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o EnvironmentObjectLinkOverridesPtrOutput) DataDogSite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentObjectLinkOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataDogSite
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7826,6 +8204,265 @@ func (o NotificationChannelUpdatedByPtrOutput) Username() pulumi.StringPtrOutput
 		}
 		return v.Username
 	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationChannelsNotificationChannels struct {
+	// The notification channel's definition
+	Definition NotificationChannelsNotificationChannelsDefinition `pulumi:"definition"`
+	// The entity ID the notification channel is scoped to
+	EntityId string `pulumi:"entityId"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType string `pulumi:"entityType"`
+	// The notification channel's ID
+	Id *string `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared *bool `pulumi:"isShared"`
+	// The notification channel's name
+	Name string `pulumi:"name"`
+	// The notification channel's type
+	Type string `pulumi:"type"`
+}
+
+// NotificationChannelsNotificationChannelsInput is an input type that accepts NotificationChannelsNotificationChannelsArgs and NotificationChannelsNotificationChannelsOutput values.
+// You can construct a concrete instance of `NotificationChannelsNotificationChannelsInput` via:
+//
+//	NotificationChannelsNotificationChannelsArgs{...}
+type NotificationChannelsNotificationChannelsInput interface {
+	pulumi.Input
+
+	ToNotificationChannelsNotificationChannelsOutput() NotificationChannelsNotificationChannelsOutput
+	ToNotificationChannelsNotificationChannelsOutputWithContext(context.Context) NotificationChannelsNotificationChannelsOutput
+}
+
+type NotificationChannelsNotificationChannelsArgs struct {
+	// The notification channel's definition
+	Definition NotificationChannelsNotificationChannelsDefinitionInput `pulumi:"definition"`
+	// The entity ID the notification channel is scoped to
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+	// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// The notification channel's ID
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+	IsShared pulumi.BoolPtrInput `pulumi:"isShared"`
+	// The notification channel's name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The notification channel's type
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NotificationChannelsNotificationChannelsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelsNotificationChannels)(nil)).Elem()
+}
+
+func (i NotificationChannelsNotificationChannelsArgs) ToNotificationChannelsNotificationChannelsOutput() NotificationChannelsNotificationChannelsOutput {
+	return i.ToNotificationChannelsNotificationChannelsOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelsNotificationChannelsArgs) ToNotificationChannelsNotificationChannelsOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelsNotificationChannelsOutput)
+}
+
+// NotificationChannelsNotificationChannelsMapInput is an input type that accepts NotificationChannelsNotificationChannelsMap and NotificationChannelsNotificationChannelsMapOutput values.
+// You can construct a concrete instance of `NotificationChannelsNotificationChannelsMapInput` via:
+//
+//	NotificationChannelsNotificationChannelsMap{ "key": NotificationChannelsNotificationChannelsArgs{...} }
+type NotificationChannelsNotificationChannelsMapInput interface {
+	pulumi.Input
+
+	ToNotificationChannelsNotificationChannelsMapOutput() NotificationChannelsNotificationChannelsMapOutput
+	ToNotificationChannelsNotificationChannelsMapOutputWithContext(context.Context) NotificationChannelsNotificationChannelsMapOutput
+}
+
+type NotificationChannelsNotificationChannelsMap map[string]NotificationChannelsNotificationChannelsInput
+
+func (NotificationChannelsNotificationChannelsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]NotificationChannelsNotificationChannels)(nil)).Elem()
+}
+
+func (i NotificationChannelsNotificationChannelsMap) ToNotificationChannelsNotificationChannelsMapOutput() NotificationChannelsNotificationChannelsMapOutput {
+	return i.ToNotificationChannelsNotificationChannelsMapOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelsNotificationChannelsMap) ToNotificationChannelsNotificationChannelsMapOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelsNotificationChannelsMapOutput)
+}
+
+type NotificationChannelsNotificationChannelsOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelsNotificationChannelsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelsNotificationChannels)(nil)).Elem()
+}
+
+func (o NotificationChannelsNotificationChannelsOutput) ToNotificationChannelsNotificationChannelsOutput() NotificationChannelsNotificationChannelsOutput {
+	return o
+}
+
+func (o NotificationChannelsNotificationChannelsOutput) ToNotificationChannelsNotificationChannelsOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsOutput {
+	return o
+}
+
+// The notification channel's definition
+func (o NotificationChannelsNotificationChannelsOutput) Definition() NotificationChannelsNotificationChannelsDefinitionOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) NotificationChannelsNotificationChannelsDefinition {
+		return v.Definition
+	}).(NotificationChannelsNotificationChannelsDefinitionOutput)
+}
+
+// The entity ID the notification channel is scoped to
+func (o NotificationChannelsNotificationChannelsOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// The type of entity the notification channel is scoped to (e.g., 'DEPLOYMENT')
+func (o NotificationChannelsNotificationChannelsOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// The notification channel's ID
+func (o NotificationChannelsNotificationChannelsOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// When entity type is scoped to ORGANIZATION or WORKSPACE, this determines if child entities can access this notification channel.
+func (o NotificationChannelsNotificationChannelsOutput) IsShared() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) *bool { return v.IsShared }).(pulumi.BoolPtrOutput)
+}
+
+// The notification channel's name
+func (o NotificationChannelsNotificationChannelsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification channel's type
+func (o NotificationChannelsNotificationChannelsOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannels) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NotificationChannelsNotificationChannelsMapOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelsNotificationChannelsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]NotificationChannelsNotificationChannels)(nil)).Elem()
+}
+
+func (o NotificationChannelsNotificationChannelsMapOutput) ToNotificationChannelsNotificationChannelsMapOutput() NotificationChannelsNotificationChannelsMapOutput {
+	return o
+}
+
+func (o NotificationChannelsNotificationChannelsMapOutput) ToNotificationChannelsNotificationChannelsMapOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsMapOutput {
+	return o
+}
+
+func (o NotificationChannelsNotificationChannelsMapOutput) MapIndex(k pulumi.StringInput) NotificationChannelsNotificationChannelsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NotificationChannelsNotificationChannels {
+		return vs[0].(map[string]NotificationChannelsNotificationChannels)[vs[1].(string)]
+	}).(NotificationChannelsNotificationChannelsOutput)
+}
+
+type NotificationChannelsNotificationChannelsDefinition struct {
+	// The API key for the notification channel
+	ApiKey *string `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId *string `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken *string `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId *string `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey *string `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients []string `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl *string `pulumi:"webhookUrl"`
+}
+
+// NotificationChannelsNotificationChannelsDefinitionInput is an input type that accepts NotificationChannelsNotificationChannelsDefinitionArgs and NotificationChannelsNotificationChannelsDefinitionOutput values.
+// You can construct a concrete instance of `NotificationChannelsNotificationChannelsDefinitionInput` via:
+//
+//	NotificationChannelsNotificationChannelsDefinitionArgs{...}
+type NotificationChannelsNotificationChannelsDefinitionInput interface {
+	pulumi.Input
+
+	ToNotificationChannelsNotificationChannelsDefinitionOutput() NotificationChannelsNotificationChannelsDefinitionOutput
+	ToNotificationChannelsNotificationChannelsDefinitionOutputWithContext(context.Context) NotificationChannelsNotificationChannelsDefinitionOutput
+}
+
+type NotificationChannelsNotificationChannelsDefinitionArgs struct {
+	// The API key for the notification channel
+	ApiKey pulumi.StringPtrInput `pulumi:"apiKey"`
+	// The DAG ID for the notification channel
+	DagId pulumi.StringPtrInput `pulumi:"dagId"`
+	// The deployment API token for the notification channel
+	DeploymentApiToken pulumi.StringPtrInput `pulumi:"deploymentApiToken"`
+	// The deployment ID for the notification channel
+	DeploymentId pulumi.StringPtrInput `pulumi:"deploymentId"`
+	// The integration key for the notification channel
+	IntegrationKey pulumi.StringPtrInput `pulumi:"integrationKey"`
+	// The recipients for the notification channel
+	Recipients pulumi.StringArrayInput `pulumi:"recipients"`
+	// The webhook URL for the notification channel
+	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
+}
+
+func (NotificationChannelsNotificationChannelsDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelsNotificationChannelsDefinition)(nil)).Elem()
+}
+
+func (i NotificationChannelsNotificationChannelsDefinitionArgs) ToNotificationChannelsNotificationChannelsDefinitionOutput() NotificationChannelsNotificationChannelsDefinitionOutput {
+	return i.ToNotificationChannelsNotificationChannelsDefinitionOutputWithContext(context.Background())
+}
+
+func (i NotificationChannelsNotificationChannelsDefinitionArgs) ToNotificationChannelsNotificationChannelsDefinitionOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelsNotificationChannelsDefinitionOutput)
+}
+
+type NotificationChannelsNotificationChannelsDefinitionOutput struct{ *pulumi.OutputState }
+
+func (NotificationChannelsNotificationChannelsDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelsNotificationChannelsDefinition)(nil)).Elem()
+}
+
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) ToNotificationChannelsNotificationChannelsDefinitionOutput() NotificationChannelsNotificationChannelsDefinitionOutput {
+	return o
+}
+
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) ToNotificationChannelsNotificationChannelsDefinitionOutputWithContext(ctx context.Context) NotificationChannelsNotificationChannelsDefinitionOutput {
+	return o
+}
+
+// The API key for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// The DAG ID for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) DagId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.DagId }).(pulumi.StringPtrOutput)
+}
+
+// The deployment API token for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) DeploymentApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.DeploymentApiToken }).(pulumi.StringPtrOutput)
+}
+
+// The deployment ID for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) DeploymentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.DeploymentId }).(pulumi.StringPtrOutput)
+}
+
+// The integration key for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) IntegrationKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.IntegrationKey }).(pulumi.StringPtrOutput)
+}
+
+// The recipients for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+// The webhook URL for the notification channel
+func (o NotificationChannelsNotificationChannelsDefinitionOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationChannelsNotificationChannelsDefinition) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 type TeamCreatedBy struct {
@@ -11739,6 +12376,8 @@ type GetApiTokensApiToken struct {
 	ExpiryPeriodInDays int `pulumi:"expiryPeriodInDays"`
 	// API Token identifier
 	Id string `pulumi:"id"`
+	// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind string `pulumi:"kind"`
 	// API Token last used timestamp
 	LastUsedAt string `pulumi:"lastUsedAt"`
 	// API Token name
@@ -11781,6 +12420,8 @@ type GetApiTokensApiTokenArgs struct {
 	ExpiryPeriodInDays pulumi.IntInput `pulumi:"expiryPeriodInDays"`
 	// API Token identifier
 	Id pulumi.StringInput `pulumi:"id"`
+	// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+	Kind pulumi.StringInput `pulumi:"kind"`
 	// API Token last used timestamp
 	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
 	// API Token name
@@ -11878,6 +12519,11 @@ func (o GetApiTokensApiTokenOutput) ExpiryPeriodInDays() pulumi.IntOutput {
 // API Token identifier
 func (o GetApiTokensApiTokenOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// API Token kind - 'STANDARD' or 'DIRECT_ACCESS'
+func (o GetApiTokensApiTokenOutput) Kind() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiTokensApiToken) string { return v.Kind }).(pulumi.StringOutput)
 }
 
 // API Token last used timestamp
@@ -13562,6 +14208,8 @@ type GetClustersCluster struct {
 	IsFailedOver bool `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited bool `pulumi:"isLimited"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+	IsPrivateNetworkEgressEnabled bool `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster metadata
 	Metadata GetClustersClusterMetadata `pulumi:"metadata"`
 	// Cluster name
@@ -13638,6 +14286,8 @@ type GetClustersClusterArgs struct {
 	IsFailedOver pulumi.BoolInput `pulumi:"isFailedOver"`
 	// Whether the cluster is limited
 	IsLimited pulumi.BoolInput `pulumi:"isLimited"`
+	// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+	IsPrivateNetworkEgressEnabled pulumi.BoolInput `pulumi:"isPrivateNetworkEgressEnabled"`
 	// Cluster metadata
 	Metadata GetClustersClusterMetadataInput `pulumi:"metadata"`
 	// Cluster name
@@ -13796,6 +14446,11 @@ func (o GetClustersClusterOutput) IsFailedOver() pulumi.BoolOutput {
 // Whether the cluster is limited
 func (o GetClustersClusterOutput) IsLimited() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersCluster) bool { return v.IsLimited }).(pulumi.BoolOutput)
+}
+
+// Whether Private Network Egress mode is enabled, which disables public Internet connectivity from the cluster's Deployments and metrics exports (AWS only)
+func (o GetClustersClusterOutput) IsPrivateNetworkEgressEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.IsPrivateNetworkEgressEnabled }).(pulumi.BoolOutput)
 }
 
 // Cluster metadata
@@ -16266,6 +16921,7 @@ func (o GetDeploymentRemoteExecutionOutput) TaskLogUrlPattern() pulumi.StringOut
 }
 
 type GetDeploymentScalingSpec struct {
+	Autoscaling     GetDeploymentScalingSpecAutoscaling     `pulumi:"autoscaling"`
 	HibernationSpec GetDeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
 }
 
@@ -16281,6 +16937,7 @@ type GetDeploymentScalingSpecInput interface {
 }
 
 type GetDeploymentScalingSpecArgs struct {
+	Autoscaling     GetDeploymentScalingSpecAutoscalingInput     `pulumi:"autoscaling"`
 	HibernationSpec GetDeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
 }
 
@@ -16310,8 +16967,133 @@ func (o GetDeploymentScalingSpecOutput) ToGetDeploymentScalingSpecOutputWithCont
 	return o
 }
 
+func (o GetDeploymentScalingSpecOutput) Autoscaling() GetDeploymentScalingSpecAutoscalingOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpec) GetDeploymentScalingSpecAutoscaling { return v.Autoscaling }).(GetDeploymentScalingSpecAutoscalingOutput)
+}
+
 func (o GetDeploymentScalingSpecOutput) HibernationSpec() GetDeploymentScalingSpecHibernationSpecOutput {
 	return o.ApplyT(func(v GetDeploymentScalingSpec) GetDeploymentScalingSpecHibernationSpec { return v.HibernationSpec }).(GetDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentScalingSpecAutoscaling struct {
+	ApiServer GetDeploymentScalingSpecAutoscalingApiServer `pulumi:"apiServer"`
+}
+
+// GetDeploymentScalingSpecAutoscalingInput is an input type that accepts GetDeploymentScalingSpecAutoscalingArgs and GetDeploymentScalingSpecAutoscalingOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecAutoscalingInput` via:
+//
+//	GetDeploymentScalingSpecAutoscalingArgs{...}
+type GetDeploymentScalingSpecAutoscalingInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecAutoscalingOutput() GetDeploymentScalingSpecAutoscalingOutput
+	ToGetDeploymentScalingSpecAutoscalingOutputWithContext(context.Context) GetDeploymentScalingSpecAutoscalingOutput
+}
+
+type GetDeploymentScalingSpecAutoscalingArgs struct {
+	ApiServer GetDeploymentScalingSpecAutoscalingApiServerInput `pulumi:"apiServer"`
+}
+
+func (GetDeploymentScalingSpecAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecAutoscalingArgs) ToGetDeploymentScalingSpecAutoscalingOutput() GetDeploymentScalingSpecAutoscalingOutput {
+	return i.ToGetDeploymentScalingSpecAutoscalingOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecAutoscalingArgs) ToGetDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) GetDeploymentScalingSpecAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecAutoscalingOutput)
+}
+
+type GetDeploymentScalingSpecAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecAutoscalingOutput) ToGetDeploymentScalingSpecAutoscalingOutput() GetDeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecAutoscalingOutput) ToGetDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) GetDeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecAutoscalingOutput) ApiServer() GetDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecAutoscaling) GetDeploymentScalingSpecAutoscalingApiServer {
+		return v.ApiServer
+	}).(GetDeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+type GetDeploymentScalingSpecAutoscalingApiServer struct {
+	// Whether autoscaling is enabled
+	IsEnabled bool `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas int `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas int `pulumi:"minReplicas"`
+}
+
+// GetDeploymentScalingSpecAutoscalingApiServerInput is an input type that accepts GetDeploymentScalingSpecAutoscalingApiServerArgs and GetDeploymentScalingSpecAutoscalingApiServerOutput values.
+// You can construct a concrete instance of `GetDeploymentScalingSpecAutoscalingApiServerInput` via:
+//
+//	GetDeploymentScalingSpecAutoscalingApiServerArgs{...}
+type GetDeploymentScalingSpecAutoscalingApiServerInput interface {
+	pulumi.Input
+
+	ToGetDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentScalingSpecAutoscalingApiServerOutput
+	ToGetDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Context) GetDeploymentScalingSpecAutoscalingApiServerOutput
+}
+
+type GetDeploymentScalingSpecAutoscalingApiServerArgs struct {
+	// Whether autoscaling is enabled
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
+}
+
+func (GetDeploymentScalingSpecAutoscalingApiServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (i GetDeploymentScalingSpecAutoscalingApiServerArgs) ToGetDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentScalingSpecAutoscalingApiServerOutput {
+	return i.ToGetDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentScalingSpecAutoscalingApiServerArgs) ToGetDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) GetDeploymentScalingSpecAutoscalingApiServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+type GetDeploymentScalingSpecAutoscalingApiServerOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentScalingSpecAutoscalingApiServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (o GetDeploymentScalingSpecAutoscalingApiServerOutput) ToGetDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+func (o GetDeploymentScalingSpecAutoscalingApiServerOutput) ToGetDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) GetDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+// Whether autoscaling is enabled
+func (o GetDeploymentScalingSpecAutoscalingApiServerOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecAutoscalingApiServer) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// Maximum number of replicas
+func (o GetDeploymentScalingSpecAutoscalingApiServerOutput) MaxReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecAutoscalingApiServer) int { return v.MaxReplicas }).(pulumi.IntOutput)
+}
+
+// Minimum number of replicas
+func (o GetDeploymentScalingSpecAutoscalingApiServerOutput) MinReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentScalingSpecAutoscalingApiServer) int { return v.MinReplicas }).(pulumi.IntOutput)
 }
 
 type GetDeploymentScalingSpecHibernationSpec struct {
@@ -16793,6 +17575,8 @@ type GetDeploymentWorkerQueue struct {
 	NodePoolId string `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu string `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage
+	PodEphemeralStorage string `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory string `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -16827,6 +17611,8 @@ type GetDeploymentWorkerQueueArgs struct {
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu pulumi.StringInput `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage
+	PodEphemeralStorage pulumi.StringInput `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory pulumi.StringInput `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -16922,6 +17708,11 @@ func (o GetDeploymentWorkerQueueOutput) NodePoolId() pulumi.StringOutput {
 // Worker queue pod CPU
 func (o GetDeploymentWorkerQueueOutput) PodCpu() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.PodCpu }).(pulumi.StringOutput)
+}
+
+// Worker queue pod ephemeral storage
+func (o GetDeploymentWorkerQueueOutput) PodEphemeralStorage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentWorkerQueue) string { return v.PodEphemeralStorage }).(pulumi.StringOutput)
 }
 
 // Worker queue pod memory
@@ -17777,6 +18568,7 @@ func (o GetDeploymentsDeploymentRemoteExecutionOutput) TaskLogUrlPattern() pulum
 }
 
 type GetDeploymentsDeploymentScalingSpec struct {
+	Autoscaling     GetDeploymentsDeploymentScalingSpecAutoscaling     `pulumi:"autoscaling"`
 	HibernationSpec GetDeploymentsDeploymentScalingSpecHibernationSpec `pulumi:"hibernationSpec"`
 }
 
@@ -17792,6 +18584,7 @@ type GetDeploymentsDeploymentScalingSpecInput interface {
 }
 
 type GetDeploymentsDeploymentScalingSpecArgs struct {
+	Autoscaling     GetDeploymentsDeploymentScalingSpecAutoscalingInput     `pulumi:"autoscaling"`
 	HibernationSpec GetDeploymentsDeploymentScalingSpecHibernationSpecInput `pulumi:"hibernationSpec"`
 }
 
@@ -17821,10 +18614,137 @@ func (o GetDeploymentsDeploymentScalingSpecOutput) ToGetDeploymentsDeploymentSca
 	return o
 }
 
+func (o GetDeploymentsDeploymentScalingSpecOutput) Autoscaling() GetDeploymentsDeploymentScalingSpecAutoscalingOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpec) GetDeploymentsDeploymentScalingSpecAutoscaling {
+		return v.Autoscaling
+	}).(GetDeploymentsDeploymentScalingSpecAutoscalingOutput)
+}
+
 func (o GetDeploymentsDeploymentScalingSpecOutput) HibernationSpec() GetDeploymentsDeploymentScalingSpecHibernationSpecOutput {
 	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpec) GetDeploymentsDeploymentScalingSpecHibernationSpec {
 		return v.HibernationSpec
 	}).(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscaling struct {
+	ApiServer GetDeploymentsDeploymentScalingSpecAutoscalingApiServer `pulumi:"apiServer"`
+}
+
+// GetDeploymentsDeploymentScalingSpecAutoscalingInput is an input type that accepts GetDeploymentsDeploymentScalingSpecAutoscalingArgs and GetDeploymentsDeploymentScalingSpecAutoscalingOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecAutoscalingInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecAutoscalingArgs{...}
+type GetDeploymentsDeploymentScalingSpecAutoscalingInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecAutoscalingOutput() GetDeploymentsDeploymentScalingSpecAutoscalingOutput
+	ToGetDeploymentsDeploymentScalingSpecAutoscalingOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscalingArgs struct {
+	ApiServer GetDeploymentsDeploymentScalingSpecAutoscalingApiServerInput `pulumi:"apiServer"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecAutoscalingArgs) ToGetDeploymentsDeploymentScalingSpecAutoscalingOutput() GetDeploymentsDeploymentScalingSpecAutoscalingOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecAutoscalingOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecAutoscalingArgs) ToGetDeploymentsDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecAutoscalingOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscaling)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingOutput) ToGetDeploymentsDeploymentScalingSpecAutoscalingOutput() GetDeploymentsDeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingOutput) ToGetDeploymentsDeploymentScalingSpecAutoscalingOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingOutput) ApiServer() GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecAutoscaling) GetDeploymentsDeploymentScalingSpecAutoscalingApiServer {
+		return v.ApiServer
+	}).(GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscalingApiServer struct {
+	// Whether autoscaling is enabled
+	IsEnabled bool `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas int `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas int `pulumi:"minReplicas"`
+}
+
+// GetDeploymentsDeploymentScalingSpecAutoscalingApiServerInput is an input type that accepts GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs and GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput values.
+// You can construct a concrete instance of `GetDeploymentsDeploymentScalingSpecAutoscalingApiServerInput` via:
+//
+//	GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs{...}
+type GetDeploymentsDeploymentScalingSpecAutoscalingApiServerInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput
+	ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs struct {
+	// Whether autoscaling is enabled
+	IsEnabled pulumi.BoolInput `pulumi:"isEnabled"`
+	// Maximum number of replicas
+	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
+	// Minimum number of replicas
+	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
+}
+
+func (GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (i GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs) ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput {
+	return i.ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs) ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput)
+}
+
+type GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscalingApiServer)(nil)).Elem()
+}
+
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput() GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) ToGetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutputWithContext(ctx context.Context) GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput {
+	return o
+}
+
+// Whether autoscaling is enabled
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecAutoscalingApiServer) bool { return v.IsEnabled }).(pulumi.BoolOutput)
+}
+
+// Maximum number of replicas
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) MaxReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecAutoscalingApiServer) int { return v.MaxReplicas }).(pulumi.IntOutput)
+}
+
+// Minimum number of replicas
+func (o GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput) MinReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentScalingSpecAutoscalingApiServer) int { return v.MinReplicas }).(pulumi.IntOutput)
 }
 
 type GetDeploymentsDeploymentScalingSpecHibernationSpec struct {
@@ -18306,6 +19226,8 @@ type GetDeploymentsDeploymentWorkerQueue struct {
 	NodePoolId string `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu string `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage
+	PodEphemeralStorage string `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory string `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -18340,6 +19262,8 @@ type GetDeploymentsDeploymentWorkerQueueArgs struct {
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
 	// Worker queue pod CPU
 	PodCpu pulumi.StringInput `pulumi:"podCpu"`
+	// Worker queue pod ephemeral storage
+	PodEphemeralStorage pulumi.StringInput `pulumi:"podEphemeralStorage"`
 	// Worker queue pod memory
 	PodMemory pulumi.StringInput `pulumi:"podMemory"`
 	// Worker queue worker concurrency
@@ -18435,6 +19359,11 @@ func (o GetDeploymentsDeploymentWorkerQueueOutput) NodePoolId() pulumi.StringOut
 // Worker queue pod CPU
 func (o GetDeploymentsDeploymentWorkerQueueOutput) PodCpu() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.PodCpu }).(pulumi.StringOutput)
+}
+
+// Worker queue pod ephemeral storage
+func (o GetDeploymentsDeploymentWorkerQueueOutput) PodEphemeralStorage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeploymentWorkerQueue) string { return v.PodEphemeralStorage }).(pulumi.StringOutput)
 }
 
 // Worker queue pod memory
@@ -19067,6 +19996,10 @@ type GetEnvironmentObjectLinkOverrides struct {
 	AuthType string `pulumi:"authType"`
 	// Override bearer token (only used when object*type=METRICS*EXPORT)
 	BasicToken string `pulumi:"basicToken"`
+	// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey string `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite string `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
 	Endpoint string `pulumi:"endpoint"`
 	// Override exporter type (only used when object*type=METRICS*EXPORT)
@@ -19111,6 +20044,10 @@ type GetEnvironmentObjectLinkOverridesArgs struct {
 	AuthType pulumi.StringInput `pulumi:"authType"`
 	// Override bearer token (only used when object*type=METRICS*EXPORT)
 	BasicToken pulumi.StringInput `pulumi:"basicToken"`
+	// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey pulumi.StringInput `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite pulumi.StringInput `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// Override exporter type (only used when object*type=METRICS*EXPORT)
@@ -19173,6 +20110,16 @@ func (o GetEnvironmentObjectLinkOverridesOutput) AuthType() pulumi.StringOutput 
 // Override bearer token (only used when object*type=METRICS*EXPORT)
 func (o GetEnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.BasicToken }).(pulumi.StringOutput)
+}
+
+// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+func (o GetEnvironmentObjectLinkOverridesOutput) DataDogApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.DataDogApiKey }).(pulumi.StringOutput)
+}
+
+// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o GetEnvironmentObjectLinkOverridesOutput) DataDogSite() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectLinkOverrides) string { return v.DataDogSite }).(pulumi.StringOutput)
 }
 
 // Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
@@ -19334,9 +20281,13 @@ type GetEnvironmentObjectsEnvironmentObject struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedBy `pulumi:"createdBy"`
+	// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey string `pulumi:"dataDogApiKey"`
+	// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite string `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description string `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
 	Endpoint string `pulumi:"endpoint"`
 	// The excluded links for the environment object
 	ExcludeLinks []GetEnvironmentObjectsEnvironmentObjectExcludeLink `pulumi:"excludeLinks"`
@@ -19414,9 +20365,13 @@ type GetEnvironmentObjectsEnvironmentObjectArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Environment Object creator
 	CreatedBy GetEnvironmentObjectsEnvironmentObjectCreatedByInput `pulumi:"createdBy"`
+	// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey pulumi.StringInput `pulumi:"dataDogApiKey"`
+	// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite pulumi.StringInput `pulumi:"dataDogSite"`
 	// The description of the environment object
 	Description pulumi.StringInput `pulumi:"description"`
-	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+	// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The excluded links for the environment object
 	ExcludeLinks GetEnvironmentObjectsEnvironmentObjectExcludeLinkArrayInput `pulumi:"excludeLinks"`
@@ -19558,12 +20513,22 @@ func (o GetEnvironmentObjectsEnvironmentObjectOutput) CreatedBy() GetEnvironment
 	}).(GetEnvironmentObjectsEnvironmentObjectCreatedByOutput)
 }
 
+// The Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) DataDogApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.DataDogApiKey }).(pulumi.StringOutput)
+}
+
+// The Datadog site metrics are sent to (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o GetEnvironmentObjectsEnvironmentObjectOutput) DataDogSite() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.DataDogSite }).(pulumi.StringOutput)
+}
+
 // The description of the environment object
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT)
+// The Prometheus endpoint where the metrics are exported (only used when object*type=METRICS*EXPORT and exporter_type=PROMETHEUS)
 func (o GetEnvironmentObjectsEnvironmentObjectOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObject) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -20320,6 +21285,10 @@ type GetEnvironmentObjectsEnvironmentObjectLinkOverrides struct {
 	AuthType string `pulumi:"authType"`
 	// Override bearer token (only used when object*type=METRICS*EXPORT)
 	BasicToken string `pulumi:"basicToken"`
+	// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey string `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite string `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
 	Endpoint string `pulumi:"endpoint"`
 	// Override exporter type (only used when object*type=METRICS*EXPORT)
@@ -20364,6 +21333,10 @@ type GetEnvironmentObjectsEnvironmentObjectLinkOverridesArgs struct {
 	AuthType pulumi.StringInput `pulumi:"authType"`
 	// Override bearer token (only used when object*type=METRICS*EXPORT)
 	BasicToken pulumi.StringInput `pulumi:"basicToken"`
+	// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+	DataDogApiKey pulumi.StringInput `pulumi:"dataDogApiKey"`
+	// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+	DataDogSite pulumi.StringInput `pulumi:"dataDogSite"`
 	// Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// Override exporter type (only used when object*type=METRICS*EXPORT)
@@ -20426,6 +21399,16 @@ func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) AuthType() pu
 // Override bearer token (only used when object*type=METRICS*EXPORT)
 func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) BasicToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.BasicToken }).(pulumi.StringOutput)
+}
+
+// Override Datadog API key. Null unless show*secrets = true on astro*environment_objects; the API masks it otherwise
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) DataDogApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.DataDogApiKey }).(pulumi.StringOutput)
+}
+
+// Override Datadog site (only used when object*type=METRICS*EXPORT and exporter_type=DATADOG)
+func (o GetEnvironmentObjectsEnvironmentObjectLinkOverridesOutput) DataDogSite() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentObjectsEnvironmentObjectLinkOverrides) string { return v.DataDogSite }).(pulumi.StringOutput)
 }
 
 // Override Prometheus endpoint (only used when object*type=METRICS*EXPORT)
@@ -24856,6 +25839,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentRemoteExecutionPtrInput)(nil)).Elem(), DeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecPtrInput)(nil)).Elem(), DeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecAutoscalingInput)(nil)).Elem(), DeploymentScalingSpecAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecAutoscalingPtrInput)(nil)).Elem(), DeploymentScalingSpecAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecAutoscalingApiServerInput)(nil)).Elem(), DeploymentScalingSpecAutoscalingApiServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecAutoscalingApiServerPtrInput)(nil)).Elem(), DeploymentScalingSpecAutoscalingApiServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecPtrInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), DeploymentScalingSpecHibernationSpecOverrideArgs{})
@@ -24890,6 +25877,9 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelDefinitionPtrInput)(nil)).Elem(), NotificationChannelDefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelUpdatedByInput)(nil)).Elem(), NotificationChannelUpdatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelUpdatedByPtrInput)(nil)).Elem(), NotificationChannelUpdatedByArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelsNotificationChannelsInput)(nil)).Elem(), NotificationChannelsNotificationChannelsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelsNotificationChannelsMapInput)(nil)).Elem(), NotificationChannelsNotificationChannelsMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationChannelsNotificationChannelsDefinitionInput)(nil)).Elem(), NotificationChannelsNotificationChannelsDefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByInput)(nil)).Elem(), TeamCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamCreatedByPtrInput)(nil)).Elem(), TeamCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TeamDagRoleInput)(nil)).Elem(), TeamDagRoleArgs{})
@@ -25005,6 +25995,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentOptionsWorkloadIdentityOptionArrayInput)(nil)).Elem(), GetDeploymentOptionsWorkloadIdentityOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentRemoteExecutionInput)(nil)).Elem(), GetDeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecAutoscalingInput)(nil)).Elem(), GetDeploymentScalingSpecAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecAutoscalingApiServerInput)(nil)).Elem(), GetDeploymentScalingSpecAutoscalingApiServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecOverrideArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentScalingSpecHibernationSpecScheduleInput)(nil)).Elem(), GetDeploymentScalingSpecHibernationSpecScheduleArgs{})
@@ -25021,6 +26013,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentEnvironmentVariableArrayInput)(nil)).Elem(), GetDeploymentsDeploymentEnvironmentVariableArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentRemoteExecutionInput)(nil)).Elem(), GetDeploymentsDeploymentRemoteExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscalingInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecAutoscalingApiServerInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecAutoscalingApiServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleInput)(nil)).Elem(), GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleArgs{})
@@ -25163,6 +26157,10 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentRemoteExecutionPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecAutoscalingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecAutoscalingApiServerOutput{})
+	pulumi.RegisterOutputType(DeploymentScalingSpecAutoscalingApiServerPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentScalingSpecHibernationSpecOverrideOutput{})
@@ -25197,6 +26195,9 @@ func init() {
 	pulumi.RegisterOutputType(NotificationChannelDefinitionPtrOutput{})
 	pulumi.RegisterOutputType(NotificationChannelUpdatedByOutput{})
 	pulumi.RegisterOutputType(NotificationChannelUpdatedByPtrOutput{})
+	pulumi.RegisterOutputType(NotificationChannelsNotificationChannelsOutput{})
+	pulumi.RegisterOutputType(NotificationChannelsNotificationChannelsMapOutput{})
+	pulumi.RegisterOutputType(NotificationChannelsNotificationChannelsDefinitionOutput{})
 	pulumi.RegisterOutputType(TeamCreatedByOutput{})
 	pulumi.RegisterOutputType(TeamCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(TeamDagRoleOutput{})
@@ -25312,6 +26313,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentOptionsWorkloadIdentityOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentRemoteExecutionOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecAutoscalingOutput{})
+	pulumi.RegisterOutputType(GetDeploymentScalingSpecAutoscalingApiServerOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecOverrideOutput{})
 	pulumi.RegisterOutputType(GetDeploymentScalingSpecHibernationSpecScheduleOutput{})
@@ -25328,6 +26331,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentEnvironmentVariableArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentRemoteExecutionOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecAutoscalingOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecAutoscalingApiServerOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecOverrideOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentScalingSpecHibernationSpecScheduleOutput{})

@@ -64,7 +64,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.str] default_task_pod_cpu: Deployment default task pod CPU - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] default_task_pod_memory: Deployment default task pod memory - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] desired_workload_identity: Deployment's desired workload identity. The Terraform provider will use this provided workload identity to create the Deployment. If it is not provided the workload identity will be assigned automatically.
-        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
@@ -286,7 +286,7 @@ class DeploymentArgs:
     @pulumi.getter(name="isDevelopmentMode")
     def is_development_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "is_development_mode")
 
@@ -528,7 +528,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] image_version: Deployment image version
         :param pulumi.Input[_builtins.bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[_builtins.bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
-        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
@@ -915,7 +915,7 @@ class _DeploymentState:
     @pulumi.getter(name="isDevelopmentMode")
     def is_development_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "is_development_mode")
 
@@ -1311,7 +1311,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] executor: Deployment executor. Allowed values: `CELERY`, `KUBERNETES`, `ASTRO`.
         :param pulumi.Input[_builtins.bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[_builtins.bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
-        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] original_astro_runtime_version: Deployment's original Astro Runtime version. The Terraform provider uses this value to create the Deployment. If not provided, defaults to the current Astro runtime version. This value is immutable after the Deployment is created — to upgrade the Astro Runtime version, update your Astro project's Dockerfile and deploy the new image (for example with `astro deploy`). Changing this attribute in Terraform will produce an error at plan time rather than recreate the Deployment, which would destroy connections, DAG history, and other state that is not managed by Terraform.
@@ -1543,7 +1543,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_version: Deployment image version
         :param pulumi.Input[_builtins.bool] is_cicd_enforced: Deployment CI/CD enforced
         :param pulumi.Input[_builtins.bool] is_dag_deploy_enabled: Whether DAG deploy is enabled - Changing this value may disrupt your deployment. Read more at https://docs.astronomer.io/astro/deploy-dags#enable-or-disable-dag-only-deploys-on-a-deployment
-        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        :param pulumi.Input[_builtins.bool] is_development_mode: Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.bool] is_high_availability: Deployment high availability - required for 'STANDARD' and 'DEDICATED' deployments
         :param pulumi.Input[_builtins.str] name: Deployment name
         :param pulumi.Input[_builtins.str] namespace: Deployment namespace
@@ -1801,7 +1801,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="isDevelopmentMode")
     def is_development_mode(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments. If changing from 'False' to 'True', the deployment will be recreated
+        Deployment development mode - required for 'STANDARD' and 'DEDICATED' deployments
         """
         return pulumi.get(self, "is_development_mode")
 

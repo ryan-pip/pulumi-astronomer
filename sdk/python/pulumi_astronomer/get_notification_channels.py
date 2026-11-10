@@ -102,6 +102,22 @@ def get_notification_channels(channel_types: Optional[Sequence[_builtins.str]] =
     Notification Channels data source
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_astronomer as astronomer
+
+    example_notification_channels = astronomer.get_notification_channels()
+    notification_channel_ids_example = astronomer.get_notification_channels(notification_channel_ids=["cm7dz31ye00cz01n1en2xilut"])
+    workspace_ids_example = astronomer.get_notification_channels(workspace_ids=["clx42sxw501gl01o0gjenthnh"])
+    deployment_ids_example = astronomer.get_notification_channels(deployment_ids=["clx44jyu001m201m5dzsbexqr"])
+    notification_channel_types_example = astronomer.get_notification_channels(notification_channel_types=[
+        "SLACK",
+        "EMAIL",
+    ])
+    entity_type_example = astronomer.get_notification_channels(entity_type="DEPLOYMENT")
+    pulumi.export("notificationChannels", example_notification_channels)
+    ```
     """
     __args__ = dict()
     __args__['channelTypes'] = channel_types
@@ -129,6 +145,22 @@ def get_notification_channels_output(channel_types: pulumi.Input[Optional[Option
     Notification Channels data source
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_astronomer as astronomer
+
+    example_notification_channels = astronomer.get_notification_channels()
+    notification_channel_ids_example = astronomer.get_notification_channels(notification_channel_ids=["cm7dz31ye00cz01n1en2xilut"])
+    workspace_ids_example = astronomer.get_notification_channels(workspace_ids=["clx42sxw501gl01o0gjenthnh"])
+    deployment_ids_example = astronomer.get_notification_channels(deployment_ids=["clx44jyu001m201m5dzsbexqr"])
+    notification_channel_types_example = astronomer.get_notification_channels(notification_channel_types=[
+        "SLACK",
+        "EMAIL",
+    ])
+    entity_type_example = astronomer.get_notification_channels(entity_type="DEPLOYMENT")
+    pulumi.export("notificationChannels", example_notification_channels)
+    ```
     """
     __args__ = dict()
     __args__['channelTypes'] = channel_types

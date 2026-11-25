@@ -2,6 +2,7 @@
     "default-resource-schema-fixups": {
         "resources": {
             "astro_agent_token": {},
+            "astro_ai_spending_caps": {},
             "astro_alert": {},
             "astro_alerts": {
                 "computeID": {

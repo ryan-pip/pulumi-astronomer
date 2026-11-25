@@ -7,6 +7,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .agent_token import *
+from .ai_spending_caps import *
 from .alert import *
 from .alerts import *
 from .allowed_ip_address_ranges import *
@@ -67,6 +68,14 @@ _utilities.register(
   "fqn": "pulumi_astronomer",
   "classes": {
    "astronomer:index/agentToken:AgentToken": "AgentToken"
+  }
+ },
+ {
+  "pkg": "astronomer",
+  "mod": "index/aiSpendingCaps",
+  "fqn": "pulumi_astronomer",
+  "classes": {
+   "astronomer:index/aiSpendingCaps:AiSpendingCaps": "AiSpendingCaps"
   }
  },
  {

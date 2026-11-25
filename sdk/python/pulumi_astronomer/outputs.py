@@ -16,6 +16,7 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AiSpendingCapsDefaultCapCents',
     'AlertCreatedBy',
     'AlertNotificationChannel',
     'AlertNotificationChannelCreatedBy',
@@ -218,6 +219,54 @@ __all__ = [
     'GetWorkspacesWorkspaceCreatedByResult',
     'GetWorkspacesWorkspaceUpdatedByResult',
 ]
+
+@pulumi.output_type
+class AiSpendingCapsDefaultCapCents(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiToken":
+            suggest = "api_token"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AiSpendingCapsDefaultCapCents. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AiSpendingCapsDefaultCapCents.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AiSpendingCapsDefaultCapCents.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token: Optional[_builtins.int] = None,
+                 user: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int api_token: The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+        :param _builtins.int user: The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+        """
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional[_builtins.int]:
+        """
+        The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+        """
+        return pulumi.get(self, "api_token")
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> Optional[_builtins.int]:
+        """
+        The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+        """
+        return pulumi.get(self, "user")
+
 
 @pulumi.output_type
 class AlertCreatedBy(dict):

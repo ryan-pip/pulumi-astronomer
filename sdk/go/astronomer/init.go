@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "astronomer:index/agentToken:AgentToken":
 		r = &AgentToken{}
+	case "astronomer:index/aiSpendingCaps:AiSpendingCaps":
+		r = &AiSpendingCaps{}
 	case "astronomer:index/alert:Alert":
 		r = &Alert{}
 	case "astronomer:index/alerts:Alerts":
@@ -91,6 +93,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"astronomer",
 		"index/agentToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"astronomer",
+		"index/aiSpendingCaps",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

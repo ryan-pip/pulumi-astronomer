@@ -15,6 +15,8 @@ else:
 from . import _utilities
 
 __all__ = [
+    'AiSpendingCapsDefaultCapCentsArgs',
+    'AiSpendingCapsDefaultCapCentsArgsDict',
     'AlertCreatedByArgs',
     'AlertCreatedByArgsDict',
     'AlertNotificationChannelArgs',
@@ -142,6 +144,55 @@ __all__ = [
     'WorkspaceUpdatedByArgs',
     'WorkspaceUpdatedByArgsDict',
 ]
+
+class AiSpendingCapsDefaultCapCentsArgsDict(TypedDict):
+    api_token: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+    """
+    user: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+    """
+
+@pulumi.input_type
+class AiSpendingCapsDefaultCapCentsArgs:
+    def __init__(__self__, *,
+                 api_token: pulumi.Input[Optional[_builtins.int]] = None,
+                 user: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] api_token: The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+        :param pulumi.Input[_builtins.int] user: The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+        """
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+        """
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "api_token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "user", value)
+
 
 class AlertCreatedByArgsDict(TypedDict):
     api_token_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]

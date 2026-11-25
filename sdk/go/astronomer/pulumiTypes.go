@@ -13,6 +13,162 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AiSpendingCapsDefaultCapCents struct {
+	// The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+	ApiToken *int `pulumi:"apiToken"`
+	// The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+	User *int `pulumi:"user"`
+}
+
+// AiSpendingCapsDefaultCapCentsInput is an input type that accepts AiSpendingCapsDefaultCapCentsArgs and AiSpendingCapsDefaultCapCentsOutput values.
+// You can construct a concrete instance of `AiSpendingCapsDefaultCapCentsInput` via:
+//
+//	AiSpendingCapsDefaultCapCentsArgs{...}
+type AiSpendingCapsDefaultCapCentsInput interface {
+	pulumi.Input
+
+	ToAiSpendingCapsDefaultCapCentsOutput() AiSpendingCapsDefaultCapCentsOutput
+	ToAiSpendingCapsDefaultCapCentsOutputWithContext(context.Context) AiSpendingCapsDefaultCapCentsOutput
+}
+
+type AiSpendingCapsDefaultCapCentsArgs struct {
+	// The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+	ApiToken pulumi.IntPtrInput `pulumi:"apiToken"`
+	// The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+	User pulumi.IntPtrInput `pulumi:"user"`
+}
+
+func (AiSpendingCapsDefaultCapCentsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiSpendingCapsDefaultCapCents)(nil)).Elem()
+}
+
+func (i AiSpendingCapsDefaultCapCentsArgs) ToAiSpendingCapsDefaultCapCentsOutput() AiSpendingCapsDefaultCapCentsOutput {
+	return i.ToAiSpendingCapsDefaultCapCentsOutputWithContext(context.Background())
+}
+
+func (i AiSpendingCapsDefaultCapCentsArgs) ToAiSpendingCapsDefaultCapCentsOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSpendingCapsDefaultCapCentsOutput)
+}
+
+func (i AiSpendingCapsDefaultCapCentsArgs) ToAiSpendingCapsDefaultCapCentsPtrOutput() AiSpendingCapsDefaultCapCentsPtrOutput {
+	return i.ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(context.Background())
+}
+
+func (i AiSpendingCapsDefaultCapCentsArgs) ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSpendingCapsDefaultCapCentsOutput).ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(ctx)
+}
+
+// AiSpendingCapsDefaultCapCentsPtrInput is an input type that accepts AiSpendingCapsDefaultCapCentsArgs, AiSpendingCapsDefaultCapCentsPtr and AiSpendingCapsDefaultCapCentsPtrOutput values.
+// You can construct a concrete instance of `AiSpendingCapsDefaultCapCentsPtrInput` via:
+//
+//	        AiSpendingCapsDefaultCapCentsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AiSpendingCapsDefaultCapCentsPtrInput interface {
+	pulumi.Input
+
+	ToAiSpendingCapsDefaultCapCentsPtrOutput() AiSpendingCapsDefaultCapCentsPtrOutput
+	ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(context.Context) AiSpendingCapsDefaultCapCentsPtrOutput
+}
+
+type aiSpendingCapsDefaultCapCentsPtrType AiSpendingCapsDefaultCapCentsArgs
+
+func AiSpendingCapsDefaultCapCentsPtr(v *AiSpendingCapsDefaultCapCentsArgs) AiSpendingCapsDefaultCapCentsPtrInput {
+	return (*aiSpendingCapsDefaultCapCentsPtrType)(v)
+}
+
+func (*aiSpendingCapsDefaultCapCentsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiSpendingCapsDefaultCapCents)(nil)).Elem()
+}
+
+func (i *aiSpendingCapsDefaultCapCentsPtrType) ToAiSpendingCapsDefaultCapCentsPtrOutput() AiSpendingCapsDefaultCapCentsPtrOutput {
+	return i.ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(context.Background())
+}
+
+func (i *aiSpendingCapsDefaultCapCentsPtrType) ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSpendingCapsDefaultCapCentsPtrOutput)
+}
+
+type AiSpendingCapsDefaultCapCentsOutput struct{ *pulumi.OutputState }
+
+func (AiSpendingCapsDefaultCapCentsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiSpendingCapsDefaultCapCents)(nil)).Elem()
+}
+
+func (o AiSpendingCapsDefaultCapCentsOutput) ToAiSpendingCapsDefaultCapCentsOutput() AiSpendingCapsDefaultCapCentsOutput {
+	return o
+}
+
+func (o AiSpendingCapsDefaultCapCentsOutput) ToAiSpendingCapsDefaultCapCentsOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsOutput {
+	return o
+}
+
+func (o AiSpendingCapsDefaultCapCentsOutput) ToAiSpendingCapsDefaultCapCentsPtrOutput() AiSpendingCapsDefaultCapCentsPtrOutput {
+	return o.ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(context.Background())
+}
+
+func (o AiSpendingCapsDefaultCapCentsOutput) ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AiSpendingCapsDefaultCapCents) *AiSpendingCapsDefaultCapCents {
+		return &v
+	}).(AiSpendingCapsDefaultCapCentsPtrOutput)
+}
+
+// The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+func (o AiSpendingCapsDefaultCapCentsOutput) ApiToken() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiSpendingCapsDefaultCapCents) *int { return v.ApiToken }).(pulumi.IntPtrOutput)
+}
+
+// The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+func (o AiSpendingCapsDefaultCapCentsOutput) User() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiSpendingCapsDefaultCapCents) *int { return v.User }).(pulumi.IntPtrOutput)
+}
+
+type AiSpendingCapsDefaultCapCentsPtrOutput struct{ *pulumi.OutputState }
+
+func (AiSpendingCapsDefaultCapCentsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiSpendingCapsDefaultCapCents)(nil)).Elem()
+}
+
+func (o AiSpendingCapsDefaultCapCentsPtrOutput) ToAiSpendingCapsDefaultCapCentsPtrOutput() AiSpendingCapsDefaultCapCentsPtrOutput {
+	return o
+}
+
+func (o AiSpendingCapsDefaultCapCentsPtrOutput) ToAiSpendingCapsDefaultCapCentsPtrOutputWithContext(ctx context.Context) AiSpendingCapsDefaultCapCentsPtrOutput {
+	return o
+}
+
+func (o AiSpendingCapsDefaultCapCentsPtrOutput) Elem() AiSpendingCapsDefaultCapCentsOutput {
+	return o.ApplyT(func(v *AiSpendingCapsDefaultCapCents) AiSpendingCapsDefaultCapCents {
+		if v != nil {
+			return *v
+		}
+		var ret AiSpendingCapsDefaultCapCents
+		return ret
+	}).(AiSpendingCapsDefaultCapCentsOutput)
+}
+
+// The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+func (o AiSpendingCapsDefaultCapCentsPtrOutput) ApiToken() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiSpendingCapsDefaultCapCents) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ApiToken
+	}).(pulumi.IntPtrOutput)
+}
+
+// The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+func (o AiSpendingCapsDefaultCapCentsPtrOutput) User() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiSpendingCapsDefaultCapCents) *int {
+		if v == nil {
+			return nil
+		}
+		return v.User
+	}).(pulumi.IntPtrOutput)
+}
+
 type AlertCreatedBy struct {
 	ApiTokenName *string `pulumi:"apiTokenName"`
 	AvatarUrl    *string `pulumi:"avatarUrl"`
@@ -25788,6 +25944,8 @@ func (o GetWorkspacesWorkspaceUpdatedByOutput) Username() pulumi.StringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AiSpendingCapsDefaultCapCentsInput)(nil)).Elem(), AiSpendingCapsDefaultCapCentsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AiSpendingCapsDefaultCapCentsPtrInput)(nil)).Elem(), AiSpendingCapsDefaultCapCentsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertCreatedByInput)(nil)).Elem(), AlertCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertCreatedByPtrInput)(nil)).Elem(), AlertCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertNotificationChannelInput)(nil)).Elem(), AlertNotificationChannelArgs{})
@@ -26106,6 +26264,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceCreatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceCreatedByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceUpdatedByInput)(nil)).Elem(), GetWorkspacesWorkspaceUpdatedByArgs{})
+	pulumi.RegisterOutputType(AiSpendingCapsDefaultCapCentsOutput{})
+	pulumi.RegisterOutputType(AiSpendingCapsDefaultCapCentsPtrOutput{})
 	pulumi.RegisterOutputType(AlertCreatedByOutput{})
 	pulumi.RegisterOutputType(AlertCreatedByPtrOutput{})
 	pulumi.RegisterOutputType(AlertNotificationChannelOutput{})

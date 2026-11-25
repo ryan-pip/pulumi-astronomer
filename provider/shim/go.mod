@@ -3,7 +3,7 @@ module github.com/astronomer/terraform-provider-astro/shim
 go 1.26.10
 
 require (
-	github.com/astronomer/terraform-provider-astro v1.6.3
+	github.com/astronomer/terraform-provider-astro v1.7.0
 	github.com/hashicorp/terraform-plugin-framework v1.12.0
 )
 

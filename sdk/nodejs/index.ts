@@ -10,6 +10,11 @@ export type AgentToken = import("./agentToken").AgentToken;
 export const AgentToken: typeof import("./agentToken").AgentToken = null as any;
 utilities.lazyLoad(exports, ["AgentToken"], () => require("./agentToken"));
 
+export { AiSpendingCapsArgs, AiSpendingCapsState } from "./aiSpendingCaps";
+export type AiSpendingCaps = import("./aiSpendingCaps").AiSpendingCaps;
+export const AiSpendingCaps: typeof import("./aiSpendingCaps").AiSpendingCaps = null as any;
+utilities.lazyLoad(exports, ["AiSpendingCaps"], () => require("./aiSpendingCaps"));
+
 export { AlertArgs, AlertState } from "./alert";
 export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
@@ -229,6 +234,8 @@ const _module = {
         switch (type) {
             case "astronomer:index/agentToken:AgentToken":
                 return new AgentToken(name, <any>undefined, { urn })
+            case "astronomer:index/aiSpendingCaps:AiSpendingCaps":
+                return new AiSpendingCaps(name, <any>undefined, { urn })
             case "astronomer:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
             case "astronomer:index/alerts:Alerts":
@@ -269,6 +276,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("astronomer", "index/agentToken", _module)
+pulumi.runtime.registerResourceModule("astronomer", "index/aiSpendingCaps", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/alert", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/alerts", _module)
 pulumi.runtime.registerResourceModule("astronomer", "index/allowedIpAddressRanges", _module)

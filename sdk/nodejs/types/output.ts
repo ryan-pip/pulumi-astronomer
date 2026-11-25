@@ -5,6 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AiSpendingCapsDefaultCapCents {
+    /**
+     * The default for every API token without an override. At most `10000000` ($100,000). `0` turns AI off for those API tokens.
+     */
+    apiToken?: number;
+    /**
+     * The default for every user without an override. At most `10000000` ($100,000). `0` turns AI off for those users.
+     */
+    user?: number;
+}
+
 export interface AlertCreatedBy {
     apiTokenName: string;
     avatarUrl: string;

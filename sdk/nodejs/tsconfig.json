@@ -20,6 +20,7 @@
     },
     "files": [
         "agentToken.ts",
+        "aiSpendingCaps.ts",
         "alert.ts",
         "alerts.ts",
         "allowedIpAddressRanges.ts",
